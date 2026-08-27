@@ -1,0 +1,52 @@
+name = "Erdos689Palomar"
+version = "0.1.0"
+defaultTargets = ["Challenge", "Solution", "AxiomAudit"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4"
+rev = "0df444a360eaa60ab8c11dca51a86af692955474"
+
+[[lean_lib]]
+name = "ArchitectProofs"
+srcDir = "Proofs"
+roots = ["Architect", "Architect.Attribute", "Architect.Basic", "Architect.CollectUsed", "Architect.Command", "Architect.Content", "Architect.Load", "Architect.Output", "Architect.Tactic"]
+moreLeanArgs = ["-j1", "-s65520", "-M24576", "-E", "hasSorry"]
+
+[[lean_lib]]
+name = "GoldbachProof"
+srcDir = "Proofs"
+roots = ["GoldbachChainMaster"]
+moreLeanArgs = ["-j1", "-s65520", "-M24576", "-DautoImplicit=false", "-DrelaxedAutoImplicit=false", "-E", "hasSorry"]
+
+[[lean_lib]]
+name = "PNTAPProofs"
+srcDir = "Proofs"
+roots = ["ErdosProblems.Erdos730.AnalyticInputs", "ErdosProblems.Erdos730.PNTAP"]
+moreLeanArgs = ["-j1", "-s65520", "-M24576", "-DrelaxedAutoImplicit=false", "-DmaxSynthPendingDepth=3", "-E", "hasSorry"]
+
+[[lean_lib]]
+name = "PNTProofs"
+srcDir = "Proofs"
+roots = ["PrimeNumberTheoremAnd.Auxiliary", "PrimeNumberTheoremAnd.Consequences", "PrimeNumberTheoremAnd.Defs", "PrimeNumberTheoremAnd.EulerMaclaurin", "PrimeNumberTheoremAnd.Fourier", "PrimeNumberTheoremAnd.Mathlib.Algebra.Notation.Support", "PrimeNumberTheoremAnd.Mathlib.Analysis.Asymptotics.Asymptotics", "PrimeNumberTheoremAnd.Mathlib.Analysis.Asymptotics.Uniformly", "PrimeNumberTheoremAnd.Mathlib.Analysis.SpecialFunctions.Log.Basic", "PrimeNumberTheoremAnd.Mathlib.NumberTheory.Sieve.AuxResults", "PrimeNumberTheoremAnd.Mathlib.NumberTheory.Sieve.Basic", "PrimeNumberTheoremAnd.Mathlib.NumberTheory.Sieve.Selberg", "PrimeNumberTheoremAnd.Mathlib.NumberTheory.Sieve.SelbergBounds", "PrimeNumberTheoremAnd.MediumPNT", "PrimeNumberTheoremAnd.MellinCalculus", "PrimeNumberTheoremAnd.PerronFormula", "PrimeNumberTheoremAnd.Rectangle", "PrimeNumberTheoremAnd.ResidueCalcOnRectangles", "PrimeNumberTheoremAnd.SmoothExistence", "PrimeNumberTheoremAnd.Sobolev", "PrimeNumberTheoremAnd.Tactic.AdditiveCombination", "PrimeNumberTheoremAnd.Wiener", "PrimeNumberTheoremAnd.ZetaBounds", "PrimeNumberTheoremAnd.ZetaConj"]
+moreLeanArgs = ["-j1", "-s65520", "-M24576", "-DautoImplicit=false", "-DrelaxedAutoImplicit=false"]
+
+[[lean_lib]]
+name = "ResearchProofs"
+srcDir = "Proofs"
+roots = ["ActualCenterCouplingFourier433", "ActualConductorDedupCompletion433", "ActualFinalCenterReduction433", "ActualLabelAllPairTransfer433", "ActualLabelCanonicalSeeds433", "ActualLabelCanonicalSieve433", "ActualLabelFixedModulus433", "ActualLabelLocalCardBridge433", "ActualLabelSieveMainTerm433", "ActualLabelSummedCoefficient433", "ActualLabelSummedSieve433", "ActualLeftVertexDegree433", "ActualLeftVertexFinal433", "ActualLeftVertexMajorCellModel433", "ActualLeftVertexMajorCubicModel433", "ActualLeftVertexMajorExceptional433", "ActualLeftVertexMajorFullApprox433", "ActualLeftVertexMajorIntegrated433", "ActualLeftVertexMajorIntegration433", "ActualLeftVertexMajorOnlyCovering433", "ActualLeftVertexMajorSW433", "ActualLeftVertexMajorSupport433", "ActualLeftVertexSelectors433", "ActualLeftVertexSummed433", "ActualMajorArcBoundary433", "ActualMajorArcCenterAssembly433", "ActualMajorArcCenterConductor433", "ActualMajorArcCenterPhaseBridge433", "ActualMajorArcCenterReduction433", "ActualMajorArcCenterReindex433", "ActualMajorArcCorrectedModel433", "ActualMajorArcExceptionClosure433", "ActualMajorArcFinalCoupling433", "ActualMajorArcFinalFourZero433", "ActualMajorArcFinalPartition433", "ActualMajorArcGlobalErrorAssembly433", "ActualMajorArcGlobalStrata433", "ActualMajorArcInterior433", "ActualMajorArcParityCRT433", "ActualMajorArcPositivityArchimedean433", "ActualMajorArcPositivityComposite433", "ActualMajorArcPositivityError433", "ActualMajorArcPositivityFinal433", "ActualMajorArcPositivityLocalFactors433", "ActualMajorArcPositivityPhase433", "ActualMajorArcPositivityTail433", "ActualMajorArcPositivityTruncation433", "ActualMajorArcPrimeMinor433", "ActualMajorArcSignedTailAssembly433", "ActualMajorArcSupportSelectorBridge433", "ActualMajorArcWeightedBridge433", "ActualOfficialSolution433", "ActualOutsideCrtCoupling433", "ActualRightCoefficientAssembly433", "ActualRightVertexDegree433", "ActualRightVertexFinal433", "ActualRightVertexFinalCovering433", "ActualRightVertexLeftAudit433", "ActualRightVertexLeftAuditBounds433", "ActualRightVertexLeftAuditErrors433", "ActualRightVertexMajorConductor433", "ActualRightVertexMajorMixedConductor433", "ActualRightVertexMajorSingularAssembly433", "ActualRightVertexMajorSquarefreeSupport433", "ActualRightVertexMajorUnitOrbit433", "ActualRightVertexReduction433", "ActualRightVertexSelectors433", "ActualRightVertexSummed433", "ActualSingularTailCompletion433", "AffineDegreeFibers433", "AffineProgressionSieve433", "AffineSieveDegreeSelectors433", "AffineSieveExceptions433", "AffineSieveRootRemainder433", "AllScaleRealStripLattice433", "AnalyticBridge", "AnalyticScalarCapacity433", "Cleanup", "CompatibleLogMinorArcs433", "DeficiencyAsymptotic433", "DeficiencyClassification", "DeficiencyCoefficients", "DeficiencyDensity433", "DeficiencyFiniteMass433", "DeficiencyMainTail433", "DeficiencyPrimePower433", "DeficiencyRectangle433", "DeficiencySmooth433", "DeficiencySmoothTail433", "DeficiencyTruncation433", "DeficiencyTwoInputBridge433", "DeficiencyUpper433", "DeficiencyZeroCrt", "ExactStripMinorArcs433", "ExceptionalPrimeThree433", "ExceptionalSelectorAssembly433", "FullyCompatibleMinorArcs433", "GreedyMatching", "LabelDoubleCoefficient433", "LabelFiberClosure433", "LabelFiberSieve433", "LabelGlobalCrt433", "LabelUnitCrtCard433", "LabelUnitSelectorBridge433", "ManuscriptLocal", "MatchingAssembly", "NoncircularScalarBridge433", "PrimePatternMultiplicity433", "PrimeProgressions433", "PrincipalArcPositivity433", "PrincipalPrimeOnly433", "ReserveCutoff", "ReserveDensity433", "RobustCrtBridge", "RobustCrtDensity", "RobustSupportDensity", "SelbergCutoff433", "SelbergDenominator", "SelbergExplicitConstant433", "SelbergFinite433", "SelbergHarmonicBlocks", "SelbergOptimizedBridge433", "SelbergSquarefree", "SelbergSquarefreeComparison", "SharpLabelCoefficientAssembly433", "ShiftedFareyDisjoint433", "ShiftedMajorArcAssembly433", "ShiftedMajorArcDedup433", "Structural", "TernaryFourier433", "TernaryMajorArcCompletion433", "ThreePrimeLatticeLower433", "ThreePrimeMajorArcClosure433", "ThreePrimeMajorArcError433", "ThreePrimeMajorArcReduction433", "ThreePrimePatternBridge433", "ThreePrimeWeightTransfer433", "TwoInputAssembly433", "UniformLocalFactors"]
+moreLeanArgs = ["-j1", "-s65520", "-M24576", "-E", "hasSorry"]
+
+[[lean_lib]]
+name = "Challenge"
+roots = ["Challenge"]
+
+[[lean_lib]]
+name = "Solution"
+roots = ["Solution"]
+moreLeanArgs = ["-E", "hasSorry"]
+
+[[lean_lib]]
+name = "AxiomAudit"
+roots = ["AxiomAudit"]
+moreLeanArgs = ["-E", "hasSorry"]

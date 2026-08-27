@@ -1,0 +1,75 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 689: eventual double covering by prime residue classes",
+    "description": "For every sufficiently large n, one residue class for each prime p ≤ n covers every integer in [1,n] at least twice using distinct prime moduli. The Lean proof reconstructs the finite-support, prime-estimate, greedy-matching and cleanup argument and discharges its analytic inputs.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "MIT"
+  },
+  "sources": [
+    {
+      "title": "Some unconventional problems in number theory (1979), p. 79",
+      "authors": ["P. Erdős"],
+      "type": "paper",
+      "relationship": "other",
+      "id": "https://doi.org/10.1007/BF01903382",
+      "location": "https://www.renyi.hu/~p_erdos/1979-23.pdf",
+      "note": "Poses the question whether one residue for each prime p ≤ n covers every positive x ≤ n at least twice, and also mentions at least r. It poses a question rather than proving the submitted result; its wording does not explicitly state a sufficiently-large-n quantifier."
+    },
+    {
+      "title": "A greedy matching proof of Erdős’s two-fold residue-class problem (working manuscript, 27 April 2026)",
+      "type": "paper",
+      "relationship": "formalizes",
+      "id": "https://www.ulam.ai/research/erdos689.pdf",
+      "note": "Formalizes Theorem 1.1: for all sufficiently large n, one class for each prime p ≤ n covers every m in [1,n] at least twice. The Lean development reconstructs the argument."
+    },
+    {
+      "title": "Erdős problem 689 discussion",
+      "type": "web discussion",
+      "relationship": "background",
+      "id": "https://www.erdosproblems.com/forum/thread/689",
+      "note": "Related discussion of Erdős problem 689; the theorem formalized here is Theorem 1.1 of the working manuscript."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/antoshashakov/Principia-Math-Solutions/tree/c9910942522fbd3a07c034ac57947f56df6f0f6d/erdos1054",
+      "relationship": "builds-on",
+      "note": "This project includes a Lean 4.33.1 compatibility port of erdos1054/masters/GoldbachChainMaster.lean at this pinned revision. Its analytic Fourier, minor-arc, prime-power, and arithmetic lemmas are reused in the Erdős 689 three-prime development. Original and ported hashes and the patch are recorded in source-manifest.json."
+    }
+  ],
+  "classification": {
+    "arxiv": [
+      "math.NT",
+      "math.CO"
+    ],
+    "msc2020": []
+  },
+  "status": {
+    "scope": "The sufficiently-large-n, two-fold formulation in Theorem 1.1 of the April 2026 working manuscript, addressing Erdős's 1979 residue-class question; no explicit sufficient threshold, arbitrary multiplicity, or priority claim.",
+    "main_results": [
+      {
+        "declaration": "Erdos689.Palomar.eventual_double_cover",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted local research proof and package preparation directed by Linmiao Xu, with agent-based statement review. Historical model identities and costs are not reconstructed."
+      }
+    ]
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Statement scope, proof architecture, and provenance received local agent review. Specialist review, official Comparator/NanoDa verification, and registration are not asserted."
+  }
+}

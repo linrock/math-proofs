@@ -1,0 +1,1942 @@
+{
+  "schema_version": 1,
+  "problem": 689,
+  "kind": "source-snapshot-not-proof-certificate",
+  "sources": [
+    {
+      "module": "Architect.Basic",
+      "path": "Proofs/Architect/Basic.lean",
+      "sha256": "92ed89acca564cdfb0cb696a3c2e3b62a7ccca82cb6fca85d0f994ffd2b2cb60",
+      "origin": {
+        "kind": "external",
+        "provider": "architect",
+        "path": "Architect/Basic.lean",
+        "repository": "https://github.com/hanwenzhu/LeanArchitect",
+        "revision": "78dd66840d3efe8c824c699fc03381cec817c271",
+        "license": "Apache-2.0",
+        "sha256": "92ed89acca564cdfb0cb696a3c2e3b62a7ccca82cb6fca85d0f994ffd2b2cb60"
+      }
+    },
+    {
+      "module": "Architect.Command",
+      "path": "Proofs/Architect/Command.lean",
+      "sha256": "8497d574c12414908829e8b25a96e0ce52c643bd48da66b678d1623db395696a",
+      "origin": {
+        "kind": "external",
+        "provider": "architect",
+        "path": "Architect/Command.lean",
+        "repository": "https://github.com/hanwenzhu/LeanArchitect",
+        "revision": "78dd66840d3efe8c824c699fc03381cec817c271",
+        "license": "Apache-2.0",
+        "sha256": "8497d574c12414908829e8b25a96e0ce52c643bd48da66b678d1623db395696a"
+      }
+    },
+    {
+      "module": "Architect.Content",
+      "path": "Proofs/Architect/Content.lean",
+      "sha256": "73de49bb499fc140dce470251e3f657368b788dca1659317e902f476ebb9556b",
+      "origin": {
+        "kind": "external",
+        "provider": "architect",
+        "path": "Architect/Content.lean",
+        "repository": "https://github.com/hanwenzhu/LeanArchitect",
+        "revision": "78dd66840d3efe8c824c699fc03381cec817c271",
+        "license": "Apache-2.0",
+        "sha256": "73de49bb499fc140dce470251e3f657368b788dca1659317e902f476ebb9556b"
+      }
+    },
+    {
+      "module": "Architect.Attribute",
+      "path": "Proofs/Architect/Attribute.lean",
+      "sha256": "1bce2337ed4de0e6e735819e89b4d35ad81c7e996e6cade79e8a9ef781dba314",
+      "origin": {
+        "kind": "external",
+        "provider": "architect",
+        "path": "Architect/Attribute.lean",
+        "repository": "https://github.com/hanwenzhu/LeanArchitect",
+        "revision": "78dd66840d3efe8c824c699fc03381cec817c271",
+        "license": "Apache-2.0",
+        "sha256": "1bce2337ed4de0e6e735819e89b4d35ad81c7e996e6cade79e8a9ef781dba314"
+      }
+    },
+    {
+      "module": "Architect.CollectUsed",
+      "path": "Proofs/Architect/CollectUsed.lean",
+      "sha256": "921633f79fef58cf0d8540477785c4d9213608642685c21733dd3c61855d154d",
+      "origin": {
+        "kind": "external",
+        "provider": "architect",
+        "path": "Architect/CollectUsed.lean",
+        "repository": "https://github.com/hanwenzhu/LeanArchitect",
+        "revision": "78dd66840d3efe8c824c699fc03381cec817c271",
+        "license": "Apache-2.0",
+        "sha256": "921633f79fef58cf0d8540477785c4d9213608642685c21733dd3c61855d154d"
+      }
+    },
+    {
+      "module": "Architect.Tactic",
+      "path": "Proofs/Architect/Tactic.lean",
+      "sha256": "cd152524b774c063cb382171e00c3b7913c5757063f560b10f9009e79f37f08d",
+      "origin": {
+        "kind": "external",
+        "provider": "architect",
+        "path": "Architect/Tactic.lean",
+        "repository": "https://github.com/hanwenzhu/LeanArchitect",
+        "revision": "78dd66840d3efe8c824c699fc03381cec817c271",
+        "license": "Apache-2.0",
+        "sha256": "cd152524b774c063cb382171e00c3b7913c5757063f560b10f9009e79f37f08d"
+      }
+    },
+    {
+      "module": "Architect.Output",
+      "path": "Proofs/Architect/Output.lean",
+      "sha256": "ef52349573a02ff0714638fb47dfaf335c8c8a8c8b98192d3fc4d190ef4923d3",
+      "origin": {
+        "kind": "external",
+        "provider": "architect",
+        "path": "Architect/Output.lean",
+        "repository": "https://github.com/hanwenzhu/LeanArchitect",
+        "revision": "78dd66840d3efe8c824c699fc03381cec817c271",
+        "license": "Apache-2.0",
+        "sha256": "ef52349573a02ff0714638fb47dfaf335c8c8a8c8b98192d3fc4d190ef4923d3"
+      }
+    },
+    {
+      "module": "Architect.Load",
+      "path": "Proofs/Architect/Load.lean",
+      "sha256": "6ae5e51b0f041d4cba8da31e0d8ff96ffa8ae89bf6dc33d84d7c0349dc92bd34",
+      "origin": {
+        "kind": "external",
+        "provider": "architect",
+        "path": "Architect/Load.lean",
+        "repository": "https://github.com/hanwenzhu/LeanArchitect",
+        "revision": "78dd66840d3efe8c824c699fc03381cec817c271",
+        "license": "Apache-2.0",
+        "sha256": "6ae5e51b0f041d4cba8da31e0d8ff96ffa8ae89bf6dc33d84d7c0349dc92bd34"
+      }
+    },
+    {
+      "module": "Architect",
+      "path": "Proofs/Architect.lean",
+      "sha256": "68748939e82259728644095b343599593f38abe65c971c14f910445a44f4ecf6",
+      "origin": {
+        "kind": "external",
+        "provider": "architect",
+        "path": "Architect.lean",
+        "repository": "https://github.com/hanwenzhu/LeanArchitect",
+        "revision": "78dd66840d3efe8c824c699fc03381cec817c271",
+        "license": "Apache-2.0",
+        "sha256": "68748939e82259728644095b343599593f38abe65c971c14f910445a44f4ecf6"
+      }
+    },
+    {
+      "module": "PrimeNumberTheoremAnd.Auxiliary",
+      "path": "Proofs/PrimeNumberTheoremAnd/Auxiliary.lean",
+      "sha256": "6a57cc112e9a6dbe780c019cb22fa1469733afc78976f3aeeaaa80949acf0cfc",
+      "origin": {
+        "kind": "external",
+        "provider": "pnt",
+        "path": "PrimeNumberTheoremAnd/Auxiliary.lean",
+        "repository": "https://github.com/ajirving/PrimeNumberTheoremAnd",
+        "revision": "769d3b81fbff001d9fa7028df0168a8e546cf692",
+        "license": "Apache-2.0",
+        "sha256": "6a57cc112e9a6dbe780c019cb22fa1469733afc78976f3aeeaaa80949acf0cfc"
+      }
+    },
+    {
+      "module": "PrimeNumberTheoremAnd.MellinCalculus",
+      "path": "Proofs/PrimeNumberTheoremAnd/MellinCalculus.lean",
+      "sha256": "f89856dcbb9fca164188d64d992858456687f26ca3160a565bcb82fbc08916d2",
+      "origin": {
+        "kind": "external",
+        "provider": "pnt",
+        "path": "PrimeNumberTheoremAnd/MellinCalculus.lean",
+        "repository": "https://github.com/ajirving/PrimeNumberTheoremAnd",
+        "revision": "769d3b81fbff001d9fa7028df0168a8e546cf692",
+        "license": "Apache-2.0",
+        "sha256": "f89856dcbb9fca164188d64d992858456687f26ca3160a565bcb82fbc08916d2"
+      }
+    },
+    {
+      "module": "PrimeNumberTheoremAnd.Sobolev",
+      "path": "Proofs/PrimeNumberTheoremAnd/Sobolev.lean",
+      "sha256": "fe06e13fad5b47dbd324307ba246110515c4cb50f4c41d6cb15764fd53b1b8ef",
+      "origin": {
+        "kind": "external",
+        "provider": "pnt",
+        "path": "PrimeNumberTheoremAnd/Sobolev.lean",
+        "repository": "https://github.com/ajirving/PrimeNumberTheoremAnd",
+        "revision": "769d3b81fbff001d9fa7028df0168a8e546cf692",
+        "license": "Apache-2.0",
+        "sha256": "fe06e13fad5b47dbd324307ba246110515c4cb50f4c41d6cb15764fd53b1b8ef"
+      }
+    },
+    {
+      "module": "PrimeNumberTheoremAnd.Fourier",
+      "path": "Proofs/PrimeNumberTheoremAnd/Fourier.lean",
+      "sha256": "deb4c4557d9b215e13db891ff3fd4885ab53360811ee1657fd9fe6bb3219b321",
+      "origin": {
+        "kind": "external",
+        "provider": "pnt",
+        "path": "PrimeNumberTheoremAnd/Fourier.lean",
+        "repository": "https://github.com/ajirving/PrimeNumberTheoremAnd",
+        "revision": "769d3b81fbff001d9fa7028df0168a8e546cf692",
+        "license": "Apache-2.0",
+        "sha256": "deb4c4557d9b215e13db891ff3fd4885ab53360811ee1657fd9fe6bb3219b321"
+      }
+    },
+    {
+      "module": "PrimeNumberTheoremAnd.Mathlib.Analysis.SpecialFunctions.Log.Basic",
+      "path": "Proofs/PrimeNumberTheoremAnd/Mathlib/Analysis/SpecialFunctions/Log/Basic.lean",
+      "sha256": "7e3e2b8f84e6c170051a6474272455bed2432e6fddac5660072318b9b4eda7ec",
+      "origin": {
+        "kind": "external",
+        "provider": "pnt",
+        "path": "PrimeNumberTheoremAnd/Mathlib/Analysis/SpecialFunctions/Log/Basic.lean",
+        "repository": "https://github.com/ajirving/PrimeNumberTheoremAnd",
+        "revision": "769d3b81fbff001d9fa7028df0168a8e546cf692",
+        "license": "Apache-2.0",
+        "sha256": "7e3e2b8f84e6c170051a6474272455bed2432e6fddac5660072318b9b4eda7ec"
+      }
+    },
+    {
+      "module": "PrimeNumberTheoremAnd.Rectangle",
+      "path": "Proofs/PrimeNumberTheoremAnd/Rectangle.lean",
+      "sha256": "ab1c0c7c16ad9f3765e439fe42a739d4d25f09aa991df6c4c303f77380a89885",
+      "origin": {
+        "kind": "external",
+        "provider": "pnt",
+        "path": "PrimeNumberTheoremAnd/Rectangle.lean",
+        "repository": "https://github.com/ajirving/PrimeNumberTheoremAnd",
+        "revision": "769d3b81fbff001d9fa7028df0168a8e546cf692",
+        "license": "Apache-2.0",
+        "sha256": "ab1c0c7c16ad9f3765e439fe42a739d4d25f09aa991df6c4c303f77380a89885"
+      }
+    },
+    {
+      "module": "PrimeNumberTheoremAnd.Tactic.AdditiveCombination",
+      "path": "Proofs/PrimeNumberTheoremAnd/Tactic/AdditiveCombination.lean",
+      "sha256": "ea898bb0a4889d82fe4b94b7052daa73083d1f3aa3cddb5336f0513580a17040",
+      "origin": {
+        "kind": "external",
+        "provider": "pnt",
+        "path": "PrimeNumberTheoremAnd/Tactic/AdditiveCombination.lean",
+        "repository": "https://github.com/ajirving/PrimeNumberTheoremAnd",
+        "revision": "769d3b81fbff001d9fa7028df0168a8e546cf692",
+        "license": "Apache-2.0",
+        "sha256": "ea898bb0a4889d82fe4b94b7052daa73083d1f3aa3cddb5336f0513580a17040"
+      }
+    },
+    {
+      "module": "PrimeNumberTheoremAnd.ResidueCalcOnRectangles",
+      "path": "Proofs/PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean",
+      "sha256": "6a8ab0005546490f91b615f6bfbe8818ba21f3afe008a893174ab1a0e3e45cb8",
+      "origin": {
+        "kind": "external",
+        "provider": "pnt",
+        "path": "PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean",
+        "repository": "https://github.com/ajirving/PrimeNumberTheoremAnd",
+        "revision": "769d3b81fbff001d9fa7028df0168a8e546cf692",
+        "license": "Apache-2.0",
+        "sha256": "6a8ab0005546490f91b615f6bfbe8818ba21f3afe008a893174ab1a0e3e45cb8"
+      }
+    },
+    {
+      "module": "PrimeNumberTheoremAnd.EulerMaclaurin",
+      "path": "Proofs/PrimeNumberTheoremAnd/EulerMaclaurin.lean",
+      "sha256": "a1def4a9f8f0b36864c5d480db137c1d86be3db1a47b67ae151e587a99167146",
+      "origin": {
+        "kind": "external",
+        "provider": "pnt",
+        "path": "PrimeNumberTheoremAnd/EulerMaclaurin.lean",
+        "repository": "https://github.com/ajirving/PrimeNumberTheoremAnd",
+        "revision": "769d3b81fbff001d9fa7028df0168a8e546cf692",
+        "license": "Apache-2.0",
+        "sha256": "a1def4a9f8f0b36864c5d480db137c1d86be3db1a47b67ae151e587a99167146"
+      }
+    },
+    {
+      "module": "PrimeNumberTheoremAnd.ZetaBounds",
+      "path": "Proofs/PrimeNumberTheoremAnd/ZetaBounds.lean",
+      "sha256": "d0317535f8bb1296165675e5b1d98c87c4441a86edf9cc9e827df586e2ebcea4",
+      "origin": {
+        "kind": "external",
+        "provider": "pnt",
+        "path": "PrimeNumberTheoremAnd/ZetaBounds.lean",
+        "repository": "https://github.com/ajirving/PrimeNumberTheoremAnd",
+        "revision": "769d3b81fbff001d9fa7028df0168a8e546cf692",
+        "license": "Apache-2.0",
+        "sha256": "d0317535f8bb1296165675e5b1d98c87c4441a86edf9cc9e827df586e2ebcea4"
+      }
+    },
+    {
+      "module": "PrimeNumberTheoremAnd.ZetaConj",
+      "path": "Proofs/PrimeNumberTheoremAnd/ZetaConj.lean",
+      "sha256": "08a9153c6500464c574f466a5569e82adbd5fb152a96a914fbb77c3208d0a71c",
+      "origin": {
+        "kind": "external",
+        "provider": "pnt",
+        "path": "PrimeNumberTheoremAnd/ZetaConj.lean",
+        "repository": "https://github.com/ajirving/PrimeNumberTheoremAnd",
+        "revision": "769d3b81fbff001d9fa7028df0168a8e546cf692",
+        "license": "Apache-2.0",
+        "sha256": "08a9153c6500464c574f466a5569e82adbd5fb152a96a914fbb77c3208d0a71c"
+      }
+    },
+    {
+      "module": "PrimeNumberTheoremAnd.Mathlib.Algebra.Notation.Support",
+      "path": "Proofs/PrimeNumberTheoremAnd/Mathlib/Algebra/Notation/Support.lean",
+      "sha256": "e688bf925c2130b291c536d3b93b72c20e41ae95d530c90915921d75a6f52504",
+      "origin": {
+        "kind": "external",
+        "provider": "pnt",
+        "path": "PrimeNumberTheoremAnd/Mathlib/Algebra/Notation/Support.lean",
+        "repository": "https://github.com/ajirving/PrimeNumberTheoremAnd",
+        "revision": "769d3b81fbff001d9fa7028df0168a8e546cf692",
+        "license": "Apache-2.0",
+        "sha256": "e688bf925c2130b291c536d3b93b72c20e41ae95d530c90915921d75a6f52504"
+      }
+    },
+    {
+      "module": "PrimeNumberTheoremAnd.SmoothExistence",
+      "path": "Proofs/PrimeNumberTheoremAnd/SmoothExistence.lean",
+      "sha256": "e689045a2d7f92c71c68fda6aa69a89d4a8692187475ba432ed010f453110ea0",
+      "origin": {
+        "kind": "external",
+        "provider": "pnt",
+        "path": "PrimeNumberTheoremAnd/SmoothExistence.lean",
+        "repository": "https://github.com/ajirving/PrimeNumberTheoremAnd",
+        "revision": "769d3b81fbff001d9fa7028df0168a8e546cf692",
+        "license": "Apache-2.0",
+        "sha256": "e689045a2d7f92c71c68fda6aa69a89d4a8692187475ba432ed010f453110ea0"
+      }
+    },
+    {
+      "module": "PrimeNumberTheoremAnd.MediumPNT",
+      "path": "Proofs/PrimeNumberTheoremAnd/MediumPNT.lean",
+      "sha256": "84f8cf3c1b712b4d4e7c0f2ff54a609f8b3f16ed7143bc038a4362e4a81ca140",
+      "origin": {
+        "kind": "external",
+        "provider": "pnt",
+        "path": "PrimeNumberTheoremAnd/MediumPNT.lean",
+        "repository": "https://github.com/ajirving/PrimeNumberTheoremAnd",
+        "revision": "769d3b81fbff001d9fa7028df0168a8e546cf692",
+        "license": "Apache-2.0",
+        "sha256": "84f8cf3c1b712b4d4e7c0f2ff54a609f8b3f16ed7143bc038a4362e4a81ca140"
+      }
+    },
+    {
+      "module": "PrimeNumberTheoremAnd.Mathlib.Analysis.Asymptotics.Asymptotics",
+      "path": "Proofs/PrimeNumberTheoremAnd/Mathlib/Analysis/Asymptotics/Asymptotics.lean",
+      "sha256": "c1cdb6bb509c6178bf17868c57e5b53721b87fb2774ef8562bc5945ffe5b11ae",
+      "origin": {
+        "kind": "external",
+        "provider": "pnt",
+        "path": "PrimeNumberTheoremAnd/Mathlib/Analysis/Asymptotics/Asymptotics.lean",
+        "repository": "https://github.com/ajirving/PrimeNumberTheoremAnd",
+        "revision": "769d3b81fbff001d9fa7028df0168a8e546cf692",
+        "license": "Apache-2.0",
+        "sha256": "c1cdb6bb509c6178bf17868c57e5b53721b87fb2774ef8562bc5945ffe5b11ae"
+      }
+    },
+    {
+      "module": "PrimeNumberTheoremAnd.Mathlib.Analysis.Asymptotics.Uniformly",
+      "path": "Proofs/PrimeNumberTheoremAnd/Mathlib/Analysis/Asymptotics/Uniformly.lean",
+      "sha256": "72cbe87eae6ad7beec7edf214f7ba37fff8d1f8a4c61fae3e7fbfabeb2373f0f",
+      "origin": {
+        "kind": "external",
+        "provider": "pnt",
+        "path": "PrimeNumberTheoremAnd/Mathlib/Analysis/Asymptotics/Uniformly.lean",
+        "repository": "https://github.com/ajirving/PrimeNumberTheoremAnd",
+        "revision": "769d3b81fbff001d9fa7028df0168a8e546cf692",
+        "license": "Apache-2.0",
+        "sha256": "72cbe87eae6ad7beec7edf214f7ba37fff8d1f8a4c61fae3e7fbfabeb2373f0f"
+      }
+    },
+    {
+      "module": "PrimeNumberTheoremAnd.Wiener",
+      "path": "Proofs/PrimeNumberTheoremAnd/Wiener.lean",
+      "sha256": "061ba03ccf80e1593b28cbb5a9b3c341c7a99d29d823c7487fe83149d802f9d5",
+      "origin": {
+        "kind": "external",
+        "provider": "pnt",
+        "path": "PrimeNumberTheoremAnd/Wiener.lean",
+        "repository": "https://github.com/ajirving/PrimeNumberTheoremAnd",
+        "revision": "769d3b81fbff001d9fa7028df0168a8e546cf692",
+        "license": "Apache-2.0",
+        "sha256": "061ba03ccf80e1593b28cbb5a9b3c341c7a99d29d823c7487fe83149d802f9d5"
+      }
+    },
+    {
+      "module": "PrimeNumberTheoremAnd.PerronFormula",
+      "path": "Proofs/PrimeNumberTheoremAnd/PerronFormula.lean",
+      "sha256": "481f6ad3dd1ecb5ab8a6b00f57aae1ca870bbd2b07820045423e187714dbf5b7",
+      "origin": {
+        "kind": "external",
+        "provider": "pnt",
+        "path": "PrimeNumberTheoremAnd/PerronFormula.lean",
+        "repository": "https://github.com/ajirving/PrimeNumberTheoremAnd",
+        "revision": "769d3b81fbff001d9fa7028df0168a8e546cf692",
+        "license": "Apache-2.0",
+        "sha256": "481f6ad3dd1ecb5ab8a6b00f57aae1ca870bbd2b07820045423e187714dbf5b7"
+      }
+    },
+    {
+      "module": "GoldbachChainMaster",
+      "path": "Proofs/GoldbachChainMaster.lean",
+      "sha256": "4a6e391c9d334280b2159316b7bae3bcf309cefb66d7bfd228ab73c928b70927",
+      "origin": {
+        "kind": "external",
+        "provider": "principia",
+        "path": "erdos1054/masters/GoldbachChainMaster.lean",
+        "repository": "https://github.com/antoshashakov/Principia-Math-Solutions",
+        "revision": "c9910942522fbd3a07c034ac57947f56df6f0f6d",
+        "license": "Apache-2.0",
+        "sha256": "8f77c04ff966bc77ab1ccd1e35655d01fdc782d00e7035250fd8dd83565ee0ad",
+        "original_sha256": "d267507dee42c249e376b3e82d5db839390dd412a5d01ccd6951ff1996f6a851",
+        "patch": "third_party/goldbach_master_433.patch",
+        "patch_sha256": "bf89f4e4a0df6d11fdda4c315b4334164f56b4a1fe264b602fd63df10cd8b60c",
+        "transformation": "Canonical local Lean 4.33.1 compatibility patch; no mathematical scope change is asserted by packaging.",
+        "prefix_notice": "/- Compatibility-port notice: this file adapts erdos1054/masters/GoldbachChainMaster.lean from https://github.com/antoshashakov/Principia-Math-Solutions at c9910942522fbd3a07c034ac57947f56df6f0f6d. The canonical local Lean 4.33.1 patch is reproduced in third_party/goldbach_master_433.patch; see third_party/PRINCIPIA-LICENSE.txt and THIRD_PARTY.md. -/\n"
+      }
+    },
+    {
+      "module": "TernaryFourier433",
+      "path": "Proofs/TernaryFourier433.lean",
+      "sha256": "52e3716e6fd24d5787ad24fa71406459b1b08c249a0f50e0e4e1e73b4d7fad1e",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/TernaryFourier433.lean",
+        "sha256": "52e3716e6fd24d5787ad24fa71406459b1b08c249a0f50e0e4e1e73b4d7fad1e"
+      }
+    },
+    {
+      "module": "Structural",
+      "path": "Proofs/Structural.lean",
+      "sha256": "633eb4480d28aa86d24dd9daa2416c701063a80bbc73e067c3e80983278608d6",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/Structural.lean",
+        "sha256": "633eb4480d28aa86d24dd9daa2416c701063a80bbc73e067c3e80983278608d6"
+      }
+    },
+    {
+      "module": "GreedyMatching",
+      "path": "Proofs/GreedyMatching.lean",
+      "sha256": "1542154088306e44e4b7ec5879a3c75f0988bdc61875d4b7bed3e4c5fc0bfa43",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/GreedyMatching.lean",
+        "sha256": "1542154088306e44e4b7ec5879a3c75f0988bdc61875d4b7bed3e4c5fc0bfa43"
+      }
+    },
+    {
+      "module": "Cleanup",
+      "path": "Proofs/Cleanup.lean",
+      "sha256": "ec1b1c0957232d43d8539d87c64806c2354d550654d7be16f8afd138a9247d2d",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/Cleanup.lean",
+        "sha256": "ec1b1c0957232d43d8539d87c64806c2354d550654d7be16f8afd138a9247d2d"
+      }
+    },
+    {
+      "module": "AnalyticBridge",
+      "path": "Proofs/AnalyticBridge.lean",
+      "sha256": "d6e131b11c4f7e92e6e6e6e63ef8a55e5a2af0efa506082d8b20bc4fc8796e25",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/AnalyticBridge.lean",
+        "sha256": "d6e131b11c4f7e92e6e6e6e63ef8a55e5a2af0efa506082d8b20bc4fc8796e25"
+      }
+    },
+    {
+      "module": "MatchingAssembly",
+      "path": "Proofs/MatchingAssembly.lean",
+      "sha256": "0105f2252dbe797f3c2d8d71097a0b513fd7e3a83cba624c76b4ee17ddcbc202",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/MatchingAssembly.lean",
+        "sha256": "0105f2252dbe797f3c2d8d71097a0b513fd7e3a83cba624c76b4ee17ddcbc202"
+      }
+    },
+    {
+      "module": "ManuscriptLocal",
+      "path": "Proofs/ManuscriptLocal.lean",
+      "sha256": "192150da7becf3028fbebb92a2b49b62664748aac1d39d3a7c8fa724fee71c10",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ManuscriptLocal.lean",
+        "sha256": "192150da7becf3028fbebb92a2b49b62664748aac1d39d3a7c8fa724fee71c10"
+      }
+    },
+    {
+      "module": "PrimePatternMultiplicity433",
+      "path": "Proofs/PrimePatternMultiplicity433.lean",
+      "sha256": "227dde9caa6dd15c909c5a1f76ca228029ce8dc411e28ba24bc322a16772ab3e",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/PrimePatternMultiplicity433.lean",
+        "sha256": "227dde9caa6dd15c909c5a1f76ca228029ce8dc411e28ba24bc322a16772ab3e"
+      }
+    },
+    {
+      "module": "ThreePrimeWeightTransfer433",
+      "path": "Proofs/ThreePrimeWeightTransfer433.lean",
+      "sha256": "fcee4a49ddc913782cd36a3a8563ae5f20f5e19daccb25f38acd2da1b91ad132",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ThreePrimeWeightTransfer433.lean",
+        "sha256": "fcee4a49ddc913782cd36a3a8563ae5f20f5e19daccb25f38acd2da1b91ad132"
+      }
+    },
+    {
+      "module": "ReserveCutoff",
+      "path": "Proofs/ReserveCutoff.lean",
+      "sha256": "a7daa0adb0eb31589a7a525b0ec459c966367d98783f9973ac37a5c372d9c950",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ReserveCutoff.lean",
+        "sha256": "a7daa0adb0eb31589a7a525b0ec459c966367d98783f9973ac37a5c372d9c950"
+      }
+    },
+    {
+      "module": "NoncircularScalarBridge433",
+      "path": "Proofs/NoncircularScalarBridge433.lean",
+      "sha256": "3f33eaf23cc707da2906ca60b8023d8205a81f1b6dc58661a263a949814e159a",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/NoncircularScalarBridge433.lean",
+        "sha256": "3f33eaf23cc707da2906ca60b8023d8205a81f1b6dc58661a263a949814e159a"
+      }
+    },
+    {
+      "module": "ErdosProblems.Erdos730.AnalyticInputs",
+      "path": "Proofs/ErdosProblems/Erdos730/AnalyticInputs.lean",
+      "sha256": "87bcfd22bdacd2cffe0243ad7921664f362869afc03f73581af39bcef95dfffc",
+      "origin": {
+        "kind": "external",
+        "provider": "blair",
+        "path": "ErdosProblems/Erdos730/AnalyticInputs.lean",
+        "repository": "https://github.com/williamjblair/lean-proofs",
+        "revision": "5d10b4d91f257cfbe8c563cf927f543a868845e0",
+        "license": "MIT",
+        "sha256": "87bcfd22bdacd2cffe0243ad7921664f362869afc03f73581af39bcef95dfffc"
+      }
+    },
+    {
+      "module": "PrimeNumberTheoremAnd.Defs",
+      "path": "Proofs/PrimeNumberTheoremAnd/Defs.lean",
+      "sha256": "64137811210c81187151a3d48ef170195cf36d58ea07a67ee61d1dc3212c82d0",
+      "origin": {
+        "kind": "external",
+        "provider": "pnt",
+        "path": "PrimeNumberTheoremAnd/Defs.lean",
+        "repository": "https://github.com/ajirving/PrimeNumberTheoremAnd",
+        "revision": "769d3b81fbff001d9fa7028df0168a8e546cf692",
+        "license": "Apache-2.0",
+        "sha256": "64137811210c81187151a3d48ef170195cf36d58ea07a67ee61d1dc3212c82d0"
+      }
+    },
+    {
+      "module": "PrimeNumberTheoremAnd.Consequences",
+      "path": "Proofs/PrimeNumberTheoremAnd/Consequences.lean",
+      "sha256": "75980163d37dae511c92af3afbe61ed103fc5265c8c13e776d3462d6a3a72fc5",
+      "origin": {
+        "kind": "external",
+        "provider": "pnt",
+        "path": "PrimeNumberTheoremAnd/Consequences.lean",
+        "repository": "https://github.com/ajirving/PrimeNumberTheoremAnd",
+        "revision": "769d3b81fbff001d9fa7028df0168a8e546cf692",
+        "license": "Apache-2.0",
+        "sha256": "75980163d37dae511c92af3afbe61ed103fc5265c8c13e776d3462d6a3a72fc5"
+      }
+    },
+    {
+      "module": "ErdosProblems.Erdos730.PNTAP",
+      "path": "Proofs/ErdosProblems/Erdos730/PNTAP.lean",
+      "sha256": "264f51fa7700b512527c168b20a65643370be76f510f03cdf928ce4a4acea475",
+      "origin": {
+        "kind": "external",
+        "provider": "blair",
+        "path": "ErdosProblems/Erdos730/PNTAP.lean",
+        "repository": "https://github.com/williamjblair/lean-proofs",
+        "revision": "5d10b4d91f257cfbe8c563cf927f543a868845e0",
+        "license": "MIT",
+        "sha256": "264f51fa7700b512527c168b20a65643370be76f510f03cdf928ce4a4acea475"
+      }
+    },
+    {
+      "module": "PrimeProgressions433",
+      "path": "Proofs/PrimeProgressions433.lean",
+      "sha256": "441d9336191c301432b3f965c9a2393e77121fecd40d7e0731bbe7c044f43d0e",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/PrimeProgressions433.lean",
+        "sha256": "441d9336191c301432b3f965c9a2393e77121fecd40d7e0731bbe7c044f43d0e"
+      }
+    },
+    {
+      "module": "ReserveDensity433",
+      "path": "Proofs/ReserveDensity433.lean",
+      "sha256": "3b00b60cd72d6a5ef27b02b60b34ab6f243f9b48791aacc634e7524860a0e1cd",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ReserveDensity433.lean",
+        "sha256": "3b00b60cd72d6a5ef27b02b60b34ab6f243f9b48791aacc634e7524860a0e1cd"
+      }
+    },
+    {
+      "module": "AnalyticScalarCapacity433",
+      "path": "Proofs/AnalyticScalarCapacity433.lean",
+      "sha256": "d4a5d2c145dd9235355b5949afe2cd518f3c88b7024b6150e1b1d0338b5206aa",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/AnalyticScalarCapacity433.lean",
+        "sha256": "d4a5d2c145dd9235355b5949afe2cd518f3c88b7024b6150e1b1d0338b5206aa"
+      }
+    },
+    {
+      "module": "DeficiencyDensity433",
+      "path": "Proofs/DeficiencyDensity433.lean",
+      "sha256": "8057357ca4be09723c1fdd0be23047d63f6525815824a9c6b4f651e90cb5be37",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/DeficiencyDensity433.lean",
+        "sha256": "8057357ca4be09723c1fdd0be23047d63f6525815824a9c6b4f651e90cb5be37"
+      }
+    },
+    {
+      "module": "DeficiencySmooth433",
+      "path": "Proofs/DeficiencySmooth433.lean",
+      "sha256": "2c82775b5551b4f8764c4a7561c41534c3d054cad97005386b240b5186a41103",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/DeficiencySmooth433.lean",
+        "sha256": "2c82775b5551b4f8764c4a7561c41534c3d054cad97005386b240b5186a41103"
+      }
+    },
+    {
+      "module": "DeficiencyCoefficients",
+      "path": "Proofs/DeficiencyCoefficients.lean",
+      "sha256": "a881e061dc5c08f34b1b0d95d52c4e7373a7b9c05b1f98c41378877cd0fc9f46",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/DeficiencyCoefficients.lean",
+        "sha256": "a881e061dc5c08f34b1b0d95d52c4e7373a7b9c05b1f98c41378877cd0fc9f46"
+      }
+    },
+    {
+      "module": "DeficiencyTruncation433",
+      "path": "Proofs/DeficiencyTruncation433.lean",
+      "sha256": "6f2cc88aa07ab82b3d2fe32d009a70ea5f206e562c6e590e7a600402d3ff8cc3",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/DeficiencyTruncation433.lean",
+        "sha256": "6f2cc88aa07ab82b3d2fe32d009a70ea5f206e562c6e590e7a600402d3ff8cc3"
+      }
+    },
+    {
+      "module": "RobustCrtDensity",
+      "path": "Proofs/RobustCrtDensity.lean",
+      "sha256": "4937aefcda9d8eaf0ec6f9312f7091cf0b876c40d70dcab8242d5a308763c9fa",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/RobustCrtDensity.lean",
+        "sha256": "4937aefcda9d8eaf0ec6f9312f7091cf0b876c40d70dcab8242d5a308763c9fa"
+      }
+    },
+    {
+      "module": "RobustSupportDensity",
+      "path": "Proofs/RobustSupportDensity.lean",
+      "sha256": "b2120494d7f327b4ed6fa46cb0e7a72069222eba112077aaa0677babde529d7b",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/RobustSupportDensity.lean",
+        "sha256": "b2120494d7f327b4ed6fa46cb0e7a72069222eba112077aaa0677babde529d7b"
+      }
+    },
+    {
+      "module": "UniformLocalFactors",
+      "path": "Proofs/UniformLocalFactors.lean",
+      "sha256": "18ff48cf118239b3057379131767dd5bf9575891301f5be111b330ee9086413a",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/UniformLocalFactors.lean",
+        "sha256": "18ff48cf118239b3057379131767dd5bf9575891301f5be111b330ee9086413a"
+      }
+    },
+    {
+      "module": "RobustCrtBridge",
+      "path": "Proofs/RobustCrtBridge.lean",
+      "sha256": "59806a2bd887d5d6a0bd2e25bcef882bb015451b4d52cd867d72e5f4586a1d14",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/RobustCrtBridge.lean",
+        "sha256": "59806a2bd887d5d6a0bd2e25bcef882bb015451b4d52cd867d72e5f4586a1d14"
+      }
+    },
+    {
+      "module": "DeficiencyZeroCrt",
+      "path": "Proofs/DeficiencyZeroCrt.lean",
+      "sha256": "a39238a3ce9c2bd04efb9a333793ac1a545458d1f2af31bfb87af092597472d0",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/DeficiencyZeroCrt.lean",
+        "sha256": "a39238a3ce9c2bd04efb9a333793ac1a545458d1f2af31bfb87af092597472d0"
+      }
+    },
+    {
+      "module": "DeficiencyRectangle433",
+      "path": "Proofs/DeficiencyRectangle433.lean",
+      "sha256": "36ced8d9938a1187049b3351716ce8085aeb3ca8845b42497491893b40eb54c2",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/DeficiencyRectangle433.lean",
+        "sha256": "36ced8d9938a1187049b3351716ce8085aeb3ca8845b42497491893b40eb54c2"
+      }
+    },
+    {
+      "module": "DeficiencyClassification",
+      "path": "Proofs/DeficiencyClassification.lean",
+      "sha256": "c32ae1a694786adaa1336eead874cd3e7b29671ba44b606793f9ee2f0c7d4fb6",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/DeficiencyClassification.lean",
+        "sha256": "c32ae1a694786adaa1336eead874cd3e7b29671ba44b606793f9ee2f0c7d4fb6"
+      }
+    },
+    {
+      "module": "DeficiencySmoothTail433",
+      "path": "Proofs/DeficiencySmoothTail433.lean",
+      "sha256": "4c38fea7aee8c84628fe6a5605b134c517ff9d0c72f2bd8b8da7296df957702c",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/DeficiencySmoothTail433.lean",
+        "sha256": "4c38fea7aee8c84628fe6a5605b134c517ff9d0c72f2bd8b8da7296df957702c"
+      }
+    },
+    {
+      "module": "DeficiencyUpper433",
+      "path": "Proofs/DeficiencyUpper433.lean",
+      "sha256": "884dc3dad040d8db74e4a652c11457c224b7371dd814f54cc1311b4d163caf21",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/DeficiencyUpper433.lean",
+        "sha256": "884dc3dad040d8db74e4a652c11457c224b7371dd814f54cc1311b4d163caf21"
+      }
+    },
+    {
+      "module": "DeficiencyPrimePower433",
+      "path": "Proofs/DeficiencyPrimePower433.lean",
+      "sha256": "37611692bb05489e9183f29a9392b0ab939e37548379a64ee2c83248d7342682",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/DeficiencyPrimePower433.lean",
+        "sha256": "37611692bb05489e9183f29a9392b0ab939e37548379a64ee2c83248d7342682"
+      }
+    },
+    {
+      "module": "DeficiencyFiniteMass433",
+      "path": "Proofs/DeficiencyFiniteMass433.lean",
+      "sha256": "8c1b5e7225580198aff4ea424c95c3355b1db7f3d5194e02e0755102ea2fef32",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/DeficiencyFiniteMass433.lean",
+        "sha256": "8c1b5e7225580198aff4ea424c95c3355b1db7f3d5194e02e0755102ea2fef32"
+      }
+    },
+    {
+      "module": "DeficiencyMainTail433",
+      "path": "Proofs/DeficiencyMainTail433.lean",
+      "sha256": "8a088cc5fd17b25846e69f91cd7f857cbd9ce99cdf5a4ce3f65bd8ad243a040d",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/DeficiencyMainTail433.lean",
+        "sha256": "8a088cc5fd17b25846e69f91cd7f857cbd9ce99cdf5a4ce3f65bd8ad243a040d"
+      }
+    },
+    {
+      "module": "DeficiencyAsymptotic433",
+      "path": "Proofs/DeficiencyAsymptotic433.lean",
+      "sha256": "b8d6cebbe6186f85251a9138791827668b38c4e76791f1ed2ef90ba08866ddd5",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/DeficiencyAsymptotic433.lean",
+        "sha256": "b8d6cebbe6186f85251a9138791827668b38c4e76791f1ed2ef90ba08866ddd5"
+      }
+    },
+    {
+      "module": "DeficiencyTwoInputBridge433",
+      "path": "Proofs/DeficiencyTwoInputBridge433.lean",
+      "sha256": "e2fcd0e6a887ea14b808da4ea1cefa5a4a2acee325320221663c2a2f48573a01",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/DeficiencyTwoInputBridge433.lean",
+        "sha256": "e2fcd0e6a887ea14b808da4ea1cefa5a4a2acee325320221663c2a2f48573a01"
+      }
+    },
+    {
+      "module": "TwoInputAssembly433",
+      "path": "Proofs/TwoInputAssembly433.lean",
+      "sha256": "61c827df1dd3aa4e9b8c376d330e53df754d2ee926f9f3bc651e2bc016b53f41",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/TwoInputAssembly433.lean",
+        "sha256": "61c827df1dd3aa4e9b8c376d330e53df754d2ee926f9f3bc651e2bc016b53f41"
+      }
+    },
+    {
+      "module": "ThreePrimePatternBridge433",
+      "path": "Proofs/ThreePrimePatternBridge433.lean",
+      "sha256": "9404c0979d70584addaf155bd2b2be80b52457d012d4e1e9e1d017821df68575",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ThreePrimePatternBridge433.lean",
+        "sha256": "9404c0979d70584addaf155bd2b2be80b52457d012d4e1e9e1d017821df68575"
+      }
+    },
+    {
+      "module": "AffineDegreeFibers433",
+      "path": "Proofs/AffineDegreeFibers433.lean",
+      "sha256": "cb51bebf820a9ed7b9493fb93bdbd8c6bbcf9425aff8f2c9213444290fd39287",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/AffineDegreeFibers433.lean",
+        "sha256": "cb51bebf820a9ed7b9493fb93bdbd8c6bbcf9425aff8f2c9213444290fd39287"
+      }
+    },
+    {
+      "module": "ThreePrimeMajorArcReduction433",
+      "path": "Proofs/ThreePrimeMajorArcReduction433.lean",
+      "sha256": "d2935cbe828cb810fb7a339a1c94b15868daa1c3f558f0700af24ea11beddba0",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ThreePrimeMajorArcReduction433.lean",
+        "sha256": "d2935cbe828cb810fb7a339a1c94b15868daa1c3f558f0700af24ea11beddba0"
+      }
+    },
+    {
+      "module": "ThreePrimeMajorArcClosure433",
+      "path": "Proofs/ThreePrimeMajorArcClosure433.lean",
+      "sha256": "33b77e31ed4ac6e65263c639dc2b1522ee5d0d5d41900c97dedd1efc01d07215",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ThreePrimeMajorArcClosure433.lean",
+        "sha256": "33b77e31ed4ac6e65263c639dc2b1522ee5d0d5d41900c97dedd1efc01d07215"
+      }
+    },
+    {
+      "module": "ThreePrimeMajorArcError433",
+      "path": "Proofs/ThreePrimeMajorArcError433.lean",
+      "sha256": "ac5ec46d825ce8b7b39c3ab24c494316d0e5c96ebbdc7f3770b6aa8b27093f27",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ThreePrimeMajorArcError433.lean",
+        "sha256": "ac5ec46d825ce8b7b39c3ab24c494316d0e5c96ebbdc7f3770b6aa8b27093f27"
+      }
+    },
+    {
+      "module": "ThreePrimeLatticeLower433",
+      "path": "Proofs/ThreePrimeLatticeLower433.lean",
+      "sha256": "512de9fc8ec48cc3b1c98faeeb0f7d0e66bea413e9b22053b0765c4396e9886e",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ThreePrimeLatticeLower433.lean",
+        "sha256": "512de9fc8ec48cc3b1c98faeeb0f7d0e66bea413e9b22053b0765c4396e9886e"
+      }
+    },
+    {
+      "module": "ShiftedMajorArcAssembly433",
+      "path": "Proofs/ShiftedMajorArcAssembly433.lean",
+      "sha256": "b9bf715a01c666532ed9265546570c2dd401228a24b6e3953ec8af2400ee0bf6",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ShiftedMajorArcAssembly433.lean",
+        "sha256": "b9bf715a01c666532ed9265546570c2dd401228a24b6e3953ec8af2400ee0bf6"
+      }
+    },
+    {
+      "module": "CompatibleLogMinorArcs433",
+      "path": "Proofs/CompatibleLogMinorArcs433.lean",
+      "sha256": "1bef8bfbe5b0fb84da29e66772e0e2129120570a4976c38b16ccaec4b2312d02",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/CompatibleLogMinorArcs433.lean",
+        "sha256": "1bef8bfbe5b0fb84da29e66772e0e2129120570a4976c38b16ccaec4b2312d02"
+      }
+    },
+    {
+      "module": "FullyCompatibleMinorArcs433",
+      "path": "Proofs/FullyCompatibleMinorArcs433.lean",
+      "sha256": "70b4d4f6b79a53acb40f100dc81f03dc58407ffe6f42eba95b6eb4b7a281f3d3",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/FullyCompatibleMinorArcs433.lean",
+        "sha256": "70b4d4f6b79a53acb40f100dc81f03dc58407ffe6f42eba95b6eb4b7a281f3d3"
+      }
+    },
+    {
+      "module": "ShiftedFareyDisjoint433",
+      "path": "Proofs/ShiftedFareyDisjoint433.lean",
+      "sha256": "691cb69c7befe674b5615398dfa3bcd9a04027488278fa593f024ee91a07b8e2",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ShiftedFareyDisjoint433.lean",
+        "sha256": "691cb69c7befe674b5615398dfa3bcd9a04027488278fa593f024ee91a07b8e2"
+      }
+    },
+    {
+      "module": "ExactStripMinorArcs433",
+      "path": "Proofs/ExactStripMinorArcs433.lean",
+      "sha256": "53f49578184c6cba4aa8224a65206491a2b20574b636c0ea5f85cad5e7dd0c9f",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ExactStripMinorArcs433.lean",
+        "sha256": "53f49578184c6cba4aa8224a65206491a2b20574b636c0ea5f85cad5e7dd0c9f"
+      }
+    },
+    {
+      "module": "AllScaleRealStripLattice433",
+      "path": "Proofs/AllScaleRealStripLattice433.lean",
+      "sha256": "ac35f2fa59099056be0b09a308954b9426d992de32b11f765e62942d0f7fc52e",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/AllScaleRealStripLattice433.lean",
+        "sha256": "ac35f2fa59099056be0b09a308954b9426d992de32b11f765e62942d0f7fc52e"
+      }
+    },
+    {
+      "module": "ActualMajorArcWeightedBridge433",
+      "path": "Proofs/ActualMajorArcWeightedBridge433.lean",
+      "sha256": "579277fe193d79be58f3654b305c2f9ce8173255a26f8afd22c72e6afa455a08",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcWeightedBridge433.lean",
+        "sha256": "579277fe193d79be58f3654b305c2f9ce8173255a26f8afd22c72e6afa455a08"
+      }
+    },
+    {
+      "module": "PrincipalArcPositivity433",
+      "path": "Proofs/PrincipalArcPositivity433.lean",
+      "sha256": "804f16a775fa085723c71e4c78b47bd6aee89695cacee741645d11400eb709c9",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/PrincipalArcPositivity433.lean",
+        "sha256": "804f16a775fa085723c71e4c78b47bd6aee89695cacee741645d11400eb709c9"
+      }
+    },
+    {
+      "module": "PrincipalPrimeOnly433",
+      "path": "Proofs/PrincipalPrimeOnly433.lean",
+      "sha256": "45df6a83ac4f6565c00d1629398ac01394bfb0864c196f8c252a44bb4015bad7",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/PrincipalPrimeOnly433.lean",
+        "sha256": "45df6a83ac4f6565c00d1629398ac01394bfb0864c196f8c252a44bb4015bad7"
+      }
+    },
+    {
+      "module": "ActualMajorArcPrimeMinor433",
+      "path": "Proofs/ActualMajorArcPrimeMinor433.lean",
+      "sha256": "2d24b16d3f2fd1fa4d56784dd8034097c0b91f5fcc05f3f6b4f3f2d4f8ba82b4",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcPrimeMinor433.lean",
+        "sha256": "2d24b16d3f2fd1fa4d56784dd8034097c0b91f5fcc05f3f6b4f3f2d4f8ba82b4"
+      }
+    },
+    {
+      "module": "ActualMajorArcPositivityLocalFactors433",
+      "path": "Proofs/ActualMajorArcPositivityLocalFactors433.lean",
+      "sha256": "87afe206299cbd5db54445f429757c64106228fe9f9c6b271530ac2f366c67d0",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcPositivityLocalFactors433.lean",
+        "sha256": "87afe206299cbd5db54445f429757c64106228fe9f9c6b271530ac2f366c67d0"
+      }
+    },
+    {
+      "module": "ActualMajorArcPositivityPhase433",
+      "path": "Proofs/ActualMajorArcPositivityPhase433.lean",
+      "sha256": "832ffd5e8ebae70cea3572bd1346bcf5f8d4effa29ac9473c1401805629e36d0",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcPositivityPhase433.lean",
+        "sha256": "832ffd5e8ebae70cea3572bd1346bcf5f8d4effa29ac9473c1401805629e36d0"
+      }
+    },
+    {
+      "module": "ActualMajorArcPositivityComposite433",
+      "path": "Proofs/ActualMajorArcPositivityComposite433.lean",
+      "sha256": "5757444e4e05184846a98abe78701d8ef99cecb540b37e05a70176374bced34e",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcPositivityComposite433.lean",
+        "sha256": "5757444e4e05184846a98abe78701d8ef99cecb540b37e05a70176374bced34e"
+      }
+    },
+    {
+      "module": "ActualMajorArcPositivityTruncation433",
+      "path": "Proofs/ActualMajorArcPositivityTruncation433.lean",
+      "sha256": "6f2f45c26e0460d14f8bbd8f8c113aed139837d5732861cd0c9b1f31dac42f98",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcPositivityTruncation433.lean",
+        "sha256": "6f2f45c26e0460d14f8bbd8f8c113aed139837d5732861cd0c9b1f31dac42f98"
+      }
+    },
+    {
+      "module": "PrimeNumberTheoremAnd.Mathlib.NumberTheory.Sieve.AuxResults",
+      "path": "Proofs/PrimeNumberTheoremAnd/Mathlib/NumberTheory/Sieve/AuxResults.lean",
+      "sha256": "b76122823ac58ddd182b890aaab0ea97c985e77a2e2aec0b635f0ae748295b01",
+      "origin": {
+        "kind": "external",
+        "provider": "pnt",
+        "path": "PrimeNumberTheoremAnd/Mathlib/NumberTheory/Sieve/AuxResults.lean",
+        "repository": "https://github.com/ajirving/PrimeNumberTheoremAnd",
+        "revision": "769d3b81fbff001d9fa7028df0168a8e546cf692",
+        "license": "Apache-2.0",
+        "sha256": "b76122823ac58ddd182b890aaab0ea97c985e77a2e2aec0b635f0ae748295b01"
+      }
+    },
+    {
+      "module": "PrimeNumberTheoremAnd.Mathlib.NumberTheory.Sieve.Basic",
+      "path": "Proofs/PrimeNumberTheoremAnd/Mathlib/NumberTheory/Sieve/Basic.lean",
+      "sha256": "5901024b26f44f0047b2fe9faf303b675dba50fbb7e2856f00d400fb05c76604",
+      "origin": {
+        "kind": "external",
+        "provider": "pnt",
+        "path": "PrimeNumberTheoremAnd/Mathlib/NumberTheory/Sieve/Basic.lean",
+        "repository": "https://github.com/ajirving/PrimeNumberTheoremAnd",
+        "revision": "769d3b81fbff001d9fa7028df0168a8e546cf692",
+        "license": "Apache-2.0",
+        "sha256": "5901024b26f44f0047b2fe9faf303b675dba50fbb7e2856f00d400fb05c76604"
+      }
+    },
+    {
+      "module": "PrimeNumberTheoremAnd.Mathlib.NumberTheory.Sieve.Selberg",
+      "path": "Proofs/PrimeNumberTheoremAnd/Mathlib/NumberTheory/Sieve/Selberg.lean",
+      "sha256": "b2169967fc525cb125b720970513b2acc86698b2e0bc2889475aaf113ccf7eee",
+      "origin": {
+        "kind": "external",
+        "provider": "pnt",
+        "path": "PrimeNumberTheoremAnd/Mathlib/NumberTheory/Sieve/Selberg.lean",
+        "repository": "https://github.com/ajirving/PrimeNumberTheoremAnd",
+        "revision": "769d3b81fbff001d9fa7028df0168a8e546cf692",
+        "license": "Apache-2.0",
+        "sha256": "b2169967fc525cb125b720970513b2acc86698b2e0bc2889475aaf113ccf7eee"
+      }
+    },
+    {
+      "module": "SelbergFinite433",
+      "path": "Proofs/SelbergFinite433.lean",
+      "sha256": "f5cc7ef0a5881a7a4da1251f8d6d7d7db76a566e81da31a0944769a362709362",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/SelbergFinite433.lean",
+        "sha256": "f5cc7ef0a5881a7a4da1251f8d6d7d7db76a566e81da31a0944769a362709362"
+      }
+    },
+    {
+      "module": "SelbergSquarefree",
+      "path": "Proofs/SelbergSquarefree.lean",
+      "sha256": "8ed1af565ec734fed81bce8bd56a9b099e37dd05acf62bf770aa7a6d309d2554",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/SelbergSquarefree.lean",
+        "sha256": "8ed1af565ec734fed81bce8bd56a9b099e37dd05acf62bf770aa7a6d309d2554"
+      }
+    },
+    {
+      "module": "SelbergDenominator",
+      "path": "Proofs/SelbergDenominator.lean",
+      "sha256": "d7ccebe5db64ff2206ef1c01a6d2c6632193b7bf1e3148f5394937a73bac45c2",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/SelbergDenominator.lean",
+        "sha256": "d7ccebe5db64ff2206ef1c01a6d2c6632193b7bf1e3148f5394937a73bac45c2"
+      }
+    },
+    {
+      "module": "PrimeNumberTheoremAnd.Mathlib.NumberTheory.Sieve.SelbergBounds",
+      "path": "Proofs/PrimeNumberTheoremAnd/Mathlib/NumberTheory/Sieve/SelbergBounds.lean",
+      "sha256": "1aa5cf1b3e4fc32aa6bf42f63b3ecd377166cebb017da7f3fe86fed8af895f97",
+      "origin": {
+        "kind": "external",
+        "provider": "pnt",
+        "path": "PrimeNumberTheoremAnd/Mathlib/NumberTheory/Sieve/SelbergBounds.lean",
+        "repository": "https://github.com/ajirving/PrimeNumberTheoremAnd",
+        "revision": "769d3b81fbff001d9fa7028df0168a8e546cf692",
+        "license": "Apache-2.0",
+        "sha256": "1aa5cf1b3e4fc32aa6bf42f63b3ecd377166cebb017da7f3fe86fed8af895f97"
+      }
+    },
+    {
+      "module": "SelbergSquarefreeComparison",
+      "path": "Proofs/SelbergSquarefreeComparison.lean",
+      "sha256": "e50e6b39223a19b028c6dfc5cb3cc8a93f094ce47a41131ff882949bb0bc9ce6",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/SelbergSquarefreeComparison.lean",
+        "sha256": "e50e6b39223a19b028c6dfc5cb3cc8a93f094ce47a41131ff882949bb0bc9ce6"
+      }
+    },
+    {
+      "module": "SelbergHarmonicBlocks",
+      "path": "Proofs/SelbergHarmonicBlocks.lean",
+      "sha256": "b8c05c1cf75debfe5174393b91b5bbbaf130c7a7b11dcdf27a4a7efdb3ccb10c",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/SelbergHarmonicBlocks.lean",
+        "sha256": "b8c05c1cf75debfe5174393b91b5bbbaf130c7a7b11dcdf27a4a7efdb3ccb10c"
+      }
+    },
+    {
+      "module": "SelbergExplicitConstant433",
+      "path": "Proofs/SelbergExplicitConstant433.lean",
+      "sha256": "80624c008d530084df63398784a6c16c198e76898facfd176edae56a79af77f9",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/SelbergExplicitConstant433.lean",
+        "sha256": "80624c008d530084df63398784a6c16c198e76898facfd176edae56a79af77f9"
+      }
+    },
+    {
+      "module": "AffineSieveRootRemainder433",
+      "path": "Proofs/AffineSieveRootRemainder433.lean",
+      "sha256": "585c51deae341401097f1a14b294a0ea1bca9e53940e6d914a25a058aa75f44c",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/AffineSieveRootRemainder433.lean",
+        "sha256": "585c51deae341401097f1a14b294a0ea1bca9e53940e6d914a25a058aa75f44c"
+      }
+    },
+    {
+      "module": "AffineSieveExceptions433",
+      "path": "Proofs/AffineSieveExceptions433.lean",
+      "sha256": "e3dbabb9a06aafca2660aec8f9cb95843183bf67a57881a09d0fbc91a2c3a0e4",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/AffineSieveExceptions433.lean",
+        "sha256": "e3dbabb9a06aafca2660aec8f9cb95843183bf67a57881a09d0fbc91a2c3a0e4"
+      }
+    },
+    {
+      "module": "SelbergCutoff433",
+      "path": "Proofs/SelbergCutoff433.lean",
+      "sha256": "10e0db9482eb4a570d93b4fe65de1221d0d17a784c9a3b083c24a15e404156ff",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/SelbergCutoff433.lean",
+        "sha256": "10e0db9482eb4a570d93b4fe65de1221d0d17a784c9a3b083c24a15e404156ff"
+      }
+    },
+    {
+      "module": "SelbergOptimizedBridge433",
+      "path": "Proofs/SelbergOptimizedBridge433.lean",
+      "sha256": "d97608aca2f1e0aa20e72c027f2e414180fae90bb310a47d17c7617849a396fd",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/SelbergOptimizedBridge433.lean",
+        "sha256": "d97608aca2f1e0aa20e72c027f2e414180fae90bb310a47d17c7617849a396fd"
+      }
+    },
+    {
+      "module": "AffineSieveDegreeSelectors433",
+      "path": "Proofs/AffineSieveDegreeSelectors433.lean",
+      "sha256": "a66b9a63e024141408d37309b4cb8acee453b536810a81a40df042a7740bc02b",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/AffineSieveDegreeSelectors433.lean",
+        "sha256": "a66b9a63e024141408d37309b4cb8acee453b536810a81a40df042a7740bc02b"
+      }
+    },
+    {
+      "module": "ExceptionalPrimeThree433",
+      "path": "Proofs/ExceptionalPrimeThree433.lean",
+      "sha256": "88966ac2f6192c3579aeb3473b6f21a5a835682fd7bcfdd823b09b50ff2fd1a6",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ExceptionalPrimeThree433.lean",
+        "sha256": "88966ac2f6192c3579aeb3473b6f21a5a835682fd7bcfdd823b09b50ff2fd1a6"
+      }
+    },
+    {
+      "module": "AffineProgressionSieve433",
+      "path": "Proofs/AffineProgressionSieve433.lean",
+      "sha256": "69aa228c7a17080fa3da42ac172a916a8ffe84090925b6248c21633893f66f87",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/AffineProgressionSieve433.lean",
+        "sha256": "69aa228c7a17080fa3da42ac172a916a8ffe84090925b6248c21633893f66f87"
+      }
+    },
+    {
+      "module": "LabelFiberSieve433",
+      "path": "Proofs/LabelFiberSieve433.lean",
+      "sha256": "04219b78fcce493b0ec3515b5a46dd5fb61d444051ff8a5a64f5e7d2dc27a050",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/LabelFiberSieve433.lean",
+        "sha256": "04219b78fcce493b0ec3515b5a46dd5fb61d444051ff8a5a64f5e7d2dc27a050"
+      }
+    },
+    {
+      "module": "LabelDoubleCoefficient433",
+      "path": "Proofs/LabelDoubleCoefficient433.lean",
+      "sha256": "1b5f5dd24708d01fcb9c9277b5ba9541f3095c11010c90b06362e69aafaa399c",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/LabelDoubleCoefficient433.lean",
+        "sha256": "1b5f5dd24708d01fcb9c9277b5ba9541f3095c11010c90b06362e69aafaa399c"
+      }
+    },
+    {
+      "module": "LabelUnitSelectorBridge433",
+      "path": "Proofs/LabelUnitSelectorBridge433.lean",
+      "sha256": "634aba889286ea50d3fcf1af4673b17fb9c79054e3186c41b1265c0c1153383d",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/LabelUnitSelectorBridge433.lean",
+        "sha256": "634aba889286ea50d3fcf1af4673b17fb9c79054e3186c41b1265c0c1153383d"
+      }
+    },
+    {
+      "module": "LabelUnitCrtCard433",
+      "path": "Proofs/LabelUnitCrtCard433.lean",
+      "sha256": "1640e6fe153e55375f533fb44f135a7b403cfdd0c50e31cf4abbe4314174e537",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/LabelUnitCrtCard433.lean",
+        "sha256": "1640e6fe153e55375f533fb44f135a7b403cfdd0c50e31cf4abbe4314174e537"
+      }
+    },
+    {
+      "module": "LabelGlobalCrt433",
+      "path": "Proofs/LabelGlobalCrt433.lean",
+      "sha256": "8bb186d88a8fe1fac2ad0e49fa6a8e98667a7bbac9baf77460a6fa3a5737da27",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/LabelGlobalCrt433.lean",
+        "sha256": "8bb186d88a8fe1fac2ad0e49fa6a8e98667a7bbac9baf77460a6fa3a5737da27"
+      }
+    },
+    {
+      "module": "SharpLabelCoefficientAssembly433",
+      "path": "Proofs/SharpLabelCoefficientAssembly433.lean",
+      "sha256": "b85c91c42c553efdf8a3d5b8cd023593c415d62da0c639691bd991bd36e87d0b",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/SharpLabelCoefficientAssembly433.lean",
+        "sha256": "b85c91c42c553efdf8a3d5b8cd023593c415d62da0c639691bd991bd36e87d0b"
+      }
+    },
+    {
+      "module": "ActualLabelLocalCardBridge433",
+      "path": "Proofs/ActualLabelLocalCardBridge433.lean",
+      "sha256": "27bba28c916539d876d7374f6f4acd995d0895d54a83d5e49c0cea0c7c56b0ec",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualLabelLocalCardBridge433.lean",
+        "sha256": "27bba28c916539d876d7374f6f4acd995d0895d54a83d5e49c0cea0c7c56b0ec"
+      }
+    },
+    {
+      "module": "ActualLabelSummedCoefficient433",
+      "path": "Proofs/ActualLabelSummedCoefficient433.lean",
+      "sha256": "ff6375f55dff442a2c1845892bac18f2e0f8451e0f1e6c84fdcf80475ce31c38",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualLabelSummedCoefficient433.lean",
+        "sha256": "ff6375f55dff442a2c1845892bac18f2e0f8451e0f1e6c84fdcf80475ce31c38"
+      }
+    },
+    {
+      "module": "ActualLabelCanonicalSeeds433",
+      "path": "Proofs/ActualLabelCanonicalSeeds433.lean",
+      "sha256": "be6a3c1c7f3964a258f71e65d3732749ebd46087fd31e4344b9586b34aeb40a2",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualLabelCanonicalSeeds433.lean",
+        "sha256": "be6a3c1c7f3964a258f71e65d3732749ebd46087fd31e4344b9586b34aeb40a2"
+      }
+    },
+    {
+      "module": "ActualLabelSummedSieve433",
+      "path": "Proofs/ActualLabelSummedSieve433.lean",
+      "sha256": "9d21b8ce70bd08382d0beb3614551b68d2ac2432b7c1df985a75eb65017d534b",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualLabelSummedSieve433.lean",
+        "sha256": "9d21b8ce70bd08382d0beb3614551b68d2ac2432b7c1df985a75eb65017d534b"
+      }
+    },
+    {
+      "module": "ActualLabelSieveMainTerm433",
+      "path": "Proofs/ActualLabelSieveMainTerm433.lean",
+      "sha256": "2b479075e954736da25ef8bf3d369d81acfc1c3adf957f49aaf0dcdc423bd020",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualLabelSieveMainTerm433.lean",
+        "sha256": "2b479075e954736da25ef8bf3d369d81acfc1c3adf957f49aaf0dcdc423bd020"
+      }
+    },
+    {
+      "module": "ExceptionalSelectorAssembly433",
+      "path": "Proofs/ExceptionalSelectorAssembly433.lean",
+      "sha256": "d5d0183c0b23acb1c977906962c8f58b6cada20069b75f3c689a6409ec29b9bf",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ExceptionalSelectorAssembly433.lean",
+        "sha256": "d5d0183c0b23acb1c977906962c8f58b6cada20069b75f3c689a6409ec29b9bf"
+      }
+    },
+    {
+      "module": "ActualLabelFixedModulus433",
+      "path": "Proofs/ActualLabelFixedModulus433.lean",
+      "sha256": "03497aeaa77c0bed78e832fd977dd2d695f72a5e531660cb046cab744430478d",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualLabelFixedModulus433.lean",
+        "sha256": "03497aeaa77c0bed78e832fd977dd2d695f72a5e531660cb046cab744430478d"
+      }
+    },
+    {
+      "module": "ActualLabelCanonicalSieve433",
+      "path": "Proofs/ActualLabelCanonicalSieve433.lean",
+      "sha256": "97c1e944a955b2456e57057239f34ea868d0a210c1fe99a2fba9da95ec154cea",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualLabelCanonicalSieve433.lean",
+        "sha256": "97c1e944a955b2456e57057239f34ea868d0a210c1fe99a2fba9da95ec154cea"
+      }
+    },
+    {
+      "module": "LabelFiberClosure433",
+      "path": "Proofs/LabelFiberClosure433.lean",
+      "sha256": "483b13fbd187b6b21f557ed54ab945c56cc1f65a33c9798818aa10a6115e3920",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/LabelFiberClosure433.lean",
+        "sha256": "483b13fbd187b6b21f557ed54ab945c56cc1f65a33c9798818aa10a6115e3920"
+      }
+    },
+    {
+      "module": "ActualLabelAllPairTransfer433",
+      "path": "Proofs/ActualLabelAllPairTransfer433.lean",
+      "sha256": "f3ae53604bae352baaa0c9a1b9a72b2b03a6c904a1ec646b781f28dd3666a9f7",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualLabelAllPairTransfer433.lean",
+        "sha256": "f3ae53604bae352baaa0c9a1b9a72b2b03a6c904a1ec646b781f28dd3666a9f7"
+      }
+    },
+    {
+      "module": "ActualRightVertexSelectors433",
+      "path": "Proofs/ActualRightVertexSelectors433.lean",
+      "sha256": "26fd2505393e9c370c71abedf92886b061c520495abdb3b8017e034734ac96a2",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualRightVertexSelectors433.lean",
+        "sha256": "26fd2505393e9c370c71abedf92886b061c520495abdb3b8017e034734ac96a2"
+      }
+    },
+    {
+      "module": "ActualRightCoefficientAssembly433",
+      "path": "Proofs/ActualRightCoefficientAssembly433.lean",
+      "sha256": "a50f992af6f36fa8f5084697e2dc1e33e5cf4b4efb84f2d21e79ffc5dac6761f",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualRightCoefficientAssembly433.lean",
+        "sha256": "a50f992af6f36fa8f5084697e2dc1e33e5cf4b4efb84f2d21e79ffc5dac6761f"
+      }
+    },
+    {
+      "module": "ActualRightVertexDegree433",
+      "path": "Proofs/ActualRightVertexDegree433.lean",
+      "sha256": "3ef2821f6bf95afd972b104e3748d96ba7294d10782c31c8c547e0dff80012b6",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualRightVertexDegree433.lean",
+        "sha256": "3ef2821f6bf95afd972b104e3748d96ba7294d10782c31c8c547e0dff80012b6"
+      }
+    },
+    {
+      "module": "ActualLeftVertexSelectors433",
+      "path": "Proofs/ActualLeftVertexSelectors433.lean",
+      "sha256": "eba76122bd7fb5ec594e21909c8ea9b723a6702a2c0e73638f89cf7c6251ce2c",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualLeftVertexSelectors433.lean",
+        "sha256": "eba76122bd7fb5ec594e21909c8ea9b723a6702a2c0e73638f89cf7c6251ce2c"
+      }
+    },
+    {
+      "module": "ActualRightVertexSummed433",
+      "path": "Proofs/ActualRightVertexSummed433.lean",
+      "sha256": "f3f9bdd432f8089dcdf840eba6be79e6f940ba584fd3ce4a880ee9f1b6b03661",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualRightVertexSummed433.lean",
+        "sha256": "f3f9bdd432f8089dcdf840eba6be79e6f940ba584fd3ce4a880ee9f1b6b03661"
+      }
+    },
+    {
+      "module": "ActualRightVertexFinal433",
+      "path": "Proofs/ActualRightVertexFinal433.lean",
+      "sha256": "1c1e5181b6a54bfd4f423ece29f92c24937fcfcf3cc3a5cf05e94163ad37438c",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualRightVertexFinal433.lean",
+        "sha256": "1c1e5181b6a54bfd4f423ece29f92c24937fcfcf3cc3a5cf05e94163ad37438c"
+      }
+    },
+    {
+      "module": "ActualRightVertexReduction433",
+      "path": "Proofs/ActualRightVertexReduction433.lean",
+      "sha256": "c00c93a0851bbf2a2e1e7d30a7af7a15383953adada0c451544b9b23c14b12ae",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualRightVertexReduction433.lean",
+        "sha256": "c00c93a0851bbf2a2e1e7d30a7af7a15383953adada0c451544b9b23c14b12ae"
+      }
+    },
+    {
+      "module": "ActualRightVertexLeftAudit433",
+      "path": "Proofs/ActualRightVertexLeftAudit433.lean",
+      "sha256": "5ca380a962cf9b35e0a8b51bd4c062a97514a31e4448098c81f32a7ee42e01f0",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualRightVertexLeftAudit433.lean",
+        "sha256": "5ca380a962cf9b35e0a8b51bd4c062a97514a31e4448098c81f32a7ee42e01f0"
+      }
+    },
+    {
+      "module": "ActualRightVertexLeftAuditBounds433",
+      "path": "Proofs/ActualRightVertexLeftAuditBounds433.lean",
+      "sha256": "541f70d80fbae5745296141912a44c3263003df76a553478db7710a4e18e8ee9",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualRightVertexLeftAuditBounds433.lean",
+        "sha256": "541f70d80fbae5745296141912a44c3263003df76a553478db7710a4e18e8ee9"
+      }
+    },
+    {
+      "module": "ActualLeftVertexDegree433",
+      "path": "Proofs/ActualLeftVertexDegree433.lean",
+      "sha256": "774893e51562e6bf45b707136289cb8ee1fb69577f5248a2136346a595674426",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualLeftVertexDegree433.lean",
+        "sha256": "774893e51562e6bf45b707136289cb8ee1fb69577f5248a2136346a595674426"
+      }
+    },
+    {
+      "module": "ActualLeftVertexSummed433",
+      "path": "Proofs/ActualLeftVertexSummed433.lean",
+      "sha256": "74865e71ea16845d5b5345c9a576fee727716ddb83af94b3cff593bfa975bebc",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualLeftVertexSummed433.lean",
+        "sha256": "74865e71ea16845d5b5345c9a576fee727716ddb83af94b3cff593bfa975bebc"
+      }
+    },
+    {
+      "module": "ActualRightVertexLeftAuditErrors433",
+      "path": "Proofs/ActualRightVertexLeftAuditErrors433.lean",
+      "sha256": "d1c6a56bdd8ab5b484bf39db9f5ff693b75542496cc88e54c97e8f25ade5797d",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualRightVertexLeftAuditErrors433.lean",
+        "sha256": "d1c6a56bdd8ab5b484bf39db9f5ff693b75542496cc88e54c97e8f25ade5797d"
+      }
+    },
+    {
+      "module": "ActualLeftVertexFinal433",
+      "path": "Proofs/ActualLeftVertexFinal433.lean",
+      "sha256": "fcf05fac95023f5073c2ff77b5a1ee1e78a486a4a081f2b8923b704c14200022",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualLeftVertexFinal433.lean",
+        "sha256": "fcf05fac95023f5073c2ff77b5a1ee1e78a486a4a081f2b8923b704c14200022"
+      }
+    },
+    {
+      "module": "ActualLeftVertexMajorOnlyCovering433",
+      "path": "Proofs/ActualLeftVertexMajorOnlyCovering433.lean",
+      "sha256": "f7f7d561591725c00f027e5d6aabfb57156d93ba05786d02e87c91205a2f6315",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualLeftVertexMajorOnlyCovering433.lean",
+        "sha256": "f7f7d561591725c00f027e5d6aabfb57156d93ba05786d02e87c91205a2f6315"
+      }
+    },
+    {
+      "module": "ActualLeftVertexMajorSupport433",
+      "path": "Proofs/ActualLeftVertexMajorSupport433.lean",
+      "sha256": "705b128a1172fa19801a0e6a4c42417fe61d9697a96e8c92e2a9d313a12f21b0",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualLeftVertexMajorSupport433.lean",
+        "sha256": "705b128a1172fa19801a0e6a4c42417fe61d9697a96e8c92e2a9d313a12f21b0"
+      }
+    },
+    {
+      "module": "ActualLeftVertexMajorIntegration433",
+      "path": "Proofs/ActualLeftVertexMajorIntegration433.lean",
+      "sha256": "f51931c885bb536df274b1f724f48dd3e06da6c45df69eb2a157bb54dd403920",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualLeftVertexMajorIntegration433.lean",
+        "sha256": "f51931c885bb536df274b1f724f48dd3e06da6c45df69eb2a157bb54dd403920"
+      }
+    },
+    {
+      "module": "ShiftedMajorArcDedup433",
+      "path": "Proofs/ShiftedMajorArcDedup433.lean",
+      "sha256": "2dddd762c97a0e5d31e7ef81fb263ad15d3a6e0eb8c2f387f8c8757427745d21",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ShiftedMajorArcDedup433.lean",
+        "sha256": "2dddd762c97a0e5d31e7ef81fb263ad15d3a6e0eb8c2f387f8c8757427745d21"
+      }
+    },
+    {
+      "module": "ActualMajorArcPositivityError433",
+      "path": "Proofs/ActualMajorArcPositivityError433.lean",
+      "sha256": "9b0e7a24f42a0c7ad01b0ea11dfbc3ce5dc06cb50d1415406e4b417e94f97491",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcPositivityError433.lean",
+        "sha256": "9b0e7a24f42a0c7ad01b0ea11dfbc3ce5dc06cb50d1415406e4b417e94f97491"
+      }
+    },
+    {
+      "module": "ActualLeftVertexMajorCellModel433",
+      "path": "Proofs/ActualLeftVertexMajorCellModel433.lean",
+      "sha256": "c18b0fcbe2ba3175f501756f8b5313aa4f2e203a8dbea4270032241104d4a61f",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualLeftVertexMajorCellModel433.lean",
+        "sha256": "c18b0fcbe2ba3175f501756f8b5313aa4f2e203a8dbea4270032241104d4a61f"
+      }
+    },
+    {
+      "module": "ActualLeftVertexMajorCubicModel433",
+      "path": "Proofs/ActualLeftVertexMajorCubicModel433.lean",
+      "sha256": "a1701e401649b946d0ea6330d15cd42c93de4e893fc4f14cf523c9ee8cbeb44f",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualLeftVertexMajorCubicModel433.lean",
+        "sha256": "a1701e401649b946d0ea6330d15cd42c93de4e893fc4f14cf523c9ee8cbeb44f"
+      }
+    },
+    {
+      "module": "ActualMajorArcPositivityArchimedean433",
+      "path": "Proofs/ActualMajorArcPositivityArchimedean433.lean",
+      "sha256": "a313a9ccdb3a837b528fe47d73d1833eff9fbeefb89adb6ef38dfe6b414203ae",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcPositivityArchimedean433.lean",
+        "sha256": "a313a9ccdb3a837b528fe47d73d1833eff9fbeefb89adb6ef38dfe6b414203ae"
+      }
+    },
+    {
+      "module": "ActualMajorArcPositivityTail433",
+      "path": "Proofs/ActualMajorArcPositivityTail433.lean",
+      "sha256": "7feda4032f24b6b9d6e4a10bb08f73ecfee8ef477dfd17ec38b9383a494daace",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcPositivityTail433.lean",
+        "sha256": "7feda4032f24b6b9d6e4a10bb08f73ecfee8ef477dfd17ec38b9383a494daace"
+      }
+    },
+    {
+      "module": "ActualRightVertexMajorConductor433",
+      "path": "Proofs/ActualRightVertexMajorConductor433.lean",
+      "sha256": "21ecc33ed335c39f3eda0588198ffc7774623c3ddad2e43f0bb42911412d0cea",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualRightVertexMajorConductor433.lean",
+        "sha256": "21ecc33ed335c39f3eda0588198ffc7774623c3ddad2e43f0bb42911412d0cea"
+      }
+    },
+    {
+      "module": "ActualRightVertexMajorMixedConductor433",
+      "path": "Proofs/ActualRightVertexMajorMixedConductor433.lean",
+      "sha256": "6dcf7be23329869364e999cb6e3686f5cad6bf9100474dbaeb3a2653af26054c",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualRightVertexMajorMixedConductor433.lean",
+        "sha256": "6dcf7be23329869364e999cb6e3686f5cad6bf9100474dbaeb3a2653af26054c"
+      }
+    },
+    {
+      "module": "ActualLeftVertexMajorFullApprox433",
+      "path": "Proofs/ActualLeftVertexMajorFullApprox433.lean",
+      "sha256": "d404aee7ed7a016c1a9c5d2809bba087357a900d19e00a5d95466459df069289",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualLeftVertexMajorFullApprox433.lean",
+        "sha256": "d404aee7ed7a016c1a9c5d2809bba087357a900d19e00a5d95466459df069289"
+      }
+    },
+    {
+      "module": "ActualRightVertexMajorSquarefreeSupport433",
+      "path": "Proofs/ActualRightVertexMajorSquarefreeSupport433.lean",
+      "sha256": "c60710fd7a72800189243cb84753e0452e4075e013f85d2cc314ac6ed21e5a3a",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualRightVertexMajorSquarefreeSupport433.lean",
+        "sha256": "c60710fd7a72800189243cb84753e0452e4075e013f85d2cc314ac6ed21e5a3a"
+      }
+    },
+    {
+      "module": "ActualRightVertexMajorUnitOrbit433",
+      "path": "Proofs/ActualRightVertexMajorUnitOrbit433.lean",
+      "sha256": "41dcd40b038b6416a21c847004c3a57dff50e10754a9eed6979a59656c4e3a69",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualRightVertexMajorUnitOrbit433.lean",
+        "sha256": "41dcd40b038b6416a21c847004c3a57dff50e10754a9eed6979a59656c4e3a69"
+      }
+    },
+    {
+      "module": "ActualLeftVertexMajorExceptional433",
+      "path": "Proofs/ActualLeftVertexMajorExceptional433.lean",
+      "sha256": "865f1cdd9bf2ba7cf1d6223f3d70b3ae9e737945eb4c11286e7a349acfbf3d0a",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualLeftVertexMajorExceptional433.lean",
+        "sha256": "865f1cdd9bf2ba7cf1d6223f3d70b3ae9e737945eb4c11286e7a349acfbf3d0a"
+      }
+    },
+    {
+      "module": "ActualLeftVertexMajorIntegrated433",
+      "path": "Proofs/ActualLeftVertexMajorIntegrated433.lean",
+      "sha256": "8e39eab901d2f8482a5c091723725a1183b3f42bb62715e0f3444e31ad35213f",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualLeftVertexMajorIntegrated433.lean",
+        "sha256": "8e39eab901d2f8482a5c091723725a1183b3f42bb62715e0f3444e31ad35213f"
+      }
+    },
+    {
+      "module": "ActualMajorArcCenterAssembly433",
+      "path": "Proofs/ActualMajorArcCenterAssembly433.lean",
+      "sha256": "af4b121f223ce6c62e62b73f40b61428be7093ef0522934bdf19d775bf90099b",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcCenterAssembly433.lean",
+        "sha256": "af4b121f223ce6c62e62b73f40b61428be7093ef0522934bdf19d775bf90099b"
+      }
+    },
+    {
+      "module": "ActualRightVertexFinalCovering433",
+      "path": "Proofs/ActualRightVertexFinalCovering433.lean",
+      "sha256": "0e14530d9c8048f3f79c4b1aa412ec8ce892477705377680247b460f5bc0145f",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualRightVertexFinalCovering433.lean",
+        "sha256": "0e14530d9c8048f3f79c4b1aa412ec8ce892477705377680247b460f5bc0145f"
+      }
+    },
+    {
+      "module": "ActualFinalCenterReduction433",
+      "path": "Proofs/ActualFinalCenterReduction433.lean",
+      "sha256": "76004a4127f9f43f11f8040a2579418070e17828dac6a17d38caa40f63f7d2b7",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualFinalCenterReduction433.lean",
+        "sha256": "76004a4127f9f43f11f8040a2579418070e17828dac6a17d38caa40f63f7d2b7"
+      }
+    },
+    {
+      "module": "ActualMajorArcPositivityFinal433",
+      "path": "Proofs/ActualMajorArcPositivityFinal433.lean",
+      "sha256": "39bb6492dc6052ae7783a6766c22fd730551a844c9c6c1fb441876e995d82cfb",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcPositivityFinal433.lean",
+        "sha256": "39bb6492dc6052ae7783a6766c22fd730551a844c9c6c1fb441876e995d82cfb"
+      }
+    },
+    {
+      "module": "ActualMajorArcBoundary433",
+      "path": "Proofs/ActualMajorArcBoundary433.lean",
+      "sha256": "aef82c1c82c9e5fd6d20f5e0e63a14172053c340af87c0e0c731c37143dc7730",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcBoundary433.lean",
+        "sha256": "aef82c1c82c9e5fd6d20f5e0e63a14172053c340af87c0e0c731c37143dc7730"
+      }
+    },
+    {
+      "module": "ActualRightVertexMajorSingularAssembly433",
+      "path": "Proofs/ActualRightVertexMajorSingularAssembly433.lean",
+      "sha256": "5d1bd654a14864d40ee6e8c0adfad2fd9352b9b95c145667846aed93ba8f8a4c",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualRightVertexMajorSingularAssembly433.lean",
+        "sha256": "5d1bd654a14864d40ee6e8c0adfad2fd9352b9b95c145667846aed93ba8f8a4c"
+      }
+    },
+    {
+      "module": "ActualMajorArcSupportSelectorBridge433",
+      "path": "Proofs/ActualMajorArcSupportSelectorBridge433.lean",
+      "sha256": "1b9a6fd8aa55c100b7425b69dc815adc67aa0671d7d9283a5b8bafa8a25d2df9",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcSupportSelectorBridge433.lean",
+        "sha256": "1b9a6fd8aa55c100b7425b69dc815adc67aa0671d7d9283a5b8bafa8a25d2df9"
+      }
+    },
+    {
+      "module": "ActualMajorArcParityCRT433",
+      "path": "Proofs/ActualMajorArcParityCRT433.lean",
+      "sha256": "4293015e436cd152fbd866226a92e71bca559807dacf75d445818de47d4589c2",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcParityCRT433.lean",
+        "sha256": "4293015e436cd152fbd866226a92e71bca559807dacf75d445818de47d4589c2"
+      }
+    },
+    {
+      "module": "ActualSingularTailCompletion433",
+      "path": "Proofs/ActualSingularTailCompletion433.lean",
+      "sha256": "fb77d64a2df774de9f2b9658504c53acea8f13efa391abad61b0beb776d1dabb",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualSingularTailCompletion433.lean",
+        "sha256": "fb77d64a2df774de9f2b9658504c53acea8f13efa391abad61b0beb776d1dabb"
+      }
+    },
+    {
+      "module": "ActualMajorArcCenterConductor433",
+      "path": "Proofs/ActualMajorArcCenterConductor433.lean",
+      "sha256": "75fde18d32818d5d753f3e4a2331bad38847643e9c4c99e1283b75e7d2e4a388",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcCenterConductor433.lean",
+        "sha256": "75fde18d32818d5d753f3e4a2331bad38847643e9c4c99e1283b75e7d2e4a388"
+      }
+    },
+    {
+      "module": "ActualMajorArcCenterReduction433",
+      "path": "Proofs/ActualMajorArcCenterReduction433.lean",
+      "sha256": "74a1c43a92d9c82525a3e6b14c2a1b493b5191ca66f96d360d191c9ec119c161",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcCenterReduction433.lean",
+        "sha256": "74a1c43a92d9c82525a3e6b14c2a1b493b5191ca66f96d360d191c9ec119c161"
+      }
+    },
+    {
+      "module": "ActualMajorArcInterior433",
+      "path": "Proofs/ActualMajorArcInterior433.lean",
+      "sha256": "b9fed62c4cf9fccb869d2ed82f45ccf55aca75c662dd1bc0533861119ca0473b",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcInterior433.lean",
+        "sha256": "b9fed62c4cf9fccb869d2ed82f45ccf55aca75c662dd1bc0533861119ca0473b"
+      }
+    },
+    {
+      "module": "ActualMajorArcCorrectedModel433",
+      "path": "Proofs/ActualMajorArcCorrectedModel433.lean",
+      "sha256": "656b76c75fbbfdd170e29261c22b6dea214d134c6c70a4ca5a6179743f4f48c0",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcCorrectedModel433.lean",
+        "sha256": "656b76c75fbbfdd170e29261c22b6dea214d134c6c70a4ca5a6179743f4f48c0"
+      }
+    },
+    {
+      "module": "ActualMajorArcSignedTailAssembly433",
+      "path": "Proofs/ActualMajorArcSignedTailAssembly433.lean",
+      "sha256": "41ae7429b834687b10fd7cf5a91a7d352dd4f7a9e1e9b6c4476f65442fa0fc2b",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcSignedTailAssembly433.lean",
+        "sha256": "41ae7429b834687b10fd7cf5a91a7d352dd4f7a9e1e9b6c4476f65442fa0fc2b"
+      }
+    },
+    {
+      "module": "ActualLeftVertexMajorSW433",
+      "path": "Proofs/ActualLeftVertexMajorSW433.lean",
+      "sha256": "d874b7d707da3c03c1cb39919f80e5dba876fa3d4aa6743bc6e653410cc69a0f",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualLeftVertexMajorSW433.lean",
+        "sha256": "d874b7d707da3c03c1cb39919f80e5dba876fa3d4aa6743bc6e653410cc69a0f"
+      }
+    },
+    {
+      "module": "ActualMajorArcGlobalErrorAssembly433",
+      "path": "Proofs/ActualMajorArcGlobalErrorAssembly433.lean",
+      "sha256": "dddedcf7622ca9c14840f754516adf679acdcd7aa949e986ebd61aead7148032",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcGlobalErrorAssembly433.lean",
+        "sha256": "dddedcf7622ca9c14840f754516adf679acdcd7aa949e986ebd61aead7148032"
+      }
+    },
+    {
+      "module": "ActualMajorArcExceptionClosure433",
+      "path": "Proofs/ActualMajorArcExceptionClosure433.lean",
+      "sha256": "378b52aeb1f69634b50c69356303b6c56076ea6fe2ca9e773eb8b72f47aa0678",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcExceptionClosure433.lean",
+        "sha256": "378b52aeb1f69634b50c69356303b6c56076ea6fe2ca9e773eb8b72f47aa0678"
+      }
+    },
+    {
+      "module": "ActualMajorArcCenterReindex433",
+      "path": "Proofs/ActualMajorArcCenterReindex433.lean",
+      "sha256": "b39d2b710c5a2e95d46c43d6ad88f828b01081a4e7eb59307b706e4c320ec892",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcCenterReindex433.lean",
+        "sha256": "b39d2b710c5a2e95d46c43d6ad88f828b01081a4e7eb59307b706e4c320ec892"
+      }
+    },
+    {
+      "module": "ActualConductorDedupCompletion433",
+      "path": "Proofs/ActualConductorDedupCompletion433.lean",
+      "sha256": "4e05dadf8154eefeddc765ee47b9da4c816d676eb2edefe4a7b317280b0ab8dd",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualConductorDedupCompletion433.lean",
+        "sha256": "4e05dadf8154eefeddc765ee47b9da4c816d676eb2edefe4a7b317280b0ab8dd"
+      }
+    },
+    {
+      "module": "ActualCenterCouplingFourier433",
+      "path": "Proofs/ActualCenterCouplingFourier433.lean",
+      "sha256": "beb9f2ca5663c4980823b4f21adee6b66af35a38df338b581bb8c2766a606af3",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualCenterCouplingFourier433.lean",
+        "sha256": "beb9f2ca5663c4980823b4f21adee6b66af35a38df338b581bb8c2766a606af3"
+      }
+    },
+    {
+      "module": "ActualOutsideCrtCoupling433",
+      "path": "Proofs/ActualOutsideCrtCoupling433.lean",
+      "sha256": "6c55ef79ff09787763791deaba542ab95516e8cfad0e4f713c625f6c7f6149fc",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualOutsideCrtCoupling433.lean",
+        "sha256": "6c55ef79ff09787763791deaba542ab95516e8cfad0e4f713c625f6c7f6149fc"
+      }
+    },
+    {
+      "module": "TernaryMajorArcCompletion433",
+      "path": "Proofs/TernaryMajorArcCompletion433.lean",
+      "sha256": "74afc806bcffcc24f364e3c21ea63738ad2ee2371f77062f5a697e764293bf21",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/TernaryMajorArcCompletion433.lean",
+        "sha256": "74afc806bcffcc24f364e3c21ea63738ad2ee2371f77062f5a697e764293bf21"
+      }
+    },
+    {
+      "module": "ActualMajorArcGlobalStrata433",
+      "path": "Proofs/ActualMajorArcGlobalStrata433.lean",
+      "sha256": "784ae9eeb2d58dceab2d1c4df33a03603edbeaeac5e94d669ccf7a8099e052fb",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcGlobalStrata433.lean",
+        "sha256": "784ae9eeb2d58dceab2d1c4df33a03603edbeaeac5e94d669ccf7a8099e052fb"
+      }
+    },
+    {
+      "module": "ActualMajorArcFinalPartition433",
+      "path": "Proofs/ActualMajorArcFinalPartition433.lean",
+      "sha256": "13dd0b8196cbc8cc108ed3e3dfd5e50e9de27dca4147eadcadedaeb1615ab593",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcFinalPartition433.lean",
+        "sha256": "13dd0b8196cbc8cc108ed3e3dfd5e50e9de27dca4147eadcadedaeb1615ab593"
+      }
+    },
+    {
+      "module": "ActualMajorArcCenterPhaseBridge433",
+      "path": "Proofs/ActualMajorArcCenterPhaseBridge433.lean",
+      "sha256": "9c1c22418d273550b73289e16b6580b5669873a1282971738240607c80f7c483",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcCenterPhaseBridge433.lean",
+        "sha256": "9c1c22418d273550b73289e16b6580b5669873a1282971738240607c80f7c483"
+      }
+    },
+    {
+      "module": "ActualMajorArcFinalFourZero433",
+      "path": "Proofs/ActualMajorArcFinalFourZero433.lean",
+      "sha256": "573557b41c33870f355555c25ddffbc31eaf2fae63850d907eb88976a6bc8548",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcFinalFourZero433.lean",
+        "sha256": "573557b41c33870f355555c25ddffbc31eaf2fae63850d907eb88976a6bc8548"
+      }
+    },
+    {
+      "module": "ActualMajorArcFinalCoupling433",
+      "path": "Proofs/ActualMajorArcFinalCoupling433.lean",
+      "sha256": "a7188972759c04c18d4d752037368ff4bc2b9c796dad5c2413dd615a2f8b8b9d",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualMajorArcFinalCoupling433.lean",
+        "sha256": "a7188972759c04c18d4d752037368ff4bc2b9c796dad5c2413dd615a2f8b8b9d"
+      }
+    },
+    {
+      "module": "ActualOfficialSolution433",
+      "path": "Proofs/ActualOfficialSolution433.lean",
+      "sha256": "b7165b63c78b8c2298ec69b87b056bb18feffd9c88d6e57765082dfdd4963e0d",
+      "origin": {
+        "kind": "local",
+        "path": "open/689-double-prime-congruence-coverings/formalization/ActualOfficialSolution433.lean",
+        "sha256": "b7165b63c78b8c2298ec69b87b056bb18feffd9c88d6e57765082dfdd4963e0d"
+      }
+    }
+  ],
+  "licenses": [
+    {
+      "path": "third_party/ARCHITECT-LICENSE.txt",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "path": "third_party/BLAIR-LICENSE.txt",
+      "sha256": "f23dc7d0e5caa81c07ecea470298c36cbfbb23699e87fbd5c17beeca3342e674"
+    },
+    {
+      "path": "third_party/BLAIR-NOTICE.txt",
+      "sha256": "90bc10888c6b33a2d5d316f709025c184b89533c06b77c689208f48452ecdfbe"
+    },
+    {
+      "path": "third_party/PNT-LICENSE.txt",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "path": "third_party/PRINCIPIA-LICENSE.txt",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "third_party/FORMAL-CONJECTURES-LICENSE.txt",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    }
+  ],
+  "allowed_unrelated_placeholders": [
+    {
+      "module": "PrimeNumberTheoremAnd.Wiener",
+      "count": 2,
+      "names": [
+        "prelim_decay_2",
+        "prelim_decay_3"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+diff --git a/GoldbachChainMaster.lean b/GoldbachChainMaster.lean
+--- a/GoldbachChainMaster.lean
++++ b/GoldbachChainMaster.lean
+@@ -4677,9 +4677,9 @@ lemma coeff_one_mul_geomPS_nonneg (x : ℝ) (hx : x = -1 ∨ x = 0 ∨ x = 1) (n : ℕ) :
+ lemma coeff_one_mul_geomPS_nonneg (x : ℝ) (hx : x = -1 ∨ x = 0 ∨ x = 1) (n : ℕ) :
+     0 ≤ (PowerSeries.coeff (R := ℝ) n) (geomPS 1 * geomPS x) := by
+   rw [PowerSeries.coeff_mul]
+-  have hsum : ∑ p ∈ Finset.antidiagonal n,
++  have hsum : ∑ p ∈ Finset.HasAntidiagonal.antidiagonal n,
+       (PowerSeries.coeff (R := ℝ) p.1) (geomPS 1) * (PowerSeries.coeff (R := ℝ) p.2) (geomPS x)
+-      = ∑ p ∈ Finset.antidiagonal n, x ^ p.2 := by
++      = ∑ p ∈ Finset.HasAntidiagonal.antidiagonal n, x ^ p.2 := by
+     apply Finset.sum_congr rfl
+     intro p _
+     rw [coeff_geomPS, coeff_geomPS, one_pow, one_mul]
+@@ -4709,14 +4709,15 @@ lemma coeff_geomPS_mul_neg_nonneg (x : ℝ) (n : ℕ) :
+ lemma coeff_geomPS_mul_neg_nonneg (x : ℝ) (n : ℕ) :
+     0 ≤ (PowerSeries.coeff (R := ℝ) n) (geomPS x * geomPS (-x)) := by
+   rw [PowerSeries.coeff_mul]
+-  have hsum : ∑ p ∈ Finset.antidiagonal n,
++  have hsum : ∑ p ∈ Finset.HasAntidiagonal.antidiagonal n,
+       (PowerSeries.coeff (R := ℝ) p.1) (geomPS x) * (PowerSeries.coeff (R := ℝ) p.2) (geomPS (-x))
+-      = x ^ n * ∑ p ∈ Finset.antidiagonal n, (-1:ℝ) ^ p.2 := by
++      = x ^ n * ∑ p ∈ Finset.HasAntidiagonal.antidiagonal n, (-1:ℝ) ^ p.2 := by
+     rw [Finset.mul_sum]
+     apply Finset.sum_congr rfl
+     intro p hp
+     rw [coeff_geomPS, coeff_geomPS, neg_pow]
+-    have hpn : p.1 + p.2 = n := Finset.mem_antidiagonal.mp hp
++    have hpn : p.1 + p.2 = n :=
++      Finset.HasAntidiagonal.mem_antidiagonal.mp hp
+     rw [show x ^ p.1 * ((-1:ℝ) ^ p.2 * x ^ p.2) = (-1:ℝ) ^ p.2 * (x ^ p.1 * x ^ p.2) by ring,
+       ← pow_add, hpn]
+     ring
+@@ -20529,7 +20530,7 @@ lemma setL2_le_circle (f : ℝ → ℂ) (hf : Continuous f) (m : Set ℝ)
+     ∫ α in m, ‖f α‖ ^ 2 ≤ ∫ α in (0:ℝ)..1, ‖f α‖ ^ 2 := by
+   rw [intervalIntegral.integral_of_le zero_le_one]
+   apply setIntegral_mono_set ((hf.norm.pow 2).integrableOn_Ioc)
+-  · filter_upwards with α using by positivity
++  · exact Filter.Eventually.of_forall (fun α => sq_nonneg ‖f α‖)
+   · exact HasSubset.Subset.eventuallyLE hsub
+
+ lemma expsum_continuous (a : ℕ → ℂ) (N : ℕ) :
+@@ -20601,7 +20602,12 @@ theorem variance_le_of_arcs (a c : ℕ → ℂ) (N : ℕ) (m : Set ℝ) (hm : MeasurableSet m)
+         - ∑ n ∈ Finset.range (2 * N), c n * e ((n : ℝ) * α)‖ ^ 2)
+       ≤ 2 * (Csup ^ 2 * ∑ n ∈ Finset.range N, ‖a n‖ ^ 2)
+         + 2 * ∑ n ∈ Finset.range (2 * N), ‖c n‖ ^ 2 := by
+-    have h1 := L2_diff_le _ _ (hScont.pow 2) hCcont m hm hsub
++    have h1 := L2_diff_le
++      (fun α : ℝ =>
++        (∑ k ∈ Finset.range N, a k * e ((k : ℝ) * α)) ^ 2)
++      (fun α : ℝ =>
++        ∑ n ∈ Finset.range (2 * N), c n * e ((n : ℝ) * α))
++      (hScont.pow 2) hCcont m hm hsub
+     have h2 := L4_set_bound a N m hm hsub Csup hsup
+     have h3 : (∫ α in m, ‖∑ n ∈ Finset.range (2 * N), c n * e ((n : ℝ) * α)‖ ^ 2)
+         ≤ ∑ n ∈ Finset.range (2 * N), ‖c n‖ ^ 2 := by
+@@ -21699,7 +21705,12 @@ theorem minor_arc_variance_piece (N M : ℕ) (m : Set ℝ) (hm : MeasurableSet m)
+     intro n _
+     unfold e
+     fun_prop
+-  have h1 := L2_diff_le _ _ (hS.pow 2) hCp m hm hsub
++  have h1 := L2_diff_le
++    (fun α : ℝ =>
++      (∑ n ∈ Finset.Ioc 0 N, ((Λ n : ℝ) : ℂ) * e ((n : ℝ) * α)) ^ 2)
++    (fun α : ℝ =>
++      ∑ n ∈ Finset.range M, c n * e ((n : ℝ) * α))
++    (hS.pow 2) hCp m hm hsub
+   have h2 : (∫ α in m,
+       ‖(∑ n ∈ Finset.Ioc 0 N, ((Λ n : ℝ) : ℂ) * e ((n : ℝ) * α)) ^ 2‖ ^ 2)
+       ≤ Csup ^ 2 * ∑ n ∈ Finset.Ioc 0 N, Λ n ^ 2 := by
+@@ -27736,7 +27747,7 @@ lemma psi_sub_phi_eq (N P Q : ℕ) (hP : 1 ≤ P) (hPQ : 2 * P ^ 2 < Q + 1)
+       Int.toNat_of_nonneg (Int.emod_nonneg _ hq0Z.ne')
+     have hsplitZ : pq.2 = ((pq.2 % (pq.1:ℤ)).toNat : ℤ) + (pq.1:ℤ) * (pq.2 / (pq.1:ℤ)) := by
+       rw [hres]
+-      exact (Int.emod_add_ediv pq.2 _).symm
++      exact (Int.emod_add_mul_ediv pq.2 (pq.1 : ℤ)).symm
+     have hsplit : (pq.2 : ℝ)
+         = (((pq.2 % (pq.1:ℤ)).toNat : ℕ) : ℝ) + ((pq.1:ℕ):ℝ) * ((pq.2 / (pq.1:ℤ) : ℤ):ℝ) := by
+       exact_mod_cast congrArg (Int.cast : ℤ → ℝ) hsplitZ
