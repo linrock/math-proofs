@@ -1,8 +1,8 @@
 {
-  "version": "v0.4",
+  "version": "v1.0",
   "project": {
     "name": "Erdős 689: eventual double covering by prime residue classes",
-    "description": "For every sufficiently large n, one residue class for each prime p ≤ n covers every integer in [1,n] at least twice using distinct prime moduli. The Lean proof reconstructs the finite-support, prime-estimate, greedy-matching and cleanup argument and discharges its analytic inputs.",
+    "description": "A complete Lean 4 proof of Erdős problem 689: for all sufficiently large n, one residue class per prime p ≤ n can cover every integer from 1 through n at least twice. The proof follows the argument for Theorem 1.1 in Chojecki’s April 2026 manuscript “A greedy matching proof of Erdős’s two-fold residue-class problem.” The formalization directly proves the required three-prime counting estimate using Fourier analysis, replacing the manuscript’s invocation of Green–Tao, and verifies the sieve bounds and greedy-matching construction in Lean.",
     "authors": [
       "Linmiao Xu"
     ],
