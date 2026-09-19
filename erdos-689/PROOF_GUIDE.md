@@ -1,13 +1,12 @@
 # Reading the proof of Erdős #689
 
 This guide explains the mathematical interfaces that connect the analytic
-estimates to the final covering. It accompanies the Lean sources; it is not
-an independent referee report or a replacement for the recorded verification.
+estimates to the final covering, with links to the Lean declarations.
 All declaration names below are in namespace `Erdos689` unless indicated.
 
 ## What is proved
 
-For every sufficiently large integer $n$, there is a function
+For every sufficiently large natural number $n$, there is a function
 $a:\mathbb N\to\mathbb N$ such that every $m\in\{1,\ldots,n\}$
 belongs to at least two classes $a(p)\pmod p$, with distinct primes
 $p\le n$. The function may depend on $n$. Only its values modulo the
@@ -21,7 +20,7 @@ through `erdos_689_original_statement` in
 [ActualMajorArcFinalCoupling433](Proofs/ActualMajorArcFinalCoupling433.lean).
 There is no remaining analytic premise in that chain. In contrast,
 [Challenge.lean](Challenge.lean) deliberately contains a proof hole: it is the
-independent statement surface for comparison, and is not imported by Solution.
+independent statement for comparison, and is not imported by Solution.
 
 ## The finite construction and its budget
 
@@ -46,7 +45,8 @@ $A=aq$, and $B=2du$, with $a,d\mid W$ and prime cores $q,u$.
 The repaired targets are **$2A$ and $2B$**. They lie in $[1,n]$,
 are initially deficient, and are congruent modulo $P$. The label lies in
 the actual strip $\tau n<P\le(\tau+\ell)n$. The edge definition also
-retains the two switched-class exclusions. See `manuscriptEdge` and
+requires that neither target lies in a selected support residue class.
+See `manuscriptEdge` and
 `robustManuscriptEdges` in AnalyticBridge, and
 `manuscriptEdge_paired_targets` in [ManuscriptLocal](Proofs/ManuscriptLocal.lean).
 
@@ -63,7 +63,7 @@ Each of its edges spends one reserve prime and removes at least two deficiency
 units. Thus, writing $D_0$ for the initial deficiency and $R$ for the
 reserve, it suffices to obtain $D_0\le |R|+|M|$. Remaining labels repair
 the remaining deficiency one unit at a time. The simultaneous-switch proof
-preserves two protected hits wherever they were already needed; it does not
+preserves two protected hits wherever they were already needed. It does not
 assume that individually safe changes remain safe in combination. See
 [GreedyMatching](Proofs/GreedyMatching.lean),
 `matching_realizes_protected_ledger` in
@@ -84,7 +84,7 @@ selectors, and a robust residue $P\equiv r\pmod W$. Its weight is
 $\log q\log u\log P$. The finite count is
 `manuscriptWeightedResidueCount` in
 [ThreePrimeMajorArcReduction433](Proofs/ThreePrimeMajorArcReduction433.lean).
-In particular, it already filters for primes; it does not count prime powers
+In particular, it already filters for primes. It does not count prime powers
 as successful graph edges.
 
 The precise theorem `UniformLocalizedThreePrimeMajorArcLowerBound` says:
@@ -117,7 +117,7 @@ These factors are positive. Their sum over robust residues is at least
 $\#\mathrm{Robust}/(2\varphi(W))$, as proved by
 `robust_local_singular_factor_sum_lower`. The constant $c$ is chosen
 **before** the support. The eventual threshold may depend on all the fixed
-parameters; there is no support-uniform numerical threshold. This distinction
+parameters. There is no support-uniform numerical threshold. This distinction
 is necessary when the covering construction chooses its parameters.
 
 The residue classes partition the weighted total exactly. Each prime weight
@@ -131,7 +131,7 @@ multiplicity loss. The relevant results are
 `manuscriptWeightedPrimePatternCount_div_log_cube_le_actual_edges` in
 [ThreePrimePatternBridge433](Proofs/ThreePrimePatternBridge433.lean).
 
-The outcome has scale $n^2/\log^3 n$; the three degree bounds have scale
+The outcome has scale $n^2/\log^3 n$, and the three degree bounds have scale
 $n/\log^2 n$. This produces a matching of scale $n/\log n$, the same
 scale as the reserve and deficiency. The final comparison uses a strict
 margin, not just matching orders of magnitude. In
@@ -164,7 +164,7 @@ has three identifiable pieces:
 
 1. The actual prime integral differs from its canonical smooth-center model
    by $o(n^2)$. This includes summed analytic errors, prime-power removal,
-   and signed exceptional terms; the entry point is
+   and signed exceptional terms. The entry point is
    `actualMajorArcException_prime_minus_pure_smooth_tendsto_zero` in
    [ActualMajorArcExceptionClosure433](Proofs/ActualMajorArcExceptionClosure433.lean).
 2. `actualMajorArcExactCanonicalCenterReindex_unconditional` proves a finite
@@ -182,8 +182,8 @@ rational centers are deduplicated using a canonical widest anchor. The
 boundary centers 0 and 1 together contribute one arc. Terms with forbidden
 support-square conductors and conductors divisible by four vanish by the
 proved cancellation identities. For noncoprime coefficient pairs, cancellation
-occurs only after summing the **complete signed support-character orbit**;
-individual centers are not declared zero.
+occurs only after summing the **complete signed support-character orbit**.
+Individual centers are not declared zero.
 
 There is also a genuine finite parity correction. Write
 
@@ -192,15 +192,14 @@ A(X)=\sum_{\substack{1\le v\le X \\ \gcd(v,2W)=1}}
 \frac{\mu(v)}{\varphi(v)^2}.
 \]
 
-The odd and doubled conductors produce
-$A(P)+A(\lfloor P/2\rfloor)$, rather than $2A(P)$.
+If $Q$ is the conductor cutoff, the odd and doubled conductors produce
+$A(Q)+A(\lfloor Q/2\rfloor)$, rather than $2A(Q)$.
 [ActualMajorArcCorrectedModel433](Proofs/ActualMajorArcCorrectedModel433.lean)
 retains that exact finite model and proves that the difference from the older
 doubled model, after multiplying by the actual coefficient-weighted lattice
-mass, is $o(n^2)$. The distinction is resolved by a theorem, not by silently
-replacing a finite identity with its limiting expression.
+mass, is $o(n^2)$.
 
-The final discharge chain is:
+The final theorem follows through these declarations:
 
 | Proved declaration in ActualMajorArcFinalCoupling433 | Its role |
 | --- | --- |
@@ -215,34 +214,26 @@ The degree side is independently supplied by
 [ActualLeftVertexFinal433](Proofs/ActualLeftVertexFinal433.lean).
 [ActualLeftVertexMajorOnlyCovering433](Proofs/ActualLeftVertexMajorOnlyCovering433.lean)
 shows explicitly how it combines with the localized estimate. Introductory
-comments in earlier modules describe then-open conditional interfaces; the
-capstone supplies their arguments, rather than accepting them as axioms.
+comments in earlier modules describe then-open conditional interfaces. The
+final proof supplies the hypotheses it uses.
 
-## Relationship to the earlier argument and verification limits
+## Relationship to the manuscript and verification
 
 The covering strategy and Theorem 1.1 are described in the
 [April working manuscript](https://www.ulam.ai/research/erdos689.pdf) cited in
 the [README](README.md). This package reconstructs its concrete
-covering route in Lean: finite greedy matching, actual protected reserve and
+covering argument in Lean: finite greedy matching, protected reserve and
 deficiency counts, a localized prime-pattern count, and sieve degree bounds.
-It does not require a second-moment or fractional-matching theorem. Relative
-to the older local interfaces, the final sources make the center
-deduplication, signed cancellation, finite parity correction, exact moving
-windows, and all three degree bounds explicit and discharge them.
-That description does not assert that these refinements are new mathematics
-or diagnose an error in someone else's manuscript.
+The manuscript obtains its prime-triples estimate from Green–Tao. This
+development proves the needed localized estimate through the major/minor-arc
+analysis described above. The formalization makes center deduplication,
+signed cancellation, the finite parity correction, moving windows, and all
+three degree bounds explicit.
 
 [BUILD.md](BUILD.md) documents the source build and endpoint axiom audit.
-The endpoint should use only `propext`, `Classical.choice`, and `Quot.sound`;
-the two upstream admitted Wiener lemmas are outside its transitive dependency
-set. The provenance and trust boundary still include the pinned external
-dependencies described in [THIRD_PARTY.md](THIRD_PARTY.md). Source compilation,
-independent export checking, correspondence to the historical problem, and
-editorial acceptance are separate questions; this guide supplies no checker
-receipt.
-
-Without specialist review, the most useful checks are concrete: compare the
-public statement with the displayed type, inspect the parameter order and
-nonempty reserve construction, follow the exact count-to-edge map, and verify
-the final integral-to-model chain. Those checks are made navigable here. They
-increase transparency but should not be presented as external expert review.
+The endpoint should use only `propext`, `Classical.choice`, and `Quot.sound`.
+The two upstream admitted Wiener lemmas are outside its transitive dependency
+set. [THIRD_PARTY.md](THIRD_PARTY.md) records the pinned external dependencies.
+For a mathematical review, compare the public statement with the displayed
+type, inspect the parameter order and nonempty reserve construction, follow
+the count-to-edge map, and check the final integral-to-model chain.

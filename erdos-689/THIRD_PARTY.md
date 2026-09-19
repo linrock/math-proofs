@@ -13,7 +13,7 @@ The statement in `Challenge.lean`, `Solution.lean`, and
 at revision `f19cf7f60d9bc650ff58462f540e236caf3a6a67`, with changed Lean syntax
 and a proved positive theorem. The upstream source credits Copyright 2025 The
 Formal Conjectures Authors and uses Apache-2.0. Its license is retained in
-`third_party/FORMAL-CONJECTURES-LICENSE.txt`; the upstream statement is a
+`third_party/FORMAL-CONJECTURES-LICENSE.txt`. The upstream statement is a
 conjecture source, not an imported proof.
 
 - architect: https://github.com/hanwenzhu/LeanArchitect at `78dd66840d3efe8c824c699fc03381cec817c271`, Apache-2.0.
@@ -28,7 +28,7 @@ conjecture source, not an imported proof.
   The included file is `Proofs/GoldbachChainMaster.lean`, a Lean 4.33.1
   compatibility port. Its analytic lemmas are reused in the Erdős 689
   three-prime development. The original and ported digests and patch are
-  retained; the selected Erdős 689 result does not use the final almost-all
+  retained. The selected Erdős 689 result does not use the final almost-all
   Goldbach theorem.
 
 Every `Proofs/` module has an individual origin and SHA-256 binding in
@@ -37,6 +37,6 @@ Every `Proofs/` module has an individual origin and SHA-256 binding in
 The attributed Wiener source contains exactly two unrelated admitted lemmas,
 `prelim_decay_2` and `prelim_decay_3`. They are retained as transparent
 upstream limitations, not accepted proof assumptions. Canonical endpoint
-axiom audits exclude them; the new package must independently pass the same
+axiom audits exclude them. The new package must independently pass the same
 endpoint and Comparator/NanoDa checks. No global claim of a sorry-free
 third-party source tree is made.
