@@ -1,0 +1,99 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Exterior power sums cannot be exponentially small: Erdős 973",
+    "description": "Lean proves the negative answer to Erdős 973 via a uniform bound: for each real C > 1, there is N(C) such that every n ≥ N(C) and z : Fin n → ℂ with |z_i| ≥ 1 has some 2 ≤ k ≤ n+1 with |∑_i z_i^k| > C^(-n). Repeated and unit-circle points are allowed, and the original z_1 = 1 condition is unnecessary. The proof uses a fixed-test-degree consequence of Tan–Wang–Huang–Chen's residual-polynomial method.",
+    "authors": ["Linmiao Xu"],
+    "responsible_maintainers": ["Linmiao Xu"],
+    "license": "MIT"
+  },
+  "sources": [
+    {
+      "title": "Tan, Wang, Huang, and Chen, Residual bounds for Schur-stable polynomials",
+      "authors": ["Xiaojun Tan", "Qihang Wang", "Wei Huang", "Kun Chen"],
+      "type": "paper",
+      "relationship": "formalizes",
+      "id": "https://arxiv.org/abs/2608.02043v3",
+      "location": "Corollary 1.2 and Sections 2–3",
+      "note": "Formalizes a qualitative consequence, not the optimized residual rate."
+    },
+    {
+      "title": "Luo–Yang–Zhu, Exterior power sums",
+      "authors": ["Yanping Luo", "Ruiyi Yang", "Keheng Zhu"],
+      "type": "paper",
+      "relationship": "independently-proves",
+      "id": "https://arxiv.org/abs/2607.22017v1",
+      "location": "Theorem 1.1",
+      "note": "Independent negative answer by a different analytic argument. No priority claim."
+    },
+    {
+      "title": "Erdős Problem 973: exterior power sums",
+      "type": "other",
+      "relationship": "background",
+      "id": "https://www.erdosproblems.com/973",
+      "note": "Original all-orders closed-exterior question. This record is not proof evidence."
+    },
+    {
+      "title": "Some recent advances and current problems in number theory (1965)",
+      "authors": ["P. Erdős"],
+      "type": "paper",
+      "relationship": "background",
+      "id": "https://www.renyi.hu/~p_erdos/1965-17.pdf",
+      "location": "p. 213",
+      "note": "Poses the exterior question after a contrasting interior construction. Gives no negative answer."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/5d65ac9b140a00051fe2827fb10911beb2201b3b/FormalConjectures/ErdosProblems/973.lean",
+      "relationship": "adapts",
+      "note": "Pinned original conjecture adapted in a Mathlib-only Challenge. The upstream declaration ends in sorry, and no source is imported."
+    },
+    {
+      "id": "https://github.com/miracleqihe/Erdos-973_solution_check-by-Lean",
+      "relationship": "independent",
+      "note": "The Luo–Yang–Zhu companion checks components but leaves the full uniform theorem unformalized. No source is imported."
+    }
+  ],
+  "classification": {
+    "arxiv": [
+      "math.CV",
+      "math.NT"
+    ],
+    "msc2020": []
+  },
+  "status": {
+    "scope": "Original negative answer and a stronger eventual strict bound uniform over configurations for every fixed C > 1. No explicit N(C) or optimized residual rate.",
+    "main_results": [
+      {
+        "declaration": "Erdos973.Palomar.not_erdos_973",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos973.Palomar.eventually_exterior_power_sum_strict_lower_bound",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement review, and packaging."
+      }
+    ]
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Historical committed-source replay at 61f6873daea60683918f4d17f55b593f69e1b977 and this copy's Lean 4.33.1 build/axiom audit passed. The endpoints use only propext, Classical.choice, and Quot.sound. A local-only Comparator/NanoDa diagnostic passed with adapted tools, no Linux sandbox, and cached dependencies. Hosted checks, specialist review, and registration remain pending."
+  },
+  "preparation": {
+    "stage": "prepared-not-submitted",
+    "owner_confirmation_required": false,
+    "full_package_replay_completed": true,
+    "comparator_completed": false,
+    "nanoda_completed": false
+  }
+}
