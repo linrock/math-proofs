@@ -1,16 +1,30 @@
-# Erdős #973: exterior power sums
+# Erdős #973: power sums cannot all be exponentially small
 
-This standalone Lean 4.33.1 project proves the negative answer to the original
-all-orders question. More strongly, for every real `C > 1`, all sufficiently
-large `n` and every indexed complex configuration `z : Fin n → ℂ` with
-`1 ≤ ‖z i‖` have an order `k ∈ {2,…,n+1}` for which
-`C ^ (-(n : ℝ)) < ‖∑ i, z i ^ k‖`. The threshold depends only on `C`.
-Repeated points and points on the unit circle are allowed. This stronger
-theorem does not need `z₁ = 1`.
+This standalone Lean 4.33.1 project gives a complete formal proof of the
+negative answer to Erdős problem 973. The question asks whether, for every
+`n ≥ 2`, one can choose `n` complex numbers on or outside the unit circle,
+with `z₁ = 1`, so that all their power sums of orders `2` through `n+1` have
+magnitude below `C^(-n)` for a single fixed `C > 1`. The answer is **no**.
+
+The project also proves a stronger statement than this negative answer:
+for each fixed `C > 1`, once `n` is large enough, every choice of `n` such
+numbers has some `2 ≤ k ≤ n+1` with `|∑_i z_i^k| > C^(-n)`. The threshold
+depends only on `C`. Repeated points and points on the unit circle are
+allowed, and `z₁ = 1` is not required.
+
+The contribution is a complete machine-checked proof of known mathematics:
+the negative answer and this uniform bound were already proved by
+[Luo, Yang, and Zhu](https://arxiv.org/abs/2607.22017v1). The formalization
+follows the residual-polynomial method of
+[Tan, Wang, Huang, and Chen](https://arxiv.org/abs/2608.02043v3).
 
 [Solution.lean](Solution.lean) proves
 `Erdos973.Palomar.not_erdos_973` and
 `Erdos973.Palomar.eventually_exterior_power_sum_strict_lower_bound`.
+The prefix `not_` means that the first theorem proves `¬ OriginalStatement`:
+the proposed constant does not exist. The second theorem states the uniform
+lower bound above. These fully qualified Lean names are the identifiers used
+by Palomar's verification tools.
 [Challenge.lean](Challenge.lean) independently states the same two targets
 using only Mathlib and contains intentional statement placeholders.
 Solution does not import Challenge. The 11 [Proofs](Proofs) modules provide the
