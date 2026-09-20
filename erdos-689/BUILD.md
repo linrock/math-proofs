@@ -13,35 +13,31 @@ lake build Challenge Solution AxiomAudit
 lake env lean AxiomAudit.lean
 ```
 
-`lake exe cache get` only downloads dependencies. `lake build` checks the
-local sources and may require substantial time and memory.
+`lake exe cache get` fetches cached dependency builds. Compiling the project
+may require substantial time and memory.
 
 `Challenge.lean` contains the intentionally unproved problem statement.
 `Solution.lean` does not import it. `AxiomAudit.lean` prints the transitive
-axioms of `Erdos689.Palomar.eventual_double_cover`. Inspect that output and
-confirm it contains only `propext`, `Classical.choice`, and `Quot.sound`.
-The final command prints the audit even when Lake reuses an existing build.
-
-## Local verification record
-
-On 2026-08-27, the commands above completed successfully in an existing local
-checkout. The endpoint audit printed:
+axioms of `Erdos689.Palomar.eventual_double_cover`. The expected output is:
 
 ```text
 'Erdos689.Palomar.eventual_double_cover' depends on axioms:
 [propext, Classical.choice, Quot.sound]
 ```
 
-The build produced warnings from the intentionally unproved statement in
-`Challenge.lean` and two admitted declarations in
-`Proofs/PrimeNumberTheoremAnd/Wiener.lean`. The audited endpoint does not
-transitively depend on those admitted declarations: `sorryAx` is absent from
-the axiom output above.
+The final command prints the audit even when Lake reuses an existing build.
+Warnings about `sorry` in `Challenge.lean` and two unused lemmas in
+`Proofs/PrimeNumberTheoremAnd/Wiener.lean` are expected. The completed proof
+does not depend on those placeholders. Its axiom output must not contain
+`sorryAx`.
 
-This was an in-place local run, not a clean-clone reproduction, verification
-of an immutable public commit, or an official Palomar Comparator/NanoDa
-result. Repeat all checks on the exact public commit submitted to Palomar.
+## Verification status
 
-For Palomar, submit the exact public commit SHA with project directory
-`erdos-689` and Comparator configuration `erdos-689/comparator.json`. See the
-[submission instructions](https://palomar-registry.org/how-to-submit).
+The project built successfully from source using pinned dependency caches,
+and its endpoint axiom audit passed. Comparator confirmed the Challenge/Solution
+statement correspondence and permitted axioms. Both Lean and NanoDa accepted the
+exported proof. That check reused existing project build outputs.
+
+The local checks used Lean 4.33.1 compatibility adaptations to Comparator and
+lean4export, with unmodified NanoDa, and ran without Linux isolation.
+Palomar's hosted verification and editorial review remain pending.

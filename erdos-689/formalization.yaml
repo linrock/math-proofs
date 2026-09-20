@@ -1,5 +1,5 @@
 {
-  "version": "v1.0",
+  "version": "v0.4",
   "project": {
     "name": "Erdős 689: eventual double covering by prime residue classes",
     "description": "A complete Lean 4 proof of Erdős problem 689: for all sufficiently large n, one residue class per prime p ≤ n can cover every integer from 1 through n at least twice. The proof follows the argument for Theorem 1.1 in Chojecki’s April 2026 manuscript “A greedy matching proof of Erdős’s two-fold residue-class problem.” The formalization directly proves the required three-prime counting estimate using Fourier analysis, replacing the manuscript’s invocation of Green–Tao, and verifies the sieve bounds and greedy-matching construction in Lean.",
@@ -19,13 +19,15 @@
       "relationship": "other",
       "id": "https://doi.org/10.1007/BF01903382",
       "location": "https://www.renyi.hu/~p_erdos/1979-23.pdf",
-      "note": "Poses the question whether one residue for each prime p ≤ n covers every positive x ≤ n at least twice, and also mentions at least r. It poses a question rather than proving the submitted result; its wording does not explicitly state a sufficiently-large-n quantifier."
+      "note": "Poses the question whether one residue for each prime p ≤ n covers every positive x ≤ n at least twice, and also mentions at least r. It poses a question rather than proving the submitted result. Its wording does not explicitly state a sufficiently-large-n quantifier."
     },
     {
       "title": "A greedy matching proof of Erdős’s two-fold residue-class problem (working manuscript, 27 April 2026)",
+      "authors": ["Przemek Chojecki"],
       "type": "paper",
       "relationship": "formalizes",
       "id": "https://www.ulam.ai/research/erdos689.pdf",
+      "location": "Theorem 1.1",
       "note": "Formalizes Theorem 1.1: for all sufficiently large n, one class for each prime p ≤ n covers every m in [1,n] at least twice. The Lean development reconstructs the argument."
     },
     {
@@ -33,14 +35,14 @@
       "type": "web discussion",
       "relationship": "background",
       "id": "https://www.erdosproblems.com/forum/thread/689",
-      "note": "Related discussion of Erdős problem 689; the theorem formalized here is Theorem 1.1 of the working manuscript."
+      "note": "Related discussion of Erdős problem 689. The theorem formalized here is Theorem 1.1 of the working manuscript."
     }
   ],
   "related_formalizations": [
     {
       "id": "https://github.com/google-deepmind/formal-conjectures/blob/f19cf7f60d9bc650ff58462f540e236caf3a6a67/FormalConjectures/ErdosProblems/689.lean",
       "relationship": "other",
-      "note": "Challenge and Solution restate the right-hand covering proposition of erdos_689 at this pinned revision in Lean 4.33.1 syntax. Solution proves that proposition. The upstream declaration is an unproved formalized conjecture; no Formal Conjectures proof or source module is imported."
+      "note": "Challenge and Solution restate the right-hand covering proposition of erdos_689 at this pinned revision in Lean 4.33.1 syntax. Solution proves that proposition. The upstream declaration is an unproved formalized conjecture. No Formal Conjectures proof or source module is imported."
     },
     {
       "id": "https://github.com/antoshashakov/Principia-Math-Solutions/tree/c9910942522fbd3a07c034ac57947f56df6f0f6d/erdos1054",
@@ -56,7 +58,7 @@
     "msc2020": []
   },
   "status": {
-    "scope": "The sufficiently-large-n, two-fold formulation in Theorem 1.1 of the April 2026 working manuscript, addressing Erdős's 1979 residue-class question; no explicit sufficient threshold, arbitrary multiplicity, or priority claim.",
+    "scope": "The sufficiently-large-n, two-fold formulation in Theorem 1.1 of the April 2026 working manuscript, addressing Erdős's 1979 residue-class question. No explicit sufficient threshold, arbitrary multiplicity, or priority is claimed.",
     "main_results": [
       {
         "declaration": "Erdos689.Palomar.eventual_double_cover",

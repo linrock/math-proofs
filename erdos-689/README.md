@@ -1,19 +1,21 @@
 # Erdős #689: eventual double covering by prime residue classes
 
-For every sufficiently large natural number `n`, there is one residue `a(p)`
-for each prime `p ≤ n` such that every integer `1 ≤ m ≤ n` lies in at least
-two selected classes. The two hits use distinct prime moduli. Both interval
-endpoints are included. This package formalizes the two-fold statement for
-sufficiently large `n` in Theorem 1.1 of the
-[April 2026 working manuscript](https://www.ulam.ai/research/erdos689.pdf),
-addressing the residue-class question posed in
-[Erdős's 1979 paper](https://www.renyi.hu/~p_erdos/1979-23.pdf), with no
-additional analytic hypothesis. The 1979 question also mentions an
-at-least-`r` variant, which is outside this submission.
+This package gives a complete Lean 4 proof of Erdős problem 689: for all
+sufficiently large natural numbers `n`, one residue class per prime `p ≤ n`
+can cover every integer from 1 through `n` at least twice. The two hits use
+distinct prime moduli, and both interval endpoints are included.
 
-The contribution is a Lean reconstruction and integration of the analytic
-covering argument, including the finite matching construction and the prime
-estimates it needs. See the
+The proof follows the argument for Theorem 1.1 in Przemek Chojecki's
+27 April 2026 working manuscript
+[“A greedy matching proof of Erdős’s two-fold residue-class problem”](https://www.ulam.ai/research/erdos689.pdf).
+The formalization directly proves the required three-prime counting estimate
+using Fourier major/minor-arc analysis, replacing the manuscript's invocation
+of Green–Tao, and verifies the sieve degree bounds and greedy-matching
+construction in Lean. The final theorem has no additional analytic hypothesis.
+
+The residue-class question appears in
+[Erdős's 1979 paper](https://www.renyi.hu/~p_erdos/1979-23.pdf), which also
+mentions an at-least-`r` variant outside this submission. See the
 [problem discussion](https://www.erdosproblems.com/forum/thread/689) for context.
 
 Start with [BUILD.md](BUILD.md) to reproduce the build, or the

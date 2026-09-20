@@ -34,9 +34,9 @@ conjecture source, not an imported proof.
 Every `Proofs/` module has an individual origin and SHA-256 binding in
 `source-manifest.json`. These are provenance hashes, not proof certificates.
 
-The attributed Wiener source contains exactly two unrelated admitted lemmas,
-`prelim_decay_2` and `prelim_decay_3`. They are retained as transparent
-upstream limitations, not accepted proof assumptions. Canonical endpoint
-axiom audits exclude them. The new package must independently pass the same
-endpoint and Comparator/NanoDa checks. No global claim of a sorry-free
-third-party source tree is made.
+The included upstream Wiener source contains two lemmas with `sorry`
+placeholders: `prelim_decay_2` and `prelim_decay_3`. Neither is used by the
+completed Erdős 689 proof. Its transitive axiom audit contains only `propext`,
+`Classical.choice`, and `Quot.sound`, with no `sorryAx`. Local Comparator,
+NanoDa, and Lean kernel checks have passed. [BUILD.md](BUILD.md) documents
+their scope and the remaining official Palomar verification requirements.

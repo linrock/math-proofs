@@ -219,9 +219,10 @@ final proof supplies the hypotheses it uses.
 
 ## Relationship to the manuscript and verification
 
-The covering strategy and Theorem 1.1 are described in the
-[April working manuscript](https://www.ulam.ai/research/erdos689.pdf) cited in
-the [README](README.md). This package reconstructs its concrete
+The covering strategy and Theorem 1.1 are described in Przemek Chojecki's
+27 April 2026 working manuscript
+[“A greedy matching proof of Erdős’s two-fold residue-class problem”](https://www.ulam.ai/research/erdos689.pdf),
+cited in the [README](README.md). This package reconstructs its concrete
 covering argument in Lean: finite greedy matching, protected reserve and
 deficiency counts, a localized prime-pattern count, and sieve degree bounds.
 The manuscript obtains its prime-triples estimate from Green–Tao. This
