@@ -1,0 +1,11 @@
+.lake/
+.verification/
+.beam/
+*.olean
+*.olean.private
+*.olean.server
+*.ilean
+*.ir
+.DS_Store
+.lake-*/
+.verification-*/

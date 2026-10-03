@@ -1,0 +1,172 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 956: unit distances between disjoint convex translates",
+    "description": "A complete Lean 4.35.0-rc2 formalization of the superlinear and Omega(N^(4/3)) lower-bound resolution of Erdős problem 956 on the maximum number h(n) of unordered unit-distance pairs among n pairwise-disjoint translates of a compact convex planar set C. It proves (1) the affirmative Formal Conjectures superlinear statement (n^(1+c) < h(n) eventually for c = 1/4), (2) the explicit all-N bound (1/1000) N^(4/3) <= h(N) for all N >= 30, (3) the signed parabolic cap supporting-hyperplane theorem over [-W, W] including opposite-sign generators, (4) the four-layer signed-grid construction with exact quartic edge polynomial J_q = 72q^4 + 32q^3 + 24q^2 + 13q + 3 <= h(48q^3 + 16q^2 + 12q + 4) (including 144 <= h(80)), and (5) the sharp eventual lower bound (2/5) N^(4/3) < h(N) for all N >= 204525328.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "MIT"
+  },
+  "classification": {
+    "arxiv": [
+      "math.MG",
+      "math.CO"
+    ],
+    "msc2020": [
+      "52C10",
+      "52A10",
+      "05D99"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Variations on the theme of repeated distances",
+      "authors": [
+        "Paul Erdős",
+        "János Pach"
+      ],
+      "type": "paper",
+      "relationship": "background",
+      "id": "https://doi.org/10.1007/BF02122780",
+      "location": "Combinatorica 10 (1990), 261–269",
+      "author_endorsement": "not-contacted",
+      "note": "Poses Erdős Problem 956, asks whether h(n) > n^(1+c) for some c > 0 and all sufficiently large n, and establishes the O(n^(4/3)) upper bound."
+    },
+    {
+      "title": "The unit-distance problem for convex sets",
+      "authors": [
+        "Pavel Valtr"
+      ],
+      "type": "paper",
+      "relationship": "background",
+      "id": "https://ems.press/content/serial-article-files/45990?nt=1",
+      "location": "Oberwolfach Report 17/2005, 985–986",
+      "author_endorsement": "not-contacted",
+      "note": "Announces h(n) = Theta(n^(4/3)) for pairwise-disjoint translates of a centrally symmetric convex body in the plane."
+    },
+    {
+      "title": "Erdős Problem 956",
+      "authors": [
+        "Przemysław Chojecki"
+      ],
+      "type": "preprint",
+      "relationship": "extends",
+      "id": "https://www.ulam.ai/research/erdos956.pdf",
+      "location": "Preprint (April 2026), 6 pp.",
+      "author_endorsement": "not-contacted",
+      "note": "Gives an explicit six-page elementary construction using a one-sided parabolic cap and two rectangular layers. This Lean formalization verifies that construction and extends it to the full signed parabolic cap over [-W, W], four rectangular layers with exact polynomial J_q = 72q^4 + 32q^3 + 24q^2 + 13q + 3, and the sharper eventual constant 2/5."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/eb1c5ce1bf406e46a6af5f859f097a5c5350a462/FormalConjectures/ErdosProblems/956.lean",
+      "relationship": "builds-on",
+      "note": "Challenge.lean, Statement.lean, and Solution.lean use the exact definitions (Plane, translateDistance, IsConfiguration, unitPairs, h) and theorem statement (erdos_956) from Formal Conjectures with answer(True) elaborated as True."
+    }
+  ],
+  "status": {
+    "scope": "Complete unconditional Lean 4.35.0-rc2 proofs of the Formal Conjectures superlinear statement (erdos_956 and erdos_956_superlinear with c = 1/4), the explicit all-N Omega(N^(4/3)) lower bound for N >= 30 (erdos_956_omega_four_thirds), the four-layer signed-grid polynomial lower bound J_q <= h(N_q) for all q >= 1 (erdos_956_four_layer_polynomial), and the sharp eventual (2/5) N^(4/3) < h(N) bound for N >= 204525328 (erdos_956_eventual_two_fifths). The published 1990 Erdős–Pach O(N^(4/3)) upper bound is outside the scope of this lower-bound formalization.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos956.Palomar.erdos_956_superlinear",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos956.Palomar.erdos_956",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos956.Palomar.erdos_956_omega_four_thirds",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos956.Palomar.erdos_956_four_layer_polynomial",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos956.Palomar.erdos_956_eventual_two_fifths",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development using signed parabolic cap and four-layer grid formalization, independent source/kernel audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "All proof claims are compiled from source in Lean 4.35.0-rc2 and audited with both Lean's default kernel and NanoDa via Comparator."
+  },
+  "fidelity": {
+    "divergences": "None on the formalized statements. The definitions of Plane, translateDistance, IsConfiguration, unitPairs, and h, as well as the superlinear theorem erdos_956, match FormalConjectures/ErdosProblems/956.lean verbatim (with answer(True) elaborated as True). The published 1990 Erdős–Pach O(n^(4/3)) upper bound is not claimed here."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Lean 4.35.0-rc2 (compiler commit 11acb17ec6b07a8f9e9173e6845197929540936b) with canonical Mathlib commit 065356127b1dc0016f66b7283ce0ce2c4055aa55 passed fresh source builds for Proofs/Erdos956SignedFourLayer435.lean plus Statement, Solution, AxiomAudit, and Challenge. Zero sorry occur in the proof modules. Eight saved-source endpoint, statement-fidelity, and non-vacuity axiom reports passed using only propext, Classical.choice, and Quot.sound. Comparator matched all five selected theorems in Challenge and Solution, and both NanoDa and Lean's default kernel accepted the solution."
+  },
+  "preparation": {
+    "stage": "prepared-not-submitted",
+    "owner_confirmation_required": false,
+    "full_package_replay_completed": true,
+    "comparator_completed": true,
+    "nanoda_completed": true
+  },
+  "alignment": {
+    "namespace": "Erdos956.Palomar",
+    "statements": [
+      {
+        "source": "Erdős Problem 956 (Erdős–Pach 1990): superlinear unit-distance growth h(n) > n^(1+c)",
+        "lean": "Erdos956.Palomar.erdos_956_superlinear",
+        "module": "Solution",
+        "status": "proved; Lean 4.35.0-rc2 source build, Comparator, NanoDa, and transitive-axiom audit passed",
+        "note": "Proves that there exists c > 0 (namely c = 1/4) such that n^(1+c) < h(n) for all sufficiently large n."
+      },
+      {
+        "source": "Formal Conjectures Erdős 956 literal True <-> statement",
+        "lean": "Erdos956.Palomar.erdos_956",
+        "module": "Solution",
+        "status": "proved; Lean 4.35.0-rc2 source build, Comparator, NanoDa, and transitive-axiom audit passed",
+        "note": "Proves the True <-> proposition and verifies definitional equality with Statement.lean."
+      },
+      {
+        "source": "Valtr (2005) / Chojecki (2026): explicit all-N Omega(N^(4/3)) lower bound",
+        "lean": "Erdos956.Palomar.erdos_956_omega_four_thirds",
+        "module": "Solution",
+        "status": "proved; Lean 4.35.0-rc2 source build, Comparator, NanoDa, and transitive-axiom audit passed",
+        "note": "Proves (1/1000) N^(4/3) <= h(N) for every integer N >= 30."
+      },
+      {
+        "source": "Four-layer signed-grid construction: exact quartic polynomial J_q <= h(N_q)",
+        "lean": "Erdos956.Palomar.erdos_956_four_layer_polynomial",
+        "module": "Solution",
+        "status": "proved; Lean 4.35.0-rc2 source build, Comparator, NanoDa, and transitive-axiom audit passed",
+        "note": "Proves 72q^4 + 32q^3 + 24q^2 + 13q + 3 <= h(48q^3 + 16q^2 + 12q + 4) for every q >= 1, including 144 <= h(80)."
+      },
+      {
+        "source": "Sharp eventual (2/5) N^(4/3) < h(N) lower bound",
+        "lean": "Erdos956.Palomar.erdos_956_eventual_two_fifths",
+        "module": "Solution",
+        "status": "proved; Lean 4.35.0-rc2 source build, Comparator, NanoDa, and transitive-axiom audit passed",
+        "note": "Proves (2/5) N^(4/3) < h(N) for every integer N >= 204525328."
+      }
+    ]
+  },
+  "acknowledgements": "The problem was posed by Erdős and Pach (1990); the Theta(n^(4/3)) asymptotic was announced by Valtr (2005), and an explicit one-sided parabolic construction was given by Chojecki (2026). Mathlib and Formal Conjectures supply attributed formal definitions and infrastructure."
+}

@@ -1,0 +1,17 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos956.Palomar.erdos_956_superlinear",
+    "Erdos956.Palomar.erdos_956",
+    "Erdos956.Palomar.erdos_956_omega_four_thirds",
+    "Erdos956.Palomar.erdos_956_four_layer_polynomial",
+    "Erdos956.Palomar.erdos_956_eventual_two_fifths"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}
