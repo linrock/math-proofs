@@ -36,9 +36,9 @@ slack directly without asymptotic approximations.
 | `Erdos546.erdos_546` | The elaborated `True ↔ Erdos546.SparseRamseyStatement` form of Erdős #546. |
 | `Erdos546.sudakov_sparse_bound` | Uniform explicit bound: $R(G) \le 2^{4000 \sqrt{m}}$ for every finite graph $G$ with $m$ edges and no isolated vertices. |
 | `Erdos546.sparse_graph_ramsey_witness` | Direct Ramsey forcing witness on $\lceil 2^{2000\sqrt{m}} \rceil$ vertices for all $m \ge 64$ and $|V| \le 2m$, showing the `sInf` definition is non-vacuous. |
-| `Erdos546.boundedDegree_sparse_cut` | Sudakov Lemma 2.4 (bounded-degree sparse cut): if a host graph $H$ on $W$ contains no copy of $G$ with $\Delta(G) \le \Delta$, then $W$ contains disjoint equal-size subsets $X, Y$ of size $\ge \varepsilon^\Delta |W| / (2(\Delta + 1))$ with at most $\varepsilon |X| |Y|$ edges between them. |
-| `Erdos546.exists_monoPair_of_low_edgeDensity` | Sudakov Lemma 2.3 (low-density monochromatic pair): any vertex set $U$ of edge density $\le \varepsilon \le 1/8$ contains a monochromatic clique-to-reservoir pair $(X, Y)$ in $H$ or $H^c$ with $|X| = t$ and $|Y| \ge \varepsilon^{40 \varepsilon t} |U|$. |
-| `Erdos546.quantitative_monoPair_amplification` | Sudakov Section 3 (amplification step): in a $G$-free host, a monochromatic pair $(X, Y)$ at scale $a$ with $|X| \ge a^3 \sqrt{m}$ and $|Y| \ge 2^{500 \sqrt{m} / a}$ yields a new monochromatic pair $(P, Q)$ inside $Y$ with $|P| \ge 2^{2a} \sqrt{m}$ and $|Q| \ge |Y| \cdot 2^{-400 \sqrt{m} / a}$. |
+| `Erdos546.boundedDegree_sparse_cut` | Sudakov Lemma 2.4 (bounded-degree sparse cut): for $0 < \varepsilon \le 1/2$, if every vertex of $G$ has degree $\le \Delta$, the host satisfies $2(\Delta + 1)|V| \le \varepsilon^\Delta |W|$, and $H$ contains no copy of $G$, then $W$ contains disjoint equal-size subsets $X, Y$ of size $\ge \varepsilon^\Delta |W| / (2(\Delta + 1))$ with at most $\varepsilon |X| |Y|$ edges between them. |
+| `Erdos546.exists_monoPair_of_low_edgeDensity` | Sudakov Lemma 2.3 (low-density monochromatic pair): for $0 < \varepsilon \le 1/8$ and $t \in \mathbb{N}$ with $1 \le \varepsilon t$, any vertex set $U$ satisfying $t \le \varepsilon^{40 \varepsilon t} |U|$ and edge density $\le \varepsilon$ contains a monochromatic clique-to-reservoir pair $(X, Y)$ in $H$ or $H^c$ with $|X| = t$ and $|Y| \ge \varepsilon^{40 \varepsilon t} |U|$. |
+| `Erdos546.quantitative_monoPair_amplification` | Sudakov Section 3 (amplification step): for $m \ge 64$, $|E(G)| = m$, $|V| \le 2m$, and scale $3 \le a \le \lfloor \frac{1}{2}\log_2 m \rfloor$, a monochromatic pair $(X, Y)$ in a $G$-free host $H$ with $|X| \ge a^3 \sqrt{m}$ and $|Y| \ge 2^{500 \sqrt{m} / a}$ yields a new monochromatic pair $(P, Q)$ inside $Y$ (in $H$ or $H^c$) with $|P| \ge 2^{2a} \sqrt{m}$ and $|Q| \ge |Y| \cdot 2^{-400 \sqrt{m} / a}$. |
 
 [Challenge.lean](Challenge.lean) states these seven targets using only Mathlib
 and intentional `sorry` placeholders; `Solution.lean` never imports
@@ -86,8 +86,10 @@ The 30 modules in [Proofs/](Proofs) organize this argument into four stages:
    [MeanSubsets546](Proofs/MeanSubsets546.lean),
    [SparseCut546](Proofs/SparseCut546.lean),
    [SparseCombination546](Proofs/SparseCombination546.lean),
-   [FreeGraphSparse546](Proofs/FreeGraphSparse546.lean)): proves that a graph of
-   maximum degree $\Delta$ embeds greedily unless the host admits a sparse
+   [FreeGraphSparse546](Proofs/FreeGraphSparse546.lean)): proves that when
+   $0 < \varepsilon \le 1/2$ and the host satisfies the large-host condition
+   $2(\Delta + 1)|V| \le \varepsilon^\Delta |W|$, a graph of maximum degree
+   $\Delta$ embeds greedily unless the host admits a sparse equal-size
    bipartite cut (`boundedDegree_sparse_cut`), and combines hereditary sparse
    cuts with two-stage degree cleaning to extract a low-density subset in any
    $G'$-free reservoir.
@@ -97,9 +99,11 @@ The 30 modules in [Proofs/](Proofs) organize this argument into four stages:
    [LowDensityPairs546](Proofs/LowDensityPairs546.lean),
    [LowDensityCleaningCorollaries546](Proofs/LowDensityCleaningCorollaries546.lean),
    [LowDensityRounded546](Proofs/LowDensityRounded546.lean)): formalizes
-   Sudakov's Lemma 2.3 (`exists_monoPair_of_low_edgeDensity`) by pruning
-   high-degree vertices, taking a maximum clique in the complement, and
-   pigeonholing neighborhood masks to obtain a monochromatic pair in either
+   Sudakov's Lemma 2.3 (`exists_monoPair_of_low_edgeDensity`) under the
+   parameter and set-size conditions $0 < \varepsilon \le 1/8$,
+   $1 \le \varepsilon t$, and $t \le \varepsilon^{40\varepsilon t}|U|$ by
+   pruning high-degree vertices, taking a maximum clique in the complement,
+   and pigeonholing neighborhood masks to obtain a monochromatic pair in either
    color.
 4. **High-degree deletion, copy gluing, and iterative amplification**
    ([DegreeMax546](Proofs/DegreeMax546.lean),

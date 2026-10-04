@@ -20,8 +20,13 @@ namespace Erdos546
 
 open SimpleGraph Finset
 
-/-- A monochromatic clique/reservoir pair in a graph-free host amplifies
-its clique side; the resulting pair may use either color. -/
+/-- Quantitative monochromatic-pair amplification step (Sudakov Section 3): for
+$m \ge 64$, $|E(G)| = m$, $|V| \le 2m$, and scale
+$3 \le a \le \lfloor \frac{1}{2}\log_2 m \rfloor$, a monochromatic pair
+$(X, Y)$ in a $G$-free host $H$ with $|X| \ge a^3\sqrt{m}$ and
+$|Y| \ge 2^{500\sqrt{m}/a}$ yields a monochromatic pair $(P, Q)$ inside $Y$
+(in $H$ or $H^c$) with $|P| \ge 2^{2a}\sqrt{m}$ and
+$|Q| \ge |Y| \cdot 2^{-400\sqrt{m}/a}$. -/
 theorem quantitative_monoPair_amplification {V W : Type*}
     [Fintype V] [DecidableEq V] [DecidableEq W]
     (G : SimpleGraph V) [DecidableRel G.Adj] (H : SimpleGraph W)

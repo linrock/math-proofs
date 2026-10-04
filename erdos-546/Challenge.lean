@@ -56,16 +56,33 @@ with seven theorem targets:
    $R(G) \le 2^{4000 \sqrt{m}}$ across all finite simple graphs $G$ on any
    `V : Type*` without isolated vertices and with $m$ edges (including $m = 0$).
 4. `Erdos546.sparse_graph_ramsey_witness`: the genuine forcing witness
-   (`GraphRamseyWitness G G ⌈2^{2000\sqrt{m}}⌉₊`) for $m \ge 64$, ruling out
-   vacuous `sInf ∅ = 0` collapse.
+   (`GraphRamseyWitness G G ⌈2^{2000\sqrt{m}}⌉₊`) for any finite graph $G$ on
+   $V$ with $m \ge 64$ edges (`G.edgeSet.ncard = m`) and $|V| \le 2m$, ruling
+   out vacuous `sInf ∅ = 0` collapse.
 5. `Erdos546.boundedDegree_sparse_cut`: the rounded Sudakov Lemma 2.4
-   bounded-degree embedding contrapositive producing disjoint equal-cardinality
-   sets $X, Y$ of size $\ge \varepsilon^\Delta |W| / (2(\Delta + 1))$ and
-   interedge count $\le \varepsilon |X| |Y|$.
+   bounded-degree embedding contrapositive: for $0 < \varepsilon \le 1/2$, if
+   every vertex of $G$ has degree $\le \Delta$, the host $W$ satisfies the
+   large-host condition $2(\Delta + 1)|V| \le \varepsilon^\Delta |W|$, and $H$
+   contains no copy of $G$ (`¬ Nonempty (SimpleGraph.Copy G H)`), then $W$
+   contains disjoint equal-cardinality sets $X, Y$ of size
+   $\ge \varepsilon^\Delta |W| / (2(\Delta + 1))$ with interedge count
+   $\le \varepsilon |X| |Y|$.
 6. `Erdos546.exists_monoPair_of_low_edgeDensity`: the rounded Sudakov Lemma 2.3
-   low-density monochromatic-pair theorem with exponent $40 \varepsilon t$.
+   low-density monochromatic-pair theorem: for $0 < \varepsilon \le 1/8$ and
+   $t \in \mathbb{N}$ with $1 \le \varepsilon t$, if a vertex subset
+   $U \subseteq V$ satisfies the size condition
+   $t \le \varepsilon^{40\varepsilon t} |U|$ and has edge density
+   $\operatorname{edgeDensity}_H(U, U) \le \varepsilon$, then $U$ contains a
+   monochromatic pair $(X, Y)$ in $H$ or $H^c$ with $|X| = t$ and
+   $|Y| \ge \varepsilon^{40\varepsilon t} |U|$.
 7. `Erdos546.quantitative_monoPair_amplification`: the Sudakov Section 3
-   quantitative clique/reservoir amplification step.
+   quantitative clique/reservoir amplification step: for $m \ge 64$, a graph
+   $G$ with $m$ edges and $|V| \le 2m$, an integer scale
+   $3 \le a \le \lfloor \frac{1}{2}\log_2 m \rfloor$, and a monochromatic pair
+   $(X, Y)$ in a $G$-free host $H$ with $|X| \ge a^3\sqrt{m}$ and
+   $|Y| \ge 2^{500\sqrt{m}/a}$, there exists a monochromatic pair $(P, Q)$ in
+   $Y$ (in $H$ or $H^c$) with $|P| \ge 2^{2a}\sqrt{m}$ and
+   $|Q| \ge |Y| \cdot 2^{-400\sqrt{m}/a}$.
 
 The seven intentional `sorry` placeholders below are matched by proved
 declarations in `Solution.lean`; `Solution.lean` does not import this module.
@@ -108,7 +125,8 @@ def SparseRamseyStatement : Prop :=
 /-- The final integer amplification parameter $\lfloor \frac{1}{2} \log_2 m \rfloor$. -/
 def finalAmplificationParameter546 (m : ℕ) : ℕ := Nat.log2 m / 2
 
-/-- Genuine forcing witness on $\lceil 2^{2000\sqrt{m}} \rceil$ vertices for all $m \ge 64$. -/
+/-- Genuine forcing witness on $\lceil 2^{2000\sqrt{m}} \rceil$ vertices for all $m \ge 64$
+when $G$ has $m$ edges and $|V| \le 2m$. -/
 theorem sparse_graph_ramsey_witness {V : Type*} [Fintype V]
     (G : SimpleGraph V) [DecidableRel G.Adj] (m : ℕ) (hm : 64 ≤ m)
     (hedges : G.edgeSet.ncard = m) (hvertices : Fintype.card V ≤ 2 * m) :
@@ -127,7 +145,12 @@ theorem erdos_546 : True ↔ SparseRamseyStatement := by
   sorry
 
 open scoped Classical in
-/-- Rounded Sudakov Lemma 2.4 bounded-degree embedding contrapositive with equal-size sparse sides. -/
+/-- Rounded Sudakov Lemma 2.4 bounded-degree embedding contrapositive: for
+$0 < \varepsilon \le 1/2$, maximum degree $\le \Delta$, large host size
+$2(\Delta + 1)|V| \le \varepsilon^\Delta |W|$, and no copy of $G$ in $H$, there
+exist disjoint equal-size subsets $X, Y \subseteq W$ of cardinality
+$\ge \varepsilon^\Delta |W| / (2(\Delta + 1))$ with at most
+$\varepsilon |X| |Y|$ cross edges. -/
 theorem boundedDegree_sparse_cut {V W : Type*} [Fintype V] [Fintype W]
     (G : SimpleGraph V) (H : SimpleGraph W)
     (Δ : ℕ) (ε : ℝ) (hε : 0 < ε) (hhalf : ε ≤ 1 / 2)
@@ -140,7 +163,12 @@ theorem boundedDegree_sparse_cut {V W : Type*} [Fintype V] [Fintype W]
       ((H.interedges X Y).card : ℝ) ≤ ε * X.card * Y.card := by
   sorry
 
-/-- Rounded Sudakov Lemma 2.3 low-density monochromatic-pair theorem. -/
+/-- Rounded Sudakov Lemma 2.3 low-density monochromatic-pair theorem: for
+$0 < \varepsilon \le 1/8$, $1 \le \varepsilon t$, set size
+$t \le \varepsilon^{40\varepsilon t}|U|$, and edge density
+$\operatorname{edgeDensity}_H(U, U) \le \varepsilon$, there exists a
+monochromatic pair $(X, Y)$ in $U$ (in $H$ or $H^c$) with $|X| = t$ and
+$|Y| \ge \varepsilon^{40\varepsilon t}|U|$. -/
 theorem exists_monoPair_of_low_edgeDensity {V : Type*} [DecidableEq V]
     (H : SimpleGraph V) [DecidableRel H.Adj] (U : Finset V) (ε : ℝ) (t : ℕ)
     (hε : 0 < ε) (hεsmall : ε ≤ 1 / 8) (hεt : 1 ≤ ε * t)
@@ -151,7 +179,13 @@ theorem exists_monoPair_of_low_edgeDensity {V : Type*} [DecidableEq V]
       Real.rpow ε (40 * ε * t) * U.card ≤ (Y.card : ℝ) := by
   sorry
 
-/-- Quantitative monochromatic-pair amplification step (Sudakov Section 3). -/
+/-- Quantitative monochromatic-pair amplification step (Sudakov Section 3): for
+$m \ge 64$, $|E(G)| = m$, $|V| \le 2m$, and scale
+$3 \le a \le \lfloor \frac{1}{2}\log_2 m \rfloor$, a monochromatic pair
+$(X, Y)$ in a $G$-free host $H$ with $|X| \ge a^3\sqrt{m}$ and
+$|Y| \ge 2^{500\sqrt{m}/a}$ yields a monochromatic pair $(P, Q)$ inside $Y$
+(in $H$ or $H^c$) with $|P| \ge 2^{2a}\sqrt{m}$ and
+$|Q| \ge |Y| \cdot 2^{-400\sqrt{m}/a}$. -/
 theorem quantitative_monoPair_amplification {V W : Type*}
     [Fintype V] [DecidableEq V] [DecidableEq W]
     (G : SimpleGraph V) [DecidableRel G.Adj] (H : SimpleGraph W)

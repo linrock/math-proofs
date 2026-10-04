@@ -235,7 +235,12 @@ theorem exists_monoPair_of_low_density
       (hsize.trans hscaled) hdensity
   exact ⟨X, Y, hXU, hYU, hp, hXcard, hscaled.trans hYcard⟩
 
-/-- The normalized edge-density interface used by the sparse-subset lemma. -/
+/-- Rounded Sudakov Lemma 2.3 low-density monochromatic-pair theorem: for
+$0 < \varepsilon \le 1/8$, $1 \le \varepsilon t$, set size
+$t \le \varepsilon^{40\varepsilon t}|U|$, and edge density
+$\operatorname{edgeDensity}_H(U, U) \le \varepsilon$, there exists a
+monochromatic pair $(X, Y)$ in $U$ (in $H$ or $H^c$) with $|X| = t$ and
+$|Y| \ge \varepsilon^{40\varepsilon t}|U|$. -/
 theorem exists_monoPair_of_low_edgeDensity
     (H : SimpleGraph V) [DecidableRel H.Adj] (U : Finset V) (ε : ℝ) (t : ℕ)
     (hε : 0 < ε) (hεsmall : ε ≤ 1 / 8) (hεt : 1 ≤ ε * t)

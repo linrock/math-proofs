@@ -68,7 +68,7 @@
     }
   ],
   "status": {
-    "scope": "Complete unconditional Lean 4 proofs of the Formal Conjectures statement (erdos_546_original_statement and Erdos546.erdos_546), the uniform explicit bound R(G) ≤ 2^(4000 √m) across all finite simple graphs G with m edges and no isolated vertices including m = 0 (Erdos546.sudakov_sparse_bound), the explicit Ramsey witness on ⌈2^(2000 √m)⌉ vertices for m ≥ 64 (Erdos546.sparse_graph_ramsey_witness), and Sudakov's three core structural lemmas: the bounded-degree equal-size sparse cut (Erdos546.boundedDegree_sparse_cut), low-density monochromatic-pair extraction (Erdos546.exists_monoPair_of_low_edgeDensity), and quantitative clique-reservoir amplification (Erdos546.quantitative_monoPair_amplification). Sudakov's published constant 250 is relaxed to 4000 to absorb integer rounding without asymptotic approximations.",
+    "scope": "Complete unconditional Lean 4 proofs of the Formal Conjectures statement (erdos_546_original_statement and Erdos546.erdos_546), the uniform explicit bound R(G) ≤ 2^(4000 √m) across all finite simple graphs G with m edges and no isolated vertices including m = 0 (Erdos546.sudakov_sparse_bound), the explicit Ramsey witness on ⌈2^(2000 √m)⌉ vertices for m ≥ 64 and |V| ≤ 2m (Erdos546.sparse_graph_ramsey_witness), and Sudakov's three core structural lemmas: the bounded-degree equal-size sparse cut under 0 < ε ≤ 1/2, maximum degree ≤ Δ, and the large-host condition 2(Δ + 1)|V| ≤ ε^Δ |W| (Erdos546.boundedDegree_sparse_cut), low-density monochromatic-pair extraction under 0 < ε ≤ 1/8, 1 ≤ ε t, and the set-size condition t ≤ ε^(40 ε t) |U| (Erdos546.exists_monoPair_of_low_edgeDensity), and quantitative clique-reservoir amplification for m ≥ 64, |V| ≤ 2m, and 3 ≤ a ≤ ⌊(1/2) log₂ m⌋ (Erdos546.quantitative_monoPair_amplification). Sudakov's published constant 250 is relaxed to 4000 to absorb integer rounding without asymptotic approximations.",
     "sorry_count": 0,
     "sorry_in_definitions": 0,
     "axioms": [
@@ -166,21 +166,21 @@
         "lean": "Erdos546.boundedDegree_sparse_cut",
         "module": "Solution",
         "status": "proved",
-        "note": "Produces disjoint equal-size sets X, Y of cardinality ≥ ε^Δ |W| / (2(Δ + 1)) with at most ε |X| |Y| cross edges whenever G has maximum degree ≤ Δ and no copy in H."
+        "note": "For 0 < ε ≤ 1/2, if G has maximum degree ≤ Δ, the host satisfies the large-host condition 2(Δ + 1)|V| ≤ ε^Δ |W|, and H contains no copy of G, produces disjoint equal-size sets X, Y ⊆ W of cardinality ≥ ε^Δ |W| / (2(Δ + 1)) with at most ε |X| |Y| cross edges."
       },
       {
         "source": "Sudakov (2011), Lemma 2.3: low-density monochromatic-pair extraction",
         "lean": "Erdos546.exists_monoPair_of_low_edgeDensity",
         "module": "Solution",
         "status": "proved",
-        "note": "Extracts a monochromatic clique-reservoir pair (X, Y) in H or H^c with |X| = t and |Y| ≥ ε^(40 ε t) |U| whenever H.edgeDensity U U ≤ ε ≤ 1/8."
+        "note": "For 0 < ε ≤ 1/8 and t ∈ ℕ with 1 ≤ ε t, if a vertex subset U satisfies t ≤ ε^(40 ε t) |U| and H.edgeDensity U U ≤ ε, extracts a monochromatic clique-reservoir pair (X, Y) in U (in H or H^c) with |X| = t and |Y| ≥ ε^(40 ε t) |U|."
       },
       {
         "source": "Sudakov (2011), Section 3: quantitative monochromatic-pair amplification",
         "lean": "Erdos546.quantitative_monoPair_amplification",
         "module": "Solution",
         "status": "proved",
-        "note": "Amplifies a monochromatic pair with |X| ≥ a^3 √m and |Y| ≥ 2^(500 √m / a) to a monochromatic pair (P, Q) in Y with |P| ≥ 2^(2a) √m and |Q| ≥ |Y| · 2^(-400 √m / a)."
+        "note": "For m ≥ 64, |E(G)| = m, |V| ≤ 2m, and scale 3 ≤ a ≤ ⌊(1/2) log₂ m⌋, amplifies a monochromatic pair (X, Y) in a G-free host H with |X| ≥ a^3 √m and |Y| ≥ 2^(500 √m / a) to a monochromatic pair (P, Q) in Y (in H or H^c) with |P| ≥ 2^(2a) √m and |Q| ≥ |Y| · 2^(-400 √m / a)."
       }
     ]
   },

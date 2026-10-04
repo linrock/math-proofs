@@ -23,7 +23,12 @@ open scoped Classical
 
 variable {V W : Type*} [Fintype V] [Fintype W]
 
-/-- Rounded Sudakov bounded-degree embedding contrapositive. -/
+/-- Rounded Sudakov Lemma 2.4 bounded-degree embedding contrapositive: for
+$0 < \varepsilon \le 1/2$, maximum degree $\le \Delta$, large host size
+$2(\Delta + 1)|V| \le \varepsilon^\Delta |W|$, and no copy of $G$ in $H$, there
+exist disjoint equal-size subsets $X, Y \subseteq W$ of cardinality
+$\ge \varepsilon^\Delta |W| / (2(\Delta + 1))$ with at most
+$\varepsilon |X| |Y|$ cross edges. -/
 theorem boundedDegree_sparse_cut (G : SimpleGraph V) (H : SimpleGraph W)
     (Δ : ℕ) (ε : ℝ) (hε : 0 < ε) (hhalf : ε ≤ 1 / 2)
     (hdegree : ∀ v, G.degree v ≤ Δ)
