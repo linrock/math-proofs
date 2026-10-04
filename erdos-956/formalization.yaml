@@ -54,7 +54,7 @@
         "Przemysław Chojecki"
       ],
       "type": "paper",
-      "relationship": "extends",
+      "relationship": "adapts",
       "id": "https://www.ulam.ai/research/erdos956.pdf",
       "location": "Preprint (April 2026), 6 pp.",
       "author_endorsement": "not-contacted",

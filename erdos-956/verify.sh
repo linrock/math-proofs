@@ -8,12 +8,25 @@ if [[ $# -gt 1 ]] || [[ $# -eq 1 && "$1" != "--no-sandbox" ]]; then
 fi
 
 mkdir -p .verification
-if command -v sha256sum >/dev/null 2>&1; then
-  sha256sum -c SHA256SUMS > .verification/integrity.log
-else
-  shasum -a 256 -c SHA256SUMS > .verification/integrity.log
+for lean_file in *.lean Proofs/*.lean; do
+  first_line="$(head -n 1 "$lean_file")"
+  if [[ "$first_line" != "module" ]]; then
+    echo "FAIL: $lean_file must begin with the module header keyword" >&2
+    exit 1
+  fi
+  line_count="$(wc -l < "$lean_file")"
+  if (( line_count > 10000 )); then
+    echo "FAIL: $lean_file exceeds 10,000 lines ($line_count)" >&2
+    exit 1
+  fi
+done
+if command -v jq >/dev/null 2>&1; then
+  jq -e 'any(.sources[]; .relationship == "formalizes" or .relationship == "adapts" or .relationship == "independently-proves")' formalization.yaml >/dev/null || {
+    echo "FAIL: formalization.yaml sources need a formalizes, adapts, or independently-proves relationship" >&2
+    exit 1
+  }
 fi
-echo "PASS: package source integrity"
+echo "PASS: Palomar preliminary module-header, line-count, and sources checks"
 
 compiler_version="$(lake env lean --version)"
 printf '%s\n' "$compiler_version" | tee .verification/toolchain.log

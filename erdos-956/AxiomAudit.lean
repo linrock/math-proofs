@@ -1,5 +1,10 @@
-import Solution
-import Statement
+module
+
+public import Solution
+public import Statement
+
+
+@[expose] public section
 
 /-!
 Full statement, fidelity, non-vacuity, and transitive-axiom checks for the

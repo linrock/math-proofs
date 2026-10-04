@@ -1,4 +1,9 @@
-import Mathlib
+module
+
+public import Mathlib
+
+
+@[expose] public section
 
 /-!
 # Rational grid parameters and spacing inequalities for Erdős #956
@@ -19,10 +24,10 @@ noncomputable def eta (k : ℕ) : ℝ := (W k) ^ 4
 noncomputable def signedT (k : ℕ) : Finset ℝ :=
   (Finset.Icc (-(k : ℤ)) (k : ℤ)).image (fun i : ℤ => (i : ℝ) * a k)
 
-private theorem k_real_pos (k : ℕ) (hk : 1 ≤ k) : (0 : ℝ) < k := by
+theorem k_real_pos (k : ℕ) (hk : 1 ≤ k) : (0 : ℝ) < k := by
   exact_mod_cast (lt_of_lt_of_le (by omega : 0 < 1) hk)
 
-private theorem k_real_ne_zero (k : ℕ) (hk : 1 ≤ k) : (k : ℝ) ≠ 0 :=
+theorem k_real_ne_zero (k : ℕ) (hk : 1 ≤ k) : (k : ℝ) ≠ 0 :=
   ne_of_gt (k_real_pos k hk)
 
 theorem W_formula (k : ℕ) (_hk : 1 ≤ k) :

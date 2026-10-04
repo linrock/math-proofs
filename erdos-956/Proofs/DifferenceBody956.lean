@@ -1,4 +1,9 @@
-import Mathlib
+module
+
+public import Mathlib
+
+
+@[expose] public section
 
 /-!
 # Minkowski difference-body reduction for Erdős #956
@@ -21,11 +26,11 @@ section Normed
 
 variable {E : Type*} [NormedAddCommGroup E]
 
-private theorem difference_nonempty {C : Set E} (hC : C.Nonempty) : (C - C).Nonempty := by
+theorem difference_nonempty {C : Set E} (hC : C.Nonempty) : (C - C).Nonempty := by
   obtain ⟨c, hc⟩ := hC
   exact ⟨c - c, Set.sub_mem_sub hc hc⟩
 
-private theorem dist_sub_eq_dist_translate (c d x y : E) :
+theorem dist_sub_eq_dist_translate (c d x y : E) :
     dist (y - x) (c - d) = dist (c + x) (d + y) := by
   rw [dist_eq_norm, dist_eq_norm]
   have h : (y - x) - (c - d) = -((c + x) - (d + y)) := by abel

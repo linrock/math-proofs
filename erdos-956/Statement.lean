@@ -1,4 +1,9 @@
-import Mathlib
+module
+
+public import Mathlib
+
+
+@[expose] public section
 
 /-!
 The exact Erdős #956 statement from `FormalConjectures/ErdosProblems/956.lean`

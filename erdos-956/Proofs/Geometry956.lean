@@ -1,4 +1,9 @@
-import Mathlib
+module
+
+public import Mathlib
+
+
+@[expose] public section
 
 /-!
 # Signed parabolic cap geometry for Erdős #956
@@ -41,11 +46,11 @@ noncomputable def generators (η : ℝ) (T : Finset ℝ) : Set Plane :=
 
 noncomputable def D (η : ℝ) (T : Finset ℝ) : Set Plane := convexHull ℝ (generators η T)
 
-private theorem sqrt_rad_sq (t : ℝ) :
+theorem sqrt_rad_sq (t : ℝ) :
     (Real.sqrt (1 + t ^ 2)) ^ 2 = 1 + t ^ 2 :=
   Real.sq_sqrt (by positivity)
 
-private theorem sqrt_rad_nonneg (t : ℝ) :
+theorem sqrt_rad_nonneg (t : ℝ) :
     0 ≤ Real.sqrt (1 + t ^ 2) := Real.sqrt_nonneg _
 
 theorem sqrt_rad_ge_one (t : ℝ) :
@@ -200,7 +205,7 @@ theorem p_y_nonneg_signed (W s : ℝ) (hW0 : 0 ≤ W) (hW1 : W ≤ 1)
   have hW4 : 0 ≤ W ^ 4 := by positivity
   linarith
 
-private theorem radical_gap_identity (s t : ℝ) :
+theorem radical_gap_identity (s t : ℝ) :
     (Real.sqrt (1 + s ^ 2) * Real.sqrt (1 + t ^ 2) - (1 + s * t)) *
       (Real.sqrt (1 + s ^ 2) * Real.sqrt (1 + t ^ 2) + (1 + s * t)) =
       (s - t) ^ 2 := by
@@ -213,7 +218,7 @@ private theorem radical_gap_identity (s t : ℝ) :
       rw [mul_pow, hs, ht]
     _ = (s - t) ^ 2 := by ring
 
-private theorem radical_sum_identity (s t : ℝ) :
+theorem radical_sum_identity (s t : ℝ) :
     (Real.sqrt (1 + s ^ 2) * Real.sqrt (1 + t ^ 2) - (1 - s * t)) *
       (Real.sqrt (1 + s ^ 2) * Real.sqrt (1 + t ^ 2) + (1 - s * t)) =
       (s + t) ^ 2 := by

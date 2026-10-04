@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright 2026 The Formal Conjectures Authors.
 Copyright 2026 Linmiao Xu.
@@ -11,7 +13,10 @@ all public endpoints in Lean 4 in 2026. This module does not import
 or reference `Challenge`.
 -/
 
-import FourLayer956
+public import FourLayer956
+
+
+@[expose] public section
 
 /-!
 # Erdős Problem 956: complete proved endpoints
@@ -45,8 +50,6 @@ noncomputable def unitPairs (C : Set Plane) (X : Finset Plane) : Finset (Finset 
 noncomputable def h (n : ℕ) : ℕ :=
   sSup {m : ℕ | ∃ C : Set Plane, ∃ X : Finset Plane,
     X.card = n ∧ IsConfiguration C X ∧ (unitPairs C X).card = m}
-
-private theorem h_eq_extremal_h (n : ℕ) : h n = Erdos956.Extremal.h n := rfl
 
 /-- Direct affirmative solution to the Erdős–Pach superlinear question:
 there exists $c > 0$ such that $n^{1+c} < h(n)$ for all sufficiently large $n$. -/

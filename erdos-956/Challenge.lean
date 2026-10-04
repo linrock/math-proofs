@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright 2026 The Formal Conjectures Authors.
 Copyright 2026 Linmiao Xu.
@@ -21,7 +23,10 @@ theorem targets for this standalone Lean 4 benchmark in 2026. This file
 imports only Mathlib.
 -/
 
-import Mathlib
+public import Mathlib
+
+
+@[expose] public section
 
 /-!
 # Erdős Problem 956: unit distances between disjoint convex translates

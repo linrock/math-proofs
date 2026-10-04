@@ -1,8 +1,13 @@
-import Geometry956
-import Parameters956
-import DifferenceBody956
-import Padding956
-import Extremal956
+module
+
+public import Geometry956
+public import Parameters956
+public import DifferenceBody956
+public import Padding956
+public import Extremal956
+
+
+@[expose] public section
 
 /-!
 # Four-layer signed-grid construction and sharper constants for Erdős #956
@@ -52,17 +57,17 @@ def fourLayerCenter (q : ℕ) (a b η : ℝ) (idx : FourLayerIndex q) : Plane :=
       ((idx.1.val : ℕ) : ℝ) * (1 + η) + ((idx.2.2.val : ℕ) : ℝ) * b := by
   simp [fourLayerCenter]
 
-private theorem rect_y_le {q : ℕ} (p : FourLayerRect q) :
+theorem rect_y_le {q : ℕ} (p : FourLayerRect q) :
     ((p.2.val : ℕ) : ℝ) ≤ ((4 * q ^ 2 : ℕ) : ℝ) := by
   have h : p.2.val ≤ 4 * q ^ 2 := by omega
   exact_mod_cast h
 
-private theorem rect_x_le {q : ℕ} (p : FourLayerRect q) :
+theorem rect_x_le {q : ℕ} (p : FourLayerRect q) :
     ((p.1.val : ℕ) : ℝ) ≤ ((3 * q : ℕ) : ℝ) := by
   have h : p.1.val ≤ 3 * q := by omega
   exact_mod_cast h
 
-private theorem cross_layer_vertical_gt {q : ℕ} (u v : FourLayerIndex q)
+theorem cross_layer_vertical_gt {q : ℕ} (u v : FourLayerIndex q)
     (huv : u.1.val < v.1.val) (a b η : ℝ) (hb : 0 < b) (hη : 0 ≤ η)
     (hlayer : ((4 * q ^ 2 : ℕ) : ℝ) * b < 1) :
     η < (fourLayerCenter q a b η v) 1 - (fourLayerCenter q a b η u) 1 := by
@@ -125,7 +130,7 @@ theorem fourLayerCenter_x_bounds {q : ℕ} (idx : FourLayerIndex q)
   simp only [fourLayerCenter_zero]
   exact ⟨by positivity, mul_le_mul_of_nonneg_right (rect_x_le idx.2) ha⟩
 
-private theorem cast_mul_gap {u v : ℕ} (huv : u ≠ v) (a : ℝ) (ha : 0 < a) :
+theorem cast_mul_gap {u v : ℕ} (huv : u ≠ v) (a : ℝ) (ha : 0 < a) :
     a ≤ |(u : ℝ) * a - (v : ℝ) * a| := by
   rcases lt_or_gt_of_ne huv with huv | huv
   · have hnat : u + 1 ≤ v := by omega
@@ -275,13 +280,13 @@ theorem fourLayerEdgeIndex_card (q : ℕ) :
   rw [hcard, fourLayerEdgePoly]
   exact fourLayer_sum_polynomial q
 
-private theorem posShift_x_lt {q : ℕ} (p : PosShiftEdge q) :
+theorem posShift_x_lt {q : ℕ} (p : PosShiftEdge q) :
     p.2.1.val < 3 * q + 1 ∧ p.2.1.val + (p.1.val + 1) < 3 * q + 1 := by
   have hi : p.1.val < 2 * q := p.1.isLt
   have hr : p.2.1.val < 3 * q - p.1.val := p.2.1.isLt
   omega
 
-private theorem posShift_y_lt {q : ℕ} (p : PosShiftEdge q) :
+theorem posShift_y_lt {q : ℕ} (p : PosShiftEdge q) :
     p.2.2.val < 4 * q ^ 2 + 1 ∧
       p.2.2.val + (p.1.val + 1) ^ 2 < 4 * q ^ 2 + 1 := by
   have hi : p.1.val + 1 ≤ 2 * q := by
@@ -325,7 +330,7 @@ theorem layerPairShift_bounds {q : ℕ} (lp : LayerPairEdge q) :
     have hi : p.1.val < 2 * q := p.1.isLt
     omega
 
-private theorem posShiftEdge_eq_of_coords {q : ℕ} (p p' : PosShiftEdge q)
+theorem posShiftEdge_eq_of_coords {q : ℕ} (p p' : PosShiftEdge q)
     (hr : p.2.1.val = p'.2.1.val)
     (hi : p.1.val = p'.1.val)
     (hs : p.2.2.val = p'.2.2.val) : p = p' := by
@@ -468,9 +473,9 @@ theorem fourLayerPlaneEdge_difference {q : ℕ} (e : FourLayerEdgeIndex q)
 noncomputable def signedBody (q : ℕ) : Set Plane :=
   Geometry.D (Parameters.eta (3 * q)) (Parameters.signedT (3 * q))
 
-private theorem scale3q_pos (q : ℕ) (hq : 1 ≤ q) : 1 ≤ 3 * q := by omega
+theorem scale3q_pos (q : ℕ) (hq : 1 ≤ q) : 1 ≤ 3 * q := by omega
 
-private theorem signedBody_box (q : ℕ) (hq : 1 ≤ q) :
+theorem signedBody_box (q : ℕ) (hq : 1 ≤ q) :
     ∀ z ∈ signedBody q,
       |z 0| ≤ (Parameters.W (3 * q)) ^ 3 / 2 ∧
       |z 1| ≤ Parameters.eta (3 * q) := by
@@ -483,14 +488,14 @@ private theorem signedBody_box (q : ℕ) (hq : 1 ≤ q) :
   exact Geometry.D_abs_box_signed (Parameters.W (3 * q))
     (Parameters.signedT (3 * q)) hW0 hW1 hT
 
-private theorem signedBody_symmetric (q : ℕ) :
+theorem signedBody_symmetric (q : ℕ) :
     ∀ z ∈ signedBody q, -z ∈ signedBody q := by
   intro z hz
   change -z ∈ Geometry.D (Parameters.eta (3 * q)) (Parameters.signedT (3 * q))
   rw [← Geometry.D_neg_eq (Parameters.eta (3 * q)) (Parameters.signedT (3 * q))]
   exact Set.neg_mem_neg.mpr hz
 
-private theorem fourLayer_height_lt_one (q : ℕ) (hq : 1 ≤ q) :
+theorem fourLayer_height_lt_one (q : ℕ) (hq : 1 ≤ q) :
     ((4 * q ^ 2 : ℕ) : ℝ) * Parameters.b (3 * q) < 1 := by
   have hk := scale3q_pos q hq
   have hb := Parameters.b_pos (3 * q) hk
@@ -501,7 +506,7 @@ private theorem fourLayer_height_lt_one (q : ℕ) (hq : 1 ≤ q) :
   have hmul := mul_le_mul_of_nonneg_right hle_real hb.le
   linarith
 
-private theorem fourLayer_edge_distance_one (q : ℕ) (hq : 1 ≤ q)
+theorem fourLayer_edge_distance_one (q : ℕ) (hq : 1 ≤ q)
     (e : FourLayerEdgeIndex q) :
     Erdos956.translateSetDistance
       ((1 / 2 : ℝ) • signedBody q)
@@ -538,7 +543,7 @@ private theorem fourLayer_edge_distance_one (q : ℕ) (hq : 1 ≤ q)
   exact translateSetDistance_one_of_body (signedBody q)
     (Geometry.D_convex _ _) (signedBody_symmetric q) hp hdiff hDist hclose
 
-private theorem signedHalfBody_interior_nonempty (q : ℕ) (hq : 1 ≤ q) :
+theorem signedHalfBody_interior_nonempty (q : ℕ) (hq : 1 ≤ q) :
     (interior ((1 / 2 : ℝ) • signedBody q)).Nonempty := by
   let k := 3 * q
   let W := Parameters.W k
@@ -719,7 +724,7 @@ theorem chosenFourLayerScale_bounds {q₀ N : ℕ} (hN : fourLayerSize q₀ ≤ 
     omega
   exact ⟨hq₀, hq, hnext⟩
 
-private theorem rpow_four_thirds_lt_of_cube_lt {N E : ℕ} {a b : ℝ}
+theorem rpow_four_thirds_lt_of_cube_lt {N E : ℕ} {a b : ℝ}
     (hb : 0 < b) (hcube : a ^ 3 * (N : ℝ) ^ 4 < b ^ 3 * (E : ℝ) ^ 3) :
     (a / b) * (N : ℝ) ^ ((4 : ℝ) / 3) < (E : ℝ) := by
   have hpow : (((N : ℝ) ^ ((4 : ℝ) / 3)) ^ 3) = (N : ℝ) ^ 4 := by

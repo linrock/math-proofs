@@ -1,5 +1,10 @@
-import Geometry956
-import DifferenceBody956
+module
+
+public import Geometry956
+public import DifferenceBody956
+
+
+@[expose] public section
 
 /-!
 # Extremal function `h(n)` and Formal Conjectures bridge for Erdős #956

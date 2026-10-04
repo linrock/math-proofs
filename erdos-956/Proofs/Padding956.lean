@@ -1,4 +1,9 @@
-import Geometry956
+module
+
+public import Geometry956
+
+
+@[expose] public section
 
 /-!
 # Remote translate padding for Erdős #956
@@ -59,7 +64,7 @@ theorem paddedCenters_card_exact (X : Finset Plane)
   rw [paddedCenters_card X hX]
   omega
 
-private theorem remote_gap (j l : ℕ) (hjl : j ≠ l) :
+theorem remote_gap (j l : ℕ) (hjl : j ≠ l) :
     1 / 2 < |(remote l) 0 - (remote j) 0| := by
   have hlt : j < l ∨ l < j := lt_or_gt_of_ne hjl
   rcases hlt with hlt | hlt

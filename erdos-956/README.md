@@ -39,4 +39,4 @@ The six modules in [Proofs/](Proofs) implement this reduction and the four-layer
 
 ## Build and verification
 
-See [BUILD.md](BUILD.md) for reproduction commands, [THIRD_PARTY.md](THIRD_PARTY.md) for source attribution, and [SUBMISSION.md](SUBMISSION.md) for Palomar submission metadata. Both `./verify.sh --no-sandbox` and `lake env lake comparator --config comparator.json --inadvisably-no-sandbox` pass, with both `nanoda_bin` and Lean's default kernel accepting `Solution`.
+See [BUILD.md](BUILD.md) for reproduction commands and [THIRD_PARTY.md](THIRD_PARTY.md) for source attribution. Both `./verify.sh` and `lake env lake comparator --config comparator.json` pass, with both `nanoda_bin` and Lean's default kernel accepting `Solution`.
