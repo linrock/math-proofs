@@ -1,15 +1,20 @@
-import Mathlib.Analysis.Complex.Basic
-import Mathlib.Analysis.Normed.Field.Basic
-import Mathlib.Analysis.SpecificLimits.Basic
-import Mathlib.Algebra.BigOperators.Field
-import Mathlib.Data.Complex.BigOperators
-import Mathlib.Data.Nat.Choose.Sum
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.NormNum
-import Mathlib.Tactic.Positivity
-import Mathlib.Tactic.Push
-import Mathlib.Tactic.Ring
+module
+
+public import Mathlib.Analysis.Complex.Basic
+public import Mathlib.Analysis.Normed.Field.Basic
+public import Mathlib.Analysis.SpecificLimits.Basic
+public import Mathlib.Algebra.BigOperators.Field
+public import Mathlib.Data.Complex.BigOperators
+public import Mathlib.Data.Nat.Choose.Sum
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.NormNum
+public import Mathlib.Tactic.Positivity
+public import Mathlib.Tactic.Push
+public import Mathlib.Tactic.Ring
+
+
+@[expose] public section
 
 /-!
 # A finite higher-moment obstruction in a compact right half-plane

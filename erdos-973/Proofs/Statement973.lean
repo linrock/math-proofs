@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright 2026 The Formal Conjectures Authors.
 
@@ -14,8 +16,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -/
 
-import NewtonBridge973
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import NewtonBridge973
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+
+
+@[expose] public section
 
 /-!
 # Exact statement and reindexing bridge for Erdős problem 973

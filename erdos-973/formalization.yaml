@@ -87,6 +87,6 @@
   },
   "review": {
     "status": "agent-reviewed",
-    "notes": "Statement scope and provenance received local agent review. The Lean 4.33.1 build and both theorem axiom audits passed using the commands in BUILD.md. The only axioms are propext, Classical.choice, and Quot.sound."
+    "notes": "Statement scope and provenance received local agent review. The Lean 4.35.0-rc2 build and both theorem axiom audits passed using the commands in BUILD.md. The only axioms are propext, Classical.choice, and Quot.sound."
   }
 }

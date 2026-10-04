@@ -1,5 +1,10 @@
-import PolynomialBounds973
-import NewtonBridge973
+module
+
+public import PolynomialBounds973
+public import NewtonBridge973
+
+
+@[expose] public section
 
 /-! Polynomial bounds after moving the normalization point to the origin. -/
 

@@ -1,5 +1,10 @@
-import NewtonBridge973
-import PolynomialBounds973
+module
+
+public import NewtonBridge973
+public import PolynomialBounds973
+
+
+@[expose] public section
 
 /-!
 # Boundary normalization for Erdős problem 973

@@ -1,4 +1,9 @@
-import NewtonBridge973
+module
+
+public import NewtonBridge973
+
+
+@[expose] public section
 
 /-!
 # Coefficient bounds imply bounds for higher Newton sums
@@ -13,7 +18,7 @@ open Finset
 
 namespace Erdos973.HigherMoments
 
-private theorem two_add_sum_reverse_powers (m : ℕ) :
+theorem two_add_sum_reverse_powers (m : ℕ) :
     (2 : ℝ) + ∑ j ∈ range m, (2 : ℝ) ^ (m - j) = 2 ^ (m + 1) := by
   induction m with
   | zero => norm_num

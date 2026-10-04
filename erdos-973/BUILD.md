@@ -1,7 +1,7 @@
 # Build and audit Erdős #973
 
-This project pins Lean `v4.33.1` and Mathlib commit
-`0df444a360eaa60ab8c11dca51a86af692955474` in `lean-toolchain`,
+This project pins Lean `v4.35.0-rc2` and Mathlib commit
+`065356127b1dc0016f66b7283ce0ce2c4055aa55` in `lean-toolchain`,
 `lakefile.toml`, and `lake-manifest.json`. From this directory, with the
 pinned toolchain provisioned, run:
 

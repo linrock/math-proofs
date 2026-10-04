@@ -1,6 +1,6 @@
 # Erdős #973: power sums cannot all be exponentially small
 
-This standalone Lean 4.33.1 project gives a complete formal proof of the
+This standalone Lean 4.35.0-rc2 project gives a complete formal proof of the
 negative answer to Erdős problem 973. The question asks whether, for every
 `n ≥ 2`, one can choose `n` complex numbers on or outside the unit circle,
 with `z₁ = 1`, so that all their power sums of orders `2` through `n+1` have

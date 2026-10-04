@@ -1,6 +1,11 @@
-import NewtonBridge973
-import Mathlib.Algebra.Polynomial.Taylor
-import Mathlib.Tactic.FieldSimp
+module
+
+public import NewtonBridge973
+public import Mathlib.Algebra.Polynomial.Taylor
+public import Mathlib.Tactic.FieldSimp
+
+
+@[expose] public section
 
 /-!
 # Reciprocal roots at a nonvanishing boundary point
@@ -41,7 +46,7 @@ theorem reciprocal_one_sub_norm_le (beta : ℂ) (delta : ℝ)
   rw [norm_inv]
   exact inv_anti₀ hdelta hsep
 
-private theorem reciprocal_scalar_relation (a : ℂ) (ha : a ≠ 0)
+theorem reciprocal_scalar_relation (a : ℂ) (ha : a ≠ 0)
     (ha1 : 1 - a ≠ 0) :
     (1 - a) * (1 - a⁻¹)⁻¹ = -a := by
   have hi : 1 - a⁻¹ ≠ 0 := by
@@ -54,7 +59,7 @@ private theorem reciprocal_scalar_relation (a : ℂ) (ha : a ≠ 0)
   field_simp [ha, hi, ha1']
   ring
 
-private theorem shifted_linear_factor (a : ℂ) (ha : a ≠ 0)
+theorem shifted_linear_factor (a : ℂ) (ha : a ≠ 0)
     (ha1 : 1 - a ≠ 0) :
     (1 - C a * (X + 1) : ℂ[X]) =
       C (1 - a) * (1 - C (-(1 - a⁻¹)⁻¹) * X) := by

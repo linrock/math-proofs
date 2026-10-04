@@ -1,8 +1,13 @@
-import Mathlib.Analysis.Calculus.Deriv.Polynomial
-import Mathlib.Analysis.Calculus.MeanValue
-import Mathlib.Analysis.SpecialFunctions.ExpDeriv
-import Mathlib.Tactic.ByContra
-import Mathlib.Tactic.Ring
+module
+
+public import Mathlib.Analysis.Calculus.Deriv.Polynomial
+public import Mathlib.Analysis.Calculus.MeanValue
+public import Mathlib.Analysis.SpecialFunctions.ExpDeriv
+public import Mathlib.Tactic.ByContra
+public import Mathlib.Tactic.Ring
+
+
+@[expose] public section
 
 /-!
 # A zero-separation estimate for approximate polynomial exponentials

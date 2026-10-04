@@ -1,11 +1,16 @@
-import Mathlib.Algebra.Polynomial.BigOperators
-import Mathlib.Algebra.Polynomial.Derivative
-import Mathlib.Analysis.Complex.Basic
-import Mathlib.RingTheory.PowerSeries.Basic
-import Mathlib.Tactic.GCongr
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.LinearCombination
-import Mathlib.Tactic.Positivity
+module
+
+public import Mathlib.Algebra.Polynomial.BigOperators
+public import Mathlib.Algebra.Polynomial.Derivative
+public import Mathlib.Analysis.Complex.Basic
+public import Mathlib.RingTheory.PowerSeries.Basic
+public import Mathlib.Tactic.GCongr
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.LinearCombination
+public import Mathlib.Tactic.Positivity
+
+
+@[expose] public section
 
 /-!
 # The algebraic projected-Newton bridge for Erdős problem 973
@@ -35,10 +40,10 @@ def powerSum (s : Finset ι) (z : ι → ℂ) (k : ℕ) : ℂ :=
 def residual (P : ℂ[X]) : ℂ[X] :=
   P.derivative - C (P.derivative.eval 0) * P
 
-private def geometricSeries (z : ℂ) : PowerSeries ℂ :=
+def geometricSeries (z : ℂ) : PowerSeries ℂ :=
   PowerSeries.mk fun k => z ^ k
 
-private theorem factor_mul_geometricSeries (z : ℂ) :
+theorem factor_mul_geometricSeries (z : ℂ) :
     (1 - PowerSeries.C z * PowerSeries.X) * geometricSeries z = 1 := by
   ext k
   cases k with
@@ -80,7 +85,7 @@ theorem residual_natDegree_le (P : ℂ[X]) :
     (residual P).coeff 0 = 0 := by
   simp [residual, ← Polynomial.coeff_zero_eq_eval_zero, hP]
 
-private theorem rootPolynomial_derivative_series (s : Finset ι) (z : ι → ℂ) :
+theorem rootPolynomial_derivative_series (s : Finset ι) (z : ι → ℂ) :
     ((rootPolynomial s z).derivative : PowerSeries ℂ) =
       -(rootPolynomial s z : PowerSeries ℂ) *
         ∑ i ∈ s, PowerSeries.C (z i) * geometricSeries (z i) := by

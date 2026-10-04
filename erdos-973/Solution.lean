@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright 2026 The Formal Conjectures Authors.
 
@@ -14,10 +16,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 Adaptation notice: Linmiao Xu adapted the Erdős 973 statement for this
-standalone Lean 4.33.1 package and added the proved adapters in 2026.
+standalone Lean 4.35.0-rc2 package and added the proved adapters in 2026.
 -/
 
-import ExteriorPowerSums973
+public import ExteriorPowerSums973
+
+
+@[expose] public section
 
 /-!
 # Proved adapters for Erdős problem 973
@@ -57,6 +62,3 @@ theorem eventually_exterior_power_sum_strict_lower_bound (C : ℝ) (hC : 1 < C) 
     _root_.Erdos973.eventually_exterior_power_sum_strict_lower_bound C hC
 
 end Erdos973.Palomar
-
-#print axioms Erdos973.Palomar.not_erdos_973
-#print axioms Erdos973.Palomar.eventually_exterior_power_sum_strict_lower_bound

@@ -1,5 +1,11 @@
 .lake/
+.verification/
+.beam/
 *.olean
+*.olean.private
+*.olean.server
 *.ilean
-*.trace
-verification-local/
+*.ir
+.DS_Store
+.lake-*/
+.verification-*/

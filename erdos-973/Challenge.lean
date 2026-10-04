@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright 2026 The Formal Conjectures Authors.
 
@@ -14,10 +16,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 Adaptation notice: Linmiao Xu adapted the Erdős 973 statement for this
-standalone Lean 4.33.1 Challenge in 2026 and added the stronger local target.
+standalone Lean 4.35.0-rc2 Challenge in 2026 and added the stronger local target.
 -/
 
-import Mathlib
+public import Mathlib
+
+
+@[expose] public section
 
 /-!
 # Independent statements for Erdős problem 973

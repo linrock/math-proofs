@@ -1,11 +1,16 @@
-import Normalization973
-import TransformedRoots973
-import ZeroSeparation973
-import TaylorResidual973
-import HigherMoments973
-import MomentObstruction973
-import Statement973
-import Decay973
+module
+
+public import Normalization973
+public import TransformedRoots973
+public import ZeroSeparation973
+public import TaylorResidual973
+public import HigherMoments973
+public import MomentObstruction973
+public import Statement973
+public import Decay973
+
+
+@[expose] public section
 
 /-!
 # Exterior power sums: assembly of the qualitative argument

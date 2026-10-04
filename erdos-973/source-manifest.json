@@ -6,7 +6,7 @@
     {
       "module": "NewtonBridge973",
       "path": "Proofs/NewtonBridge973.lean",
-      "sha256": "14445c66dfdb14d0114a9b1f7ade2cc0169e121e3a327858e3ad598f86a2b6c5",
+      "sha256": "cd27161a3b9643e106689da63c995834f351f24870a03bc6e23a7a8434d35d45",
       "origin": {
         "kind": "local",
         "path": "open/973-exterior-power-sums/formalization/NewtonBridge973.lean",
@@ -16,7 +16,7 @@
     {
       "module": "PolynomialBounds973",
       "path": "Proofs/PolynomialBounds973.lean",
-      "sha256": "23049246dcfa46b1c61319a448d847aef2689a2267ab1868afdd23a066e6af1a",
+      "sha256": "1b2f16ec24b1814819297d06294150386c7d8c799c5f8ad1b88f29fad2a2e792",
       "origin": {
         "kind": "local",
         "path": "open/973-exterior-power-sums/formalization/PolynomialBounds973.lean",
@@ -26,7 +26,7 @@
     {
       "module": "Normalization973",
       "path": "Proofs/Normalization973.lean",
-      "sha256": "e25a53912b78f371f0779075aaec73bd07c4471de9148f1cb22a6db2f6928e47",
+      "sha256": "58bdb49ec9da24c120ccdf3525073635aa3a258d796cd88f3fbfc7963ac1802f",
       "origin": {
         "kind": "local",
         "path": "open/973-exterior-power-sums/formalization/Normalization973.lean",
@@ -36,7 +36,7 @@
     {
       "module": "TransformedRoots973",
       "path": "Proofs/TransformedRoots973.lean",
-      "sha256": "4f76fd55c36826dda728cd7869a21a8993808799a3c2a7a3e44bdb7ee793f19e",
+      "sha256": "8b63e8196c6c7829f2082f23bbfcbdacf60a1a1f545eea4c36dcfd637c563b7b",
       "origin": {
         "kind": "local",
         "path": "open/973-exterior-power-sums/formalization/TransformedRoots973.lean",
@@ -46,7 +46,7 @@
     {
       "module": "ZeroSeparation973",
       "path": "Proofs/ZeroSeparation973.lean",
-      "sha256": "daf949f7734feae452c03bb69c1ed54a7824d550aabc6046d0dbba233da2bf5b",
+      "sha256": "7464f8e62c14360b70fdef56644c95be458339652f153a95b2bb4aa40a72adfe",
       "origin": {
         "kind": "local",
         "path": "open/973-exterior-power-sums/formalization/ZeroSeparation973.lean",
@@ -56,7 +56,7 @@
     {
       "module": "TaylorResidual973",
       "path": "Proofs/TaylorResidual973.lean",
-      "sha256": "b34d05b06d93189e92659366abf354333f5310990c749de213e5adff2af9d6bc",
+      "sha256": "6e003f88f81af5f2316e439be633a384f012e2294aa41e5f8d7821211e94085e",
       "origin": {
         "kind": "local",
         "path": "open/973-exterior-power-sums/formalization/TaylorResidual973.lean",
@@ -66,7 +66,7 @@
     {
       "module": "HigherMoments973",
       "path": "Proofs/HigherMoments973.lean",
-      "sha256": "80b62ccd9f616dcf464411721427eabe6a8d0cdf39465a1dbbe9baf67b0eef53",
+      "sha256": "473b099c4fcc837685a1e43976f294e58747ebb13e836f677d6d72b70ba15fe8",
       "origin": {
         "kind": "local",
         "path": "open/973-exterior-power-sums/formalization/HigherMoments973.lean",
@@ -76,7 +76,7 @@
     {
       "module": "MomentObstruction973",
       "path": "Proofs/MomentObstruction973.lean",
-      "sha256": "e6f4acbe1fd0c4f493ac2e73537bc3af245f559f94911b209d400fd820ec8238",
+      "sha256": "910a330f8081cb03c3d1a3ee283d2ba97e0484a46c9f71230a383dc3c657934e",
       "origin": {
         "kind": "local",
         "path": "open/973-exterior-power-sums/formalization/MomentObstruction973.lean",
@@ -86,7 +86,7 @@
     {
       "module": "Statement973",
       "path": "Proofs/Statement973.lean",
-      "sha256": "25a475c665327dfcfaf29887595915be03300dbc8b6c3d94ca6ba12b5cc6fb99",
+      "sha256": "834fd47df641551696f4141dce1fa8bc34f8fbdb35f8b9088f546355bdee2cdc",
       "origin": {
         "kind": "local",
         "path": "open/973-exterior-power-sums/formalization/Statement973.lean",
@@ -96,7 +96,7 @@
     {
       "module": "Decay973",
       "path": "Proofs/Decay973.lean",
-      "sha256": "ac66b4c458c13fb57b905a742a66cbadb684710b73a2418265d218178a8fb015",
+      "sha256": "88179a1e2a35e9110bfa6524e2a93fab81012a7c4aa2ad5c0a5b4ac767b96871",
       "origin": {
         "kind": "local",
         "path": "open/973-exterior-power-sums/formalization/Decay973.lean",
@@ -106,7 +106,7 @@
     {
       "module": "ExteriorPowerSums973",
       "path": "Proofs/ExteriorPowerSums973.lean",
-      "sha256": "40dd1e7a08344b9d47b636bd305d3e1b190e6e156d473e6bed01f13d5efbaa4a",
+      "sha256": "83d211be72101cfb50b1d545dccfdb10d65f686e340d0dc42936b41925b695cc",
       "origin": {
         "kind": "local",
         "path": "open/973-exterior-power-sums/formalization/ExteriorPowerSums973.lean",
