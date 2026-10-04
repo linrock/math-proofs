@@ -1,8 +1,8 @@
 {
   "version": "v0.4",
   "project": {
-    "name": "Erdős 956: superlinear and Ω(n^{4/3}) unit distances between disjoint convex translates",
-    "description": "A Lean 4 formalization of the affirmative answer to the superlinear question in Erdős problem 956 and its explicit Ω(n^{4/3}) lower bounds. For a compact convex planar set C, the distance between translates C + x and C + y is δ(C + x, C + y) = inf_{c, d ∈ C} ‖(c + x) - (d + y)‖₂, and h(n) is the maximum number of unordered pairs at distance 1 among n pairwise-disjoint translates of C (where C may depend on n). Adapting the parabolic mechanism announced by Valtr (2005) and the one-sided two-layer construction of Chojecki (2026), the development proves the supporting-hyperplane theorem for a full signed parabolic cap (including opposite-sign generators) and formalizes the four-layer signed-grid construction. It proves: (1) the Formal Conjectures superlinear theorem n^{1+c} < h(n) eventually (with c = 1/4), (2) the explicit all-N lower bound (1/26) N^{4/3} < h(N) for all N ≥ 80, (3) the exact four-layer signed-grid bound 72q^4 + 32q^3 + 24q^2 + 13q + 3 ≤ h(48q^3 + 16q^2 + 12q + 4) for all q ≥ 1 (including 144 ≤ h(80)), and (4) the sharper eventual bound (2/5) N^{4/3} < h(N) (with explicit cutoff N ≥ 204525328). The published 1990 Erdős–Pach O(n^{4/3}) upper bound is not formalized here.",
+    "name": "Erdős 956: unit distances between disjoint convex translates",
+    "description": "A complete Lean 4 proof of the affirmative answer to Erdős problem 956: for all sufficiently large n, there exist n pairwise-disjoint translates of a compact convex planar set with more than n^(1+c) unordered pairs at Euclidean set-distance 1 (for c = 1/4). Adapting the parabolic construction announced by Valtr (2005) and detailed in Chojecki's April 2026 manuscript, the formalization proves the supporting-hyperplane theorem for a centrally symmetric signed parabolic cap and constructs a four-layer parabolic grid of disjoint translates. This establishes the explicit lower bound h(n) > (1/26) n^(4/3) for all n ≥ 80 and the sharper eventual bound h(n) > (2/5) n^(4/3).",
     "authors": [
       "Linmiao Xu"
     ],
@@ -69,7 +69,7 @@
     }
   ],
   "status": {
-    "scope": "Complete unconditional Lean 4 proofs of the Formal Conjectures superlinear statement (erdos_956 and erdos_956_superlinear with c = 1/4), the explicit all-N Omega(N^(4/3)) lower bound (1/26) N^(4/3) < h(N) for N >= 80 (erdos_956_omega_four_thirds), the four-layer signed-grid polynomial lower bound 72q^4 + 32q^3 + 24q^2 + 13q + 3 <= h(48q^3 + 16q^2 + 12q + 4) for all q >= 1 (erdos_956_four_layer_polynomial), and the sharp eventual (2/5) N^(4/3) < h(N) bound (erdos_956_eventual_two_fifths, proved from N = 204525328). The published 1990 Erdős–Pach O(N^(4/3)) upper bound is outside the scope of this lower-bound formalization.",
+    "scope": "Complete unconditional Lean 4 proofs of the Formal Conjectures superlinear statement (erdos_956 and erdos_956_superlinear with c = 1/4), the explicit all-n Omega(n^(4/3)) lower bound (1/26) n^(4/3) < h(n) for n >= 80 (erdos_956_omega_four_thirds), the four-layer signed-grid polynomial lower bound 72q^4 + 32q^3 + 24q^2 + 13q + 3 <= h(48q^3 + 16q^2 + 12q + 4) for all q >= 1 (erdos_956_four_layer_polynomial), and the sharp eventual (2/5) n^(4/3) < h(n) bound (erdos_956_eventual_two_fifths, proved from n = 204525328). The published 1990 Erdős–Pach O(n^(4/3)) upper bound is outside the scope of this lower-bound formalization.",
     "sorry_count": 0,
     "sorry_in_definitions": 0,
     "axioms": [
@@ -146,25 +146,25 @@
         "note": "Proves the True <-> proposition and verifies definitional equality with Statement.lean."
       },
       {
-        "source": "Valtr (2005) / Chojecki (2026): explicit all-N Omega(N^(4/3)) lower bound",
+        "source": "Valtr (2005) / Chojecki (2026): explicit all-n Omega(n^(4/3)) lower bound",
         "lean": "Erdos956.Palomar.erdos_956_omega_four_thirds",
         "module": "Solution",
         "status": "proved; source build, Comparator, NanoDa, and transitive-axiom audit passed",
-        "note": "Proves (1/26) N^(4/3) < h(N) for every integer N >= 80."
+        "note": "Proves (1/26) n^(4/3) < h(n) for every integer n >= 80."
       },
       {
-        "source": "Four-layer signed-grid construction: exact quartic polynomial J_q <= h(N_q)",
+        "source": "Four-layer signed-grid construction: exact quartic polynomial lower bound",
         "lean": "Erdos956.Palomar.erdos_956_four_layer_polynomial",
         "module": "Solution",
         "status": "proved; source build, Comparator, NanoDa, and transitive-axiom audit passed",
         "note": "Proves 72q^4 + 32q^3 + 24q^2 + 13q + 3 <= h(48q^3 + 16q^2 + 12q + 4) for every q >= 1, including 144 <= h(80)."
       },
       {
-        "source": "Sharp eventual (2/5) N^(4/3) < h(N) lower bound",
+        "source": "Sharp eventual (2/5) n^(4/3) < h(n) lower bound",
         "lean": "Erdos956.Palomar.erdos_956_eventual_two_fifths",
         "module": "Solution",
         "status": "proved; source build, Comparator, NanoDa, and transitive-axiom audit passed",
-        "note": "Proves ∀ᶠ N in atTop, (2/5) N^(4/3) < h(N), realized explicitly for all N >= 204525328."
+        "note": "Proves ∀ᶠ n in atTop, (2/5) n^(4/3) < h(n), realized explicitly for all n >= 204525328."
       }
     ]
   },

@@ -59,10 +59,10 @@ theorem erdos_956 : True ↔
     ∃ c > (0 : ℝ), ∀ᶠ n : ℕ in atTop, (n : ℝ) ^ (1 + c) < (h n : ℝ) :=
   ⟨fun _ => erdos_956_superlinear, fun _ => True.intro⟩
 
-/-- Explicit $\Omega(N^{4/3})$ lower bound for all $N \ge 80$:
-$\frac{1}{26} N^{4/3} < h(N)$. -/
+/-- Explicit $\Omega(n^{4/3})$ lower bound for all $n \ge 80$:
+$\frac{1}{26} n^{4/3} < h(n)$. -/
 theorem erdos_956_omega_four_thirds :
-    ∀ N : ℕ, 80 ≤ N → (1 / 26 : ℝ) * (N : ℝ) ^ ((4 : ℝ) / 3) < (h N : ℝ) :=
+    ∀ n : ℕ, 80 ≤ n → (1 / 26 : ℝ) * (n : ℝ) ^ ((4 : ℝ) / 3) < (h n : ℝ) :=
   Erdos956.FourLayer.h_omega_four_thirds_from_80
 
 /-- Exact four-layer signed-grid polynomial lower bound at every scale $q \ge 1$:
@@ -73,20 +73,20 @@ theorem erdos_956_four_layer_polynomial :
         h (48 * q ^ 3 + 16 * q ^ 2 + 12 * q + 4) :=
   Erdos956.FourLayer.h_fourLayer_lower_bound
 
-/-- Sharp eventual $\frac{2}{5} N^{4/3}$ lower bound from the four-layer signed grid:
-for all $N \ge N_{162} = 204{,}525{,}328$, $\frac{2}{5} N^{4/3} < h(N)$. -/
+/-- Sharp eventual $\frac{2}{5} n^{4/3}$ lower bound from the four-layer signed grid:
+for all $n \ge 204{,}525{,}328$, $\frac{2}{5} n^{4/3} < h(n)$. -/
 theorem erdos_956_two_fifths_from_204525328 :
-    ∀ N : ℕ, 204525328 ≤ N → (2 / 5 : ℝ) * (N : ℝ) ^ ((4 : ℝ) / 3) < (h N : ℝ) := by
-  intro N hN
-  have hgrid : Erdos956.FourLayer.fourLayerSize 162 ≤ N := by
-    change 48 * 162 ^ 3 + 16 * 162 ^ 2 + 12 * 162 + 4 ≤ N
+    ∀ n : ℕ, 204525328 ≤ n → (2 / 5 : ℝ) * (n : ℝ) ^ ((4 : ℝ) / 3) < (h n : ℝ) := by
+  intro n hn
+  have hgrid : Erdos956.FourLayer.fourLayerSize 162 ≤ n := by
+    change 48 * 162 ^ 3 + 16 * 162 ^ 2 + 12 * 162 + 4 ≤ n
     omega
-  exact Erdos956.FourLayer.h_eventual_two_fifths N hgrid
+  exact Erdos956.FourLayer.h_eventual_two_fifths n hgrid
 
-/-- Sharp eventual $\frac{2}{5} N^{4/3}$ lower bound from the four-layer signed grid:
-for all sufficiently large $N$, $\frac{2}{5} N^{4/3} < h(N)$. -/
+/-- Sharp eventual $\frac{2}{5} n^{4/3}$ lower bound from the four-layer signed grid:
+for all sufficiently large $n$, $\frac{2}{5} n^{4/3} < h(n)$. -/
 theorem erdos_956_eventual_two_fifths :
-    ∀ᶠ N : ℕ in atTop, (2 / 5 : ℝ) * (N : ℝ) ^ ((4 : ℝ) / 3) < (h N : ℝ) :=
+    ∀ᶠ n : ℕ in atTop, (2 / 5 : ℝ) * (n : ℝ) ^ ((4 : ℝ) / 3) < (h n : ℝ) :=
   Filter.eventually_atTop.mpr ⟨204525328, erdos_956_two_fifths_from_204525328⟩
 
 end Erdos956.Palomar

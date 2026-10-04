@@ -30,10 +30,6 @@ def fourLayerEdgePoly (q : ℕ) : ℕ := 72 * q ^ 4 + 32 * q ^ 3 + 24 * q ^ 2 + 
 
 theorem fourLayerSize_one : fourLayerSize 1 = 80 := by decide
 theorem fourLayerEdgePoly_one : fourLayerEdgePoly 1 = 144 := by decide
-theorem fourLayerSize_two : fourLayerSize 2 = 476 := by decide
-theorem fourLayerEdgePoly_two : fourLayerEdgePoly 2 = 1533 := by decide
-theorem fourLayerSize_three : fourLayerSize 3 = 1480 := by decide
-theorem fourLayerEdgePoly_three : fourLayerEdgePoly 3 = 6954 := by decide
 
 abbrev FourLayerRect (q : ℕ) := Fin (3 * q + 1) × Fin (4 * q ^ 2 + 1)
 abbrev FourLayerIndex (q : ℕ) := Fin 4 × FourLayerRect q
@@ -698,108 +694,15 @@ theorem scale_lt_fourLayerSize (q : ℕ) : q < fourLayerSize q := by
 def chosenFourLayerScale (N : ℕ) : ℕ :=
   Nat.findGreatest (fun q => fourLayerSize q ≤ N) N
 
-theorem chosenFourLayerScale_bounds_from_80 (N : ℕ) (hN : 80 ≤ N) :
-    1 ≤ chosenFourLayerScale N ∧
+theorem chosenFourLayerScale_bounds {q₀ N : ℕ} (hN : fourLayerSize q₀ ≤ N) :
+    q₀ ≤ chosenFourLayerScale N ∧
       fourLayerSize (chosenFourLayerScale N) ≤ N ∧
       N < fourLayerSize (chosenFourLayerScale N + 1) := by
   let q := chosenFourLayerScale N
-  have h80 : fourLayerSize 1 ≤ N := by
-    rw [fourLayerSize_one]; exact hN
-  have hstart : 1 ≤ N := by omega
-  have h1 : 1 ≤ q := by
-    dsimp [q, chosenFourLayerScale]
-    exact Nat.le_findGreatest hstart h80
-  have hq : fourLayerSize q ≤ N := by
-    change fourLayerSize (Nat.findGreatest (fun t => fourLayerSize t ≤ N) N) ≤ N
-    exact Nat.findGreatest_spec (P := fun t => fourLayerSize t ≤ N) hstart h80
-  have hlt : q < N := lt_of_lt_of_le (scale_lt_fourLayerSize q) hq
-  have hnext : N < fourLayerSize (q + 1) := by
-    have hnot : ¬ fourLayerSize (q + 1) ≤ N := by
-      change ¬ fourLayerSize (chosenFourLayerScale N + 1) ≤ N
-      apply Nat.findGreatest_is_greatest (P := fun t => fourLayerSize t ≤ N)
-      · change chosenFourLayerScale N < chosenFourLayerScale N + 1
-        omega
-      · omega
+  have hstart : q₀ ≤ N := by
+    have hlt := scale_lt_fourLayerSize q₀
     omega
-  exact ⟨h1, hq, hnext⟩
-
-/-- For every scale `q = t + 1 ≥ 1`, `(fourLayerSize (q + 1))^4 < (26 * fourLayerEdgePoly q)^3`. -/
-theorem fourLayer_26_cube_gt_next_size_fourth (q : ℕ) (hq : 1 ≤ q) :
-    (fourLayerSize (q + 1)) ^ 4 < (26 * fourLayerEdgePoly q) ^ 3 := by
-  obtain ⟨t, rfl⟩ : ∃ t, q = t + 1 := ⟨q - 1, by omega⟩
-  let rem : ℕ :=
-      205275415552 * t ^ 1
-      + 1398053589376 * t ^ 2
-      + 4541556246600 * t ^ 3
-      + 9188803494848 * t ^ 4
-      + 12822333117440 * t ^ 5
-      + 12924155190208 * t ^ 6
-      + 9577322224640 * t ^ 7
-      + 5204678168576 * t ^ 8
-      + 2027680622080 * t ^ 9
-      + 538071773184 * t ^ 10
-      + 87334944768 * t ^ 11
-      + 6554898432 * t ^ 12
-  have hid :
-      (26 * fourLayerEdgePoly (t + 1)) ^ 3 =
-        (fourLayerSize (t + 1 + 1)) ^ 4 + 1144971008 + rem := by
-    dsimp [fourLayerSize, fourLayerEdgePoly, rem]
-    ring
-  omega
-
-/-- For every `N ≥ 80`, the padded four-layer signed grid certifies
-`(1 / 26) N^(4 / 3) < h(N)`. -/
-theorem h_omega_four_thirds_from_80 (N : ℕ) (hN : 80 ≤ N) :
-    (1 / 26 : ℝ) * (N : ℝ) ^ ((4 : ℝ) / 3) < (Extremal.h N : ℝ) := by
-  obtain ⟨hq1, hgrid, hnext⟩ := chosenFourLayerScale_bounds_from_80 N hN
-  let q := chosenFourLayerScale N
-  let config := fourLayerConfiguration q N hq1 hgrid
-  have hE : config.edges.card = fourLayerEdgePoly q :=
-    fourLayerConfiguration_edges_card q N hq1 hgrid
-  have hle_h : (fourLayerEdgePoly q : ℝ) ≤ (Extremal.h N : ℝ) := by
-    rw [← hE]
-    exact_mod_cast Extremal.configuration_edges_le_h config
-  have hpow4 : N ^ 4 < (fourLayerSize (q + 1)) ^ 4 := by gcongr
-  have h26 := lt_trans hpow4 (fourLayer_26_cube_gt_next_size_fourth q hq1)
-  have hR : (N : ℝ) ^ 4 < (26 * (fourLayerEdgePoly q : ℝ)) ^ 3 := by
-    exact_mod_cast h26
-  have hpow : (((N : ℝ) ^ ((4 : ℝ) / 3)) ^ 3) = (N : ℝ) ^ 4 := by
-    rw [← Real.rpow_mul_natCast (Nat.cast_nonneg N) ((4 : ℝ) / 3) 3]
-    norm_num [Real.rpow_natCast]
-  have hcube : ((1 / 26 : ℝ) * (N : ℝ) ^ ((4 : ℝ) / 3)) ^ 3 <
-      ((fourLayerEdgePoly q : ℝ)) ^ 3 := by
-    calc
-      ((1 / 26 : ℝ) * (N : ℝ) ^ ((4 : ℝ) / 3)) ^ 3 =
-          (1 / 26 ^ 3 : ℝ) * ((N : ℝ) ^ ((4 : ℝ) / 3)) ^ 3 := by ring
-      _ = (1 / 26 ^ 3 : ℝ) * (N : ℝ) ^ 4 := by rw [hpow]
-      _ < (fourLayerEdgePoly q : ℝ) ^ 3 := by linarith
-  have hlt_J : (1 / 26 : ℝ) * (N : ℝ) ^ ((4 : ℝ) / 3) < (fourLayerEdgePoly q : ℝ) := by
-    by_contra hnot
-    have hle : (fourLayerEdgePoly q : ℝ) ≤ (1 / 26 : ℝ) * (N : ℝ) ^ ((4 : ℝ) / 3) :=
-      le_of_not_gt hnot
-    have hle3 : ((fourLayerEdgePoly q : ℝ)) ^ 3 ≤
-        ((1 / 26 : ℝ) * (N : ℝ) ^ ((4 : ℝ) / 3)) ^ 3 := by gcongr
-    exact (not_le_of_gt hcube) hle3
-  exact lt_of_lt_of_le hlt_J hle_h
-
-theorem next_fourLayerSize_le_49_cube (q : ℕ) (hq : 162 ≤ q) :
-    fourLayerSize (q + 1) ≤ 49 * q ^ 3 := by
-  obtain ⟨t, rfl⟩ : ∃ t, q = t + 162 := ⟨q - 162, by omega⟩
-  have hid : 49 * (t + 162) ^ 3 =
-      fourLayerSize (t + 162 + 1) + (t ^ 3 + 326 * t ^ 2 + 26704 * t + 21952) := by
-    unfold fourLayerSize
-    ring
-  omega
-
-theorem chosenFourLayerScale_bounds (N : ℕ) (hN : fourLayerSize 162 ≤ N) :
-    162 ≤ chosenFourLayerScale N ∧
-      fourLayerSize (chosenFourLayerScale N) ≤ N ∧
-      N < fourLayerSize (chosenFourLayerScale N + 1) := by
-  let q := chosenFourLayerScale N
-  have hstart : 162 ≤ N := by
-    have hlt := scale_lt_fourLayerSize 162
-    omega
-  have h162 : 162 ≤ q := by
+  have hq₀ : q₀ ≤ q := by
     dsimp [q, chosenFourLayerScale]
     exact Nat.le_findGreatest hstart hN
   have hq : fourLayerSize q ≤ N := by
@@ -814,7 +717,76 @@ theorem chosenFourLayerScale_bounds (N : ℕ) (hN : fourLayerSize 162 ≤ N) :
         omega
       · omega
     omega
-  exact ⟨h162, hq, hnext⟩
+  exact ⟨hq₀, hq, hnext⟩
+
+private theorem rpow_four_thirds_lt_of_cube_lt {N E : ℕ} {a b : ℝ}
+    (hb : 0 < b) (hcube : a ^ 3 * (N : ℝ) ^ 4 < b ^ 3 * (E : ℝ) ^ 3) :
+    (a / b) * (N : ℝ) ^ ((4 : ℝ) / 3) < (E : ℝ) := by
+  have hpow : (((N : ℝ) ^ ((4 : ℝ) / 3)) ^ 3) = (N : ℝ) ^ 4 := by
+    rw [← Real.rpow_mul_natCast (Nat.cast_nonneg N) ((4 : ℝ) / 3) 3]
+    norm_num [Real.rpow_natCast]
+  have hb3 : 0 < b ^ 3 := by positivity
+  have hlt3 : ((a / b) * (N : ℝ) ^ ((4 : ℝ) / 3)) ^ 3 < (E : ℝ) ^ 3 := by
+    have heq : ((a / b) * (N : ℝ) ^ ((4 : ℝ) / 3)) ^ 3 =
+        (a ^ 3 * (N : ℝ) ^ 4) / b ^ 3 := by
+      rw [← hpow]; ring
+    rw [heq]
+    exact (div_lt_iff₀ hb3).mpr (by linarith)
+  by_contra hnot
+  have hle : (E : ℝ) ≤ (a / b) * (N : ℝ) ^ ((4 : ℝ) / 3) := le_of_not_gt hnot
+  have hle3 : (E : ℝ) ^ 3 ≤ ((a / b) * (N : ℝ) ^ ((4 : ℝ) / 3)) ^ 3 := by gcongr
+  exact (not_le_of_gt hlt3) hle3
+
+/-- For every scale `q ≥ 1`, `(fourLayerSize (q + 1))^4 < (26 * fourLayerEdgePoly q)^3`. -/
+theorem fourLayer_26_cube_gt_next_size_fourth (q : ℕ) (hq : 1 ≤ q) :
+    (fourLayerSize (q + 1)) ^ 4 < (26 * fourLayerEdgePoly q) ^ 3 := by
+  rcases eq_or_lt_of_le hq with rfl | hq2
+  · decide
+  · obtain ⟨t, rfl⟩ : ∃ t, q = t + 2 := ⟨q - 2, by omega⟩
+    have hsize : fourLayerSize (t + 2 + 1) ≤ 185 * (t + 2) ^ 3 := by
+      have hid : 185 * (t + 2) ^ 3 =
+          fourLayerSize (t + 2 + 1) + (137 * t ^ 3 + 662 * t ^ 2 + 816 * t) := by
+        unfold fourLayerSize; ring
+      omega
+    have hJ : 72 * (t + 2) ^ 4 < fourLayerEdgePoly (t + 2) := by
+      unfold fourLayerEdgePoly; omega
+    calc
+      (fourLayerSize (t + 2 + 1)) ^ 4 ≤ (185 * (t + 2) ^ 3) ^ 4 := by gcongr
+      _ = 185 ^ 4 * (t + 2) ^ 12 := by ring
+      _ ≤ (26 * 72) ^ 3 * (t + 2) ^ 12 :=
+        Nat.mul_le_mul_right _ (by norm_num : 185 ^ 4 ≤ (26 * 72) ^ 3)
+      _ = (26 * (72 * (t + 2) ^ 4)) ^ 3 := by ring
+      _ < (26 * fourLayerEdgePoly (t + 2)) ^ 3 := by gcongr
+
+/-- For every `N ≥ 80`, the padded four-layer signed grid certifies
+`(1 / 26) N^(4 / 3) < h(N)`. -/
+theorem h_omega_four_thirds_from_80 (N : ℕ) (hN : 80 ≤ N) :
+    (1 / 26 : ℝ) * (N : ℝ) ^ ((4 : ℝ) / 3) < (Extremal.h N : ℝ) := by
+  have hN1 : fourLayerSize 1 ≤ N := by rwa [fourLayerSize_one]
+  obtain ⟨hq1, hgrid, hnext⟩ := chosenFourLayerScale_bounds hN1
+  let q := chosenFourLayerScale N
+  let config := fourLayerConfiguration q N hq1 hgrid
+  have hE : config.edges.card = fourLayerEdgePoly q :=
+    fourLayerConfiguration_edges_card q N hq1 hgrid
+  have hle_h : (fourLayerEdgePoly q : ℝ) ≤ (Extremal.h N : ℝ) := by
+    rw [← hE]
+    exact_mod_cast Extremal.configuration_edges_le_h config
+  have hpow4 : N ^ 4 < (fourLayerSize (q + 1)) ^ 4 := by gcongr
+  have h26 := lt_trans hpow4 (fourLayer_26_cube_gt_next_size_fourth q hq1)
+  have hR : (N : ℝ) ^ 4 < (26 * (fourLayerEdgePoly q : ℝ)) ^ 3 := by
+    exact_mod_cast h26
+  have hlt_J : (1 / 26 : ℝ) * (N : ℝ) ^ ((4 : ℝ) / 3) < (fourLayerEdgePoly q : ℝ) :=
+    rpow_four_thirds_lt_of_cube_lt (by norm_num) (by linarith)
+  exact lt_of_lt_of_le hlt_J hle_h
+
+theorem next_fourLayerSize_le_49_cube (q : ℕ) (hq : 162 ≤ q) :
+    fourLayerSize (q + 1) ≤ 49 * q ^ 3 := by
+  obtain ⟨t, rfl⟩ : ∃ t, q = t + 162 := ⟨q - 162, by omega⟩
+  have hid : 49 * (t + 162) ^ 3 =
+      fourLayerSize (t + 162 + 1) + (t ^ 3 + 326 * t ^ 2 + 26704 * t + 21952) := by
+    unfold fourLayerSize
+    ring
+  omega
 
 /-- Pure integer certificate for the sharp `(2/5) N^(4/3)` lower bound from the
 four-layer signed grid: for all `N ≥ fourLayerSize 162`, `8 N^4 < 125 J_q^3`. -/
@@ -822,7 +794,7 @@ theorem allN_fourLayer_two_fifths_certificate (N : ℕ)
     (hN : fourLayerSize 162 ≤ N) :
     ∃ q : ℕ, 1 ≤ q ∧ fourLayerSize q ≤ N ∧
       8 * N ^ 4 < 125 * (fourLayerEdgePoly q) ^ 3 := by
-  obtain ⟨hq162, hgrid, hnext⟩ := chosenFourLayerScale_bounds N hN
+  obtain ⟨hq162, hgrid, hnext⟩ := chosenFourLayerScale_bounds hN
   let q := chosenFourLayerScale N
   have hq1 : 1 ≤ q := by omega
   have hcoarse : N < 49 * q ^ 3 :=
@@ -842,8 +814,7 @@ theorem allN_fourLayer_two_fifths_certificate (N : ℕ)
     _ < 125 * (fourLayerEdgePoly q) ^ 3 := by omega
 
 /-- For every `N ≥ fourLayerSize 162 = 204525328`, the padded four-layer signed-grid
-construction certifies `(2/5) N^(4/3) < config.edges.card` (improving the formal
-constant from `1/1000` to `2/5`). -/
+construction certifies `(2/5) N^(4/3) < config.edges.card`. -/
 theorem fourLayer_two_fifths_all_N (N : ℕ) (hN : fourLayerSize 162 ≤ N) :
     ∃ config : Specification.Configuration N,
       (2 / 5 : ℝ) * (N : ℝ) ^ ((4 : ℝ) / 3) < (config.edges.card : ℝ) := by
@@ -855,22 +826,7 @@ theorem fourLayer_two_fifths_all_N (N : ℕ) (hN : fourLayerSize 162 ≤ N) :
   rw [hE]
   have hR : 8 * (N : ℝ) ^ 4 < 125 * ((fourLayerEdgePoly q : ℕ) : ℝ) ^ 3 := by
     exact_mod_cast hpower
-  have hpow : (((N : ℝ) ^ ((4 : ℝ) / 3)) ^ 3) = (N : ℝ) ^ 4 := by
-    rw [← Real.rpow_mul_natCast (Nat.cast_nonneg N) ((4 : ℝ) / 3) 3]
-    norm_num [Real.rpow_natCast]
-  have hcube : ((2 / 5 : ℝ) * (N : ℝ) ^ ((4 : ℝ) / 3)) ^ 3 <
-      (((fourLayerEdgePoly q : ℕ) : ℝ)) ^ 3 := by
-    calc
-      ((2 / 5 : ℝ) * (N : ℝ) ^ ((4 : ℝ) / 3)) ^ 3 =
-          (8 / 125 : ℝ) * ((N : ℝ) ^ ((4 : ℝ) / 3)) ^ 3 := by ring
-      _ = (8 / 125 : ℝ) * (N : ℝ) ^ 4 := by rw [hpow]
-      _ < ((fourLayerEdgePoly q : ℕ) : ℝ) ^ 3 := by linarith
-  by_contra hnot
-  have hle : ((fourLayerEdgePoly q : ℕ) : ℝ) ≤
-      (2 / 5 : ℝ) * (N : ℝ) ^ ((4 : ℝ) / 3) := le_of_not_gt hnot
-  have hle3 : ((fourLayerEdgePoly q : ℕ) : ℝ) ^ 3 ≤
-      ((2 / 5 : ℝ) * (N : ℝ) ^ ((4 : ℝ) / 3)) ^ 3 := by gcongr
-  exact (not_le_of_gt hcube) hle3
+  exact rpow_four_thirds_lt_of_cube_lt (by norm_num) (by linarith)
 
 /-- For every `N ≥ fourLayerSize 162`, the extremal function `h(N)` strictly exceeds
 `(2/5) N^(4/3)`. -/
@@ -885,7 +841,7 @@ theorem h_eventual_two_fifths (N : ℕ) (hN : fourLayerSize 162 ≤ N) :
 Erdős–Pach superlinear question with `c = 1/4` directly from the four-layer grid). -/
 theorem h_strict_quarter_from_162 (N : ℕ) (hN : fourLayerSize 162 ≤ N) :
     (N : ℝ) ^ ((5 : ℝ) / 4) < (Extremal.h N : ℝ) := by
-  obtain ⟨hq162, hgrid, hnext⟩ := chosenFourLayerScale_bounds N hN
+  obtain ⟨hq162, hgrid, hnext⟩ := chosenFourLayerScale_bounds hN
   let q := chosenFourLayerScale N
   have hq1 : 1 ≤ q := by omega
   let config := fourLayerConfiguration q N hq1 hgrid
@@ -938,163 +894,3 @@ theorem erdos_956_superlinear :
   exact h_strict_quarter_from_162 n hn
 
 end Erdos956.FourLayer
-
-/-!
-## Section 7: Exact Faulhaber & Induced-Subset Tail Polynomial Certificates
--/
-
-namespace Erdos956.PolynomialCertificates
-
-open Erdos956.FourLayer
-
-private theorem twelve_mul_shift_sum_int (m L : ℤ) (K : ℕ) :
-    12 * (∑ i ∈ Finset.range K, (m - (i : ℤ)) * (L + 1 - ((i : ℤ) + 1) ^ 2)) =
-      12 * m * (L + 1) * (K : ℤ)
-      - 2 * m * (K : ℤ) * ((K : ℤ) + 1) * (2 * (K : ℤ) + 1)
-      - 6 * (L + 1) * (K : ℤ) * ((K : ℤ) - 1)
-      + 3 * (K : ℤ) ^ 2 * ((K : ℤ) + 1) ^ 2
-      - 2 * (K : ℤ) * ((K : ℤ) + 1) * (2 * (K : ℤ) + 1) := by
-  induction K with
-  | zero => simp
-  | succ K ih =>
-      rw [Finset.sum_range_succ, mul_add, ih]
-      push_cast
-      ring
-
-/-- Chojecki's one-sided parabolic edge-count polynomial:
-`12 ∑_{i=1}^k (k + 1 - i)(k^2 + 1 - i^2) = 5k^4 + 2k^3 + k^2 + 4k`. -/
-theorem oneSided_sum_polynomial (k : ℕ) :
-    12 * (∑ i ∈ Finset.range k, (k - i) * (k ^ 2 + 1 - (i + 1) ^ 2)) =
-      5 * k ^ 4 + 2 * k ^ 3 + k ^ 2 + 4 * k := by
-  have hcast_sum :
-      ((∑ i ∈ Finset.range k, (k - i) * (k ^ 2 + 1 - (i + 1) ^ 2) : ℕ) : ℤ) =
-        ∑ i ∈ Finset.range k,
-          ((k : ℤ) - (i : ℤ)) * ((k : ℤ) ^ 2 + 1 - ((i : ℤ) + 1) ^ 2) := by
-    push_cast
-    apply Finset.sum_congr rfl
-    intro i hi
-    have hi_lt : i < k := Finset.mem_range.mp hi
-    have h1 : i ≤ k := by omega
-    have h2 : (i + 1) ^ 2 ≤ k ^ 2 + 1 := by
-      have hle : i + 1 ≤ k := by omega
-      nlinarith
-    rw [Nat.cast_sub h1, Nat.cast_sub h2]
-    push_cast
-    ring
-  have h12 := twelve_mul_shift_sum_int (k : ℤ) ((k : ℤ) ^ 2) k
-  rw [← hcast_sum] at h12
-  have hmain_int :
-      ((12 * (∑ i ∈ Finset.range k, (k - i) * (k ^ 2 + 1 - (i + 1) ^ 2)) : ℕ) : ℤ) =
-      ((5 * k ^ 4 + 2 * k ^ 3 + k ^ 2 + 4 * k : ℕ) : ℤ) := by
-    push_cast at h12 ⊢
-    linarith
-  exact_mod_cast hmain_int
-
-/-- Full two-layer signed parabolic edge-count polynomial `E(m, m^2)`:
-`6 ((m + 1)(m^2 + 1) + 2 ∑_{i=1}^m (m + 1 - i)(m^2 + 1 - i^2)) = 5m^4 + 8m^3 + 7m^2 + 10m + 6`. -/
-theorem twoLayer_signed_sum_polynomial (m : ℕ) :
-    6 * ((m + 1) * (m ^ 2 + 1) +
-      2 * (∑ i ∈ Finset.range m, (m - i) * (m ^ 2 + 1 - (i + 1) ^ 2))) =
-      5 * m ^ 4 + 8 * m ^ 3 + 7 * m ^ 2 + 10 * m + 6 := by
-  calc
-    6 * ((m + 1) * (m ^ 2 + 1) +
-        2 * (∑ i ∈ Finset.range m, (m - i) * (m ^ 2 + 1 - (i + 1) ^ 2))) =
-      6 * (m + 1) * (m ^ 2 + 1) +
-        12 * (∑ i ∈ Finset.range m, (m - i) * (m ^ 2 + 1 - (i + 1) ^ 2)) := by ring
-    _ = 6 * (m + 1) * (m ^ 2 + 1) + (5 * m ^ 4 + 2 * m ^ 3 + m ^ 2 + 4 * m) := by
-      rw [oneSided_sum_polynomial m]
-    _ = 5 * m ^ 4 + 8 * m ^ 3 + 7 * m ^ 2 + 10 * m + 6 := by ring
-
-/-- Exact positivity of the degree-21 sharp induced-subset tail polynomial `P_sharp(q)`
-for all `q = t + 51 ≥ 51` (Equation (9a) of `PROOF-STATUS-956.md`). -/
-theorem P_sharp_pos_of_ge_51 (t : ℕ) :
-    (fourLayerSize (t + 51) + 1) * (fourLayerSize (t + 52)) ^ 3 *
-      (fourLayerSize (t + 52) - 1) ^ 3 <
-      16 * (fourLayerEdgePoly (t + 52)) ^ 3 * (fourLayerSize (t + 51)) ^ 3 := by
-  have hsub : fourLayerSize (t + 52) - 1 =
-      48 * (t + 52) ^ 3 + 16 * (t + 52) ^ 2 + 12 * (t + 52) + 3 := rfl
-  rw [hsub]
-  let rem : ℕ :=
-      1804786827514836291446372841618270579264763200 * t ^ 1
-      + 622193310722272391561870351239282165496221120 * t ^ 2
-      + 109500935741308223973839567557316692117633216 * t ^ 3
-      + 12412729820845526749268601586057161526917888 * t ^ 4
-      + 1004833637500447497849530323783954617411840 * t ^ 5
-      + 61502064956837759789401119163051756453888 * t ^ 6
-      + 2947967328907456464172417720042628490240 * t ^ 7
-      + 113215747183529621580035207629360332800 * t ^ 8
-      + 3536377205575079541510224510315106304 * t ^ 9
-      + 90700268128185727596915056183230464 * t ^ 10
-      + 1920176884546526443186611139543040 * t ^ 11
-      + 33609407917734978455770044694528 * t ^ 12
-      + 485475749440663219078233194496 * t ^ 13
-      + 5755255062470677725283352576 * t ^ 14
-      + 55445879314642450349293568 * t ^ 15
-      + 427398208921882309165056 * t ^ 16
-      + 2574203989530576420864 * t ^ 17
-      + 11675131480652120064 * t ^ 18
-      + 37510982456573952 * t ^ 19
-      + 76123195047936 * t ^ 20
-      + 73383542784 * t ^ 21
-  have hid :
-      16 * (fourLayerEdgePoly (t + 52)) ^ 3 * (fourLayerSize (t + 51)) ^ 3 =
-        (fourLayerSize (t + 51) + 1) * (fourLayerSize (t + 52)) ^ 3 *
-          (48 * (t + 52) ^ 3 + 16 * (t + 52) ^ 2 + 12 * (t + 52) + 3) ^ 3 +
-          948898466566706391841932598759710145268264000 + rem := by
-    dsimp [fourLayerSize, fourLayerEdgePoly, rem]
-    ring
-  omega
-
-/-- Exact negative control at `q = 50`: `P_sharp(50) < 0`. -/
-theorem P_sharp_neg_at_50 :
-    16 * (fourLayerEdgePoly 51) ^ 3 * (fourLayerSize 50) ^ 3 <
-      (fourLayerSize 50 + 1) * (fourLayerSize 51) ^ 3 * (fourLayerSize 51 - 1) ^ 3 := by
-  decide
-
-/-- Exact positivity of the degree-21 two-fifths induced-subset tail polynomial `P_{2,5}(q)`
-for all `q = t + 64 ≥ 64` (Equation (8) of `PROOF-STATUS-956.md` for `A = 2, B = 5`). -/
-theorem P_two_fifths_pos_of_ge_64 (t : ℕ) :
-    8 * (fourLayerSize (t + 64) + 1) * (fourLayerSize (t + 65)) ^ 3 *
-      (fourLayerSize (t + 65) - 1) ^ 3 <
-      125 * (fourLayerEdgePoly (t + 65)) ^ 3 * (fourLayerSize (t + 64)) ^ 3 := by
-  have hsub : fourLayerSize (t + 65) - 1 =
-      48 * (t + 65) ^ 3 + 16 * (t + 65) ^ 2 + 12 * (t + 65) + 3 := rfl
-  rw [hsub]
-  let rem : ℕ :=
-      998711151183288381735530469897251345864619581440 * t ^ 1
-      + 275561848014416439906879440777131250328349893632 * t ^ 2
-      + 38788652765603009547865085502449418955401967168 * t ^ 3
-      + 3516105554719299574203950665205701133153964096 * t ^ 4
-      + 227593368765221109284286731447504940282197952 * t ^ 5
-      + 11137984840457985464129154258270109771380160 * t ^ 6
-      + 426854256539907972666842561985908653511936 * t ^ 7
-      + 13106792614564922545701463220976765298432 * t ^ 8
-      + 327322413490785098044550638232953699840 * t ^ 9
-      + 6711964493871770388699274458963647488 * t ^ 10
-      + 113606581692270982813620560841488384 * t ^ 11
-      + 1589798806737257545761142532661248 * t ^ 12
-      + 18359726160516433961884140412928 * t ^ 13
-      + 174012001046865942530372386816 * t ^ 14
-      + 1340289794195171361984151552 * t ^ 15
-      + 8259922221720846147846144 * t ^ 16
-      + 39773992892235763286016 * t ^ 17
-      + 144221576149674491904 * t ^ 18
-      + 370457554476072960 * t ^ 19
-      + 601046378348544 * t ^ 20
-      + 463233613824 * t ^ 21
-  have hid :
-      125 * (fourLayerEdgePoly (t + 65)) ^ 3 * (fourLayerSize (t + 64)) ^ 3 =
-        8 * (fourLayerSize (t + 64) + 1) * (fourLayerSize (t + 65)) ^ 3 *
-          (48 * (t + 65) ^ 3 + 16 * (t + 65) ^ 2 + 12 * (t + 65) + 3) ^ 3 +
-          650840016878037311664044756293640233394253889536 + rem := by
-    dsimp [fourLayerSize, fourLayerEdgePoly, rem]
-    ring
-  omega
-
-/-- Exact negative control at `q = 63`: `P_{2,5}(63) < 0`. -/
-theorem P_two_fifths_neg_at_63 :
-    125 * (fourLayerEdgePoly 64) ^ 3 * (fourLayerSize 63) ^ 3 <
-      8 * (fourLayerSize 63 + 1) * (fourLayerSize 64) ^ 3 * (fourLayerSize 64 - 1) ^ 3 := by
-  decide
-
-end Erdos956.PolynomialCertificates

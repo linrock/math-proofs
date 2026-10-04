@@ -74,10 +74,10 @@ theorem erdos_956 : True ↔
     ∃ c > (0 : ℝ), ∀ᶠ n : ℕ in atTop, (n : ℝ) ^ (1 + c) < (h n : ℝ) := by
   sorry
 
-/-- Explicit $\Omega(N^{4/3})$ lower bound for all $N \ge 80$:
-$\frac{1}{26} N^{4/3} < h(N)$. -/
+/-- Explicit $\Omega(n^{4/3})$ lower bound for all $n \ge 80$:
+$\frac{1}{26} n^{4/3} < h(n)$. -/
 theorem erdos_956_omega_four_thirds :
-    ∀ N : ℕ, 80 ≤ N → (1 / 26 : ℝ) * (N : ℝ) ^ ((4 : ℝ) / 3) < (h N : ℝ) := by
+    ∀ n : ℕ, 80 ≤ n → (1 / 26 : ℝ) * (n : ℝ) ^ ((4 : ℝ) / 3) < (h n : ℝ) := by
   sorry
 
 /-- Exact four-layer signed-grid polynomial lower bound at every scale $q \ge 1$:
@@ -88,10 +88,10 @@ theorem erdos_956_four_layer_polynomial :
         h (48 * q ^ 3 + 16 * q ^ 2 + 12 * q + 4) := by
   sorry
 
-/-- Sharp eventual $\frac{2}{5} N^{4/3}$ lower bound from the four-layer signed grid:
-for all sufficiently large $N$, $\frac{2}{5} N^{4/3} < h(N)$. -/
+/-- Sharp eventual $\frac{2}{5} n^{4/3}$ lower bound from the four-layer signed grid:
+for all sufficiently large $n$, $\frac{2}{5} n^{4/3} < h(n)$. -/
 theorem erdos_956_eventual_two_fifths :
-    ∀ᶠ N : ℕ in atTop, (2 / 5 : ℝ) * (N : ℝ) ^ ((4 : ℝ) / 3) < (h N : ℝ) := by
+    ∀ᶠ n : ℕ in atTop, (2 / 5 : ℝ) * (n : ℝ) ^ ((4 : ℝ) / 3) < (h n : ℝ) := by
   sorry
 
 end Erdos956.Palomar

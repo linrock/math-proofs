@@ -18,9 +18,9 @@ In [Oberwolfach Report 17/2005](https://ems.press/content/serial-article-files/4
 | --- | --- |
 | `Erdos956.Palomar.erdos_956_superlinear` | Direct affirmative solution: $\exists c > 0,\ \forall^\infty n \in \mathbb{N},\ n^{1+c} < h(n)$ (with $c = 1/4$). |
 | `Erdos956.Palomar.erdos_956` | Elaborated Formal Conjectures `True ↔` form of Erdős #956. |
-| `Erdos956.Palomar.erdos_956_omega_four_thirds` | Explicit all-$N$ lower bound: $\frac{1}{26} N^{4/3} < h(N)$ for all $N \ge 80$. |
+| `Erdos956.Palomar.erdos_956_omega_four_thirds` | Explicit all-$n$ lower bound: $\frac{1}{26} n^{4/3} < h(n)$ for all $n \ge 80$. |
 | `Erdos956.Palomar.erdos_956_four_layer_polynomial` | Exact four-layer signed-grid bound: $72q^4 + 32q^3 + 24q^2 + 13q + 3 \le h(48q^3 + 16q^2 + 12q + 4)$ for all $q \ge 1$. |
-| `Erdos956.Palomar.erdos_956_eventual_two_fifths` | Sharp eventual bound: $\forall^\infty N \in \mathbb{N},\ \frac{2}{5} N^{4/3} < h(N)$ (realized for all $N \ge 204{,}525{,}328$). |
+| `Erdos956.Palomar.erdos_956_eventual_two_fifths` | Sharp eventual bound: $\forall^\infty n \in \mathbb{N},\ \frac{2}{5} n^{4/3} < h(n)$ (realized for all $n \ge 204{,}525{,}328$). |
 
 [Statement.lean](Statement.lean) records the Formal Conjectures proposition `statement` with no placeholder. [AxiomAudit.lean](AxiomAudit.lean) verifies definitional statement fidelity (`statement_fidelity`), the finite non-vacuity witness `nonvacuity_h_80 : 144 ≤ h 80`, and the transitive axioms of all endpoints.
 
@@ -35,7 +35,7 @@ The six modules in [Proofs/](Proofs) implement this reduction and the four-layer
 3. **[DifferenceBody956.lean](Proofs/DifferenceBody956.lean)**: Proves the Minkowski difference-body bridge (`translateSetDistance_eq_infDist_sub`, `half_body_translates_disjoint_of_diff_not_mem`, `translateSetDistance_one_of_body`).
 4. **[Padding956.lean](Proofs/Padding956.lean)**: Appends remote translates at $(10(j+1), 0)$ to reach any prescribed cardinality $N$ while preserving pairwise disjointness and all existing unit-distance pairs.
 5. **[Extremal956.lean](Proofs/Extremal956.lean)**: Defines `Configuration N` and the `FormalConjectures` extremal function $h(n)$, bounds `(unitPairs C X).card` above by `n.choose 2` (`attainable_bddAbove`), and applies `le_csSup` to transfer configuration edge counts to $h(n)$.
-6. **[FourLayer956.lean](Proofs/FourLayer956.lean)**: Formalizes the four-layer signed grid ($m = 3q$, $\ell = 4q^2$, $L = 4$) with $N_q = 48q^3 + 16q^2 + 12q + 4$ translates and $J_q = 72q^4 + 32q^3 + 24q^2 + 13q + 3$ unit-distance pairs ($J_1 = 144 \le h(80)$), derives all public lower bounds (`h_omega_four_thirds_from_80`, `h_eventual_two_fifths`, `erdos_956_superlinear`), and verifies the closed-form Faulhaber and degree-21 induced-subset tail polynomials.
+6. **[FourLayer956.lean](Proofs/FourLayer956.lean)**: Formalizes the four-layer signed grid ($m = 3q$, $\ell = 4q^2$, $L = 4$) with $N_q = 48q^3 + 16q^2 + 12q + 4$ translates and $J_q = 72q^4 + 32q^3 + 24q^2 + 13q + 3$ unit-distance pairs ($J_1 = 144 \le h(80)$), and derives all public lower bounds (`h_omega_four_thirds_from_80`, `h_eventual_two_fifths`, `erdos_956_superlinear`).
 
 ## Build and verification
 
