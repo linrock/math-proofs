@@ -7,7 +7,7 @@ lake exe cache get
 ./verify.sh
 ```
 
-The first command downloads canonical compiled Mathlib dependencies. The [verify.sh](verify.sh) script checks all source SHA-256 digests against [SHA256SUMS](SHA256SUMS), verifies the compiler and Mathlib revisions, builds `Statement`, `Solution`, `AxiomAudit`, and `Challenge` (including `Proofs/Erdos956SignedFourLayer435.lean` with `-j1 -M8192 -E hasSorry`), and runs a standalone saved-source axiom audit on `AxiomAudit.lean` verifying that all 8 endpoint, statement-fidelity, and non-vacuity theorems depend only on `propext`, `Classical.choice`, and `Quot.sound`.
+The first command downloads canonical compiled Mathlib dependencies. The [verify.sh](verify.sh) script checks all source SHA-256 digests against [SHA256SUMS](SHA256SUMS), verifies the compiler and Mathlib revisions, builds `Statement`, `Solution`, `AxiomAudit`, and `Challenge` (including all six modules in `Proofs/` with `-j1 -M8192 -E hasSorry`), and runs a standalone saved-source axiom audit on `AxiomAudit.lean` verifying that all 8 endpoint, statement-fidelity, and non-vacuity theorems depend only on `propext`, `Classical.choice`, and `Quot.sound`.
 
 A normal Lake build and explicit endpoint audit can also be run directly:
 

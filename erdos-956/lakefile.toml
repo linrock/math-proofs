@@ -10,7 +10,7 @@ rev = "065356127b1dc0016f66b7283ce0ce2c4055aa55"
 [[lean_lib]]
 name = "Proofs956"
 srcDir = "Proofs"
-roots = ["Erdos956SignedFourLayer435"]
+roots = ["Geometry956", "Parameters956", "DifferenceBody956", "Padding956", "Extremal956", "FourLayer956"]
 moreLeanArgs = ["-j1", "-M8192", "-E", "hasSorry"]
 
 [[lean_lib]]

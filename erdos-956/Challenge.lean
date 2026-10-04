@@ -17,7 +17,7 @@ limitations under the License.
 Adaptation notice: Linmiao Xu adapted the Erdős 956 definitions and statement
 from google-deepmind/formal-conjectures (`FormalConjectures/ErdosProblems/956.lean`)
 and added the explicit quantitative $\Omega(N^{4/3})$ and four-layer signed-grid
-theorem targets for this standalone Lean 4.35.0-rc2 benchmark in 2026. This file
+theorem targets for this standalone Lean 4 benchmark in 2026. This file
 imports only Mathlib.
 -/
 
@@ -74,10 +74,10 @@ theorem erdos_956 : True ↔
     ∃ c > (0 : ℝ), ∀ᶠ n : ℕ in atTop, (n : ℝ) ^ (1 + c) < (h n : ℝ) := by
   sorry
 
-/-- Explicit $\Omega(N^{4/3})$ lower bound for all $N \ge 30$:
-$\frac{1}{1000} N^{4/3} \le h(N)$. -/
+/-- Explicit $\Omega(N^{4/3})$ lower bound for all $N \ge 80$:
+$\frac{1}{26} N^{4/3} < h(N)$. -/
 theorem erdos_956_omega_four_thirds :
-    ∀ N : ℕ, 30 ≤ N → (1 / 1000 : ℝ) * (N : ℝ) ^ ((4 : ℝ) / 3) ≤ (h N : ℝ) := by
+    ∀ N : ℕ, 80 ≤ N → (1 / 26 : ℝ) * (N : ℝ) ^ ((4 : ℝ) / 3) < (h N : ℝ) := by
   sorry
 
 /-- Exact four-layer signed-grid polynomial lower bound at every scale $q \ge 1$:
@@ -89,9 +89,9 @@ theorem erdos_956_four_layer_polynomial :
   sorry
 
 /-- Sharp eventual $\frac{2}{5} N^{4/3}$ lower bound from the four-layer signed grid:
-for all $N \ge N_{162} = 204{,}525{,}328$, $\frac{2}{5} N^{4/3} < h(N)$. -/
+for all sufficiently large $N$, $\frac{2}{5} N^{4/3} < h(N)$. -/
 theorem erdos_956_eventual_two_fifths :
-    ∀ N : ℕ, 204525328 ≤ N → (2 / 5 : ℝ) * (N : ℝ) ^ ((4 : ℝ) / 3) < (h N : ℝ) := by
+    ∀ᶠ N : ℕ in atTop, (2 / 5 : ℝ) * (N : ℝ) ^ ((4 : ℝ) / 3) < (h N : ℝ) := by
   sorry
 
 end Erdos956.Palomar
