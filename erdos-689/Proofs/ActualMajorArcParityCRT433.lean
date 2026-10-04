@@ -1,6 +1,11 @@
-import ActualMajorArcPositivityTail433
-import ActualRightVertexMajorSingularAssembly433
-import ActualMajorArcSupportSelectorBridge433
+module
+
+public import ActualMajorArcPositivityTail433
+public import ActualRightVertexMajorSingularAssembly433
+public import ActualMajorArcSupportSelectorBridge433
+
+@[expose] public section
+
 
 /-!
 # Actual parity-conductor cutoff and higher-conductor cancellation
@@ -20,6 +25,8 @@ discarded.
 
 open Filter Finset
 open scoped BigOperators Topology
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

@@ -1,5 +1,10 @@
-import ActualRightCoefficientAssembly433
-import ActualRightVertexDegree433
+module
+
+public import ActualRightCoefficientAssembly433
+public import ActualRightVertexDegree433
+
+@[expose] public section
+
 
 /-!
 # Genuine fixed-left support-unit selectors
@@ -16,6 +21,8 @@ as the right selectors, without discarding either support-unit test.
 
 open Finset
 open scoped BigOperators
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

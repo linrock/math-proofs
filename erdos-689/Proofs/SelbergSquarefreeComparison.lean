@@ -1,7 +1,12 @@
-import Mathlib
-import SelbergSquarefree
-import SelbergDenominator
-import PrimeNumberTheoremAnd.Mathlib.NumberTheory.Sieve.SelbergBounds
+module
+
+public import Mathlib
+public import SelbergSquarefree
+public import SelbergDenominator
+public import PrimeNumberTheoremAnd.Mathlib.NumberTheory.Sieve.SelbergBounds
+
+@[expose] public section
+
 
 /-!
 # Comparing the genuine two-root squarefree denominator to the divisor kernel

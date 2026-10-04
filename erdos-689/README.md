@@ -24,6 +24,9 @@ Start with [BUILD.md](BUILD.md) to reproduce the build, or the
 ## Exact statement and proof boundary
 
 [Challenge.lean](Challenge.lean) states the assertion using Mathlib alone.
+The same covering proposition appears in the pinned
+[Formal Conjectures Erdős 689 entry](https://github.com/google-deepmind/formal-conjectures/blob/f19cf7f60d9bc650ff58462f540e236caf3a6a67/FormalConjectures/ErdosProblems/689.lean),
+which provides no proof.
 [Solution.lean](Solution.lean) independently states and proves
 `Erdos689.Palomar.eventual_double_cover`, by applying
 `Erdos689.erdos_689_original_statement` in
@@ -61,8 +64,7 @@ The final proof supplies every hypothesis used for the covering conclusion.
 The analytic dependencies include a compatibility port of Principia's
 Goldbach master, PrimeNumberTheoremAnd, and other sources identified by exact
 revision and file hash in [source-manifest.json](source-manifest.json) and
-[THIRD_PARTY.md](THIRD_PARTY.md). Two admitted Wiener lemmas in the upstream
-tree are outside the final theorem's transitive dependencies. See
+[THIRD_PARTY.md](THIRD_PARTY.md). See
 [BUILD.md](BUILD.md) for the endpoint axiom audit and Palomar verification
 requirements.
 

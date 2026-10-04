@@ -1,4 +1,9 @@
-import Mathlib
+module
+
+public import Mathlib
+
+@[expose] public section
+
 
 /-!
 # Erdős #689: the exact eventual double-covering statement

@@ -1,6 +1,11 @@
-import ActualSingularTailCompletion433
-import ActualMajorArcInterior433
-import ActualMajorArcCorrectedModel433
+module
+
+public import ActualSingularTailCompletion433
+public import ActualMajorArcInterior433
+public import ActualMajorArcCorrectedModel433
+
+@[expose] public section
+
 
 /-!
 # Complete parity-corrected signed smooth-tail assembly

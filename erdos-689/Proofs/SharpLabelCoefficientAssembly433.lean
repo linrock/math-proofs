@@ -1,4 +1,9 @@
-import LabelGlobalCrt433
+module
+
+public import LabelGlobalCrt433
+
+@[expose] public section
+
 
 /-!
 # Sharp fixed-label selector-cardinality and coefficient normalization
@@ -11,6 +16,8 @@ already proved three-state fixed-label coefficient factors.
 -/
 
 open scoped BigOperators
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

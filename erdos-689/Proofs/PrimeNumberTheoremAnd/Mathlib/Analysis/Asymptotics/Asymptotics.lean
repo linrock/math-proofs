@@ -1,5 +1,10 @@
-import Mathlib.Analysis.Asymptotics.Lemmas
-import Mathlib.Topology.Order.Compact
+module
+
+public import Mathlib.Analysis.Asymptotics.Lemmas
+public import Mathlib.Topology.Order.Compact
+
+@[expose] public section
+
 
 open Filter Topology
 

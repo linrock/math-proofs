@@ -1,6 +1,11 @@
-import ActualMajorArcPositivityTruncation433
-import ActualLeftVertexMajorIntegration433
-import ShiftedMajorArcDedup433
+module
+
+public import ActualMajorArcPositivityTruncation433
+public import ActualLeftVertexMajorIntegration433
+public import ShiftedMajorArcDedup433
+
+@[expose] public section
+
 
 /-!
 # Polynomially summed genuine Siegel--Walfisz errors

@@ -1,4 +1,9 @@
-import ReserveCutoff
+module
+
+public import ReserveCutoff
+
+@[expose] public section
+
 
 /-!
 # Noncircular eventual assembly for the actual Erdős #689 manuscript edges

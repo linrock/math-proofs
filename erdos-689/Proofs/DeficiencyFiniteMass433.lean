@@ -1,4 +1,9 @@
-import DeficiencyUpper433
+module
+
+public import DeficiencyUpper433
+
+@[expose] public section
+
 
 /-!
 # Sharp mass bound for arbitrary finite actual deficiency strata
@@ -72,7 +77,7 @@ theorem truncatedInitialDeficiencyCoefficient_le_one
   have hdyadic_nonneg := truncatedDyadicDeficiencyCoefficient_nonneg E
   have hproduct :
       (∏ s ∈ S, truncatedSmoothDeficiencySelector s E) ≤ 1 := by
-    exact Finset.prod_le_one
+    exact Finset.prod_le_one₀
       (fun s hs => truncatedSmoothDeficiencySelector_nonneg s E (hsupport s hs))
       (fun s hs => truncatedSmoothDeficiencySelector_le_one s E (hsupport s hs))
   have hproduct_nonneg :

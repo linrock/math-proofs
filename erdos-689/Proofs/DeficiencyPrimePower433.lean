@@ -1,5 +1,10 @@
-import DeficiencyUpper433
-import Mathlib.Analysis.SpecialFunctions.Log.Base
+module
+
+public import DeficiencyUpper433
+public import Mathlib.Analysis.SpecialFunctions.Log.Base
+
+@[expose] public section
+
 
 /-!
 # Repeated outside-prime factors in the actual initial deficiency

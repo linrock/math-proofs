@@ -1,5 +1,10 @@
-import ActualLeftVertexFinal433
-import ActualMajorArcPrimeMinor433
+module
+
+public import ActualLeftVertexFinal433
+public import ActualMajorArcPrimeMinor433
+
+@[expose] public section
+
 
 /-!
 # Exact original covering reduced to its sole remaining major-arc theorem

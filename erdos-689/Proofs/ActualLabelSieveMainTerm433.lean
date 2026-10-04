@@ -1,4 +1,9 @@
-import ActualLabelSummedSieve433
+module
+
+public import ActualLabelSummedSieve433
+
+@[expose] public section
+
 
 /-!
 # Sharp main term for the actual summed fixed-label Selberg sieve

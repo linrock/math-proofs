@@ -1,4 +1,9 @@
-import ActualMajorArcPositivityFinal433
+module
+
+public import ActualMajorArcPositivityFinal433
+
+@[expose] public section
+
 
 /-!
 # Exact periodic boundary gluing for the original shifted major arcs

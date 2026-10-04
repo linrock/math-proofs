@@ -1,4 +1,9 @@
-import ActualMajorArcPositivityArchimedean433
+module
+
+public import ActualMajorArcPositivityArchimedean433
+
+@[expose] public section
+
 
 /-!
 # Actual three-interval Farey tails, including every affine resonance

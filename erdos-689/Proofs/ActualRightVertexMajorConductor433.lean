@@ -1,5 +1,10 @@
-import ActualLeftVertexMajorIntegration433
-import ActualMajorArcPositivityTruncation433
+module
+
+public import ActualLeftVertexMajorIntegration433
+public import ActualMajorArcPositivityTruncation433
+
+@[expose] public section
+
 
 /-!
 # Cancellation of genuine high-support-conductor rational phases

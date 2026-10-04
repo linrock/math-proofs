@@ -1,5 +1,10 @@
-import ActualLeftVertexMajorCubicModel433
-import ActualMajorArcPositivityError433
+module
+
+public import ActualLeftVertexMajorCubicModel433
+public import ActualMajorArcPositivityError433
+
+@[expose] public section
+
 
 /-!
 # Full actual shifted-center approximation without discarding signed cells

@@ -1,4 +1,9 @@
-import ActualMajorArcFinalCoupling433
+module
+
+public import ActualMajorArcFinalCoupling433
+
+@[expose] public section
+
 
 open Filter Finset
 open scoped Topology

@@ -1,4 +1,9 @@
-import ActualRightVertexReduction433
+module
+
+public import ActualRightVertexReduction433
+
+@[expose] public section
+
 
 /-!
 # Safe moving-determinant infrastructure for actual fixed-left vertices

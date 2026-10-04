@@ -1,5 +1,10 @@
-import DeficiencyTwoInputBridge433
-import RobustCrtBridge
+module
+
+public import DeficiencyTwoInputBridge433
+public import RobustCrtBridge
+
+@[expose] public section
+
 
 /-!
 # Global two-input reduction for Erdős problem #689

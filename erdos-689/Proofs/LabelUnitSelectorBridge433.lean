@@ -1,4 +1,9 @@
-import LabelDoubleCoefficient433
+module
+
+public import LabelDoubleCoefficient433
+
+@[expose] public section
+
 
 /-!
 # Genuine support-unit refinement for the fixed-label prime sieve

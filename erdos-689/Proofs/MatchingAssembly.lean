@@ -1,8 +1,13 @@
-import Mathlib
-import Structural
-import GreedyMatching
-import Cleanup
-import AnalyticBridge
+module
+
+public import Mathlib
+public import Structural
+public import GreedyMatching
+public import Cleanup
+public import AnalyticBridge
+
+@[expose] public section
+
 
 /-!
 # Simultaneous reserve switches and noncircular matching realization

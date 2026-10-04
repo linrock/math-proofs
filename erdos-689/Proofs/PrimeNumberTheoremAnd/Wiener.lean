@@ -1,15 +1,20 @@
-import Architect
-import Mathlib.Analysis.Fourier.RiemannLebesgueLemma
-import Mathlib.Analysis.Normed.Group.Tannery
-import Mathlib.Analysis.SumIntegralComparisons
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.LSeries.PrimesInAP
-import Mathlib.NumberTheory.MulChar.Lemmas
-import Mathlib.Topology.EMetricSpace.BoundedVariation
-import PrimeNumberTheoremAnd.Mathlib.Analysis.Asymptotics.Asymptotics
-import PrimeNumberTheoremAnd.Fourier
-import PrimeNumberTheoremAnd.SmoothExistence
-import Mathlib.Analysis.Convolution
+module
+
+public import Architect
+public import Mathlib.Analysis.Fourier.RiemannLebesgueLemma
+public import Mathlib.Analysis.Normed.Group.Tannery
+public import Mathlib.Analysis.SumIntegralComparisons
+public import Mathlib.NumberTheory.Chebyshev
+public import Mathlib.NumberTheory.LSeries.PrimesInAP
+public import Mathlib.NumberTheory.MulChar.Lemmas
+public import Mathlib.Topology.EMetricSpace.BoundedVariation
+public import PrimeNumberTheoremAnd.Mathlib.Analysis.Asymptotics.Asymptotics
+public import PrimeNumberTheoremAnd.Fourier
+public import PrimeNumberTheoremAnd.SmoothExistence
+public import Mathlib.Analysis.Convolution
+
+@[expose] public section
+
 
 set_option lang.lemmaCmd true
 set_option linter.style.header false
@@ -178,7 +183,6 @@ lemma second_fourier_integrable_aux1a (hσ : 1 < σ') :
   apply exp_neg_integrableOn_Ioi
   linarith
 
-set_option backward.isDefEq.respectTransparency.types false in
 lemma second_fourier_integrable_aux1 (hcont : Measurable ψ) (hsupp : Integrable ψ) (hσ : 1 < σ') :
     let ν : Measure (ℝ × ℝ) := (volume.restrict (Ici (-Real.log x))).prod volume
     Integrable (Function.uncurry fun (u : ℝ) (a : ℝ) ↦ ((rexp (-u * (σ' - 1))) : ℂ) •
@@ -189,6 +193,8 @@ lemma second_fourier_integrable_aux1 (hcont : Measurable ψ) (hsupp : Integrable
     -- TODO: find out why fun_prop does not play well with Multiplicative.ofAdd
     simp only [neg_mul, ofReal_exp, ofReal_neg, ofReal_mul, ofReal_sub, ofReal_one,
       Multiplicative.ofAdd, Equiv.coe_fn_mk, smul_eq_mul]
+    change Measurable (fun p : ℝ × ℝ =>
+      cexp (-(↑p.1 * (↑σ' - 1))) * ((𝐞 (-(p.2 * (p.1 / (2 * π)))) : ℂ) * ψ p.2))
     fun_prop
   · let f1 : ℝ → ENNReal := fun a1 ↦ ‖cexp (-(↑a1 * (↑σ' - 1)))‖ₑ
     let f2 : ℝ → ENNReal := fun a2 ↦ ‖ψ a2‖ₑ
@@ -308,81 +314,6 @@ lemma one_add_sq_pos (u : ℝ) : 0 < 1 + u ^ 2 := zero_lt_one.trans_le (by simpa
   (discussion := 561)]
 theorem prelim_decay (ψ : ℝ → ℂ) (u : ℝ) : ‖𝓕 (ψ : ℝ → ℂ) u‖ ≤ ∫ t, ‖ψ t‖ :=
   VectorFourier.norm_fourierIntegral_le_integral_norm ..
-
-@[blueprint "prelim-decay-2"
-  (title := "Preliminary decay bound II")
-  (statement := /--
-If $\psi:\R \to \C$ is absolutely integrable and of bounded variation, then
-$$ |\hat \psi(u)| \leq \| \psi \|_{TV} / 2\pi |u| $$
-for all non-zero $u \in \R$.
-  -/)
-  (proof := /-- By Lebesgue--Stiejtes integration by parts we have
-$$ 2\pi i u \hat \psi(u) = \int _\R e(-tu) d\psi(t)$$
-and the claim then follows from the triangle inequality. -/)
-  (latexEnv := "lemma")
-  (discussion := 562)]
-theorem prelim_decay_2 (ψ : ℝ → ℂ) (hψ : Integrable ψ) (hvar : BoundedVariationOn ψ Set.univ)
-    (u : ℝ) (hu : u ≠ 0) :
-    ‖𝓕 (ψ : ℝ → ℂ) u‖ ≤ (eVariationOn ψ Set.univ).toReal / (2 * π * ‖u‖) := by sorry
-
-noncomputable def AbsolutelyContinuous (f : ℝ → ℂ) : Prop := (∀ᵐ x, DifferentiableAt ℝ f x) ∧
-  ∀ a b : ℝ, f b - f a = ∫ t in a..b, deriv f t
-
-@[blueprint "prelim-decay-3"
-  (title := "Preliminary decay bound III")
-  (statement := /--
-If $\psi:\R \to \C$ is absolutely integrable, absolutely continuous, and $\psi'$ is of bounded
-variation, then
-$$ |\hat \psi(u)| \leq \| \psi' \|_{TV} / (2\pi |u|)^2$$
-for all non-zero $u \in \R$.
-  -/)
-  (proof := /-- Should follow from previous lemma. -/)
-  (proofUses := ["prelim-decay-2"])
-  (latexEnv := "lemma")
-  (discussion := 563)]
-theorem prelim_decay_3 (ψ : ℝ → ℂ) (hψ : Integrable ψ)
-    (habscont : AbsolutelyContinuous ψ)
-    (hvar : BoundedVariationOn (deriv ψ) Set.univ) (u : ℝ) (hu : u ≠ 0) :
-    ‖𝓕 (ψ : ℝ → ℂ) u‖ ≤ (eVariationOn (deriv ψ) Set.univ).toReal / (2 * π * ‖u‖) ^ 2 := by sorry
-
-@[blueprint "decay-alt"
-  (title := "Decay bound, alternate form")
-  (statement := /--
-If $\psi:\R \to \C$ is absolutely
-integrable, absolutely continuous, and $\psi'$ is of bounded variation, then
-$$ |\hat \psi(u)| \leq ( \|\psi\|_1 + \| \psi' \|_{TV} / (2\pi)^2) / (1+|u|^2)$$
-for all $u \in \R$.  -/)
-  (proof := /-- Should follow from previous lemmas. -/)
-  (proofUses := ["prelim-decay", "prelim-decay-3", "decay"])
-  (latexEnv := "lemma")
-  (discussion := 564)]
-theorem decay_alt (ψ : ℝ → ℂ) (hψ : Integrable ψ) (habscont : AbsolutelyContinuous ψ)
-    (hvar : BoundedVariationOn (deriv ψ) Set.univ) (u : ℝ) :
-    ‖𝓕 (ψ : ℝ → ℂ) u‖ ≤
-      ((∫ t, ‖ψ t‖) + (eVariationOn (deriv ψ) Set.univ).toReal / (2 * π) ^ 2) /
-        (1 + ‖u‖ ^ 2) := by
-  rw [le_div_iff₀' <| one_add_sq_pos ‖u‖]
-  by_cases hu : u = 0
-  · subst hu
-    simp only [norm_zero, ne_eq, OfNat.ofNat_ne_zero, not_false_eq_true, zero_pow, add_zero,
-      one_mul]
-    calc ‖𝓕 ψ 0‖ ≤ ∫ t, ‖ψ t‖ := prelim_decay ψ 0
-      _ ≤ (∫ t, ‖ψ t‖) + (eVariationOn (deriv ψ) Set.univ).toReal / (2 * π) ^ 2 := by
-          have : 0 ≤ (eVariationOn (deriv ψ) Set.univ).toReal / (2 * π) ^ 2 := by positivity
-          linarith
-  · have bound1 : ‖𝓕 ψ u‖ ≤ ∫ t, ‖ψ t‖ := prelim_decay ψ u
-    have bound2 : ‖𝓕 ψ u‖ ≤ (eVariationOn (deriv ψ) Set.univ).toReal / (2 * π * ‖u‖) ^ 2 :=
-      prelim_decay_3 ψ hψ habscont hvar u hu
-    have : (2 * π * ‖u‖) ^ 2 = (2 * π) ^ 2 * ‖u‖ ^ 2 := by ring
-    calc (1 + ‖u‖ ^ 2) * ‖𝓕 ψ u‖
-        = ‖𝓕 ψ u‖ * 1 + ‖𝓕 ψ u‖ * ‖u‖ ^ 2 := by ring
-      _ ≤ (∫ t, ‖ψ t‖) * 1 +
-            (eVariationOn (deriv ψ) Set.univ).toReal / (2 * π * ‖u‖) ^ 2 * ‖u‖ ^ 2 := by
-          gcongr
-      _ = (∫ t, ‖ψ t‖) + (eVariationOn (deriv ψ) Set.univ).toReal / (2 * π) ^ 2 := by
-          rw [mul_one, this, div_mul_eq_div_div]
-          congr 1
-          rw [div_mul_eq_mul_div, div_eq_iff (pow_ne_zero 2 <| norm_ne_zero_iff.mpr hu)]
 
 lemma decay_bounds_key (f : W21) (u : ℝ) : ‖𝓕 (f : ℝ → ℂ) u‖ ≤ ‖f‖ * (1 + u ^ 2)⁻¹ := by
   have l1 : 0 < 1 + u ^ 2 := one_add_sq_pos _
@@ -1433,7 +1364,9 @@ theorem sum_le_integral {x₀ : ℝ} {f : ℝ → ℝ} {n : ℕ} (hf : AntitoneO
     rw [← l6] ; apply intervalIntegral.integral_mono_ae_restrict (by linarith) (by simp) l4
     apply eventually_of_mem _ l5
     have : (Ioc x₀ (x₀ + 1))ᶜ ∩ Icc x₀ (x₀ + 1) = {x₀} := by simp [← sdiff_eq_compl_inter]
-    simp [-ae_restrict_eq, mem_ae_iff, this]
+    filter_upwards [ae_restrict_mem measurableSet_Icc, (volume.restrict (Icc x₀ (x₀ + 1))).ae_ne x₀] with x hx hne
+    exact ⟨lt_of_le_of_ne hx.1 (Ne.symm hne), hx.2⟩
+
   have l2 : AntitoneOn (fun x ↦ f (x₀ + x)) (Icc 1 ↑(n + 1)) := by
     intro u ⟨hu1, _⟩ v ⟨_, hv2⟩ huv ; push_cast at hv2
     refine hf ⟨?_, ?_⟩ ⟨?_, ?_⟩ ?_ <;> linarith
@@ -2452,7 +2385,7 @@ theorem WeakPNT : Tendsto (fun N ↦ cumsum Λ N / N) atTop (𝓝 1) := by
     simp only [F, this, vonMangoldt.residueClass, Nat.totient_one, Nat.cast_one, inv_one, one_div, sub_left_inj]
     apply LSeries_congr
     intro n _
-    simp only [ofReal_inj, indicator_apply_eq_self, mem_ofPred_eq]
+    simp only [ofReal_inj, indicator_apply_eq_self, mem_setOf_eq]
     exact fun hn ↦ absurd (Subsingleton.eq_one _) hn
   have l3 : ContinuousOn F {s | 1 ≤ s.re} := vonMangoldt.continuousOn_LFunctionResidueClassAux 1
   have l4 : cheby Λ := vonMangoldt_cheby
@@ -2576,7 +2509,7 @@ lemma tendsto_tsum_of_monotone_convergence
     (hmono : ∀ k, Monotone (fun n => f n k))
     (hlim : ∀ k, Tendsto (fun n => f n k) atTop (𝓝 (g k))) :
     Tendsto (fun n => ∑' k, f n k) atTop (𝓝 (∑' k, g k)) := by
-  let : MeasurableSpace β := ⊤
+  letI : MeasurableSpace β := ⊤
   let μ : Measure β := Measure.count
   have hg_iSup (k : β) : (⨆ n : ℕ, f n k) = g k := iSup_eq_of_tendsto (hmono k) (hlim k)
   have h_tend_lint : Tendsto (fun n => ∫⁻ k, f n k ∂μ) atTop (𝓝 (∫⁻ k, (⨆ n, f n k) ∂μ)) := by
@@ -3035,7 +2968,7 @@ lemma limiting_fourier_variant
 
 
   have haux :
-    (fun σ' ↦
+    (fun (σ' : ℝ) ↦
         ∑' (n : ℕ),
           term (fun n ↦ (f n : ℂ)) (σ' : ℂ) n *
             𝓕 ψ.toFun (π⁻¹ * 2⁻¹ * Real.log ((n : ℝ) / x))
@@ -3345,7 +3278,7 @@ lemma norm_error_integral_le
     have hG' : AEMeasurable fun t : ℝ => G (1 + t * Complex.I) := hGline_meas.aemeasurable
     have hψ_meas' : AEMeasurable ψ := hψ_meas.aemeasurable
     have hx_ne : (x : ℂ) ≠ 0 := by exact_mod_cast (ne_of_gt hx)
-    have hx_ne' : NeZero (x : ℂ) := ⟨hx_ne⟩
+    haveI hx_ne' : NeZero (x : ℂ) := ⟨hx_ne⟩
     have hxpow_meas : AEMeasurable fun t : ℝ => ((x : ℂ) ^ (t * Complex.I)) := by
       have hcontℂ : Continuous fun z : ℂ => ((x : ℂ) ^ z) :=
         continuous_const_cpow (z := (x : ℂ))

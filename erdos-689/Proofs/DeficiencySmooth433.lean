@@ -1,4 +1,9 @@
-import DeficiencyDensity433
+module
+
+public import DeficiencyDensity433
+
+@[expose] public section
+
 
 /-!
 # Arbitrary smooth even coefficients inside the actual initial deficiency

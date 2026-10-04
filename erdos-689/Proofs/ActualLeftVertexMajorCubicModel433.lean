@@ -1,4 +1,9 @@
-import ActualLeftVertexMajorCellModel433
+module
+
+public import ActualLeftVertexMajorCellModel433
+
+@[expose] public section
+
 
 /-!
 # The actual shifted, prime-only three-cell major-arc model

@@ -1,4 +1,9 @@
-import SelbergExplicitConstant433
+module
+
+public import SelbergExplicitConstant433
+
+@[expose] public section
+
 
 /-!
 # Genuine fifth-root Selberg cutoff for Erdős problem #689

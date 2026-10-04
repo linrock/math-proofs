@@ -1,7 +1,12 @@
-import Mathlib
-import Structural
-import GreedyMatching
-import Cleanup
+module
+
+public import Mathlib
+public import Structural
+public import GreedyMatching
+public import Cleanup
+
+@[expose] public section
+
 
 /-!
 # Exact official statement and an honest conditional assembly

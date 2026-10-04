@@ -1,11 +1,16 @@
-import Architect
-import Mathlib.Analysis.Complex.CauchyIntegral
-import Mathlib.Analysis.Complex.Convex
-import Mathlib.Analysis.Complex.RemovableSingularity
-import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
-import Mathlib.Analysis.Meromorphic.NormalForm
-import PrimeNumberTheoremAnd.Rectangle
-import PrimeNumberTheoremAnd.Tactic.AdditiveCombination
+module
+
+public import Architect
+public import Mathlib.Analysis.Complex.CauchyIntegral
+public import Mathlib.Analysis.Complex.Convex
+public import Mathlib.Analysis.Complex.RemovableSingularity
+public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+public import Mathlib.Analysis.Meromorphic.NormalForm
+public import PrimeNumberTheoremAnd.Rectangle
+public import PrimeNumberTheoremAnd.Tactic.AdditiveCombination
+
+@[expose] public section
+
 
 open Complex BigOperators Nat Classical Real Topology Filter
 open Set MeasureTheory intervalIntegral Asymptotics
@@ -805,7 +810,7 @@ lemma simplePole_sub_residue_isBigO_one {f : ℂ → ℂ} {p : ℂ}
 -- If two functions `f g : ℂ → ℂ` agree on a `codiscreteWithin R` full set, and `φ : ℝ → ℂ` is
 -- an analytic non-constant path mapping `[a,b]` into `R`, then `∫ f(φ x) dx = ∫ g(φ x) dx`.
 -- (a.e. agreement along the preimage suffices for interval integrals)
-private lemma intervalIntegral_congr_ae_of_codiscreteWithin_along_path
+lemma intervalIntegral_congr_ae_of_codiscreteWithin_along_path
     {f g : ℂ → ℂ} {R : Set ℂ}
     (heq : {s : ℂ | f s = g s} ∈ Filter.codiscreteWithin R)
     {a b : ℝ} {p : ℝ → ℂ}
@@ -824,7 +829,7 @@ private lemma intervalIntegral_congr_ae_of_codiscreteWithin_along_path
 -- Under `HasSimplePolesOn f U`, every point with strictly negative meromorphic order has order
 -- exactly -1: the simple-pole hypothesis gives `(-1 : ℤ) ≤ order`, negativity gives `order < 0`,
 -- so the only integer fitting both is -1.
-private lemma meromorphicOrderAt_eq_neg_one_of_simplePole
+lemma meromorphicOrderAt_eq_neg_one_of_simplePole
     {f : ℂ → ℂ} {U : Set ℂ} {p : ℂ}
     (hpU : p ∈ U)
     (hf_simple : HasSimplePolesOn f U)
@@ -839,7 +844,7 @@ private lemma meromorphicOrderAt_eq_neg_one_of_simplePole
 -- At a simple pole `p` of `f` inside `U`, the residue of the meromorphic normal form
 -- `toMeromorphicNFOn f U` equals the residue of `f`. The two functions agree on a punctured
 -- neighborhood of `p` (by definition of the normal form), so their `(z - p) * ·` limits coincide.
-private lemma residue_toMeromorphicNFOn_eq_residue
+lemma residue_toMeromorphicNFOn_eq_residue
     {f : ℂ → ℂ} {U : Set ℂ} {p : ℂ}
     (hpU : p ∈ U)
     (hf_mero : MeromorphicOn f U)
@@ -868,7 +873,7 @@ private lemma residue_toMeromorphicNFOn_eq_residue
     (h_tendsto.congr' h_eq.symm)
 
 -- Non-constancy of horizontal paths `x ↦ x + h * I`.
-private lemma horizontalPath_not_eventuallyConst (h : ℝ) (x : ℝ) :
+lemma horizontalPath_not_eventuallyConst (h : ℝ) (x : ℝ) :
     ¬Filter.EventuallyConst (fun r : ℝ ↦ (r : ℂ) + (h : ℂ) * Complex.I) (nhds x) := by
   intro hc
   obtain ⟨c, hc⟩ := Filter.eventuallyConst_iff_exists_eventuallyEq.1 hc
@@ -890,7 +895,7 @@ lemma verticalPath_not_eventuallyConst (r : ℝ) (x : ℝ) :
   exact Complex.I_ne_zero (hpath.unique hconst)
 
 -- Helper for horizontal integral congruence on codiscrete set
-private lemma HIntegral_congr_codiscreteWithin {f g : ℂ → ℂ} {R : Set ℂ} {a b c : ℝ}
+lemma HIntegral_congr_codiscreteWithin {f g : ℂ → ℂ} {R : Set ℂ} {a b c : ℝ}
     (h_eq : {s : ℂ | f s = g s} ∈ Filter.codiscreteWithin R)
     (hmaps : ∀ x ∈ Set.uIcc a b, (↑x + ↑c * Complex.I) ∈ R) :
     HIntegral f a b c = HIntegral g a b c := by
@@ -900,7 +905,7 @@ private lemma HIntegral_congr_codiscreteWithin {f g : ℂ → ℂ} {R : Set ℂ}
     (fun x _ ↦ horizontalPath_not_eventuallyConst c x) hmaps
 
 -- Helper for vertical integral congruence on codiscrete set
-private lemma VIntegral_congr_codiscreteWithin {f g : ℂ → ℂ} {R : Set ℂ} {c a b : ℝ}
+lemma VIntegral_congr_codiscreteWithin {f g : ℂ → ℂ} {R : Set ℂ} {c a b : ℝ}
     (h_eq : {s : ℂ | f s = g s} ∈ Filter.codiscreteWithin R)
     (hmaps : ∀ y ∈ Set.uIcc a b, (↑c + ↑y * Complex.I) ∈ R) :
     VIntegral f c a b = VIntegral g c a b := by
@@ -911,7 +916,7 @@ private lemma VIntegral_congr_codiscreteWithin {f g : ℂ → ℂ} {R : Set ℂ}
 
 -- At the boundary, `f` and its normal-form representative differ only at a discrete set
 -- of poles, so their boundary integrals coincide.
-private lemma rectangleIntegral'_toMeromorphicNFOn_eq {f : ℂ → ℂ} {z w : ℂ}
+lemma rectangleIntegral'_toMeromorphicNFOn_eq {f : ℂ → ℂ} {z w : ℂ}
     (f_mero : MeromorphicOn f (Rectangle z w)) :
     RectangleIntegral' f z w = RectangleIntegral' (toMeromorphicNFOn f (Rectangle z w)) z w := by
   classical
@@ -927,7 +932,7 @@ private lemma rectangleIntegral'_toMeromorphicNFOn_eq {f : ℂ → ℂ} {z w : �
   unfold RectangleIntegral'; congr 1; unfold RectangleIntegral
   rw [hbot, htop, hright, hleft]
 
-private lemma principalPart_meromorphicOn {R : Set ℂ} {polesFin : Finset ℂ} {c : ℂ → ℂ} :
+lemma principalPart_meromorphicOn {R : Set ℂ} {polesFin : Finset ℂ} {c : ℂ → ℂ} :
     MeromorphicOn (fun s ↦ ∑ p ∈ polesFin, c p / (s - p)) R := by
   intro x _
   refine MeromorphicAt.fun_sum (G := fun p s ↦ c p / (s - p)) ?_
@@ -935,7 +940,7 @@ private lemma principalPart_meromorphicOn {R : Set ℂ} {polesFin : Finset ℂ} 
   exact (analyticAt_const.meromorphicAt.div
     ((analyticAt_id.sub analyticAt_const).meromorphicAt))
 
-private lemma sub_principalPart_analyticAt_of_not_mem_poles
+lemma sub_principalPart_analyticAt_of_not_mem_poles
     {f : ℂ → ℂ} {polesFin : Finset ℂ} {x : ℂ}
     (h_nf : MeromorphicNFAt f x)
     (hxnp : x ∉ polesFin)
@@ -955,7 +960,7 @@ private lemma sub_principalPart_analyticAt_of_not_mem_poles
     simpa using this
   exact h_f_analytic.sub h_principal_analytic
 
-private lemma meromorphicOrderAt_sub_principalPart_nonneg
+lemma meromorphicOrderAt_sub_principalPart_nonneg
     {f : ℂ → ℂ} {polesFin : Finset ℂ} {p : ℂ}
     (hpFin : p ∈ polesFin)
     (h_mero : MeromorphicAt f p)
@@ -991,7 +996,7 @@ private lemma meromorphicOrderAt_sub_principalPart_nonneg
     exact tendsto_cobounded_of_meromorphicOrderAt_neg (not_le.mp hneg)
   exact (Filter.not_isBoundedUnder_of_tendsto_atTop hnorm) hraw_big.isBoundedUnder_le
 
-private lemma holoPart_holomorphicOn {f : ℂ → ℂ} {z w : ℂ}
+lemma holoPart_holomorphicOn {f : ℂ → ℂ} {z w : ℂ}
     (f_mero : MeromorphicOn f (Rectangle z w))
     (f_simple_poles : HasSimplePolesOn f (Rectangle z w))
     (f_poles_finite : (Rectangle z w ∩ {z | meromorphicOrderAt f z < 0}).Finite) :
@@ -1044,7 +1049,7 @@ private lemma holoPart_holomorphicOn {f : ℂ → ℂ} {z w : ℂ}
 
 -- Since no poles lie on the boundary of the rectangle, the principal part is continuous
 -- on the boundary and therefore integrable.
-private lemma principalPart_borderIntegrable {f : ℂ → ℂ} {z w : ℂ}
+lemma principalPart_borderIntegrable {f : ℂ → ℂ} {z w : ℂ}
     (f_no_poles_boundary : Disjoint (RectangleBorder z w) {z | meromorphicOrderAt f z < 0})
     (f_poles_finite : (Rectangle z w ∩ {z | meromorphicOrderAt f z < 0}).Finite) :
     RectangleBorderIntegrable (fun s ↦ ∑ p ∈ f_poles_finite.toFinset, residue (toMeromorphicNFOn f (Rectangle z w)) p / (s - p)) z w := by
@@ -1063,7 +1068,7 @@ private lemma principalPart_borderIntegrable {f : ℂ → ℂ} {z w : ℂ}
     fun_prop (disch := exact sub_ne_zero.mpr hsp)
   exact this.continuousWithinAt
 
-private lemma rectangle_mem_nhds_of_interior {z w p : ℂ}
+lemma rectangle_mem_nhds_of_interior {z w p : ℂ}
     (zRe_le_wRe : z.re ≤ w.re) (zIm_le_wIm : z.im ≤ w.im)
     (hpR : p ∈ Rectangle z w) (hpnot : p ∉ RectangleBorder z w) :
     Rectangle z w ∈ nhds p := by
@@ -1083,7 +1088,7 @@ private lemma rectangle_mem_nhds_of_interior {z w p : ℂ}
   rw [rectangle_mem_nhds_iff, mem_reProdIm, Set.uIoo_of_le zRe_le_wRe, Set.uIoo_of_le zIm_le_wIm]
   exact ⟨⟨hp_re_left, hp_re_right⟩, ⟨hp_im_left, hp_im_right⟩⟩
 
-private lemma sum_div_rectangleBorderIntegrable {z w : ℂ} {S : Finset ℂ}
+lemma sum_div_rectangleBorderIntegrable {z w : ℂ} {S : Finset ℂ}
     (hS_disjoint : Disjoint (RectangleBorder z w) S) (c : ℂ → ℂ) :
     RectangleBorderIntegrable (fun s ↦ ∑ p ∈ S, c p / (s - p)) z w := by
   refine ContinuousOn.rectangleBorder_integrable ?_
@@ -1096,7 +1101,7 @@ private lemma sum_div_rectangleBorderIntegrable {z w : ℂ} {S : Finset ℂ}
 
 -- The integral of a sum of simple pole terms `c p / (s - p)` along the boundary of the rectangle
 -- equals the sum of the coefficients `c p` for all points `p` in the interior.
-private lemma rectangleIntegral'_sum_div_sub {z w : ℂ} (zRe_le_wRe : z.re ≤ w.re) (zIm_le_wIm : z.im ≤ w.im)
+lemma rectangleIntegral'_sum_div_sub {z w : ℂ} (zRe_le_wRe : z.re ≤ w.re) (zIm_le_wIm : z.im ≤ w.im)
     {S : Finset ℂ} (hS_subset : (S : Set ℂ) ⊆ Rectangle z w)
     (hS_disjoint : Disjoint (RectangleBorder z w) S)
     (c : ℂ → ℂ) :
@@ -1138,7 +1143,7 @@ private lemma rectangleIntegral'_sum_div_sub {z w : ℂ} (zRe_le_wRe : z.re ≤ 
   exact h_partial_integral S (by intro p hp; exact hp)
 
 -- Splits the integral of `fNF` into the integral of its holomorphic part and its principal part.
-private lemma toMeromorphicNFOn_add_integral {f : ℂ → ℂ} {z w : ℂ}
+lemma toMeromorphicNFOn_add_integral {f : ℂ → ℂ} {z w : ℂ}
     (f_mero : MeromorphicOn f (Rectangle z w))
     (f_no_poles_boundary : Disjoint (RectangleBorder z w) {z | meromorphicOrderAt f z < 0})
     (f_poles_finite : (Rectangle z w ∩ {z | meromorphicOrderAt f z < 0}).Finite)

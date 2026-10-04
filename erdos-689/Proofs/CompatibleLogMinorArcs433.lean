@@ -1,4 +1,9 @@
-import ShiftedMajorArcAssembly433
+module
+
+public import ShiftedMajorArcAssembly433
+
+@[expose] public section
+
 
 /-!
 # Simultaneously compatible logarithmic major/minor cutoffs for Erdős #689

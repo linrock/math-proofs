@@ -1,5 +1,10 @@
-import ActualLeftVertexSummed433
-import ActualRightVertexLeftAuditErrors433
+module
+
+public import ActualLeftVertexSummed433
+public import ActualRightVertexLeftAuditErrors433
+
+@[expose] public section
+
 
 /-!
 # Unconditional original fixed-left graph degree and complete degree closure
@@ -16,6 +21,8 @@ coordinates discharges the full original graph-degree proposition outright.
 
 open Filter
 open scoped BigOperators Topology
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

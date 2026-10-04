@@ -1,6 +1,11 @@
-import DeficiencyPrimePower433
-import DeficiencyFiniteMass433
-import DeficiencyMainTail433
+module
+
+public import DeficiencyPrimePower433
+public import DeficiencyFiniteMass433
+public import DeficiencyMainTail433
+
+@[expose] public section
+
 
 /-!
 # Assembly of the actual initial-deficiency asymptotic

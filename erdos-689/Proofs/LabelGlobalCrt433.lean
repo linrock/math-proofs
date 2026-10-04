@@ -1,4 +1,9 @@
-import LabelUnitCrtCard433
+module
+
+public import LabelUnitCrtCard433
+
+@[expose] public section
+
 
 /-!
 # Genuine CRT assembly for actual support-unit fixed-label selectors
@@ -11,6 +16,8 @@ selector from its independently audited local conditions.
 
 open Finset
 open scoped BigOperators
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

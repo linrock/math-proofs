@@ -1,4 +1,9 @@
-import ThreePrimeMajorArcError433
+module
+
+public import ThreePrimeMajorArcError433
+
+@[expose] public section
+
 
 /-!
 # Unconditional positivity of the actual manuscript principal arc

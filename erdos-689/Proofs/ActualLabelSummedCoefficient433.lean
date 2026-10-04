@@ -1,4 +1,9 @@
-import ActualLabelLocalCardBridge433
+module
+
+public import ActualLabelLocalCardBridge433
+
+@[expose] public section
+
 
 /-!
 # Support-uniform cancellation for the actual fixed-label selectors
@@ -11,6 +16,8 @@ product is at most one uniformly in the support, and at least one half.
 -/
 
 open scoped BigOperators
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

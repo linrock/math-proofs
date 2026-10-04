@@ -1,5 +1,10 @@
-import LabelFiberSieve433
-import AffineSieveDegreeSelectors433
+module
+
+public import LabelFiberSieve433
+public import AffineSieveDegreeSelectors433
+
+@[expose] public section
+
 
 /-!
 # Actual three-state fixed-label coefficient cancellation
@@ -12,6 +17,8 @@ factorizes the resulting coprime double-divisor sum.
 -/
 
 open scoped BigOperators
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

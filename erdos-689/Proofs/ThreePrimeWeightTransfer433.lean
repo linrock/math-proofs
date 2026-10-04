@@ -1,4 +1,9 @@
-import AnalyticBridge
+module
+
+public import AnalyticBridge
+
+@[expose] public section
+
 
 /-!
 # Exact three-prime weighted-to-unweighted transfer for Erdős problem #689

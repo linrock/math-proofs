@@ -1,4 +1,9 @@
-import Mathlib
+module
+
+public import Mathlib
+
+@[expose] public section
+
 
 /-!
 # The finite three-partite greedy-matching argument

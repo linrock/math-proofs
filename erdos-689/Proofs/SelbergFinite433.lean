@@ -1,5 +1,10 @@
-import Mathlib
-import PrimeNumberTheoremAnd.Mathlib.NumberTheory.Sieve.Selberg
+module
+
+public import Mathlib
+public import PrimeNumberTheoremAnd.Mathlib.NumberTheory.Sieve.Selberg
+
+@[expose] public section
+
 
 /-!
 # The actual finite Selberg inequality for two prime forms

@@ -1,5 +1,10 @@
-import ActualMajorArcPositivityFinal433
-import ActualMajorArcParityCRT433
+module
+
+public import ActualMajorArcPositivityFinal433
+public import ActualMajorArcParityCRT433
+
+@[expose] public section
+
 
 /-!
 # Exact parity-corrected singular model and its original coupling

@@ -1,10 +1,15 @@
-import ActualMajorArcExceptionClosure433
-import ActualMajorArcCenterReindex433
-import ActualConductorDedupCompletion433
-import ActualCenterCouplingFourier433
-import ActualMajorArcInterior433
-import ActualMajorArcParityCRT433
-import ActualMajorArcSignedTailAssembly433
+module
+
+public import ActualMajorArcExceptionClosure433
+public import ActualMajorArcCenterReindex433
+public import ActualConductorDedupCompletion433
+public import ActualCenterCouplingFourier433
+public import ActualMajorArcInterior433
+public import ActualMajorArcParityCRT433
+public import ActualMajorArcSignedTailAssembly433
+
+@[expose] public section
+
 
 /-!
 # Exact global genuine-major-center conductor strata

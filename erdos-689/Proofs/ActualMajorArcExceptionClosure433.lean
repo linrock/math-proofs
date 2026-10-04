@@ -1,5 +1,10 @@
-import ActualMajorArcGlobalErrorAssembly433
-import ActualMajorArcCorrectedModel433
+module
+
+public import ActualMajorArcGlobalErrorAssembly433
+public import ActualMajorArcCorrectedModel433
+
+@[expose] public section
+
 
 /-!
 # Exact exceptional closure for the genuine canonical major model

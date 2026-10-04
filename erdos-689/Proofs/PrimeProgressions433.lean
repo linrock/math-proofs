@@ -1,5 +1,10 @@
-import AnalyticBridge
-import ErdosProblems.Erdos730.PNTAP
+module
+
+public import AnalyticBridge
+public import ErdosProblems.Erdos730.PNTAP
+
+@[expose] public section
+
 
 /-!
 # An unconditional prime-number theorem in fixed arithmetic progressions

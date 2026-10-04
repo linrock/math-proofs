@@ -1,5 +1,10 @@
-import DeficiencyTruncation433
-import DeficiencyZeroCrt
+module
+
+public import DeficiencyTruncation433
+public import DeficiencyZeroCrt
+
+@[expose] public section
+
 
 /-!
 # Actual finite smooth-coefficient rectangles for Erdős problem #689

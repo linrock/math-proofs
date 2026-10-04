@@ -1,6 +1,11 @@
-import ActualMajorArcPrimeMinor433
-import ActualMajorArcCenterAssembly433
-import ActualRightVertexFinalCovering433
+module
+
+public import ActualMajorArcPrimeMinor433
+public import ActualMajorArcCenterAssembly433
+public import ActualRightVertexFinalCovering433
+
+@[expose] public section
+
 
 /-!
 # Original Erdős covering reduced to genuine rational-center positivity

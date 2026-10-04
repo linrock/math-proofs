@@ -1,4 +1,9 @@
-import ShiftedFareyDisjoint433
+module
+
+public import ShiftedFareyDisjoint433
+
+@[expose] public section
+
 
 /-!
 # Exact finite deduplication of translated major arcs

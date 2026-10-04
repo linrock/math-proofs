@@ -1,6 +1,11 @@
-import DeficiencyRectangle433
-import DeficiencyClassification
-import DeficiencySmoothTail433
+module
+
+public import DeficiencyRectangle433
+public import DeficiencyClassification
+public import DeficiencySmoothTail433
+
+@[expose] public section
+
 
 /-!
 # Upper-side structural decomposition of the actual initial deficiency

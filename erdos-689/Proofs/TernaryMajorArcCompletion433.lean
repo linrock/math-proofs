@@ -1,7 +1,12 @@
-import ActualCenterCouplingFourier433
-import ActualConductorDedupCompletion433
-import ActualOutsideCrtCoupling433
-import ActualSingularTailCompletion433
+module
+
+public import ActualCenterCouplingFourier433
+public import ActualConductorDedupCompletion433
+public import ActualOutsideCrtCoupling433
+public import ActualSingularTailCompletion433
+
+@[expose] public section
+
 
 /-!
 # Full original-anchor Fourier and outside-conductor coupling

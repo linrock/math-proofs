@@ -1,4 +1,9 @@
-import ActualOfficialSolution433
+module
+
+public import ActualOfficialSolution433
+
+@[expose] public section
+
 
 /-!
 # Erdős #689: proved eventual double covering

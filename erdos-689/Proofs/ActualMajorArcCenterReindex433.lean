@@ -1,5 +1,10 @@
-import ActualMajorArcInterior433
-import ActualMajorArcParityCRT433
+module
+
+public import ActualMajorArcInterior433
+public import ActualMajorArcParityCRT433
+
+@[expose] public section
+
 
 /-!
 # Exact genuine shifted-center reindexing

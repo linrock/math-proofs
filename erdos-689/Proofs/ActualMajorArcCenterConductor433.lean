@@ -1,5 +1,10 @@
-import ActualRightVertexMajorSingularAssembly433
-import ActualMajorArcPositivityFinal433
+module
+
+public import ActualRightVertexMajorSingularAssembly433
+public import ActualMajorArcPositivityFinal433
+
+@[expose] public section
+
 
 /-!
 # Genuine shifted-center conductor classification

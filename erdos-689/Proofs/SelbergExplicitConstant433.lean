@@ -1,4 +1,9 @@
-import SelbergHarmonicBlocks
+module
+
+public import SelbergHarmonicBlocks
+
+@[expose] public section
+
 
 /-!
 # Explicit moving-prime Selberg constants without Mertens estimates

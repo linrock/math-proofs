@@ -1,4 +1,9 @@
-import LabelFiberSieve433
+module
+
+public import LabelFiberSieve433
+
+@[expose] public section
+
 
 /-!
 # Removing artificial seed and coefficient assumptions from label fibers

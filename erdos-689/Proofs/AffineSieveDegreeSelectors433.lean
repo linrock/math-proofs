@@ -1,5 +1,10 @@
-import UniformLocalFactors
-import SelbergExplicitConstant433
+module
+
+public import UniformLocalFactors
+public import SelbergExplicitConstant433
+
+@[expose] public section
+
 
 /-!
 # Exact switched-support cancellation for all three two-form degree fibers
@@ -15,6 +20,8 @@ selector-restricted prime counts to these products remains separate.
 -/
 
 open scoped BigOperators
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 
@@ -79,7 +86,7 @@ theorem fixedVertexSwitchedFactor_product_le_one
     (S : Finset ℕ) (hlarge : ∀ s ∈ S, 3 < s)
     (dividesVertex : ℕ → Bool) :
     (∏ s ∈ S, fixedVertexSwitchedFactor s (dividesVertex s)) ≤ 1 := by
-  exact Finset.prod_le_one
+  exact Finset.prod_le_one₀
     (fun s hs => fixedVertexSwitchedFactor_nonneg
       s (dividesVertex s) (hlarge s hs))
     (fun s hs => fixedVertexSwitchedFactor_le_one s (dividesVertex s))
@@ -102,7 +109,7 @@ theorem fixedLabel_normalizedSwitchedFactor_product_le_one
     (S : Finset ℕ) (hlarge : ∀ s ∈ S, 3 < s)
     (exceptional : ℕ → Bool) :
     (∏ s ∈ S, normalizedSwitchedFactor s (exceptional s)) ≤ 1 := by
-  exact Finset.prod_le_one
+  exact Finset.prod_le_one₀
     (fun s hs => fixedLabel_normalizedSwitchedFactor_nonneg
       s (exceptional s) (hlarge s hs))
     (fun s hs => normalized_switched_factor_upper s (exceptional s))

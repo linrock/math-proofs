@@ -1,5 +1,10 @@
-import SelbergOptimizedBridge433
-import AffineDegreeFibers433
+module
+
+public import SelbergOptimizedBridge433
+public import AffineDegreeFibers433
+
+@[expose] public section
+
 
 /-!
 # The genuine exceptional determinant prime in the Erdős #689 degree sieve
@@ -18,6 +23,8 @@ conclusion is asserted.
 
 open Filter
 open scoped BigOperators Topology
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

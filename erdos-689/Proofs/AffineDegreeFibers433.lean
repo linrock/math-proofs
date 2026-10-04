@@ -1,4 +1,9 @@
-import ManuscriptLocal
+module
+
+public import ManuscriptLocal
+
+@[expose] public section
+
 
 /-!
 # Actual manuscript vertex fibers reduce to two-prime affine parameter counts

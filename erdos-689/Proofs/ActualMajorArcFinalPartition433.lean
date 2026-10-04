@@ -1,7 +1,12 @@
-import ActualMajorArcGlobalStrata433
-import ActualConductorDedupCompletion433
-import ActualMajorArcSignedTailAssembly433
-import ActualMajorArcCorrectedModel433
+module
+
+public import ActualMajorArcGlobalStrata433
+public import ActualConductorDedupCompletion433
+public import ActualMajorArcSignedTailAssembly433
+public import ActualMajorArcCorrectedModel433
+
+@[expose] public section
+
 
 /-!
 # Exact odd-versus-doubled original conductor partition

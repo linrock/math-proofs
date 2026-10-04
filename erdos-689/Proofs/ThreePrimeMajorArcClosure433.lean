@@ -1,5 +1,10 @@
-import TernaryFourier433
-import ThreePrimeMajorArcReduction433
+module
+
+public import TernaryFourier433
+public import ThreePrimeMajorArcReduction433
+
+@[expose] public section
+
 
 /-!
 # Genuine three-prime extraction for the #689 major-arc route

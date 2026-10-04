@@ -1,4 +1,9 @@
-import GoldbachChainMaster
+module
+
+public import GoldbachChainMaster
+
+@[expose] public section
+
 
 /-!
 # Ternary affine Fourier identities for Erdős problem 689

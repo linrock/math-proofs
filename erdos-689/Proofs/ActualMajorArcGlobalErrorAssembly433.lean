@@ -1,6 +1,11 @@
-import ActualMajorArcBoundary433
-import ActualMajorArcSupportSelectorBridge433
-import ActualLeftVertexMajorSW433
+module
+
+public import ActualMajorArcBoundary433
+public import ActualMajorArcSupportSelectorBridge433
+public import ActualLeftVertexMajorSW433
+
+@[expose] public section
+
 
 /-!
 # Global genuine deduplicated-major error assembly

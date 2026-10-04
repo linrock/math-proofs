@@ -1,4 +1,9 @@
-import ShiftedFareyDisjoint433
+module
+
+public import ShiftedFareyDisjoint433
+
+@[expose] public section
+
 
 /-!
 # Exact two-sided manuscript-strip minor arcs for Erdős #689

@@ -1,5 +1,10 @@
-import NoncircularScalarBridge433
-import ReserveDensity433
+module
+
+public import NoncircularScalarBridge433
+public import ReserveDensity433
+
+@[expose] public section
+
 
 /-!
 # Exact analytic-to-scalar capacity for the actual Erdős #689 graph

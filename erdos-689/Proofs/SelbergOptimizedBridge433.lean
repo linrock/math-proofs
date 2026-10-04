@@ -1,7 +1,12 @@
-import SelbergFinite433
-import AffineSieveRootRemainder433
-import AffineSieveExceptions433
-import SelbergCutoff433
+module
+
+public import SelbergFinite433
+public import AffineSieveRootRemainder433
+public import AffineSieveExceptions433
+public import SelbergCutoff433
+
+@[expose] public section
+
 
 /-!
 # The uncollapsed optimized Selberg error
@@ -16,6 +21,8 @@ the sharp fourth-power remainder bound needed by the affine two-form sieve.
 open Finset
 open Filter
 open scoped Topology
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

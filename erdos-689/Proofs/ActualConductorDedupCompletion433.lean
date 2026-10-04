@@ -1,7 +1,12 @@
-import ActualMajorArcCenterReduction433
-import ActualMajorArcCenterReindex433
-import ActualMajorArcGlobalErrorAssembly433
-import ActualMajorArcParityCRT433
+module
+
+public import ActualMajorArcCenterReduction433
+public import ActualMajorArcCenterReindex433
+public import ActualMajorArcGlobalErrorAssembly433
+public import ActualMajorArcParityCRT433
+
+@[expose] public section
+
 
 /-!
 # Genuine canonical widest-center conductor classification

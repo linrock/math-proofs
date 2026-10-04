@@ -1,5 +1,10 @@
-import Mathlib
-import SelbergSquarefreeComparison
+module
+
+public import Mathlib
+public import SelbergSquarefreeComparison
+
+@[expose] public section
+
 
 /-!
 # Sharp fixed-modulus normalization of the genuine two-root denominator

@@ -1,6 +1,11 @@
-import ThreePrimeMajorArcClosure433
-import ThreePrimeMajorArcError433
-import ThreePrimeLatticeLower433
+module
+
+public import ThreePrimeMajorArcClosure433
+public import ThreePrimeMajorArcError433
+public import ThreePrimeLatticeLower433
+
+@[expose] public section
+
 
 /-!
 # Exact shifted major/minor-arc assembly for Erdős #689

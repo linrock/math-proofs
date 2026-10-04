@@ -1,4 +1,9 @@
-import ThreePrimeMajorArcClosure433
+module
+
+public import ThreePrimeMajorArcClosure433
+
+@[expose] public section
+
 
 /-!
 # Quantitative central-arc Siegel--Walfisz error for Erdős #689

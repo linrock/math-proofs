@@ -1,6 +1,11 @@
-import PrimePatternMultiplicity433
-import ThreePrimeWeightTransfer433
-import TwoInputAssembly433
+module
+
+public import PrimePatternMultiplicity433
+public import ThreePrimeWeightTransfer433
+public import TwoInputAssembly433
+
+@[expose] public section
+
 
 /-!
 # Exact weighted three-prime pattern bridge for Erdős problem #689

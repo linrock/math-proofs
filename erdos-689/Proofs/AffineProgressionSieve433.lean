@@ -1,7 +1,12 @@
-import SelbergOptimizedBridge433
-import AffineSieveDegreeSelectors433
-import AffineDegreeFibers433
-import ExceptionalPrimeThree433
+module
+
+public import SelbergOptimizedBridge433
+public import AffineSieveDegreeSelectors433
+public import AffineDegreeFibers433
+public import ExceptionalPrimeThree433
+
+@[expose] public section
+
 
 /-!
 # Exact selector-preserving arithmetic-progression sieve transport
@@ -17,6 +22,8 @@ covering statement is assumed.
 open Finset
 open Filter
 open scoped BigOperators
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

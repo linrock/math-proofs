@@ -1,4 +1,9 @@
-import ActualLeftVertexMajorSupport433
+module
+
+public import ActualLeftVertexMajorSupport433
+
+@[expose] public section
+
 
 /-!
 # Exact `lcm(q,W)` decomposition of the ACTUAL switched prime cubic

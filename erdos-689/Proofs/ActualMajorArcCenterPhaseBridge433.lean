@@ -1,7 +1,12 @@
-import ActualMajorArcCenterReindex433
-import TernaryMajorArcCompletion433
-import ActualMajorArcExceptionClosure433
-import ActualMajorArcGlobalStrata433
+module
+
+public import ActualMajorArcCenterReindex433
+public import TernaryMajorArcCompletion433
+public import ActualMajorArcExceptionClosure433
+public import ActualMajorArcGlobalStrata433
+
+@[expose] public section
+
 
 /-!
 # Actual canonical-center phase and original-anchor orbit bridge

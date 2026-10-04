@@ -25,8 +25,10 @@ conjecture source, not an imported proof.
   Full license: `third_party/PNT-LICENSE.txt`.
 - principia: https://github.com/antoshashakov/Principia-Math-Solutions at `c9910942522fbd3a07c034ac57947f56df6f0f6d`, Apache-2.0.
   Full license: `third_party/PRINCIPIA-LICENSE.txt`.
-  The included file is `Proofs/GoldbachChainMaster.lean`, a Lean 4.33.1
-  compatibility port. Its analytic lemmas are reused in the Erdős 689
+  The included files are `Proofs/GoldbachCircleBase.lean`,
+  `Proofs/GoldbachSW1.lean`, `Proofs/GoldbachSW2.lean`,
+  `Proofs/GoldbachSW3.lean`, and `Proofs/GoldbachChainMaster.lean`, a Lean
+  4.35.0-rc2 compatibility port. Their analytic lemmas are reused in the Erdős 689
   three-prime development. The original and ported digests and patch are
   retained. The selected Erdős 689 result does not use the final almost-all
   Goldbach theorem.
@@ -34,9 +36,7 @@ conjecture source, not an imported proof.
 Every `Proofs/` module has an individual origin and SHA-256 binding in
 `source-manifest.json`. These are provenance hashes, not proof certificates.
 
-The included upstream Wiener source contains two lemmas with `sorry`
-placeholders: `prelim_decay_2` and `prelim_decay_3`. Neither is used by the
-completed Erdős 689 proof. Its transitive axiom audit contains only `propext`,
+The completed Erdős 689 proof's transitive axiom audit contains only `propext`,
 `Classical.choice`, and `Quot.sound`, with no `sorryAx`. Local Comparator,
 NanoDa, and Lean kernel checks have passed. [BUILD.md](BUILD.md) documents
 their scope and the remaining official Palomar verification requirements.

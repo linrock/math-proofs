@@ -1,4 +1,9 @@
-import SharpLabelCoefficientAssembly433
+module
+
+public import SharpLabelCoefficientAssembly433
+
+@[expose] public section
+
 
 /-!
 # Exact cardinalities of the genuine fixed-label local selectors
@@ -11,6 +16,8 @@ local cardinality identification under the original seed and unit hypotheses.
 
 open Finset
 open scoped BigOperators
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

@@ -1,4 +1,9 @@
-import ActualMajorArcPositivityLocalFactors433
+module
+
+public import ActualMajorArcPositivityLocalFactors433
+
+@[expose] public section
+
 
 /-!
 # Signed prime-denominator rational-center phases
@@ -16,6 +21,8 @@ integrated major-arc asymptotic are not asserted here.
 
 open Finset
 open scoped BigOperators
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

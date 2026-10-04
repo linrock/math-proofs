@@ -1,4 +1,9 @@
-import AffineProgressionSieve433
+module
+
+public import AffineProgressionSieve433
+
+@[expose] public section
+
 
 /-!
 # Actual selector-preserving normalization at the exceptional prime three
@@ -13,6 +18,8 @@ Their factor `2/3` restores the correct singular factor `3/2`.
 open Finset
 open Filter
 open scoped BigOperators
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

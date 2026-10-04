@@ -1,5 +1,10 @@
-import ActualRightVertexReduction433
-import ThreePrimeMajorArcReduction433
+module
+
+public import ActualRightVertexReduction433
+public import ThreePrimeMajorArcReduction433
+
+@[expose] public section
+
 
 /-!
 # Original Erdős #689 covering from exactly its two remaining obligations

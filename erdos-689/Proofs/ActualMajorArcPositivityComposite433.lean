@@ -1,4 +1,9 @@
-import ActualMajorArcPositivityPhase433
+module
+
+public import ActualMajorArcPositivityPhase433
+
+@[expose] public section
+
 
 /-!
 # Actual signed phases at arbitrary coprime rational denominators

@@ -1,5 +1,10 @@
-import ActualLeftVertexSelectors433
-import ActualRightVertexLeftAuditBounds433
+module
+
+public import ActualLeftVertexSelectors433
+public import ActualRightVertexLeftAuditBounds433
+
+@[expose] public section
+
 
 /-!
 # Exact fixed-left endpoint, support-unit refinement, and optimized sieve
@@ -15,6 +20,8 @@ prime three.
 
 open Finset Filter
 open scoped BigOperators Topology
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

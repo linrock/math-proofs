@@ -1,4 +1,9 @@
-import LabelUnitSelectorBridge433
+module
+
+public import LabelUnitSelectorBridge433
+
+@[expose] public section
+
 
 /-!
 # Exact local compatibility of actual unit-refined fixed-label selectors
@@ -11,6 +16,8 @@ develops the genuine local selector conditions used by CRT factorization.
 
 open Finset
 open scoped BigOperators
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

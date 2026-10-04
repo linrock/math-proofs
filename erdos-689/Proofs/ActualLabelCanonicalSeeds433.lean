@@ -1,4 +1,9 @@
-import ActualLabelSummedCoefficient433
+module
+
+public import ActualLabelSummedCoefficient433
+
+@[expose] public section
+
 
 /-!
 # Canonical seeds and assumption-free actual fixed-label coefficient sums
@@ -10,6 +15,8 @@ seed-family hypothesis from the actual selector-cardinality cancellation.
 -/
 
 open scoped BigOperators
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

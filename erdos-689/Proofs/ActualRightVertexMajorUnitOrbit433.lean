@@ -1,5 +1,10 @@
-import ActualRightVertexMajorSquarefreeSupport433
-import ActualMajorArcPositivityArchimedean433
+module
+
+public import ActualRightVertexMajorSquarefreeSupport433
+public import ActualMajorArcPositivityArchimedean433
+
+@[expose] public section
+
 
 /-!
 # Unit-filter-preserving mixed support-conductor cancellation

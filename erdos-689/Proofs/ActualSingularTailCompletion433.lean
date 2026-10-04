@@ -1,5 +1,10 @@
-import ActualMajorArcBoundary433
-import ActualMajorArcParityCRT433
+module
+
+public import ActualMajorArcBoundary433
+public import ActualMajorArcParityCRT433
+
+@[expose] public section
+
 
 /-!
 # Completion of the signed denominator-dependent singular-integral tail

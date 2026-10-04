@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2023 Arend Mellendijk. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
@@ -5,8 +7,11 @@ Author: Arend Mellendijk
 
 ! This file was ported from Lean 3 source module selberg
 -/
-import Batteries.Tactic.Lemma
-import PrimeNumberTheoremAnd.Mathlib.NumberTheory.Sieve.Basic
+public import Batteries.Tactic.Lemma
+public import PrimeNumberTheoremAnd.Mathlib.NumberTheory.Sieve.Basic
+
+@[expose] public section
+
 
 /-!
 # The Selberg Sieve
@@ -285,7 +290,7 @@ lemma eq_gcd_mul_of_dvd_of_coprime {k d m : ℕ} (hkd : k ∣ d) (hmd : Coprime 
   apply symm; rw [hr, Nat.gcd_mul_left, mul_eq_left₀ hk, Nat.gcd_comm]
   apply Coprime.coprime_dvd_right hrdvd hmd
 
-private lemma _helper {k m d : ℕ} (hkd : k ∣ d) (hk : k ∈ divisors P) (hm : m ∈ divisors P) :
+lemma _helper {k m d : ℕ} (hkd : k ∣ d) (hk : k ∈ divisors P) (hm : m ∈ divisors P) :
     k * m ∣ P ∧ k = Nat.gcd d (k * m) ∧ (k * m) ^ 2 ≤ y ↔
     (k * m) ^ 2 ≤ y ∧ Coprime m d := by
   constructor

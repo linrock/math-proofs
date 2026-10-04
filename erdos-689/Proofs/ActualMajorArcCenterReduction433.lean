@@ -1,5 +1,10 @@
-import ActualMajorArcCenterConductor433
-import ActualMajorArcBoundary433
+module
+
+public import ActualMajorArcCenterConductor433
+public import ActualMajorArcBoundary433
+
+@[expose] public section
+
 
 /-!
 # Exact original shifted-center conductor and widest-anchor reduction

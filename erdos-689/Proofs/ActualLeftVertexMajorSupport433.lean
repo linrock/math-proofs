@@ -1,5 +1,10 @@
-import ActualLeftVertexMajorOnlyCovering433
-import ActualMajorArcPositivityComposite433
+module
+
+public import ActualLeftVertexMajorOnlyCovering433
+public import ActualMajorArcPositivityComposite433
+
+@[expose] public section
+
 
 /-!
 # Actual switched-support major-arc phases and local singular factors
@@ -17,6 +22,8 @@ factor.  This does not assert the remaining integrated major-arc asymptotic.
 
 open Finset
 open scoped BigOperators
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

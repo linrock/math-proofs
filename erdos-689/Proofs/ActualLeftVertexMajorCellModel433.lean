@@ -1,4 +1,9 @@
-import ActualLeftVertexMajorIntegration433
+module
+
+public import ActualLeftVertexMajorIntegration433
+
+@[expose] public section
+
 
 /-!
 # Genuine prime-filtered `lcm(q,W)` major-arc residue-cell models
@@ -15,6 +20,8 @@ center; its numerator is correctly rescaled from `q` to `lcm(q,W)`.
 
 open Filter Finset
 open scoped BigOperators Topology
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

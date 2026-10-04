@@ -1,4 +1,9 @@
-import ActualRightVertexSelectors433
+module
+
+public import ActualRightVertexSelectors433
+
+@[expose] public section
+
 
 /-!
 # Genuine support-uniform fixed-right selector coefficient cancellation
@@ -12,6 +17,8 @@ proves the complete actual coefficient sum is at most one.
 -/
 
 open scoped BigOperators
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

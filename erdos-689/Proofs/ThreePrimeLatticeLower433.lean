@@ -1,4 +1,9 @@
-import TernaryFourier433
+module
+
+public import TernaryFourier433
+
+@[expose] public section
+
 
 /-!
 # Quantitative archimedean lattice mass for the manuscript ternary forms

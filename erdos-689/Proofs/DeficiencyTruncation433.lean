@@ -1,5 +1,10 @@
-import DeficiencySmooth433
-import DeficiencyCoefficients
+module
+
+public import DeficiencySmooth433
+public import DeficiencyCoefficients
+
+@[expose] public section
+
 
 /-!
 # Rectangular smooth-core truncations for Erdős problem #689

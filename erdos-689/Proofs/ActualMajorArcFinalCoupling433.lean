@@ -1,13 +1,18 @@
-import ActualMajorArcSignedTailAssembly433
-import ActualMajorArcGlobalErrorAssembly433
-import ActualMajorArcExceptionClosure433
-import ActualMajorArcCenterReindex433
-import ActualConductorDedupCompletion433
-import TernaryMajorArcCompletion433
-import ActualMajorArcGlobalStrata433
-import ActualMajorArcFinalPartition433
-import ActualMajorArcCenterPhaseBridge433
-import ActualMajorArcFinalFourZero433
+module
+
+public import ActualMajorArcSignedTailAssembly433
+public import ActualMajorArcGlobalErrorAssembly433
+public import ActualMajorArcExceptionClosure433
+public import ActualMajorArcCenterReindex433
+public import ActualConductorDedupCompletion433
+public import TernaryMajorArcCompletion433
+public import ActualMajorArcGlobalStrata433
+public import ActualMajorArcFinalPartition433
+public import ActualMajorArcCenterPhaseBridge433
+public import ActualMajorArcFinalFourZero433
+
+@[expose] public section
+
 
 /-!
 # Final genuine-center coupling for the original Erdős #689 statement

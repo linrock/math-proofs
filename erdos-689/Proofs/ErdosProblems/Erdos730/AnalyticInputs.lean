@@ -1,7 +1,12 @@
+module
+
 /- leanprover/lean4:v4.33.0  mathlib db584cd6 (master, the commit the v4.33.0 tag is cut from) -/
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.LSeries.PrimesInAP
-import Mathlib.NumberTheory.SumPrimeReciprocals
+public import Mathlib.NumberTheory.Chebyshev
+public import Mathlib.NumberTheory.LSeries.PrimesInAP
+public import Mathlib.NumberTheory.SumPrimeReciprocals
+
+@[expose] public section
+
 
 /-!
 # Erdős 730: exact analytic dependency surface

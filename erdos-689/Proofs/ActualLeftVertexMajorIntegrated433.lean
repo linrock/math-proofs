@@ -1,5 +1,10 @@
-import ActualLeftVertexMajorExceptional433
-import ActualMajorArcPositivityTail433
+module
+
+public import ActualLeftVertexMajorExceptional433
+public import ActualMajorArcPositivityTail433
+
+@[expose] public section
+
 
 /-!
 # Actual deduplicated-center integration and complete error bookkeeping

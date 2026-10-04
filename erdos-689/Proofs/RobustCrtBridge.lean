@@ -1,8 +1,13 @@
-import Mathlib
-import AnalyticBridge
-import RobustCrtDensity
-import RobustSupportDensity
-import UniformLocalFactors
+module
+
+public import Mathlib
+public import AnalyticBridge
+public import RobustCrtDensity
+public import RobustSupportDensity
+public import UniformLocalFactors
+
+@[expose] public section
+
 
 open Finset
 open scoped BigOperators

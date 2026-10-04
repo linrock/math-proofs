@@ -1,4 +1,9 @@
-import ActualRightVertexSelectors433
+module
+
+public import ActualRightVertexSelectors433
+
+@[expose] public section
+
 
 /-!
 # Genuine fixed-right endpoint and support-unit refinement
@@ -12,6 +17,8 @@ or artificial selector equality is assumed.
 
 open Finset Filter
 open scoped BigOperators Topology
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

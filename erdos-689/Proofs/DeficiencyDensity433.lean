@@ -1,5 +1,10 @@
-import ReserveDensity433
-import ManuscriptLocal
+module
+
+public import ReserveDensity433
+public import ManuscriptLocal
+
+@[expose] public section
+
 
 /-!
 # Fixed smooth-core strata inside the actual initial deficiency

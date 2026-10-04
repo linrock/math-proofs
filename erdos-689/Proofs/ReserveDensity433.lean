@@ -1,4 +1,9 @@
-import PrimeProgressions433
+module
+
+public import PrimeProgressions433
+
+@[expose] public section
+
 
 /-!
 # Exact robust-residue periodicity and unconditional fixed-support prime density

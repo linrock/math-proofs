@@ -1,5 +1,10 @@
-import DeficiencyClassification
-import DeficiencySmooth433
+module
+
+public import DeficiencyClassification
+public import DeficiencySmooth433
+
+@[expose] public section
+
 
 /-!
 # Fixed-support smooth exceptional targets for Erdős problem #689

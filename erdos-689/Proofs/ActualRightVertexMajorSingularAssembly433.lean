@@ -1,5 +1,10 @@
-import ActualRightVertexMajorUnitOrbit433
-import ActualLeftVertexMajorExceptional433
+module
+
+public import ActualRightVertexMajorUnitOrbit433
+public import ActualLeftVertexMajorExceptional433
+
+@[expose] public section
+
 
 /-!
 # Genuine three-cell singular-phase assembly at mixed conductors

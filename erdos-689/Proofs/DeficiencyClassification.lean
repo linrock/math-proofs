@@ -1,4 +1,9 @@
-import AnalyticBridge
+module
+
+public import AnalyticBridge
+
+@[expose] public section
+
 
 /-!
 # Exact structural classification of genuinely deficient initial targets

@@ -1,5 +1,10 @@
-import ActualMajorArcWeightedBridge433
-import PrincipalPrimeOnly433
+module
+
+public import ActualMajorArcWeightedBridge433
+public import PrincipalPrimeOnly433
+
+@[expose] public section
+
 
 /-!
 # Actual prime-only shifted minor arcs for the original manuscript patterns

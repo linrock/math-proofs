@@ -1,4 +1,9 @@
-import Mathlib
+module
+
+public import Mathlib
+
+@[expose] public section
+
 
 /-!
 # Uniform switched-prime local factors
@@ -64,7 +69,7 @@ theorem finite_inverse_square_product_lower (T : Finset ℕ)
     rw [Finset.prod_Ico_eq_prod_range]
     simpa [Nat.add_comm] using shifted_inverse_square_product_lower (N - 2)
   apply hfull.trans
-  apply Finset.prod_le_prod_of_subset_of_le_one hsubset
+  apply Finset.prod_le_prod_of_subset_of_le_one₀ hsubset
   · intro j hj
     exact inverse_square_factor_nonnegative (Finset.mem_Ico.mp hj).1
   · intro j _ _
@@ -116,7 +121,7 @@ theorem switched_prime_euler_product_lower (S : Finset ℕ)
   have hcomparison :
       (∏ s ∈ S, (1 - 1 / ((s / 2 : ℕ) : ℝ) ^ 2)) ≤
         ∏ s ∈ S, (1 - 3 / ((s : ℝ) - 1) ^ 2) := by
-    apply Finset.prod_le_prod
+    apply Finset.prod_le_prod₀
     · intro s hs
       exact inverse_square_factor_nonnegative
         (switched_prime_half_index (hsupport s hs).1 (hsupport s hs).2).2
@@ -182,7 +187,7 @@ theorem normalized_switched_selector_product_lower (S : Finset ℕ)
     (1 / 2 : ℝ) ≤
       ∏ s ∈ S, normalizedSwitchedFactor s (exceptional s) := by
   apply (switched_prime_euler_product_lower S hsupport).trans
-  apply Finset.prod_le_prod
+  apply Finset.prod_le_prod₀
   · intro s hs
     have hcomparison := switched_local_factor_dominates_half_index
       (hsupport s hs).1 (hsupport s hs).2

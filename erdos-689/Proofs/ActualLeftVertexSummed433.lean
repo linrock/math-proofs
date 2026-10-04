@@ -1,4 +1,9 @@
-import ActualLeftVertexDegree433
+module
+
+public import ActualLeftVertexDegree433
+
+@[expose] public section
+
 
 /-!
 # Complete coefficient-summed finite sieve for genuine fixed-left vertices
@@ -10,6 +15,8 @@ incomplete-block, small-prime, and support-prime error remains explicit.
 -/
 
 open scoped BigOperators
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

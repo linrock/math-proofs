@@ -1,4 +1,9 @@
-import AffineProgressionSieve433
+module
+
+public import AffineProgressionSieve433
+
+@[expose] public section
+
 
 /-!
 # Exact fixed-label manuscript fibers and their affine prime sieve
@@ -12,6 +17,8 @@ the transformed parameter.
 
 open Finset
 open scoped BigOperators
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

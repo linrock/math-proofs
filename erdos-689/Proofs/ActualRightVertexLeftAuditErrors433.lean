@@ -1,4 +1,9 @@
-import ActualRightVertexLeftAuditBounds433
+module
+
+public import ActualRightVertexLeftAuditBounds433
+
+@[expose] public section
+
 
 /-!
 # Uniform complete moving-determinant fixed-left Selberg errors

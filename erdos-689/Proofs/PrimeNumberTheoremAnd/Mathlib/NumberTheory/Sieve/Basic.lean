@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2023 Arend Mellendijk. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
@@ -5,8 +7,11 @@ Author: Arend Mellendijk
 
 ! This file was ported from Lean 3 source module sieve
 -/
-import Mathlib.NumberTheory.SelbergSieve
-import PrimeNumberTheoremAnd.Mathlib.NumberTheory.Sieve.AuxResults
+public import Mathlib.NumberTheory.SelbergSieve
+public import PrimeNumberTheoremAnd.Mathlib.NumberTheory.Sieve.AuxResults
+
+@[expose] public section
+
 
 noncomputable section
 
@@ -160,7 +165,7 @@ def lambdaSquared (weights : ℕ → ℝ) : ℕ → ℝ := fun d =>
   ∑ d1 ∈ d.divisors, ∑ d2 ∈ d.divisors,
     if d = Nat.lcm d1 d2 then weights d1 * weights d2 else 0
 
-private theorem lambdaSquared_eq_zero_of_support_wlog {w : ℕ → ℝ} {y : ℝ}
+theorem lambdaSquared_eq_zero_of_support_wlog {w : ℕ → ℝ} {y : ℝ}
     (hw : ∀ (d : ℕ), ¬d ^ 2 ≤ y → w d = 0)
     {d : ℕ} (hd : ¬↑d ≤ y) (d1 : ℕ) (d2 : ℕ) (h : d = Nat.lcm d1 d2) (hle : d1 ≤ d2) :
     w d1 * w d2 = 0 := by

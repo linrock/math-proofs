@@ -1,4 +1,9 @@
-import ActualRightVertexSummed433
+module
+
+public import ActualRightVertexSummed433
+
+@[expose] public section
+
 
 /-!
 # Toward the unconditional genuine fixed-right manuscript graph degree
@@ -11,6 +16,8 @@ on the original `n/log(n)^2` scale.
 
 open Filter
 open scoped BigOperators Topology
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

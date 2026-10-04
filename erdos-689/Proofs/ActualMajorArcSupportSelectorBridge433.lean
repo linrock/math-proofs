@@ -1,5 +1,10 @@
-import ActualRightVertexMajorSingularAssembly433
-import ActualLabelCanonicalSeeds433
+module
+
+public import ActualRightVertexMajorSingularAssembly433
+public import ActualLabelCanonicalSeeds433
+
+@[expose] public section
+
 
 /-!
 # Exact support-compatible major-arc selector bridge
@@ -13,6 +18,8 @@ the indispensable coefficient compensation.
 
 open Finset
 open scoped BigOperators
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

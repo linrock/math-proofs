@@ -42,12 +42,12 @@
     {
       "id": "https://github.com/google-deepmind/formal-conjectures/blob/f19cf7f60d9bc650ff58462f540e236caf3a6a67/FormalConjectures/ErdosProblems/689.lean",
       "relationship": "other",
-      "note": "Challenge and Solution restate the right-hand covering proposition of erdos_689 at this pinned revision in Lean 4.33.1 syntax. Solution proves that proposition. The upstream declaration is an unproved formalized conjecture. No Formal Conjectures proof or source module is imported."
+      "note": "Challenge and Solution restate the right-hand covering proposition of erdos_689 at this pinned revision in Lean 4.35.0-rc2 syntax. Solution proves that proposition. The upstream declaration is an unproved formalized conjecture. No Formal Conjectures proof or source module is imported."
     },
     {
       "id": "https://github.com/antoshashakov/Principia-Math-Solutions/tree/c9910942522fbd3a07c034ac57947f56df6f0f6d/erdos1054",
       "relationship": "builds-on",
-      "note": "This project includes a Lean 4.33.1 compatibility port of erdos1054/masters/GoldbachChainMaster.lean at this pinned revision. Its analytic Fourier, minor-arc, prime-power, and arithmetic lemmas are reused in the Erdős 689 three-prime development. Original and ported hashes and the patch are recorded in source-manifest.json."
+      "note": "This project includes a Lean 4.35.0-rc2 compatibility port of erdos1054/masters/GoldbachChainMaster.lean (split into GoldbachCircleBase, GoldbachSW1, GoldbachSW2, GoldbachSW3, and GoldbachChainMaster) at this pinned revision. Its analytic Fourier, minor-arc, prime-power, and arithmetic lemmas are reused in the Erdős 689 three-prime development. Original and ported hashes and the patch are recorded in source-manifest.json."
     }
   ],
   "classification": {

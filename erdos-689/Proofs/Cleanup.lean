@@ -1,5 +1,10 @@
-import Mathlib
-import Structural
+module
+
+public import Mathlib
+public import Structural
+
+@[expose] public section
+
 
 /-!
 # Simultaneous safe cleanup by induction on an actual prime reserve

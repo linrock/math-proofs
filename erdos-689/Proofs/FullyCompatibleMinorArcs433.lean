@@ -1,4 +1,9 @@
-import CompatibleLogMinorArcs433
+module
+
+public import CompatibleLogMinorArcs433
+
+@[expose] public section
+
 
 /-!
 # Major-width-compatible shifted circle-method cutoffs for Erdős #689

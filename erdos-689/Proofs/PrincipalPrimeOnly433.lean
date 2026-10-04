@@ -1,4 +1,9 @@
-import PrincipalArcPositivity433
+module
+
+public import PrincipalArcPositivity433
+
+@[expose] public section
+
 
 /-!
 # Removing proper prime powers inside the actual #689 principal arc

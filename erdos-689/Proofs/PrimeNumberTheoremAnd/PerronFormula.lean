@@ -1,9 +1,14 @@
-import Architect
-import Mathlib.Analysis.Calculus.ContDiff.Basic
-import Mathlib.MeasureTheory.Integral.Asymptotics
-import PrimeNumberTheoremAnd.Mathlib.Analysis.Asymptotics.Uniformly
-import PrimeNumberTheoremAnd.ResidueCalcOnRectangles
-import PrimeNumberTheoremAnd.Wiener
+module
+
+public import Architect
+public import Mathlib.Analysis.Calculus.ContDiff.Basic
+public import Mathlib.MeasureTheory.Integral.Asymptotics
+public import PrimeNumberTheoremAnd.Mathlib.Analysis.Asymptotics.Uniformly
+public import PrimeNumberTheoremAnd.ResidueCalcOnRectangles
+public import PrimeNumberTheoremAnd.Wiener
+
+@[expose] public section
+
 
 set_option lang.lemmaCmd true
 
@@ -522,7 +527,7 @@ lemma vertIntBound (xpos : 0 < x) (σ_gt_one : 1 < σ) :
       simp_rw [integral_undef this, le_rfl]
     rw [Pi.le_def]
     intro t
-    gcongr <;> apply sqrt_le_sqrt
+    gcongr <;> (rw [Complex.norm_def]; apply sqrt_le_sqrt)
     · simp_rw [normSq_add_mul_I, add_le_add_iff_right, one_le_pow₀ σ_gt_one.le]
     · rw [add_right_comm, ← ofReal_one, ← ofReal_add, normSq_add_mul_I, add_le_add_iff_right]
       nlinarith
@@ -576,7 +581,7 @@ lemma vertIntBoundLeft (xpos : 0 < x) :
       simp_rw [integral_undef this, le_rfl]
     rw [Pi.le_def]
     intro t
-    gcongr <;> apply sqrt_le_sqrt
+    gcongr <;> (rw [Complex.norm_def]; apply sqrt_le_sqrt)
     · rw [normSq_add_mul_I, add_le_add_iff_right]; ring_nf; nlinarith
     · rw [(by push_cast; ring : σ + t * I + 1 = ofReal (σ + 1) + t * I),
         normSq_add_mul_I, add_le_add_iff_right]; ring_nf; nlinarith
@@ -622,7 +627,7 @@ theorem isTheta_uniformlyOn_uIoc {x : ℝ} (xpos : 0 < x) (σ' σ'' : ℝ) :
     (fun (σ, (y : ℝ)) ↦ f x (σ + y * I)) =Θ[𝓟 (uIoc σ' σ'') ×ˢ (atBot ⊔ atTop)]
     fun (_, y) ↦ 1 / y^2 := by
   refine (𝓟 (uIoc σ' σ'')).eq_or_neBot.casesOn (fun hbot ↦ by simp [hbot]) (fun _ ↦ ?_)
-  have : NeBot (atBot (α := ℝ) ⊔ atTop) := sup_neBot.mpr (Or.inl atBot_neBot)
+  haveI : NeBot (atBot (α := ℝ) ⊔ atTop) := sup_neBot.mpr (Or.inl atBot_neBot)
   exact (isTheta_uniformlyOn_uIcc xpos σ' σ'').mono (by simpa using! Ioc_subset_Icc_self)
 
 lemma isTheta (xpos : 0 < x) :

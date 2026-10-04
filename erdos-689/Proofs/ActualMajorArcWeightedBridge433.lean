@@ -1,4 +1,9 @@
-import AllScaleRealStripLattice433
+module
+
+public import AllScaleRealStripLattice433
+
+@[expose] public section
+
 
 /-!
 # Exact manuscript-pattern interface for the actual three-prime major arcs

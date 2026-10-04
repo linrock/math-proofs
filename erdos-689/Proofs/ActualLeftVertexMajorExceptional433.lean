@@ -1,6 +1,11 @@
-import ActualLeftVertexMajorFullApprox433
-import ActualMajorArcPositivityArchimedean433
-import ActualRightVertexMajorMixedConductor433
+module
+
+public import ActualLeftVertexMajorFullApprox433
+public import ActualMajorArcPositivityArchimedean433
+public import ActualRightVertexMajorMixedConductor433
+
+@[expose] public section
+
 
 /-!
 # The full signed exceptional-cell complement
@@ -15,6 +20,8 @@ retained signed exceptional cubic consequently loses an entire factor of
 
 open Filter Finset MeasureTheory
 open scoped BigOperators Topology
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

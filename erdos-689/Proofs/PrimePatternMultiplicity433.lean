@@ -1,4 +1,9 @@
-import ManuscriptLocal
+module
+
+public import ManuscriptLocal
+
+@[expose] public section
+
 
 /-!
 # Multiplicity-free transfer from three-prime patterns to manuscript edges

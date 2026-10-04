@@ -1,7 +1,12 @@
-import ActualMajorArcGlobalErrorAssembly433
-import ActualMajorArcCenterReduction433
-import ActualMajorArcParityCRT433
-import ActualMajorArcPositivityFinal433
+module
+
+public import ActualMajorArcGlobalErrorAssembly433
+public import ActualMajorArcCenterReduction433
+public import ActualMajorArcParityCRT433
+public import ActualMajorArcPositivityFinal433
+
+@[expose] public section
+
 
 /-!
 # Exact Fourier reduction of genuine deduplicated major centers

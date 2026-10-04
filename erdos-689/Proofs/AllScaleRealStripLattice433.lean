@@ -1,5 +1,10 @@
-import ExactStripMinorArcs433
-import ThreePrimeLatticeLower433
+module
+
+public import ExactStripMinorArcs433
+public import ThreePrimeLatticeLower433
+
+@[expose] public section
+
 
 /-!
 # All-scale, arbitrary-real manuscript-strip archimedean mass

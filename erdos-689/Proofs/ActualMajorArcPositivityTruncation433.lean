@@ -1,4 +1,9 @@
-import ActualMajorArcPositivityComposite433
+module
+
+public import ActualMajorArcPositivityComposite433
+
+@[expose] public section
+
 
 /-!
 # Sharp truncation of the actual generic rational-center singular series

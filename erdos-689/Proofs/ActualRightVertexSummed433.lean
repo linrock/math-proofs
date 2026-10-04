@@ -1,5 +1,10 @@
-import ActualRightVertexDegree433
-import ActualRightCoefficientAssembly433
+module
+
+public import ActualRightVertexDegree433
+public import ActualRightCoefficientAssembly433
+
+@[expose] public section
+
 
 /-!
 # Complete coefficient-summed finite Selberg bound for actual right vertices
@@ -12,6 +17,8 @@ block, small-prime, and support-prime error is retained explicitly.
 -/
 
 open scoped BigOperators
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

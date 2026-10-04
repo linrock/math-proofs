@@ -1,4 +1,9 @@
-import MatchingAssembly
+module
+
+public import MatchingAssembly
+
+@[expose] public section
+
 
 /-!
 # Concrete local obligations for the manuscript hypergraph

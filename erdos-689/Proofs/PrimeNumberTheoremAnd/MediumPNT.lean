@@ -1,12 +1,17 @@
-import Architect
-import PrimeNumberTheoremAnd.MellinCalculus
-import PrimeNumberTheoremAnd.ZetaBounds
-import PrimeNumberTheoremAnd.ZetaConj
-import PrimeNumberTheoremAnd.SmoothExistence
-import Mathlib.Algebra.Group.Support
-import Mathlib.Analysis.MellinInversion
-import Mathlib.Analysis.Real.Pi.Bounds
-import Mathlib.NumberTheory.Chebyshev
+module
+
+public import Architect
+public import PrimeNumberTheoremAnd.MellinCalculus
+public import PrimeNumberTheoremAnd.ZetaBounds
+public import PrimeNumberTheoremAnd.ZetaConj
+public import PrimeNumberTheoremAnd.SmoothExistence
+public import Mathlib.Algebra.Group.Support
+public import Mathlib.Analysis.MellinInversion
+public import Mathlib.Analysis.Real.Pi.Bounds
+public import Mathlib.NumberTheory.Chebyshev
+
+@[expose] public section
+
 
 set_option lang.lemmaCmd true
 
@@ -211,7 +216,7 @@ lemma SmoothedChebyshevDirichlet_aux_tsum_integral {SmoothingF : ℝ → ℝ}
       exact (Smooth1MellinDifferentiable diffSmoothingF suppSmoothingF ⟨εpos, ε_lt_one⟩
         SmoothingFpos mass_one hz).continuousAt
     · fun_prop
-    · simp only [mapsTo_univ_iff, mem_ofPred_eq, add_re, ofReal_re, mul_re, I_re, mul_zero,
+    · simp only [mapsTo_univ_iff, mem_setOf_eq, add_re, ofReal_re, mul_re, I_re, mul_zero,
         ofReal_im, I_im, mul_one, sub_self, add_zero, forall_const]; linarith
 
   have abs_two : ∀ a : ℝ, ∀ i : ℕ, ‖(i : ℂ) ^ ((σ : ℂ) + ↑a * I)‖₊ = i ^ σ := by
@@ -1671,14 +1676,14 @@ theorem integral_evaluation (x : ℝ) (T : ℝ) (T_large : 3 < T) :
     refine mem_inf_of_left ?_
     · refine Filter.mem_sets.mp ?_
       · have U :  {x_1 : ℝ | x_1 ≠ 0} ⊆ {x_1 : ℝ | (‖x + x_1 * I‖ ^ 2)⁻¹ ≤ (x_1 ^ 2)⁻¹}  := by
-          rw [ofPred_subset_ofPred]
+          rw [Set.setOf_subset_setOf]
           intro t hyp_t
           exact T0 x t hyp_t
         have U1 : {x_1 : ℝ | x_1 ≠ 0} = (univ \ {0}) := by
           apply Set.ext
           intro x
-          simp_all only [ne_eq, ofPred_subset_ofPred, not_false_eq_true, implies_true,
-            mem_ofPred_eq, Set.mem_sdiff, mem_univ, mem_singleton_iff, true_and]
+          simp_all only [ne_eq, setOf_subset_setOf, not_false_eq_true, implies_true,
+            mem_setOf_eq, Set.mem_sdiff, mem_univ, mem_singleton_iff, true_and]
 
         rw [U1] at U
         exact ae_volume_of_contains_compl_singleton_zero _ U
@@ -2263,9 +2268,7 @@ lemma I2Bound {SmoothingF : ℝ → ℝ}
           SmoothedChebyshevIntegrand SmoothingF ε X (↑σ - ↑T * I)‖ ≤
           C' * X / (ε * T) * |1 + (Real.log X)⁻¹ - σ₁| := by
         refine intervalIntegral.norm_integral_le_of_norm_le_const ?_
-        convert this using 3
-        apply uIoc_of_le
-        exact interval_length_nonneg
+        rwa [uIoc_of_le interval_length_nonneg]
       _ ≤ C' * X / (ε * T) * 2 := by
         apply mul_le_mul_of_nonneg_left
         · rw[abs_of_nonneg (sub_nonneg.mpr interval_length_nonneg)]
@@ -2729,8 +2732,9 @@ theorem I3Bound {SmoothingF : ℝ → ℝ}
     have : |t| = -t := by
       refine abs_of_neg ?_
       exact ht.2.trans (by norm_num)
-    rw [← Set.neg_mem_Ioo_iff, mem_Ioo] at ht
-    rwa [this]
+    rw [mem_Ioo] at ht
+    rw [this]
+    exact ⟨by linarith, by linarith⟩
 
   have logt9gt1_bounds :
       ∀ t, t ∈ Set.Icc (-T) (-3) → Real.log |t| ^ 9 > 1 := by
@@ -3626,7 +3630,7 @@ lemma MellinOfSmooth1cExplicit {ν : ℝ → ℝ} (diffν : ContDiff ℝ 1 ν)
   rcases hc with ⟨ε₀, ε₀pos, h⟩
   refine ⟨ε₀, c, ε₀pos, cpos, fun ε hε ↦ ?_⟩
   specialize h hε
-  rw [mem_ofPred_eq, id_eq, norm_of_nonneg hε.1.le] at h
+  rw [mem_setOf_eq, id_eq, norm_of_nonneg hε.1.le] at h
   exact h
 
 open Filter Topology

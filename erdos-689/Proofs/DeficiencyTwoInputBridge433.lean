@@ -1,5 +1,10 @@
-import AnalyticScalarCapacity433
-import DeficiencyAsymptotic433
+module
+
+public import AnalyticScalarCapacity433
+public import DeficiencyAsymptotic433
+
+@[expose] public section
+
 
 /-!
 # The two remaining genuine analytic inputs for Erdős problem #689

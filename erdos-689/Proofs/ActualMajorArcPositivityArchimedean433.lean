@@ -1,5 +1,10 @@
-import ActualMajorArcPositivityError433
-import ActualLeftVertexMajorCubicModel433
+module
+
+public import ActualMajorArcPositivityError433
+public import ActualLeftVertexMajorCubicModel433
+
+@[expose] public section
+
 
 /-!
 # The genuine edge-bounded archimedean singular integral

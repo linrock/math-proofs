@@ -1,5 +1,10 @@
-import ActualLabelCanonicalSieve433
-import LabelFiberClosure433
+module
+
+public import ActualLabelCanonicalSieve433
+public import LabelFiberClosure433
+
+@[expose] public section
+
 
 /-!
 # Full actual fixed-label graph degree bound

@@ -1,4 +1,9 @@
-import ActualMajorArcCenterReduction433
+module
+
+public import ActualMajorArcCenterReduction433
+
+@[expose] public section
+
 
 /-!
 # Genuine interior-center geometry and signed singular tails

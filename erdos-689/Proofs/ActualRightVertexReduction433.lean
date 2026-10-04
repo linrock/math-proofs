@@ -1,4 +1,9 @@
-import ActualRightVertexFinal433
+module
+
+public import ActualRightVertexFinal433
+
+@[expose] public section
+
 
 /-!
 # Exact reduction of the complete manuscript degree bound to fixed left vertices

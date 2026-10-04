@@ -1,7 +1,7 @@
 # Build and verification for Erdős 689
 
-The exact toolchain is `leanprover/lean4:v4.33.1`. Mathlib is pinned to
-`0df444a360eaa60ab8c11dca51a86af692955474` together with its complete
+The exact toolchain is `leanprover/lean4:v4.35.0-rc2`. Mathlib is pinned to
+`065356127b1dc0016f66b7283ce0ce2c4055aa55` together with its complete
 dependency manifest.
 
 From the `erdos-689/` directory, fetch the pinned dependencies and build the
@@ -26,9 +26,8 @@ axioms of `Erdos689.Palomar.eventual_double_cover`. The expected output is:
 ```
 
 The final command prints the audit even when Lake reuses an existing build.
-Warnings about `sorry` in `Challenge.lean` and two unused lemmas in
-`Proofs/PrimeNumberTheoremAnd/Wiener.lean` are expected. The completed proof
-does not depend on those placeholders. Its axiom output must not contain
+Warnings about `sorry` in `Challenge.lean` are expected. The completed proof
+does not depend on that placeholder. Its axiom output must not contain
 `sorryAx`.
 
 ## Verification status
@@ -38,6 +37,3 @@ and its endpoint axiom audit passed. Comparator confirmed the Challenge/Solution
 statement correspondence and permitted axioms. Both Lean and NanoDa accepted the
 exported proof. That check reused existing project build outputs.
 
-The local checks used Lean 4.33.1 compatibility adaptations to Comparator and
-lean4export, with unmodified NanoDa, and ran without Linux isolation.
-Palomar's hosted verification and editorial review remain pending.

@@ -1,4 +1,9 @@
-import ActualLabelFixedModulus433
+module
+
+public import ActualLabelFixedModulus433
+
+@[expose] public section
+
 
 /-!
 # Canonical actual sieve primes for all moving fixed-label graph fibers

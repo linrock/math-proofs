@@ -1,6 +1,11 @@
-import ThreePrimePatternBridge433
-import AffineDegreeFibers433
-import UniformLocalFactors
+module
+
+public import ThreePrimePatternBridge433
+public import AffineDegreeFibers433
+public import UniformLocalFactors
+
+@[expose] public section
+
 
 /-!
 # Exact residue-by-residue major-arc target for the three-prime estimate

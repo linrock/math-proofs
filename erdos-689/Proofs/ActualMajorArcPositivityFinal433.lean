@@ -1,8 +1,13 @@
-import ActualMajorArcPositivityTail433
-import ActualRightVertexMajorUnitOrbit433
-import ActualLeftVertexMajorExceptional433
-import ActualLeftVertexMajorIntegrated433
-import ActualFinalCenterReduction433
+module
+
+public import ActualMajorArcPositivityTail433
+public import ActualRightVertexMajorUnitOrbit433
+public import ActualLeftVertexMajorExceptional433
+public import ActualLeftVertexMajorIntegrated433
+public import ActualFinalCenterReduction433
+
+@[expose] public section
+
 
 /-!
 # Exact final major-arc singular-model reduction for Erdős #689

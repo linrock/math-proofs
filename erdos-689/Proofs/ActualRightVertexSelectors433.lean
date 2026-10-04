@@ -1,4 +1,9 @@
-import ActualLabelAllPairTransfer433
+module
+
+public import ActualLabelAllPairTransfer433
+
+@[expose] public section
+
 
 /-!
 # Actual support-unit selectors for fixed-right manuscript vertices
@@ -14,6 +19,8 @@ actual Chinese-remainder product.  No graph-degree estimate is assumed.
 
 open Finset
 open scoped BigOperators
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

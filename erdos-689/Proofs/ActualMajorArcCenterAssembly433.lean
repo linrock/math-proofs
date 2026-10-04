@@ -1,5 +1,10 @@
-import ActualMajorArcWeightedBridge433
-import ShiftedMajorArcDedup433
+module
+
+public import ActualMajorArcWeightedBridge433
+public import ShiftedMajorArcDedup433
+
+@[expose] public section
+
 
 /-!
 # Exact original weighted-pattern assembly over deduplicated major centers

@@ -1,6 +1,11 @@
-import ActualMajorArcParityCRT433
-import ActualMajorArcSupportSelectorBridge433
-import ActualMajorArcPositivityComposite433
+module
+
+public import ActualMajorArcParityCRT433
+public import ActualMajorArcSupportSelectorBridge433
+public import ActualMajorArcPositivityComposite433
+
+@[expose] public section
+
 
 /-!
 # Exact outside-conductor CRT coupling for the genuine major-arc cells

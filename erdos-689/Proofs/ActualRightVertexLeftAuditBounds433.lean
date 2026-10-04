@@ -1,4 +1,9 @@
-import ActualRightVertexLeftAudit433
+module
+
+public import ActualRightVertexLeftAudit433
+
+@[expose] public section
+
 
 /-!
 # Canonical moving fixed-left sieve and its genuine uniform leading constant

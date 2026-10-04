@@ -1,4 +1,9 @@
-import ActualLeftVertexMajorIntegrated433
+module
+
+public import ActualLeftVertexMajorIntegrated433
+
+@[expose] public section
+
 
 /-!
 # Fully integrated actual three-form Siegel--Walfisz error

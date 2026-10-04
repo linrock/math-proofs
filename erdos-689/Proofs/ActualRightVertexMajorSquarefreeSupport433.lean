@@ -1,5 +1,10 @@
-import ActualRightVertexMajorMixedConductor433
-import ActualLeftVertexMajorFullApprox433
+module
+
+public import ActualRightVertexMajorMixedConductor433
+public import ActualLeftVertexMajorFullApprox433
+
+@[expose] public section
+
 
 /-!
 # Exact signed support-shift projection and the parity conductor

@@ -1,5 +1,10 @@
-import ActualLabelSieveMainTerm433
-import ExceptionalSelectorAssembly433
+module
+
+public import ActualLabelSieveMainTerm433
+public import ExceptionalSelectorAssembly433
+
+@[expose] public section
+
 
 /-!
 # Fixed-modulus leading constant for actual fixed-label graph fibers

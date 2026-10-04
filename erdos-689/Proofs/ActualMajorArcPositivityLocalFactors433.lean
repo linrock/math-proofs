@@ -1,4 +1,9 @@
-import ActualMajorArcPrimeMinor433
+module
+
+public import ActualMajorArcPrimeMinor433
+
+@[expose] public section
+
 
 /-!
 # Genuine outside-support ternary singular-series local factors
@@ -15,6 +20,8 @@ its Euler product.  That analytic singular-series coupling remains open.
 
 open Finset
 open scoped BigOperators
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

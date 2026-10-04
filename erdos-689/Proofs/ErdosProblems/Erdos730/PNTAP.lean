@@ -1,6 +1,11 @@
+module
+
 /- leanprover/lean4:v4.33.0  mathlib db584cd6 (master, the commit the v4.33.0 tag is cut from) -/
-import ErdosProblems.Erdos730.AnalyticInputs
-import PrimeNumberTheoremAnd.Consequences
+public import ErdosProblems.Erdos730.AnalyticInputs
+public import PrimeNumberTheoremAnd.Consequences
+
+@[expose] public section
+
 
 /-!
 # Erdős 730: fixed-modulus prime number theorem in arithmetic progressions

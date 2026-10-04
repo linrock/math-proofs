@@ -1,4 +1,9 @@
-import Mathlib
+module
+
+public import Mathlib
+
+@[expose] public section
+
 
 /-!
 # Exact initial-deficiency coefficient normalization for Erdős problem #689

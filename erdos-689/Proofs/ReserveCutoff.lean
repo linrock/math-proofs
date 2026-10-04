@@ -1,4 +1,9 @@
-import ManuscriptLocal
+module
+
+public import ManuscriptLocal
+
+@[expose] public section
+
 
 /-!
 # Automatic robust-edge reserve membership

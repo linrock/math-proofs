@@ -233,8 +233,7 @@ three degree bounds explicit.
 
 [BUILD.md](BUILD.md) documents the source build and endpoint axiom audit.
 The endpoint should use only `propext`, `Classical.choice`, and `Quot.sound`.
-The two upstream admitted Wiener lemmas are outside its transitive dependency
-set. [THIRD_PARTY.md](THIRD_PARTY.md) records the pinned external dependencies.
+[THIRD_PARTY.md](THIRD_PARTY.md) records the pinned external dependencies.
 For a mathematical review, compare the public statement with the displayed
 type, inspect the parameter order and nonempty reserve construction, follow
 the count-to-edge map, and check the final integral-to-model chain.

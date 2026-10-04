@@ -1,5 +1,10 @@
-import ActualRightVertexMajorConductor433
-import ActualLeftVertexMajorCellModel433
+module
+
+public import ActualRightVertexMajorConductor433
+public import ActualLeftVertexMajorCellModel433
+
+@[expose] public section
+
 
 /-!
 # Actual mixed support-conductor and shifted-center cancellation

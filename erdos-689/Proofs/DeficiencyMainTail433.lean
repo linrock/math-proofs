@@ -1,5 +1,10 @@
-import DeficiencyUpper433
-import Mathlib.NumberTheory.Chebyshev
+module
+
+public import DeficiencyUpper433
+public import Mathlib.NumberTheory.Chebyshev
+
+@[expose] public section
+
 
 /-!
 # Uniform prime-stratum tails for the actual initial deficiency

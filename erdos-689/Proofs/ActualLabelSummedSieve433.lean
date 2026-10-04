@@ -1,4 +1,9 @@
-import ActualLabelCanonicalSeeds433
+module
+
+public import ActualLabelCanonicalSeeds433
+
+@[expose] public section
+
 
 /-!
 # Finite optimized sieve for the sum of actual fixed-label graph fibers

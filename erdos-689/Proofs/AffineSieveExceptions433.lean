@@ -1,4 +1,9 @@
-import Mathlib
+module
+
+public import Mathlib
+
+@[expose] public section
+
 
 /-!
 # Exact small-prime and inadmissible-class exceptions for two affine forms

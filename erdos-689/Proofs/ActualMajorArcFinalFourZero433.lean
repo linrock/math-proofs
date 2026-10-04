@@ -1,4 +1,9 @@
-import ActualMajorArcCenterPhaseBridge433
+module
+
+public import ActualMajorArcCenterPhaseBridge433
+
+@[expose] public section
+
 
 /-!
 # Exact vanishing of higher parity-conductor original anchor orbits

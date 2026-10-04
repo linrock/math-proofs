@@ -1,4 +1,9 @@
-import Mathlib
+module
+
+public import Mathlib
+
+@[expose] public section
+
 
 open Filter Finset
 open scoped Topology BigOperators
@@ -62,7 +67,7 @@ theorem finite_one_sub_product_le_exp_neg_sum {ι : Type*} (S : Finset ι)
     (a : ι → ℝ) (ha : ∀ i ∈ S, 0 ≤ a i ∧ a i ≤ 1) :
     ∏ i ∈ S, (1 - a i) ≤ Real.exp (-(∑ i ∈ S, a i)) := by
   rw [← sum_neg_distrib, Real.exp_sum]
-  apply Finset.prod_le_prod
+  apply Finset.prod_le_prod₀
   · intro i hi
     exact sub_nonneg.mpr (ha i hi).2
   · intro i _

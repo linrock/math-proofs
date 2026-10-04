@@ -1,5 +1,10 @@
-import Mathlib
-import SelbergExplicitConstant433
+module
+
+public import Mathlib
+public import SelbergExplicitConstant433
+
+@[expose] public section
+
 
 /-!
 # Actual affine residue roots and their exact finite sieve remainder
@@ -12,6 +17,8 @@ No prime-pattern theorem or degree estimate is assumed.
 -/
 
 open Finset
+
+attribute [-instance] instAddCommGroupOfIsSimpleAddGroupOfIsNilpotent
 
 namespace Erdos689
 

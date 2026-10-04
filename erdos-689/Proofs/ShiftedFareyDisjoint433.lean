@@ -1,4 +1,9 @@
-import FullyCompatibleMinorArcs433
+module
+
+public import FullyCompatibleMinorArcs433
+
+@[expose] public section
+
 
 /-!
 # Genuine translated Farey-arc geometry for Erdős #689

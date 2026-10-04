@@ -1,4 +1,9 @@
-import RobustCrtBridge
+module
+
+public import RobustCrtBridge
+
+@[expose] public section
+
 
 /-!
 # Exact zero-hit CRT counts for arbitrary smooth or nonsmooth coefficients
