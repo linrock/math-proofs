@@ -35,7 +35,7 @@ theorem finiteSetNoncoveringBound : FiniteIndex.FiniteSetNoncoveringBound := by
     intro d hd
     exact lt_of_le_of_lt (Nat.zero_le M) (hD d hd)
   obtain ⟨N, hN, hdiv⟩ := FiniteLcm.exists_positive_common_multiple D hDpos
-  haveI : NeZero N := ⟨hN.ne'⟩
+  have _ : NeZero N := ⟨hN.ne'⟩
   have hprod' : ∀ p : ℕ, 2 ≤ p → ∀ s : Finset ℕ,
       (∀ q ∈ s, q.Prime ∧ q < p) →
         (∏ q ∈ s, EulerMoment.factorBound (q : ℝ)) ≤

@@ -101,7 +101,7 @@ theorem not_arbitrarilyLarge_of_uniformNumericalBound
   obtain ⟨B, hB⟩ := hbound
   intro hlarge
   obtain ⟨c, hc⟩ := hlarge B
-  haveI : Fintype c.ι := c.toCoveringSystem.fintypeIndex
+  let _ : Fintype c.ι := c.toCoveringSystem.fintypeIndex
   let m : c.ι → ℕ := fun i => Classical.choose (hc i)
   have hm : ∀ i, c.moduli i = Ideal.span {(m i : ℤ)} :=
     fun i => (Classical.choose_spec (hc i)).1

@@ -42,7 +42,7 @@ theorem uniform_progression_mass {N d : ℕ} [NeZero N]
     FiniteWeight.mass (uniform N).value
       (Finset.univ.filter (fun x : ZMod N =>
         ZMod.castHom hd (ZMod d) x = (a : ZMod d))) = 1 / (d : ℝ) := by
-  haveI : NeZero d := ⟨ne_zero_of_dvd_ne_zero (NeZero.ne N) hd⟩
+  have _ : NeZero d := ⟨ne_zero_of_dvd_ne_zero (NeZero.ne N) hd⟩
   rw [uniform_mass_eq_card_div]
   exact CongruenceGeometry.reduction_uniform_fraction hd (a : ZMod d)
 

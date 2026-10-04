@@ -37,7 +37,7 @@ theorem exists_sieve_weight (N : ℕ) [NeZero N]
   induction N using Nat.strong_induction_on with
   | h N ih =>
     intro hN
-    haveI : NeZero N := hN
+    have _ : NeZero N := hN
     by_cases hsmall : ∀ q ∈ N.primeFactors, q ≤ A
     · obtain ⟨w, hw, hmass⟩ := SieveBase.uniform_base_stage N D r A hsmall
       refine ⟨w, hw, hmass.trans ?_⟩
@@ -64,8 +64,8 @@ theorem exists_sieve_weight (N : ℕ) [NeZero N]
         rcases Finset.mem_insert.mp hq with rfl | hq
         · exact hpA'
         · exact (hmax q hq).le.trans hpA'
-      haveI : NeZero Q := ⟨hQ.ne'⟩
-      haveI : NeZero p := ⟨hp.ne_zero⟩
+      have _ : NeZero Q := ⟨hQ.ne'⟩
+      have _ : NeZero p := ⟨hp.ne_zero⟩
       obtain ⟨w, hw, hmass⟩ := ih Q hQN
       have hprodQ := hprod p hp.two_le Q.primeFactors
         (fun q hq => ⟨Nat.prime_of_mem_primeFactors hq, hmax q hq⟩)

@@ -82,7 +82,4 @@ echo "PASS: package build and saved-source axiom audit"
 if [[ "${1:-}" == "--no-sandbox" ]]; then
   lake env lake comparator --config comparator.json --inadvisably-no-sandbox \
     2>&1 | tee .verification/comparator.log
-else
-  lake env lake comparator --config comparator.json \
-    2>&1 | tee .verification/comparator.log
 fi

@@ -23,8 +23,7 @@ structure ProbabilityWeight (Ω : Type*) [Fintype Ω] where
   nonneg : ∀ x, 0 ≤ value x
   normalized : ∑ x, value x = 1
 
-variable {Ω β : Type*} [Fintype Ω] [Fintype β]
-  [DecidableEq Ω] [DecidableEq β] [Nonempty β]
+variable {Ω β : Type*} [Fintype Ω] [Fintype β] [DecidableEq β] [Nonempty β]
 
 noncomputable def update (w : ProbabilityWeight Ω) (B : Ω → Finset β) :
     ProbabilityWeight (Ω × β) where
@@ -35,20 +34,17 @@ noncomputable def update (w : ProbabilityWeight Ω) (B : Ω → Finset β) :
     simp_rw [Fiber.sum_updatedWeight_eq]
     exact w.normalized
 
-omit [DecidableEq Ω] in
 theorem update_atom_le (w : ProbabilityWeight Ω) (B : Ω → Finset β)
     (x : Ω) (y : β) :
     (update w B).value (x,y) ≤ 2 * w.value x / Fintype.card β :=
   Fiber.updatedWeight_le_two _ _ (w.nonneg x) _
 
-omit [DecidableEq Ω] in
 theorem update_preserves_cylinder (w : ProbabilityWeight Ω)
     (B : Ω → Finset β) (S : Finset Ω) :
     (∑ x ∈ S, ∑ y : β, (update w B).value (x,y)) =
       ∑ x ∈ S, w.value x :=
   Fiber.preserves_baseEvent_mass S B w.value
 
-omit [DecidableEq Ω] in
 theorem update_bad_mass_le_secondMoment (w : ProbabilityWeight Ω)
     (B : Ω → Finset β) :
     (∑ x : Ω, ∑ y ∈ B x, (update w B).value (x,y)) ≤
