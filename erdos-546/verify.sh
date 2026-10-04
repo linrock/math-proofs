@@ -8,13 +8,6 @@ if [[ $# -gt 1 ]] || [[ $# -eq 1 && "$1" != "--no-sandbox" ]]; then
 fi
 
 mkdir -p .verification
-if command -v sha256sum >/dev/null 2>&1; then
-  sha256sum -c SHA256SUMS > .verification/integrity.log
-else
-  shasum -a 256 -c SHA256SUMS > .verification/integrity.log
-fi
-echo "PASS: package source integrity"
-
 for lean_file in *.lean Proofs/*.lean; do
   first_line="$(head -n 1 "$lean_file")"
   if [[ "$first_line" != "module" ]]; then

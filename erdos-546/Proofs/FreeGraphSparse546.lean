@@ -9,10 +9,9 @@ public import SparseCombination546
 /-!
 # Rounded sparse subsets of bounded-degree-copy-free graphs
 
-This combines the actual bounded-degree embedding contrapositive with the
-two-cleaning depth induction. It gives an exact natural depth and a factor
-two rounding slack in the retained fraction. It is the sparse-subset
-ingredient of Sudakov's proof, not the final uniform Ramsey theorem.
+Combines the bounded-degree sparse-cut contrapositive (`boundedDegree_sparse_cut`)
+with the hereditary two-cleaning depth induction (`sparse_subset_density_of_hereditary_cuts`)
+to extract a low-density subset inside any $G$-free host reservoir.
 -/
 
 namespace Erdos546
@@ -177,7 +176,5 @@ theorem sparse_subset_of_no_boundedDegree_copy (G : SimpleGraph V)
   refine ⟨U, hUsub, hUlower, ?_⟩
   have hmult := mul_le_mul_of_nonneg_right hdepth (sq_nonneg (U.card : ℝ))
   nlinarith only [hcount, hmult]
-
-#print axioms sparse_subset_of_no_boundedDegree_copy
 
 end Erdos546

@@ -144,9 +144,4 @@ theorem exists_third_budget_mask_subset
   · intro v hv
     exact (mem_filter.mp hv).2
 
-#print axioms redDegreeSum_eq_card_interedges
-#print axioms redDegreeSum_le_of_edgeDensity_le
-#print axioms exists_half_subset_degree_le_density
-#print axioms exists_third_budget_mask_subset
-
 end Erdos546

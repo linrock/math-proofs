@@ -10,10 +10,15 @@ public import SudakovScalarsSuccessor546
 
 @[expose] public section
 
-/-! Candidate assembly of Sudakov's uniform sparse Ramsey theorem.
-This file and its entire dependency cone require canonical compilation and
-transitive axiom audit before any complete formal proof is claimed. The
-larger constant pays all natural ceiling and weakened-cut losses. -/
+/-!
+# Assembly of Sudakov's sparse graph Ramsey theorem
+
+Combines the initial monochromatic pair (`initial_pair_for_sparse_ramsey`),
+the quantitative amplification step (`quantitative_monoPair_amplification`),
+the finite potential iteration (`amplification_iteration`), and the small-edge
+Erdős–Szekeres bound (`sparse_bound_small_edges`) to prove
+`sparse_graph_ramsey_witness`, `sudakov_sparse_bound`, and `erdos_546`.
+-/
 
 namespace Erdos546
 
@@ -122,9 +127,5 @@ theorem erdos_546 : True ↔ SparseRamseyStatement := by
     exact sudakov_sparse_bound G m hno hedges
   · intro _
     trivial
-
-#print axioms sparse_graph_ramsey_witness
-#print axioms sudakov_sparse_bound
-#print axioms erdos_546
 
 end Erdos546

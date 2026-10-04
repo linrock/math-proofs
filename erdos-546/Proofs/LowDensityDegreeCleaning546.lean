@@ -108,9 +108,4 @@ theorem exists_low_degree_subset_of_budget (H : SimpleGraph V) [DecidableRel H.A
   have hdeleted : S.card - T.card ≤ b := by nlinarith
   omega
 
-#print axioms neighbor_card_erase_add
-#print axioms redDegreeSum_erase
-#print axioms exists_low_degree_subset
-#print axioms exists_low_degree_subset_of_budget
-
 end Erdos546

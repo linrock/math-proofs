@@ -10,10 +10,10 @@ public import QuantitativeAmplificationParameters546
 /-!
 # One-color quantitative amplification
 
-The deleted graph has its actual finite maximum degree. The quantitative
-parameters are supplied by arithmetic proofs from the original edge count,
-and the graph-free reservoir theorem then constructs the larger pair.
-This is an auxiliary step toward the uniform Ramsey theorem.
+Combines the residual degree bound (`residual_degree_data_of_monoPair`),
+the quantitative parameter schedule (`quantitative_amplification_parameters546`),
+and the graph-free reservoir extraction (`monochromatic_pair_in_free_reservoir`)
+to prove Sudakov's single-step monochromatic-pair amplification theorem.
 -/
 
 namespace Erdos546
@@ -51,7 +51,5 @@ theorem quantitative_monoPair_amplification {V W : Type*}
       hresidual_free hextract hεt hu hu1 hpair
   refine ⟨P, Q, hPY, hQY, hmono, ?_, hretained.trans hQlower⟩
   simpa only [hPcard] using ht
-
-#print axioms quantitative_monoPair_amplification
 
 end Erdos546

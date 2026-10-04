@@ -73,8 +73,4 @@ theorem choose_mul_pow_le_one_of_three_mul (n r : ℕ) (ε : ℝ) (hε : 0 < ε)
   have hmul := mul_le_mul_of_nonneg_right he (show 0 ≤ ε * n by positivity)
   nlinarith
 
-#print axioms choose_le_exp_mul_div_pow
-#print axioms choose_mul_pow_le_one
-#print axioms choose_mul_pow_le_one_of_three_mul
-
 end Erdos546

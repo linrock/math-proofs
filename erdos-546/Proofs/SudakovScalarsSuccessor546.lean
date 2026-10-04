@@ -7,7 +7,12 @@ public import Mathlib.Tactic
 
 @[expose] public section
 
-/-! Successor scalar proofs; predecessor source is kept unchanged while queued. -/
+/-!
+# Terminal-scale and reciprocal-sum bounds for amplification
+
+Establishes the finite reciprocal tail bound and the properties of the terminal
+amplification scale `finalAmplificationParameter546 m = Nat.log2 m / 2`.
+-/
 
 namespace Erdos546
 
@@ -93,10 +98,3 @@ theorem finalAmplificationParameter546_clique_size (m : ℕ) (hm : 64 ≤ m) :
   nlinarith
 
 end Erdos546
-
-#print axioms Erdos546.finite_reciprocal_budget_tail
-#print axioms Erdos546.finalAmplificationParameter546_lower
-#print axioms Erdos546.finalAmplificationParameter546_upper
-#print axioms Erdos546.finalAmplificationParameter546_ge_three
-#print axioms Erdos546.finalAmplificationParameter546_sqrt_lower
-#print axioms Erdos546.finalAmplificationParameter546_clique_size

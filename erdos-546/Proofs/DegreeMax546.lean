@@ -35,7 +35,4 @@ theorem sparse_degree_factor_bound (k D m a : ℕ) (hm : 0 < m)
   apply (mul_le_mul_iff_left₀ hs).mp
   nlinarith only [hlow, hprod, hsq, hD]
 
-#print axioms weighted_sup_bound
-#print axioms sparse_degree_factor_bound
-
 end Erdos546

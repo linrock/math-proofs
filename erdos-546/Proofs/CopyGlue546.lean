@@ -95,8 +95,4 @@ theorem isContained_of_monoPair_card {V W : Type*}
   · simpa using hcard
   · exact SimpleGraph.IsContained.of_isEmpty
 
-#print axioms isContained_of_monoPair_deleted_copy
-#print axioms isContained_of_monoPair_empty_deleted_copy
-#print axioms isContained_of_monoPair_card
-
 end Erdos546

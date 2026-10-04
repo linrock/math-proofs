@@ -5,9 +5,13 @@ public import PairIterationScalars546
 
 @[expose] public section
 
-/-! A finite reservoir-budget reduction. `State` will be a monochromatic
-pair in a fixed coloring. This conditional auxiliary theorem does not prove
-the graph amplification hypothesis `hamp`. -/
+/-!
+# Finite reservoir-budget iteration
+
+Iterates a single-step amplification map along the geometric schedule
+$a \mapsto \operatorname{next}(a)$ while tracking the clique growth and
+reservoir potential drop until the terminal scale $A$ is reached.
+-/
 
 namespace Erdos546
 
@@ -66,7 +70,5 @@ theorem amplification_iteration {State : Type*}
     (Real.rpow_le_rpow_of_exponent_le (by norm_num) hexp).trans hr
   obtain ⟨τ, hτ, hτc, _⟩ := hamp A σ hA le_rfl hv hcliqueA hreadyA
   exact ⟨τ, hτ, hτc⟩
-
-#print axioms amplification_iteration
 
 end Erdos546

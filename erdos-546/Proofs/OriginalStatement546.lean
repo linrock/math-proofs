@@ -2,7 +2,7 @@ module
 
 /-
 Copyright 2026 The Formal Conjectures Authors.
-Copyright 2026 Erdős research contributors.
+Copyright 2026 Linmiao Xu.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -23,10 +23,12 @@ public import Sudakov546
 
 @[expose] public section
 
-/-! Literal statement check against FormalConjectures/ErdosProblems/546.lean.
-`True` is the expansion of its `answer(True)` term. This declaration sits
-outside the research namespace and spells out every original quantifier.
-It is part of the complete saved-source replay and transitive axiom audit. -/
+/-!
+# Root-level Formal Conjectures statement for Erdős #546
+
+Proves the literal theorem statement from `FormalConjectures/ErdosProblems/546.lean`
+(with `answer(True)` elaborated as `True`) at root scope.
+-/
 
 theorem erdos_546_original_statement : True ↔
     ∃ C > (0 : ℝ), ∀ (m : ℕ) (V : Type) [Fintype V] (G : SimpleGraph V)
@@ -35,5 +37,3 @@ theorem erdos_546_original_statement : True ↔
       G.edgeSet.ncard = m →
       (SimpleGraph.diagonalGraphRamsey G : ℝ) ≤ 2 ^ (C * Real.sqrt m) := by
   exact Erdos546.erdos_546
-
-#print axioms erdos_546_original_statement

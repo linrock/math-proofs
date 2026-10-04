@@ -14,8 +14,7 @@ cut need not remain sparse. The second cleaning depends on the actual first
 refinement `A`, and its conclusion permits every subsequent refinement `B`.
 
 The depth induction then yields an exact-size sparse subset from hereditary
-sparse cuts. Its hypothesis still has to be supplied by the embedding lemma
-before it can contribute to the complete Ramsey bound.
+sparse cuts (`sparse_subset_density_of_hereditary_cuts`).
 -/
 
 namespace Erdos546
@@ -273,11 +272,5 @@ theorem sparse_subset_density_of_hereditary_cuts (H : SimpleGraph V)
   push_cast
   apply (div_le_iff₀ (mul_pos hUpos hUpos)).mpr
   simpa only [pow_two] using hcount
-
-#print axioms half_card_filter_weight_le
-#print axioms card_interedges_eq_sum_cutNeighborCount
-#print axioms sparse_cut_two_clean
-#print axioms sparse_subset_of_hereditary_cuts
-#print axioms sparse_subset_density_of_hereditary_cuts
 
 end Erdos546

@@ -1,8 +1,8 @@
 {
   "version": "v0.4",
   "project": {
-    "name": "Erdős 546: sparse graph Ramsey numbers (Sudakov's theorem)",
-    "description": "A complete Lean 4.35.0-rc2 proof of the affirmative answer to Erdős problem 546 (Sudakov 2011): there exists an absolute constant C > 0 such that every finite simple graph G with m edges and no isolated vertices has diagonal Ramsey number R(G) <= 2^(C * sqrt(m)). Formalizing Sudakov's high/low-degree deletion, greedy bounded-degree embedding contrapositive, hereditary sparse-cut extraction, low-density dependent random choice, and density-amplification iteration, this package proves the uniform explicit bound R(G) <= 2^(4000 * sqrt(m)) across all finite simple graphs on arbitrary Fintype vertex types V (including m = 0), together with the exact Formal Conjectures statement.",
+    "name": "Erdős 546: sparse graph Ramsey numbers",
+    "description": "A complete Lean 4 proof of the affirmative answer to Erdős problem 546 (Sudakov's theorem): there exists an absolute constant C > 0 such that every finite simple graph G with m edges and no isolated vertices has diagonal Ramsey number R(G) ≤ 2^(C √m). Formalizing Sudakov's 2011 proof—including high-degree vertex deletion, greedy bounded-degree embedding and hereditary sparse cuts, low-density monochromatic-pair extraction, and iterative clique-reservoir amplification. This proves the uniform explicit bound R(G) ≤ 2^(4000 √m) across all finite simple graphs without isolated vertices (including m = 0), together with the exact Formal Conjectures statement.",
     "authors": [
       "Linmiao Xu"
     ],
@@ -32,10 +32,10 @@
       "id": "https://arxiv.org/abs/1002.0095",
       "location": "Advances in Mathematics 227 (2011), 601–609, Theorem 1.1 and Sections 2–3",
       "author_endorsement": "not-contacted",
-      "note": "Proves R(G) <= 2^(250 * sqrt(m)) for every graph G with m edges and no isolated vertices. This formalization reconstructs the complete proof with explicit integer-rounding and initialization slack yielding the uniform constant C = 4000."
+      "note": "Proves R(G) ≤ 2^(250 √m) for every finite graph G with m edges and no isolated vertices. This formalization reconstructs the complete proof in Lean 4, using the explicit constant C = 4000 to absorb integer rounding and initialization slack cleanly."
     },
     {
-      "title": "Density theorems foretz and bipartite Ramsey numbers (On graphs with no induced copy / bipartite embedding)",
+      "title": "Density theorems for bipartite graphs and related Ramsey-type results",
       "authors": [
         "Jacob Fox",
         "Benny Sudakov"
@@ -45,7 +45,7 @@
       "id": "https://arxiv.org/abs/0706.4112",
       "location": "Combinatorica 29 (2009), 17–49",
       "author_endorsement": "not-contacted",
-      "note": "Supplies the hereditary sparse-cut and bounded-degree embedding framework cited in Sudakov Lemmas 2.4 and 2.5, proved directly from scratch in Proofs/BidenseEmbedding546.lean and Proofs/SparseCombination546.lean."
+      "note": "Develops the bounded-degree embedding and hereditary sparse-cut method cited in Sudakov's Lemmas 2.4 and 2.5, which is proved from scratch in Proofs/BidenseEmbedding546.lean and Proofs/SparseCombination546.lean."
     },
     {
       "title": "Erdős Problem 546: sparse graph Ramsey numbers",
@@ -59,16 +59,16 @@
     {
       "id": "https://github.com/google-deepmind/formal-conjectures/blob/6fbb54f24ccc2e64dcfaffc28c58950e377110d2/FormalConjectures/ErdosProblems/546.lean",
       "relationship": "builds-on",
-      "note": "Challenge.lean, Statement.lean, and Solution.lean use the exact definitions (SimpleGraph.graphRamsey, SimpleGraph.diagonalGraphRamsey) and universe-polymorphic theorem statement (erdos_546) from Formal Conjectures with answer(True) elaborated as True. The upstream theorem ends in sorry."
+      "note": "Challenge.lean, Statement.lean, and Solution.lean reproduce the exact definitions (SimpleGraph.graphRamsey, SimpleGraph.diagonalGraphRamsey) and theorem statement (erdos_546) from Formal Conjectures with answer(True) elaborated as True. The upstream declaration ends in sorry."
     },
     {
       "id": "https://github.com/plby/lean-proofs/blob/main/src/latest/ErdosProblems/Erdos546.lean",
       "relationship": "independent",
-      "note": "Independent Lean 4.33.0 formalization of a Fin v-restricted statement with constant C = 65536. No code is imported or adapted; our development proves the universe-polymorphic Formal Conjectures statement on Lean 4.35.0-rc2 with C = 4000."
+      "note": "Independent Lean 4.33.0 formalization restricted to graphs on Fin v with custom Ramsey definitions and constant C = 65536. No code is imported or adapted. In contrast, our development on Lean 4.35.0-rc2 proves the exact Formal Conjectures statement and definitions over arbitrary Fintype vertex types V, sharpens the explicit constant 16-fold to C = 4000 (with a direct forcing witness at ceil(2^(2000 sqrt(m))) for m >= 64), and exports reusable general-type theorems for Sudakov's bounded-degree sparse cut, low-density monochromatic-pair extraction, and quantitative amplification."
     }
   ],
   "status": {
-    "scope": "Complete unconditional Lean 4.35.0-rc2 proofs of the literal Formal Conjectures statement (erdos_546_original_statement and Erdos546.erdos_546), the uniform explicit bound R(G) <= 2^(4000 * sqrt(m)) across all finite simple graphs G without isolated vertices and with m edges including m = 0 (Erdos546.sudakov_sparse_bound), the genuine forcing witness on ceil(2^(2000 * sqrt(m))) vertices for m >= 64 (Erdos546.sparse_graph_ramsey_witness), the rounded Sudakov Lemma 2.4 equal-size sparse-cut contrapositive (Erdos546.boundedDegree_sparse_cut), the rounded Sudakov Lemma 2.3 low-density monochromatic-pair theorem (Erdos546.exists_monoPair_of_low_edgeDensity), and the quantitative clique/reservoir amplification step (Erdos546.quantitative_monoPair_amplification). The published constant 250 is relaxed to 4000 to absorb integer rounding cleanly.",
+    "scope": "Complete unconditional Lean 4 proofs of the Formal Conjectures statement (erdos_546_original_statement and Erdos546.erdos_546), the uniform explicit bound R(G) ≤ 2^(4000 √m) across all finite simple graphs G with m edges and no isolated vertices including m = 0 (Erdos546.sudakov_sparse_bound), the explicit Ramsey witness on ⌈2^(2000 √m)⌉ vertices for m ≥ 64 (Erdos546.sparse_graph_ramsey_witness), and Sudakov's three core structural lemmas: the bounded-degree equal-size sparse cut (Erdos546.boundedDegree_sparse_cut), low-density monochromatic-pair extraction (Erdos546.exists_monoPair_of_low_edgeDensity), and quantitative clique-reservoir amplification (Erdos546.quantitative_monoPair_amplification). Sudakov's published constant 250 is relaxed to 4000 to absorb integer rounding without asymptotic approximations.",
     "sorry_count": 0,
     "sorry_in_definitions": 0,
     "axioms": [
@@ -118,24 +118,17 @@
     "methods": [
       {
         "method": "agent",
-        "tool_setup": "AI-assisted proof development, Lean 4.35.0-rc2 porting, independent statement/axiom audits, and standalone Palomar packaging."
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
       }
     ],
-    "notes": "All 30 proof modules in Proofs/ plus Statement, Solution, AxiomAudit, and Challenge are compiled from source in Lean 4.35.0-rc2 with zero sorry in Proofs/ and audited with both Lean's default kernel and NanoDa via Comparator."
+    "notes": "All 30 proof modules in Proofs/ plus Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry in Proofs/ and are verified by both Lean's default kernel and NanoDa via Comparator."
   },
   "fidelity": {
     "divergences": "None on the formalized statements. The definitions of SimpleGraph.graphRamsey and SimpleGraph.diagonalGraphRamsey and the existential theorem erdos_546_original_statement / Erdos546.erdos_546 match FormalConjectures/ErdosProblems/546.lean verbatim (with answer(True) elaborated as True). The explicit bound uses C = 4000 rather than Sudakov's published C = 250."
   },
   "review": {
     "status": "agent-reviewed",
-    "notes": "Lean 4.35.0-rc2 (compiler commit 11acb17ec6b07a8f9e9173e6845197929540936b) with canonical Mathlib commit 065356127b1dc0016f66b7283ce0ce2c4055aa55 passed fresh source builds for all 30 modules in Proofs/ plus Statement, Solution, AxiomAudit, and Challenge. Zero sorry occur in the proof modules. Ten saved-source endpoint, statement-fidelity, and non-vacuity axiom reports (and all 139 internal module axiom checks) passed using only propext, Classical.choice, and Quot.sound. Comparator matched all seven selected theorems in Challenge and Solution, and both NanoDa and Lean's default kernel accepted the solution."
-  },
-  "preparation": {
-    "stage": "prepared-not-submitted",
-    "owner_confirmation_required": false,
-    "full_package_replay_completed": true,
-    "comparator_completed": true,
-    "nanoda_completed": true
+    "notes": "Lean 4.35.0-rc2 (compiler commit 11acb17ec6b07a8f9e9173e6845197929540936b) with canonical Mathlib commit 065356127b1dc0016f66b7283ce0ce2c4055aa55 passed fresh source builds for all 30 modules in Proofs/ plus Statement, Solution, AxiomAudit, and Challenge. Zero sorry occur in the proof modules. All ten saved-source endpoint, statement-fidelity, and non-vacuity axiom audits passed using only propext, Classical.choice, and Quot.sound. Comparator matched all seven selected theorems in Challenge and Solution, and both NanoDa and Lean's default kernel accepted the solution."
   },
   "alignment": {
     "namespace": "Erdos546",
@@ -144,50 +137,50 @@
         "source": "Formal Conjectures Erdős 546 literal True <-> statement",
         "lean": "erdos_546_original_statement",
         "module": "Solution",
-        "status": "proved; source build, Comparator, NanoDa, and transitive-axiom audit passed",
+        "status": "proved",
         "note": "Proves the literal Formal Conjectures True <-> proposition at root scope and verifies definitional equality with Statement.lean."
       },
       {
         "source": "Erdős Problem 546 (Erdős 1984 / Sudakov 2011): existential O(sqrt(m)) Ramsey exponent",
         "lean": "Erdos546.erdos_546",
         "module": "Solution",
-        "status": "proved; source build, Comparator, NanoDa, and transitive-axiom audit passed",
+        "status": "proved",
         "note": "Proves True <-> Erdos546.SparseRamseyStatement using C = 4000."
       },
       {
         "source": "Sudakov (2011), Theorem 1.1: explicit uniform sparse graph Ramsey bound",
         "lean": "Erdos546.sudakov_sparse_bound",
         "module": "Solution",
-        "status": "proved; source build, Comparator, NanoDa, and transitive-axiom audit passed",
-        "note": "Proves (SimpleGraph.diagonalGraphRamsey G : ℝ) <= 2^(4000 * sqrt(m)) for every finite simple graph G with m edges and no isolated vertices, including m = 0."
+        "status": "proved",
+        "note": "Proves (SimpleGraph.diagonalGraphRamsey G : ℝ) ≤ 2^(4000 √m) for every finite simple graph G with m edges and no isolated vertices, including m = 0."
       },
       {
         "source": "Sudakov (2011), Theorem 1.1: genuine forcing witness for m >= 64",
         "lean": "Erdos546.sparse_graph_ramsey_witness",
         "module": "Solution",
-        "status": "proved; source build, Comparator, NanoDa, and transitive-axiom audit passed",
-        "note": "Proves GraphRamseyWitness G G (Nat.ceil (2^(2000 * sqrt(m)))) for m >= 64, |E(G)| = m, and |V| <= 2m."
+        "status": "proved",
+        "note": "Proves GraphRamseyWitness G G ⌈2^(2000 √m)⌉ for m ≥ 64, |E(G)| = m, and |V| ≤ 2m."
       },
       {
         "source": "Sudakov (2011), Lemma 2.4: bounded-degree embedding contrapositive / equal-size sparse cut",
         "lean": "Erdos546.boundedDegree_sparse_cut",
         "module": "Solution",
-        "status": "proved; source build, Comparator, NanoDa, and transitive-axiom audit passed",
-        "note": "Produces disjoint equal-size sets X, Y of cardinality >= eps^Delta |W| / (2(Delta + 1)) with at most eps |X| |Y| cross edges whenever G has maximum degree <= Delta and no non-induced copy in H."
+        "status": "proved",
+        "note": "Produces disjoint equal-size sets X, Y of cardinality ≥ ε^Δ |W| / (2(Δ + 1)) with at most ε |X| |Y| cross edges whenever G has maximum degree ≤ Δ and no copy in H."
       },
       {
         "source": "Sudakov (2011), Lemma 2.3: low-density monochromatic-pair extraction",
         "lean": "Erdos546.exists_monoPair_of_low_edgeDensity",
         "module": "Solution",
-        "status": "proved; source build, Comparator, NanoDa, and transitive-axiom audit passed",
-        "note": "Extracts a monochromatic clique/reservoir pair (X, Y) in H or H^c with |X| = t and |Y| >= eps^(40 * eps * t) |U| whenever H.edgeDensity U U <= eps <= 1/8."
+        "status": "proved",
+        "note": "Extracts a monochromatic clique-reservoir pair (X, Y) in H or H^c with |X| = t and |Y| ≥ ε^(40 ε t) |U| whenever H.edgeDensity U U ≤ ε ≤ 1/8."
       },
       {
         "source": "Sudakov (2011), Section 3: quantitative monochromatic-pair amplification",
         "lean": "Erdos546.quantitative_monoPair_amplification",
         "module": "Solution",
-        "status": "proved; source build, Comparator, NanoDa, and transitive-axiom audit passed",
-        "note": "Amplifies a monochromatic pair with |X| >= a^3 sqrt(m) and |Y| >= 2^(500 sqrt(m) / a) to a monochromatic pair (P, Q) in Y with |P| >= 2^(2a) sqrt(m) and |Q| >= |Y| * 2^(-400 sqrt(m) / a)."
+        "status": "proved",
+        "note": "Amplifies a monochromatic pair with |X| ≥ a^3 √m and |Y| ≥ 2^(500 √m / a) to a monochromatic pair (P, Q) in Y with |P| ≥ 2^(2a) √m and |Q| ≥ |Y| · 2^(-400 √m / a)."
       }
     ]
   },

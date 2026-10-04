@@ -6,9 +6,12 @@ public import DegreeMax546
 
 @[expose] public section
 
-/-! Actual residual maximum degree for amplification. Isolated residual
-vertices are allowed; a residual target of size zero is excluded by the
-proved graph-free premise, rather than by an added target hypothesis. -/
+/-!
+# Residual maximum-degree bound for amplification
+
+Deletes a vertex set `A` of size `|X|` from `G` and bounds the maximum degree
+of the remaining induced subgraph by `2m / (|X| + 1)`.
+-/
 
 namespace Erdos546
 
@@ -51,7 +54,5 @@ theorem residual_degree_data_of_monoPair {V W : Type*}
   rw [he] at hweighted
   have hfactor := sparse_degree_factor_bound X.card D m a hm hclique hweighted
   exact ⟨A, D, hA, hn, hdeg, hfactor, hresidual_free⟩
-
-#print axioms residual_degree_data_of_monoPair
 
 end Erdos546

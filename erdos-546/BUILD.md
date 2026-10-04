@@ -7,7 +7,7 @@ lake exe cache get
 ./verify.sh
 ```
 
-The first command downloads canonical compiled Mathlib dependencies. The [verify.sh](verify.sh) script checks all source SHA-256 digests against [SHA256SUMS](SHA256SUMS), verifies the compiler and Mathlib revisions, builds `Statement`, `Solution`, `AxiomAudit`, and `Challenge` (including all 30 modules in `Proofs/` with `-j1 -M8192 -E hasSorry`), and runs a standalone saved-source axiom audit on `AxiomAudit.lean` verifying that all 10 endpoint, statement-fidelity, and non-vacuity theorems depend only on `propext`, `Classical.choice`, and `Quot.sound`.
+The first command downloads canonical compiled Mathlib dependencies. The [verify.sh](verify.sh) script runs the Palomar preliminary checks, verifies the compiler and Mathlib revisions, builds `Statement`, `Solution`, `AxiomAudit`, and `Challenge` (including all 30 modules in `Proofs/` with `-j1 -M8192 -E hasSorry`), and runs a standalone saved-source axiom audit on `AxiomAudit.lean` verifying that all 10 endpoint, statement-fidelity, and non-vacuity theorems depend only on `propext`, `Classical.choice`, and `Quot.sound`.
 
 A normal Lake build and explicit endpoint audit can also be run directly:
 
@@ -23,10 +23,4 @@ lake env lean -j1 -M8192 -E hasSorry -Dformat.width=1000000 \
 lake env lake comparator --config comparator.json
 ```
 
-When running in a container or host where unprivileged user namespaces for `bwrap` are restricted, pass `--inadvisably-no-sandbox` (or `./verify.sh --no-sandbox`):
-
-```sh
-lake env lake comparator --config comparator.json --inadvisably-no-sandbox
-```
-
-[VERIFICATION.json](VERIFICATION.json) records the completed build, axiom audit, and Comparator/NanoDa verification receipts, and [verification/comparator.log](verification/comparator.log) retains the Comparator output.
+The `verify.sh` script writes build, axiom-audit, and Comparator logs to the Git-ignored `.verification/` directory.

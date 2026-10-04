@@ -7,10 +7,13 @@ public import PairLifting546
 
 @[expose] public section
 
-/-! Constructive graph part of amplification: a graph-free finite reservoir
-gives a monochromatic pair through sparse extraction and the low-density
-lemma. The exact natural-size and exponent hypotheses remain explicit;
-their derivation from the original edge count is a separate obligation. -/
+/-!
+# Graph-theoretic step of monochromatic-pair amplification
+
+Given a $G$-free finite reservoir $Y$, hereditary sparse-cut extraction and
+the low-density monochromatic-pair lemma produce a new monochromatic pair
+$(P, Q)$ inside $Y$.
+-/
 
 namespace Erdos546
 
@@ -59,7 +62,5 @@ theorem monochromatic_pair_in_free_reservoir {V W : Type*}
   · simpa only [ambientFinset_card] using hPcard
   · rw [ambientFinset_card]
     exact (mul_le_mul_of_nonneg_left hUlower' (pow_nonneg hε.le _)).trans hQlower
-
-#print axioms monochromatic_pair_in_free_reservoir
 
 end Erdos546

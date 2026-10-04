@@ -2,7 +2,7 @@ module
 
 /-
 Copyright 2026 The Formal Conjectures Authors.
-Copyright 2026 Erdős research contributors.
+Copyright 2026 Linmiao Xu.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -18,8 +18,9 @@ limitations under the License.
 
 The two Ramsey definitions are adapted verbatim from the Apache-2.0 file
 FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Ramsey.lean in the
-repository's pinned Formal Conjectures checkout. The remaining declarations
-are local auxiliary results; this module does not prove Erdős #546.
+pinned Formal Conjectures repository. The remaining declarations establish
+basic monotonicity, clique-containment, and empty-graph properties of
+`graphRamsey` and `diagonalGraphRamsey`.
 -/
 public import Mathlib.Combinatorics.SimpleGraph.Clique
 public import Mathlib.Data.Set.Card
@@ -166,19 +167,5 @@ theorem graphRamsey_bot_bot {α β : Type*} [Fintype α] [Fintype β] :
 theorem diagonalGraphRamsey_bot {α : Type*} [Fintype α] :
     SimpleGraph.diagonalGraphRamsey (⊥ : SimpleGraph α) = Fintype.card α := by
   simp [SimpleGraph.diagonalGraphRamsey, graphRamsey_bot_bot]
-
-#print axioms graphRamsey_le_of_witness
-#print axioms diagonalGraphRamsey_le_of_witness
-#print axioms copyIntoClique
-#print axioms isContained_of_clique
-#print axioms comap_compl_of_injective
-#print axioms GraphRamseyWitness.mono
-#print axioms graphRamsey_witness_of_exists
-#print axioms graphRamsey_mono_of_exists
-#print axioms graphRamsey_eq_zero_of_isEmpty_left
-#print axioms graphRamsey_eq_zero_of_isEmpty_right
-#print axioms diagonalGraphRamsey_eq_zero_of_isEmpty
-#print axioms graphRamsey_bot_bot
-#print axioms diagonalGraphRamsey_bot
 
 end Erdos546

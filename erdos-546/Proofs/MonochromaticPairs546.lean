@@ -159,10 +159,4 @@ theorem exists_monoPair (H : SimpleGraph V) [DecidableRel H.Adj]
             intro hv'
             exact Hᶜ.irrefl ((mem_filter.mp (hXs hv')).2)
 
-#print axioms monoPair_empty
-#print axioms monoPair_mono
-#print axioms monoPair_insert
-#print axioms neighbor_partition_card
-#print axioms exists_monoPair
-
 end Erdos546

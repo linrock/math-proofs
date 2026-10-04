@@ -235,6 +235,4 @@ theorem quantitative_amplification_parameters546 (m a D n N : ℕ)
   exact ⟨ε, r, h, t, u, hr, hε, hεsmall, hinverse, hdepth, hhost,
     hεt, huscale, hu1, htQ, htbase, hfinalLoss⟩
 
-#print axioms quantitative_amplification_parameters546
-
 end Erdos546

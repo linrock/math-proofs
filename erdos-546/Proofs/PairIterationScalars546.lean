@@ -6,8 +6,12 @@ public import Mathlib.Tactic
 
 @[expose] public section
 
-/-! Finite iteration and the reservoir potential for Sudakov amplification.
-The amplification step remains a separate graph-theoretic obligation. -/
+/-!
+# Potential-function inequalities for the amplification schedule
+
+Establishes the finite stopping lemma and the geometric potential drop for
+reservoir sizes across amplification steps.
+-/
 
 namespace Erdos546
 
@@ -71,10 +75,5 @@ theorem reservoir_initial_potential (B L s : ℝ) :
     (2 : ℝ) ^ ((B + 4 * L / 3) * s) = 2 ^ (B * s + 4 * L * s / 3) := by
   congr 1
   ring
-
-#print axioms exists_terminal_parameter
-#print axioms reservoir_potential_drop
-#print axioms reservoir_threshold_of_potential
-#print axioms reservoir_initial_potential
 
 end Erdos546

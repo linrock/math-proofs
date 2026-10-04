@@ -39,7 +39,4 @@ theorem residual_obstruction_of_monoPair {V W : Type*} [Fintype V]
   · intro hcopy
     exact hfree (isContained_of_monoPair_deleted_copy G H A X Y hp hAcard.le hcopy)
 
-#print axioms monoPair_card_lt_of_no_copy
-#print axioms residual_obstruction_of_monoPair
-
 end Erdos546

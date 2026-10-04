@@ -161,16 +161,3 @@ theorem low_density_rounding_loss_bound (a : ℕ) (s u : ℝ)
   nlinarith
 
 end Erdos546
-
-#print axioms Erdos546.nat_twice_size_log_threshold_bound
-#print axioms Erdos546.nat_ceil_le_two_mul_of_one_le
-#print axioms Erdos546.rounded_sparse_parameter_bound
-#print axioms Erdos546.amplification_epsilon_bound
-#print axioms Erdos546.amplification_sparse_scale_ge_one
-#print axioms Erdos546.ramsey_vertex_exponent_bound
-#print axioms Erdos546.nat_extraction_ratio_bound
-#print axioms Erdos546.extraction_inverse_exact
-#print axioms Erdos546.extraction_depth_bound
-#print axioms Erdos546.amplification_target_prefactor_bound
-#print axioms Erdos546.sparse_extraction_exponent_bound
-#print axioms Erdos546.low_density_rounding_loss_bound

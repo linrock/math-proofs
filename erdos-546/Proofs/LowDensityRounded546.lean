@@ -247,9 +247,4 @@ theorem exists_monoPair_of_low_edgeDensity
   exact exists_monoPair_of_low_density H U ε t hε hεsmall hεt hsize
     (redDegreeSum_le_of_edgeDensity_le H U ε hdensity)
 
-#print axioms exists_monoPair_of_low_density_integer_power
-#print axioms exists_monoPair_of_low_density_ceil
-#print axioms exists_monoPair_of_low_density
-#print axioms exists_monoPair_of_low_edgeDensity
-
 end Erdos546

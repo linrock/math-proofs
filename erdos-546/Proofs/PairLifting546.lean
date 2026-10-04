@@ -89,15 +89,4 @@ theorem free_induce_compl {V W : Type*} (G : SimpleGraph V) (H : SimpleGraph W)
   rw [← induce_compl_eq]
   exact free_induce G Hᶜ S hfree
 
-#print axioms ambientFinset_card
-#print axioms ambientFinset_subset
-#print axioms ambientFinset_subset_coe
-#print axioms ambientFinset_mono
-#print axioms monoPair_map_of_copy
-#print axioms monoPair_induce_lift
-#print axioms induce_compl_eq
-#print axioms monoPair_induce_compl_lift
-#print axioms free_induce
-#print axioms free_induce_compl
-
 end Erdos546

@@ -118,7 +118,4 @@ theorem exists_equal_sparse_subcut (H : SimpleGraph V) (X Y : Finset V)
   have hmult := mul_le_mul_of_nonneg_left hfirst (show (0 : ℝ) ≤ k by positivity)
   nlinarith only [hYmean, hmult]
 
-#print axioms exists_subset_card_weight_mean_le
-#print axioms exists_equal_sparse_subcut
-
 end Erdos546

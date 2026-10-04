@@ -9,8 +9,14 @@ public import Mathlib.Analysis.SpecialFunctions.Sqrt
 
 @[expose] public section
 
-/-! The exact finite Ramsey bridge and the elementary small-edge baseline.
-These are ingredients of the sparse bound, not its missing amplification step. -/
+/-!
+# Finite Ramsey witness bridge and small-edge baseline
+
+Connects `GraphRamseyWitness` to `SimpleGraph.graphRamsey` and
+`SimpleGraph.diagonalGraphRamsey`, proves the Erdős–Szekeres bound
+$R(G) \le 2^{2|V|} \le 2^{4m}$ when $G$ has no isolated vertices, and
+establishes $R(G) \le 2^{240\sqrt{m}}$ for all $m \le 3600$.
+-/
 
 namespace Erdos546
 
@@ -99,14 +105,5 @@ theorem sparse_bound_small_edges {V : Type*} [Fintype V]
     _ = (2 : ℝ) ^ ((4 * m : ℕ) : ℝ) := (Real.rpow_natCast _ _).symm
     _ ≤ 2 ^ ((240 : ℝ) * Real.sqrt m) :=
       Real.rpow_le_rpow_of_exponent_le (by norm_num) (by push_cast; nlinarith)
-
-#print axioms graphRamseyWitness_choose
-#print axioms graphRamsey_le_choose
-#print axioms graphRamseyWitness
-#print axioms graphRamsey_le_two_pow
-#print axioms diagonalGraphRamsey_le_two_pow
-#print axioms diagonalGraphRamsey_le_two_pow_edges
-#print axioms sparse_bound_of_vertex_bound
-#print axioms sparse_bound_small_edges
 
 end Erdos546

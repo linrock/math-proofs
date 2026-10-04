@@ -6,10 +6,12 @@ public import Mathlib
 @[expose] public section
 
 /-!
-Preparatory finite graph theory for Sudakov Lemma 2.4.
-These lemmas provide proper color classes and equal disjoint host reservoirs.
-The full sparse-cut contrapositive also requires the candidate-set embedding
-induction; these preparations by themselves do not assert that conclusion.
+# Greedy bounded-degree embedding and sparse-cut contrapositive
+
+Formalizes the bounded-degree embedding argument underlying Sudakov's Lemma 2.4:
+partitioning a graph of maximum degree $\Delta$ into $\Delta + 1$ independent
+color classes, splitting the host into equal disjoint reservoirs, and embedding
+vertices greedily unless a pair of subsets violates local density.
 -/
 
 namespace Erdos546
@@ -473,12 +475,5 @@ theorem sparse_unequal_pair_of_no_copy_large_host (G : SimpleGraph V)
     simp only [Nat.cast_add, Nat.cast_one] at hmul
     nlinarith
   exact ⟨X, Y, hdisjoint, hthreshold.trans hX, hthreshold.trans hY, hcross⟩
-
-#print axioms colorable_of_degree_le
-#print axioms exists_equal_disjoint_reservoirs
-#print axioms copy_of_reservoir_bad_set_bounds
-#print axioms reservoir_bad_set_bound_of_no_sparse_cut
-#print axioms sparse_unequal_pair_of_no_copy
-#print axioms sparse_unequal_pair_of_no_copy_large_host
 
 end Erdos546

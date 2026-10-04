@@ -11,15 +11,12 @@ public import Mathlib.Data.Finset.Powerset
 /-!
 # The finite mask argument in Sudakov's small-density pair lemma
 
-The statements below formalize the graph-theoretic middle of Lemma 2.3 of
+The statements below formalize the combinatorial core of Lemma 2.3 of
 Benny Sudakov, *A conjecture of Erdős on graph Ramsey numbers*, arXiv:1002.0095.
 Every red-neighbor mask is extended to an `r`-element subset of a blue clique.
 Pigeonhole then gives a reservoir with common blue neighbors. If the original
 blue clique has maximum cardinality, the reservoir has no blue clique larger
 than `r`, so the binomial pair recurrence must return the red outcome.
-
-This module states exact integer thresholds. It does not yet establish the
-degree-cleaning step or the real estimates in the full low-density lemma.
 -/
 
 namespace Erdos546
@@ -162,13 +159,5 @@ theorem exists_red_monoPair_of_maximum_complClique_masks
       hp hXF hpair.2.1
     rw [hXcard, hRcard] at hbound
     omega
-
-#print axioms exists_maximumClique
-#print axioms monoPair_union_isClique
-#print axioms monoPair_compl_of_mask
-#print axioms exists_mask_monoPair
-#print axioms exists_blue_monoPair_of_clique_masks
-#print axioms clique_card_le_mask_of_maximum
-#print axioms exists_red_monoPair_of_maximum_complClique_masks
 
 end Erdos546

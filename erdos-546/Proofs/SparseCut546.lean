@@ -52,6 +52,4 @@ theorem boundedDegree_sparse_cut (G : SimpleGraph V) (H : SimpleGraph W)
   · simpa [hYcard] using hk
   · simpa [hXcard, hYcard, pow_two, mul_assoc] using hcross'
 
-#print axioms boundedDegree_sparse_cut
-
 end Erdos546

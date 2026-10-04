@@ -7,9 +7,14 @@ public import Mathlib.Analysis.Real.Sqrt
 
 @[expose] public section
 
-/-! Exact ceiling-safe initialization for the coarse amplification constants
-`B = 500`, `L = 400`. This is a large-host monochromatic-pair theorem,
-independent of the unfinished graph amplification step. -/
+/-!
+# Initial monochromatic pair for the amplification schedule
+
+Applies Sudakov's Lemma 2.2 (`exists_monoPair`) at initial scale $a = 3$ to find
+a monochromatic pair $(X, Y)$ with $|X| \ge 27 \sqrt{m}$ and
+$|Y| \ge 2^{(500 + 1600/3)\sqrt{m}}$ inside any 2-colored complete host of
+order at least $2^{2000\sqrt{m}}$.
+-/
 
 namespace Erdos546
 
@@ -78,7 +83,5 @@ theorem initial_pair_for_sparse_ramsey {W : Type*} [Fintype W]
       exact Nat.le_ceil _
     · have hYreal : (r : ℝ) ≤ Y.card := by exact_mod_cast hY
       exact (Nat.le_ceil R).trans hYreal
-
-#print axioms initial_pair_for_sparse_ramsey
 
 end Erdos546

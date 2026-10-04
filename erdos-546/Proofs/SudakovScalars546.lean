@@ -9,10 +9,10 @@ public import Mathlib.Tactic
 @[expose] public section
 
 /-!
-Scalar ingredients for the finite Sudakov Ramsey argument. These proofs are
-auxiliary only: they do not assume or prove the graph embedding or extraction
-lemmas. Natural powers in the combinatorial inequalities avoid real logarithmic
-or cube-root rounding at their interfaces.
+# Scalar inequalities for Sudakov's sparse Ramsey argument
+
+Establishes the real and natural-number inequalities used across the greedy
+embedding, sparse-cut extraction, and amplification schedule.
 -/
 
 namespace Erdos546
@@ -225,25 +225,3 @@ theorem finite_reciprocal_budget (a : ℕ → ℝ) (hpos : ∀ i, 0 < a i)
     _ ≤ 4 / 3 := geometric_reciprocal_budget n
 
 end Erdos546
-
-#print axioms Erdos546.nat_two_pow_ge_succ
-#print axioms Erdos546.half_pow_budget
-#print axioms Erdos546.small_pow_budget
-#print axioms Erdos546.embedding_power_margin
-#print axioms Erdos546.embedding_candidate_budget
-#print axioms Erdos546.embedding_candidate_budget_rounded
-#print axioms Erdos546.embedding_candidate_budget_rounded_general
-#print axioms Erdos546.nat_sparse_loss_bound_index
-#print axioms Erdos546.nat_sparse_loss_bound
-#print axioms Erdos546.nat_cube_growth_step
-#print axioms Erdos546.nat_amplification_growth_index
-#print axioms Erdos546.nat_amplification_growth
-#print axioms Erdos546.integer_amplification_growth
-#print axioms Erdos546.nextAmplificationParameter546_ge
-#print axioms Erdos546.nat_cube_growth_two_step
-#print axioms Erdos546.nat_rounded_amplification_growth_index
-#print axioms Erdos546.nat_rounded_amplification_growth
-#print axioms Erdos546.geometric_reciprocal_sum
-#print axioms Erdos546.geometric_reciprocal_budget
-#print axioms Erdos546.reciprocal_growth_control
-#print axioms Erdos546.finite_reciprocal_budget

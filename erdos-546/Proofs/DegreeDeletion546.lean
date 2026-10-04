@@ -10,10 +10,10 @@ public import Mathlib.Tactic
 /-!
 # Degree deletion for Sudakov's sparse graph Ramsey bound
 
-This file proves only the degree deletion ingredient, not the Ramsey bound.
-The threshold selection argument is expressed first for natural-valued weights.
-All copies used by the eventual Ramsey proof must preserve edges, without an
-induced-copy requirement; this ingredient concerns induced vertex deletion.
+Deleting the $k$ highest-degree vertices of a graph $G$ with $m$ edges leaves
+an induced subgraph in which every remaining vertex has degree at most
+$2m / (k + 1)$. Also proves that a graph with $m$ edges and no isolated
+vertices has at most $2m$ vertices.
 -/
 
 namespace Erdos546
@@ -109,10 +109,3 @@ theorem exists_delete_card_induced_degree_bound [DecidableEq V]
     _ ≤ 2 * G.edgeFinset.card := hdegree v v.property
 
 end Erdos546
-
-#print axioms Erdos546.card_weight_threshold_lt
-#print axioms Erdos546.exists_delete_card_weight_bound
-#print axioms Erdos546.card_vertices_le_twice_edges
-#print axioms Erdos546.exists_delete_card_degree_bound
-#print axioms Erdos546.degree_induce_le
-#print axioms Erdos546.exists_delete_card_induced_degree_bound

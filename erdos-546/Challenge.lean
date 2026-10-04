@@ -48,7 +48,7 @@ This Mathlib-only Challenge file reproduces the exact definitions
 `google-deepmind/formal-conjectures` (`FormalConjectures/ErdosProblems/546.lean`,
 commit `6fbb54f24ccc2e64dcfaffc28c58950e377110d2`, SHA-256
 `453e2ce29dc7533852d714ecf915da00d76fe8f242e5e9e627dff400a56caf1c`), together
-with six theorem targets:
+with seven theorem targets:
 1. `erdos_546_original_statement`: the literal Formal Conjectures `True ↔`
    theorem at root scope over arbitrary `V : Type` with `[Fintype V]`.
 2. `Erdos546.erdos_546`: `True ↔ Erdos546.SparseRamseyStatement`.
