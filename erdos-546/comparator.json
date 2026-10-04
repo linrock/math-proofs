@@ -1,0 +1,19 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "erdos_546_original_statement",
+    "Erdos546.erdos_546",
+    "Erdos546.sudakov_sparse_bound",
+    "Erdos546.sparse_graph_ramsey_witness",
+    "Erdos546.boundedDegree_sparse_cut",
+    "Erdos546.exists_monoPair_of_low_edgeDensity",
+    "Erdos546.quantitative_monoPair_amplification"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}
