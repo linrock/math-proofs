@@ -1,0 +1,16 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos2.Standalone.erdos_2",
+    "Erdos2.Standalone.not_arbitrarilyLarge_ideal_coverings",
+    "Erdos2.Standalone.minimum_modulus_bound",
+    "Erdos2.Standalone.finite_noncoverage_bound"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

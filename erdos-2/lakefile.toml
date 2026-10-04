@@ -1,0 +1,46 @@
+name = "Erdos2"
+version = "0.1.0"
+defaultTargets = ["Challenge", "Solution", "AxiomAudit"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "065356127b1dc0016f66b7283ce0ce2c4055aa55"
+
+[[lean_lib]]
+name = "ArchitectProofs"
+srcDir = "Proofs"
+roots = ["Architect", "Architect.Attribute", "Architect.Basic", "Architect.CollectUsed", "Architect.Command", "Architect.Content", "Architect.Load", "Architect.Output", "Architect.Tactic"]
+moreLeanArgs = ["-j1", "-M8192", "-E", "hasSorry"]
+
+[[lean_lib]]
+name = "MertensProofs"
+srcDir = "Proofs"
+roots = ["PrimeNumberTheoremAnd.EulerMaclaurin", "PrimeNumberTheoremAnd.IEANTN.Mertens"]
+moreLeanArgs = ["-j1", "-M8192", "-DautoImplicit=false", "-DrelaxedAutoImplicit=false", "-E", "hasSorry"]
+
+[[lean_lib]]
+name = "CoveringProofs"
+srcDir = "Proofs"
+roots = ["FiberUpdate2", "ProductUpdate2", "FiniteWeight2", "SieveStep2", "ProgressionArithmetic2", "CoveringModel2", "CongruenceGeometry2", "ProgressionUpdate2", "FractionRectangle2", "MomentBound2", "RectangleMoment2", "RectangleCoefficient2", "NaturalDivisorModel2", "EulerMoment2", "AnalyticTail2", "DivisorEulerBound2", "LateMoment2", "SieveStage2", "UniformResidue2", "FiniteLcm2", "SieveBase2", "StripPrime2", "MertensUpper2", "SmoothTail2", "TailChoice2", "SieveRecursion2", "ResidueLift2", "FiniteIndexAdapter2", "CoveringSystem2", "StatementAdapter2", "NoncoverageCapstone2"]
+moreLeanArgs = ["-j1", "-M8192", "-E", "hasSorry"]
+
+[[lean_lib]]
+name = "Challenge"
+roots = ["Challenge"]
+moreLeanArgs = ["-j1", "-M8192"]
+
+[[lean_lib]]
+name = "Solution"
+roots = ["Solution"]
+moreLeanArgs = ["-j1", "-M8192", "-E", "hasSorry"]
+
+[[lean_lib]]
+name = "AxiomAudit"
+roots = ["AxiomAudit"]
+moreLeanArgs = ["-j1", "-M8192", "-E", "hasSorry"]
+
+[[lean_lib]]
+name = "Statement"
+roots = ["Statement"]
+moreLeanArgs = ["-j1", "-M8192", "-E", "hasSorry"]

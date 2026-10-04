@@ -1,0 +1,369 @@
+module
+
+public import Architect.CollectUsed
+public import Architect.Content
+public import Architect.Tactic
+
+public meta section
+
+open Lean
+
+namespace Architect
+
+section ToLatex
+
+/-!
+Conversion from Lean nodes to LaTeX.
+-/
+
+abbrev Latex := String
+
+/-!
+We convert nodes to LaTeX.
+
+The output provides the following macros:
+- `\inputleannode{name}`: Inputs the theorem or definition with label `name`.
+- `\inputleanmodule{Module}`: Inputs the entire module (containing nodes and blueprint module docstrings in it) with module name `Module`.
+
+The structure of the output of a module `A` with nodes `b` and `c` is:
+```
+A.tex
+A/b.tex
+A/c.tex
+```
+
+The first is a header file that defines the macro `\inputleannode{name}`, which simply inputs `A/name.tex`.
+The rest are artifact files that contain the LaTeX of each node.
+-/
+
+def Latex.input (file : System.FilePath) : Latex :=
+  -- Windows prints filepaths using backslashes (\) instead of forward slashes (/).
+  -- LaTeX interprets these as control sequences, so we replace backslashes with forward slashes.
+  "\\input{" ++ "/".intercalate file.components ++ "}"
+
+variable {m} [Monad m] [MonadEnv m] [MonadError m]
+
+def preprocessLatex (s : String) : String :=
+  s
+
+structure InferredUses where
+  uses : Array String
+  leanOk : Bool
+
+def InferredUses.empty : InferredUses := { uses := #[], leanOk := true }
+
+def InferredUses.merge (inferredUsess : Array InferredUses) : InferredUses :=
+  { uses := inferredUsess.flatMap (·.uses), leanOk := inferredUsess.all (·.leanOk) }
+
+def NodePart.inferUses (part : NodePart) (latexLabel : String) (used : NameSet) : m InferredUses := do
+  let env ← getEnv
+  let uses := part.uses.foldl (·.insert ·) used |>.filter (· ∉ part.excludes)
+  let mut usesLabels : Std.HashSet String := .ofArray <|
+    uses.toArray.filterMap fun c => (blueprintExt.find? env c).map (·.latexLabel)
+  usesLabels := usesLabels.erase latexLabel
+  usesLabels := part.usesLabels.foldl (·.insert ·) usesLabels |>.filter (· ∉ part.excludesLabels)
+  return { uses := usesLabels.toArray, leanOk := !uses.contains ``sorryAx }
+
+/-- Infer the used constants of a node as (statement uses, proof uses). -/
+def Node.inferUses (node : Node) : m (InferredUses × InferredUses) := do
+  let (statementUsed, proofUsed) ← collectUsed node.name
+  if let some proof := node.proof then
+    return (
+      ← node.statement.inferUses node.latexLabel statementUsed,
+      ← proof.inferUses node.latexLabel proofUsed
+    )
+  else
+    return (
+      ← node.statement.inferUses node.latexLabel (statementUsed ∪ proofUsed),
+      InferredUses.empty
+    )
+
+/-- Merges and converts an array of `NodePart` to LaTeX. It is assumed that `part ∈ allParts`. -/
+def NodePart.toLatex (part : NodePart) (allParts : Array NodePart := #[part]) (inferredUses : InferredUses)
+    (title : Option String := none) (additionalContent : String := "") (defaultText : String := "") : m Latex := do
+  let mut out := ""
+  out := out ++ "\\begin{" ++ part.latexEnv ++ "}"
+  if let some title := title then
+    out := out ++ s!"[{preprocessLatex title}]"
+  out := out ++ "\n"
+
+  -- Take union of uses
+  unless inferredUses.uses.isEmpty do
+    out := out ++ "\\uses{" ++ ",".intercalate inferredUses.uses.toList ++ "}\n"
+
+  out := out ++ additionalContent
+
+  -- \leanok only if all parts are leanOk
+  if inferredUses.leanOk then
+    out := out ++ "\\leanok\n"
+
+  -- If not specified, the main text defaults to the first non-empty text in the parts
+  let text := if !part.text.isEmpty then part.text else
+    allParts.findSome? (fun p => if !p.text.isEmpty then p.text else none) |>.getD defaultText
+  let textLatex := (preprocessLatex text).trimAscii
+  unless textLatex.isEmpty do
+    out := out ++ textLatex ++ "\n"
+
+  out := out ++ "\\end{" ++ part.latexEnv ++ "}\n"
+  return out
+
+private def isMathlibOk (name : Name) : m Bool := do
+  let some modIdx := (← getEnv).getModuleIdxFor? name | return false
+  let module := (← getEnv).allImportedModuleNames[modIdx]!
+  return [`Init, `Lean, `Std, `Batteries, `Mathlib].any fun pre => pre.isPrefixOf module
+
+def NodeWithPos.toLatex (node : NodeWithPos) : m Latex := do
+  -- In the output, we merge the Lean nodes corresponding to the same LaTeX label.
+  let env ← getEnv
+  let allLeanNames := getLeanNamesOfLatexLabel env node.latexLabel
+  let allNodes := allLeanNames.filterMap fun name => blueprintExt.find? env name
+
+  let mut addLatex := ""
+  addLatex := addLatex ++ "\\label{" ++ node.latexLabel ++ "}\n"
+
+  addLatex := addLatex ++ "\\lean{" ++ ",".intercalate (allLeanNames.map toString).toList ++ "}\n"
+  if allNodes.any (·.notReady) then
+    addLatex := addLatex ++ "\\notready\n"
+  if let some d := allNodes.findSome? (·.discussion) then
+    addLatex := addLatex ++ "\\discussion{" ++ toString d ++ "}\n"
+  if ← allNodes.allM (isMathlibOk ·.name) then
+    addLatex := addLatex ++ "\\mathlibok\n"
+
+  -- position string as annotation
+  let posStr := match node.file, node.location with
+    | some file, some location => s!"{file}:{location.range.pos.line}.{location.range.pos.column}-{location.range.endPos.line}.{location.range.endPos.column}"
+    | _, _ => ""
+  addLatex := addLatex ++ s!"% at {posStr}\n"
+
+  let inferredUsess ← allNodes.mapM (·.inferUses)
+  let statementUses := InferredUses.merge (inferredUsess.map (·.1))
+  let proofUses := InferredUses.merge (inferredUsess.map (·.2))
+
+  let statementLatex ← node.statement.toLatex (allNodes.map (·.statement)) statementUses (allNodes.findSome? (·.title)) addLatex
+  match node.proof with
+  | none => return statementLatex
+  | some proof =>
+    let proofDocString := getProofDocString env node.name
+    let proofLatex ← proof.toLatex (allNodes.filterMap (·.proof)) proofUses (defaultText := proofDocString)
+    return statementLatex ++ proofLatex
+
+/-- `LatexArtifact` represents an auxiliary output file for a single node,
+containing its label (which is its filename) and content. -/
+structure LatexArtifact where
+  id : String
+  content : Latex
+
+/-- `LatexOutput` represents the extracted LaTeX from a module, consisting of a header file and auxiliary files. -/
+structure LatexOutput where
+  /-- The header file requires the path to the artifacts directory. -/
+  header : System.FilePath → Latex
+  artifacts : Array LatexArtifact
+
+def NodeWithPos.toLatexArtifact (node : NodeWithPos) : m LatexArtifact := do
+  return { id := node.latexLabel, content := ← node.toLatex }
+
+def BlueprintContent.toLatex : BlueprintContent → m Latex
+  | .node n => return "\\inputleannode{" ++ n.latexLabel ++ "}"
+  | .modDoc d => return d.doc
+
+def latexPreamble : m Latex := do
+  return "%%% This file is automatically generated by LeanArchitect. %%%
+
+%%% Macro definitions for \\inputleannode, \\inputleanmodule %%%
+
+\\makeatletter
+
+% \\newleannode{name}{latex} defines a new Lean node
+\\providecommand{\\newleannode}[2]{%
+  \\expandafter\\gdef\\csname leannode@#1\\endcsname{#2}}
+% \\inputleannode{name} inputs a Lean node
+\\providecommand{\\inputleannode}[1]{%
+  \\csname leannode@#1\\endcsname}
+
+% \\newleanmodule{module}{latex} defines a new Lean module
+\\providecommand{\\newleanmodule}[2]{%
+  \\expandafter\\gdef\\csname leanmodule@#1\\endcsname{#2}}
+% \\inputleanmodule{module} inputs a Lean module
+\\providecommand{\\inputleanmodule}[1]{%
+  \\csname leanmodule@#1\\endcsname}
+
+\\makeatother
+
+%%% Start of main content %%%"
+
+private def dedupContentsByLatexLabel (contents : Array BlueprintContent) : Array BlueprintContent := Id.run do
+  let mut seen : Std.HashSet String := ∅
+  let mut result : Array BlueprintContent := #[]
+  for content in contents do
+    match content with
+    | .node n =>
+      if seen.contains n.latexLabel then
+        continue
+      seen := seen.insert n.latexLabel
+      result := result.push content
+    | .modDoc _ =>
+      result := result.push content
+  return result
+
+/-- Convert a module to a header file and artifacts. The header file requires the path to the artifacts directory. -/
+private def moduleToLatexOutputAux (module : Name) (contents : Array BlueprintContent) : m LatexOutput := do
+  -- First deduplicate contents by LaTeX label
+  let contents' := dedupContentsByLatexLabel contents
+  -- Artifact files
+  let artifacts : Array LatexArtifact := ← contents'.filterMapM fun
+    | .node n => n.toLatexArtifact
+    | _ => pure none
+  -- Header file
+  let preamble ← latexPreamble
+  let headerModuleLatex ← contents'.mapM BlueprintContent.toLatex
+  let header (artifactsDir : System.FilePath) : Latex :=
+    preamble ++ "\n\n" ++
+      "\n\n".intercalate (artifacts.map fun ⟨id, _⟩ => "\\newleannode{" ++ id ++ "}{" ++ Latex.input (artifactsDir / id) ++ "}").toList ++ "\n\n" ++
+      "\\newleanmodule{" ++ module.toString ++ "}{\n" ++ "\n\n".intercalate headerModuleLatex.toList ++ "\n}"
+  return { header, artifacts }
+
+/-- Convert imported module to LaTeX (header file, artifact files). -/
+def moduleToLatexOutput (module : Name) : CoreM LatexOutput := do
+  let contents ← getBlueprintContents module
+  moduleToLatexOutputAux module contents
+
+/-- Convert current module to LaTeX (header file, artifact files). -/
+def mainModuleToLatexOutput : CoreM LatexOutput := do
+  let contents ← getMainModuleBlueprintContents
+  moduleToLatexOutputAux (← getMainModule) contents
+
+/-- Shows the blueprint LaTeX of the current module (`#show_blueprint`) or
+a blueprint node (`#show_blueprint lean_name` or `#show_blueprint "latex_label"`). -/
+syntax (name := show_blueprint) "#show_blueprint" (ppSpace (ident <|> str))? : command
+
+open Elab Command in
+@[command_elab show_blueprint] def elabShowBlueprint : CommandElab
+  | `(command| #show_blueprint) => do
+    let output ← liftCoreM mainModuleToLatexOutput
+    output.artifacts.forM fun art => logInfo m!"LaTeX of node {art.id}:\n{art.content}"
+    logInfo m!"LaTeX of current module:\n{output.header ""}"
+  | `(command| #show_blueprint $id:ident) => do
+    let name ← liftCoreM <| realizeGlobalConstNoOverloadWithInfo id
+    let some node := blueprintExt.find? (← getEnv) name | throwError "{name} does not have @[blueprint] attribute"
+    let art ← (← liftCoreM node.toNodeWithPos).toLatexArtifact
+    logInfo m!"{art.content}"
+  | `(command| #show_blueprint $label:str) => do
+    let env ← getEnv
+    let names := getLeanNamesOfLatexLabel env label.getString
+    if names.isEmpty then throwError "no @[blueprint] nodes with label {label}"
+    for name in names do
+      elabCommand <| ← `(command| #show_blueprint $(mkIdent name))
+  | _ => throwUnsupportedSyntax
+
+end ToLatex
+
+section ToJson
+
+private def rangeToJson (range : DeclarationRange) : Json :=
+  json% {
+    "pos": $(range.pos),
+    "endPos": $(range.endPos)
+  }
+
+private def locationToJson (location : DeclarationLocation) : Json :=
+  json% {
+    "module": $(location.module),
+    "range": $(rangeToJson location.range)
+  }
+
+def NodeWithPos.toJson (node : NodeWithPos) : Json :=
+  json% {
+    "name": $(node.name),
+    "latexLabel": $(node.latexLabel),
+    "statement": $(node.statement),
+    "proof": $(node.proof),
+    "notReady": $(node.notReady),
+    "discussion": $(node.discussion),
+    "title": $(node.title),
+    "hasLean": $(node.hasLean),
+    "file": $(node.file),
+    "location": $(node.location.map locationToJson)
+  }
+
+def BlueprintContent.toJson : BlueprintContent → Json
+  | .node n => json% {"type": "node", "data": $(n.toJson)}
+  | .modDoc d => json% {"type": "moduleDoc", "data": $(d.doc)}
+
+def moduleToJson (module : Name) : CoreM Json := do
+  return Json.arr <|
+    (← getBlueprintContents module).map BlueprintContent.toJson
+
+def mainModuleToJson : CoreM Json := do
+  return Json.arr <|
+    (← getMainModuleBlueprintContents).map BlueprintContent.toJson
+
+/-- Shows the blueprint JSON of the current module (`#show_blueprint_json`) or
+a single Lean declaration (`#show_blueprint_json name`). -/
+syntax (name := show_blueprint_json) "#show_blueprint_json" (ppSpace (ident <|> str))? : command
+
+open Elab Command in
+@[command_elab show_blueprint_json] def elabShowBlueprintJson : CommandElab
+  | `(command| #show_blueprint_json) => do
+    let json ← liftCoreM mainModuleToJson
+    logInfo m!"{json}"
+  | `(command| #show_blueprint_json $id:ident) => do
+    let name ← liftCoreM <| realizeGlobalConstNoOverloadWithInfo id
+    let some node := blueprintExt.find? (← getEnv) name | throwError "{name} does not have @[blueprint] attribute"
+    let json := (← liftCoreM node.toNodeWithPos).toJson
+    logInfo m!"{json}"
+  | `(command| #show_blueprint_json $label:str) => do
+    let env ← getEnv
+    let names := getLeanNamesOfLatexLabel env label.getString
+    if names.isEmpty then throwError "no @[blueprint] nodes with label {label}"
+    for name in names do
+      elabCommand <| ← `(command| #show_blueprint_json $(mkIdent name))
+  | _ => throwUnsupportedSyntax
+
+end ToJson
+
+open IO
+
+def moduleToRelPath (module : Name) (ext : String) : System.FilePath :=
+  modToFilePath "module" module ext
+
+def libraryToRelPath (library : Name) (ext : String) : System.FilePath :=
+  System.mkFilePath ["library", library.toString (escape := false)] |>.addExtension ext
+
+/-- Write `latex` to the appropriate blueprint tex file. Returns the list of paths to auxiliary output files (note: the returned paths are currently discarded). -/
+def outputLatexResults (basePath : System.FilePath) (module : Name) (latex : LatexOutput) : IO (Array System.FilePath) := do
+  let filePath := basePath / moduleToRelPath module "tex"
+  let artifactsDir := basePath / moduleToRelPath module "artifacts"
+  if let some d := filePath.parent then FS.createDirAll d
+  FS.writeFile filePath (latex.header artifactsDir)
+
+  latex.artifacts.mapM fun art => do
+    let path := artifactsDir / (art.id ++ ".tex")
+    if let some d := path.parent then FS.createDirAll d
+    FS.writeFile path art.content
+    return path
+
+/-- Write `json` to the appropriate blueprint json file. -/
+def outputJsonResults (basePath : System.FilePath) (module : Name) (json : Json) : IO Unit := do
+  let filePath := basePath / moduleToRelPath module "json"
+  if let some d := filePath.parent then FS.createDirAll d
+  FS.writeFile filePath json.pretty
+
+/-- Write to an appropriate index tex file that \inputs all modules in a library. -/
+def outputLibraryLatex (basePath : System.FilePath) (library : Name) (modules : Array Name) : IO Unit := do
+  FS.createDirAll basePath
+  let latex : Latex := "\n\n".intercalate
+    (modules.map fun mod => Latex.input (basePath / moduleToRelPath mod "tex")).toList
+  let filePath := basePath / libraryToRelPath library "tex"
+  if let some d := filePath.parent then FS.createDirAll d
+  FS.writeFile filePath latex
+
+/-- Write to an appropriate index json file containing paths to json files of all modules in a library. -/
+def outputLibraryJson (basePath : System.FilePath) (library : Name) (modules : Array Name) : IO Unit := do
+  FS.createDirAll basePath
+  let json : Json := Json.mkObj [("modules", toJson (modules.map fun mod => moduleToRelPath mod "json"))]
+  let content := json.pretty
+  let filePath := basePath / libraryToRelPath library "json"
+  if let some d := filePath.parent then FS.createDirAll d
+  FS.writeFile filePath content
+
+end Architect

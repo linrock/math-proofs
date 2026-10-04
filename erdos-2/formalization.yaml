@@ -1,0 +1,132 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 2: the minimum modulus of a distinct covering system is bounded",
+    "description": "A qualitative Lean formalization of the published negative answer to Erdős problem 2. One natural bound applies to every finite covering of all signed integers by distinct positive natural moduli, independently of the number of moduli and the assigned residues. The Mathlib-only benchmark selects this uniform numerical theorem. The substantive development also proves the literal Formal Conjectures ideal statement and a finite-set noncoverage theorem. The proof follows the probability sieve of Balister, Bollobás, Morris, Sahasrabudhe and Tiba, with a fixed half-cap update and qualitative summable tails. No explicit numerical cutoff is extracted.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "MIT"
+  },
+  "classification": {
+    "arxiv": [
+      "math.NT",
+      "math.CO"
+    ],
+    "msc2020": [
+      "11A07",
+      "11B25"
+    ]
+  },
+  "sources": [
+    {
+      "title": "On the Erdős Covering Problem: the density of the uncovered set",
+      "authors": [
+        "Paul Balister",
+        "Béla Bollobás",
+        "Robert Morris",
+        "Julian Sahasrabudhe",
+        "Marius Tiba"
+      ],
+      "type": "paper",
+      "relationship": "adapts",
+      "id": "https://arxiv.org/abs/1811.03547v1",
+      "location": "Probability-sieve construction and application to the minimum modulus problem",
+      "author_endorsement": "not-contacted",
+      "note": "The formal proof uses a fixed half-cap update, a second-moment Euler-product bound and qualitative summable tails. It proves the uniform existence conclusion and does not reproduce an optimized explicit cutoff or the paper's other results."
+    },
+    {
+      "title": "Solution of the minimum modulus problem for covering systems",
+      "authors": [
+        "Bob Hough"
+      ],
+      "type": "paper",
+      "relationship": "background",
+      "id": "https://doi.org/10.4007/annals.2015.181.1.6",
+      "location": "Annals of Mathematics 181 (2015), 361–382",
+      "author_endorsement": "not-contacted",
+      "note": "Hough established the negative answer. The included formal proof follows the later probability-sieve approach rather than formalizing Hough's proof or extracting his explicit bound."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/tree/1f3951b7b0eb81f6b33ebc9bbe2b2c1feaf422d1",
+      "relationship": "builds-on",
+      "note": "The attributed Apache-2.0 covering-system utility is retained unchanged. Statement.lean records the literal Erdős 2 ideal statement with answer(False) elaborated as False. The upstream unfinished theorem is not imported as a proof. The numerical Challenge has only Mathlib imports."
+    },
+    {
+      "id": "https://github.com/ajirving/PrimeNumberTheoremAnd/tree/769d3b81fbff001d9fa7028df0168a8e546cf692",
+      "relationship": "builds-on",
+      "note": "The included narrow Euler–Maclaurin and Mertens provider cone supplies the analytic input used for the reciprocal-prime-product bound. Source compatibility changes and applicable Apache-2.0 notices are retained with the package."
+    },
+    {
+      "id": "https://github.com/hanwenzhu/LeanArchitect/tree/78dd66840d3efe8c824c699fc03381cec817c271",
+      "relationship": "builds-on",
+      "note": "Nine attributed Architect source modules support the vendored analytic provider's commands. They are outside the numerical Challenge's import closure."
+    }
+  ],
+  "status": {
+    "scope": "The complete qualitative original minimum-modulus conclusion, including arbitrary finite index types, distinct positive natural moduli and arbitrary signed integer residues. The Comparator configuration selects the uniform numerical bound only; the literal original ideal statement and finite-set noncoverage theorem remain separately proved and audited public endpoints. No explicit numerical cutoff is extracted. The benchmark's deliberate sorry is excluded from the proof development.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos2.Standalone.minimum_modulus_bound",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos2.Standalone.erdos_2",
+        "file": "Solution.lean"
+      },
+      {
+        "declaration": "Erdos2.Standalone.finite_noncoverage_bound",
+        "file": "Solution.lean"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted probability-sieve proof development, analytic and arithmetic adapters, independent agent statement and source audits, standalone packaging, and toolchain compatibility work directed by Linmiao Xu. All substantive proof claims require compilation and individual transitive-axiom checks."
+      }
+    ],
+    "notes": "The source-based development formalizes known mathematics. Historical model identities, costs and upstream automation histories are not reconstructed."
+  },
+  "fidelity": {
+    "divergences": "The proof retains the original uniform quantifiers, signed integer coverage, positivity and distinctness. It adapts the published sieve using a fixed half-cap update and a coarser sixth-power Euler bound sufficient for a qualitative summable tail. It does not extract the paper's explicit cutoff. The ideal utility is unchanged, and the original ideal statement is preserved separately from the Mathlib-only numerical benchmark."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Lean 4.35.0-rc2 (compiler commit 11acb17ec6b07a8f9e9173e6845197929540936b), with canonical Mathlib commit 065356127b1dc0016f66b7283ce0ce2c4055aa55, passed 46 fresh source builds: 42 vendored modules, three completed interfaces and one separate benchmark. The completed 45-module proof development has no sorry. Four saved-source endpoint/fidelity transitive-axiom reports passed using only the three listed foundations, with 44 owned setup import bindings. An independent agent reviewed statement scope and the exact Challenge/Solution numerical signature. Comparator matched that statement, and NanoDa and Lean's default kernel both accepted Solution in a local macOS run with the sandbox explicitly disabled; this is not Palomar server acceptance. The canonical verify.sh replay and normal Lake build passed; finalized release digests are checked separately. VERIFICATION.json records the actual checks. Canonical compiled Mathlib dependencies are reused; Mathlib is not rebuilt from source."
+  },
+  "alignment": {
+    "namespace": "Erdos2.Standalone",
+    "statements": [
+      {
+        "source": "Qualitative negative answer to the minimum modulus problem",
+        "lean": "Erdos2.Standalone.minimum_modulus_bound",
+        "module": "Solution",
+        "status": "proved; Lean 4.35.0-rc2 source build and transitive-axiom audit passed",
+        "note": "One existential bound precedes all finite index types, moduli, residues and covering hypotheses. The Challenge and Solution independently state the same raw numerical signature; local unsandboxed Comparator, NanoDa and Lean default-kernel validation passed."
+      },
+      {
+        "source": "Formal Conjectures Erdős 2 literal ideal statement",
+        "lean": "Erdos2.Standalone.erdos_2",
+        "module": "Solution",
+        "status": "proved; Lean 4.35.0-rc2 source build and transitive-axiom audit passed",
+        "note": "The False iff arbitrarily-large strict ideal coverings formulation is retained in Statement.lean and proved independently in Solution.lean; it is outside this Comparator selection."
+      }
+    ]
+  },
+  "acknowledgements": "Hough's solution and the BBMST probability-sieve argument provide the mathematical provenance. Mathlib, the Formal Conjectures covering utility, PrimeNumberTheoremAnd and LeanArchitect supply attributed formal definitions, proof inputs and infrastructure. Their source notices and upstream licenses are preserved separately from the repository's MIT license."
+}
