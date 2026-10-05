@@ -27,7 +27,9 @@ strict improvement $G_2(X) \ge c \log X$ and $\limsup \ge A > 1$) or by
 upgrading a small prime prefix $p \le z$ to nested prime-square moduli $p^2$
 and covering the remaining prime and semiprime survivors with scale-adaptive
 dyadic prime shells via the Green–Tao–Ziegler linear-forms theorem (following
-the June 2026 manuscript of Chojecki, Price, Sherry, and Tao).
+the Green–Tao–Ziegler prime-pattern framework; see also the June 2026 candidate
+manuscript on the Erdős Problems forum attributed to Chojecki, Price, Sherry,
+and Tao).
 
 ## Statements and proof entrypoints
 

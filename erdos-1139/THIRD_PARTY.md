@@ -4,12 +4,13 @@ This package formalizes unconditional mixed prime/prime-square covering
 bridges, Prime Number Theorem primorial conductor asymptotics, fixed-parameter
 squared-core deficiency classification, and reserve-omission maximal-gap and
 normalized-limsup theorems for [Erdős problem #1139](https://www.erdosproblems.com/1139),
-together with the complete conditional formalization of the June 2026
-proposed solution ([forum thread #1139](https://www.erdosproblems.com/forum/thread/1139#post-7063),
-attributed to Przemysław Chojecki, Liam Price, Gavin Sherry, and Terence Tao)
-from the published Green–Tao–Ziegler von Mangoldt linear-forms asymptotic
+extending Chojecki's (2026) Erdős #689 double-covering construction, together
+with a complete conditional derivation of the infinite-limsup conjecture from
+the Green–Tao–Ziegler (2010–2012) von Mangoldt linear-forms asymptotic
 (`HasFixedSignedMixedPublishedVonMangoldtAsymptotics`) and its reverse
-reduction to arbitrary-length prime progressions.
+reduction to arbitrary-length prime progressions (see also the prior June 2026
+candidate manuscript on [forum thread #1139](https://www.erdosproblems.com/forum/thread/1139#post-7063)
+attributed to Przemysław Chojecki, Liam Price, Gavin Sherry, and Terence Tao).
 
 Locally authored proof modules in `Proofs/`, `Statement.lean`, `Solution.lean`,
 and `AxiomAudit.lean` are licensed under the [MIT License](LICENSE). The

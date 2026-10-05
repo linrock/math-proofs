@@ -2,7 +2,7 @@
   "version": "v0.4",
   "project": {
     "name": "Erdős 1139: large gaps between almost-primes",
-    "description": "A Lean 4 formalization of Erdős problem 1139 on large gaps between P_2 almost-primes (1 ≤ u_1 < u_2 < ⋯ with Ω(u_k) ≤ 2). Combining the Chinese Remainder Theorem, the Prime Number Theorem, and protected-reserve omission in the Erdős 689 three-prime matching construction, this package proves unconditionally that the normalized gap ratio satisfies limsup (u_{k+1} - u_k) / log(k + 1) ≥ A > 1 and that every sufficiently large height X contains an almost-prime-free interval [N + 1, N + y] ⊆ [1, X] of length y ≥ c log X for a fixed constant c > 1, alongside the mixed prime/prime-square CRT bridge, the PNT primorial conductor limit, the sublinear-conductor reduction to limsup = ∞, and the four-family deficiency classification for the squared-prime core. It also formalizes the complete conditional derivation of the Formal Conjectures infinite-limsup statement from the Green–Tao–Ziegler von Mangoldt linear-forms asymptotic and proves that this hypothesis implies arbitrary-length prime arithmetic progressions.",
+    "description": "A Lean 4 formalization of unconditional bounds and conditional reductions for Erdős problem 1139 on consecutive P_2 almost-primes (Ω(u_k) ≤ 2). Extending Chojecki's (2026) Erdős 689 double-covering construction via protected-reserve omission, it proves unconditionally that limsup (u_{k+1} - u_k) / log(k + 1) ≥ A > 1 and that every large height X contains an almost-prime-free interval of length ≥ c log X (c > 1), alongside the mixed prime/prime-square CRT bridge, PNT primorial asymptotics, and squared-core deficiency classification. Using a squared-prime core and scale-adaptive dyadic prime shells, it also derives the full infinite-limsup conjecture conditionally from the Green–Tao–Ziegler (2010–2012) linear-forms asymptotic and proves its reverse implication to arbitrary-length prime progressions.",
     "authors": [
       "Linmiao Xu"
     ],
@@ -23,21 +23,6 @@
     ]
   },
   "sources": [
-    {
-      "title": "Large gaps between almost-primes, and double covering with primes",
-      "authors": [
-        "Przemysław Chojecki",
-        "Liam Price",
-        "Gavin Sherry",
-        "Terence Tao"
-      ],
-      "type": "preprint",
-      "relationship": "adapts",
-      "id": "https://www.erdosproblems.com/forum/thread/1139#post-7063",
-      "location": "Erdős Problems Forum Thread #1139 (June 19, 2026)",
-      "author_endorsement": "not-contacted",
-      "note": "Proposes a complete proof of the infinite-limsup conjecture for Erdős #1139 using a fixed-parameter squared-prime core, typed affine prime patterns across dyadic prime shells, shared-target covolume and singular-series cancellation, and the Green–Tao–Ziegler linear-forms theorem."
-    },
     {
       "title": "A greedy matching proof of Erdős's two-fold residue-class problem",
       "authors": [
@@ -62,6 +47,35 @@
       "location": "Annals of Mathematics 171 (2010), 1753–1850",
       "author_endorsement": "not-contacted",
       "note": "Establishes the finite-complexity von Mangoldt linear-forms asymptotic (completed unconditionally with Green–Tao 2012 and Green–Tao–Ziegler 2012) formalized as the explicit premise HasFixedSignedMixedPublishedVonMangoldtAsymptotics in erdos_1139_of_gtz and prime_ap_of_gtz."
+    },
+    {
+      "title": "An inverse theorem for the Gowers U^{s+1}[N]-norm",
+      "authors": [
+        "Ben Green",
+        "Terence Tao",
+        "Tamar Ziegler"
+      ],
+      "type": "paper",
+      "relationship": "background",
+      "id": "https://annals.math.princeton.edu/2012/176-2/p11",
+      "location": "Annals of Mathematics 176 (2012), 1231–1372",
+      "author_endorsement": "not-contacted",
+      "note": "Together with Green–Tao (2012) on Möbius–nilsequence orthogonality, completes the finite-complexity linear-forms theorem in primes."
+    },
+    {
+      "title": "Candidate proof of Erdős Problem 1139 (June 2026 manuscript)",
+      "authors": [
+        "Przemysław Chojecki",
+        "Liam Price",
+        "Gavin Sherry",
+        "Terence Tao"
+      ],
+      "type": "other",
+      "relationship": "independently-proves",
+      "id": "https://www.erdosproblems.com/forum/thread/1139#post-7063",
+      "location": "Erdős Problems Forum Thread #1139 (June 19, 2026)",
+      "author_endorsement": "not-contacted",
+      "note": "Prior public candidate proof proposing the squared-prime core, typed affine prime patterns, shared-target covolumes, and Green–Tao–Ziegler linear-forms approach to Erdős #1139."
     },
     {
       "title": "Erdős Problem 1139: large gaps between almost-primes",
