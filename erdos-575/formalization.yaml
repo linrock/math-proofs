@@ -1,0 +1,221 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 575: bipartite extremal-graph compactness",
+    "description": "A complete Lean 4 proof of the negative answer to Erdős problem 575: a finite family F of forbidden graphs containing a bipartite graph need not contain a bipartite member H with ex(n; H) = O(ex(n; F)). Formalizes both the self-contained bipartite forest counterexample F_0 = {K_{1,2}, 2K_2} (where ex(n; F_0) ≤ 1 while ex(n; K_{1,2}) ≥ ⌊n/2⌋ and ex(n; 2K_2) ≥ n - 1) and the cycle-containing counterexample family of connected bipartite cyclic graphs satisfying ex(n; F) = O(n^(21/16)) and ex(n; H) = Ω(n^(4/3)) for every H ∈ F.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "MIT"
+  },
+  "classification": {
+    "arxiv": [
+      "math.CO"
+    ],
+    "msc2020": [
+      "05C35"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Ten advances in mathematics and theoretical computer science",
+      "authors": [
+        "OpenAI"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "id": "https://cdn.openai.com/pdf/ten-proofs-oai.pdf",
+      "location": "Chapter 10",
+      "author_endorsement": "not-contacted",
+      "note": "Constructs the finite nonempty family of connected, bipartite, cyclic graphs refuting Erdős–Simonovits compactness (#180) and its bipartite-controller variant (#575)."
+    },
+    {
+      "title": "The Erdős–Simonovits Compactness Conjecture Needs More Assumptions",
+      "authors": [
+        "Yuval Wigderson"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "id": "https://ywigderson.math.ethz.ch/math/static/Compactness.pdf",
+      "author_endorsement": "not-contacted",
+      "note": "Records the bipartite forest counterexample {K_{1,2}, 2K_2} (attributed to Jordan Lefkowitz and known to Simonovits) when forests are not excluded."
+    },
+    {
+      "title": "Compactness results in extremal graph theory",
+      "authors": [
+        "P. Erdős",
+        "M. Simonovits"
+      ],
+      "type": "paper",
+      "relationship": "background",
+      "id": "https://doi.org/10.1007/BF02579424",
+      "location": "Combinatorica 2 (1982), 275–288",
+      "author_endorsement": "not-contacted",
+      "note": "Poses the extremal-graph compactness questions."
+    },
+    {
+      "title": "Erdős Problem 575: bipartite extremal-graph compactness",
+      "type": "other",
+      "relationship": "background",
+      "id": "https://www.erdosproblems.com/575",
+      "note": "Problem catalog entry and discussion thread."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/openai/ten-proofs/blob/94bc0feb6a9ff12c7d31d6de640a725c9d43d2b6/CompactnessAndDegeneracy.lean",
+      "relationship": "extends",
+      "note": "Pinned Apache-2.0 OpenAI Lean 4.32 proof of #180 and #146, ported here to Lean 4.35.0-rc2 (3-line Mathlib API update) and extended with the 14-theorem #575 bridge in Proofs/Erdos575.lean."
+    },
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/issues/804",
+      "relationship": "adapts",
+      "note": "Formal Conjectures statement conventions from Problem 180 adapted to Problem 575."
+    }
+  ],
+  "status": {
+    "scope": "Complete formal refutation of both the corrected cycle-containing statement of Erdős problem 575 (CyclicBipartiteCompactnessStatement / erdos_575) and the literal unrestricted statement (BipartiteCompactnessStatement / erdos_575_unrestricted), together with the all-bipartite cyclic specialization, qualitative and quantitative (exponent gap 1/48) cyclic counterexample theorems, and the quantitative bipartite forest counterexample {K_{1,2}, 2K_2} (forestCounterexample / forestFamily_not_isBipartiteCompact).",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos575.not_erdos_575_corrected",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos575.not_erdos_575",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos575.not_erdos_575_all_bipartite",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos575.correctedCounterexample",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos575.quantitativeCounterexample",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos575.ForestCounterexample.forestCounterexample",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos575.ForestCounterexample.forestFamily_not_isBipartiteCompact",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos575.erdos_575",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos575.erdos_575_unrestricted",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, Lean 4.35.0-rc2 porting, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "All three proof modules in Proofs/ plus Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry in Proofs/ and are verified by both Lean's default kernel and NanoDa via Comparator."
+  },
+  "fidelity": {
+    "divergences": "None. Both the cycle-containing formulation (erdos_575 / CyclicBipartiteCompactnessStatement) and the literal unrestricted formulation (erdos_575_unrestricted / BipartiteCompactnessStatement) preserve the exact mixed-order finite-family quantifier, the ContainsBipartiteMember hypothesis, and the requirement that the controlling graph H in F be bipartite (IsBipartiteCompactFamily)."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Lean 4.35.0-rc2 (compiler commit 11acb17ec6b07a8f9e9173e6845197929540936b) with canonical Mathlib commit 065356127b1dc0016f66b7283ce0ce2c4055aa55 passed fresh source builds for all three modules in Proofs/ plus Statement, Solution, AxiomAudit, and Challenge. Zero sorry occur in the proof modules. All 13 saved-source endpoint, statement-fidelity, and non-vacuity axiom audits passed using only propext, Classical.choice, and Quot.sound. Comparator matched all nine selected theorems in Challenge and Solution, and both NanoDa and Lean's default kernel accepted the solution."
+  },
+  "alignment": {
+    "namespace": "Erdos575",
+    "statements": [
+      {
+        "source": "Formal Conjectures Erdős 575 cycle-containing False <-> statement",
+        "lean": "Erdos575.erdos_575",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves False <-> CyclicBipartiteCompactnessStatement and verifies definitional equality with Statement.lean."
+      },
+      {
+        "source": "Formal Conjectures Erdős 575 unrestricted False <-> statement",
+        "lean": "Erdos575.erdos_575_unrestricted",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves False <-> BipartiteCompactnessStatement and verifies definitional equality with Statement.lean."
+      },
+      {
+        "source": "Direct negation of the cycle-containing Erdős–Simonovits bipartite compactness problem",
+        "lean": "Erdos575.not_erdos_575_corrected",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Refutes CyclicBipartiteCompactnessStatement using the all-bipartite cyclic family proposedFamily."
+      },
+      {
+        "source": "Direct negation of the unrestricted Erdős–Simonovits bipartite compactness problem",
+        "lean": "Erdos575.not_erdos_575",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Refutes BipartiteCompactnessStatement."
+      },
+      {
+        "source": "Direct negation of the all-bipartite cyclic specialization",
+        "lean": "Erdos575.not_erdos_575_all_bipartite",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Refutes AllBipartiteCyclicCompactnessStatement."
+      },
+      {
+        "source": "OpenAI (2026), Chapter 10: connected, bipartite, cyclic counterexample family",
+        "lean": "Erdos575.correctedCounterexample",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Exhibits a finite nonempty cyclic family whose members are all connected, bipartite, and cyclic, yet which is not bipartite-compact."
+      },
+      {
+        "source": "OpenAI (2026), Chapter 10: quantitative polynomial separation with exponent gap 1/48",
+        "lean": "Erdos575.quantitativeCounterexample",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Exhibits a connected, bipartite, cyclic family with ex(n; H) >= c n^(4/3) eventually for every member H while ex(n; F)^16 <= C n^21 for all n."
+      },
+      {
+        "source": "Wigderson (2024) / Lefkowitz–Simonovits: bipartite forest family {K_{1,2}, 2K_2} is not bipartite-compact",
+        "lean": "Erdos575.ForestCounterexample.forestFamily_not_isBipartiteCompact",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves ¬ IsBipartiteCompactFamily forestFamily for F_0 = {K_{1,2}, 2K_2}."
+      },
+      {
+        "source": "Wigderson (2024) / Lefkowitz–Simonovits: quantitative bounds for {K_{1,2}, 2K_2}",
+        "lean": "Erdos575.ForestCounterexample.forestCounterexample",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves ex(n; {K_{1,2}, 2K_2}) <= 1, ex(n; K_{1,2}) >= n / 2, ex(n; 2K_2) >= n - 1, and ¬ IsBipartiteCompactFamily forestFamily."
+      }
+    ]
+  },
+  "acknowledgements": "Erdős Problem 575 was posed by Erdős and Simonovits (1982). The bipartite forest counterexample {K_{1,2}, 2K_2} is recorded by Yuval Wigderson (attributed to Jordan Lefkowitz and Miklós Simonovits), and the all-bipartite cyclic counterexample family is due to OpenAI (2026). Mathlib, Formal Conjectures, and openai/ten-proofs supply attributed formal definitions and upstream proof infrastructure."
+}

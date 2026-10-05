@@ -1,0 +1,17 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos575.not_erdos_575_corrected",
+    "Erdos575.not_erdos_575",
+    "Erdos575.not_erdos_575_all_bipartite",
+    "Erdos575.correctedCounterexample",
+    "Erdos575.quantitativeCounterexample",
+    "Erdos575.ForestCounterexample.forestCounterexample",
+    "Erdos575.ForestCounterexample.forestFamily_not_isBipartiteCompact",
+    "Erdos575.erdos_575",
+    "Erdos575.erdos_575_unrestricted"
+  ],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"],
+  "enable_nanoda": true
+}
