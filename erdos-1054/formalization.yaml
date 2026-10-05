@@ -2,7 +2,7 @@
   "version": "v0.4",
   "project": {
     "name": "Erdős 1054: sums of smallest divisors",
-    "description": "A complete Lean 4 proof of all three parts of Erdős problem 1054. Let f(n) be the least integer m whose k smallest divisors sum to n for some k ≥ 1: (i) f(n) is not o(n), (ii) f(n) is not o(n) on any subset of natural density 1, and (iii) limsup f(n)/n = ∞ (both globally and on every density-one subtype). Combining a small-cofactor prime sieve, an unconditional circle-method proof of almost-all binary Goldbach, a linear sifted-density bound δ_E ≥ c_1 / E, and singleton tail elimination in the 7-variable second moment, the formalization establishes the uniform lower-density bound d̲({n ∈ S : n odd, f(n) > A n}) ≥ c / [A^3 (1 + log A)^4] across all A ≥ 1 and all sets S of relative odd density 1. In the small-ratio regime, it proves the Tao–Kovač upper bound #{n ≤ X : 0 < f(n) ≤ δ n} ≤ C δ^3 X (showing that f(n) = o(n) on S forces the represented members of S to have density 0 without invoking Goldbach), liminf_{f(n)>0} f(n)/n = 0, and the two-way asymptotic density equivalence between {s(2d)} and even aliquot values.",
+    "description": "A complete Lean 4 proof of all three parts of Erdős problem 1054. For the least integer f(n) whose k smallest divisors sum to n, we prove that f(n) is not o(n), is not o(n) on any density-one set, and satisfies limsup f(n)/n = ∞ on every density-one subtype. Building on the qualitative divisor-prefix sieve and almost-all binary Goldbach proof from Principia-Math-Solutions, this formalization proves the Formal Conjectures statements along with a sharp second-moment lower-density bound c / [A^3 (1 + log A)^4] for odd n with f(n) > A n, the Tao–Kovač small-ratio upper bound #{n ≤ X : 0 < f(n) ≤ δ n} ≤ C δ^3 X, liminf_{f(n)>0} f(n)/n = 0, and the asymptotic density equivalence between {s(2d)} and even aliquot values.",
     "authors": [
       "Linmiao Xu"
     ],
@@ -28,7 +28,7 @@
       "relationship": "adapts",
       "id": "https://github.com/antoshashakov/Principia-Math-Solutions/tree/c9910942522fbd3a07c034ac57947f56df6f0f6d/erdos1054",
       "author_endorsement": "not-contacted",
-      "note": "Supplies the qualitative third-moment and 7-variable gcd/lcm divisor-prefix arguments (Erdos1054Conditional.lean) and the Siegel–Walfisz and circle-method almost-all binary Goldbach proof (GoldbachChainMaster.lean). This package ports the closure to Lean 4.35.0-rc2, proves exact bridges to the zero-padded Formal Conjectures definition, composes the unconditional analytic input, upgrades the sifted-density bound to δ_E ≥ c_1 / E via lcm(1,...,n) ≤ 4^n, eliminates the three singleton variables via exact tail bounds to prove the sharp c / [A^3 (1 + log A)^4] second-moment bound, and formalizes the Tao–Kovač O(δ^3 X) small-ratio bound, zero liminf, and two-way cofactor-two aliquot density equivalence."
+      "note": "Supplies the qualitative third-moment divisor-prefix sieve (Erdos1054Conditional.lean) and the circle-method proof of almost-all binary Goldbach. This package proves the Formal Conjectures statements, establishes the sharp c / [A^3 (1 + log A)^4] second-moment lower-density bound, and formalizes the Tao–Kovač O(δ^3 X) small-ratio bound, zero liminf, and two-way aliquot range density equivalence."
     },
     {
       "title": "The exceptional set in Goldbach's problem",
@@ -189,10 +189,10 @@
     "methods": [
       {
         "method": "agent",
-        "tool_setup": "AI-assisted proof development, exact Nat.nth/Nat.find definition bridge, unconditional almost-all binary Goldbach composition, linear sifted-density upgrade, singleton tail elimination for the sharp c / [A^3 (1 + log A)^4] second-moment bound, Tao–Kovač small-ratio O(δ^3 X) bound and density-zero refutation, two-way cofactor-two aliquot density equivalence, and standalone Palomar packaging."
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
       }
     ],
-    "notes": "All 47 proof modules in Proofs/ plus Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry in Proofs/ and are verified by both Lean's default kernel and NanoDa via Comparator."
+    "notes": "All 47 proof modules in Proofs/ plus Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4 with zero sorry in Proofs/ and are verified by both Lean's default kernel and NanoDa via Comparator."
   },
   "fidelity": {
     "divergences": "None. Challenge.lean, Statement.lean, and Solution.lean preserve the exact zero-padded Nat.nth/Nat.find definition of f(n), the Set.HasDensity 1 partial-density expression, and all three original question formulations from FormalConjectures/ErdosProblems/1054.lean, while also proving the stronger subtype-restricted limsup_on_every_density_one and littleO_on_subtype_imp_represented_density_zero."
