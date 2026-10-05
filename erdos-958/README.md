@@ -4,8 +4,10 @@ This standalone Lean 4 project gives a complete formal proof of the negative
 answer to [Erdős problem #958](https://www.erdosproblems.com/958), formalizing
 the explicit circular-arc-and-center counterexample construction of
 [Clemen, Dumitrescu, and Liu (arXiv:2505.04283, 2025)](https://arxiv.org/abs/2505.04283)
-for all $n \ge 4$, together with the positive multiplicity-profile theorems for
-equidistant collinear point sets and short-arc circular equidistant point sets.
+for all $n \ge 4$, together with the universal multiplicity-profile theorem for
+equidistant collinear point sets and the existence of an $n$-point circular
+equidistant configuration with multiplicities $\{1, \dots, n - 1\}$ for every
+$n \ge 2$.
 
 For a finite planar point set $A \subset \mathbb{R}^2$ of size $n$, let
 $\{d_1, \dots, d_k\}$ be the set of distinct interpoint distances
@@ -39,7 +41,7 @@ circle.
 | `Erdos958.Palomar.not_erdos_958` | Direct disproof of the large-$n$ classification statement (`¬ ∃ N : ℕ, ∀ n ≥ N, ...`). |
 | `Erdos958.Palomar.clemen_dumitrescu_liu` | Explicit all-$n \ge 4$ theorem: for every $n \ge 4$, there exists $A \subset \mathbb{R}^2$ of size $n$ with $n - 1$ distinct distances of multiplicities $\{1, \dots, n - 1\}$ satisfying `¬ IsEquidistantOnLine A ∧ ¬ IsEquidistantOnCircle A`. |
 | `Erdos958.Palomar.equidistantOnLine_has_profile` | Positive direction for collinear progressions: every $A \subset \mathbb{R}^2$ with `#A ≥ 2` and `IsEquidistantOnLine A` has `#(distanceSet A) = #A - 1` and multiplicities `{1, ..., #A - 1}`. |
-| `Erdos958.Palomar.equidistantOnCircle_exists_has_profile` | Positive direction for circular arcs: for every $n \ge 2$, `arcSet (n + 1)` is an $n$-point set satisfying `IsEquidistantOnCircle` with $n - 1$ distinct distances and multiplicities `{1, ..., n - 1}`. |
+| `Erdos958.Palomar.equidistantOnCircle_exists_has_profile` | Existence theorem for circular progressions: for every $n \ge 2$, there exists an $n$-point set $A \subset \mathbb{R}^2$ satisfying `IsEquidistantOnCircle A` with $n - 1$ distinct distances and multiplicities `{1, ..., n - 1}` (witnessed by `arcSet (n + 1)`). |
 
 [Challenge.lean](Challenge.lean) states these five targets using only Mathlib
 and intentional `sorry` placeholders; `Solution.lean` never imports

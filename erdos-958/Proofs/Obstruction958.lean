@@ -19,11 +19,11 @@ public import Multiplicity958
 
 This module proves that for all `n ≥ 4`, the Clemen–Dumitrescu–Liu configuration
 `cdlSet n` satisfies neither `IsEquidistantOnLine` nor `IsEquidistantOnCircle`.
-Together with the positive multiplicity-profile theorems for equidistant collinear
-configurations (`equidistantOnLine_has_profile`) and short-arc circular equidistant
-configurations (`equidistantOnCircle_exists_has_profile`), this establishes both the
-explicit all-`n ≥ 4` counterexample theorem `clemen_dumitrescu_liu` and the Formal
-Conjectures disproof `erdos_958`.
+Together with the universal multiplicity-profile theorem for equidistant collinear
+configurations (`equidistantOnLine_has_profile`) and the existence theorem for
+circular equidistant configurations (`equidistantOnCircle_exists_has_profile`),
+this establishes both the explicit all-`n ≥ 4` counterexample theorem
+`clemen_dumitrescu_liu` and the Formal Conjectures disproof `erdos_958`.
 -/
 
 local notation "ℝ²" => EuclideanSpace ℝ (Fin 2)
@@ -230,7 +230,7 @@ theorem isEquidistantOnCircle_arcSet (n : ℕ) :
     refine ⟨i, hi, ?_⟩
     rw [hangle, arcPt]
 
-/-- **Positive direction for short-arc circular equidistant configurations**:
+/-- **Constructed circular equidistant configuration with multiplicities `{1, ..., n - 1}`**:
 For every `n ≥ 2`, `arcSet (n + 1)` is a configuration of `n` equidistant points on a circle
 (`IsEquidistantOnCircle`) that determines `n - 1` distinct distances with multiplicities
 `{1, ..., n - 1}`. -/

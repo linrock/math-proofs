@@ -19,8 +19,9 @@ limitations under the License.
 Adaptation notice: Linmiao Xu adapted the Erdős 958 definitions and statement
 from google-deepmind/formal-conjectures (`FormalConjectures/ErdosProblems/958.lean`)
 and added the explicit Clemen–Dumitrescu–Liu counterexample targets for all
-`n ≥ 4` and the positive collinear and circular-arc multiplicity-profile targets
-for this standalone Lean 4 benchmark in 2026. This file imports only Mathlib.
+`n ≥ 4`, the universal collinear multiplicity-profile target, and the circular
+equidistant existence target for this standalone Lean 4 benchmark in 2026. This
+file imports only Mathlib.
 -/
 
 public import Mathlib
@@ -114,7 +115,7 @@ theorem equidistantOnLine_has_profile (A : Finset ℝ²) (hA : 2 ≤ #A)
       (distanceSet A).image (distanceMultiplicity A) = Finset.Icc 1 (#A - 1) := by
   sorry
 
-/-- Positive direction for short-arc circular equidistant configurations: for every
+/-- Existence of circular equidistant configurations with the target profile: for every
 `n ≥ 2`, there exists an `n`-point configuration on a circle (`IsEquidistantOnCircle`)
 determining `n - 1` distinct distances with multiplicities `{1, ..., n - 1}`. -/
 theorem equidistantOnCircle_exists_has_profile (n : ℕ) (hn : 2 ≤ n) :

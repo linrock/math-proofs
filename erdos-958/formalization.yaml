@@ -2,7 +2,7 @@
   "version": "v0.4",
   "project": {
     "name": "Erdős 958: planar point sets with distance multiplicities {1, ..., n - 1}",
-    "description": "A complete Lean 4 proof of the negative answer to Erdős problem 958: for every n ≥ 4, there exists an n-point configuration in the Euclidean plane determining n - 1 distinct interpoint distances with multiplicities {1, 2, ..., n - 1} that is neither equidistant on a line nor equidistant on a circle. Formalizing the May 2025 construction of Clemen, Dumitrescu, and Liu, the proof places n - 1 equally spaced points on a short arc of the unit circle together with the center (0, 0), uses strict monotonicity of chord lengths on [0, π/3) to compute the exact distance-multiplicity profile, and eliminates collinear and concyclic progressions algebraically. It also proves the positive converse directions: every equidistant collinear configuration and short-arc circular equidistant configuration of size n ≥ 2 has n - 1 distinct distances with multiplicities {1, ..., n - 1}.",
+    "description": "A complete Lean 4 proof of the negative answer to Erdős problem 958: for every n ≥ 4, there exists an n-point configuration in the Euclidean plane determining n - 1 distinct interpoint distances with multiplicities {1, 2, ..., n - 1} that is neither equidistant on a line nor equidistant on a circle. Formalizing the May 2025 construction of Clemen, Dumitrescu, and Liu, the proof places n - 1 equally spaced points on a short arc of the unit circle together with the center (0, 0), uses strict monotonicity of chord lengths on [0, π/3) to compute the exact distance-multiplicity profile, and eliminates collinear and concyclic progressions algebraically. It also proves the positive baseline results that every equidistant collinear configuration of size n ≥ 2 has n - 1 distinct distances with multiplicities {1, ..., n - 1}, and that for every n ≥ 2 there exists an n-point circular equidistant configuration with that distance-multiplicity profile.",
     "authors": [
       "Linmiao Xu"
     ],
@@ -57,7 +57,7 @@
     }
   ],
   "status": {
-    "scope": "Complete unconditional Lean 4.35.0-rc2 proofs of the literal Formal Conjectures statement (Erdos958.erdos_958, Erdos958.Palomar.erdos_958, and Erdos958.Palomar.not_erdos_958), the Clemen–Dumitrescu–Liu counterexample theorem for every n ≥ 4 (Erdos958.Palomar.clemen_dumitrescu_liu), and the positive multiplicity profile theorems for equidistant collinear configurations (Erdos958.Palomar.equidistantOnLine_has_profile) and short-arc circular equidistant configurations (Erdos958.Palomar.equidistantOnCircle_exists_has_profile) of every size n ≥ 2.",
+    "scope": "Complete unconditional Lean 4.35.0-rc2 proofs of the literal Formal Conjectures statement (Erdos958.erdos_958, Erdos958.Palomar.erdos_958, and Erdos958.Palomar.not_erdos_958), the Clemen–Dumitrescu–Liu counterexample theorem for every n ≥ 4 (Erdos958.Palomar.clemen_dumitrescu_liu), the universal multiplicity-profile theorem for equidistant collinear configurations (Erdos958.Palomar.equidistantOnLine_has_profile), and the existence of an n-point circular equidistant configuration with multiplicities {1, ..., n - 1} for every n ≥ 2 (Erdos958.Palomar.equidistantOnCircle_exists_has_profile).",
     "sorry_count": 0,
     "sorry_in_definitions": 0,
     "axioms": [
@@ -148,11 +148,11 @@
         "note": "Proves the positive direction of Erdős 958 for any finite set A with #A ≥ 2 satisfying IsEquidistantOnLine A."
       },
       {
-        "source": "Short-arc circular equidistant configurations have multiplicities {1, ..., n - 1}",
+        "source": "Existence of an n-point circular equidistant configuration with multiplicities {1, ..., n - 1} for every n ≥ 2",
         "lean": "Erdos958.Palomar.equidistantOnCircle_exists_has_profile",
         "module": "Solution",
         "status": "proved",
-        "note": "Proves that for every n ≥ 2, arcSet (n + 1) is an n-point configuration satisfying IsEquidistantOnCircle with n - 1 distinct distances and multiplicities {1, ..., n - 1}."
+        "note": "Existence theorem witnessed by arcSet (n + 1): for every n ≥ 2, there exists an n-point configuration satisfying IsEquidistantOnCircle with n - 1 distinct distances and multiplicities {1, ..., n - 1}."
       }
     ]
   },

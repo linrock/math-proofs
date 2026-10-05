@@ -91,7 +91,7 @@ theorem equidistantOnLine_has_profile (A : Finset ℝ²) (hA : 2 ≤ #A)
       (distanceSet A).image (distanceMultiplicity A) = Finset.Icc 1 (#A - 1) :=
   Erdos958.equidistantOnLine_has_profile A hA hline
 
-/-- Positive direction for short-arc circular equidistant configurations: for every
+/-- Existence of circular equidistant configurations with the target profile: for every
 `n ≥ 2`, there exists an `n`-point configuration on a circle (`IsEquidistantOnCircle`)
 determining `n - 1` distinct distances with multiplicities `{1, ..., n - 1}`. -/
 theorem equidistantOnCircle_exists_has_profile (n : ℕ) (hn : 2 ≤ n) :
