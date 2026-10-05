@@ -1,0 +1,29 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos1054.Palomar.answer_i",
+    "Erdos1054.Palomar.answer_ii",
+    "Erdos1054.Palomar.answer_iii",
+    "Erdos1054.Palomar.official_answer_i",
+    "Erdos1054.Palomar.official_answer_ii",
+    "Erdos1054.Palomar.official_answer_iii",
+    "Erdos1054.Palomar.limsup_on_every_density_one",
+    "Erdos1054.Palomar.odd_subtype_limsup",
+    "Erdos1054.Palomar.f_undefined_at_2",
+    "Erdos1054.Palomar.f_undefined_at_5",
+    "Erdos1054.Palomar.quantitative_odd_sharp_second_moment_logarithmic_endpoint",
+    "Erdos1054.Palomar.quantitative_odd_sharp_second_moment_logarithmic_endpoint_eventual_count",
+    "Erdos1054.Palomar.quantitative_odd_almost_full_three_plus_epsilon",
+    "Erdos1054.Palomar.quantitative_odd_pure_power_six",
+    "Erdos1054.Palomar.small_ratio_count_le_cubic",
+    "Erdos1054.Palomar.small_ratio_upper_density_le_cubic",
+    "Erdos1054.Palomar.littleO_on_subtype_imp_represented_density_zero",
+    "Erdos1054.Palomar.f_sigma_le",
+    "Erdos1054.Palomar.frequently_represented_small_ratio",
+    "Erdos1054.Palomar.cofactor_two_lower_density_eq_even_aliquot",
+    "Erdos1054.Palomar.cofactor_two_upper_density_eq_even_aliquot"
+  ],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"],
+  "enable_nanoda": true
+}

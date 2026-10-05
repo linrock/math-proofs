@@ -1,0 +1,245 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 1054: sums of smallest divisors",
+    "description": "A complete Lean 4 proof of all three parts of Erdős problem 1054. Let f(n) be the least integer m whose k smallest divisors sum to n for some k ≥ 1: (i) f(n) is not o(n), (ii) f(n) is not o(n) on any subset of natural density 1, and (iii) limsup f(n)/n = ∞ (both globally and on every density-one subtype). Combining a small-cofactor prime sieve, an unconditional circle-method proof of almost-all binary Goldbach, a linear sifted-density bound δ_E ≥ c_1 / E, and singleton tail elimination in the 7-variable second moment, the formalization establishes the uniform lower-density bound d̲({n ∈ S : n odd, f(n) > A n}) ≥ c / [A^3 (1 + log A)^4] across all A ≥ 1 and all sets S of relative odd density 1. In the small-ratio regime, it proves the Tao–Kovač upper bound #{n ≤ X : 0 < f(n) ≤ δ n} ≤ C δ^3 X (showing that f(n) = o(n) on S forces the represented members of S to have density 0 without invoking Goldbach), liminf_{f(n)>0} f(n)/n = 0, and the two-way asymptotic density equivalence between {s(2d)} and even aliquot values.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "MIT"
+  },
+  "classification": {
+    "arxiv": [
+      "math.NT"
+    ],
+    "msc2020": [
+      "11A25",
+      "11N36",
+      "11P32"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Principia Erdős 1054 proof and almost-all Goldbach master",
+      "type": "other",
+      "relationship": "adapts",
+      "id": "https://github.com/antoshashakov/Principia-Math-Solutions/tree/c9910942522fbd3a07c034ac57947f56df6f0f6d/erdos1054",
+      "author_endorsement": "not-contacted",
+      "note": "Supplies the qualitative third-moment and 7-variable gcd/lcm divisor-prefix arguments (Erdos1054Conditional.lean) and the Siegel–Walfisz and circle-method almost-all binary Goldbach proof (GoldbachChainMaster.lean). This package ports the closure to Lean 4.35.0-rc2, proves exact bridges to the zero-padded Formal Conjectures definition, composes the unconditional analytic input, upgrades the sifted-density bound to δ_E ≥ c_1 / E via lcm(1,...,n) ≤ 4^n, eliminates the three singleton variables via exact tail bounds to prove the sharp c / [A^3 (1 + log A)^4] second-moment bound, and formalizes the Tao–Kovač O(δ^3 X) small-ratio bound, zero liminf, and two-way cofactor-two aliquot density equivalence."
+    },
+    {
+      "title": "The exceptional set in Goldbach's problem",
+      "authors": [
+        "Hugh L. Montgomery",
+        "Robert C. Vaughan"
+      ],
+      "type": "paper",
+      "relationship": "background",
+      "id": "https://matwbn.icm.edu.pl/ksiazki/aa/aa27/aa27126.pdf",
+      "location": "Acta Arithmetica 27 (1975), 353–370",
+      "author_endorsement": "not-contacted",
+      "note": "Classical reference for the almost-all binary Goldbach theorem whose qualitative density-zero exceptional-set conclusion is proved unconditionally in the GoldbachProof library."
+    },
+    {
+      "title": "Erdős Problem 1054: sums of smallest divisors",
+      "type": "web discussion",
+      "relationship": "background",
+      "id": "https://www.erdosproblems.com/forum/thread/1054",
+      "note": "Problem catalog entry and discussion, including Tao's and Kovač's small-ratio density observations."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/1054.lean",
+      "relationship": "builds-on",
+      "note": "Statement.lean, Challenge.lean, and Solution.lean preserve the exact zero-padded Nat.nth/Nat.find definition of f(n), the Set.HasDensity 1 formulation, all three theorem parts (parts.i, parts.ii, parts.iii), and the unrepresented exceptions f(2)=0 and f(5)=0 from FormalConjectures/ErdosProblems/1054.lean."
+    },
+    {
+      "id": "https://github.com/ajirving/PrimeNumberTheoremAnd/tree/769d3b81fbff001d9fa7028df0168a8e546cf692",
+      "relationship": "builds-on",
+      "note": "Eighteen attributed Apache-2.0 modules from PrimeNumberTheoremAnd (with the two unused sorry lemmas removed from Wiener.lean) supply the Perron formula and medium prime-number theorem inputs for the Siegel–Walfisz proof."
+    },
+    {
+      "id": "https://github.com/hanwenzhu/LeanArchitect/tree/78dd66840d3efe8c824c699fc03381cec817c271",
+      "relationship": "builds-on",
+      "note": "Nine attributed Apache-2.0 Architect modules support the blueprint attributes in PrimeNumberTheoremAnd."
+    }
+  ],
+  "status": {
+    "scope": "Complete unconditional Lean 4 proofs of all three original questions (answer_i / official_answer_i: False, answer_ii / official_answer_ii: False, answer_iii / official_answer_iii / limsup_on_every_density_one / odd_subtype_limsup: True), the sharp second-moment odd-density refinements (c / [A^3 (1 + log A)^4], c_ε / A^(3 + ε), and c / A^6), the Tao–Kovač small-ratio O(δ^3 X) bound and Goldbach-free density-zero strong refutation, unconditional zero liminf on represented integers, and the two-way cofactor-two aliquot range density equivalence. Zero sorry occur across all 47 modules in Proofs/.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos1054.Palomar.answer_i",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1054.Palomar.answer_ii",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1054.Palomar.answer_iii",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1054.Palomar.official_answer_i",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1054.Palomar.official_answer_ii",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1054.Palomar.official_answer_iii",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1054.Palomar.limsup_on_every_density_one",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1054.Palomar.odd_subtype_limsup",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1054.Palomar.f_undefined_at_2",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1054.Palomar.f_undefined_at_5",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1054.Palomar.quantitative_odd_sharp_second_moment_logarithmic_endpoint",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1054.Palomar.quantitative_odd_sharp_second_moment_logarithmic_endpoint_eventual_count",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1054.Palomar.quantitative_odd_almost_full_three_plus_epsilon",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1054.Palomar.quantitative_odd_pure_power_six",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1054.Palomar.small_ratio_count_le_cubic",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1054.Palomar.small_ratio_upper_density_le_cubic",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1054.Palomar.littleO_on_subtype_imp_represented_density_zero",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1054.Palomar.f_sigma_le",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1054.Palomar.frequently_represented_small_ratio",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1054.Palomar.cofactor_two_lower_density_eq_even_aliquot",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1054.Palomar.cofactor_two_upper_density_eq_even_aliquot",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, exact Nat.nth/Nat.find definition bridge, unconditional almost-all binary Goldbach composition, linear sifted-density upgrade, singleton tail elimination for the sharp c / [A^3 (1 + log A)^4] second-moment bound, Tao–Kovač small-ratio O(δ^3 X) bound and density-zero refutation, two-way cofactor-two aliquot density equivalence, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "All 47 proof modules in Proofs/ plus Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry in Proofs/ and are verified by both Lean's default kernel and NanoDa via Comparator."
+  },
+  "fidelity": {
+    "divergences": "None. Challenge.lean, Statement.lean, and Solution.lean preserve the exact zero-padded Nat.nth/Nat.find definition of f(n), the Set.HasDensity 1 partial-density expression, and all three original question formulations from FormalConjectures/ErdosProblems/1054.lean, while also proving the stronger subtype-restricted limsup_on_every_density_one and littleO_on_subtype_imp_represented_density_zero."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Lean 4.35.0-rc2 (compiler commit 11acb17ec6b07a8f9e9173e6845197929540936b) with canonical Mathlib commit 065356127b1dc0016f66b7283ce0ce2c4055aa55 passed fresh source builds for all 47 proof modules in Proofs/ plus Statement, Solution, AxiomAudit, and Challenge. Zero sorry occur in the proof modules. All 24 saved-source endpoint and statement-fidelity axiom audits passed using only propext, Classical.choice, and Quot.sound. Comparator matched all 21 selected theorems in Challenge and Solution, and both NanoDa and Lean's default kernel accepted the solution."
+  },
+  "alignment": {
+    "namespace": "Erdos1054.Palomar",
+    "statements": [
+      {
+        "source": "Erdős Problem 1054, Part (i): f(n) is not o(n)",
+        "lean": "Erdos1054.Palomar.official_answer_i",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves both ¬(f(n) = o(n)) (answer_i) and False ↔ f(n) = o(n) (official_answer_i), definitionally equal to Statement.statement_i."
+      },
+      {
+        "source": "Erdős Problem 1054, Part (ii): f(n) is not o(n) on any density-one set (and only on density-zero represented subsets)",
+        "lean": "Erdos1054.Palomar.official_answer_ii",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves answer_ii, official_answer_ii (definitionally equal to Statement.statement_ii), small_ratio_count_le_cubic, and littleO_on_subtype_imp_represented_density_zero."
+      },
+      {
+        "source": "Erdős Problem 1054, Part (iii): limsup f(n)/n = ∞ (global and on every density-one subtype)",
+        "lean": "Erdos1054.Palomar.official_answer_iii",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves answer_iii, official_answer_iii (definitionally equal to Statement.statement_iii), limsup_on_every_density_one, and odd_subtype_limsup."
+      },
+      {
+        "source": "Sharp second-moment quantitative odd-density lower bound c / [A^3 (1 + log A)^4]",
+        "lean": "Erdos1054.Palomar.quantitative_odd_sharp_second_moment_logarithmic_endpoint",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves a single universal constant c > 0 works for all real A ≥ 1 and all HasOddDensityOne sets S, along with c_ε / A^(3 + ε) and the logarithm-free bound c / A^6."
+      },
+      {
+        "source": "Two-way cofactor-two aliquot density equivalence and zero liminf on represented integers",
+        "lean": "Erdos1054.Palomar.cofactor_two_lower_density_eq_even_aliquot",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves lower and upper density equality of {s(2d)} and even aliquot values, 0 < f(σ(n)) ≤ n, and frequently_represented_small_ratio."
+      }
+    ]
+  },
+  "acknowledgements": "The qualitative third-moment and 7-variable divisor-prefix arguments and almost-all binary Goldbach development are adapted from Principia-Math-Solutions (Apache-2.0). Mathlib, Formal Conjectures, PrimeNumberTheoremAnd, and LeanArchitect supply attributed formal definitions and analytic infrastructure."
+}
