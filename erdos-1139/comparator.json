@@ -1,0 +1,19 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos1139.Palomar.uniform_maximal_gap",
+    "Erdos1139.Palomar.limsup_strictly_gt_one",
+    "Erdos1139.Palomar.cover_crt_interval",
+    "Erdos1139.Palomar.seven_square_crt",
+    "Erdos1139.Palomar.primorial_log_limit",
+    "Erdos1139.Palomar.limsup_top_of_sparse",
+    "Erdos1139.Palomar.core_classification"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

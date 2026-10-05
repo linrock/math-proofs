@@ -1,0 +1,228 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 1139: large gaps between almost-primes",
+    "description": "A Lean 4 formalization of Erdős problem 1139 on large gaps between P_2 almost-primes (1 ≤ u_1 < u_2 < ⋯ with Ω(u_k) ≤ 2). Combining the Chinese Remainder Theorem, the Prime Number Theorem, and protected-reserve omission in the Erdős 689 three-prime matching construction, this package proves unconditionally that the normalized gap ratio satisfies limsup (u_{k+1} - u_k) / log(k + 1) ≥ A > 1 and that every sufficiently large height X contains an almost-prime-free interval [N + 1, N + y] ⊆ [1, X] of length y ≥ c log X for a fixed constant c > 1, alongside the mixed prime/prime-square CRT bridge, the PNT primorial conductor limit, the sublinear-conductor reduction to limsup = ∞, and the four-family deficiency classification for the squared-prime core. It also formalizes the complete conditional derivation of the Formal Conjectures infinite-limsup statement from the Green–Tao–Ziegler von Mangoldt linear-forms asymptotic and proves that this hypothesis implies arbitrary-length prime arithmetic progressions.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "MIT"
+  },
+  "classification": {
+    "arxiv": [
+      "math.NT",
+      "math.CO"
+    ],
+    "msc2020": [
+      "11N05",
+      "11N36",
+      "11B25"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Large gaps between almost-primes, and double covering with primes",
+      "authors": [
+        "Przemysław Chojecki",
+        "Liam Price",
+        "Gavin Sherry",
+        "Terence Tao"
+      ],
+      "type": "preprint",
+      "relationship": "adapts",
+      "id": "https://www.erdosproblems.com/forum/thread/1139#post-7063",
+      "location": "Erdős Problems Forum Thread #1139 (June 19, 2026)",
+      "author_endorsement": "not-contacted",
+      "note": "Proposes a complete proof of the infinite-limsup conjecture for Erdős #1139 using a fixed-parameter squared-prime core, typed affine prime patterns across dyadic prime shells, shared-target covolume and singular-series cancellation, and the Green–Tao–Ziegler linear-forms theorem."
+    },
+    {
+      "title": "A greedy matching proof of Erdős's two-fold residue-class problem",
+      "authors": [
+        "Przemysław Chojecki"
+      ],
+      "type": "preprint",
+      "relationship": "adapts",
+      "id": "https://www.ulam.ai/research/erdos689.pdf",
+      "location": "Working manuscript (April 27, 2026)",
+      "author_endorsement": "not-contacted",
+      "note": "Provides the double-covering construction and three-prime matching framework from which our unconditional reserve-surplus conductor saving, limsup > 1 bound, and uniform maximal gap G_2(X) ≥ c log X (c > 1) are extracted."
+    },
+    {
+      "title": "Linear equations in primes",
+      "authors": [
+        "Ben Green",
+        "Terence Tao"
+      ],
+      "type": "paper",
+      "relationship": "background",
+      "id": "https://annals.math.princeton.edu/2010/171-3/p08",
+      "location": "Annals of Mathematics 171 (2010), 1753–1850",
+      "author_endorsement": "not-contacted",
+      "note": "Establishes the finite-complexity von Mangoldt linear-forms asymptotic (completed unconditionally with Green–Tao 2012 and Green–Tao–Ziegler 2012) formalized as the explicit premise HasFixedSignedMixedPublishedVonMangoldtAsymptotics in erdos_1139_of_gtz and prime_ap_of_gtz."
+    },
+    {
+      "title": "Erdős Problem 1139: large gaps between almost-primes",
+      "type": "other",
+      "relationship": "background",
+      "id": "https://www.erdosproblems.com/1139",
+      "note": "Problem catalog entry and references."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/eb1c5ce1bf406e46a6af5f859f097a5c5350a462/FormalConjectures/ErdosProblems/1139.lean",
+      "relationship": "builds-on",
+      "note": "Statement.lean, Challenge.lean, and Solution.lean preserve the exact Nat.nth / Ω / EReal limsup formulation from FormalConjectures/ErdosProblems/1139.lean."
+    },
+    {
+      "id": "https://github.com/ajirving/PrimeNumberTheoremAnd/tree/769d3b81fbff001d9fa7028df0168a8e546cf692",
+      "relationship": "builds-on",
+      "note": "Twenty-five attributed Apache-2.0 modules from PrimeNumberTheoremAnd (with two unused sorry lemmas removed from Wiener.lean) supply the Prime Number Theorem and Mertens estimates."
+    },
+    {
+      "id": "https://github.com/hanwenzhu/LeanArchitect/tree/78dd66840d3efe8c824c699fc03381cec817c271",
+      "relationship": "builds-on",
+      "note": "Nine attributed Apache-2.0 Architect modules support the blueprint attributes in PrimeNumberTheoremAnd."
+    },
+    {
+      "id": "https://github.com/antoshashakov/Principia-Math-Solutions/tree/c9910942522fbd3a07c034ac57947f56df6f0f6d/erdos1054",
+      "relationship": "builds-on",
+      "note": "Five attributed Apache-2.0 circle-method and Siegel–Walfisz modules supply the analytic inputs for the unconditional three-prime major-arc estimate."
+    }
+  ],
+  "status": {
+    "scope": "Unconditional Lean 4 proofs of the uniform maximal almost-prime gap bound G_2(X) ≥ c log X (c > 1), the strict normalized limsup > 1 bound, the unrestricted mixed prime/prime-square CRT interval bridge, the explicit 7-target square cover witness, the PNT primorial conductor limit, the sublinear conductor reduction to limsup = ∞, the fixed-parameter squared-core deficiency classification, and the complete conditional proof of the literal Formal Conjectures infinite-limsup statement from HasFixedSignedMixedPublishedVonMangoldtAsymptotics (plus its reverse implication to arbitrary-length prime progressions). An unconditional proof of the full infinite-limsup conjecture without Green–Tao–Ziegler is not claimed.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos1139.Palomar.uniform_maximal_gap",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1139.Palomar.limsup_strictly_gt_one",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1139.Palomar.cover_crt_interval",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1139.Palomar.seven_square_crt",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1139.Palomar.primorial_log_limit",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1139.Palomar.limsup_top_of_sparse",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1139.Palomar.core_classification",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, analytic and combinatorial reductions, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "All 266 proof modules in Proofs/ plus Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry in Proofs/ and are verified by both Lean's default kernel and NanoDa via Comparator."
+  },
+  "fidelity": {
+    "divergences": "None on the formalized statements. All seven unconditional theorems (including uniform_maximal_gap, limsup_strictly_gt_one, and core_classification) are Comparator-verified in Challenge.lean and Solution.lean; the full infinite-limsup conjecture is proved conditionally on the explicit Green–Tao–Ziegler hypothesis HasFixedSignedMixedPublishedVonMangoldtAsymptotics in Solution.lean (erdos_1139_of_gtz) and matched against Statement.lean in AxiomAudit.lean."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Lean 4.35.0-rc2 (compiler commit 11acb17ec6b07a8f9e9173e6845197929540936b) with canonical Mathlib commit 065356127b1dc0016f66b7283ce0ce2c4055aa55 passed fresh source builds for all 266 proof modules in Proofs/ plus Statement, Solution, AxiomAudit, and Challenge. Zero sorry occur in the proof modules. All ten saved-source endpoint and statement-fidelity axiom audits passed using only propext, Classical.choice, and Quot.sound. Comparator matched all seven selected unconditional theorems in Challenge and Solution, and both NanoDa and Lean's default kernel accepted the solution."
+  },
+  "alignment": {
+    "namespace": "Erdos1139.Palomar",
+    "statements": [
+      {
+        "source": "Unconditional uniform maximal P_2 almost-prime gap bound G_2(X) ≥ c log X (c > 1)",
+        "lean": "Erdos1139.Palomar.uniform_maximal_gap",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that for a fixed constant c > 1 and all sufficiently large X, there is an interval [N+1, N+y] ⊆ [1, X] of length y ≥ c log X on which Ω(N+h) ≥ 3."
+      },
+      {
+        "source": "Unconditional strict improvement limsup ≥ A > 1 for the normalized almost-prime gap ratio",
+        "lean": "Erdos1139.Palomar.limsup_strictly_gt_one",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that the literal Formal Conjectures normalized gap limsup strictly exceeds 1 via protected-reserve omission."
+      },
+      {
+        "source": "Unrestricted mixed prime/prime-square double-covering CRT bridge",
+        "lean": "Erdos1139.Palomar.cover_crt_interval",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that any mixed prime/prime-square double cover on [1, y] with conductor Q produces an interval [N+1, N+y] with Q < N ≤ 2Q on which Ω(N+h) ≥ 3."
+      },
+      {
+        "source": "Explicit finite 7-target nested-square CRT witness (N = 40323, Q = 44100)",
+        "lean": "Erdos1139.Palomar.seven_square_crt",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Non-vacuity witness for the nested-square CRT construction on primes {2, 3, 5, 7}."
+      },
+      {
+        "source": "Prime Number Theorem primorial conductor asymptotic log(primorial y)/y → 1",
+        "lean": "Erdos1139.Palomar.primorial_log_limit",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Establishes the unit logarithmic conductor rate of the base primorial CRT modulus."
+      },
+      {
+        "source": "Sublinear logarithmic CRT conductor reduction to the Formal Conjectures infinite-limsup statement",
+        "lean": "Erdos1139.Palomar.limsup_top_of_sparse",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that mixed prime/prime-square double covers with log Q ≤ ε y for every ε > 0 imply the literal Formal Conjectures infinite-limsup statement."
+      },
+      {
+        "source": "Conditional resolution of Erdős 1139 from the Green–Tao–Ziegler von Mangoldt linear-forms asymptotic",
+        "lean": "Erdos1139.Palomar.erdos_1139_of_gtz",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Complete derivation of the literal Formal Conjectures True ↔ statement from HasFixedSignedMixedPublishedVonMangoldtAsymptotics, verified definitionally equal to Statement.statement in AxiomAudit.lean."
+      },
+      {
+        "source": "Reverse reduction from the #1139 Green–Tao–Ziegler hypothesis to arbitrary-length prime progressions",
+        "lean": "Erdos1139.Palomar.prime_ap_of_gtz",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that HasFixedSignedMixedPublishedVonMangoldtAsymptotics implies the existence of prime arithmetic progressions of every length."
+      },
+      {
+        "source": "Exact four-family deficiency classification after the fixed-parameter squared-prime core",
+        "lean": "Erdos1139.Palomar.core_classification",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Classifies all targets in [1, y] surviving the core congruence classes modulo p^2 (p ≤ z) and p (z < p ≤ y/z)."
+      }
+    ]
+  },
+  "acknowledgements": "The problem was posed by Paul Erdős. The double-covering and prime-pattern framework builds on Chojecki (2026), Chojecki, Price, Sherry, and Tao (2026), and Green, Tao, and Ziegler (2010–2012). Mathlib, Formal Conjectures, PrimeNumberTheoremAnd, LeanArchitect, williamjblair/lean-proofs, and Principia-Math-Solutions supply attributed formal definitions and analytic infrastructure. Their source notices and upstream licenses are preserved separately from the repository's MIT license."
+}
