@@ -1,0 +1,17 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos958.Palomar.erdos_958",
+    "Erdos958.Palomar.not_erdos_958",
+    "Erdos958.Palomar.clemen_dumitrescu_liu",
+    "Erdos958.Palomar.equidistantOnLine_has_profile",
+    "Erdos958.Palomar.equidistantOnCircle_exists_has_profile"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

@@ -1,0 +1,160 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 958: planar point sets with distance multiplicities {1, ..., n - 1}",
+    "description": "A complete Lean 4 proof of the negative answer to Erdős problem 958: for every n ≥ 4, there exists an n-point configuration in the Euclidean plane determining n - 1 distinct interpoint distances with multiplicities {1, 2, ..., n - 1} that is neither equidistant on a line nor equidistant on a circle. Formalizing the May 2025 construction of Clemen, Dumitrescu, and Liu, the proof places n - 1 equally spaced points on a short arc of the unit circle together with the center (0, 0), uses strict monotonicity of chord lengths on [0, π/3) to compute the exact distance-multiplicity profile, and eliminates collinear and concyclic progressions algebraically. It also proves the positive converse directions: every equidistant collinear configuration and short-arc circular equidistant configuration of size n ≥ 2 has n - 1 distinct distances with multiplicities {1, ..., n - 1}.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "MIT"
+  },
+  "classification": {
+    "arxiv": [
+      "math.CO",
+      "math.MG"
+    ],
+    "msc2020": [
+      "52C10",
+      "05D99"
+    ]
+  },
+  "sources": [
+    {
+      "title": "On multiplicities of interpoint distances",
+      "authors": [
+        "Felix Clemen",
+        "Adrian Dumitrescu",
+        "Dingyuan Liu"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "id": "https://arxiv.org/abs/2505.04283",
+      "location": "arXiv:2505.04283 (May 2025)",
+      "author_endorsement": "not-contacted",
+      "note": "Disproves the large-n classification in Erdős Problem 958 by constructing n - 1 equidistant points on a short circular arc of the unit circle together with the center (0, 0). This Lean formalization proves their theorem for every n ≥ 4 using angular step 1/n."
+    },
+    {
+      "title": "Erdős Problem 958: distance multiplicities {1, ..., n - 1}",
+      "type": "other",
+      "relationship": "background",
+      "id": "https://www.erdosproblems.com/958",
+      "note": "Problem catalog entry and discussion."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/0c92ca701538aba00014d1d6444df7954eea3f6d/FormalConjectures/ErdosProblems/958.lean",
+      "relationship": "builds-on",
+      "note": "Challenge.lean, Statement.lean, and Solution.lean use the exact definitions (distanceSet, distanceMultiplicity, IsEquidistantOnLine, IsEquidistantOnCircle) and theorem statement (erdos_958) from Formal Conjectures with answer(False) elaborated as False."
+    },
+    {
+      "id": "https://github.com/plby/lean-proofs/blob/main/src/latest/ErdosProblems/Erdos958.lean",
+      "relationship": "independent",
+      "note": "Independent Lean 4.33.0 file exhibiting only the 4-point exception {(0,0),(1,0),(0,1),(0,-1)} against an earlier unquantified statement before Formal Conjectures PR #5513 added the large-n quantifier (∃ N : ℕ, ∀ n ≥ N). No code is imported or adapted; our development proves the Clemen–Dumitrescu–Liu construction for every n ≥ 4 and resolves the corrected Formal Conjectures statement on Lean 4.35.0-rc2."
+    }
+  ],
+  "status": {
+    "scope": "Complete unconditional Lean 4.35.0-rc2 proofs of the literal Formal Conjectures statement (Erdos958.erdos_958, Erdos958.Palomar.erdos_958, and Erdos958.Palomar.not_erdos_958), the Clemen–Dumitrescu–Liu counterexample theorem for every n ≥ 4 (Erdos958.Palomar.clemen_dumitrescu_liu), and the positive multiplicity profile theorems for equidistant collinear configurations (Erdos958.Palomar.equidistantOnLine_has_profile) and short-arc circular equidistant configurations (Erdos958.Palomar.equidistantOnCircle_exists_has_profile) of every size n ≥ 2.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos958.Palomar.erdos_958",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos958.Palomar.not_erdos_958",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos958.Palomar.clemen_dumitrescu_liu",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos958.Palomar.equidistantOnLine_has_profile",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos958.Palomar.equidistantOnCircle_exists_has_profile",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development using trigonometric chord-distance monotonicity and algebraic elimination of collinear/concyclic configurations, independent source/kernel audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "All proof claims are compiled from source in Lean 4 and audited with both Lean's default kernel and NanoDa via Comparator."
+  },
+  "fidelity": {
+    "divergences": "None. The definitions of distanceSet, distanceMultiplicity, IsEquidistantOnLine, and IsEquidistantOnCircle, as well as the theorem erdos_958, match FormalConjectures/ErdosProblems/958.lean verbatim (with answer(False) elaborated as False)."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Lean 4.35.0-rc2 (compiler commit 11acb17ec6b07a8f9e9173e6845197929540936b) with canonical Mathlib commit 065356127b1dc0016f66b7283ce0ce2c4055aa55 passed fresh source builds for all three modules in Proofs/ plus Statement, Solution, AxiomAudit, and Challenge. Zero sorry occur in the proof modules. Eight saved-source endpoint, statement-fidelity, and non-vacuity axiom reports passed using only propext, Classical.choice, and Quot.sound. Comparator matched all five selected theorems in Challenge and Solution, and both NanoDa and Lean's default kernel accepted the solution."
+  },
+  "alignment": {
+    "namespace": "Erdos958.Palomar",
+    "statements": [
+      {
+        "source": "Formal Conjectures Erdős 958 literal declaration in namespace Erdos958",
+        "lean": "Erdos958.erdos_958",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves the literal Erdos958.erdos_958 theorem from FormalConjectures/ErdosProblems/958.lean with answer(False) elaborated as False."
+      },
+      {
+        "source": "Formal Conjectures Erdős 958 literal False <-> statement",
+        "lean": "Erdos958.Palomar.erdos_958",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves the False <-> proposition and verifies definitional equality with Statement.lean."
+      },
+      {
+        "source": "Direct disproof of the Erdős 958 large-n classification statement",
+        "lean": "Erdos958.Palomar.not_erdos_958",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Refutes the existence of a threshold N above which every configuration with multiplicities {1, ..., n-1} is equidistant on a line or circle."
+      },
+      {
+        "source": "Clemen–Dumitrescu–Liu (2025): counterexamples of every size n ≥ 4",
+        "lean": "Erdos958.Palomar.clemen_dumitrescu_liu",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that cdlSet n has size n, n-1 distinct distances, multiplicities {1, ..., n-1}, and satisfies neither IsEquidistantOnLine nor IsEquidistantOnCircle."
+      },
+      {
+        "source": "Equidistant collinear configurations have multiplicities {1, ..., n - 1}",
+        "lean": "Erdos958.Palomar.equidistantOnLine_has_profile",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves the positive direction of Erdős 958 for any finite set A with #A ≥ 2 satisfying IsEquidistantOnLine A."
+      },
+      {
+        "source": "Short-arc circular equidistant configurations have multiplicities {1, ..., n - 1}",
+        "lean": "Erdos958.Palomar.equidistantOnCircle_exists_has_profile",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that for every n ≥ 2, arcSet (n + 1) is an n-point configuration satisfying IsEquidistantOnCircle with n - 1 distinct distances and multiplicities {1, ..., n - 1}."
+      }
+    ]
+  },
+  "acknowledgements": "The problem was posed by Erdős and resolved negatively by Clemen, Dumitrescu, and Liu (2025). Mathlib and Formal Conjectures supply attributed formal definitions and infrastructure."
+}
