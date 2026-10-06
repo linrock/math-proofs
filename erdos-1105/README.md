@@ -107,9 +107,10 @@ Part (ii) into five main components:
    [PathSixOriginalAllHostExact1105](Proofs/PathSixOriginalAllHostExact1105.lean),
    [PathSevenOriginalAllHostExact1105](Proofs/PathSevenOriginalAllHostExact1105.lean),
    [OddUniversalUpper1105](Proofs/OddUniversalUpper1105.lean)): proves the exact
-   formula for $\mathrm{AR}(n, P_5) = n$, $\mathrm{AR}(n, P_6) = \max(7, n)$,
-   $\mathrm{AR}(n, P_7) = \max(11, 2n - 2)$, and all odd paths $k = 2\ell + 1 \ge 9$
-   across all $n \ge k$ via cone-core elimination and residual component
+   formula for $\mathrm{AR}(n, P_5) = \max(4, n) = n$,
+   $\mathrm{AR}(n, P_6) = \max(7, n + 1) = n + 1$,
+   $\mathrm{AR}(n, P_7) = \max(11, 2n - 2) = 2n - 2$, and all odd paths
+   $k = 2\ell + 1 \ge 9$ across all $n \ge k$ via cone-core elimination and residual component
    ledgers, and reduces all even paths $k = 2d + 2 \ge 8$ ($d \ge 3$) via
    low-NEW vertex deletion to the finite base window
    $2d + 2 \le n \le 2d + 2 + \lfloor (d - 1) / 2 \rfloor$.
