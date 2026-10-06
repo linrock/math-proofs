@@ -2,7 +2,7 @@
   "version": "v0.4",
   "project": {
     "name": "Erdős 575: bipartite extremal-graph compactness",
-    "description": "A complete Lean 4 proof of the negative answer to Erdős problem 575: a finite family F of forbidden graphs containing a bipartite graph need not contain a bipartite member H with ex(n; H) = O(ex(n; F)). Formalizes both the self-contained bipartite forest counterexample F_0 = {K_{1,2}, 2K_2} (where ex(n; F_0) ≤ 1 while ex(n; K_{1,2}) ≥ ⌊n/2⌋ and ex(n; 2K_2) ≥ n - 1) and the cycle-containing counterexample family of connected bipartite cyclic graphs satisfying ex(n; F) = O(n^(21/16)) and ex(n; H) = Ω(n^(4/3)) for every H ∈ F.",
+    "description": "A complete Lean 4 disproof of Erdős problem 575 in both its unrestricted and cycle-containing formulations: a finite family F of forbidden graphs containing a bipartite member need not contain a bipartite H ∈ F with ex(n; H) = O(ex(n; F)). Proves the unrestricted case from scratch via the bipartite forest family F_0 = {K_{1,2}, 2K_2} (where ex(n; F_0) ≤ 1 while ex(n; K_{1,2}) ≥ ⌊n/2⌋ and ex(n; 2K_2) ≥ n - 1), and resolves the cycle-containing case by adapting OpenAI's all-bipartite cyclic counterexample family from Erdős problem 180 (where ex(n; F) = O(n^(21/16)) and ex(n; H) = Ω(n^(4/3)) for every H ∈ F).",
     "authors": [
       "Linmiao Xu"
     ],
