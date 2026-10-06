@@ -1,0 +1,20 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos1105.Palomar.erdos_1105_cycles",
+    "Erdos1105.Palomar.erdos_1105_paths",
+    "Erdos1105.Palomar.erdos_1105_parts_i",
+    "Erdos1105.Palomar.erdos_1105_parts_ii",
+    "Erdos1105.Palomar.antiRamseyNum_triangle",
+    "Erdos1105.Palomar.cycle_fullBlock_lower",
+    "Erdos1105.Palomar.cycle_real_lower",
+    "Erdos1105.Palomar.cycle_linear_upper"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}
