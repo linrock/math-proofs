@@ -39,6 +39,17 @@ if [[ "$mathlib_revision" != "065356127b1dc0016f66b7283ce0ce2c4055aa55" ]]; then
   echo "Mathlib revision does not match the pinned proof" >&2
   exit 1
 fi
+if ! git -C .lake/packages/mathlib diff-index --quiet HEAD --; then
+  echo "Mathlib checkout has local modifications" >&2
+  exit 1
+fi
+while IFS= read -r -d '' ref_file; do
+  rel_path="${ref_file#third_party/mathlib/}"
+  if ! cmp -s "$ref_file" ".lake/packages/mathlib/$rel_path"; then
+    echo "FAIL: third_party/mathlib/$rel_path differs from .lake/packages/mathlib/$rel_path" >&2
+    exit 1
+  fi
+done < <(find third_party/mathlib -type f -print0)
 
 echo "Building Statement, Solution, AxiomAudit, and Challenge..."
 if ! lake build Statement Solution AxiomAudit Challenge > .verification/build.log 2>&1; then

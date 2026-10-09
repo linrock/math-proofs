@@ -75,6 +75,42 @@ noncomputable def antiRamseyNum {α : Type*} [Fintype α] (H : SimpleGraph α) (
   sSup {k | ∃ c : TopEdgeLabeling (Fin n) (Fin k), Function.Surjective c ∧
     ∀ f : H.Copy ⊤, ¬IsRainbow f.toHom c}
 
+/-- Definitional audit: `G.EdgeLabeling K` in pinned Mathlib is `G.edgeSet → K`,
+`TopEdgeLabeling V K` is `(⊤ : SimpleGraph V).edgeSet → K`, and `c.pullback f`
+is `c ∘ f.mapEdgeSet`. -/
+theorem isRainbow_unfolded {α V K : Type*} {H : SimpleGraph α} {G : SimpleGraph V}
+    (f : H →g G) (c : G.EdgeLabeling K) :
+    IsRainbow f c ↔ Function.Injective (c ∘ f.mapEdgeSet) :=
+  Iff.rfl
+
+/-- Definitional audit: `antiRamseyNum H n` unfolds definitionally to the supremum of `k`
+over surjective edge-colorings `c : (⊤ : SimpleGraph (Fin n)).edgeSet → Fin k` with no
+injective homomorphism `f : H.Copy ⊤` whose induced edge coloring `c ∘ f.toHom.mapEdgeSet`
+is injective. -/
+theorem antiRamseyNum_unfolded {α : Type*} [Fintype α] (H : SimpleGraph α) (n : ℕ) :
+    antiRamseyNum H n =
+      sSup {k : ℕ | ∃ c : (⊤ : SimpleGraph (Fin n)).edgeSet → Fin k,
+        Function.Surjective c ∧
+        ∀ f : H.Copy (⊤ : SimpleGraph (Fin n)),
+          ¬Function.Injective (c ∘ f.toHom.mapEdgeSet)} :=
+  rfl
+
+/-- Definitional audit of `SimpleGraph.Copy`, `SimpleGraph.cycleGraph`,
+`SimpleGraph.pathGraph`, and `Asymptotics.IsBigO` against pinned Mathlib. -/
+theorem imported_definitions_audit :
+    (∀ {α V : Type*} {H : SimpleGraph α} {G : SimpleGraph V} (f : H.Copy G),
+      Function.Injective f.toHom ∧ ∀ ⦃u v : α⦄, H.Adj u v → G.Adj (f.toHom u) (f.toHom v)) ∧
+    (∀ (n : ℕ) (u v : Fin (n + 2)),
+      (cycleGraph (n + 2)).Adj u v ↔ u - v = 1 ∨ v - u = 1) ∧
+    (∀ (n : ℕ) (u v : Fin n),
+      (pathGraph n).Adj u v ↔ u.val + 1 = v.val ∨ v.val + 1 = u.val) ∧
+    (∀ {α : Type*} (l : Filter α) (f g : α → ℝ),
+      (f =O[l] g) ↔ ∃ c : ℝ, ∀ᶠ x in l, ‖f x‖ ≤ c * ‖g x‖) :=
+  ⟨fun f => ⟨f.injective, fun _ _ h => f.toHom.map_adj h⟩,
+   fun _ _ _ => Iff.rfl,
+   fun _ _ _ => SimpleGraph.pathGraph_adj,
+   fun _ _ _ => Asymptotics.isBigO_iff⟩
+
 /-- Part (i) of Erdős Problem 1105: for every fixed $k \ge 3$,
 $\mathrm{AR}(n, C_k) = \left(\frac{k-2}{2} + \frac{1}{k-1}\right) n + O(1)$. -/
 theorem erdos_1105_cycles :
