@@ -55,8 +55,7 @@ theorems in `Challenge` and `Solution` using both NanoDa and Lean's default
 kernel.
 
 [Statement.lean](Statement.lean) records the literal Formal Conjectures
-propositions `statement_i` and `statement_ii` using the attributed Apache-2.0
-utility `FormalConjecturesForMathlib.Combinatorics.SimpleGraph.Coloring.Vertex`,
+propositions `statement_i` and `statement_ii` over `SimpleGraph.antiRamseyNum`,
 with no admitted theorem or placeholder. [AxiomAudit.lean](AxiomAudit.lean)
 proves definitional statement fidelity (`statement_i_fidelity` and
 `statement_ii_fidelity`) and audits the transitive axioms of all exported
@@ -73,16 +72,13 @@ one can track **private ("NEW") colors** incident to individual vertices—color
 that disappear upon deleting a vertex $v$—and perform single-edge color
 exchanges between components of $G$.
 
-The 314 modules in [Proofs/](Proofs) organize the proofs of Part (i) and
-Part (ii) into five main components:
+The eight thematic modules in [Proofs/](Proofs) organize the proofs of Part (i)
+and Part (ii) into five main components:
 
 1. **Cycle asymptotic formula**
-   ([CycleOriginalHighNewStructureV5](Proofs/CycleOriginalHighNewStructureV5.lean),
-   [CycleConditionalAsymptotic](Proofs/CycleConditionalAsymptotic.lean),
-   [CycleConditionalUpper](Proofs/CycleConditionalUpper.lean),
-   [CycleFullBlockRealLower](Proofs/CycleFullBlockRealLower.lean),
-   [TriangleExact](Proofs/TriangleExact.lean),
-   [CycleFourHighNewStructure](Proofs/CycleFourHighNewStructure.lean)):
+   ([CycleRepresentativeExchange](Proofs/CycleRepresentativeExchange.lean),
+   [CycleBlockAndTriangleBounds](Proofs/CycleBlockAndTriangleBounds.lean),
+   [CycleAsymptoticAndPathSeed](Proofs/CycleAsymptoticAndPathSeed.lean)):
    establishes the ordered-block lower bound by partitioning $K_n$ into cliques
    of order $k - 1$ (giving $\lfloor n / (k - 1) \rfloor \binom{k - 1}{2} + \lfloor n / (k - 1) \rfloor - 1$
    colors with no rainbow $C_k$) and proves the matching upper bound by
@@ -90,23 +86,16 @@ Part (ii) into five main components:
    high-NEW core via Hamiltonian component bounds, chord rotations, and
    3-component triangle splices across $k = 3$, $k = 4$, and $k \ge 5$.
 2. **Universal path lower bound**
-   ([PathMaxLower](Proofs/PathMaxLower.lean),
-   [PathCliqueColor](Proofs/PathCliqueColor.lean),
-   [PathCliqueBridge](Proofs/PathCliqueBridge.lean),
-   [PathSetLower](Proofs/PathSetLower.lean),
-   [PathSetColor](Proofs/PathSetColor.lean),
-   [PathSetBridge](Proofs/PathSetBridge.lean)): constructs both extremal
+   ([PathLowerAndSmallCases](Proofs/PathLowerAndSmallCases.lean)): constructs both extremal
    colorings on `Fin n`—the $(k - 2)$-clique coloring with one outside color
    ($\binom{k - 2}{2} + 1$ colors) and the $(\ell - 1)$-hub coloring with a
    1- or 2-color outside palette ($\binom{\ell - 1}{2} + (\ell - 1)(n - \ell + 1) + \varepsilon$
    colors)—and proves that neither admits a rainbow copy of $P_k$.
 3. **Universal odd paths, $P_6$, and finite-window reduction**
-   ([OddPathsUniversalExact1105](Proofs/OddPathsUniversalExact1105.lean),
-   [Erdos1105UniversalPathReduction](Proofs/Erdos1105UniversalPathReduction.lean),
-   [PathFiveExact](Proofs/PathFiveExact.lean),
-   [PathSixOriginalAllHostExact1105](Proofs/PathSixOriginalAllHostExact1105.lean),
-   [PathSevenOriginalAllHostExact1105](Proofs/PathSevenOriginalAllHostExact1105.lean),
-   [OddUniversalUpper1105](Proofs/OddUniversalUpper1105.lean)): proves the exact
+   ([PathLowerAndSmallCases](Proofs/PathLowerAndSmallCases.lean),
+   [PathResidualDecomposition](Proofs/PathResidualDecomposition.lean),
+   [CycleAsymptoticAndPathSeed](Proofs/CycleAsymptoticAndPathSeed.lean),
+   [PathKernelAndUniversalExact](Proofs/PathKernelAndUniversalExact.lean)): proves the exact
    formula for $\mathrm{AR}(n, P_5) = \max(4, n) = n$,
    $\mathrm{AR}(n, P_6) = \max(7, n + 1) = n + 1$,
    $\mathrm{AR}(n, P_7) = \max(11, 2n - 2) = 2n - 2$, and all odd paths
@@ -115,11 +104,9 @@ Part (ii) into five main components:
    low-NEW vertex deletion to the finite base window
    $2d + 2 \le n \le 2d + 2 + \lfloor (d - 1) / 2 \rfloor$.
 4. **Even path kernel elimination and circumference ($k \ge 10$)**
-   ([SmallKernelWholeSupport1105](Proofs/SmallKernelWholeSupport1105.lean),
-   [EvenConnectedLargeKernel1105](Proofs/EvenConnectedLargeKernel1105.lean),
-   [LargeKernelCircumference1105](Proofs/LargeKernelCircumference1105.lean),
-   [LongCycleFromMinimumDegree1105](Proofs/LongCycleFromMinimumDegree1105.lean),
-   [EvenOriginalNonemptyCore1105](Proofs/EvenOriginalNonemptyCore1105.lean)):
+   ([PathConeAndVineCycles](Proofs/PathConeAndVineCycles.lean),
+   [PathRestorationAndCircumference](Proofs/PathRestorationAndCircumference.lean),
+   [PathKernelAndUniversalExact](Proofs/PathKernelAndUniversalExact.lean)):
    eliminates nonempty $(d + 1)$-cone cores and all $d$-core kernel regimes
    $d + 3 \le |K| \le 2d + 2$ via additive seed-first path filling and residual
    $P_4$ / $P_3 \sqcup P_2$ / $3P_2$ star-center extraction, then proves
@@ -127,10 +114,8 @@ Part (ii) into five main components:
    edge deficit satisfies $D_{\mathrm{rem}} < \binom{d}{2}$, establishing the
    exact formula for all even path orders $k = 2d + 2 \ge 10$ ($d \ge 4$).
 5. **$P_8$ base window ($n \in \{8, 9\}$)**
-   ([PathEightSpanningBase1105](Proofs/PathEightSpanningBase1105.lean),
-   [PathEightNineBase1105](Proofs/PathEightNineBase1105.lean),
-   [ActualCutDegreeLedger1105](Proofs/ActualCutDegreeLedger1105.lean),
-   [ActualK8Rigidity1105](Proofs/ActualK8Rigidity1105.lean)): proves
+   ([PathLowerAndSmallCases](Proofs/PathLowerAndSmallCases.lean),
+   [PathKernelAndUniversalExact](Proofs/PathKernelAndUniversalExact.lean)): proves
    $\mathrm{AR}(8, P_8) = 16$ via cut-degree ledgers and 3-hub rigidity on
    $K_8$, and $\mathrm{AR}(9, P_8) = 17$ by showing that $|E(G)| \ge 17$ on
    $K_9$ forces at least three vertices of internal degree $\ge 4$ in the
@@ -140,10 +125,9 @@ Part (ii) into five main components:
 ## Earlier Lean work and provenance
 
 The problem statements in `Statement.lean`, `Challenge.lean`, and
-`Solution.lean` and the graph-coloring definitions in
+`Solution.lean` and the `SimpleGraph.IsRainbow` and `SimpleGraph.antiRamseyNum`
+definitions from
 [`FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Coloring/Vertex.lean`](https://github.com/google-deepmind/formal-conjectures/blob/eb1c5ce1bf406e46a6af5f859f097a5c5350a462/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Coloring/Vertex.lean)
-and
-[`FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Clique.lean`](https://github.com/google-deepmind/formal-conjectures/blob/eb1c5ce1bf406e46a6af5f859f097a5c5350a462/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Clique.lean)
 are reproduced with their Apache-2.0 attribution and
 [license text](third_party/FORMAL-CONJECTURES-LICENSE.txt). The upstream
 [`FormalConjectures/ErdosProblems/1105.lean`](https://github.com/google-deepmind/formal-conjectures/blob/eb1c5ce1bf406e46a6af5f859f097a5c5350a462/FormalConjectures/ErdosProblems/1105.lean)

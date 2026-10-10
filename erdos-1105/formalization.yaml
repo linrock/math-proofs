@@ -9,7 +9,7 @@
     "responsible_maintainers": [
       "Linmiao Xu"
     ],
-    "license": "MIT"
+    "license": "Apache-2.0"
   },
   "classification": {
     "arxiv": [
@@ -98,7 +98,7 @@
     {
       "id": "https://github.com/google-deepmind/formal-conjectures/blob/eb1c5ce1bf406e46a6af5f859f097a5c5350a462/FormalConjectures/ErdosProblems/1105.lean",
       "relationship": "builds-on",
-      "note": "Two attributed Apache-2.0 graph-coloring utility modules from Formal Conjectures are retained in Proofs/FormalConjecturesForMathlib/. Statement.lean, Challenge.lean, and Solution.lean reproduce the exact Erdős 1105 statements over SimpleGraph.antiRamseyNum with answer(True) elaborated as True. The upstream declarations end in sorry."
+      "note": "The attributed Apache-2.0 definitions SimpleGraph.IsRainbow and SimpleGraph.antiRamseyNum from Formal Conjectures are retained in Proofs/CycleRepresentativeExchange.lean, Challenge.lean, and Solution.lean, and Statement.lean, Challenge.lean, and Solution.lean reproduce the exact Erdős 1105 statements over SimpleGraph.antiRamseyNum with answer(True) elaborated as True. The upstream declarations end in sorry."
     },
     {
       "id": "https://github.com/plby/lean-proofs/blob/main/src/latest/ErdosProblems/Erdos1105.lean",
@@ -165,14 +165,14 @@
         "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
       }
     ],
-    "notes": "All 314 proof modules in Proofs/ plus Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4 with zero sorry in Proofs/ and are verified by both Lean's default kernel and NanoDa via Comparator."
+    "notes": "All 8 proof modules in Proofs/ plus Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4 with zero sorry in Proofs/ and are verified by both Lean's default kernel and NanoDa via Comparator."
   },
   "fidelity": {
     "divergences": "None. Both universal statements preserve the exact quantifiers, domains (k >= 3 for cycles, n >= k >= 5 for paths), definitions (surjective TopEdgeLabeling on Fin n avoiding injective rainbow copies of cycleGraph k and pathGraph k), and formulas from Formal Conjectures."
   },
   "review": {
     "status": "agent-reviewed",
-    "notes": "Lean 4.35.0-rc2 (compiler commit 11acb17ec6b07a8f9e9173e6845197929540936b) with canonical Mathlib commit 065356127b1dc0016f66b7283ce0ce2c4055aa55 passed fresh source builds for all 314 proof modules in Proofs/ plus Statement, Solution, AxiomAudit, and Challenge. Zero sorry occur in the proof modules. All twelve endpoint and statement-fidelity axiom audits passed using only propext, Classical.choice, and Quot.sound. Comparator matched all eight selected theorems in Challenge and Solution, and both NanoDa and Lean's default kernel accepted the solution."
+    "notes": "Lean 4.35.0-rc2 (compiler commit 11acb17ec6b07a8f9e9173e6845197929540936b) with canonical Mathlib commit 065356127b1dc0016f66b7283ce0ce2c4055aa55 passed fresh source builds for all 8 proof modules in Proofs/ plus Statement, Solution, AxiomAudit, and Challenge. Zero sorry occur in the proof modules. All twelve endpoint and statement-fidelity axiom audits passed using only propext, Classical.choice, and Quot.sound. Comparator matched all eight selected theorems in Challenge and Solution, and both NanoDa and Lean's default kernel accepted the solution."
   },
   "alignment": {
     "namespace": "Erdos1105.Palomar",
@@ -235,5 +235,5 @@
       }
     ]
   },
-  "acknowledgements": "The mathematical results are due to Erdős, Simonovits, and Sós (1975), Simonovits and Sós (1984), Montellano-Ballesteros and Neumann-Lara (2005), Choi (2011), and Yuan (2021). Mathlib and Formal Conjectures supply attributed formal definitions and infrastructure. Their source notices and upstream licenses are preserved separately from the repository's MIT license."
+  "acknowledgements": "The mathematical results are due to Erdős, Simonovits, and Sós (1975), Simonovits and Sós (1984), Montellano-Ballesteros and Neumann-Lara (2005), Choi (2011), and Yuan (2021). Mathlib and Formal Conjectures supply attributed formal definitions and infrastructure. Their source notices and upstream licenses are preserved alongside the repository's Apache-2.0 license."
 }
