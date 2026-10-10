@@ -12,8 +12,8 @@ reduction to arbitrary-length prime progressions (see also the prior June 2026
 candidate manuscript on [forum thread #1139](https://www.erdosproblems.com/forum/thread/1139#post-7063)
 attributed to Przemysław Chojecki, Liam Price, Gavin Sherry, and Terence Tao).
 
-Locally authored proof modules in `Proofs/`, `Statement.lean`, `Solution.lean`,
-and `AxiomAudit.lean` are licensed under the [MIT License](LICENSE). The
+Locally authored proof modules in `Proofs/`, `Statement.lean`, `Challenge.lean`, `Solution.lean`,
+and `AxiomAudit.lean` are Copyright 2026 Linmiao Xu and licensed under the [Apache-2.0 License](LICENSE). The
 third-party sources below retain their original licenses and attribution
 notices.
 

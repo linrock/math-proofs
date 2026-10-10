@@ -10,8 +10,8 @@ An independent Lean formalization is available in
 and [`Jayyhk/erdos-lean`](https://github.com/Jayyhk/erdos-lean/blob/ada6b53e46a2b1df91dd4ef6d30bd875c7e989c3/problems/2/Erdos2.lean);
 no code from those repositories is imported or adapted here.
 
-Locally authored proof modules in `Proofs/`, `Statement.lean`, `Solution.lean`,
-and `AxiomAudit.lean` are licensed under the included `LICENSE` (MIT).
+Locally authored proof modules in `Proofs/`, `Statement.lean`, `Challenge.lean`, `Solution.lean`,
+and `AxiomAudit.lean` are Copyright 2026 Linmiao Xu and licensed under the included `LICENSE` (Apache-2.0).
 The third-party files below retain their original Apache-2.0 terms.
 
 | Included source | Upstream and exact revision | License |

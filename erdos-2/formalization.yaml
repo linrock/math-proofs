@@ -9,7 +9,7 @@
     "responsible_maintainers": [
       "Linmiao Xu"
     ],
-    "license": "MIT"
+    "license": "Apache-2.0"
   },
   "classification": {
     "arxiv": [
@@ -161,5 +161,5 @@
       }
     ]
   },
-  "acknowledgements": "Hough's solution and the BBMST probability-sieve argument provide the mathematical provenance. Mathlib, the Formal Conjectures covering utility, PrimeNumberTheoremAnd and LeanArchitect supply attributed formal definitions, proof inputs and infrastructure. Their source notices and upstream licenses are preserved separately from the repository's MIT license."
+  "acknowledgements": "Hough's solution and the BBMST probability-sieve argument provide the mathematical provenance. Mathlib, the Formal Conjectures covering utility, PrimeNumberTheoremAnd and LeanArchitect supply attributed formal definitions, proof inputs and infrastructure. Their source notices and upstream licenses are preserved alongside the repository's Apache-2.0 license."
 }

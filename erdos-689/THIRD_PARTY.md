@@ -1,7 +1,7 @@
 # Provenance and licenses for Erdős 689
 
-The locally authored material in this repository is released under the MIT
-license in the repository-root `LICENSE`. This grant does not claim authorship
+The locally authored material in this repository is Copyright 2026 Linmiao Xu and released under the Apache-2.0
+license in `LICENSE`. This grant does not claim authorship
 of prior mathematics or change the licenses of third-party sources.
 
 Mathlib and its dependencies are obtained through the committed Git pins.
@@ -20,7 +20,7 @@ conjecture source, not an imported proof.
   Full license: `third_party/ARCHITECT-LICENSE.txt`.
 - blair: https://github.com/williamjblair/lean-proofs at `5d10b4d91f257cfbe8c563cf927f543a868845e0`, MIT.
   Full license: `third_party/BLAIR-LICENSE.txt`.
-  Its NOTICE is retained. No Lindstrom.lean, Star Fleet archive, or other excluded proof is included.
+  Its NOTICE is retained in `third_party/BLAIR-NOTICE.txt`. No Lindstrom.lean, Star Fleet archive, or other excluded proof is included.
 - pnt: https://github.com/ajirving/PrimeNumberTheoremAnd at `769d3b81fbff001d9fa7028df0168a8e546cf692`, Apache-2.0.
   Full license: `third_party/PNT-LICENSE.txt`.
 - principia: https://github.com/antoshashakov/Principia-Math-Solutions at `c9910942522fbd3a07c034ac57947f56df6f0f6d`, Apache-2.0.
@@ -30,7 +30,7 @@ conjecture source, not an imported proof.
   `Proofs/GoldbachSW3.lean`, and `Proofs/GoldbachChainMaster.lean`, a Lean
   4.35.0-rc2 compatibility port. Their analytic lemmas are reused in the Erdős 689
   three-prime development. The original and ported digests and patch are
-  retained. The selected Erdős 689 result does not use the final almost-all
+  retained in `third_party/goldbach_master_433.patch`. The selected Erdős 689 result does not use the final almost-all
   Goldbach theorem.
 
 Every `Proofs/` module has an individual origin and SHA-256 binding in

@@ -93,6 +93,6 @@ for the remaining attribution boundary.
 checks. [comparator.json](comparator.json) names both theorem endpoints.
 Palomar enables NanoDa through its protected verification configuration.
 [formalization.yaml](formalization.yaml) records Linmiao Xu as author and
-maintainer and the [MIT license](../LICENSE) for locally authored material.
+maintainer and the [Apache-2.0 license](LICENSE) for locally authored material.
 This remains a prepared candidate and has not been submitted to or registered
 with Palomar.

@@ -13,8 +13,8 @@ Tan, Wang, Huang, and Chen. Their papers are cited in `README.md`. No theorem
 from either paper is imported as an axiom. Mathlib and its dependencies retain
 their own upstream licenses and commit pins.
 
-The locally authored material in this repository is released under the MIT
-license in the repository-root `LICENSE`, matching `formalization.yaml`. This
+The locally authored material in this repository is Copyright 2026 Linmiao Xu and released under the Apache-2.0
+license in `LICENSE`, matching `formalization.yaml`. This
 grant does not claim authorship of prior mathematics or change the licenses
 of third-party sources. `source-manifest.json` binds every included proof
 module to its research origin and hash. It is provenance, not a proof

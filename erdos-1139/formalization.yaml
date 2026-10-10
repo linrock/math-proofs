@@ -9,7 +9,7 @@
     "responsible_maintainers": [
       "Linmiao Xu"
     ],
-    "license": "MIT"
+    "license": "Apache-2.0"
   },
   "classification": {
     "arxiv": [
@@ -238,5 +238,5 @@
       }
     ]
   },
-  "acknowledgements": "The problem was posed by Paul Erdős. The double-covering and prime-pattern framework builds on Chojecki (2026), Chojecki, Price, Sherry, and Tao (2026), and Green, Tao, and Ziegler (2010–2012). Mathlib, Formal Conjectures, PrimeNumberTheoremAnd, LeanArchitect, williamjblair/lean-proofs, and Principia-Math-Solutions supply attributed formal definitions and analytic infrastructure. Their source notices and upstream licenses are preserved separately from the repository's MIT license."
+  "acknowledgements": "The problem was posed by Paul Erdős. The double-covering and prime-pattern framework builds on Chojecki (2026), Chojecki, Price, Sherry, and Tao (2026), and Green, Tao, and Ziegler (2010–2012). Mathlib, Formal Conjectures, PrimeNumberTheoremAnd, LeanArchitect, williamjblair/lean-proofs, and Principia-Math-Solutions supply attributed formal definitions and analytic infrastructure. Their source notices and upstream licenses are preserved alongside the repository's Apache-2.0 license."
 }

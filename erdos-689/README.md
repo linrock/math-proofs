@@ -71,5 +71,5 @@ requirements.
 No numerical sufficient threshold or extension to every fixed covering
 multiplicity is asserted. This is a formalization of the cited argument. No
 discovery priority, independent specialist review, or Palomar registration is
-claimed. Locally authored material is released under the [MIT license](../LICENSE).
+claimed. Locally authored material is released under the [Apache-2.0 license](LICENSE).
 Included upstream sources retain the terms recorded in [THIRD_PARTY.md](THIRD_PARTY.md).
