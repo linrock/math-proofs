@@ -1,0 +1,244 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 261: dyadic weighted representations n / 2^n = ∑ a_k / 2^(a_k)",
+    "description": "A Lean 4 formalization of the solved parts, extremal bounds, and finite verification up to 10000 for Erdős problem 261 on representing n / 2^n as a finite sum ∑_{k=1}^t a_k / 2^(a_k) of distinct positive integers a_k. Proves the Borwein–Loring telescoping family n = 2^(m+1) - m - 2 (resolving Part (i) that infinitely many positive integers n admit such a representation), verifies every integer 1 ≤ n ≤ 10000 via a coalesced dyadic block certificate forest (Theorem 3.5 of Tengely, Ulas, and Zygadło 2020), constructs infinitely many rationals with at least 2^m distinct infinite representations for every m ∈ ℕ, and proves the Tengely–Ulas–Zygadło sharp extremal bound n ≤ 2^(t+1) - t - 2 and its equality uniqueness, first-term localization a_k ∈ [n+1, n+3], 2-adic last-gap divisibility 2^(a_{t+1} - a_t) ∣ a_{t+1}, the punctured-interval infinite family n_k = (2^(4k+2) + 1)/5 - 4k, and arbitrary-length splicing.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "Apache-2.0"
+  },
+  "classification": {
+    "arxiv": [
+      "math.NT"
+    ],
+    "msc2020": [
+      "11D61",
+      "11B75"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Some questions of Erdős and Graham on numbers of the form ∑ g_n / 2^{g_n}",
+      "authors": [
+        "Peter Borwein",
+        "Terry A. Loring"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "id": "https://doi.org/10.1090/S0025-5718-1990-0993927-5",
+      "location": "Mathematics of Computation 54 (1990), 377–394",
+      "author_endorsement": "not-contacted",
+      "note": "Constructs the family n = 2^{m+1} - m - 2 satisfying n / 2^n = ∑_{n < k ≤ n + m} k / 2^k, establishing that infinitely many positive integers n satisfy Erdos261Prop n."
+    },
+    {
+      "title": "On a Diophantine equation of Erdős and Graham",
+      "authors": [
+        "Szabolcs Tengely",
+        "Maciej Ulas",
+        "Jakub Zygadło"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "id": "https://arxiv.org/abs/2008.01501",
+      "location": "Journal of Number Theory 214 (2020), 445–459 (arXiv:2008.01501)",
+      "author_endorsement": "not-contacted",
+      "note": "Proves the sharp extremal upper bound n ≤ 2^{t+1} - t - 2 and its equality uniqueness (Theorem 2.1(i)), the first-term bound n + 1 ≤ a_1 ≤ n + 3 and last-term gap divisibility 2^{a_t - a_{t-1}} ∣ a_t (Theorem 2.1(ii)), the punctured-interval family n_k = (2^{4k+2} + 1)/5 - 4k (Theorem 3.1), and verifies that every positive integer n ≤ 10000 satisfies Erdos261Prop n (Theorem 3.5)."
+    },
+    {
+      "title": "Erdős Problem 261",
+      "type": "other",
+      "relationship": "background",
+      "id": "https://www.erdosproblems.com/261",
+      "note": "Problem catalog entry and forum discussion."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/261.lean",
+      "relationship": "builds-on",
+      "note": "Challenge.lean, Statement.lean, and Solution.lean use the exact definitions (Erdos261Prop, Erdos261InfiniteRepresentation) and solved theorem statements (borwein_loring, borwein_loring_property, erdos_261.parts.i, le_10000, two_representations) from Formal Conjectures with answer(True) elaborated as True."
+    }
+  ],
+  "status": {
+    "scope": "Proves all solved parts and variants of Erdős problem 261 (the Borwein–Loring family, infinitude of representable n, complete verification for 1 ≤ n ≤ 10000, and rationals with 2^m infinite representations), together with the Tengely–Ulas–Zygadło extremal length bound and uniqueness, first-term localization, 2-adic gap divisibility, punctured-interval infinite family, and arbitrary-length splicing. Whether every positive integer n admits such a representation (Part (ii)) and whether some rational admits 2^(ℵ_0) infinite representations (Part (iii)) remain open.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos261.Palomar.borwein_loring",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos261.Palomar.borwein_loring_property",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos261.Palomar.erdos_261_parts_i",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos261.Palomar.le_10000",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos261.Palomar.two_representations",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos261.Palomar.infinite_rationals_two_pow_reps",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos261.Palomar.max_n_bound",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos261.Palomar.exists_term_le_add_three",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos261.Palomar.last_term_gap_dvd",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos261.Palomar.borwein_loring_unique",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos261.Palomar.punctured_family_erdos261Prop",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos261.Palomar.arbitrary_length_rep_of_all_erdos261Prop",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "All 5 proof modules in Proofs/ together with Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry in the proof modules, and all 12 exported theorems are verified by both Lean's default kernel and NanoDa via Comparator."
+  },
+  "fidelity": {
+    "divergences": "None. The definitions of Erdos261Prop and Erdos261InfiniteRepresentation, as well as the theorems borwein_loring, borwein_loring_property, erdos_261.parts.i, le_10000, and two_representations, match FormalConjectures/ErdosProblems/261.lean verbatim (with answer(True) elaborated as True)."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Statement fidelity, non-vacuity, and transitive axioms (restricted to propext, Classical.choice, and Quot.sound) were verified across all 12 exported theorems in Solution.lean, and both NanoDa and Lean's default kernel accepted the solution via Comparator."
+  },
+  "alignment": {
+    "namespace": "Erdos261.Palomar",
+    "statements": [
+      {
+        "source": "Formal Conjectures Erdős 261 Borwein–Loring identity",
+        "lean": "Erdos261.Palomar.borwein_loring",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves n / 2^n = ∑_{k ∈ (n, n+m]} k / 2^k for m > 0 and n = 2^{m+1} - m - 2."
+      },
+      {
+        "source": "Formal Conjectures Erdős 261 Borwein–Loring property",
+        "lean": "Erdos261.Palomar.borwein_loring_property",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves Erdos261Prop (2^{m+1} - m - 2) for all m ≥ 2."
+      },
+      {
+        "source": "Formal Conjectures Erdős 261 Part (i)",
+        "lean": "Erdos261.Palomar.erdos_261_parts_i",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves True ↔ {n : ℕ | 0 < n ∧ Erdos261Prop n}.Infinite."
+      },
+      {
+        "source": "Formal Conjectures Erdős 261 n ≤ 10000 variant (Tengely–Ulas–Zygadło 2020, Theorem 3.5)",
+        "lean": "Erdos261.Palomar.le_10000",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves Erdos261Prop n for every positive integer n ≤ 10000."
+      },
+      {
+        "source": "Formal Conjectures Erdős 261 two infinite representations variant",
+        "lean": "Erdos261.Palomar.two_representations",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves True ↔ ∃ x : ℚ, 2 ≤ #{a : ℕ → ℕ | Erdos261InfiniteRepresentation x a}."
+      },
+      {
+        "source": "Infinitely many rationals with at least two infinite representations",
+        "lean": "Erdos261.Palomar.infinite_rationals_two_pow_reps",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves {x : ℚ | (2 ^ m : Cardinal) ≤ #{a : ℕ → ℕ | Erdos261InfiniteRepresentation x a}}.Infinite for every m ∈ ℕ by toggling m disjoint Borwein–Loring intervals."
+      },
+      {
+        "source": "Tengely–Ulas–Zygadło (2020, Theorem 2.1(i)) sharp extremal upper bound",
+        "lean": "Erdos261.Palomar.max_n_bound",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves n ≤ 2^{t+1} - t - 2 for any t-term representation (t ≥ 2) of n / 2^n."
+      },
+      {
+        "source": "Tengely–Ulas–Zygadło (2020, Theorem 2.1(ii)) first-term localization",
+        "lean": "Erdos261.Palomar.exists_term_le_add_three",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that every t-term representation (t ≥ 2) of n / 2^n (n ≥ 1) contains a term a_k ∈ [n + 1, n + 3]."
+      },
+      {
+        "source": "Tengely–Ulas–Zygadło (2020, Theorem 2.1(ii)) last-term 2-adic gap divisibility",
+        "lean": "Erdos261.Palomar.last_term_gap_dvd",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that every strictly increasing (t + 2)-term representation of n / 2^n satisfies 2^{a_{t+1} - a_t} ∣ a_{t+1}."
+      },
+      {
+        "source": "Tengely–Ulas–Zygadło (2020, Theorem 2.1(i)) uniqueness of the extremal Borwein–Loring solution",
+        "lean": "Erdos261.Palomar.borwein_loring_unique",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that for n = 2^{t+1} - t - 2 (t ≥ 2), a_k = n + 1 + k is the unique strictly increasing t-term representation of n / 2^n."
+      },
+      {
+        "source": "Tengely–Ulas–Zygadło (2020, Theorem 3.1) punctured-interval infinite family",
+        "lean": "Erdos261.Palomar.punctured_family_erdos261Prop",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves Erdos261Prop ((2^{4k+2} + 1) / 5 - 4k) for every k ≥ 1."
+      },
+      {
+        "source": "Splicing representations to arbitrary length under Part (ii)",
+        "lean": "Erdos261.Palomar.arbitrary_length_rep_of_all_erdos261Prop",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that if every m > 0 satisfies Erdos261Prop m, then every n > 0 admits representations of length t ≥ L for all L."
+      }
+    ]
+  },
+  "acknowledgements": "The problem was posed by Erdős and Graham, with key results by Cusick, Borwein and Loring (1990), and Tengely, Ulas, and Zygadło (2020). Mathlib and Formal Conjectures supply attributed formal definitions and infrastructure."
+}
