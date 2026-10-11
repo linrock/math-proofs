@@ -79,7 +79,8 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends jq zstd
+          sudo apt-get install -y --no-install-recommends bubblewrap jq zstd
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 || true
 
       - name: Restore Elan and Mathlib ltar cache
         uses: actions/cache@v6
@@ -113,12 +114,43 @@ jobs:
             --run-id "$GITHUB_RUN_ID_VAL" \
             --step-summary "$GITHUB_STEP_SUMMARY"
 
+      - name: Finalize interrupted verification receipt
+        if: always()
+        env:
+          MATRIX_PACKAGE: ${{ matrix.package }}
+          COMMIT_SHA: ${{ github.sha }}
+          GITHUB_REPO: ${{ github.repository }}
+          GITHUB_RUN_ID_VAL: ${{ github.run_id }}
+        run: |
+          python3 .github/scripts/verify_proofs.py finalize \
+            --package "$MATRIX_PACKAGE" \
+            --comparator \
+            --commit "$COMMIT_SHA" \
+            --repo "$GITHUB_REPO" \
+            --run-id "$GITHUB_RUN_ID_VAL" \
+            --step-summary "$GITHUB_STEP_SUMMARY"
+
       - name: Upload verification logs and receipt
+        id: upload1
+        continue-on-error: true
         if: always()
         uses: actions/upload-artifact@v7
         with:
           name: verification-${{ matrix.package }}-${{ github.sha }}
           path: ${{ matrix.package }}/.verification/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Retry verification artifact upload
+        if: always() && steps.upload1.outcome == 'failure'
+        uses: actions/upload-artifact@v7
+        with:
+          name: verification-${{ matrix.package }}-${{ github.sha }}
+          path: ${{ matrix.package }}/.verification/
+          include-hidden-files: true
+          if-no-files-found: error
+          overwrite: true
           retention-days: 90
 
   gate:
@@ -126,13 +158,50 @@ jobs:
     needs: [preflight, verify]
     if: always()
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Download package verification artifacts
+        id: download_artifacts
+        continue-on-error: true
+        if: always() && needs.preflight.outputs.has_packages == 'true'
+        uses: actions/download-artifact@v8
+        with:
+          pattern: verification-*-${{ github.sha }}
+          path: artifacts
+
+      - name: Aggregate package receipts
+        id: aggregate
+        continue-on-error: true
+        if: always() && needs.preflight.outputs.has_packages == 'true'
+        env:
+          EXPECTED_PACKAGES: ${{ needs.preflight.outputs.packages }}
+        run: |
+          python3 .github/scripts/verify_proofs.py aggregate \
+            --artifacts-dir artifacts \
+            --expected-packages "$EXPECTED_PACKAGES" \
+            --output verification-report.json \
+            --step-summary "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload consolidated verification report
+        if: always() && needs.preflight.outputs.has_packages == 'true'
+        uses: actions/upload-artifact@v7
+        with:
+          name: verification-report-${{ github.sha }}
+          path: verification-report.json
+          if-no-files-found: error
+          retention-days: 90
+
       - name: Check preflight and package verification results
         env:
           PREFLIGHT_RESULT: ${{ needs.preflight.result }}
           HAS_PACKAGES: ${{ needs.preflight.outputs.has_packages }}
           VERIFY_RESULT: ${{ needs.verify.result }}
+          AGGREGATE_OUTCOME: ${{ steps.aggregate.outcome }}
         run: |
           if [[ "$PREFLIGHT_RESULT" != "success" ]]; then
             echo "Preflight failed with result: $PREFLIGHT_RESULT" >&2
@@ -140,5 +209,9 @@ jobs:
           fi
           if [[ "$HAS_PACKAGES" == "true" && "$VERIFY_RESULT" != "success" ]]; then
             echo "Package verification failed with result: $VERIFY_RESULT" >&2
+            exit 1
+          fi
+          if [[ "$HAS_PACKAGES" == "true" && "$AGGREGATE_OUTCOME" != "success" ]]; then
+            echo "Consolidated verification receipt check failed: $AGGREGATE_OUTCOME" >&2
             exit 1
           fi

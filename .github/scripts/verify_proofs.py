@@ -4,14 +4,22 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import pathlib
 import re
+import resource
+import shutil
 import subprocess
 import sys
-import tomllib
+import time
 from typing import Any
+
+try:
+    import tomllib  # type: ignore[import-not-found]
+except ModuleNotFoundError:  # Python 3.10 fallback
+    tomllib = None  # type: ignore[assignment]
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parents[2]
 EXPECTED_TOOLCHAIN = "leanprover/lean4:v4.35.0-rc2"
@@ -30,13 +38,103 @@ DOC_ONLY_FILENAMES = {
     "formalization.yaml",
 }
 
-ENV_COMPARE_LEAN = """import Lean
+ENV_COMPARE_LEAN = """module
+
+import Lean
 open Lean
+
+structure CoreAuditRow where
+  name : String
+  kind : String
+  declaration : String
+deriving ToJson
 
 def moduleOfConst (env : Environment) (n : Name) : Name :=
   match env.getModuleIdxFor? n with
   | some idx => env.header.moduleNames.getD idx.toNat Name.anonymous
   | none => Name.anonymous
+
+partial def collectChallengeDefs (env : Environment) (work : List Name) (seen : NameSet) (acc : Array (String × Name)) : NameSet × Array (String × Name) :=
+  match work with
+  | [] => (seen, acc)
+  | n :: rest =>
+    if seen.contains n then
+      collectChallengeDefs env rest seen acc
+    else
+      let seen := seen.insert n
+      match env.find? n with
+      | none => collectChallengeDefs env rest seen acc
+      | some info =>
+        let isChal := moduleOfConst env n == `Challenge && !n.isInternalDetail
+        if isChal then
+          match info with
+          | .defnInfo v =>
+            collectChallengeDefs env (v.value.getUsedConstants.toList ++ info.type.getUsedConstants.toList ++ rest) seen (acc.push ("def", n))
+          | .inductInfo i =>
+            collectChallengeDefs env (i.ctors ++ info.type.getUsedConstants.toList ++ rest) seen (acc.push ("inductive", n))
+          | .ctorInfo c =>
+            collectChallengeDefs env (c.induct :: info.type.getUsedConstants.toList ++ rest) seen (acc.push ("ctor", n))
+          | _ =>
+            collectChallengeDefs env (info.type.getUsedConstants.toList ++ rest) seen acc
+        else
+          collectChallengeDefs env rest seen acc
+
+private partial def addTypeProxy
+    (rawEnv : Environment) (name : Name) : StateT (Environment × NameSet) IO Unit := do
+  let (env, seen) ← get
+  if env.contains name || seen.contains name then
+    return
+  let some dependency := rawEnv.find? name
+    | return
+  set (env, seen.insert name)
+  for used in dependency.type.getUsedConstants do
+    addTypeProxy rawEnv used
+  if moduleOfConst rawEnv name == `Challenge then
+    match dependency with
+    | .defnInfo v =>
+      for used in v.value.getUsedConstants do
+        addTypeProxy rawEnv used
+    | .inductInfo i =>
+      for c in i.ctors do
+        addTypeProxy rawEnv c
+    | .ctorInfo c =>
+      addTypeProxy rawEnv c.induct
+    | _ => pure ()
+  let (env, seen) ← get
+  let proxy : Declaration := .axiomDecl {
+    name := dependency.name
+    levelParams := dependency.levelParams
+    type := dependency.type
+    isUnsafe := false
+  }
+  let ctx : Core.Context := {
+    fileName := "<palomar-core-notation-audit-proxy>"
+    fileMap := default
+    options := ({} : Options).setBool `debug.skipKernelTC true
+  }
+  let (_, state) ← (Lean.addDecl proxy).toIO ctx { env }
+  set (state.env, seen)
+
+private def printCoreDecl (rawEnv trustedEnv : Environment) (kind : String) (name : Name) : IO String := do
+  let opts := ({} : Options)
+    |>.set `pp.notation false
+    |>.set `pp.fullNames true
+    |>.set `pp.fieldNotation false
+    |>.set `pp.proofs true
+    |>.set `pp.deepTerms true
+    |>.set `pp.maxSteps 1000000
+  let ctx : Core.Context := {
+    fileName := "<palomar-core-notation-audit>"
+    fileMap := default
+    options := opts
+  }
+  let state : Core.State := { env := trustedEnv }
+  let (sig, _) ← (PrettyPrinter.ppSignature name).run' {} |>.toIO ctx state
+  if kind == "def" then
+    if let some (.defnInfo v) := rawEnv.find? name then
+      let (valFmt, _) ← (PrettyPrinter.ppExpr v.value).run' {} |>.toIO ctx state
+      return s!"def {sig.fmt.pretty} :=\\n  {valFmt.pretty}"
+  return s!"{kind} {sig.fmt.pretty}"
 
 def isSameUpstreamModule (envC envS : Environment) (nC nS : Name) : Bool :=
   let mC := moduleOfConst envC nC
@@ -194,10 +292,11 @@ partial def verifyProofCone (env : Environment) (verified : NameSet) (worklist :
         pure ()
       verifyProofCone env verified nextWork
 
-unsafe def main (args : List String) : IO UInt32 := do
-  initSearchPath (← findSysroot) [System.FilePath.mk ".lake/build/lib/lean"]
-  let rawC ← importModules #[{ module := `Challenge, importAll := true }] {} 0
-  let rawS ← importModules #[{ module := `Solution, importAll := true }] {} 0
+public unsafe def main (args : List String) : IO UInt32 := do
+  let sysroot ← findSysroot
+  initSearchPath sysroot [System.FilePath.mk ".lake/build/lib/lean"]
+  let rawC ← importModules (loadExts := false) #[{ module := `Challenge, importAll := true }] {} 0
+  let rawS ← importModules (loadExts := false) #[{ module := `Solution, importAll := true }] {} 0
   let envC := rawC.setExporting false
   let envS := rawS.setExporting false
   if envS.allImportedModuleNames.contains `Challenge then
@@ -251,6 +350,23 @@ unsafe def main (args : List String) : IO UInt32 := do
     visited ← checkConstPair envC envS visited thm thm
     verifiedCone ← verifyProofCone envS verifiedCone [thm]
     IO.println s!"ENV_MATCH {raw}"
+
+  searchPathRef.set [← getLibDir sysroot]
+  enableInitializersExecution
+  let coreEnv ← importModules (loadExts := true) #[{ module := `Lean }] {} 0
+  let thmNames := args.map String.toName
+  let (_, chalDefs) := collectChallengeDefs envC thmNames {} #[]
+  let allRoots := (chalDefs.map Prod.snd) ++ thmNames.toArray
+  let (_, trustedEnv, _) ← StateT.run (allRoots.forM (addTypeProxy envC)) (coreEnv, {})
+  let mut auditRows : Array CoreAuditRow := #[]
+  for (k, d) in chalDefs.reverse do
+    let declTxt ← printCoreDecl envC trustedEnv k d
+    auditRows := auditRows.push { name := d.toString, kind := k, declaration := declTxt }
+  for raw in args do
+    let t := raw.toName
+    let declTxt ← printCoreDecl envC trustedEnv "theorem" t
+    auditRows := auditRows.push { name := raw, kind := "theorem", declaration := declTxt }
+  IO.FS.writeFile (System.FilePath.mk ".verification/core_notation_audit.json") ((toJson auditRows).pretty ++ "\\n")
   return 0
 """
 
@@ -305,6 +421,40 @@ def strip_lean_comments(text: str) -> str:
     return "".join(out)
 
 
+def parse_lakefile_toml(text: str) -> dict[str, Any]:
+    if tomllib is not None:
+        return tomllib.loads(text)
+    out: dict[str, Any] = {"lean_lib": [], "require": []}
+    cur_section: dict[str, Any] | None = None
+    for raw_line in text.splitlines():
+        line = raw_line.split("#", 1)[0].strip()
+        if not line:
+            continue
+        if line == "[[lean_lib]]":
+            cur_section = {}
+            out["lean_lib"].append(cur_section)
+            continue
+        if line == "[[require]]":
+            cur_section = {}
+            out["require"].append(cur_section)
+            continue
+        if line.startswith("["):
+            cur_section = None
+            continue
+        m = re.match(r"^([A-Za-z0-9_.-]+)\s*=\s*(.+)$", line)
+        if m:
+            key, val_raw = m.group(1), m.group(2).strip()
+            try:
+                val = json.loads(val_raw)
+            except Exception:
+                val = val_raw.strip("\"'")
+            if cur_section is not None:
+                cur_section[key] = val
+            else:
+                out[key] = val
+    return out
+
+
 def all_packages() -> list[str]:
     return sorted(
         p.name
@@ -357,6 +507,13 @@ def check_package_manifest(pkg: str) -> list[str]:
 
     chal_path = pkg_dir / "Challenge.lean"
     if chal_path.is_file():
+        chal_raw = chal_path.read_text(encoding="utf-8", errors="replace")
+        chal_lines = len(chal_raw.splitlines())
+        chal_bytes = chal_path.stat().st_size
+        if chal_lines > 1000:
+            errors.append(f"{pkg}: Challenge.lean exceeds Palomar 1,000-line cap ({chal_lines} lines)")
+        if chal_bytes > 100 * 1024:
+            errors.append(f"{pkg}: Challenge.lean exceeds Palomar 100 KiB cap ({chal_bytes} bytes)")
         chal_clean = strip_lean_comments(chal_path.read_text(encoding="utf-8", errors="replace"))
         for line in chal_clean.splitlines():
             m = re.match(r"^\s*(?:public\s+|private\s+)?(?:meta\s+)?import\s+(?:all\s+)?(.+)$", line)
@@ -378,7 +535,7 @@ def check_package_manifest(pkg: str) -> list[str]:
     lf_name: str | None = None
     if lakefile_path.is_file():
         try:
-            lf = tomllib.loads(lakefile_path.read_text(encoding="utf-8"))
+            lf = parse_lakefile_toml(lakefile_path.read_text(encoding="utf-8"))
             lf_name = lf.get("name")
             lean_libs = lf.get("lean_lib", [])
             libs = {lib.get("name") for lib in lean_libs}
@@ -441,10 +598,26 @@ def check_package_manifest(pkg: str) -> list[str]:
             if not perm_axs or any(a not in PERMITTED_AXIOMS for a in perm_axs):
                 errors.append(f"{pkg}: comparator.json permitted_axioms must be a subset of {PERMITTED_AXIOMS}")
             proj = fy.get("project", {})
+            proj_name = proj.get("name", "")
+            if not isinstance(proj_name, str) or not (1 <= len(proj_name.strip()) <= 300):
+                errors.append(f"{pkg}: formalization.yaml project.name must be 1..300 characters")
+            proj_desc = proj.get("description", "")
+            if not isinstance(proj_desc, str) or not proj_desc.strip():
+                errors.append(f"{pkg}: formalization.yaml project.description must be non-empty")
             if proj.get("license") != "Apache-2.0":
                 errors.append(
                     f"{pkg}: formalization.yaml project.license is {proj.get('license')!r}, expected 'Apache-2.0'"
                 )
+            cls = fy.get("classification", {})
+            arxiv_cats = cls.get("arxiv", [])
+            if not isinstance(arxiv_cats, list) or not (1 <= len(arxiv_cats) <= 8):
+                errors.append(f"{pkg}: formalization.yaml classification.arxiv must list 1..8 categories")
+            msc_codes = cls.get("msc2020", [])
+            if not isinstance(msc_codes, list) or len(msc_codes) > 8 or len(msc_codes) != len(set(msc_codes)):
+                errors.append(f"{pkg}: formalization.yaml classification.msc2020 must list at most 8 distinct codes")
+            rev_status = fy.get("review", {}).get("status", "")
+            if not isinstance(rev_status, str) or not rev_status.strip():
+                errors.append(f"{pkg}: formalization.yaml review.status must be non-empty")
             methods = fy.get("automation", {}).get("methods", [])
             if not methods or methods[0].get("method") != "agent":
                 errors.append(f"{pkg}: formalization.yaml automation.methods[0].method must be 'agent'")
@@ -452,6 +625,12 @@ def check_package_manifest(pkg: str) -> list[str]:
             if not any(s.get("relationship") in VALID_SOURCE_RELS for s in sources):
                 errors.append(
                     f"{pkg}: formalization.yaml needs a source with relationship in {sorted(VALID_SOURCE_RELS)}"
+                )
+            if any(s.get("type") == "original-proof" for s in sources) and any(
+                s.get("relationship") in VALID_SOURCE_RELS for s in sources
+            ):
+                errors.append(
+                    f"{pkg}: formalization.yaml cannot mix type='original-proof' with source-based relationships"
                 )
             status = fy.get("status", {})
             if status.get("sorry_count", 0) != 0 or status.get("sorry_in_definitions", 0) != 0:
@@ -498,6 +677,10 @@ def check_package_manifest(pkg: str) -> list[str]:
                         errors.append(
                             f"{pkg}: verify.sh must support --no-sandbox and write .verification/comparator.log"
                         )
+                    if "--comparator" not in ver_txt or "con-ron" not in ver_txt or "leanexport" not in ver_txt:
+                        errors.append(
+                            f"{pkg}: verify.sh must support --comparator, export via leanexport, and register con-ron"
+                        )
                     if "find " not in ver_txt:
                         errors.append(f"{pkg}: verify.sh must use 'find' to check all .lean files")
                     if (pkg_dir / "Statement.lean").is_file() and "Statement" not in ver_txt:
@@ -515,10 +698,17 @@ def check_package_manifest(pkg: str) -> list[str]:
         for fname in files:
             fpath = root_path / fname
             rel = fpath.relative_to(REPO_ROOT)
+            if fpath.is_symlink():
+                errors.append(f"{rel}: symbolic links are not permitted in Palomar packages")
+                continue
             if fname == ".DS_Store" or fname.endswith(FORBIDDEN_SUFFIXES):
                 errors.append(f"{rel}: forbidden temporary or build file")
                 continue
-            txt = fpath.read_text(encoding="utf-8", errors="replace")
+            try:
+                txt = fpath.read_bytes().decode("utf-8")
+            except UnicodeDecodeError:
+                errors.append(f"{rel}: file is not valid UTF-8")
+                continue
             if fpath.suffix == ".lean":
                 lines = txt.splitlines()
                 if not lines or lines[0].strip() != "module":
@@ -659,6 +849,62 @@ def parse_axioms_log(axioms_log: pathlib.Path) -> list[tuple[str, list[str]]]:
     return results
 
 
+def sha256_file(path: pathlib.Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def collect_input_sha256(pkg_dir: pathlib.Path) -> dict[str, str]:
+    digests: dict[str, str] = {}
+    tracked = [
+        "Challenge.lean",
+        "Solution.lean",
+        "AxiomAudit.lean",
+        "Statement.lean",
+        "comparator.json",
+        "formalization.yaml",
+        "lakefile.toml",
+        "lake-manifest.json",
+        "lean-toolchain",
+        "LICENSE",
+        "verify.sh",
+    ]
+    for rel in tracked:
+        p = pkg_dir / rel
+        if p.is_file():
+            digests[rel] = sha256_file(p)
+    proofs_dir = pkg_dir / "Proofs"
+    if proofs_dir.is_dir():
+        for p in sorted(proofs_dir.rglob("*.lean")):
+            if p.is_file():
+                digests[p.relative_to(pkg_dir).as_posix()] = sha256_file(p)
+    return digests
+
+
+def collect_tool_digests(pkg_dir: pathlib.Path) -> dict[str, str]:
+    digests: dict[str, str] = {}
+    try:
+        prefix_str = subprocess.check_output(
+            ["lake", "env", "lean", "--print-prefix"],
+            cwd=pkg_dir,
+            text=True,
+            stderr=subprocess.DEVNULL,
+        ).strip()
+        prefix = pathlib.Path(prefix_str)
+        for tool in ("lake", "lean", "leanexport", "leanchecker", "nanoda_bin", "con-ron"):
+            tpath = prefix / "bin" / tool
+            if tpath.is_file():
+                digests[tool] = sha256_file(tpath.resolve())
+    except Exception:
+        pass
+    bwrap_bin = shutil.which("bwrap")
+    if bwrap_bin:
+        try:
+            digests["bwrap"] = sha256_file(pathlib.Path(bwrap_bin).resolve())
+        except Exception:
+            pass
+    return digests
+
+
 def summarize_package(
     pkg: str,
     commit: str,
@@ -712,7 +958,39 @@ def summarize_package(
         else ""
     )
     nanoda_ok = "nanoda kernel accepts the solution" in comp_log
+    con_ron_ok = "con-ron kernel accepts the solution" in comp_log
     lean_kernel_ok = "Lean default kernel accepts the solution" in comp_log
+    solution_ok = "Your solution is okay!" in comp_log
+    sandbox_enabled = bool(comp_log) and ("WARNING: Sandbox disabled" not in comp_log)
+
+    exports_meta: dict[str, Any] = {}
+    if (ver_dir / "exports_meta.json").is_file():
+        try:
+            exports_meta = json.loads((ver_dir / "exports_meta.json").read_text(encoding="utf-8"))
+        except Exception:
+            exports_meta = {}
+
+    core_audit_rows: list[dict[str, str]] = []
+    if (ver_dir / "core_notation_audit.json").is_file():
+        try:
+            core_audit_rows = json.loads(
+                (ver_dir / "core_notation_audit.json").read_text(encoding="utf-8")
+            )
+        except Exception:
+            core_audit_rows = []
+
+    resource_usage: dict[str, Any] = {}
+    if (ver_dir / "resource_usage.json").is_file():
+        try:
+            resource_usage = json.loads(
+                (ver_dir / "resource_usage.json").read_text(encoding="utf-8")
+            )
+        except Exception:
+            resource_usage = {}
+
+    chal_path = pkg_dir / "Challenge.lean"
+    chal_bytes = chal_path.stat().st_size if chal_path.is_file() else 0
+    chal_lines = len(chal_path.read_text(encoding="utf-8", errors="replace").splitlines()) if chal_path.is_file() else 0
 
     bad_axioms = [
         (decl, axs)
@@ -722,9 +1000,9 @@ def summarize_package(
     missing_from_axioms = [t for t in comp_theorems if t not in axiom_map]
     missing_from_env = [t for t in comp_theorems if t not in env_matched]
     comparator_ok = (
-        (bool(comp_log) and nanoda_ok and lean_kernel_ok)
+        (bool(comp_log) and nanoda_ok and con_ron_ok and lean_kernel_ok and solution_ok)
         if require_comparator
-        else ((not comp_log) or (nanoda_ok and lean_kernel_ok))
+        else ((not comp_log) or (nanoda_ok and con_ron_ok and lean_kernel_ok and solution_ok))
     )
 
     status = (
@@ -736,12 +1014,14 @@ def summarize_package(
             and not bad_axioms
             and not missing_from_axioms
             and not missing_from_env
+            and bool(core_audit_rows)
             and comparator_ok
         )
         else "FAIL"
     )
 
     receipt: dict[str, Any] = {
+        "schema_version": 2,
         "package": pkg,
         "project_name": fy.get("project", {}).get("name", pkg),
         "commit": commit,
@@ -749,6 +1029,14 @@ def summarize_package(
         "run_id": run_id,
         "lean_toolchain": toolchain_txt,
         "mathlib_revision": EXPECTED_MATHLIB_REV,
+        "challenge": {
+            "path": "Challenge.lean",
+            "bytes": chal_bytes,
+            "lines": chal_lines,
+            "sha256": sha256_file(chal_path) if chal_path.is_file() else "",
+            "canonical_olean_sha256": exports_meta.get("canonical_challenge_olean_sha256", ""),
+            "trust_level": "high",
+        },
         "exported_theorems": comp_theorems,
         "env_comparison_matched": sorted(env_matched),
         "missing_from_axioms_log": missing_from_axioms,
@@ -758,10 +1046,22 @@ def summarize_package(
         "axiom_reports": [
             {"declaration": decl, "axioms": axs} for decl, axs in axiom_pairs
         ],
+        "core_notation_audit": core_audit_rows,
         "comparator_required": require_comparator,
         "comparator_ran": bool(comp_log),
+        "sandbox_enabled": sandbox_enabled,
+        "kernels": {
+            "nanoda_accepted": nanoda_ok,
+            "con_ron_accepted": con_ron_ok,
+            "lean_kernel_accepted": lean_kernel_ok,
+        },
         "nanoda_accepted": nanoda_ok,
+        "con_ron_accepted": con_ron_ok,
         "lean_kernel_accepted": lean_kernel_ok,
+        "exports": exports_meta,
+        "tool_digests": collect_tool_digests(pkg_dir),
+        "input_sha256": collect_input_sha256(pkg_dir),
+        "resource_usage": resource_usage,
         "status": status,
     }
     ver_dir.mkdir(parents=True, exist_ok=True)
@@ -776,12 +1076,17 @@ def summarize_package(
         f"- **Commit:** `{commit}`" + (f" ([tree](https://github.com/{repo}/tree/{commit}/{pkg}))" if repo and commit else ""),
         f"- **Compiler:** `{toolchain_txt}`",
         f"- **Mathlib:** `{EXPECTED_MATHLIB_REV}`",
+        f"- **Challenge surface:** `{chal_lines}` lines, `{chal_bytes}` bytes (`trust_level=high`)",
         f"- **Challenge ↔ Solution environment match:** `{len(env_matched)}/{len(comp_theorems)}` theorems",
         f"- **Endpoint `#print axioms` checks:** `{len(axiom_pairs)}/{expected_axiom_reports}` (permitted: `propext`, `Classical.choice`, `Quot.sound`)",
     ]
     if comp_log or require_comparator:
         md_lines.append(
-            f"- **Comparator:** NanoDa=`{nanoda_ok}`, Lean default kernel=`{lean_kernel_ok}`"
+            f"- **Comparator (3 kernels):** NanoDa=`{nanoda_ok}`, con-ron=`{con_ron_ok}`, Lean default kernel=`{lean_kernel_ok}` (bwrap sandbox=`{sandbox_enabled}`)"
+        )
+    if resource_usage:
+        md_lines.append(
+            f"- **Resource usage:** total=`{resource_usage.get('total_elapsed_seconds', 0):.1f}s`, peak RSS=`{resource_usage.get('peak_rss_mib', 0):.1f} MiB`"
         )
     if bad_axioms:
         md_lines.append(f"- **DISALLOWED axioms:** `{bad_axioms}`")
@@ -806,6 +1111,21 @@ def summarize_package(
         matched_str = "PASS" if thm in env_matched else "**FAIL**"
         md_lines.append(f"| `{thm}` | {matched_str} | {axs_str} |")
 
+    if core_audit_rows:
+        md_lines.extend([
+            "",
+            "<details>",
+            "<summary>Core-Notation Statement Audit (<code>loadExts := false</code>, <code>pp.notation := false</code>)</summary>",
+            "",
+            "```lean",
+        ])
+        for row in core_audit_rows:
+            md_lines.append(row.get("declaration", ""))
+        md_lines.extend([
+            "```",
+            "</details>",
+        ])
+
     summary_md = "\n".join(md_lines) + "\n"
     print(summary_md)
     if step_summary:
@@ -823,6 +1143,8 @@ def run_package_verification(
     repo: str,
     run_id: str,
     step_summary: str | None,
+    *,
+    force_no_sandbox: bool = False,
 ) -> int:
     pkg_dir = REPO_ROOT / pkg
     ver_dir = pkg_dir / ".verification"
@@ -833,138 +1155,103 @@ def run_package_verification(
         "axioms.log",
         "comparator.log",
         "env_compare.log",
+        "deps.json",
+        "exports_meta.json",
+        "core_notation_audit.json",
+        "resource_usage.json",
+        "comparator.protected.json",
+        "challenge.export",
+        "solution.export",
         "VERIFICATION.json",
     ):
         stale_path = ver_dir / stale
         if stale_path.exists():
             stale_path.unlink()
+    canon_dir = ver_dir / "canonical-challenge"
+    if canon_dir.is_dir():
+        shutil.rmtree(canon_dir)
 
+    t_start = time.time()
     step_failed = False
-    lake_pkgs = pkg_dir / ".lake" / "packages"
-    if shared_packages and pathlib.Path(shared_packages).is_dir():
-        shared_path = pathlib.Path(shared_packages).resolve()
-        lake_pkgs.parent.mkdir(parents=True, exist_ok=True)
-        if lake_pkgs.is_symlink() and not lake_pkgs.exists():
-            lake_pkgs.unlink()
-        if not lake_pkgs.exists():
-            os.symlink(shared_path, lake_pkgs)
-    if not (lake_pkgs / "mathlib" / ".lake" / "build" / "lib" / "lean" / "Mathlib.olean").is_file():
-        res_cache = subprocess.run(["lake", "exe", "cache", "get"], cwd=pkg_dir)
-        if res_cache.returncode != 0:
+    verify_sh_sec = 0.0
+    env_cmp_sec = 0.0
+    try:
+        lake_pkgs = pkg_dir / ".lake" / "packages"
+        if shared_packages and pathlib.Path(shared_packages).is_dir():
+            shared_path = pathlib.Path(shared_packages).resolve()
+            lake_pkgs.parent.mkdir(parents=True, exist_ok=True)
+            if lake_pkgs.is_symlink() and not lake_pkgs.exists():
+                lake_pkgs.unlink()
+            if not lake_pkgs.exists():
+                os.symlink(shared_path, lake_pkgs)
+        if not (lake_pkgs / "mathlib" / ".lake" / "build" / "lib" / "lean" / "Mathlib.olean").is_file():
+            res_cache = subprocess.run(["lake", "exe", "cache", "get"], cwd=pkg_dir)
+            if res_cache.returncode != 0:
+                step_failed = True
+
+        verify_sh = pkg_dir / "verify.sh"
+        t_verify_sh = time.time()
+        if not step_failed and verify_sh.is_file():
+            cmd = ["./verify.sh"]
+            if run_comparator:
+                cmd.append("--no-sandbox" if force_no_sandbox else "--comparator")
+            res_v = subprocess.run(cmd, cwd=pkg_dir)
+            if res_v.returncode != 0:
+                step_failed = True
+                for log_name in ("build.log", "axioms.log", "comparator.log"):
+                    log_path = ver_dir / log_name
+                    if log_path.is_file():
+                        sys.stderr.write(f"--- {log_name} ---\n")
+                        sys.stderr.write(log_path.read_text(encoding="utf-8", errors="replace"))
+        elif not step_failed:
+            sys.stderr.write(f"{pkg}: missing verify.sh\n")
             step_failed = True
+        verify_sh_sec = round(time.time() - t_verify_sh, 3)
 
-    verify_sh = pkg_dir / "verify.sh"
-    if not step_failed and verify_sh.is_file():
-        cmd = ["./verify.sh"]
-        if run_comparator:
-            cmd.append("--no-sandbox")
-        res_v = subprocess.run(cmd, cwd=pkg_dir)
-        if res_v.returncode != 0:
+        comp = json.loads((pkg_dir / "comparator.json").read_text(encoding="utf-8"))
+        comp_theorems: list[str] = comp.get("theorem_names", [])
+        olean_dir = pkg_dir / ".lake" / "build" / "lib" / "lean"
+        t_env_cmp = time.time()
+        if (olean_dir / "Challenge.olean").is_file() and (olean_dir / "Solution.olean").is_file():
+            env_compare_file = ver_dir / "EnvCompare.lean"
+            rel_env_compare = ".verification/EnvCompare.lean"
+            env_compare_file.write_text(ENV_COMPARE_LEAN, encoding="utf-8")
+            try:
+                with open(ver_dir / "env_compare.log", "w", encoding="utf-8") as ef:
+                    res = subprocess.run(
+                        ["lake", "env", "lean", "--run", rel_env_compare] + comp_theorems,
+                        cwd=pkg_dir,
+                        stdout=ef,
+                        stderr=subprocess.STDOUT,
+                    )
+                if res.returncode != 0:
+                    sys.stderr.write((ver_dir / "env_compare.log").read_text(encoding="utf-8", errors="replace"))
+                    step_failed = True
+            finally:
+                if env_compare_file.exists():
+                    env_compare_file.unlink()
+        else:
             step_failed = True
-            for log_name in ("build.log", "axioms.log", "comparator.log"):
-                log_path = ver_dir / log_name
-                if log_path.is_file():
-                    sys.stderr.write(f"--- {log_name} ---\n")
-                    sys.stderr.write(log_path.read_text(encoding="utf-8", errors="replace"))
-    elif not step_failed:
-        try:
-            tc_out = subprocess.check_output(["lake", "env", "lean", "--version"], cwd=pkg_dir, text=True)
-            (ver_dir / "toolchain.log").write_text(tc_out, encoding="utf-8")
-            if "version 4.35.0-rc2," not in tc_out:
-                sys.stderr.write(f"{pkg}: unexpected compiler version: {tc_out.strip()}\n")
-                step_failed = True
-            ml_rev = subprocess.check_output(
-                ["git", "-C", str(lake_pkgs / "mathlib"), "rev-parse", "HEAD"],
-                text=True,
-            ).strip()
-            if ml_rev != EXPECTED_MATHLIB_REV:
-                sys.stderr.write(f"{pkg}: unexpected Mathlib revision: {ml_rev}\n")
-                step_failed = True
-        except subprocess.CalledProcessError as exc:
-            sys.stderr.write(f"{pkg}: toolchain/mathlib check failed: {exc}\n")
-            step_failed = True
+        env_cmp_sec = round(time.time() - t_env_cmp, 3)
+    finally:
+        for temp_name in ("challenge.export", "solution.export", "comparator.protected.json"):
+            (ver_dir / temp_name).unlink(missing_ok=True)
+        if canon_dir.is_dir():
+            shutil.rmtree(canon_dir, ignore_errors=True)
 
-        if not step_failed:
-            build_targets = ["Challenge", "Solution", "AxiomAudit"]
-            if (pkg_dir / "Statement.lean").is_file():
-                build_targets.insert(0, "Statement")
-            with open(ver_dir / "build.log", "w", encoding="utf-8") as bf:
-                res_b = subprocess.run(
-                    ["lake", "build", *build_targets],
-                    cwd=pkg_dir,
-                    stdout=bf,
-                    stderr=subprocess.STDOUT,
-                )
-            if res_b.returncode != 0:
-                sys.stderr.write((ver_dir / "build.log").read_text(encoding="utf-8", errors="replace"))
-                step_failed = True
-
-        if not step_failed:
-            with open(ver_dir / "axioms.log", "w", encoding="utf-8") as af:
-                res_a = subprocess.run(
-                    [
-                        "lake",
-                        "env",
-                        "lean",
-                        "-j1",
-                        "-M8192",
-                        "-E",
-                        "hasSorry",
-                        "-Dformat.width=1000000",
-                        "--setup=.lake/build/ir/AxiomAudit.setup.json",
-                        "AxiomAudit.lean",
-                    ],
-                    cwd=pkg_dir,
-                    stdout=af,
-                    stderr=subprocess.STDOUT,
-                )
-            if res_a.returncode != 0:
-                sys.stderr.write((ver_dir / "axioms.log").read_text(encoding="utf-8", errors="replace"))
-                step_failed = True
-
-        if not step_failed and run_comparator:
-            with open(ver_dir / "comparator.log", "w", encoding="utf-8") as cf:
-                res_c = subprocess.run(
-                    [
-                        "lake",
-                        "env",
-                        "lake",
-                        "comparator",
-                        "--config",
-                        "comparator.json",
-                        "--inadvisably-no-sandbox",
-                    ],
-                    cwd=pkg_dir,
-                    stdout=cf,
-                    stderr=subprocess.STDOUT,
-                )
-            if res_c.returncode != 0:
-                sys.stderr.write((ver_dir / "comparator.log").read_text(encoding="utf-8", errors="replace"))
-                step_failed = True
-
-    comp = json.loads((pkg_dir / "comparator.json").read_text(encoding="utf-8"))
-    comp_theorems: list[str] = comp.get("theorem_names", [])
-    olean_dir = pkg_dir / ".lake" / "build" / "lib" / "lean"
-    if (olean_dir / "Challenge.olean").is_file() and (olean_dir / "Solution.olean").is_file():
-        env_compare_file = ver_dir / "EnvCompare.lean"
-        rel_env_compare = ".verification/EnvCompare.lean"
-        env_compare_file.write_text(ENV_COMPARE_LEAN, encoding="utf-8")
-        try:
-            with open(ver_dir / "env_compare.log", "w", encoding="utf-8") as ef:
-                res = subprocess.run(
-                    ["lake", "env", "lean", "--run", rel_env_compare] + comp_theorems,
-                    cwd=pkg_dir,
-                    stdout=ef,
-                    stderr=subprocess.STDOUT,
-                )
-            if res.returncode != 0:
-                sys.stderr.write((ver_dir / "env_compare.log").read_text(encoding="utf-8", errors="replace"))
-                step_failed = True
-        finally:
-            if env_compare_file.exists():
-                env_compare_file.unlink()
-    else:
-        step_failed = True
+    rusage = resource.getrusage(resource.RUSAGE_CHILDREN)
+    peak_rss_mib = round(rusage.ru_maxrss / 1024.0, 2)
+    res_metrics = {
+        "verify_sh_seconds": verify_sh_sec,
+        "env_compare_and_core_audit_seconds": env_cmp_sec,
+        "total_elapsed_seconds": round(time.time() - t_start, 3),
+        "user_cpu_seconds": round(rusage.ru_utime, 3),
+        "system_cpu_seconds": round(rusage.ru_stime, 3),
+        "peak_rss_mib": peak_rss_mib,
+    }
+    (ver_dir / "resource_usage.json").write_text(
+        json.dumps(res_metrics, indent=2) + "\n", encoding="utf-8"
+    )
 
     summary_rc = summarize_package(
         pkg,
@@ -976,6 +1263,101 @@ def run_package_verification(
         step_failed=step_failed,
     )
     return 1 if (step_failed or summary_rc != 0) else 0
+
+
+def finalize_package_receipt(
+    pkg: str,
+    commit: str,
+    repo: str,
+    run_id: str,
+    step_summary: str | None,
+    *,
+    require_comparator: bool = False,
+) -> int:
+    pkg_dir = REPO_ROOT / pkg
+    ver_dir = pkg_dir / ".verification"
+    ver_dir.mkdir(parents=True, exist_ok=True)
+    for temp_name in ("challenge.export", "solution.export", "comparator.protected.json"):
+        (ver_dir / temp_name).unlink(missing_ok=True)
+    canon_dir = ver_dir / "canonical-challenge"
+    if canon_dir.is_dir():
+        shutil.rmtree(canon_dir, ignore_errors=True)
+    if (ver_dir / "VERIFICATION.json").is_file():
+        return 0
+    summarize_package(
+        pkg,
+        commit,
+        repo,
+        run_id,
+        step_summary,
+        require_comparator=require_comparator,
+        step_failed=True,
+    )
+    return 0
+
+
+def aggregate_reports(
+    artifacts_dir: str,
+    expected_packages_json: str,
+    output_path: str,
+    step_summary: str | None,
+) -> int:
+    root = pathlib.Path(artifacts_dir)
+    expected = json.loads(expected_packages_json) if expected_packages_json.strip() else []
+    found: dict[str, dict[str, Any]] = {}
+    if root.is_dir():
+        for p in sorted(root.rglob("VERIFICATION.json")):
+            try:
+                data = json.loads(p.read_text(encoding="utf-8"))
+                pkg = data.get("package")
+                if pkg:
+                    found[pkg] = data
+            except Exception:
+                pass
+
+    missing = [pkg for pkg in expected if pkg not in found]
+    failed = [pkg for pkg, rec in sorted(found.items()) if rec.get("status") != "PASS"]
+    overall = "PASS" if (not missing and not failed) else "FAIL"
+
+    combined = {
+        "schema_version": 2,
+        "status": overall,
+        "expected_packages": expected,
+        "verified_packages": sorted(found.keys()),
+        "missing_packages": missing,
+        "failed_packages": failed,
+        "packages": [found[k] for k in sorted(found.keys())],
+    }
+    if output_path:
+        out_p = pathlib.Path(output_path)
+        out_p.parent.mkdir(parents=True, exist_ok=True)
+        out_p.write_text(json.dumps(combined, indent=2) + "\n", encoding="utf-8")
+
+    md = [
+        f"## Consolidated Verification Gate ({overall})",
+        "",
+        "| Package | Status | Theorems | Axioms | NanoDa | con-ron | Lean Kernel | Sandbox | Time |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for pkg in expected or sorted(found.keys()):
+        rec = found.get(pkg)
+        if not rec:
+            md.append(f"| `{pkg}` | **MISSING** | - | - | - | - | - | - | - |")
+            continue
+        n_thm = len(rec.get("exported_theorems", []))
+        n_ax = f"{rec.get('axiom_audit_count', 0)}/{rec.get('expected_axiom_audit_count', 0)}"
+        t_sec = f"{rec.get('resource_usage', {}).get('total_elapsed_seconds', 0):.1f}s"
+        md.append(
+            f"| `{pkg}` | {rec.get('status')} | `{n_thm}` | `{n_ax}` | "
+            f"`{rec.get('nanoda_accepted')}` | `{rec.get('con_ron_accepted')}` | "
+            f"`{rec.get('lean_kernel_accepted')}` | `{rec.get('sandbox_enabled')}` | `{t_sec}` |"
+        )
+    summary_txt = "\n".join(md) + "\n"
+    print(summary_txt)
+    if step_summary:
+        with open(step_summary, "a", encoding="utf-8") as f:
+            f.write(summary_txt)
+    return 0 if overall == "PASS" else 1
 
 
 def main() -> int:
@@ -1005,10 +1387,25 @@ def main() -> int:
     p_ver.add_argument("--package", required=True)
     p_ver.add_argument("--shared-packages", default="")
     p_ver.add_argument("--comparator", action="store_true")
+    p_ver.add_argument("--no-sandbox", action="store_true")
     p_ver.add_argument("--commit", default="")
     p_ver.add_argument("--repo", default="")
     p_ver.add_argument("--run-id", default="")
     p_ver.add_argument("--step-summary", default="")
+
+    p_fin = sub.add_parser("finalize", help="Ensure VERIFICATION.json exists after an interrupted job")
+    p_fin.add_argument("--package", required=True)
+    p_fin.add_argument("--comparator", action="store_true")
+    p_fin.add_argument("--commit", default="")
+    p_fin.add_argument("--repo", default="")
+    p_fin.add_argument("--run-id", default="")
+    p_fin.add_argument("--step-summary", default="")
+
+    p_agg = sub.add_parser("aggregate", help="Aggregate per-package VERIFICATION.json artifacts")
+    p_agg.add_argument("--artifacts-dir", required=True)
+    p_agg.add_argument("--expected-packages", default="[]")
+    p_agg.add_argument("--output", required=True)
+    p_agg.add_argument("--step-summary", default="")
 
     args = parser.parse_args()
 
@@ -1061,10 +1458,29 @@ def main() -> int:
         return run_package_verification(
             args.package,
             args.shared_packages or None,
-            args.comparator,
+            args.comparator or args.no_sandbox,
             args.commit,
             args.repo,
             args.run_id,
+            args.step_summary or None,
+            force_no_sandbox=args.no_sandbox,
+        )
+
+    if args.cmd == "finalize":
+        return finalize_package_receipt(
+            args.package,
+            args.commit,
+            args.repo,
+            args.run_id,
+            args.step_summary or None,
+            require_comparator=args.comparator,
+        )
+
+    if args.cmd == "aggregate":
+        return aggregate_reports(
+            args.artifacts_dir,
+            args.expected_packages,
+            args.output,
             args.step_summary or None,
         )
 
