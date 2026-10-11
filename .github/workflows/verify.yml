@@ -1,0 +1,144 @@
+name: Verify Proofs
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      problems:
+        description: "Optional comma-separated erdos-<N> list to build (leave blank for preflight-only, or 'all')"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.pull_request.number) || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  LEAN_TOOLCHAIN: "leanprover/lean4:v4.35.0-rc2"
+  MATHLIB_REV: "065356127b1dc0016f66b7283ce0ce2c4055aa55"
+
+jobs:
+  preflight:
+    name: Preflight & manifest check
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      packages: ${{ steps.plan.outputs.packages }}
+      has_packages: ${{ steps.plan.outputs.has_packages }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Select target packages and validate manifests
+        id: plan
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_BEFORE: ${{ github.event.before }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_BASE_REF: ${{ github.event.pull_request.base.ref }}
+          HEAD_SHA: ${{ github.sha }}
+          INPUT_PROBLEMS: ${{ inputs.problems }}
+        run: |
+          BASE_SHA="$EVENT_BEFORE"
+          if [[ "$EVENT_NAME" == "pull_request" ]]; then
+            BASE_SHA="$PR_BASE_SHA"
+          fi
+          python3 .github/scripts/verify_proofs.py plan \
+            --event-name "$EVENT_NAME" \
+            --base-sha "$BASE_SHA" \
+            --base-ref "$PR_BASE_REF" \
+            --head-sha "$HEAD_SHA" \
+            --problems "$INPUT_PROBLEMS" \
+            --github-output "$GITHUB_OUTPUT"
+
+  verify:
+    name: Verify ${{ matrix.package }}
+    needs: preflight
+    if: ${{ needs.preflight.outputs.has_packages == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        package: ${{ fromJson(needs.preflight.outputs.packages) }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends jq zstd
+
+      - name: Restore Elan and Mathlib ltar cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.elan
+            ~/.cache/mathlib
+          key: lean435-ltar-${{ env.MATHLIB_REV }}-v1
+
+      - name: Ensure Elan and pinned Lean toolchain
+        run: |
+          export PATH="$HOME/.elan/bin:$PATH"
+          if ! command -v elan >/dev/null 2>&1; then
+            curl https://elan.lean-lang.org/elan-init.sh -sSf | sh -s -- -y --default-toolchain "$LEAN_TOOLCHAIN"
+          fi
+          elan toolchain install "$LEAN_TOOLCHAIN"
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Run package verification and environment audit
+        env:
+          MATRIX_PACKAGE: ${{ matrix.package }}
+          COMMIT_SHA: ${{ github.sha }}
+          GITHUB_REPO: ${{ github.repository }}
+          GITHUB_RUN_ID_VAL: ${{ github.run_id }}
+        run: |
+          python3 .github/scripts/verify_proofs.py verify \
+            --package "$MATRIX_PACKAGE" \
+            --comparator \
+            --commit "$COMMIT_SHA" \
+            --repo "$GITHUB_REPO" \
+            --run-id "$GITHUB_RUN_ID_VAL" \
+            --step-summary "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload verification logs and receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verification-${{ matrix.package }}-${{ github.sha }}
+          path: ${{ matrix.package }}/.verification/
+          retention-days: 90
+
+  gate:
+    name: Verification gate
+    needs: [preflight, verify]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check preflight and package verification results
+        env:
+          PREFLIGHT_RESULT: ${{ needs.preflight.result }}
+          HAS_PACKAGES: ${{ needs.preflight.outputs.has_packages }}
+          VERIFY_RESULT: ${{ needs.verify.result }}
+        run: |
+          if [[ "$PREFLIGHT_RESULT" != "success" ]]; then
+            echo "Preflight failed with result: $PREFLIGHT_RESULT" >&2
+            exit 1
+          fi
+          if [[ "$HAS_PACKAGES" == "true" && "$VERIFY_RESULT" != "success" ]]; then
+            echo "Package verification failed with result: $VERIFY_RESULT" >&2
+            exit 1
+          fi
