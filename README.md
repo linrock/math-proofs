@@ -19,4 +19,4 @@ an `AxiomAudit.lean`, and build instructions.
 
 ## License
 
-MIT
+Apache 2.0
