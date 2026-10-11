@@ -8,7 +8,7 @@ if [[ $# -gt 1 ]] || [[ $# -eq 1 && "$1" != "--no-sandbox" ]]; then
 fi
 
 mkdir -p .verification
-for lean_file in *.lean Proofs/*.lean; do
+while IFS= read -r -d '' lean_file; do
   first_line="$(head -n 1 "$lean_file")"
   if [[ "$first_line" != "module" ]]; then
     echo "FAIL: $lean_file must begin with the module header keyword" >&2
@@ -19,7 +19,7 @@ for lean_file in *.lean Proofs/*.lean; do
     echo "FAIL: $lean_file exceeds 10,000 lines ($line_count)" >&2
     exit 1
   fi
-done
+done < <(find *.lean Proofs -type f -name '*.lean' -print0)
 if command -v jq >/dev/null 2>&1; then
   jq -e 'any(.sources[]; .relationship == "formalizes" or .relationship == "adapts" or .relationship == "independently-proves")' formalization.yaml >/dev/null || {
     echo "FAIL: formalization.yaml sources need a formalizes, adapts, or independently-proves relationship" >&2
@@ -51,6 +51,7 @@ lake env lean -j1 -M8192 -E hasSorry -Dformat.width=1000000 \
   > .verification/axioms.log 2>&1
 awk '
   /depends on axioms:/ {
+    while ($0 !~ /\]/ && (getline nextline) > 0) $0 = $0 " " nextline
     reports++
     sub(/^.*depends on axioms: /, "")
     gsub(/[[:space:]\[\]]/, "")
@@ -58,6 +59,9 @@ awk '
     for (i = 1; i <= n; i++)
       if (axioms[i] != "propext" && axioms[i] != "Classical.choice" &&
           axioms[i] != "Quot.sound") bad = 1
+  }
+  /does not depend on any axioms/ {
+    reports++
   }
   END { if (reports != 8 || bad) exit 1 }
 ' .verification/axioms.log

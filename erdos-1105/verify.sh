@@ -51,6 +51,7 @@ lake env lean -j1 -M8192 -E hasSorry -Dformat.width=1000000 \
   > .verification/axioms.log 2>&1
 awk '
   /depends on axioms:/ {
+    while ($0 !~ /\]/ && (getline nextline) > 0) $0 = $0 " " nextline
     reports++
     sub(/^.*depends on axioms: /, "")
     gsub(/[[:space:]\[\]]/, "")
@@ -58,6 +59,9 @@ awk '
     for (i = 1; i <= n; i++)
       if (axioms[i] != "propext" && axioms[i] != "Classical.choice" &&
           axioms[i] != "Quot.sound") bad = 1
+  }
+  /does not depend on any axioms/ {
+    reports++
   }
   END { if (reports != 12 || bad) exit 1 }
 ' .verification/axioms.log

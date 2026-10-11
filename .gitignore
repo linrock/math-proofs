@@ -2,6 +2,8 @@
 *.swp
 .*.sw*
 *~
+__pycache__/
+*.pyc
 .lake/
 .lake-*/
 .beam/

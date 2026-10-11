@@ -63,6 +63,9 @@ awk '
       if (axioms[i] != "propext" && axioms[i] != "Classical.choice" &&
           axioms[i] != "Quot.sound") bad = 1
   }
+  /does not depend on any axioms/ {
+    reports++
+  }
   END { if (reports != 24 || bad) exit 1 }
 ' .verification/axioms.log
 awk '

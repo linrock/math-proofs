@@ -29,7 +29,7 @@ moreLeanArgs = ["-j1", "-s65520", "-M24576", "-DrelaxedAutoImplicit=false", "-Dm
 name = "PNTProofs"
 srcDir = "Proofs"
 roots = ["PrimeNumberTheoremAnd.Auxiliary", "PrimeNumberTheoremAnd.Consequences", "PrimeNumberTheoremAnd.Defs", "PrimeNumberTheoremAnd.EulerMaclaurin", "PrimeNumberTheoremAnd.Fourier", "PrimeNumberTheoremAnd.Mathlib.Algebra.Notation.Support", "PrimeNumberTheoremAnd.Mathlib.Analysis.Asymptotics.Asymptotics", "PrimeNumberTheoremAnd.Mathlib.Analysis.Asymptotics.Uniformly", "PrimeNumberTheoremAnd.Mathlib.Analysis.SpecialFunctions.Log.Basic", "PrimeNumberTheoremAnd.Mathlib.NumberTheory.Sieve.AuxResults", "PrimeNumberTheoremAnd.Mathlib.NumberTheory.Sieve.Basic", "PrimeNumberTheoremAnd.Mathlib.NumberTheory.Sieve.Selberg", "PrimeNumberTheoremAnd.Mathlib.NumberTheory.Sieve.SelbergBounds", "PrimeNumberTheoremAnd.MediumPNT", "PrimeNumberTheoremAnd.MellinCalculus", "PrimeNumberTheoremAnd.PerronFormula", "PrimeNumberTheoremAnd.Rectangle", "PrimeNumberTheoremAnd.ResidueCalcOnRectangles", "PrimeNumberTheoremAnd.SmoothExistence", "PrimeNumberTheoremAnd.Sobolev", "PrimeNumberTheoremAnd.Tactic.AdditiveCombination", "PrimeNumberTheoremAnd.Wiener", "PrimeNumberTheoremAnd.ZetaBounds", "PrimeNumberTheoremAnd.ZetaConj"]
-moreLeanArgs = ["-j1", "-s65520", "-M24576", "-DautoImplicit=false", "-DrelaxedAutoImplicit=false"]
+moreLeanArgs = ["-j1", "-s65520", "-M24576", "-DautoImplicit=false", "-DrelaxedAutoImplicit=false", "-E", "hasSorry"]
 
 [[lean_lib]]
 name = "ResearchProofs"
