@@ -14,12 +14,8 @@ import shutil
 import subprocess
 import sys
 import time
+import tomllib
 from typing import Any
-
-try:
-    import tomllib  # type: ignore[import-not-found]
-except ModuleNotFoundError:  # Python 3.10 fallback
-    tomllib = None  # type: ignore[assignment]
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parents[2]
 EXPECTED_TOOLCHAIN = "leanprover/lean4:v4.35.0-rc2"
@@ -85,7 +81,7 @@ private partial def addTypeProxy
   if env.contains name || seen.contains name then
     return
   let some dependency := rawEnv.find? name
-    | return
+    | throw <| IO.userError s!"audit declaration depends on missing constant {name}"
   set (env, seen.insert name)
   for used in dependency.type.getUsedConstants do
     addTypeProxy rawEnv used
@@ -359,16 +355,50 @@ public unsafe def main (args : List String) : IO UInt32 := do
   let allRoots := (chalDefs.map Prod.snd) ++ thmNames.toArray
   let (_, trustedEnv, _) ← StateT.run (allRoots.forM (addTypeProxy envC)) (coreEnv, {})
   let mut auditRows : Array CoreAuditRow := #[]
+  let mut totalBytes := 0
   for (k, d) in chalDefs.reverse do
     let declTxt ← printCoreDecl envC trustedEnv k d
+    totalBytes := totalBytes + declTxt.utf8ByteSize
+    if totalBytes > 512 * 1024 then
+      throw <| IO.userError "audit declarations exceed the 512 KiB limit"
     auditRows := auditRows.push { name := d.toString, kind := k, declaration := declTxt }
   for raw in args do
     let t := raw.toName
+    if coreEnv.contains t then
+      throw <| IO.userError s!"audit declaration collides with a trusted Lean constant: {raw}"
     let declTxt ← printCoreDecl envC trustedEnv "theorem" t
+    totalBytes := totalBytes + declTxt.utf8ByteSize
+    if totalBytes > 512 * 1024 then
+      throw <| IO.userError "audit declarations exceed the 512 KiB limit"
     auditRows := auditRows.push { name := raw, kind := "theorem", declaration := declTxt }
   IO.FS.writeFile (System.FilePath.mk ".verification/core_notation_audit.json") ((toJson auditRows).pretty ++ "\\n")
   return 0
 """
+
+
+COMPARATOR_ALLOWED_KEYS = {
+    "challenge_module",
+    "solution_module",
+    "theorem_names",
+    "definition_names",
+    "permitted_axioms",
+    "enable_nanoda",
+}
+
+
+def load_json_unique(path: pathlib.Path) -> Any:
+    def _unique_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+        obj: dict[str, Any] = {}
+        dups: list[str] = []
+        for k, v in pairs:
+            if k in obj:
+                dups.append(k)
+            obj[k] = v
+        if dups:
+            raise ValueError(f"duplicate JSON key(s): {sorted(set(dups))}")
+        return obj
+
+    return json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=_unique_object)
 
 
 def strip_lean_comments(text: str) -> str:
@@ -419,40 +449,6 @@ def strip_lean_comments(text: str) -> str:
                 out.append(ch)
                 i += 1
     return "".join(out)
-
-
-def parse_lakefile_toml(text: str) -> dict[str, Any]:
-    if tomllib is not None:
-        return tomllib.loads(text)
-    out: dict[str, Any] = {"lean_lib": [], "require": []}
-    cur_section: dict[str, Any] | None = None
-    for raw_line in text.splitlines():
-        line = raw_line.split("#", 1)[0].strip()
-        if not line:
-            continue
-        if line == "[[lean_lib]]":
-            cur_section = {}
-            out["lean_lib"].append(cur_section)
-            continue
-        if line == "[[require]]":
-            cur_section = {}
-            out["require"].append(cur_section)
-            continue
-        if line.startswith("["):
-            cur_section = None
-            continue
-        m = re.match(r"^([A-Za-z0-9_.-]+)\s*=\s*(.+)$", line)
-        if m:
-            key, val_raw = m.group(1), m.group(2).strip()
-            try:
-                val = json.loads(val_raw)
-            except Exception:
-                val = val_raw.strip("\"'")
-            if cur_section is not None:
-                cur_section[key] = val
-            else:
-                out[key] = val
-    return out
 
 
 def all_packages() -> list[str]:
@@ -514,6 +510,11 @@ def check_package_manifest(pkg: str) -> list[str]:
             errors.append(f"{pkg}: Challenge.lean exceeds Palomar 1,000-line cap ({chal_lines} lines)")
         if chal_bytes > 100 * 1024:
             errors.append(f"{pkg}: Challenge.lean exceeds Palomar 100 KiB cap ({chal_bytes} bytes)")
+        if chal_lines > 300 or chal_bytes > 32 * 1024:
+            print(
+                f"WARN: {pkg}: Challenge.lean ({chal_lines} lines, {chal_bytes} bytes) exceeds Palomar preferred 300-line / 32 KiB review surface",
+                file=sys.stderr,
+            )
         chal_clean = strip_lean_comments(chal_path.read_text(encoding="utf-8", errors="replace"))
         for line in chal_clean.splitlines():
             m = re.match(r"^\s*(?:public\s+|private\s+)?(?:meta\s+)?import\s+(?:all\s+)?(.+)$", line)
@@ -535,7 +536,7 @@ def check_package_manifest(pkg: str) -> list[str]:
     lf_name: str | None = None
     if lakefile_path.is_file():
         try:
-            lf = parse_lakefile_toml(lakefile_path.read_text(encoding="utf-8"))
+            lf = tomllib.loads(lakefile_path.read_text(encoding="utf-8"))
             lf_name = lf.get("name")
             lean_libs = lf.get("lean_lib", [])
             libs = {lib.get("name") for lib in lean_libs}
@@ -563,7 +564,7 @@ def check_package_manifest(pkg: str) -> list[str]:
 
     if manifest_path.is_file():
         try:
-            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest = load_json_unique(manifest_path)
             mathlib_pkgs = [
                 entry for entry in manifest.get("packages", []) if entry.get("name") == "mathlib"
             ]
@@ -583,8 +584,13 @@ def check_package_manifest(pkg: str) -> list[str]:
     aud_path = pkg_dir / "AxiomAudit.lean"
     if comp_path.is_file() and fy_path.is_file():
         try:
-            comp = json.loads(comp_path.read_text(encoding="utf-8"))
-            fy = json.loads(fy_path.read_text(encoding="utf-8"))
+            comp = load_json_unique(comp_path)
+            fy = load_json_unique(fy_path)
+            unknown_comp_keys = set(comp.keys()) - COMPARATOR_ALLOWED_KEYS
+            if unknown_comp_keys:
+                errors.append(
+                    f"{pkg}: comparator.json has disallowed/unknown keys: {sorted(unknown_comp_keys)}"
+                )
             comp_theorems = comp.get("theorem_names", [])
             if not comp_theorems:
                 errors.append(f"{pkg}: comparator.json theorem_names is empty")
@@ -597,13 +603,21 @@ def check_package_manifest(pkg: str) -> list[str]:
             perm_axs = comp.get("permitted_axioms", [])
             if not perm_axs or any(a not in PERMITTED_AXIOMS for a in perm_axs):
                 errors.append(f"{pkg}: comparator.json permitted_axioms must be a subset of {PERMITTED_AXIOMS}")
+            if fy.get("version") != "v0.4":
+                errors.append(
+                    f"{pkg}: formalization.yaml version is {fy.get('version')!r}, expected 'v0.4'"
+                )
             proj = fy.get("project", {})
             proj_name = proj.get("name", "")
             if not isinstance(proj_name, str) or not (1 <= len(proj_name.strip()) <= 300):
                 errors.append(f"{pkg}: formalization.yaml project.name must be 1..300 characters")
             proj_desc = proj.get("description", "")
-            if not isinstance(proj_desc, str) or not proj_desc.strip():
-                errors.append(f"{pkg}: formalization.yaml project.description must be non-empty")
+            if not isinstance(proj_desc, str) or not (1 <= len(proj_desc.strip()) <= 10000):
+                errors.append(f"{pkg}: formalization.yaml project.description must be 1..10,000 characters")
+            if proj.get("authors") != ["Linmiao Xu"] or proj.get("responsible_maintainers") != ["Linmiao Xu"]:
+                errors.append(
+                    f"{pkg}: formalization.yaml project.authors and responsible_maintainers must be ['Linmiao Xu']"
+                )
             if proj.get("license") != "Apache-2.0":
                 errors.append(
                     f"{pkg}: formalization.yaml project.license is {proj.get('license')!r}, expected 'Apache-2.0'"
@@ -677,10 +691,6 @@ def check_package_manifest(pkg: str) -> list[str]:
                         errors.append(
                             f"{pkg}: verify.sh must support --no-sandbox and write .verification/comparator.log"
                         )
-                    if "--comparator" not in ver_txt or "con-ron" not in ver_txt or "leanexport" not in ver_txt:
-                        errors.append(
-                            f"{pkg}: verify.sh must support --comparator, export via leanexport, and register con-ron"
-                        )
                     if "find " not in ver_txt:
                         errors.append(f"{pkg}: verify.sh must use 'find' to check all .lean files")
                     if (pkg_dir / "Statement.lean").is_file() and "Statement" not in ver_txt:
@@ -691,6 +701,9 @@ def check_package_manifest(pkg: str) -> list[str]:
     allowed_root_lean = {"Challenge.lean", "Solution.lean", "AxiomAudit.lean", "Statement.lean"}
     mod_to_imports: dict[str, list[str]] = {}
     imp_re = re.compile(r"^\s*(?:public\s+|private\s+)?(?:meta\s+)?import\s+(?:all\s+)?(.+)$", re.M)
+
+    if (pkg_dir / "third_party" / "mathlib").is_dir():
+        errors.append(f"{pkg}: forbidden vendored third_party/mathlib directory found")
 
     for root, dirs, files in os.walk(pkg_dir):
         dirs[:] = [d for d in dirs if d not in SKIP_DIRS and not d.startswith(".lake-") and not d.startswith(".verification-")]
@@ -913,6 +926,7 @@ def summarize_package(
     step_summary: str | None,
     *,
     require_comparator: bool = False,
+    require_sandbox: bool = False,
     step_failed: bool = False,
 ) -> int:
     pkg_dir = REPO_ROOT / pkg
@@ -963,13 +977,6 @@ def summarize_package(
     solution_ok = "Your solution is okay!" in comp_log
     sandbox_enabled = bool(comp_log) and ("WARNING: Sandbox disabled" not in comp_log)
 
-    exports_meta: dict[str, Any] = {}
-    if (ver_dir / "exports_meta.json").is_file():
-        try:
-            exports_meta = json.loads((ver_dir / "exports_meta.json").read_text(encoding="utf-8"))
-        except Exception:
-            exports_meta = {}
-
     core_audit_rows: list[dict[str, str]] = []
     if (ver_dir / "core_notation_audit.json").is_file():
         try:
@@ -999,8 +1006,9 @@ def summarize_package(
     ]
     missing_from_axioms = [t for t in comp_theorems if t not in axiom_map]
     missing_from_env = [t for t in comp_theorems if t not in env_matched]
+    sandbox_ok = sandbox_enabled if require_sandbox else True
     comparator_ok = (
-        (bool(comp_log) and nanoda_ok and con_ron_ok and lean_kernel_ok and solution_ok)
+        (bool(comp_log) and nanoda_ok and con_ron_ok and lean_kernel_ok and solution_ok and sandbox_ok)
         if require_comparator
         else ((not comp_log) or (nanoda_ok and con_ron_ok and lean_kernel_ok and solution_ok))
     )
@@ -1034,7 +1042,6 @@ def summarize_package(
             "bytes": chal_bytes,
             "lines": chal_lines,
             "sha256": sha256_file(chal_path) if chal_path.is_file() else "",
-            "canonical_olean_sha256": exports_meta.get("canonical_challenge_olean_sha256", ""),
             "trust_level": "high",
         },
         "exported_theorems": comp_theorems,
@@ -1058,7 +1065,6 @@ def summarize_package(
         "nanoda_accepted": nanoda_ok,
         "con_ron_accepted": con_ron_ok,
         "lean_kernel_accepted": lean_kernel_ok,
-        "exports": exports_meta,
         "tool_digests": collect_tool_digests(pkg_dir),
         "input_sha256": collect_input_sha256(pkg_dir),
         "resource_usage": resource_usage,
@@ -1155,21 +1161,14 @@ def run_package_verification(
         "axioms.log",
         "comparator.log",
         "env_compare.log",
-        "deps.json",
-        "exports_meta.json",
         "core_notation_audit.json",
         "resource_usage.json",
         "comparator.protected.json",
-        "challenge.export",
-        "solution.export",
         "VERIFICATION.json",
     ):
         stale_path = ver_dir / stale
         if stale_path.exists():
             stale_path.unlink()
-    canon_dir = ver_dir / "canonical-challenge"
-    if canon_dir.is_dir():
-        shutil.rmtree(canon_dir)
 
     t_start = time.time()
     step_failed = False
@@ -1192,10 +1191,7 @@ def run_package_verification(
         verify_sh = pkg_dir / "verify.sh"
         t_verify_sh = time.time()
         if not step_failed and verify_sh.is_file():
-            cmd = ["./verify.sh"]
-            if run_comparator:
-                cmd.append("--no-sandbox" if force_no_sandbox else "--comparator")
-            res_v = subprocess.run(cmd, cwd=pkg_dir)
+            res_v = subprocess.run(["./verify.sh"], cwd=pkg_dir)
             if res_v.returncode != 0:
                 step_failed = True
                 for log_name in ("build.log", "axioms.log", "comparator.log"):
@@ -1207,6 +1203,55 @@ def run_package_verification(
             sys.stderr.write(f"{pkg}: missing verify.sh\n")
             step_failed = True
         verify_sh_sec = round(time.time() - t_verify_sh, 3)
+
+        if not step_failed and run_comparator:
+            try:
+                lean_prefix_str = subprocess.check_output(
+                    ["lake", "env", "lean", "--print-prefix"],
+                    cwd=pkg_dir,
+                    text=True,
+                    stderr=subprocess.DEVNULL,
+                ).strip()
+                lean_prefix = pathlib.Path(lean_prefix_str).resolve()
+                comp_cfg = json.loads((pkg_dir / "comparator.json").read_text(encoding="utf-8"))
+                prot_cfg = dict(comp_cfg)
+                prot_cfg.pop("enable_nanoda", None)
+                prot_cfg["external_kernels"] = {
+                    "nanoda": [str(lean_prefix / "bin" / "nanoda_bin")],
+                    "con-ron": [str(lean_prefix / "bin" / "con-ron"), "--jobs=2"],
+                }
+                prot_cfg_path = ver_dir / "comparator.protected.json"
+                prot_cfg_path.write_text(json.dumps(prot_cfg, indent=2) + "\n", encoding="utf-8")
+                bwrap_ok = (
+                    not force_no_sandbox
+                    and not (pkg_dir / ".lake" / "packages").is_symlink()
+                    and shutil.which("bwrap") is not None
+                    and subprocess.run(
+                        [
+                            "env", "-i", "bwrap", "--ro-bind", "/", "/", "--dev", "/dev",
+                            "--proc", "/proc", "--clearenv", "--tmpfs", "/run", "--tmpfs", "/var",
+                            "--unshare-all", "--die-with-parent", "--new-session", "--", "/bin/true",
+                        ],
+                        stdout=subprocess.DEVNULL,
+                        stderr=subprocess.DEVNULL,
+                    ).returncode == 0
+                )
+                comp_cmd = [
+                    "lake", "env", "lake", "comparator",
+                    "--config", ".verification/comparator.protected.json",
+                ]
+                if not bwrap_ok:
+                    comp_cmd.append("--inadvisably-no-sandbox")
+                env_comp = os.environ.copy()
+                env_comp["LEAN_ABORT_ON_PANIC"] = "1"
+                with open(ver_dir / "comparator.log", "w", encoding="utf-8") as clf:
+                    res_c = subprocess.run(comp_cmd, cwd=pkg_dir, env=env_comp, stdout=clf, stderr=subprocess.STDOUT)
+                sys.stdout.write((ver_dir / "comparator.log").read_text(encoding="utf-8", errors="replace"))
+                if res_c.returncode != 0:
+                    step_failed = True
+            except Exception as exc:
+                sys.stderr.write(f"{pkg}: Comparator step failed: {exc}\n")
+                step_failed = True
 
         comp = json.loads((pkg_dir / "comparator.json").read_text(encoding="utf-8"))
         comp_theorems: list[str] = comp.get("theorem_names", [])
@@ -1234,10 +1279,7 @@ def run_package_verification(
             step_failed = True
         env_cmp_sec = round(time.time() - t_env_cmp, 3)
     finally:
-        for temp_name in ("challenge.export", "solution.export", "comparator.protected.json"):
-            (ver_dir / temp_name).unlink(missing_ok=True)
-        if canon_dir.is_dir():
-            shutil.rmtree(canon_dir, ignore_errors=True)
+        (ver_dir / "comparator.protected.json").unlink(missing_ok=True)
 
     rusage = resource.getrusage(resource.RUSAGE_CHILDREN)
     peak_rss_mib = round(rusage.ru_maxrss / 1024.0, 2)
@@ -1260,6 +1302,11 @@ def run_package_verification(
         run_id,
         step_summary,
         require_comparator=run_comparator,
+        require_sandbox=(
+            run_comparator
+            and not force_no_sandbox
+            and os.environ.get("GITHUB_ACTIONS") == "true"
+        ),
         step_failed=step_failed,
     )
     return 1 if (step_failed or summary_rc != 0) else 0
@@ -1277,11 +1324,7 @@ def finalize_package_receipt(
     pkg_dir = REPO_ROOT / pkg
     ver_dir = pkg_dir / ".verification"
     ver_dir.mkdir(parents=True, exist_ok=True)
-    for temp_name in ("challenge.export", "solution.export", "comparator.protected.json"):
-        (ver_dir / temp_name).unlink(missing_ok=True)
-    canon_dir = ver_dir / "canonical-challenge"
-    if canon_dir.is_dir():
-        shutil.rmtree(canon_dir, ignore_errors=True)
+    (ver_dir / "comparator.protected.json").unlink(missing_ok=True)
     if (ver_dir / "VERIFICATION.json").is_file():
         return 0
     summarize_package(
