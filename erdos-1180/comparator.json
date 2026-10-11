@@ -1,0 +1,29 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos1180.Palomar.erdos_1180",
+    "Erdos1180.Palomar.erdos_1180_variants_glibichuk",
+    "Erdos1180.Palomar.erdos_1180_variants_shparlinski",
+    "Erdos1180.Palomar.erdos_1180_variants_lower_bound",
+    "Erdos1180.Palomar.erdos_1180_variants_lower_bound_large_primes",
+    "Erdos1180.Palomar.not_erdos_1180_variants_optimal",
+    "Erdos1180.Palomar.two_rpow_inv_le_four_mul_C",
+    "Erdos1180.Palomar.inv_le_CAsymptotic",
+    "Erdos1180.Palomar.natCeil_inv_le_CAsymptotic",
+    "Erdos1180.Palomar.CAsymptotic_le_thirty_two_mul_inv_sq",
+    "Erdos1180.Palomar.CAsymptotic_le_eight_mul_sq_of_one_lt_mul",
+    "Erdos1180.Palomar.CAsymptotic_le_eight_mul_succ_of_two_lt_mul",
+    "Erdos1180.Palomar.CAsymptotic_le_eight_mul_of_lt_mul",
+    "Erdos1180.Palomar.CAsymptotic_le_sixteen_of_two_thirds_lt",
+    "Erdos1180.Palomar.CAsymptotic_le_eight_mul_floor_inv_add_one_sq",
+    "Erdos1180.Palomar.eventually_CAsymptotic_le_eight_add_mul_inv_sq",
+    "Erdos1180.Palomar.CAsymptotic_inv_nat_lt_C_inv_nat"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

@@ -1,0 +1,325 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 1180: representing residues as sums of modular inverses with small denominators",
+    "description": "A complete Lean 4 proof of Erdős problem 1180 and its quantitative variants on representing every residue modulo a prime p as a sum of at most C(ε) modular inverses n⁻¹ (mod p) with 1 ≤ n ≤ p^ε and gcd(n, p) = 1. Formalizing Glibichuk's 8-fold bilinear covering theorem via additive energy and Cauchy–Davenport together with an inductive asymmetric two-block prime-reciprocal construction, this development proves the affirmative existence theorem for all ε > 0 and all primes p, the discrete large-prime bound C_asymp(ε) ≤ 8(⌊1/ε⌋ + 1)² = (8 + o(1))ε⁻² (and ≤ 32ε⁻² uniformly on (0, 1]), the asymmetric staircase bounds C_asymp(ε) ≤ 8k(k + 1) whenever (2k + 1)ε > 2 and C_asymp(ε) ≤ 8k whenever (2k - 1)ε > k (giving C_asymp(ε) ≤ 16 for ε > 2/3 and ≤ 24 for ε > 3/5), and Shparlinski's O(ε⁻³) bound. It also proves the large-prime pigeonhole lower bound 1/ε ≤ ⌈1/ε⌉ ≤ C_asymp(ε), the small-prime exponential lower bound 2^(1/ε) ≤ 4 C(ε), the strict separation C_asymp(1/n) < C(1/n) for all n ≥ 15, and the disproof of the unthresholded all-primes optimality statement.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "Apache-2.0"
+  },
+  "classification": {
+    "arxiv": [
+      "math.NT",
+      "math.CO"
+    ],
+    "msc2020": [
+      "11B13",
+      "11T23"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Combinatorial properties of sets of residues modulo a prime and the Erdős–Graham problem",
+      "authors": [
+        "Alexei A. Glibichuk"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "id": "https://doi.org/10.1007/s11006-006-0040-8",
+      "location": "Matematicheskie Zametki 79 (2006), 384–395; Mathematical Notes 79 (2006), 356–365",
+      "author_endorsement": "not-contacted",
+      "note": "Establishes the 8-fold bilinear sum-product covering theorem over ZMod p and the O(ε⁻²) summand bound for sufficiently large primes."
+    },
+    {
+      "title": "Additive combinatorics over finite fields: new results and applications",
+      "authors": [
+        "Alexei A. Glibichuk"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "location": "Additive Combinatorics (CRM Proceedings & Lecture Notes, Vol. 43), American Mathematical Society (2007), 167–172",
+      "author_endorsement": "not-contacted",
+      "note": "Establishes the 8-fold bilinear sum-product covering theorem over ZMod p and the O(ε⁻²) bound for sufficiently large primes."
+    },
+    {
+      "title": "On a question of Erdős and Graham",
+      "authors": [
+        "Igor E. Shparlinski"
+      ],
+      "type": "paper",
+      "relationship": "adapts",
+      "id": "https://doi.org/10.1007/s00013-002-8270-z",
+      "location": "Archiv der Mathematik 78 (2002), 445–448",
+      "author_endorsement": "not-contacted",
+      "note": "Resolves Erdős problem 1180 affirmatively and establishes the O(ε⁻³) bound for sufficiently large primes."
+    },
+    {
+      "title": "Old and new problems and results in combinatorial number theory",
+      "authors": [
+        "Paul Erdős",
+        "Ronald L. Graham"
+      ],
+      "type": "book",
+      "relationship": "background",
+      "location": "Monographies de L'Enseignement Mathématique, Vol. 28 (1980)",
+      "author_endorsement": "not-contacted",
+      "note": "Poses the modular-inverse basis problem and notes the trivial Ω(ε⁻¹) counting lower bound."
+    },
+    {
+      "title": "Erdős Problem 1180",
+      "type": "other",
+      "relationship": "background",
+      "id": "https://www.erdosproblems.com/1180",
+      "note": "Problem catalog entry for Erdős problem 1180."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/1180.lean",
+      "relationship": "builds-on",
+      "note": "Uses the exact Represents and C definitions and proves erdos_1180, variants.glibichuk, variants.shparlinski, both the all-primes and PR #6951 large-prime formulations of variants.lower_bound, and the negation of the unthresholded variants.optimal."
+    }
+  ],
+  "status": {
+    "scope": "Proves the main existence theorem of Erdős problem 1180, Glibichuk's discrete 8(⌊ε⁻¹⌋₊ + 1)², asymptotic (8 + η)ε⁻², and uniform 32ε⁻² large-prime bounds, the asymmetric staircase bounds C_asymp(ε) ≤ 8k(k + 1) for (2k + 1)ε > 2 and C_asymp(ε) ≤ 8k for (2k - 1)ε > k (giving C_asymp(ε) ≤ 16 for ε > 2/3), Shparlinski's O(ε⁻³) large-prime bound, both the all-primes and thresholded large-prime pigeonhole formulations of the Ω(ε⁻¹) lower bound, the sharp asymptotic lower bounds ε⁻¹ ≤ ⌈ε⁻¹⌉₊ ≤ C_asymp(ε), the 2^(ε⁻¹) ≤ 4 C(ε) small-prime lower bound, the strict separation C_asymp(n⁻¹) < C(n⁻¹) for n ≥ 15, and the disproof of the unthresholded all-primes optimality statement. Whether the large-prime threshold constant satisfies C_asymp(ε) ≤ ε^(-1-o(1)) (formalized here as Erdos1180AsymptoticOptimalConjecture) remains open.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos1180.Palomar.erdos_1180",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1180.Palomar.erdos_1180_variants_glibichuk",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1180.Palomar.erdos_1180_variants_shparlinski",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1180.Palomar.erdos_1180_variants_lower_bound",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1180.Palomar.erdos_1180_variants_lower_bound_large_primes",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1180.Palomar.not_erdos_1180_variants_optimal",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1180.Palomar.two_rpow_inv_le_four_mul_C",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1180.Palomar.inv_le_CAsymptotic",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1180.Palomar.natCeil_inv_le_CAsymptotic",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1180.Palomar.CAsymptotic_le_thirty_two_mul_inv_sq",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1180.Palomar.CAsymptotic_le_eight_mul_sq_of_one_lt_mul",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1180.Palomar.CAsymptotic_le_eight_mul_succ_of_two_lt_mul",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1180.Palomar.CAsymptotic_le_eight_mul_of_lt_mul",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1180.Palomar.CAsymptotic_le_sixteen_of_two_thirds_lt",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1180.Palomar.CAsymptotic_le_eight_mul_floor_inv_add_one_sq",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1180.Palomar.eventually_CAsymptotic_le_eight_add_mul_inv_sq",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1180.Palomar.CAsymptotic_inv_nat_lt_C_inv_nat",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "All 3 proof modules in Proofs/ together with Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry in the proof modules, and all 17 exported theorems are verified by both Lean's default kernel and NanoDa via Comparator."
+  },
+  "fidelity": {
+    "divergences": "None. Challenge.lean, Statement.lean, and Solution.lean use the exact Represents, C, and Erdos1180OptimalConjecture definitions from FormalConjectures/ErdosProblems/1180.lean."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Statement fidelity, non-vacuity, and transitive axioms (restricted to propext, Classical.choice, and Quot.sound) were verified across all 17 exported theorems in Solution.lean, and both NanoDa and Lean's default kernel accepted the solution via Comparator."
+  },
+  "alignment": {
+    "namespace": "Erdos1180.Palomar",
+    "statements": [
+      {
+        "source": "Formal Conjectures Erdős 1180",
+        "lean": "Erdos1180.Palomar.erdos_1180",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves ∀ ε > 0, ∃ C, ∀ p prime, ∀ a : ZMod p, ∃ s, s.card ≤ C ∧ Represents ε p a s."
+      },
+      {
+        "source": "Formal Conjectures Erdős 1180 variants.glibichuk",
+        "lean": "Erdos1180.Palomar.erdos_1180_variants_glibichuk",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves Glibichuk's O(ε⁻²) large-prime bound with K = 32."
+      },
+      {
+        "source": "Formal Conjectures Erdős 1180 variants.shparlinski",
+        "lean": "Erdos1180.Palomar.erdos_1180_variants_shparlinski",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves Shparlinski's O(ε⁻³) large-prime bound."
+      },
+      {
+        "source": "Formal Conjectures Erdős 1180 variants.lower_bound",
+        "lean": "Erdos1180.Palomar.erdos_1180_variants_lower_bound",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves ∃ K > 0, ∀ 0 < ε ≤ 1, K * ε⁻¹ ≤ C ε."
+      },
+      {
+        "source": "Formal Conjectures Erdős 1180 PR #6951 thresholded large-prime variants.lower_bound",
+        "lean": "Erdos1180.Palomar.erdos_1180_variants_lower_bound_large_primes",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves ∃ K > 0, ∀ 0 < ε ≤ 1, ∃ P, ∀ p ≥ P prime, ∃ a : ZMod p, ∀ s, Represents ε p a s → K * ε⁻¹ ≤ s.card (with K = 1/2)."
+      },
+      {
+        "source": "Disproof of Formal Conjectures Erdős 1180 variants.optimal",
+        "lean": "Erdos1180.Palomar.not_erdos_1180_variants_optimal",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Disproves the unthresholded all-primes polynomial bound on C(ε)."
+      },
+      {
+        "source": "Exponential small-prime lower bound on C(ε)",
+        "lean": "Erdos1180.Palomar.two_rpow_inv_le_four_mul_C",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves 2^(ε⁻¹) ≤ 4 * C(ε) for all ε > 0."
+      },
+      {
+        "source": "Universal large-prime pigeonhole reciprocal lower bound on CAsymptotic(ε)",
+        "lean": "Erdos1180.Palomar.inv_le_CAsymptotic",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves ε⁻¹ ≤ (CAsymptotic ε : ℝ) for all ε > 0."
+      },
+      {
+        "source": "Universal discrete ceiling lower bound on CAsymptotic(ε)",
+        "lean": "Erdos1180.Palomar.natCeil_inv_le_CAsymptotic",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves ⌈ε⁻¹⌉₊ ≤ CAsymptotic ε for all ε > 0."
+      },
+      {
+        "source": "Explicit Glibichuk bound CAsymptotic(ε) ≤ 32 ε⁻²",
+        "lean": "Erdos1180.Palomar.CAsymptotic_le_thirty_two_mul_inv_sq",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves (CAsymptotic ε : ℝ) ≤ 32 * ε⁻² for 0 < ε ≤ 1."
+      },
+      {
+        "source": "Parameterized integer bound CAsymptotic(ε) ≤ 8 k²",
+        "lean": "Erdos1180.Palomar.CAsymptotic_le_eight_mul_sq_of_one_lt_mul",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves CAsymptotic ε ≤ 8 * k² for k ≥ 1 with k * ε > 1."
+      },
+      {
+        "source": "Asymmetric (k, k + 1) prime-block staircase bound CAsymptotic(ε) ≤ 8 k (k + 1)",
+        "lean": "Erdos1180.Palomar.CAsymptotic_le_eight_mul_succ_of_two_lt_mul",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves CAsymptotic ε ≤ 8 * k * (k + 1) for k ≥ 1 with (2k + 1) * ε > 2."
+      },
+      {
+        "source": "Asymmetric (1, k) linear prime-block staircase bound CAsymptotic(ε) ≤ 8 k",
+        "lean": "Erdos1180.Palomar.CAsymptotic_le_eight_mul_of_lt_mul",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves CAsymptotic ε ≤ 8 * k for k ≥ 1 with (2k - 1) * ε > k."
+      },
+      {
+        "source": "Sub-32 bound CAsymptotic(ε) ≤ 16 on (2/3, ∞)",
+        "lean": "Erdos1180.Palomar.CAsymptotic_le_sixteen_of_two_thirds_lt",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves CAsymptotic ε ≤ 16 for all ε > 2 / 3."
+      },
+      {
+        "source": "Discrete all-ε Glibichuk bound CAsymptotic(ε) ≤ 8 (⌊ε⁻¹⌋₊ + 1)²",
+        "lean": "Erdos1180.Palomar.CAsymptotic_le_eight_mul_floor_inv_add_one_sq",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves CAsymptotic ε ≤ 8 * (⌊ε⁻¹⌋₊ + 1) ^ 2 for all ε > 0."
+      },
+      {
+        "source": "Sharp asymptotic (8 + o(1)) ε⁻² Glibichuk bound as ε → 0⁺",
+        "lean": "Erdos1180.Palomar.eventually_CAsymptotic_le_eight_add_mul_inv_sq",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves ∀ η > 0, ∀ᶠ ε in nhdsWithin 0 (Set.Ioi 0), (CAsymptotic ε : ℝ) ≤ (8 + η) * ε⁻¹ ^ 2."
+      },
+      {
+        "source": "Strict separation between CAsymptotic and C at unit fractions",
+        "lean": "Erdos1180.Palomar.CAsymptotic_inv_nat_lt_C_inv_nat",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves CAsymptotic (n⁻¹) < C (n⁻¹) for all n ≥ 15."
+      }
+    ]
+  },
+  "acknowledgements": "The problem was posed by Erdős and Graham and solved by Shparlinski (2002) and Glibichuk (2006). Mathlib and Formal Conjectures supply attributed formal definitions and infrastructure."
+}
