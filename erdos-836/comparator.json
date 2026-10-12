@@ -1,0 +1,28 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos836.Palomar.erdos_836.parts.i",
+    "Erdos836.Palomar.erdos_836.parts.ii",
+    "Erdos836.Palomar.exists_alon_fin_hypergraph",
+    "Erdos836.Palomar.not_erdos836QuadraticVertexQuestion",
+    "Erdos836.Palomar.erdos836LinearIntersectionConjecture_proved",
+    "Erdos836.Palomar.r_le_two_mul_add_one_of_forall_card_inter_le",
+    "Erdos836.Palomar.isTwoColorable_of_four_le_r_of_isLinearHypergraph",
+    "Erdos836.Palomar.r_le_five_of_not_hasPairwiseIntersectionAtLeast_three_of_not_isTwoColorable",
+    "Erdos836.Palomar.hasChromaticNumberThree_iff_not_isTwoColorable_of_isIntersecting",
+    "Erdos836.Palomar.three_le_vertexDegree_of_not_hasPairwiseIntersectionAtLeast_sub_one_of_not_isTwoColorable",
+    "Erdos836.Palomar.two_mul_r_add_one_le_card_activeVertices_of_not_hasPairwiseIntersectionAtLeast_sub_one",
+    "Erdos836.Palomar.four_le_vertexDegree_of_mem_inter_of_two_le_card_inter_of_not_hasPairwiseIntersectionAtLeast_sub_one",
+    "Erdos836.Palomar.three_mul_card_activeVertices_add_one_le_card_mul_r_of_four_le_r",
+    "Erdos836.Palomar.nine_le_card_and_nine_le_card_activeVertices_of_r_eq_four_of_not_hasPairwiseIntersectionAtLeast_three",
+    "Erdos836.Palomar.card_eq_seven_and_card_activeVertices_eq_seven_of_r_eq_three_of_isLinearHypergraph_of_not_isTwoColorable",
+    "Erdos836.Palomar.hasCodimensionOneAvoidingWitness_three"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

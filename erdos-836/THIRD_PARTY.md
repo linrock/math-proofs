@@ -1,0 +1,11 @@
+# Attribution and third-party sources
+
+This package formalizes unconditional theorems resolving both parts of Erdős Problem #836 (posed by Erdős and Shelah; Erdős and Lovász, 1975; Noga Alon; Liam Price, 2026) together with structural bounds on codimension-one avoiding 3-chromatic intersecting uniform hypergraphs.
+
+Locally authored modules in `Proofs/`, `Statement.lean`, `Challenge.lean`, `Solution.lean`, and `AxiomAudit.lean` are Copyright 2026 Linmiao Xu and licensed under the included [Apache-2.0 License](LICENSE).
+
+The finite hypergraph uniformity and weak coloring predicates (`Finset.IsUniform`, `Finset.IsProperHypergraphColoring`, `Finset.HypergraphColorable`, and `Finset.HasHypergraphChromaticNumber`) and the `erdos_836.parts.i` and `erdos_836.parts.ii` statement signatures in `Challenge.lean`, `Statement.lean`, `Solution.lean`, and `Proofs/DegreeThreeVertexReplacementAndNineEdgeBound836.lean` are adapted from `google-deepmind/formal-conjectures` ([`FormalConjectures/ErdosProblems/836.lean`](https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/836.lean) and [`FormalConjecturesForMathlib/Combinatorics/Hypergraph/Finite.lean`](https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjecturesForMathlib/Combinatorics/Hypergraph/Finite.lean)) under the [Apache-2.0 License](third_party/FORMAL-CONJECTURES-LICENSE.txt), with original copyright notices preserved.
+
+The minimal-blue bipartite double-counting proof of `r_le_two_mul_add_one_of_forall_card_inter_le` in `Proofs/DegreeThreeVertexReplacementAndNineEdgeBound836.lean` adapts and generalizes the `Fin N` proof from [`WoshuaJolk/jig-verifier`](https://github.com/WoshuaJolk/jig-verifier) (`Submissions/Erdos836LinearEdgeIntersection/PricePort.lean`, Copyright 2026 The Conject Contributors, formalizing Liam Price, *A Linear Intersection Bound*, April 2026) under the [Apache-2.0 License](third_party/JIG-VERIFIER-LICENSE.txt) to arbitrary vertex types with `[DecidableEq V]`.
+
+All finite-set, powerset, binomial coefficient, and double-counting foundations come from `leanprover-community/mathlib4` at commit `065356127b1dc0016f66b7283ce0ce2c4055aa55` (Apache-2.0).

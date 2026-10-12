@@ -1,0 +1,296 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erd\u0151s 836: vertex counts and pairwise edge intersections in 3-chromatic intersecting uniform hypergraphs",
+    "description": "A complete Lean 4 resolution of both parts of Erd\u0151s problem 836 (posed by Erd\u0151s and Shelah; Erd\u0151s and Lov\u00e1sz, 1975) on 3-chromatic intersecting r-uniform hypergraphs, together with structural bounds on the Erd\u0151s\u2013Shelah codimension-one avoidance question. For Part (i), it formalizes Noga Alon's equitable-partition construction with (2r - 2) + C(2r - 2, r - 1) / 2 active vertices to disprove the O(r\u00b2) vertex bound for all r \u2265 2. For Part (ii), it adapts and generalizes Liam Price's minimal-blue bipartite double-counting argument to prove the universal bound r \u2264 2t + 1 when distinct edges meet in at most t vertices, establishing that every 3-chromatic intersecting r-uniform hypergraph has two distinct edges meeting in at least r/3 vertices, that linear intersecting hypergraphs are 2-colourable for r \u2265 4, and that avoiding pairwise intersection r - 1 forces minimum degree \u2265 3, degree \u2265 4 on multi-intersections, and |E(H)|, |V(H)| \u2265 9 at r = 4.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "Apache-2.0"
+  },
+  "classification": {
+    "arxiv": [
+      "math.CO"
+    ],
+    "msc2020": [
+      "05C15",
+      "05C65",
+      "05D05"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Problems and results on 3-chromatic hypergraphs and some related questions",
+      "authors": [
+        "P. Erd\u0151s",
+        "L. Lov\u00e1sz"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "id": "https://www.erdosproblems.com/836",
+      "location": "Infinite and finite sets (Colloq., Keszthely, 1973), Vol. II, pp. 609\u2013627, Colloq. Math. Soc. J\u00e1nos Bolyai, Vol. 10, North-Holland, Amsterdam, 1975",
+      "author_endorsement": "not-contacted",
+      "note": "Poses Erd\u0151s\u2013Shelah problem 836 on 3-chromatic intersecting r-uniform hypergraphs, proves the Lov\u00e1sz r = 3 linear intersecting hypergraph classification and transversal bounds, and records the Fano plane codimension-one avoidance question."
+    },
+    {
+      "title": "A Linear Intersection Bound",
+      "authors": [
+        "Liam Price"
+      ],
+      "type": "other",
+      "relationship": "adapts",
+      "id": "https://www.overleaf.com/read/bhnhxhswnjht#52529b",
+      "author_endorsement": "not-contacted",
+      "note": "Establishes the minimal-blue bipartite double-counting bound r <= 2t + 1 and resolves Part (ii) of Erd\u0151s Problem 836 with linear constant c = 1/3."
+    },
+    {
+      "title": "Erd\u0151s Problem 836",
+      "type": "other",
+      "relationship": "independently-proves",
+      "id": "https://www.erdosproblems.com/836",
+      "author_endorsement": "not-contacted",
+      "note": "Problem catalog entry recording Noga Alon\u2019s equitable-partition counterexample to Question 1, the linear pairwise edge intersection question (Question 2), and the Erd\u0151s\u2013Shelah codimension-one avoidance question."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/836.lean",
+      "relationship": "builds-on",
+      "note": "Matches Finset.IsUniform and Finset.HasHypergraphChromaticNumber and proves both erdos_836.parts.i and erdos_836.parts.ii."
+    },
+    {
+      "id": "https://github.com/WoshuaJolk/jig-verifier",
+      "relationship": "adapts",
+      "note": "Adapts the minimal-blue bipartite double-counting proof from Submissions/Erdos836LinearEdgeIntersection/PricePort.lean (Apache-2.0) to Lean 4.35.0-rc2 and generalizes it to arbitrary vertex types with [DecidableEq V]."
+    }
+  ],
+  "status": {
+    "scope": "Unconditionally resolves both Formal Conjectures statements for Erd\u0151s Problem 836 (erdos_836.parts.i and erdos_836.parts.ii) and proves a suite of structural theorems on the Erd\u0151s\u2013Shelah codimension-one avoidance problem: Alon\u2019s general-r equitable-partition hypergraph disproving the O(r\u00b2) active-vertex bound, the universal minimal-blue double-counting bound r \u2264 2t + 1 establishing pairwise intersection \u2265 r/3 (c = 1/3), 2-colourability of linear intersecting hypergraphs for r \u2265 4, rank bound r \u2264 5 under intersection-3 avoidance, codimension-one avoiding degree and sunflower bounds, and |E(H)|, |V(H)| \u2265 9 for 4-uniform witnesses avoiding pairwise intersection 3. Whether any 3-chromatic intersecting r-uniform hypergraph with r \u2208 {4, 5} avoids pairwise intersection r - 1 remains open.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos836.Palomar.erdos_836.parts.i",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos836.Palomar.erdos_836.parts.ii",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos836.Palomar.exists_alon_fin_hypergraph",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos836.Palomar.not_erdos836QuadraticVertexQuestion",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos836.Palomar.erdos836LinearIntersectionConjecture_proved",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos836.Palomar.r_le_two_mul_add_one_of_forall_card_inter_le",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos836.Palomar.isTwoColorable_of_four_le_r_of_isLinearHypergraph",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos836.Palomar.r_le_five_of_not_hasPairwiseIntersectionAtLeast_three_of_not_isTwoColorable",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos836.Palomar.hasChromaticNumberThree_iff_not_isTwoColorable_of_isIntersecting",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos836.Palomar.three_le_vertexDegree_of_not_hasPairwiseIntersectionAtLeast_sub_one_of_not_isTwoColorable",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos836.Palomar.two_mul_r_add_one_le_card_activeVertices_of_not_hasPairwiseIntersectionAtLeast_sub_one",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos836.Palomar.four_le_vertexDegree_of_mem_inter_of_two_le_card_inter_of_not_hasPairwiseIntersectionAtLeast_sub_one",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos836.Palomar.three_mul_card_activeVertices_add_one_le_card_mul_r_of_four_le_r",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos836.Palomar.nine_le_card_and_nine_le_card_activeVertices_of_r_eq_four_of_not_hasPairwiseIntersectionAtLeast_three",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos836.Palomar.card_eq_seven_and_card_activeVertices_eq_seven_of_r_eq_three_of_isLinearHypergraph_of_not_isTwoColorable",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos836.Palomar.hasCodimensionOneAvoidingWitness_three",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "All three proof modules in Proofs/ together with Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry in the proof modules."
+  },
+  "fidelity": {
+    "divergences": "None. Both erdos_836.parts.i and erdos_836.parts.ii match the Formal Conjectures statements directly, and all hypergraph uniformity, intersecting, and weak chromatic number predicates match the standard finite hypergraph definitions of Erd\u0151s and Lov\u00e1sz (1975) and erdosproblems.com/836."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Statement fidelity, non-vacuity, and transitive axioms (restricted to propext, Classical.choice, and Quot.sound) were verified across all 16 exported theorems in Solution.lean."
+  },
+  "alignment": {
+    "namespace": "Erdos836.Palomar",
+    "statements": [
+      {
+        "source": "Erd\u0151s Problem 836, Part (i) (Alon\u2019s counterexample to O(r^2) active vertices)",
+        "lean": "Erdos836.Palomar.erdos_836.parts.i",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves False <-> exists C > 0, forall r >= 2, forall H, |(H.biUnion id)| <= C * r^2."
+      },
+      {
+        "source": "Erd\u0151s Problem 836, Part (ii) (linear pairwise edge intersection with c = 1/3)",
+        "lean": "Erdos836.Palomar.erdos_836.parts.ii",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves True <-> exists c > 0 (specifically c = 1/3) such that every 3-chromatic intersecting r-uniform hypergraph has two distinct edges meeting in >= c * r vertices."
+      },
+      {
+        "source": "Alon\u2019s general-r equitable-partition hypergraph construction",
+        "lean": "Erdos836.Palomar.exists_alon_fin_hypergraph",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Constructs an r-uniform 3-chromatic intersecting hypergraph on Fin n with >= (2r - 2) + C(2r - 2, r - 1) / 2 active vertices for every r >= 2."
+      },
+      {
+        "source": "Disproof of Erdos836QuadraticVertexQuestion",
+        "lean": "Erdos836.Palomar.not_erdos836QuadraticVertexQuestion",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves not Erdos836QuadraticVertexQuestion."
+      },
+      {
+        "source": "Proof of Erdos836LinearIntersectionConjecture",
+        "lean": "Erdos836.Palomar.erdos836LinearIntersectionConjecture_proved",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves Erdos836LinearIntersectionConjecture with c = 1/3."
+      },
+      {
+        "source": "Universal minimal-blue double-counting bound r <= 2t + 1",
+        "lean": "Erdos836.Palomar.r_le_two_mul_add_one_of_forall_card_inter_le",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves r <= 2t + 1 whenever distinct edges in a non-2-colourable intersecting r-uniform hypergraph meet in at most t vertices."
+      },
+      {
+        "source": "Universal 2-colourability of linear intersecting r-uniform hypergraphs for r >= 4",
+        "lean": "Erdos836.Palomar.isTwoColorable_of_four_le_r_of_isLinearHypergraph",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves IsTwoColorable H for every linear intersecting r-uniform hypergraph with r >= 4."
+      },
+      {
+        "source": "Universal rank bound r <= 5 under pairwise-intersection-3 avoidance",
+        "lean": "Erdos836.Palomar.r_le_five_of_not_hasPairwiseIntersectionAtLeast_three_of_not_isTwoColorable",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves r <= 5 for any non-2-colourable intersecting r-uniform hypergraph avoiding pairwise intersection 3."
+      },
+      {
+        "source": "Universal 3-colourability of intersecting r-uniform hypergraphs (r >= 2)",
+        "lean": "Erdos836.Palomar.hasChromaticNumberThree_iff_not_isTwoColorable_of_isIntersecting",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves HasChromaticNumberThree H <-> not IsTwoColorable H for intersecting r-uniform hypergraphs with r >= 2."
+      },
+      {
+        "source": "Codimension-one avoiding minimum active-vertex degree >= 3",
+        "lean": "Erdos836.Palomar.three_le_vertexDegree_of_not_hasPairwiseIntersectionAtLeast_sub_one_of_not_isTwoColorable",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves vertexDegree H v >= 3 for every active vertex under codimension-one intersection avoidance."
+      },
+      {
+        "source": "Codimension-one avoiding active-vertex lower bound |V(H)| >= 2r + 1",
+        "lean": "Erdos836.Palomar.two_mul_r_add_one_le_card_activeVertices_of_not_hasPairwiseIntersectionAtLeast_sub_one",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves 2r + 1 <= (activeVertices H).card for r >= 3 under codimension-one avoidance."
+      },
+      {
+        "source": "Degree-3 vertex replacement and sunflower theorem (degree >= 4 in multi-intersections)",
+        "lean": "Erdos836.Palomar.four_le_vertexDegree_of_mem_inter_of_two_le_card_inter_of_not_hasPairwiseIntersectionAtLeast_sub_one",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves vertexDegree H v >= 4 for every vertex in an intersection of size >= 2 of two distinct edges under codimension-one avoidance."
+      },
+      {
+        "source": "Sharpened handshake inequality 3|V(H)| + 1 <= r|E(H)| for r >= 4",
+        "lean": "Erdos836.Palomar.three_mul_card_activeVertices_add_one_le_card_mul_r_of_four_le_r",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves 3 * (activeVertices H).card + 1 <= H.card * r for r >= 4 under codimension-one avoidance."
+      },
+      {
+        "source": "4-uniform codimension-one avoiding bounds 9 <= |E(H)| and 9 <= |V(H)|",
+        "lean": "Erdos836.Palomar.nine_le_card_and_nine_le_card_activeVertices_of_r_eq_four_of_not_hasPairwiseIntersectionAtLeast_three",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves 9 <= H.card, 9 <= (activeVertices H).card, and 3 * |V(H)| + 1 <= 4 * |E(H)| for 4-uniform 3-chromatic intersecting hypergraphs avoiding pairwise intersection 3."
+      },
+      {
+        "source": "Lov\u00e1sz r = 3 Fano parameters theorem (|E(H)| = 7 and |V(H)| = 7)",
+        "lean": "Erdos836.Palomar.card_eq_seven_and_card_activeVertices_eq_seven_of_r_eq_three_of_isLinearHypergraph_of_not_isTwoColorable",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves H.card = 7 and (activeVertices H).card = 7 for every 3-uniform non-2-colourable linear intersecting hypergraph."
+      },
+      {
+        "source": "Fano plane PG(2, 2) codimension-one avoiding witness at r = 3",
+        "lean": "Erdos836.Palomar.hasCodimensionOneAvoidingWitness_three",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves HasCodimensionOneAvoidingWitness 3 via fanoPlane on Fin 7."
+      }
+    ]
+  },
+  "acknowledgements": "The problem was posed by Paul Erd\u0151s and Saharon Shelah and studied by Paul Erd\u0151s and L\u00e1szl\u00f3 Lov\u00e1sz (1975), Noga Alon, and Liam Price (2026). Mathlib, Formal Conjectures, and WoshuaJolk/jig-verifier supply attributed formal definitions and infrastructure."
+}
