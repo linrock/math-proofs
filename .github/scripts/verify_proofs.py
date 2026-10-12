@@ -13,8 +13,10 @@ import resource
 import shutil
 import subprocess
 import sys
+import tempfile
 import time
 import tomllib
+import urllib.request
 from typing import Any
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parents[2]
@@ -23,7 +25,7 @@ EXPECTED_MATHLIB_REV = "065356127b1dc0016f66b7283ce0ce2c4055aa55"
 PERMITTED_AXIOMS = ["propext", "Classical.choice", "Quot.sound"]
 VALID_SOURCE_RELS = {"formalizes", "adapts", "independently-proves"}
 
-SKIP_DIRS = {".git", ".lake", ".verification", "verification", "verification-local"}
+SKIP_DIRS = {".git", ".lake", ".verification", "verification", "verification-local", "fc-shared-lib"}
 FORBIDDEN_SUFFIXES = (".swp", ".swo", ".swn", "~", ".olean", ".ilean", ".ir", ".trace")
 DOC_ONLY_FILENAMES = {
     "README.md",
@@ -297,7 +299,9 @@ public unsafe def main (args : List String) : IO UInt32 := do
   let envS := rawS.setExporting false
   if envS.allImportedModuleNames.contains `Challenge then
     throw <| IO.userError "Solution must not import Challenge"
-  let targetThms : NameSet := args.foldl (fun acc raw => acc.insert raw.toName) {}
+  let defArgs := (args.filter (·.startsWith "--def:")).map (fun s => (s.drop 6).toString)
+  let thmArgs := args.filter (fun s => !s.startsWith "--def:")
+  let targetThms : NameSet := thmArgs.foldl (fun acc raw => acc.insert raw.toName) {}
   if let some idx := envC.header.moduleNames.idxOf? `Challenge then
     let modC := envC.header.moduleData[idx]!
     for imp in modC.imports do
@@ -332,7 +336,21 @@ public unsafe def main (args : List String) : IO UInt32 := do
       | _ => pure ()
   let mut visited : Std.HashSet (Name × Name) := {}
   let mut verifiedCone : NameSet := {}
-  for raw in args do
+  for rawDef in defArgs do
+    let dName := rawDef.toName
+    let some infoC := envC.find? dName
+      | throw <| IO.userError s!"Definition {dName} missing in Challenge"
+    let some infoS := envS.find? dName
+      | throw <| IO.userError s!"Definition {dName} missing in Solution"
+    if moduleOfConst envC dName != `Challenge then
+      throw <| IO.userError s!"Definition {dName} is not declared in Challenge.lean"
+    match infoC, infoS with
+    | .defnInfo _, .defnInfo _ | .inductInfo _, .inductInfo _ => pure ()
+    | _, _ => throw <| IO.userError s!"{dName} must be a definition or inductive type in both Challenge and Solution"
+    visited ← checkConstPair envC envS visited dName dName
+    verifiedCone ← verifyProofCone envS verifiedCone [dName]
+    IO.println s!"DEF_MATCH {rawDef}"
+  for raw in thmArgs do
     let thm := raw.toName
     let some infoC := envC.find? thm
       | throw <| IO.userError s!"Theorem {thm} missing in Challenge"
@@ -350,7 +368,7 @@ public unsafe def main (args : List String) : IO UInt32 := do
   searchPathRef.set [← getLibDir sysroot]
   enableInitializersExecution
   let coreEnv ← importModules (loadExts := true) #[{ module := `Lean }] {} 0
-  let thmNames := args.map String.toName
+  let thmNames := thmArgs.map String.toName
   let (_, chalDefs) := collectChallengeDefs envC thmNames {} #[]
   let allRoots := (chalDefs.map Prod.snd) ++ thmNames.toArray
   let (_, trustedEnv, _) ← StateT.run (allRoots.forM (addTypeProxy envC)) (coreEnv, {})
@@ -362,7 +380,7 @@ public unsafe def main (args : List String) : IO UInt32 := do
     if totalBytes > 512 * 1024 then
       throw <| IO.userError "audit declarations exceed the 512 KiB limit"
     auditRows := auditRows.push { name := d.toString, kind := k, declaration := declTxt }
-  for raw in args do
+  for raw in thmArgs do
     let t := raw.toName
     if coreEnv.contains t then
       throw <| IO.userError s!"audit declaration collides with a trusted Lean constant: {raw}"
@@ -373,6 +391,508 @@ public unsafe def main (args : List String) : IO UInt32 := do
     auditRows := auditRows.push { name := raw, kind := "theorem", declaration := declTxt }
   IO.FS.writeFile (System.FilePath.mk ".verification/core_notation_audit.json") ((toJson auditRows).pretty ++ "\\n")
   return 0
+"""
+
+
+FC_COMPARE_LEAN = """module
+
+import Lean
+open Lean
+
+set_option linter.unusedVariables false
+
+structure FCAuditRow where
+  source : String
+  target_declaration : String
+  solution_declaration : String
+  match_mode : String
+  status : String
+deriving ToJson, FromJson
+
+def strToName (s : String) : Name :=
+  (s.splitOn ".").foldl Name.mkStr Name.anonymous
+
+def isExternalMathlibRoot (r : Name) : Bool :=
+  r == `Mathlib || r == `Init || r == `Std || r == `Batteries || r == `Lean ||
+  r == `Qq || r == `Aesop || r == `ProofWidgets || r == `ImportGraph ||
+  r == `Plausible || r == `LeanSearchClient
+
+def modToRelOlean (m : Name) : System.FilePath :=
+  let parts := m.components.map Name.toString
+  System.mkFilePath parts |>.addExtension "olean"
+
+def findModuleOlean? (dirs : List System.FilePath) (m : Name) : IO (Option System.FilePath) := do
+  let rel := modToRelOlean m
+  for d in dirs do
+    let cand := d / rel
+    if (← cand.pathExists) then
+      return some cand
+  return none
+
+abbrev LocalConstMap := Std.HashMap Name ConstantInfo
+
+partial def loadModuleClosure
+    (dirs : List System.FilePath)
+    (seenMods : NameSet)
+    (cmap : LocalConstMap)
+    (regs : Array CompactedRegion)
+    (work : List (Name × System.FilePath)) : IO (NameSet × LocalConstMap × Array CompactedRegion) := do
+  match work with
+  | [] => return (seenMods, cmap, regs)
+  | (mName, fp) :: rest =>
+    if seenMods.contains mName then
+      loadModuleClosure dirs seenMods cmap regs rest
+    else
+      let seenMods := seenMods.insert mName
+      if !(← fp.pathExists) then
+        loadModuleClosure dirs seenMods cmap regs rest
+      else
+        let (md, reg) ← readModuleData fp
+        let mut cmap2 := cmap
+        for ci in md.constants do
+          cmap2 := cmap2.insert ci.name ci
+        let mut nextWork := rest
+        for imp in md.imports do
+          let r := imp.module.getRoot
+          if !isExternalMathlibRoot r && !seenMods.contains imp.module then
+            if let some impFp ← findModuleOlean? dirs imp.module then
+              nextWork := (imp.module, impFp) :: nextWork
+        loadModuleClosure dirs seenMods cmap2 (regs.push reg) nextWork
+
+def isThmLike (ci : ConstantInfo) : Bool :=
+  ci matches .thmInfo _ || ci matches .opaqueInfo _ || ci matches .axiomInfo _
+
+def isStatementDef (ci : ConstantInfo) : Bool :=
+  match ci with
+  | .defnInfo v => v.type == .sort .zero
+  | _ => false
+
+def targetPropOf (ci : ConstantInfo) : Expr :=
+  match ci with
+  | .defnInfo v => if v.type == .sort .zero then v.value else ci.type
+  | _ => ci.type
+
+def instantiateTargetPropZero (ci : ConstantInfo) : Expr :=
+  let ls := ci.levelParams.map fun _ => Level.zero
+  match ci with
+  | .defnInfo v => if v.type == .sort .zero then ci.instantiateValueLevelParams! ls else ci.instantiateTypeLevelParams ls
+  | _ => ci.instantiateTypeLevelParams ls
+
+def levelsEquiv (us vs : List Level) : Bool :=
+  us.length == vs.length && (us.zip vs).all fun (u, v) => Level.isEquiv u v
+
+def unfoldApp? (cmap : LocalConstMap) (e : Expr) : Option Expr :=
+  let args := e.getAppArgs
+  match e.getAppFn with
+  | .const n us =>
+    if n == `GE.ge && args.size >= 4 then
+      some (mkAppN (mkApp4 (.const `LE.le us) args[0]! args[1]! args[3]! args[2]!) (args.extract 4 args.size))
+    else if n == `GT.gt && args.size >= 4 then
+      some (mkAppN (mkApp4 (.const `LT.lt us) args[0]! args[1]! args[3]! args[2]!) (args.extract 4 args.size))
+    else if n == `Prod.fst && args.size >= 3 then
+      some (mkAppN (.proj `Prod 0 args[2]!) (args.extract 3 args.size))
+    else if n == `Prod.snd && args.size >= 3 then
+      some (mkAppN (.proj `Prod 1 args[2]!) (args.extract 3 args.size))
+    else if n == `Prod.casesOn && args.size >= 5 then
+      let p := args[3]!
+      let f := args[4]!
+      some (Expr.beta f (#[.proj `Prod 0 p, .proj `Prod 1 p] ++ args.extract 5 args.size))
+    else if n == `Prod.rec && args.size >= 5 then
+      let f := args[3]!
+      let p := args[4]!
+      some (Expr.beta f (#[.proj `Prod 0 p, .proj `Prod 1 p] ++ args.extract 5 args.size))
+    else if n == `Subtype.val && args.size >= 3 then
+      some (mkAppN (.proj `Subtype 0 args[2]!) (args.extract 3 args.size))
+    else if n == `Subtype.property && args.size >= 3 then
+      some (mkAppN (.proj `Subtype 1 args[2]!) (args.extract 3 args.size))
+    else if n == `Subtype.casesOn && args.size >= 5 then
+      let s := args[3]!
+      let f := args[4]!
+      some (Expr.beta f (#[.proj `Subtype 0 s, .proj `Subtype 1 s] ++ args.extract 5 args.size))
+    else if n == `Subtype.rec && args.size >= 5 then
+      let f := args[3]!
+      let s := args[4]!
+      some (Expr.beta f (#[.proj `Subtype 0 s, .proj `Subtype 1 s] ++ args.extract 5 args.size))
+    else
+      match cmap.get? n with
+      | some (info@(.defnInfo _)) =>
+        let body := info.instantiateValueLevelParams! us
+        some (Expr.beta body args)
+      | _ => none
+  | _ => none
+
+partial def whnfHead (e : Expr) : Expr :=
+  match e with
+  | .mdata _ inner => whnfHead inner
+  | .letE _ _ v b _ => whnfHead (b.instantiate1 v)
+  | .app f a =>
+    let f' := whnfHead f
+    if f'.isLambda then
+      whnfHead (f'.bindingBody!.instantiate1 a)
+    else
+      .app f' a
+  | _ => e
+
+def isInternalProofApp (mapA mapB : LocalConstMap) (eA eB : Expr) : Option (Name × Name) :=
+  match eA.getAppFn, eB.getAppFn with
+  | .const n1 _, .const n2 _ =>
+    if n1.isInternalDetail && n2.isInternalDetail then
+      match mapA.get? n1, mapB.get? n2 with
+      | some info1, some info2 =>
+        if isThmLike info1 && isThmLike info2 then some (n1, n2) else none
+      | _, _ => none
+    else
+      none
+  | _, _ => none
+
+def isAbstractedNestedProof (cmap : LocalConstMap) (e : Expr) : Bool :=
+  match e.getAppFn with
+  | .const n _ =>
+    if n.isInternalDetail && (n.toString.splitOn "._proof_").length > 1 then
+      match cmap.get? n with
+      | some info => isThmLike info
+      | none => false
+    else
+      false
+  | _ => false
+
+def isNonProofDataExpr (cmap : LocalConstMap) (e : Expr) : Bool :=
+  match e with
+  | .lit _ | .sort _ | .forallE _ _ _ _ => true
+  | _ =>
+    match e.getAppFn with
+    | .const n _ =>
+      match cmap.get? n with
+      | some (.defnInfo v) => v.type == .sort .zero
+      | some (.inductInfo _) | some (.ctorInfo _) => true
+      | _ => false
+    | _ => false
+
+mutual
+partial def checkConstPair (mapA mapB : LocalConstMap) (visited : Std.HashSet (Name × Name)) (nA nB : Name) : IO (Std.HashSet (Name × Name)) := do
+  if visited.contains (nA, nB) then
+    return visited
+  match mapA.get? nA, mapB.get? nB with
+  | none, none =>
+    if nA == nB then
+      return visited.insert (nA, nB)
+    else
+      throw <| IO.userError s!"Shared upstream constant mismatch: {nA} vs {nB}"
+  | some infoA, some infoB =>
+    let visited := visited.insert (nA, nB)
+    if infoA.levelParams.length != infoB.levelParams.length then
+      throw <| IO.userError s!"Level params mismatch: {nA} vs {nB}"
+    let ls := infoA.levelParams.map Level.param
+    if nA.isInternalDetail && nB.isInternalDetail then
+      if isThmLike infoA && isThmLike infoB then
+        return visited
+    let visited ← checkExprEq mapA mapB visited infoA.type (infoB.instantiateTypeLevelParams ls)
+    if isThmLike infoA && isThmLike infoB then
+      return visited
+    match infoA, infoB with
+    | .defnInfo vA, .defnInfo _ =>
+      checkExprEq mapA mapB visited vA.value (infoB.instantiateValueLevelParams! ls)
+    | .inductInfo iA, .inductInfo iB =>
+      if iA.numParams != iB.numParams || iA.numIndices != iB.numIndices || iA.ctors.length != iB.ctors.length then
+        throw <| IO.userError s!"Inductive mismatch: {nA} vs {nB}"
+      let mut vis := visited
+      for (c1, c2) in iA.ctors.zip iB.ctors do
+        vis ← checkConstPair mapA mapB vis c1 c2
+      return vis
+    | .ctorInfo cA, .ctorInfo cB =>
+      if cA.cidx != cB.cidx || cA.numParams != cB.numParams || cA.numFields != cB.numFields then
+        throw <| IO.userError s!"Ctor mismatch: {nA} vs {nB}"
+      checkConstPair mapA mapB visited cA.induct cB.induct
+    | .recInfo rA, .recInfo rB =>
+      if rA.numParams != rB.numParams || rA.numIndices != rB.numIndices || rA.numMotives != rB.numMotives || rA.numMinors != rB.numMinors || rA.rules.length != rB.rules.length || rA.k != rB.k || rA.all.length != rB.all.length then
+        throw <| IO.userError s!"Recursor mismatch: {nA} vs {nB}"
+      let mut vis := visited
+      for (ind1, ind2) in rA.all.zip rB.all do
+        vis ← checkConstPair mapA mapB vis ind1 ind2
+      return vis
+    | _, _ =>
+      throw <| IO.userError s!"Constant kind mismatch: {nA} vs {nB}"
+  | _, _ =>
+    throw <| IO.userError s!"One constant is local and one is upstream: {nA} vs {nB}"
+
+partial def checkExprEq (mapA mapB : LocalConstMap) (visited : Std.HashSet (Name × Name)) (rawA rawB : Expr) : IO (Std.HashSet (Name × Name)) := do
+  let eA := whnfHead rawA
+  let eB := whnfHead rawB
+  if let some (n1, n2) := isInternalProofApp mapA mapB eA eB then
+    return (← checkConstPair mapA mapB visited n1 n2)
+  if (isAbstractedNestedProof mapA eA && !isNonProofDataExpr mapB eB) ||
+     (isAbstractedNestedProof mapB eB && !isNonProofDataExpr mapA eA) then
+    return visited
+  match eA.getAppFn, eB.getAppFn with
+  | .const n1 us1, .const n2 us2 =>
+    if eA.getAppNumArgs == eB.getAppNumArgs && levelsEquiv us1 us2 then
+      try
+        let mut vis ← checkConstPair mapA mapB visited n1 n2
+        for (a1, a2) in eA.getAppArgs.zip eB.getAppArgs do
+          vis ← checkExprEq mapA mapB vis a1 a2
+        return vis
+      catch err =>
+        if let some eA' := unfoldApp? mapA eA then
+          return (← checkExprEq mapA mapB visited eA' eB)
+        else if let some eB' := unfoldApp? mapB eB then
+          return (← checkExprEq mapA mapB visited eA eB')
+        else throw err
+    else
+      if let some eA' := unfoldApp? mapA eA then
+        return (← checkExprEq mapA mapB visited eA' eB)
+      else if let some eB' := unfoldApp? mapB eB then
+        return (← checkExprEq mapA mapB visited eA eB')
+      else
+        throw <| IO.userError s!"App spine mismatch: {n1} ({eA.getAppNumArgs} args) vs {n2} ({eB.getAppNumArgs} args)"
+  | .const _ _, _ =>
+    if let some eA' := unfoldApp? mapA eA then
+      return (← checkExprEq mapA mapB visited eA' eB)
+    else
+      throw <| IO.userError s!"Head mismatch: {eA} vs {eB}"
+  | _, .const _ _ =>
+    if let some eB' := unfoldApp? mapB eB then
+      return (← checkExprEq mapA mapB visited eA eB')
+    else
+      throw <| IO.userError s!"Head mismatch: {eA} vs {eB}"
+  | _, _ =>
+    match eA, eB with
+    | .bvar i, .bvar j =>
+      if i != j then throw <| IO.userError s!"Bound var mismatch: {i} vs {j}"
+      return visited
+    | .sort u, .sort v =>
+      if !Level.isEquiv u v then throw <| IO.userError s!"Sort mismatch: {u} vs {v}"
+      return visited
+    | .lit l1, .lit l2 =>
+      if l1 != l2 then throw <| IO.userError s!"Literal mismatch"
+      return visited
+    | .app f1 a1, .app f2 a2 =>
+      let vis ← checkExprEq mapA mapB visited f1 f2
+      checkExprEq mapA mapB vis a1 a2
+    | .lam _ d1 b1 _, .lam _ d2 b2 _ =>
+      let vis ← checkExprEq mapA mapB visited d1 d2
+      checkExprEq mapA mapB vis b1 b2
+    | .forallE _ d1 b1 _, .forallE _ d2 b2 _ =>
+      let vis ← checkExprEq mapA mapB visited d1 d2
+      checkExprEq mapA mapB vis b1 b2
+    | .proj t1 i1 s1, .proj t2 i2 s2 =>
+      if i1 != i2 then throw <| IO.userError s!"Proj index mismatch: {i1} vs {i2}"
+      let vis ← checkConstPair mapA mapB visited t1 t2
+      checkExprEq mapA mapB vis s1 s2
+    | _, _ =>
+      throw <| IO.userError s!"Expression mismatch:\\n  FC:  {eA}\\n  Sol: {eB}"
+end
+
+partial def transformUnderForall (f : Expr → Option Expr) (e : Expr) : Option Expr :=
+  match e with
+  | .mdata _ inner => transformUnderForall f inner
+  | .forallE n d b bi =>
+    match f e with
+    | some e' => some e'
+    | none => (transformUnderForall f b).map fun b' => .forallE n d b' bi
+  | _ => f e
+
+def normalizeTopAnswerShapesForType (allowOpenSorry : Bool) (suffix : String) (eFC eS : Expr) : List (String × Expr × Expr) := Id.run do
+  let mut out : List (String × Expr × Expr) := [("exact" ++ suffix, eFC, eS)]
+  let unwrapIffTrue (e : Expr) : Option Expr :=
+    match e.getAppFn, e.getAppArgs with
+    | .const `Iff _, #[lhs, rhs] =>
+      let lhs0 := match lhs with | .mdata _ inner => inner | _ => lhs
+      if lhs0.isConstOf `True then some rhs else none
+    | _, _ => none
+  let unwrapIffFalseToNot (e : Expr) : Option Expr :=
+    match e.getAppFn, e.getAppArgs with
+    | .const `Iff _, #[lhs, rhs] =>
+      let lhs0 := match lhs with | .mdata _ inner => inner | _ => lhs
+      if lhs0.isConstOf `False then some (mkApp (.const `Not []) rhs) else none
+    | _, _ => none
+  if let some t := transformUnderForall unwrapIffTrue eFC then
+    out := out ++ [("iff_true_to_prop" ++ suffix, t, eS)]
+  if let some tS := transformUnderForall unwrapIffTrue eS then
+    out := out ++ [("prop_to_iff_true" ++ suffix, eFC, tS)]
+  if let some t := transformUnderForall unwrapIffFalseToNot eFC then
+    out := out ++ [("iff_false_to_not" ++ suffix, t, eS)]
+  if let some tS := transformUnderForall unwrapIffFalseToNot eS then
+    out := out ++ [("not_to_iff_false" ++ suffix, eFC, tS)]
+  if allowOpenSorry then
+    let unwrapOpenSorryToTrueIff (e : Expr) : Option Expr :=
+      match e.getAppFn, e.getAppArgs with
+      | .const `Iff _, #[lhs, rhs] =>
+        let lhs0 := match lhs with | .mdata _ inner => inner | _ => lhs
+        if lhs0.getAppFn.isConstOf `sorryAx then some (mkApp2 (.const `Iff []) (.const `True []) rhs) else none
+      | _, _ => none
+    let unwrapOpenSorryToProp (e : Expr) : Option Expr :=
+      match e.getAppFn, e.getAppArgs with
+      | .const `Iff _, #[lhs, rhs] =>
+        let lhs0 := match lhs with | .mdata _ inner => inner | _ => lhs
+        if lhs0.getAppFn.isConstOf `sorryAx then some rhs else none
+      | _, _ => none
+    let unwrapOpenSorryToFalseIff (e : Expr) : Option Expr :=
+      match e.getAppFn, e.getAppArgs with
+      | .const `Iff _, #[lhs, rhs] =>
+        let lhs0 := match lhs with | .mdata _ inner => inner | _ => lhs
+        if lhs0.getAppFn.isConstOf `sorryAx then some (mkApp2 (.const `Iff []) (.const `False []) rhs) else none
+      | _, _ => none
+    let unwrapOpenSorryToNot (e : Expr) : Option Expr :=
+      match e.getAppFn, e.getAppArgs with
+      | .const `Iff _, #[lhs, rhs] =>
+        let lhs0 := match lhs with | .mdata _ inner => inner | _ => lhs
+        if lhs0.getAppFn.isConstOf `sorryAx then some (mkApp (.const `Not []) rhs) else none
+      | _, _ => none
+    if let some t := transformUnderForall unwrapOpenSorryToTrueIff eFC then
+      out := out ++ [("resolves_open_answer_true_iff" ++ suffix, t, eS)]
+    if let some t := transformUnderForall unwrapOpenSorryToProp eFC then
+      out := out ++ [("resolves_open_answer_true_prop" ++ suffix, t, eS)]
+    if let some t := transformUnderForall unwrapOpenSorryToFalseIff eFC then
+      out := out ++ [("resolves_open_answer_false_iff" ++ suffix, t, eS)]
+    if let some t := transformUnderForall unwrapOpenSorryToNot eFC then
+      out := out ++ [("resolves_open_answer_false_not" ++ suffix, t, eS)]
+  return out
+
+def normalizeTopAnswerShapes (allowOpenSorry : Bool) (infoFC infoS : ConstantInfo) : List (String × Expr × Expr) :=
+  let eS := targetPropOf infoS
+  let base := normalizeTopAnswerShapesForType allowOpenSorry "" (targetPropOf infoFC) eS
+  if !infoFC.levelParams.isEmpty && infoS.levelParams.isEmpty then
+    let eFC0 := instantiateTargetPropZero infoFC
+    base ++ normalizeTopAnswerShapesForType allowOpenSorry "_univ_zero" eFC0 eS
+  else
+    base
+
+def normalizeClaimedKey (s : String) : String :=
+  let parts := s.splitOn "."
+  let probNum := match parts with
+    | p0 :: _ => if p0.startsWith "Erdos" then (p0.drop 5).toString else ""
+    | [] => ""
+  let tail := match parts with
+    | p0 :: p1 :: rest =>
+      if p0.startsWith "Erdos" && (p1 == "Palomar" || p1 == "Standalone" || p1 == "Challenge") then
+        String.intercalate "_" rest
+      else if p0.startsWith "Erdos" then
+        String.intercalate "_" (p1 :: rest)
+      else
+        String.intercalate "_" parts
+    | _ => s.replace "." "_"
+  let tail :=
+    if tail == "statement" && probNum != "" then
+      s!"erdos_{probNum}"
+    else if tail.startsWith "statement_" then
+      (tail.drop 10).toString
+    else
+      tail
+  let tail := if tail.startsWith "not_" then (tail.drop 4).toString else tail
+  tail
+
+public unsafe def main (args : List String) : IO UInt32 := do
+  let runMode := args[0]!
+  let targetOlean := System.FilePath.mk args[1]!
+  let solOlean := System.FilePath.mk args[2]!
+  let sourceLabel := args[3]!
+  let outJsonPath := System.FilePath.mk args[4]!
+  let restArgs := args.drop 5
+  let envLeanPath := (← IO.getEnv "LEAN_PATH").getD ""
+  let envDirs := (envLeanPath.splitOn ":").filter (· != "") |>.map System.FilePath.mk
+  let tDir0 := targetOlean.parent.getD "."
+  let tDir1 := tDir0.parent.getD tDir0
+  let tDir2 := tDir1.parent.getD tDir1
+  let dirs := (solOlean.parent.getD ".") :: tDir0 :: tDir1 :: tDir2 :: envDirs
+  let (_, mapTarget, r1) ← loadModuleClosure dirs {} {} #[] [(`TargetMod, targetOlean)]
+  let (_, mapSol, r2) ← loadModuleClosure dirs {} {} r1 [(`SolMod, solOlean)]
+  let mut regs := r2
+  let mut existingRows : Array FCAuditRow := #[]
+  if (← outJsonPath.pathExists) then
+    if let .ok jTxt ← IO.FS.readFile outJsonPath |>.toBaseIO then
+      if let .ok jVal := Json.parse jTxt then
+        if let .ok parsed := @fromJson? (Array FCAuditRow) _ jVal then
+          existingRows := parsed
+  if runMode == "pairs" then
+    for rawPair in restArgs do
+      let parts := rawPair.splitOn ":"
+      let fcThm := strToName parts[0]!
+      let solThm := strToName parts[1]!
+      let some infoFC := mapTarget.get? fcThm
+        | throw <| IO.userError s!"Missing target declaration {fcThm} in {targetOlean}"
+      let some infoS := mapSol.get? solThm
+        | throw <| IO.userError s!"Missing solution declaration {solThm} in {solOlean}"
+      let mut matched := false
+      let mut firstErr := ""
+      for (mode, tA, tB) in normalizeTopAnswerShapes true infoFC infoS do
+        if !matched then
+          try
+            let _ ← checkExprEq mapTarget mapSol {} tA tB
+            IO.println s!"FC_MATCH|{sourceLabel}|{fcThm}|{solThm}|{mode}"
+            existingRows := existingRows.push {
+              source := sourceLabel
+              target_declaration := fcThm.toString
+              solution_declaration := solThm.toString
+              match_mode := mode
+              status := "PASS"
+            }
+            matched := true
+          catch err =>
+            if firstErr == "" then
+              firstErr := toString err
+      if !matched then
+        throw <| IO.userError s!"Statement mismatch between {fcThm} and {solThm}:\\n{firstErr}"
+  else
+    let (tMd, regT) ← readModuleData targetOlean
+    let (sMd, regS) ← readModuleData solOlean
+    regs := (regs.push regT).push regS
+    let probPrefix :=
+      if sourceLabel.startsWith "FormalConjectures.ErdosProblems." then
+        let pnum := sourceLabel.drop ("FormalConjectures.ErdosProblems.".length)
+        some (s!"Erdos{pnum}.", s!"erdos_{pnum}")
+      else
+        none
+    let targetCands := tMd.constants.filter fun ci =>
+      let nameStr := ci.name.toString
+      let inProbScope := match probPrefix with
+        | some (nsPref, thmSub) => nameStr.startsWith nsPref || (nameStr.splitOn thmSub).length > 1
+        | none => true
+      !ci.name.isInternalDetail && inProbScope && (isThmLike ci || isStatementDef ci)
+    let solThmNames := restArgs.map strToName
+    let mut solCands : Array ConstantInfo := #[]
+    let mut seenSol : NameSet := {}
+    for n in solThmNames do
+      if let some ci := mapSol.get? n then
+        solCands := solCands.push ci
+        seenSol := seenSol.insert n
+    for ci in sMd.constants do
+      if !ci.name.isInternalDetail && (isThmLike ci || isStatementDef ci) && !seenSol.contains ci.name then
+        solCands := solCands.push ci
+        seenSol := seenSol.insert ci.name
+    for infoFC in targetCands do
+      let fcKey := normalizeClaimedKey infoFC.name.toString
+      let mut fcMatchedAny := false
+      let mut claimedErr : Option (Name × String) := none
+      for infoS in solCands do
+        let solKey := normalizeClaimedKey infoS.name.toString
+        let isSameKey := fcKey != "" && fcKey != "statement" && fcKey == solKey
+        let mut matched := false
+        let mut firstPairErr := ""
+        for (mode, tA, tB) in normalizeTopAnswerShapes true infoFC infoS do
+          if !matched then
+            try
+              let _ ← checkExprEq mapTarget mapSol {} tA tB
+              IO.println s!"FC_MATCH|{sourceLabel}|{infoFC.name}|{infoS.name}|{mode}"
+              existingRows := existingRows.push {
+                source := sourceLabel
+                target_declaration := infoFC.name.toString
+                solution_declaration := infoS.name.toString
+                match_mode := mode
+                status := "PASS"
+              }
+              matched := true
+              fcMatchedAny := true
+            catch err =>
+              if firstPairErr == "" then
+                firstPairErr := toString err
+        if !matched && isSameKey && claimedErr.isNone then
+          claimedErr := some (infoS.name, firstPairErr)
+      if !fcMatchedAny then
+        if let some (solName, errMsg) := claimedErr then
+          throw <| IO.userError s!"Claimed theorem {solName} failed statement-equivalence check against {infoFC.name} ({sourceLabel}):\\n{errMsg}"
+  if outJsonPath.toString != "" then
+    IO.FS.writeFile outJsonPath ((toJson existingRows).pretty ++ "\\n")
+  return if regs.isEmpty then 1 else 0
 """
 
 
@@ -456,6 +976,7 @@ def all_packages() -> list[str]:
         p.name
         for p in REPO_ROOT.glob("erdos-*")
         if p.is_dir() and re.fullmatch(r"erdos-\d+", p.name)
+        and (p / "comparator.json").is_file()
     )
 
 
@@ -918,6 +1439,399 @@ def collect_tool_digests(pkg_dir: pathlib.Path) -> dict[str, str]:
     return digests
 
 
+FC_UTIL_SHIM_HEADER = """module
+public meta import Lean
+public import Mathlib
+
+set_option autoImplicit false
+
+@[expose] public section
+
+scoped[EuclideanGeometry] notation "ℝ^" n:65 => EuclideanSpace ℝ (Fin n)
+scoped[EuclideanGeometry] notation "ℝ²" => EuclideanSpace ℝ (Fin 2)
+scoped[EuclideanGeometry] notation "ℝ³" => EuclideanSpace ℝ (Fin 3)
+open scoped EuclideanGeometry
+
+section FCShim
+open Lean Elab Meta Term
+
+syntax (name := fcAnswerStx) "answer(" term ")" : term
+
+@[term_elab fcAnswerStx]
+public meta def elabFCAnswer : TermElab := fun stx expectedType? => do
+  match stx with
+  | `(answer($a:term)) =>
+    if a.raw.isIdent && a.raw.getId == `sorry then
+      let ty ← match expectedType? with
+        | some t => pure t
+        | none => Meta.mkFreshTypeMVar
+      let e ← Meta.mkSorry ty (synthetic := false)
+      return mkAnnotation `answer e
+    else
+      let e ← elabTerm a expectedType?
+      return mkAnnotation `answer e
+  | _ => throwUnsupportedSyntax
+end FCShim
+"""
+
+
+def compute_package_state_sha256(pkg: str, input_sha256: dict[str, str]) -> str:
+    canonical = json.dumps(
+        {
+            "package": pkg,
+            "lean_toolchain": EXPECTED_TOOLCHAIN,
+            "mathlib_revision": EXPECTED_MATHLIB_REV,
+            "input_sha256": dict(sorted(input_sha256.items())),
+        },
+        sort_keys=True,
+        separators=(",", ":"),
+    )
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+
+
+def resolve_package_commit_and_id(
+    pkg: str,
+    fallback_commit: str,
+    state_sha256: str,
+) -> tuple[str, str, str]:
+    """Return (package_commit, commit_date_utc, verification_id) formatted as YYYY-MM-DD-<pkg_commit[:8]>."""
+    git_env = os.environ.copy()
+    git_env["TZ"] = "UTC"
+    git_env["GIT_NO_LAZY_FETCH"] = "1"
+    candidates = [fallback_commit.strip(), "HEAD"] if fallback_commit.strip() else ["HEAD"]
+    valid_refs: list[str] = []
+    for ref in candidates:
+        if ref in valid_refs:
+            continue
+        if subprocess.run(
+            ["git", "--no-lazy-fetch", "-C", str(REPO_ROOT), "cat-file", "-e", f"{ref}^{{commit}}"],
+            env=git_env,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        ).returncode == 0:
+            valid_refs.append(ref)
+
+    for ref in valid_refs:
+        try:
+            out = subprocess.check_output(
+                [
+                    "git",
+                    "--no-lazy-fetch",
+                    "-C",
+                    str(REPO_ROOT),
+                    "log",
+                    "-n",
+                    "1",
+                    "--format=%H|%cd",
+                    "--date=format-local:%Y-%m-%d",
+                    ref,
+                    "--",
+                    pkg,
+                ],
+                text=True,
+                env=git_env,
+                stderr=subprocess.DEVNULL,
+            ).strip()
+            if "|" in out:
+                sha, cdate = out.split("|", 1)
+                if len(sha) == 40 and re.fullmatch(r"\d{4}-\d{2}-\d{2}", cdate):
+                    return sha, cdate, f"{cdate}-{sha[:8]}"
+        except Exception:
+            pass
+
+    # Fallback for untracked packages or non-git environments
+    commit_date = time.strftime("%Y-%m-%d", time.gmtime())
+    head_sha = ""
+    for ref in valid_refs:
+        try:
+            out = subprocess.check_output(
+                [
+                    "git",
+                    "--no-lazy-fetch",
+                    "-C",
+                    str(REPO_ROOT),
+                    "show",
+                    "-s",
+                    "--format=%H|%cd",
+                    "--date=format-local:%Y-%m-%d",
+                    ref,
+                ],
+                text=True,
+                env=git_env,
+                stderr=subprocess.DEVNULL,
+            ).strip()
+            if "|" in out:
+                sha, cdate = out.split("|", 1)
+                if len(sha) == 40:
+                    head_sha = sha
+                if re.fullmatch(r"\d{4}-\d{2}-\d{2}", cdate):
+                    commit_date = cdate
+                break
+        except Exception:
+            pass
+
+    raw_fb = fallback_commit.strip()
+    pkg_commit = raw_fb if len(raw_fb) == 40 else (head_sha or raw_fb or "local")
+    short_suffix = pkg_commit[:8] if len(pkg_commit) >= 8 and pkg_commit != "local" else state_sha256[:8]
+    return pkg_commit, commit_date, f"{commit_date}-{short_suffix}"
+
+
+def find_declaration_lines(lean_path: pathlib.Path, decl_names: list[str]) -> dict[str, int]:
+    if not lean_path.is_file():
+        return {}
+    clean = strip_lean_comments(lean_path.read_text(encoding="utf-8", errors="replace"))
+    lines = clean.splitlines()
+    found: dict[str, int] = {}
+    for full_name in decl_names:
+        short = full_name.split(".")[-1]
+        for candidate in (full_name, short):
+            pat = re.compile(
+                rf"^\s*(?:@\[[^\]]*\]\s*)*(?:private\s+|protected\s+|noncomputable\s+)*(?:theorem|lemma|def|abbrev)\s+{re.escape(candidate)}(?:[\s(:{{]|$)"
+            )
+            for idx, ln in enumerate(lines, start=1):
+                if pat.match(ln):
+                    found[full_name] = idx
+                    break
+            if full_name in found:
+                break
+    return found
+
+
+def _strip_fc_source_for_inline(lean_txt: str, *, defs_only: bool = False) -> str:
+    txt = re.sub(r"^module\s*\n", "", lean_txt, flags=re.M)
+    txt = re.sub(r"/--[\s\S]*?-/", "", txt)
+    txt = re.sub(r"^\s*(?:public\s+|private\s+)?(?:meta\s+)?import\s+.*?\n", "", txt, flags=re.M)
+    txt = re.sub(r"@\[\s*category\b[\s\S]*?\]\s*\n", "", txt)
+    txt = re.sub(r"(@\[[^\]]*\])\s*\n\s*", r"\1 ", txt)
+    boundary_re = re.compile(
+        r"^(?=\s*(?:@\[[^\]]*\]\s*)*(?:private\s|protected\s|noncomputable\s|theorem\s|lemma\s|proof_wanted\s|example\b|def\s|abbrev\s|structure\s|inductive\s|class\s|instance\b|namespace\s|section\b|end\b|open\s|variable\s|scoped\b|notation\b|#print\s))",
+        re.M,
+    )
+    thm_head_re = re.compile(
+        r"^\s*(?:@\[[^\]]*\]\s*)*(?:private\s+|protected\s+|noncomputable\s+)*(theorem|lemma|proof_wanted|example)\b"
+    )
+    chunks = boundary_re.split(txt)
+    out_chunks: list[str] = []
+    for ch in chunks:
+        m_head = thm_head_re.match(ch)
+        if m_head:
+            kind = m_head.group(1)
+            if defs_only and kind in ("theorem", "lemma", "proof_wanted", "example"):
+                continue
+            if kind in ("theorem", "lemma"):
+                m_by = re.search(r":=\s*by\b", ch)
+                if m_by:
+                    ch = ch[: m_by.start()] + ":= by sorry\n"
+        elif defs_only and re.match(r"^\s*(?:@\[[^\]]*\]\s*)*(?:private\s+|protected\s+|noncomputable\s+)*(?:instance|def)\b", ch):
+            ch = re.sub(r"(decode_encode\s+\S+\s*:=)\s*(?:by\b[\s\S]*|[^\n]+)", r"\1 by sorry", ch)
+        out_chunks.append(ch)
+    res_txt = "".join(out_chunks)
+    return f"section\n{res_txt}\nend\n" if defs_only else res_txt
+
+
+def _fetch_text_url(url: str) -> str | None:
+    try:
+        headers = {"User-Agent": "Mozilla/5.0"}
+        gh_tok = os.environ.get("GITHUB_TOKEN", "").strip()
+        if gh_tok and "github.com" in url:
+            headers["Authorization"] = f"Bearer {gh_tok}"
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            return resp.read().decode("utf-8", errors="replace")
+    except Exception:
+        return None
+
+
+def fetch_and_compile_fc_problem_olean(
+    pkg: str,
+    prob: str,
+    pkg_dir: pathlib.Path,
+    out_olean: pathlib.Path,
+) -> pathlib.Path | None:
+    fc_ref = "main"
+    fy_path = pkg_dir / "formalization.yaml"
+    if fy_path.is_file():
+        try:
+            fy = json.loads(fy_path.read_text(encoding="utf-8"))
+            for src in fy.get("sources", []) + fy.get("related_formalizations", []):
+                sid = str(src.get("id", ""))
+                m_ref = re.search(
+                    r"github\.com/google-deepmind/formal-conjectures/(?:blob|tree)/([^/]+)/FormalConjectures",
+                    sid,
+                )
+                if m_ref:
+                    fc_ref = m_ref.group(1)
+                    break
+        except Exception:
+            pass
+
+    fc_git_env = os.environ.get("FC_GIT_DIR", "").strip()
+    local_fc_root = pathlib.Path(fc_git_env).resolve() if fc_git_env else (REPO_ROOT.parent / "formal-conjectures")
+    local_prob_file = local_fc_root / "FormalConjectures" / "ErdosProblems" / f"{prob}.lean"
+    prob_raw: str | None = None
+    if local_prob_file.is_file():
+        prob_raw = local_prob_file.read_text(encoding="utf-8", errors="replace")
+    elif (local_fc_root / ".git").is_dir():
+        for git_ref in (f"erdos-{prob}", fc_ref, "origin/main", "main"):
+            try:
+                prob_raw = subprocess.check_output(
+                    ["git", "-C", str(local_fc_root), "show", f"{git_ref}:FormalConjectures/ErdosProblems/{prob}.lean"],
+                    text=True,
+                    stderr=subprocess.DEVNULL,
+                )
+                if prob_raw:
+                    break
+            except Exception:
+                pass
+    if not prob_raw:
+        for ref in ([fc_ref, "main"] if fc_ref != "main" else ["main"]):
+            url = f"https://raw.githubusercontent.com/google-deepmind/formal-conjectures/{ref}/FormalConjectures/ErdosProblems/{prob}.lean"
+            prob_raw = _fetch_text_url(url)
+            if prob_raw:
+                fc_ref = ref
+                break
+        if not prob_raw:
+            for fork_owner in ("google-deepmind", "linrock"):
+                url = f"https://raw.githubusercontent.com/{fork_owner}/formal-conjectures/erdos-{prob}/FormalConjectures/ErdosProblems/{prob}.lean"
+                prob_raw = _fetch_text_url(url)
+                if prob_raw:
+                    break
+
+    if not prob_raw:
+        return None
+
+    elan_lean = pathlib.Path.home() / ".elan" / "toolchains" / "leanprover--lean4---v4.35.0-rc2" / "bin" / "lean"
+    lean_bin = str(elan_lean) if elan_lean.is_file() else "lean"
+    try:
+        lp = subprocess.check_output(
+            ["lake", "env", "printenv", "LEAN_PATH"],
+            cwd=pkg_dir,
+            text=True,
+            stderr=subprocess.DEVNULL,
+        ).strip()
+    except Exception:
+        return None
+
+    prob_body = _strip_fc_source_for_inline(prob_raw, defs_only=False)
+    helper_snippets: list[str] = []
+    loaded_helper_rels: set[str] = set()
+    remote_fc_tree: list[str] | None = None
+
+    def resolve_missing_helpers(identifiers: list[str]) -> bool:
+        nonlocal remote_fc_tree
+        ignored_mathlib_ids = {"log", "atTop", "atBot", "nhds", "Icc", "Ico", "Ioc", "Ioo", "Ici", "Ioi", "Iic", "Iio"}
+        identifiers = [i for i in identifiers if i.split(".")[-1] not in ignored_mathlib_ids]
+        if not identifiers:
+            return False
+        added_any = False
+        fc_mathlib_dir = local_fc_root / "FormalConjecturesForMathlib"
+        if fc_mathlib_dir.is_dir():
+            def add_local_helper_rel(rel: str) -> None:
+                nonlocal added_any
+                if rel in loaded_helper_rels:
+                    return
+                hp = local_fc_root / rel
+                if not hp.is_file():
+                    return
+                loaded_helper_rels.add(rel)
+                htxt = hp.read_text(encoding="utf-8", errors="replace")
+                for m_imp in re.finditer(r"import\s+(FormalConjecturesForMathlib\.[\w.]+)", htxt):
+                    imp_rel = m_imp.group(1).replace(".", "/") + ".lean"
+                    add_local_helper_rel(imp_rel)
+                helper_snippets.append(_strip_fc_source_for_inline(htxt, defs_only=True))
+                added_any = True
+
+            for ident in identifiers:
+                short_id = ident.split(".")[-1]
+                pat = re.compile(
+                    rf"\b(?:def|abbrev|structure|inductive|class|notation|scoped|namespace)\b[^\n]*\b{re.escape(short_id)}\b"
+                )
+                for p in sorted(fc_mathlib_dir.rglob("*.lean")):
+                    rel = p.relative_to(local_fc_root).as_posix()
+                    if rel in loaded_helper_rels:
+                        continue
+                    txt = p.read_text(encoding="utf-8", errors="replace")
+                    if pat.search(txt):
+                        add_local_helper_rel(rel)
+            return added_any
+
+        if remote_fc_tree is None:
+            tree_txt = _fetch_text_url(
+                f"https://api.github.com/repos/google-deepmind/formal-conjectures/git/trees/{fc_ref}?recursive=1"
+            )
+            if tree_txt:
+                try:
+                    tree_data = json.loads(tree_txt)
+                    remote_fc_tree = [
+                        item["path"]
+                        for item in tree_data.get("tree", [])
+                        if str(item.get("path", "")).startswith("FormalConjecturesForMathlib/")
+                        and str(item.get("path", "")).endswith(".lean")
+                    ]
+                except Exception:
+                    remote_fc_tree = []
+            else:
+                remote_fc_tree = []
+
+        for ident in identifiers:
+            short_id = ident.split(".")[-1]
+            pat = re.compile(
+                rf"\b(?:def|abbrev|structure|inductive|class|notation|scoped|namespace)\b[^\n]*\b{re.escape(short_id)}\b"
+            )
+            def add_remote_helper_rel(rel: str) -> None:
+                nonlocal added_any
+                if rel in loaded_helper_rels:
+                    return
+                rtxt = _fetch_text_url(
+                    f"https://raw.githubusercontent.com/google-deepmind/formal-conjectures/{fc_ref}/{rel}"
+                )
+                if not rtxt:
+                    return
+                loaded_helper_rels.add(rel)
+                for m_imp in re.finditer(r"import\s+(FormalConjecturesForMathlib\.[\w.]+)", rtxt):
+                    imp_rel = m_imp.group(1).replace(".", "/") + ".lean"
+                    add_remote_helper_rel(imp_rel)
+                helper_snippets.append(_strip_fc_source_for_inline(rtxt, defs_only=True))
+                added_any = True
+
+            for rel in remote_fc_tree or []:
+                if rel in loaded_helper_rels:
+                    continue
+                txt = _fetch_text_url(
+                    f"https://raw.githubusercontent.com/google-deepmind/formal-conjectures/{fc_ref}/{rel}"
+                )
+                if txt and pat.search(txt):
+                    add_remote_helper_rel(rel)
+        return added_any
+
+    with tempfile.TemporaryDirectory(prefix=f"fc_on_demand_{prob}_") as tmp_str:
+        tdir = pathlib.Path(tmp_str)
+        src_file = tdir / f"Prob{prob}.lean"
+        env = os.environ.copy()
+        env["LEAN_PATH"] = f"{tdir}:{lp}"
+        for _attempt in range(6):
+            combined = FC_UTIL_SHIM_HEADER + "\n" + "\n".join(helper_snippets) + "\n" + prob_body
+            src_file.write_text(combined, encoding="utf-8")
+            res = subprocess.run(
+                [lean_bin, "-M", "8192", "-j4", "-Dlinter.deprecated=false", "-R", str(tdir), str(src_file), "-o", str(out_olean)],
+                cwd=pkg_dir,
+                env=env,
+                capture_output=True,
+                text=True,
+            )
+            if res.returncode == 0 and out_olean.is_file():
+                return out_olean
+            err_out = (res.stdout or "") + "\n" + (res.stderr or "")
+            missing_ids = re.findall(
+                r"(?:Unknown identifier|Invalid field|unknown constant|unknown namespace|The identifier)\s+[`']([^`'\s]+)[`']",
+                err_out,
+                re.IGNORECASE,
+            )
+            if not missing_ids or not resolve_missing_helpers(sorted(set(missing_ids))):
+                break
+    return None
+
+
 def summarize_package(
     pkg: str,
     commit: str,
@@ -986,6 +1900,15 @@ def summarize_package(
         except Exception:
             core_audit_rows = []
 
+    fc_audit_rows: list[dict[str, str]] = []
+    if (ver_dir / "fc_statement_audit.json").is_file():
+        try:
+            fc_audit_rows = json.loads(
+                (ver_dir / "fc_statement_audit.json").read_text(encoding="utf-8")
+            )
+        except Exception:
+            fc_audit_rows = []
+
     resource_usage: dict[str, Any] = {}
     if (ver_dir / "resource_usage.json").is_file():
         try:
@@ -1006,6 +1929,12 @@ def summarize_package(
     ]
     missing_from_axioms = [t for t in comp_theorems if t not in axiom_map]
     missing_from_env = [t for t in comp_theorems if t not in env_matched]
+    fc_matched = {
+        str(row.get("solution_declaration", ""))
+        for row in fc_audit_rows
+        if row.get("status") == "PASS"
+    }
+    missing_from_fc = [t for t in comp_theorems if t not in fc_matched]
     sandbox_ok = sandbox_enabled if require_sandbox else True
     comparator_ok = (
         (bool(comp_log) and nanoda_ok and con_ron_ok and lean_kernel_ok and solution_ok and sandbox_ok)
@@ -1022,16 +1951,29 @@ def summarize_package(
             and not bad_axioms
             and not missing_from_axioms
             and not missing_from_env
+            and not missing_from_fc
             and bool(core_audit_rows)
             and comparator_ok
         )
         else "FAIL"
     )
 
+    input_sha256 = collect_input_sha256(pkg_dir)
+    state_sha256 = compute_package_state_sha256(pkg, input_sha256)
+    pkg_commit, commit_date, verification_id = resolve_package_commit_and_id(
+        pkg, commit, state_sha256
+    )
+    sol_lines_map = find_declaration_lines(pkg_dir / "Solution.lean", comp_theorems)
+    chal_lines_map = find_declaration_lines(pkg_dir / "Challenge.lean", comp_theorems)
+
     receipt: dict[str, Any] = {
         "schema_version": 2,
+        "verification_id": verification_id,
+        "verification_date": commit_date,
+        "state_sha256": state_sha256,
         "package": pkg,
         "project_name": fy.get("project", {}).get("name", pkg),
+        "package_commit": pkg_commit,
         "commit": commit,
         "repository": repo,
         "run_id": run_id,
@@ -1045,15 +1987,24 @@ def summarize_package(
             "trust_level": "high",
         },
         "exported_theorems": comp_theorems,
+        "declaration_lines": {
+            thm: {
+                "solution_line": sol_lines_map.get(thm),
+                "challenge_line": chal_lines_map.get(thm),
+            }
+            for thm in comp_theorems
+        },
         "env_comparison_matched": sorted(env_matched),
         "missing_from_axioms_log": missing_from_axioms,
         "missing_from_env_compare": missing_from_env,
+        "missing_from_fc_statement_audit": missing_from_fc,
         "axiom_audit_count": len(axiom_pairs),
         "expected_axiom_audit_count": expected_axiom_reports,
         "axiom_reports": [
             {"declaration": decl, "axioms": axs} for decl, axs in axiom_pairs
         ],
         "core_notation_audit": core_audit_rows,
+        "fc_statement_audit": fc_audit_rows,
         "comparator_required": require_comparator,
         "comparator_ran": bool(comp_log),
         "sandbox_enabled": sandbox_enabled,
@@ -1066,7 +2017,7 @@ def summarize_package(
         "con_ron_accepted": con_ron_ok,
         "lean_kernel_accepted": lean_kernel_ok,
         "tool_digests": collect_tool_digests(pkg_dir),
-        "input_sha256": collect_input_sha256(pkg_dir),
+        "input_sha256": input_sha256,
         "resource_usage": resource_usage,
         "status": status,
     }
@@ -1075,17 +2026,23 @@ def summarize_package(
         json.dumps(receipt, indent=2) + "\n", encoding="utf-8"
     )
 
+    link_commit = pkg_commit if len(pkg_commit) == 40 else (commit if len(commit) == 40 else "")
     md_lines = [
         f"## `{pkg}` Verification Summary ({status})",
         "",
+        f"- **Verification ID:** `{verification_id}` (`state_sha256={state_sha256[:16]}...`)",
         f"- **Project:** {fy.get('project', {}).get('name', pkg)}",
-        f"- **Commit:** `{commit}`" + (f" ([tree](https://github.com/{repo}/tree/{commit}/{pkg}))" if repo and commit else ""),
+        f"- **Package commit:** `{pkg_commit}`" + (f" ([tree](https://github.com/{repo}/tree/{link_commit}/{pkg}))" if repo and link_commit else ""),
         f"- **Compiler:** `{toolchain_txt}`",
         f"- **Mathlib:** `{EXPECTED_MATHLIB_REV}`",
         f"- **Challenge surface:** `{chal_lines}` lines, `{chal_bytes}` bytes (`trust_level=high`)",
         f"- **Challenge ↔ Solution environment match:** `{len(env_matched)}/{len(comp_theorems)}` theorems",
         f"- **Endpoint `#print axioms` checks:** `{len(axiom_pairs)}/{expected_axiom_reports}` (permitted: `propext`, `Classical.choice`, `Quot.sound`)",
     ]
+    if fc_audit_rows:
+        md_lines.append(
+            f"- **Formal Conjectures / Statement matches:** `{len(fc_audit_rows)}` verified statement equivalence(s)"
+        )
     if comp_log or require_comparator:
         md_lines.append(
             f"- **Comparator (3 kernels):** NanoDa=`{nanoda_ok}`, con-ron=`{con_ron_ok}`, Lean default kernel=`{lean_kernel_ok}` (bwrap sandbox=`{sandbox_enabled}`)"
@@ -1100,12 +2057,14 @@ def summarize_package(
         md_lines.append(f"- **MISSING from `axioms.log`:** `{missing_from_axioms}`")
     if missing_from_env:
         md_lines.append(f"- **MISSING from `Challenge`/`Solution` match:** `{missing_from_env}`")
+    if missing_from_fc:
+        md_lines.append(f"- **MISSING from upstream statement audit:** `{missing_from_fc}`")
     md_lines.extend([
         "",
         "### Exported Theorems & Axiom Footprint",
         "",
-        "| Declaration | Challenge = Solution | Axioms |",
-        "| --- | --- | --- |",
+        "| Declaration | Source Links | Challenge = Solution | Axioms |",
+        "| --- | --- | --- | --- |",
     ])
     for thm in comp_theorems:
         axs = axiom_map.get(thm)
@@ -1115,7 +2074,78 @@ def summarize_package(
             else ("`none`" if axs == [] else "**MISSING**")
         )
         matched_str = "PASS" if thm in env_matched else "**FAIL**"
-        md_lines.append(f"| `{thm}` | {matched_str} | {axs_str} |")
+        s_line = sol_lines_map.get(thm)
+        c_line = chal_lines_map.get(thm)
+        links_parts: list[str] = []
+        if s_line:
+            if repo and link_commit:
+                links_parts.append(
+                    f"[`Solution.lean#L{s_line}`](https://github.com/{repo}/blob/{link_commit}/{pkg}/Solution.lean#L{s_line})"
+                )
+            else:
+                links_parts.append(f"`Solution.lean#L{s_line}`")
+        if c_line:
+            if repo and link_commit:
+                links_parts.append(
+                    f"[`Challenge.lean#L{c_line}`](https://github.com/{repo}/blob/{link_commit}/{pkg}/Challenge.lean#L{c_line})"
+                )
+            else:
+                links_parts.append(f"`Challenge.lean#L{c_line}`")
+        links_cell = ", ".join(links_parts) if links_parts else "-"
+        md_lines.append(f"| `{thm}` | {links_cell} | {matched_str} | {axs_str} |")
+
+    if fc_audit_rows:
+        md_lines.extend([
+            "",
+            "### Statement-Equivalence Audit (`FCCompare`)",
+            "",
+            "| Source | Target Declaration | Solution Declaration | Match Mode | Status |",
+            "| --- | --- | --- | --- | --- |",
+        ])
+        for row in fc_audit_rows:
+            md_lines.append(
+                f"| `{row.get('source', '')}` | `{row.get('target_declaration', '')}` | "
+                f"`{row.get('solution_declaration', '')}` | `{row.get('match_mode', '')}` | "
+                f"{row.get('status', 'PASS')} |"
+            )
+
+    clean_axiom_lines = [
+        f"'{decl}' depends on axioms: [{', '.join(axs)}]"
+        if axs
+        else f"'{decl}' does not depend on any axioms"
+        for decl, axs in axiom_pairs
+    ]
+    clean_comp_lines = [
+        ln.strip()
+        for ln in comp_log.splitlines()
+        if any(
+            k in ln
+            for k in (
+                "kernel accepts the solution",
+                "Your solution is okay!",
+                "Sandbox",
+                "Checking",
+            )
+        )
+    ]
+    if clean_axiom_lines or clean_comp_lines:
+        md_lines.extend([
+            "",
+            "<details>",
+            "<summary>Axiom & Multi-Kernel Verification Logs (<code>axioms.log</code>, <code>comparator.log</code>)</summary>",
+            "",
+            "```text",
+        ])
+        if clean_axiom_lines:
+            md_lines.append("=== axioms.log ===")
+            md_lines.extend(clean_axiom_lines)
+        if clean_comp_lines:
+            md_lines.append("=== comparator.log ===")
+            md_lines.extend(clean_comp_lines)
+        md_lines.extend([
+            "```",
+            "</details>",
+        ])
 
     if core_audit_rows:
         md_lines.extend([
@@ -1133,12 +2163,231 @@ def summarize_package(
         ])
 
     summary_md = "\n".join(md_lines) + "\n"
+    (ver_dir / "VERIFICATION.md").write_text(summary_md, encoding="utf-8")
     print(summary_md)
     if step_summary:
         with open(step_summary, "a", encoding="utf-8") as f:
             f.write(summary_md)
 
     return 0 if status == "PASS" else 1
+
+
+def run_fc_statement_comparison(
+    pkg: str,
+    *,
+    fc_lib_dir: str | None = None,
+    fc_olean: str | None = None,
+    sol_olean: str | None = None,
+    pairs: list[str] | None = None,
+    out_json: str | None = None,
+    strict: bool = False,
+) -> int:
+    pkg_dir = REPO_ROOT / pkg if pkg else REPO_ROOT
+    ver_dir = pkg_dir / ".verification" if pkg else REPO_ROOT / ".verification"
+    ver_dir.mkdir(parents=True, exist_ok=True)
+
+    olean_dir = pkg_dir / ".lake" / "build" / "lib" / "lean"
+    sol_olean_path = pathlib.Path(sol_olean).resolve() if sol_olean else (olean_dir / "Solution.olean")
+    if not sol_olean_path.is_file():
+        sys.stderr.write(f"fc-compare: missing Solution.olean at {sol_olean_path}\n")
+        return 1
+
+    comp_theorems: list[str] = []
+    if (pkg_dir / "comparator.json").is_file():
+        try:
+            comp = json.loads((pkg_dir / "comparator.json").read_text(encoding="utf-8"))
+            comp_theorems = comp.get("theorem_names", [])
+        except Exception:
+            comp_theorems = []
+
+    resolved_fc_lib = fc_lib_dir or os.environ.get("FC_LEAN_LIB_DIR", "")
+    targets: list[tuple[str, pathlib.Path, str]] = []
+    temp_fc_olean: pathlib.Path | None = None
+    if fc_olean:
+        fc_p = pathlib.Path(fc_olean).resolve()
+        if not fc_p.is_file():
+            sys.stderr.write(f"fc-compare: missing target olean {fc_p}\n")
+            return 1
+        prob_m = re.match(r"^erdos-(\d+)$", pkg)
+        label = f"FormalConjectures.ErdosProblems.{prob_m.group(1)}" if prob_m else fc_p.stem
+        targets.append(("pairs" if pairs else "discover", fc_p, label))
+    else:
+        prob_m = re.match(r"^erdos-(\d+)$", pkg)
+        added_fc = False
+        if prob_m and resolved_fc_lib:
+            cand_fc = pathlib.Path(resolved_fc_lib).resolve() / "FormalConjectures" / "ErdosProblems" / f"{prob_m.group(1)}.olean"
+            if cand_fc.is_file():
+                targets.append(("pairs" if pairs else "discover", cand_fc, f"FormalConjectures.ErdosProblems.{prob_m.group(1)}"))
+                added_fc = True
+        if prob_m and not added_fc:
+            on_demand_olean = ver_dir / f"FCProb{prob_m.group(1)}.olean"
+            compiled_fc = fetch_and_compile_fc_problem_olean(pkg, prob_m.group(1), pkg_dir, on_demand_olean)
+            if compiled_fc and compiled_fc.is_file():
+                if resolved_fc_lib:
+                    try:
+                        dest_fc = pathlib.Path(resolved_fc_lib).resolve() / "FormalConjectures" / "ErdosProblems" / f"{prob_m.group(1)}.olean"
+                        dest_fc.parent.mkdir(parents=True, exist_ok=True)
+                        shutil.copy2(compiled_fc, dest_fc)
+                        compiled_fc.unlink(missing_ok=True)
+                        targets.append(("pairs" if pairs else "discover", dest_fc, f"FormalConjectures.ErdosProblems.{prob_m.group(1)}"))
+                    except Exception:
+                        temp_fc_olean = compiled_fc
+                        targets.append(("pairs" if pairs else "discover", compiled_fc, f"FormalConjectures.ErdosProblems.{prob_m.group(1)}"))
+                else:
+                    temp_fc_olean = compiled_fc
+                    targets.append(("pairs" if pairs else "discover", compiled_fc, f"FormalConjectures.ErdosProblems.{prob_m.group(1)}"))
+                added_fc = True
+        stmt_olean = olean_dir / "Statement.olean"
+        if not pairs and stmt_olean.is_file():
+            targets.append(("discover", stmt_olean.resolve(), "Statement"))
+        fc_git_env = os.environ.get("FC_GIT_DIR", "").strip()
+        fc_root_check = pathlib.Path(fc_git_env).resolve() if fc_git_env else (REPO_ROOT.parent / "formal-conjectures")
+        local_fc_prob = (
+            fc_root_check / "FormalConjectures" / "ErdosProblems" / f"{prob_m.group(1)}.lean"
+            if prob_m
+            else None
+        )
+        if prob_m and not added_fc and not pairs and strict and (not stmt_olean.is_file() or (local_fc_prob and local_fc_prob.is_file())):
+            sys.stderr.write(
+                f"fc-compare: strict mode requires a direct FormalConjectures.ErdosProblems.{prob_m.group(1)} target for {pkg}\n"
+            )
+            return 1
+
+    if not targets:
+        if strict:
+            if prob_m:
+                sys.stderr.write(
+                    f"fc-compare: no FormalConjectures.ErdosProblems.{prob_m.group(1)} target found for {pkg}\n"
+                )
+            else:
+                sys.stderr.write(f"fc-compare: no upstream target found for {pkg}\n")
+            return 1
+        return 0
+
+    audit_json_path = pathlib.Path(out_json).resolve() if out_json else (ver_dir / "fc_statement_audit.json")
+    if audit_json_path.exists():
+        audit_json_path.unlink()
+
+    fc_compare_file = ver_dir / "FCCompare.lean"
+    fc_compare_file.write_text(FC_COMPARE_LEAN, encoding="utf-8")
+    env_run = os.environ.copy()
+    extra_paths: list[str] = [str(sol_olean_path.parent)]
+    if olean_dir.is_dir():
+        extra_paths.append(str(olean_dir.resolve()))
+    if resolved_fc_lib and pathlib.Path(resolved_fc_lib).is_dir():
+        extra_paths.append(str(pathlib.Path(resolved_fc_lib).resolve()))
+    existing_lp = env_run.get("LEAN_PATH", "")
+    env_run["LEAN_PATH"] = ":".join(extra_paths + ([existing_lp] if existing_lp else []))
+
+    lean_cmd_prefix = ["lake", "env", "lean", "--run"]
+    elan_lean = pathlib.Path.home() / ".elan" / "toolchains" / "leanprover--lean4---v4.35.0-rc2" / "bin" / "lean"
+    if elan_lean.is_file():
+        lean_cmd_prefix = [str(elan_lean), "--run"]
+
+    rc = 0
+    matched_declarations: set[str] = set()
+    fc_stmt_bridge_json = ver_dir / "fc_stmt_bridge_audit.json"
+    if fc_stmt_bridge_json.exists():
+        fc_stmt_bridge_json.unlink()
+    try:
+        with open(ver_dir / "fc_compare.log", "w", encoding="utf-8") as lf:
+            for mode, target_p, source_label in targets:
+                tail_args = list(pairs) if (mode == "pairs" and pairs) else comp_theorems
+                cmd = lean_cmd_prefix + [
+                    str(fc_compare_file.resolve()),
+                    mode,
+                    str(target_p),
+                    str(sol_olean_path),
+                    source_label,
+                    str(audit_json_path),
+                ] + tail_args
+                res = subprocess.run(
+                    cmd,
+                    cwd=pkg_dir if pkg_dir.is_dir() else REPO_ROOT,
+                    env=env_run,
+                    stdout=lf,
+                    stderr=subprocess.STDOUT,
+                )
+                if res.returncode != 0:
+                    rc = res.returncode
+            stmt_olean_check = olean_dir / "Statement.olean"
+            fc_targets = [
+                (tp, sl) for m, tp, sl in targets
+                if m == "discover" and sl.startswith("FormalConjectures.ErdosProblems.")
+            ]
+            if rc == 0 and not pairs and fc_targets and stmt_olean_check.is_file():
+                fc_tp, fc_sl = fc_targets[0]
+                cmd_bridge = lean_cmd_prefix + [
+                    str(fc_compare_file.resolve()),
+                    "discover",
+                    str(fc_tp),
+                    str(stmt_olean_check.resolve()),
+                    fc_sl,
+                    str(fc_stmt_bridge_json.resolve()),
+                ]
+                res_b = subprocess.run(
+                    cmd_bridge,
+                    cwd=pkg_dir if pkg_dir.is_dir() else REPO_ROOT,
+                    env=env_run,
+                    stdout=lf,
+                    stderr=subprocess.STDOUT,
+                )
+                if res_b.returncode != 0:
+                    rc = res_b.returncode
+        if rc == 0 and strict:
+            try:
+                audit_rows = json.loads(audit_json_path.read_text(encoding="utf-8"))
+                matched_declarations = {
+                    str(row.get("solution_declaration", ""))
+                    for row in audit_rows
+                    if row.get("status") == "PASS"
+                }
+                missing_matches = [
+                    theorem
+                    for theorem in comp_theorems
+                    if theorem not in matched_declarations
+                ]
+                if missing_matches:
+                    rc = 1
+                    sys.stderr.write(
+                        "fc-compare: missing upstream statement matches for "
+                        f"{pkg}: {missing_matches}\n"
+                    )
+                has_fc_target = any(
+                    sl.startswith("FormalConjectures.ErdosProblems.")
+                    for _, _, sl in targets
+                )
+                if rc == 0 and has_fc_target and not pairs:
+                    direct_fc_sol = any(
+                        row.get("status") == "PASS"
+                        and str(row.get("source", "")).startswith("FormalConjectures.ErdosProblems.")
+                        for row in audit_rows
+                    )
+                    direct_fc_stmt = False
+                    if fc_stmt_bridge_json.is_file():
+                        try:
+                            bridge_rows = json.loads(fc_stmt_bridge_json.read_text(encoding="utf-8"))
+                            direct_fc_stmt = any(
+                                r.get("status") == "PASS" for r in bridge_rows
+                            )
+                        except Exception:
+                            direct_fc_stmt = False
+                    if not (direct_fc_sol or direct_fc_stmt):
+                        rc = 1
+                        sys.stderr.write(
+                            f"fc-compare: no declaration in Solution or Statement matched upstream FormalConjectures target for {pkg}\n"
+                        )
+            except Exception as exc:
+                rc = 1
+                sys.stderr.write(f"fc-compare: invalid FC audit JSON for {pkg}: {exc}\n")
+        if rc != 0:
+            sys.stderr.write((ver_dir / "fc_compare.log").read_text(encoding="utf-8", errors="replace"))
+    finally:
+        fc_compare_file.unlink(missing_ok=True)
+        fc_stmt_bridge_json.unlink(missing_ok=True)
+        if temp_fc_olean is not None:
+            temp_fc_olean.unlink(missing_ok=True)
+    return rc
 
 
 def run_package_verification(
@@ -1151,6 +2400,7 @@ def run_package_verification(
     step_summary: str | None,
     *,
     force_no_sandbox: bool = False,
+    fc_lib_dir: str | None = None,
 ) -> int:
     pkg_dir = REPO_ROOT / pkg
     ver_dir = pkg_dir / ".verification"
@@ -1161,10 +2411,13 @@ def run_package_verification(
         "axioms.log",
         "comparator.log",
         "env_compare.log",
+        "fc_compare.log",
         "core_notation_audit.json",
+        "fc_statement_audit.json",
         "resource_usage.json",
         "comparator.protected.json",
         "VERIFICATION.json",
+        "VERIFICATION.md",
     ):
         stale_path = ver_dir / stale
         if stale_path.exists():
@@ -1255,6 +2508,7 @@ def run_package_verification(
 
         comp = json.loads((pkg_dir / "comparator.json").read_text(encoding="utf-8"))
         comp_theorems: list[str] = comp.get("theorem_names", [])
+        comp_defs: list[str] = comp.get("definition_names", [])
         olean_dir = pkg_dir / ".lake" / "build" / "lib" / "lean"
         t_env_cmp = time.time()
         if (olean_dir / "Challenge.olean").is_file() and (olean_dir / "Solution.olean").is_file():
@@ -1262,9 +2516,10 @@ def run_package_verification(
             rel_env_compare = ".verification/EnvCompare.lean"
             env_compare_file.write_text(ENV_COMPARE_LEAN, encoding="utf-8")
             try:
+                env_args = [f"--def:{d}" for d in comp_defs] + comp_theorems
                 with open(ver_dir / "env_compare.log", "w", encoding="utf-8") as ef:
                     res = subprocess.run(
-                        ["lake", "env", "lean", "--run", rel_env_compare] + comp_theorems,
+                        ["lake", "env", "lean", "--run", rel_env_compare] + env_args,
                         cwd=pkg_dir,
                         stdout=ef,
                         stderr=subprocess.STDOUT,
@@ -1275,6 +2530,13 @@ def run_package_verification(
             finally:
                 if env_compare_file.exists():
                     env_compare_file.unlink()
+            fc_rc = run_fc_statement_comparison(
+                pkg,
+                fc_lib_dir=fc_lib_dir,
+                strict=True,
+            )
+            if fc_rc != 0:
+                step_failed = True
         else:
             step_failed = True
         env_cmp_sec = round(time.time() - t_env_cmp, 3)
@@ -1403,6 +2665,235 @@ def aggregate_reports(
     return 0 if overall == "PASS" else 1
 
 
+def publish_verification_records(
+    records_dir: str,
+    *,
+    artifacts_dir: str = "",
+    packages: list[str] | None = None,
+    commit: str = "",
+    repo: str = "",
+    run_id: str = "",
+    force: bool = False,
+) -> int:
+    out_root = pathlib.Path(records_dir).resolve()
+    out_root.mkdir(parents=True, exist_ok=True)
+
+    source_ver_dirs: list[tuple[str, pathlib.Path, dict[str, Any]]] = []
+    if artifacts_dir:
+        art_root = pathlib.Path(artifacts_dir)
+        if art_root.is_dir():
+            for vjson in sorted(art_root.rglob("VERIFICATION.json")):
+                try:
+                    data = json.loads(vjson.read_text(encoding="utf-8"))
+                    pkg_name = data.get("package", "")
+                    if pkg_name:
+                        source_ver_dirs.append((pkg_name, vjson.parent, data))
+                except Exception:
+                    pass
+
+    if packages:
+        for raw_pkg in packages:
+            pkg_name = f"erdos-{raw_pkg}" if raw_pkg.isdigit() else raw_pkg
+            vdir = REPO_ROOT / pkg_name / ".verification"
+            vjson = vdir / "VERIFICATION.json"
+            if vjson.is_file():
+                try:
+                    data = json.loads(vjson.read_text(encoding="utf-8"))
+                    source_ver_dirs.append((pkg_name, vdir, data))
+                except Exception:
+                    pass
+
+    commit_sha = commit.strip()
+    if not commit_sha:
+        try:
+            commit_sha = subprocess.check_output(
+                ["git", "-C", str(REPO_ROOT), "rev-parse", "HEAD"],
+                text=True,
+                stderr=subprocess.DEVNULL,
+            ).strip()
+        except Exception:
+            commit_sha = "local"
+
+    for pkg_name, vdir, data in source_ver_dirs:
+        input_sha256 = data.get("input_sha256") or collect_input_sha256(REPO_ROOT / pkg_name)
+        state_sha256 = compute_package_state_sha256(pkg_name, input_sha256)
+        pkg_commit, commit_date, verification_id = resolve_package_commit_and_id(
+            pkg_name, data.get("commit") or commit_sha, state_sha256
+        )
+        data["state_sha256"] = state_sha256
+        data["verification_id"] = verification_id
+        data["verification_date"] = commit_date
+        data["package_commit"] = pkg_commit
+        if commit_sha and not data.get("commit"):
+            data["commit"] = commit_sha
+        if repo and not data.get("repository"):
+            data["repository"] = repo
+        if run_id and not data.get("run_id"):
+            data["run_id"] = run_id
+
+        pkg_records_dir = out_root / "records" / pkg_name
+        pkg_records_dir.mkdir(parents=True, exist_ok=True)
+        target_json = pkg_records_dir / f"{verification_id}.json"
+        target_md = pkg_records_dir / f"{verification_id}.md"
+
+        if not force and target_json.is_file() and target_md.is_file():
+            try:
+                existing_data = json.loads(target_json.read_text(encoding="utf-8"))
+                if existing_data.get("status") == "PASS":
+                    continue
+            except Exception:
+                pass
+
+        target_json.write_text(
+            json.dumps(data, indent=2) + "\n", encoding="utf-8"
+        )
+        src_md = vdir / "VERIFICATION.md"
+        if src_md.is_file():
+            md_txt = src_md.read_text(encoding="utf-8", errors="replace")
+            md_txt = re.sub(
+                r"^- \*\*Verification ID:\*\* `[^`]+`",
+                f"- **Verification ID:** `{verification_id}`",
+                md_txt,
+                count=1,
+                flags=re.M,
+            )
+            target_md.write_text(md_txt, encoding="utf-8")
+
+    # Rebuild cumulative root index.json and README.md across all records/erdos-*/*.json
+    prior_history: dict[str, list[str]] = {}
+    prior_index_path = out_root / "index.json"
+    if prior_index_path.is_file():
+        try:
+            prior_idx = json.loads(prior_index_path.read_text(encoding="utf-8"))
+            for k_pkg, v_entry in (prior_idx.get("packages") or {}).items():
+                hist = v_entry.get("verification_history")
+                if isinstance(hist, list):
+                    prior_history[k_pkg] = [str(x) for x in hist]
+        except Exception:
+            pass
+
+    all_latest: dict[str, dict[str, Any]] = {}
+    all_history_ids: dict[str, list[str]] = {}
+    all_commit_maps: dict[str, dict[str, str]] = {}
+    records_root = out_root / "records"
+    if records_root.is_dir():
+        for pkg_dir_rec in sorted(records_root.glob("erdos-*")):
+            if not pkg_dir_rec.is_dir():
+                continue
+            pname = pkg_dir_rec.name
+            by_vid: dict[str, dict[str, Any]] = {}
+            commit_to_vid: dict[str, str] = {}
+            for rjson in sorted(pkg_dir_rec.glob("*.json")):
+                try:
+                    rdata = json.loads(rjson.read_text(encoding="utf-8"))
+                    vid = rdata.get("verification_id") or rjson.stem
+                    by_vid[vid] = rdata
+                    for c_field in ("package_commit", "commit"):
+                        c_val = str(rdata.get(c_field, "")).strip()
+                        if len(c_val) == 40:
+                            commit_to_vid[c_val] = vid
+                except Exception:
+                    pass
+            if not by_vid:
+                continue
+            all_commit_maps[pname] = commit_to_vid
+            ordered_vids: list[str] = [
+                v for v in prior_history.get(pname, []) if v in by_vid
+            ]
+            for v in sorted(by_vid.keys()):
+                if v not in ordered_vids:
+                    ordered_vids.append(v)
+            # If the package exists in REPO_ROOT, prefer its current state verification_id as the latest
+            if (REPO_ROOT / pname).is_dir():
+                try:
+                    cur_inp = collect_input_sha256(REPO_ROOT / pname)
+                    cur_state = compute_package_state_sha256(pname, cur_inp)
+                    _, _, cur_vid = resolve_package_commit_and_id(pname, commit_sha, cur_state)
+                    if cur_vid in by_vid:
+                        ordered_vids = [v for v in ordered_vids if v != cur_vid] + [cur_vid]
+                except Exception:
+                    pass
+            all_history_ids[pname] = ordered_vids
+            for vid in ordered_vids:
+                rdata = by_vid[vid]
+                prev = all_latest.get(pname)
+                if prev is None or rdata.get("status") == "PASS" or prev.get("status") != "PASS":
+                    all_latest[pname] = rdata
+
+    def _pkg_sort_key(name: str) -> tuple[int, str]:
+        m = re.match(r"^erdos-(\d+)$", name)
+        return (int(m.group(1)) if m else 10**9, name)
+
+    sorted_pkg_names = sorted(all_latest.keys(), key=_pkg_sort_key)
+    index_entries: dict[str, Any] = {}
+    readme_rows: list[str] = [
+        "# Persistent Proof Verification Records",
+        "",
+        "This branch stores persistent human-readable (`records/erdos-<N>/<YYYY-MM-DD>-<commit8>.md`) and machine-readable (`records/erdos-<N>/<YYYY-MM-DD>-<commit8>.json`) verification certificates for standalone Lean 4 (`v4.35.0-rc2`, Mathlib `065356127b1dc0016f66b7283ce0ce2c4055aa55`) packages in this repository.",
+        "",
+        "| Package | Verification ID | Status | Package Commit | Theorems | Axioms | NanoDa | con-ron | Lean Kernel | FC Match | Certificate | Receipt |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for pname in sorted_pkg_names:
+        rec = all_latest[pname]
+        vid = rec.get("verification_id") or "unknown"
+        c_sha = rec.get("package_commit") or rec.get("commit") or "local"
+        c_short = c_sha[:8] if len(c_sha) >= 8 else c_sha
+        repo_val = rec.get("repository") or repo
+        c_cell = (
+            f"[`{c_short}`](https://github.com/{repo_val}/tree/{c_sha}/{pname})"
+            if repo_val and len(c_sha) == 40
+            else f"`{c_short}`"
+        )
+        fc_matches = rec.get("fc_statement_audit") or []
+        n_thm = len(rec.get("exported_theorems") or [])
+        n_ax = f"{rec.get('axiom_audit_count', 0)}/{rec.get('expected_axiom_audit_count', 0)}"
+        rel_rec_md = f"records/{pname}/{vid}.md"
+        rel_rec_json = f"records/{pname}/{vid}.json"
+        index_entries[pname] = {
+            "package": pname,
+            "verification_id": vid,
+            "state_sha256": rec.get("state_sha256", ""),
+            "project_name": rec.get("project_name", pname),
+            "status": rec.get("status", "UNKNOWN"),
+            "package_commit": c_sha,
+            "lean_toolchain": rec.get("lean_toolchain", EXPECTED_TOOLCHAIN),
+            "mathlib_revision": rec.get("mathlib_revision", EXPECTED_MATHLIB_REV),
+            "challenge_sha256": (rec.get("input_sha256") or {}).get("Challenge.lean", ""),
+            "solution_sha256": (rec.get("input_sha256") or {}).get("Solution.lean", ""),
+            "exported_theorems": rec.get("exported_theorems", []),
+            "declaration_lines": rec.get("declaration_lines", {}),
+            "kernels": rec.get("kernels", {}),
+            "fc_statement_matches": len(fc_matches),
+            "record_json": rel_rec_json,
+            "record_md": rel_rec_md,
+            "commits": all_commit_maps.get(pname, {}),
+            "verification_history": all_history_ids.get(pname, [vid]),
+        }
+        readme_rows.append(
+            f"| `{pname}` | `{vid}` | **{rec.get('status', 'UNKNOWN')}** | {c_cell} | `{n_thm}` | `{n_ax}` | "
+            f"`{rec.get('nanoda_accepted')}` | `{rec.get('con_ron_accepted')}` | "
+            f"`{rec.get('lean_kernel_accepted')}` | `{len(fc_matches)}` | "
+            f"[{vid}.md]({rel_rec_md}) | [{vid}.json]({rel_rec_json}) |"
+        )
+
+    master_index = {
+        "schema_version": 2,
+        "lean_toolchain": EXPECTED_TOOLCHAIN,
+        "mathlib_revision": EXPECTED_MATHLIB_REV,
+        "total_verified_packages": len(sorted_pkg_names),
+        "packages": index_entries,
+    }
+    (out_root / "index.json").write_text(
+        json.dumps(master_index, indent=2) + "\n", encoding="utf-8"
+    )
+    (out_root / "README.md").write_text(
+        "\n".join(readme_rows) + "\n", encoding="utf-8"
+    )
+    print(f"Published verification records for {len(source_ver_dirs)} package(s) (cumulative index: {len(sorted_pkg_names)} package(s)) to {out_root}")
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="cmd", required=True)
@@ -1429,12 +2920,31 @@ def main() -> int:
     p_ver = sub.add_parser("verify", help="Run package verification and emit summary")
     p_ver.add_argument("--package", required=True)
     p_ver.add_argument("--shared-packages", default="")
+    p_ver.add_argument("--fc-lib-dir", default="")
     p_ver.add_argument("--comparator", action="store_true")
     p_ver.add_argument("--no-sandbox", action="store_true")
     p_ver.add_argument("--commit", default="")
     p_ver.add_argument("--repo", default="")
     p_ver.add_argument("--run-id", default="")
     p_ver.add_argument("--step-summary", default="")
+
+    p_fcc = sub.add_parser("fc-compare", help="Compare Solution.olean against FormalConjectures or Statement.olean")
+    p_fcc.add_argument("--package", default="")
+    p_fcc.add_argument("--fc-lib-dir", default="")
+    p_fcc.add_argument("--fc-olean", default="")
+    p_fcc.add_argument("--sol-olean", default="")
+    p_fcc.add_argument("--out-json", default="")
+    p_fcc.add_argument("--pairs", nargs="*", default=[])
+    p_fcc.add_argument("--strict", action="store_true", help="Fail when upstream FC/Statement coverage is missing or incomplete")
+
+    p_pub = sub.add_parser("publish-records", help="Publish persistent verification records and cumulative index")
+    p_pub.add_argument("--records-dir", required=True)
+    p_pub.add_argument("--artifacts-dir", default="")
+    p_pub.add_argument("--packages", nargs="*", default=[])
+    p_pub.add_argument("--commit", default="")
+    p_pub.add_argument("--repo", default="")
+    p_pub.add_argument("--run-id", default="")
+    p_pub.add_argument("--force", action="store_true")
 
     p_fin = sub.add_parser("finalize", help="Ensure VERIFICATION.json exists after an interrupted job")
     p_fin.add_argument("--package", required=True)
@@ -1453,7 +2963,9 @@ def main() -> int:
     args = parser.parse_args()
 
     if args.cmd == "check":
-        pkgs = args.packages or all_packages()
+        pkgs = args.packages
+        if not pkgs or (len(pkgs) == 1 and pkgs[0].lower() == "all"):
+            pkgs = all_packages()
         all_errs: list[str] = []
         for pkg in pkgs:
             all_errs.extend(check_package_manifest(pkg))
@@ -1507,6 +3019,29 @@ def main() -> int:
             args.run_id,
             args.step_summary or None,
             force_no_sandbox=args.no_sandbox,
+            fc_lib_dir=args.fc_lib_dir or None,
+        )
+
+    if args.cmd == "fc-compare":
+        return run_fc_statement_comparison(
+            args.package,
+            fc_lib_dir=args.fc_lib_dir or None,
+            fc_olean=args.fc_olean or None,
+            sol_olean=args.sol_olean or None,
+            pairs=args.pairs or None,
+            out_json=args.out_json or None,
+            strict=args.strict,
+        )
+
+    if args.cmd == "publish-records":
+        return publish_verification_records(
+            args.records_dir,
+            artifacts_dir=args.artifacts_dir,
+            packages=args.packages,
+            commit=args.commit,
+            repo=args.repo,
+            run_id=args.run_id,
+            force=args.force,
         )
 
     if args.cmd == "finalize":
