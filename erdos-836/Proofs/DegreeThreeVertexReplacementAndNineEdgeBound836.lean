@@ -576,7 +576,7 @@ theorem fifteen_le_sum_vertexDegree_of_exists_inter_ne_of_r_eq_four
   omega
 
 /-- **Universal Edge Lower Bound (`9 ≤ H.card`) for 4-Uniform Non-2-Colourable Intersecting
-Hypergraphs Avoiding Pairwise Intersection `3` (Resolves Saved `next_task`)**:
+Hypergraphs Avoiding Pairwise Intersection `3`**:
 Every non-2-colourable intersecting 4-uniform hypergraph `H` avoiding pairwise intersection `3`
 has at least `9` hyperedges (`9 ≤ H.card`). -/
 theorem nine_le_card_of_r_eq_four_of_not_hasPairwiseIntersectionAtLeast_three_of_not_isTwoColorable

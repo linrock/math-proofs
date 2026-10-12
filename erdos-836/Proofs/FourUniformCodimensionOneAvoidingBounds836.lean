@@ -626,7 +626,7 @@ theorem card_activeVertices_eq_nine_or_ten_of_r_eq_four_of_card_eq_eight_of_not_
   omega
 
 /-- **Joint Universal Edge & Active-Vertex Lower Bound Theorem for 4-Uniform 3-Chromatic
-Intersecting Hypergraphs Avoiding Pairwise Intersection `3` (Resolves Saved `next_task`)**:
+Intersecting Hypergraphs Avoiding Pairwise Intersection `3`**:
 Every 3-chromatic intersecting 4-uniform hypergraph `H` avoiding pairwise intersection `3`
 satisfies `8 ≤ H.card`, `9 ≤ (activeVertices H).card`, and `3 * (activeVertices H).card ≤ H.card * 4`. -/
 theorem eight_le_card_and_nine_le_card_activeVertices_of_r_eq_four_of_not_hasPairwiseIntersectionAtLeast_three

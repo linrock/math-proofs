@@ -1214,9 +1214,8 @@ set_option maxRecDepth 20000
 /-!
 # Erdős Problem #836: Alon's Minimum-Degree Transversal Bound & Lovász's `r = 3` Classification
 
-This module resolves the saved `next_task` for Erdős Problem #836:
-> Combine Alon's minimum-degree transversal bound with Lovász's `r = 3` intersecting hypergraph
-> classification.
+This module combines Alon's minimum-degree transversal bound with Lovász's `r = 3` intersecting
+hypergraph classification.
 
 ## Main Universal Results (`∀`)
 

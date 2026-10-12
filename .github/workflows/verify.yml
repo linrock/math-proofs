@@ -117,7 +117,7 @@ jobs:
           GITHUB_RUN_ID_VAL: ${{ github.run_id }}
           FC_LEAN_LIB_DIR: ${{ github.workspace }}/fc-shared-lib
           FC_COMMIT: ${{ env.FC_COMMIT }}
-          FC_GIT_DIR: ${{ github.workspace }}/../formal-conjectures
+          FC_GIT_DIR: ${{ runner.temp }}/formal-conjectures
         run: |
           mkdir -p "$(dirname "$FC_GIT_DIR")" "$FC_LEAN_LIB_DIR"
           mkdir -p "$FC_LEAN_LIB_DIR/FormalConjectures/ErdosProblems"
