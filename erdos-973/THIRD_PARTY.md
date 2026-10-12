@@ -16,6 +16,4 @@ their own upstream licenses and commit pins.
 The locally authored material in this repository is Copyright 2026 Linmiao Xu and released under the Apache-2.0
 license in `LICENSE`, matching `formalization.yaml`. This
 grant does not claim authorship of prior mathematics or change the licenses
-of third-party sources. `source-manifest.json` binds every included proof
-module to its research origin and hash. It is provenance, not a proof
-certificate.
+of third-party sources.

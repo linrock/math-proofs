@@ -33,9 +33,6 @@ conjecture source, not an imported proof.
   retained in `third_party/goldbach_master_433.patch`. The selected Erdős 689 result does not use the final almost-all
   Goldbach theorem.
 
-Every `Proofs/` module has an individual origin and SHA-256 binding in
-`source-manifest.json`. These are provenance hashes, not proof certificates.
-
 The completed Erdős 689 proof's transitive axiom audit contains only `propext`,
 `Classical.choice`, and `Quot.sound`, with no `sorryAx`. Local Comparator,
 NanoDa, and Lean kernel checks have passed. [BUILD.md](BUILD.md) documents

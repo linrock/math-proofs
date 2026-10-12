@@ -15,7 +15,7 @@ Problem 1139 asks whether
 
 $$\limsup_{k \to \infty} \frac{u_{k+1} - u_k}{\log(k + 1)} = \infty.$$
 
-In [Erdős #689](../erdos-689/README.md), one residue class per prime $p \le y$
+In [Erdős #689](https://www.erdosproblems.com/689), one residue class per prime $p \le y$
 suffices to cover every integer in $[1, y]$ at least twice, which via the
 Chinese Remainder Theorem produces an interval $[N + 1, N + y]$ of consecutive
 integers with $\Omega(N + h) \ge 3$ at height $N \asymp \prod_{p \le y} p = e^{(1 + o(1)) y}$

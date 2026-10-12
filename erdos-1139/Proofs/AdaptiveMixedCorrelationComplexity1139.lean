@@ -37,7 +37,7 @@ fiber
 
 where `a' c = a + B k` and `gcd(a', B) = 1`.
 
-An adversarial search using the repository-pinned `.venv/bin/python` exhaustively
+An exhaustive search
 checked 41,548 actual paired local systems: supports `{2}`, `{3}`, `{2,3}`;
 physical scales `3,5,7`; deterministic fixed-stride samples of at most 28 genuine
 `(b,rho)` outcomes per case; every retained same-type distinguished pair; and

@@ -82,10 +82,8 @@ The independently reproduced Formal Conjectures statement retains its
 Apache-2.0 notice in `Challenge.lean`, `Solution.lean`, and
 `Proofs/Statement973.lean`, with the accompanying
 [license text](third_party/FORMAL-CONJECTURES-LICENSE.txt). The exact statement
-revision is recorded in Challenge. Local proof-file hashes are recorded in
-[source-manifest.json](source-manifest.json). Its research paths record
-provenance and are not build dependencies. See [THIRD_PARTY.md](THIRD_PARTY.md)
-for the remaining attribution boundary.
+revision is recorded in Challenge. See [THIRD_PARTY.md](THIRD_PARTY.md) for the
+remaining attribution boundary.
 
 ## Reproduce and submission status
 

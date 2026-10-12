@@ -63,8 +63,7 @@ The final proof supplies every hypothesis used for the covering conclusion.
 
 The analytic dependencies include a compatibility port of Principia's
 Goldbach master, PrimeNumberTheoremAnd, and other sources identified by exact
-revision and file hash in [source-manifest.json](source-manifest.json) and
-[THIRD_PARTY.md](THIRD_PARTY.md). See
+revision in [THIRD_PARTY.md](THIRD_PARTY.md). See
 [BUILD.md](BUILD.md) for the endpoint axiom audit and Palomar verification
 requirements.
 
