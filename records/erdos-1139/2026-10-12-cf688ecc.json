@@ -1,0 +1,550 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-12-cf688ecc",
+  "verification_date": "2026-10-12",
+  "state_sha256": "481d838fefb2240cc44d608d1ca8fdf457ba38cba8f7140d23450bbc77553078",
+  "package": "erdos-1139",
+  "project_name": "Erd\u0151s 1139: large gaps between almost-primes",
+  "package_commit": "cf688ecc2fec705fb1f0b81e7736c424c8987387",
+  "commit": "2d7d18795ab7859df8099f480849f14898a0a9c4",
+  "repository": "linrock/math-proofs",
+  "run_id": "38357262121",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 8526,
+    "lines": 192,
+    "sha256": "b5a5cef06657f23eecadfbc9e673dcfb818e0a32a277ea181d65ae8eae410823",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos1139.Palomar.uniform_maximal_gap",
+    "Erdos1139.Palomar.limsup_strictly_gt_one",
+    "Erdos1139.Palomar.cover_crt_interval",
+    "Erdos1139.Palomar.seven_square_crt",
+    "Erdos1139.Palomar.primorial_log_limit",
+    "Erdos1139.Palomar.limsup_top_of_sparse",
+    "Erdos1139.Palomar.core_classification"
+  ],
+  "declaration_lines": {
+    "Erdos1139.Palomar.uniform_maximal_gap": {
+      "solution_line": 98,
+      "challenge_line": 124
+    },
+    "Erdos1139.Palomar.limsup_strictly_gt_one": {
+      "solution_line": 109,
+      "challenge_line": 135
+    },
+    "Erdos1139.Palomar.cover_crt_interval": {
+      "solution_line": 124,
+      "challenge_line": 147
+    },
+    "Erdos1139.Palomar.seven_square_crt": {
+      "solution_line": 135,
+      "challenge_line": 158
+    },
+    "Erdos1139.Palomar.primorial_log_limit": {
+      "solution_line": 143,
+      "challenge_line": 166
+    },
+    "Erdos1139.Palomar.limsup_top_of_sparse": {
+      "solution_line": 150,
+      "challenge_line": 173
+    },
+    "Erdos1139.Palomar.core_classification": {
+      "solution_line": 183,
+      "challenge_line": 184
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos1139.Palomar.core_classification",
+    "Erdos1139.Palomar.cover_crt_interval",
+    "Erdos1139.Palomar.limsup_strictly_gt_one",
+    "Erdos1139.Palomar.limsup_top_of_sparse",
+    "Erdos1139.Palomar.primorial_log_limit",
+    "Erdos1139.Palomar.seven_square_crt",
+    "Erdos1139.Palomar.uniform_maximal_gap"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 10,
+  "expected_axiom_audit_count": 10,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos1139.Palomar.uniform_maximal_gap",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1139.Palomar.limsup_strictly_gt_one",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1139.Palomar.cover_crt_interval",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1139.Palomar.seven_square_crt",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1139.Palomar.primorial_log_limit",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1139.Palomar.limsup_top_of_sparse",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1139.Palomar.erdos_1139_of_gtz",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1139.Palomar.prime_ap_of_gtz",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1139.Palomar.core_classification",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1139.Palomar.statement_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Erdos1139.Palomar.FixedParameterCoreDeficientType",
+      "kind": "def",
+      "declaration": "def Erdos1139.Palomar.FixedParameterCoreDeficientType (y z h : Nat) : Prop :=\n  fun y z h =>\n  Or (Eq h 1)\n    (Or (Nat.Prime h)\n      (Or\n        (Exists fun p =>\n          Exists fun q =>\n            And (Nat.Prime p)\n              (And (Nat.Prime q) (And (LT.lt p z) (And (LT.lt (HDiv.hDiv y z) q) (Eq h (HMul.hMul p q))))))\n        (Exists fun p =>\n          Exists fun e =>\n            And (Nat.Prime p)\n              (And (LT.lt z p) (And (LE.le p (HDiv.hDiv y z)) (And (LE.le 2 e) (Eq h (HPow.hPow p e))))))))"
+    },
+    {
+      "name": "Erdos1139.Palomar.fixedParameterCoreSquared",
+      "kind": "def",
+      "declaration": "def Erdos1139.Palomar.fixedParameterCoreSquared (y z : Nat) : Finset Nat :=\n  fun y z => Inter.inter (Nat.primesLE z) (Erdos1139.Palomar.fixedParameterCorePrimes y z)"
+    },
+    {
+      "name": "Erdos1139.Palomar.fixedParameterCorePrimes",
+      "kind": "def",
+      "declaration": "def Erdos1139.Palomar.fixedParameterCorePrimes (y z : Nat) : Finset Nat :=\n  fun y z => Nat.primesLE (HDiv.hDiv y z)"
+    },
+    {
+      "name": "Erdos1139.Palomar.deficientTargets",
+      "kind": "def",
+      "declaration": "def Erdos1139.Palomar.deficientTargets (y : Nat) (P squared : Finset Nat) (a : Nat \u2192 Nat) : Finset Nat :=\n  fun y P squared a =>\n  Finset.filter\n    (fun h =>\n      LT.lt\n        (HAdd.hAdd (Finset.card (Finset.filter (fun p => Nat.ModEq p (a p) h) P))\n          (Finset.card (Finset.filter (fun p => Nat.ModEq (HPow.hPow p 2) (a p) h) squared)))\n        2)\n    (Finset.Icc 1 y)"
+    },
+    {
+      "name": "Erdos1139.Palomar.HasSublinearUnrestrictedConductorCovers",
+      "kind": "def",
+      "declaration": "def Erdos1139.Palomar.HasSublinearUnrestrictedConductorCovers : Prop :=\n  \u2200 (\u03b5 : Real),\n  LT.lt 0 \u03b5 \u2192\n    \u2200 (Y\u2080 : Nat),\n      Exists fun y =>\n        Exists fun P =>\n          Exists fun squared =>\n            Exists fun a =>\n              And (LE.le Y\u2080 y)\n                (And (Erdos1139.Palomar.UnrestrictedPrimeSquareDoubleCover y P squared a)\n                  (LE.le (Real.log \u2191(Finset.prod P fun p => Erdos1139.Palomar.selectedPrimePower squared p))\n                    (HMul.hMul \u03b5 \u2191y)))"
+    },
+    {
+      "name": "Erdos1139.Palomar.selectedPrimeExponent",
+      "kind": "def",
+      "declaration": "def Erdos1139.Palomar.selectedPrimeExponent (squared : Finset Nat) (p : Nat) : Nat :=\n  fun squared p => ite (Membership.mem squared p) 2 1"
+    },
+    {
+      "name": "Erdos1139.Palomar.selectedPrimePower",
+      "kind": "def",
+      "declaration": "def Erdos1139.Palomar.selectedPrimePower (squared : Finset Nat) (p : Nat) : Nat :=\n  fun squared p => HPow.hPow p (Erdos1139.Palomar.selectedPrimeExponent squared p)"
+    },
+    {
+      "name": "Erdos1139.Palomar.UnrestrictedPrimeSquareDoubleCover",
+      "kind": "def",
+      "declaration": "def Erdos1139.Palomar.UnrestrictedPrimeSquareDoubleCover (y : Nat) (P squared : Finset Nat) (a : Nat \u2192 Nat) : Prop :=\n  fun y P squared a =>\n  And (\u2200 (p : Nat), Membership.mem P p \u2192 Nat.Prime p)\n    (And (LE.le squared P)\n      (\u2200 (h : Nat),\n        Membership.mem (Finset.Icc 1 y) h \u2192\n          LE.le 2\n            (HAdd.hAdd (Finset.card (Finset.filter (fun p => Nat.ModEq p (a p) h) P))\n              (Finset.card (Finset.filter (fun p => Nat.ModEq (HPow.hPow p 2) (a p) h) squared)))))"
+    },
+    {
+      "name": "Erdos1139.Palomar.uniform_maximal_gap",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1139.Palomar.uniform_maximal_gap :\n  Exists fun c =>\n    And (LT.lt 1 c)\n      (Filter.Eventually\n        (fun X =>\n          Exists fun N =>\n            Exists fun y =>\n              And (LT.lt 0 N)\n                (And (LE.le (HAdd.hAdd N y) X)\n                  (And (LE.le (HMul.hMul c (Real.log \u2191X)) \u2191y)\n                    (\u2200 (h : Nat),\n                      Membership.mem (Finset.Icc 1 y) h \u2192\n                        LE.le 3 (DFunLike.coe ArithmeticFunction.cardFactors (HAdd.hAdd N h))))))\n        Filter.atTop)"
+    },
+    {
+      "name": "Erdos1139.Palomar.limsup_strictly_gt_one",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1139.Palomar.limsup_strictly_gt_one :\n  Exists fun A =>\n    And (LT.lt 1 A)\n      (LE.le (Real.toEReal A)\n        (Filter.limsup\n          (fun k =>\n            HDiv.hDiv\n              (HSub.hSub\n                (Real.toEReal\n                  \u2191(Nat.nth (fun n => And (LT.lt 0 n) (LE.le (DFunLike.coe ArithmeticFunction.cardFactors n) 2))\n                      (HAdd.hAdd k 1)))\n                (Real.toEReal\n                  \u2191(Nat.nth (fun n => And (LT.lt 0 n) (LE.le (DFunLike.coe ArithmeticFunction.cardFactors n) 2)) k)))\n              (Real.toEReal (Real.log (HAdd.hAdd (\u2191k) 1))))\n          Filter.atTop))"
+    },
+    {
+      "name": "Erdos1139.Palomar.cover_crt_interval",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1139.Palomar.cover_crt_interval {y : Nat} {P squared : Finset Nat} {a : Nat \u2192 Nat}\n  (hcover : Erdos1139.Palomar.UnrestrictedPrimeSquareDoubleCover y P squared a) :\n  Exists fun N =>\n    And (LT.lt (Finset.prod P fun p => Erdos1139.Palomar.selectedPrimePower squared p) N)\n      (And (LE.le N (HMul.hMul 2 (Finset.prod P fun p => Erdos1139.Palomar.selectedPrimePower squared p)))\n        (\u2200 (h : Nat),\n          Membership.mem (Finset.Icc 1 y) h \u2192 LE.le 3 (DFunLike.coe ArithmeticFunction.cardFactors (HAdd.hAdd N h))))"
+    },
+    {
+      "name": "Erdos1139.Palomar.seven_square_crt",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1139.Palomar.seven_square_crt :\n  And (LT.lt (HPow.hPow 7 2) 40323)\n    (And (LE.le 40323 (HAdd.hAdd (HPow.hPow 7 2) 44100))\n      (\u2200 (p : Nat),\n        Membership.mem (Insert.insert 2 (Insert.insert 3 (Insert.insert 5 (Singleton.singleton 7)))) p \u2192\n          Dvd.dvd (HPow.hPow p 2) (HAdd.hAdd 40323 (ite (Eq p 2) 1 (ite (Eq p 3) 6 (ite (Eq p 5) 2 4))))))"
+    },
+    {
+      "name": "Erdos1139.Palomar.primorial_log_limit",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1139.Palomar.primorial_log_limit :\n  Filter.Tendsto (fun y => HDiv.hDiv (Real.log \u2191(primorial y)) \u2191y) Filter.atTop (nhds 1)"
+    },
+    {
+      "name": "Erdos1139.Palomar.limsup_top_of_sparse",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1139.Palomar.limsup_top_of_sparse (hsublinear : Erdos1139.Palomar.HasSublinearUnrestrictedConductorCovers) :\n  Eq\n    (Filter.limsup\n      (fun k =>\n        HDiv.hDiv\n          (HSub.hSub\n            (Real.toEReal\n              \u2191(Nat.nth (fun n => And (LT.lt 0 n) (LE.le (DFunLike.coe ArithmeticFunction.cardFactors n) 2))\n                  (HAdd.hAdd k 1)))\n            (Real.toEReal\n              \u2191(Nat.nth (fun n => And (LT.lt 0 n) (LE.le (DFunLike.coe ArithmeticFunction.cardFactors n) 2)) k)))\n          (Real.toEReal (Real.log (HAdd.hAdd (\u2191k) 1))))\n      Filter.atTop)\n    Top.top"
+    },
+    {
+      "name": "Erdos1139.Palomar.core_classification",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1139.Palomar.core_classification {y z h : Nat} (parameter_positive : LT.lt 0 z)\n  (square_threshold : LE.le z (HDiv.hDiv y z)) :\n  Iff\n    (Membership.mem\n      (Erdos1139.Palomar.deficientTargets y (Erdos1139.Palomar.fixedParameterCorePrimes y z)\n        (Erdos1139.Palomar.fixedParameterCoreSquared y z) fun x => 0)\n      h)\n    (And (Membership.mem (Finset.Icc 1 y) h) (Erdos1139.Palomar.FixedParameterCoreDeficientType y z h))"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos1139.erdos_1139",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.1139",
+      "solution_declaration": "Erdos1139.Challenge.statement",
+      "match_mode": "resolves_open_answer_true_iff"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "e318903862396f96de3df57264e0158682b952fd3fb53ac23d876413e7b30f71"
+  },
+  "input_sha256": {
+    "Challenge.lean": "b5a5cef06657f23eecadfbc9e673dcfb818e0a32a277ea181d65ae8eae410823",
+    "Solution.lean": "d4181b078a3eaff93f3a1cfc10901ecc2abaa633cb66be0f9506893b67e6b483",
+    "AxiomAudit.lean": "d7976d262d726069bf123a957987e8e59056d1ce0ff140e09dd318be17ace37d",
+    "Statement.lean": "9e43e91a926a03d05ae7c34ada1ea0fd3aca009176a813d38ed3773482031ca1",
+    "comparator.json": "25a08a1106d15b8982eb83e1c167fa8abb7281128e14c25c18178a908bb56c13",
+    "formalization.yaml": "b616210b864ebf5172028992a4a00a318a17cdfb987b2f3712d5e244ac629d3b",
+    "lakefile.toml": "0466cc4ab7c1dd4f2495d836401886f64ac0c0bcfde42775f984c2453dab3deb",
+    "lake-manifest.json": "91e9b9454c53c83c58fd5c2a5ed1fcdfad61af57b8785849bdb772802b37bd46",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "cdffb305f0befaa9194ef6e8cb1c60c4e2edcd63e5e2c156b32a73ac4e430ee8",
+    "Proofs/ActualCenterCouplingFourier433.lean": "3631146a1ef08b9df08964dbf287c596694ec7f4b3644acbdaf1be6a462cfd30",
+    "Proofs/ActualConductorDedupCompletion433.lean": "c8296887ee43daee65893be71dd92dbf6d49502d75f02853c43bf713de82b3c9",
+    "Proofs/ActualFinalCenterReduction433.lean": "0193b57a583203c02c076ea605d541782b68cdc93fcf7ccb70f8341425b2f8c6",
+    "Proofs/ActualLabelAllPairTransfer433.lean": "8f658ef1ed8add70cbbbb65cdd33992486f0392911958a7b7424d72b6fa9698d",
+    "Proofs/ActualLabelCanonicalSeeds433.lean": "aad6699809afceeffe21006debcbf7689209c73ad2dbf5c2b3a108b3422fe1df",
+    "Proofs/ActualLabelCanonicalSieve433.lean": "1e3fae7cbbd91afff886192f60e2ececefe534e91a12c3e3e606860c34cac74f",
+    "Proofs/ActualLabelFixedModulus433.lean": "b8f332052cdaa9290501f024977a6dbe7e2a46ffbdd4e3b002cb4c24a9937926",
+    "Proofs/ActualLabelLocalCardBridge433.lean": "f2c7f0a4de319b699903c899708aeef0ba3135c967e7b9450f6523c114fd126c",
+    "Proofs/ActualLabelSieveMainTerm433.lean": "df071d1eb614a4cf195f09fd87b93a8a34114b247056977974502ed434bbd3c1",
+    "Proofs/ActualLabelSummedCoefficient433.lean": "994602a97fe775ca9508ad2cadcc803312f4baf6b7c4e903411fb230fed14061",
+    "Proofs/ActualLabelSummedSieve433.lean": "24f4d6fde89408b6a420c5ab876c7a46cd1dbd89f13732b2c992cade75b82800",
+    "Proofs/ActualLeftVertexDegree433.lean": "3dee2197ec3e0fc09bcafc220bea31db348479c62337a6e4a8844d9492e32cf8",
+    "Proofs/ActualLeftVertexFinal433.lean": "afd2bd374a40940210e51e9b0a4ce442397146734ba3491378cb7ec7c9885821",
+    "Proofs/ActualLeftVertexMajorCellModel433.lean": "391c22ade6de44ae580daa1b97065f96e94b31104a363a8a51a257c8bbd089ed",
+    "Proofs/ActualLeftVertexMajorCubicModel433.lean": "d8d2facb577a35f62a19053c0c18d79faea41cc7f145477ee751410a9351104b",
+    "Proofs/ActualLeftVertexMajorExceptional433.lean": "59dff3ffbfab4672b8a744e47697975d5c8ee58994cdc952672a87f520dbea13",
+    "Proofs/ActualLeftVertexMajorFullApprox433.lean": "8720a82224e071ea5837139d267ecc599b0279063d34c0826664a1b31564001c",
+    "Proofs/ActualLeftVertexMajorIntegrated433.lean": "4179530df9260bd0554ce1cb53383926469aa554ee8d440ff09b5141101fe917",
+    "Proofs/ActualLeftVertexMajorIntegration433.lean": "9bf105d3b2dcf7a696d5e4550ba80a27d578550008637d4313ab40895f4362f3",
+    "Proofs/ActualLeftVertexMajorOnlyCovering433.lean": "ea8779a5fe57bb2c82030344d0e678c95cb2a3cd1484378e7767e66129f3e55b",
+    "Proofs/ActualLeftVertexMajorSW433.lean": "98fa1857b38d469f9c8bac2be4492b45fa59c829349fad02d9b0cbf9ccc92c6e",
+    "Proofs/ActualLeftVertexMajorSupport433.lean": "7e6287a8b666d2723d5ce5a5bfd604447771eca64ffa9fec3f5128c5c0ee758f",
+    "Proofs/ActualLeftVertexSelectors433.lean": "2d028b192891c8c8985e4a714f422c806299c2e703d490e26965c255c324f401",
+    "Proofs/ActualLeftVertexSummed433.lean": "e2e2df94e4e039b57d31949b0e6c5d7817ef8941624ffb27da91173c98e1ca52",
+    "Proofs/ActualMajorArcBoundary433.lean": "e8f935fe404ee7f7e05738a2db0c7e8808bacdf3c8d897c8216a0aaa8db13e91",
+    "Proofs/ActualMajorArcCenterAssembly433.lean": "190b34709763d4a2aae211b7fedcc776ae270f82504d90874a73175f52688c92",
+    "Proofs/ActualMajorArcCenterConductor433.lean": "a8225cc4bcf1bcfa889f0ebd7261fb0c92767c2dce17e0c342e891ac65ea8b53",
+    "Proofs/ActualMajorArcCenterPhaseBridge433.lean": "b5f170a8427a915dc383d77d5c91dd7a624de896796e65fc256529f42d0ddd2a",
+    "Proofs/ActualMajorArcCenterReduction433.lean": "995f1e3cc6a055b036cc58d5d98115eb6ea621556327b91647b04115663167f7",
+    "Proofs/ActualMajorArcCenterReindex433.lean": "2de2c701f5a758c5665bac140b26d2979782301ad53862a9672ba0da57776df5",
+    "Proofs/ActualMajorArcCorrectedModel433.lean": "302f441cab8553aabb35a36590b72a432d5f1fa17798073faf935d788ff81381",
+    "Proofs/ActualMajorArcExceptionClosure433.lean": "0f06d354a3ab2aef1e1d34c5eff126858a440a4e6d3d22d6a972a8cd56b76935",
+    "Proofs/ActualMajorArcFinalCoupling433.lean": "e1844ac4a6737c7662dcb1ba13fd4de31b2c548a37c5bfd14c19088a4ad44567",
+    "Proofs/ActualMajorArcFinalFourZero433.lean": "9a52a19a3c0fedb952520803f59c0b8c4bf2ebb36934961c5c96dc6823f20c63",
+    "Proofs/ActualMajorArcFinalPartition433.lean": "31e1e8e8027661aa834e382e6261886224fb1ecfe7cfe83f5420871a91b69a76",
+    "Proofs/ActualMajorArcGlobalErrorAssembly433.lean": "44cd91557bd07fdb0636040cf21bb5092922394a1d19f1e43bd7fbd3c37eb256",
+    "Proofs/ActualMajorArcGlobalStrata433.lean": "edf964f7b811303a880b75a99065acf0a3a5c56a9b1116ffa118aa48e5cc52c6",
+    "Proofs/ActualMajorArcInterior433.lean": "02cee7bfea51fa1e1879d83f2558f84782de4a9c1aa7941016af4f539bd005be",
+    "Proofs/ActualMajorArcParityCRT433.lean": "1be2ee8e5998febc99e41f18af8ccff678219d9273adf4524bbf671606a08856",
+    "Proofs/ActualMajorArcPositivityArchimedean433.lean": "afad72a0e00059b86c30aa3a1ccf988c4b918124e008737c3d3fb8bcedaec995",
+    "Proofs/ActualMajorArcPositivityComposite433.lean": "f37a81ec514aea0c874747fb22e0cc5d98584426c709238b8ed9a8c1e75861f6",
+    "Proofs/ActualMajorArcPositivityError433.lean": "c998e12b91801c34f036911aca25548941dea9b0cc9c44d868702dfd3f9e8fec",
+    "Proofs/ActualMajorArcPositivityFinal433.lean": "8137fde1475dbebd93f9c6e06f80ef8837bd5ae946fefd72b95b907abf82bb54",
+    "Proofs/ActualMajorArcPositivityLocalFactors433.lean": "685d5eab885ac318a6956301b5a6a7c6ffdd918321e7d12e37eebfa252c37412",
+    "Proofs/ActualMajorArcPositivityPhase433.lean": "62ab12faa86afc3f7ff09d276d2684bf3447cf7f333124ae7fc246c44bfcf4df",
+    "Proofs/ActualMajorArcPositivityTail433.lean": "5a895c9a3a227efbe7c82296148b858d7d7bb40cac5c412518965070ed3994d4",
+    "Proofs/ActualMajorArcPositivityTruncation433.lean": "0e8e86d0ab58f534d5ff95323abf5cc4d7af9b1eb55f08cb8633f760486c8840",
+    "Proofs/ActualMajorArcPrimeMinor433.lean": "32fa857be5361e1a8cdbdeede99d9e8ac5ecafc26b7720dc0d7d0ab83cb6b6c4",
+    "Proofs/ActualMajorArcSignedTailAssembly433.lean": "4a4c91a7e80a4ebfedb37ce5bdb9659f582a0b355b2e8f024624de80c5141880",
+    "Proofs/ActualMajorArcSupportSelectorBridge433.lean": "e3aafbd7d78949a1e24c79eceb106feb826f3debb4eef27c56ab4eca8d3e7b2f",
+    "Proofs/ActualMajorArcWeightedBridge433.lean": "7e55b7a3e94a0cf0a6d97a396a422c9e3475964b6e7334a083dfc8a5904cee54",
+    "Proofs/ActualOutsideCrtCoupling433.lean": "01d9730121a8da031ab7026f2cfaaa4b020f07a7cc19093a1b8f406146a9124e",
+    "Proofs/ActualPrimeCorrelationBridge1139.lean": "1208a21a6b62c4b0d1d8ced004f216ecd4bfb4a474190231e8e4ae9524df045a",
+    "Proofs/ActualRightCoefficientAssembly433.lean": "22a7997d24f241717fa93020617649d47f6d4684b1b8a558301946ce65af3025",
+    "Proofs/ActualRightVertexDegree433.lean": "5571ead29bc303ef441a7f5a1fed429e1856cd77478491bccbf6fc3bf70ea089",
+    "Proofs/ActualRightVertexFinal433.lean": "f06afa2fa85db883de27c42fb0da54430881c8167edb33ab80e7fea8dac18dfe",
+    "Proofs/ActualRightVertexFinalCovering433.lean": "9e42fa1b955b9e661c39baab4a703a7c52ab88d9b7d5a22036cbc34ecde84feb",
+    "Proofs/ActualRightVertexLeftAudit433.lean": "f8acbedf3b7929709b809388f6ed5d3498ed74919016493b96ca725b7899be80",
+    "Proofs/ActualRightVertexLeftAuditBounds433.lean": "6693c1deb87cbb11894ad4c55e44ea11ee6228200ad4c68b35fff4c1c779f564",
+    "Proofs/ActualRightVertexLeftAuditErrors433.lean": "c7424198a24d273173e2e0a48796da2bdf7ca30f65a7f1cc6134d38a5c673538",
+    "Proofs/ActualRightVertexMajorConductor433.lean": "91bcb1d6c0142cae61e2647acf4c00f685dcacbda09e548d6f3d54bdfd4b22a5",
+    "Proofs/ActualRightVertexMajorMixedConductor433.lean": "b0ab3da654b851fd9283d8e8d90a0d1078c29198be8961c371979c2c1e64058e",
+    "Proofs/ActualRightVertexMajorSingularAssembly433.lean": "7196611b1f6367061b00f25ac2350f971fdc8a6fda54d218acf2b8b3ec632c67",
+    "Proofs/ActualRightVertexMajorSquarefreeSupport433.lean": "25f6c455ad0347f61c6e25e0c23708d0b00a47d90ee2e5e6f2e20370f808e332",
+    "Proofs/ActualRightVertexMajorUnitOrbit433.lean": "256401e616f15f8b994fc981f9ce96cdf4ea79f658e90f3f32d43ced825884e1",
+    "Proofs/ActualRightVertexReduction433.lean": "ca572b54521f8b8a7650e0285d2cdf6291037d75223ffec4353b51c231905a5e",
+    "Proofs/ActualRightVertexSelectors433.lean": "b48e2b41132bba0d0ca4c13cea48307330ca2fcd2901fd0949eb3a30c462af04",
+    "Proofs/ActualRightVertexSummed433.lean": "afca859044e078c52ea06b0b918e2bdecbf3d0d9237c36518c8a9a804e1ea22c",
+    "Proofs/ActualSingularTailCompletion433.lean": "44c71cf1fe837af9df03c0301cc6ad856dc2d6b0c2df483665b6368abd79bef5",
+    "Proofs/AdaptiveHarmonicShellBounds1139.lean": "649c0ce273bd61bebc6ada72790b0b677210dea46b726ca5b8198d3230ab6f96",
+    "Proofs/AdaptiveMertens1139.lean": "5020f5fd0e278b6753816c83bde1e1323bda563f3ba6cf874fcde7456c5d1b13",
+    "Proofs/AdaptiveMixedActualLogWeightBounds1139.lean": "8dfb16f31cdaa37b54dd165f0012619e29516ac0f09e1e1fb47c4647f8752c97",
+    "Proofs/AdaptiveMixedActualPrimePowerAsymptotics1139.lean": "89355f20989f909b8bdc8575e272039dbee2f6a238846258e4948e2d98672098",
+    "Proofs/AdaptiveMixedActualPublishedWeightedBridge1139.lean": "ab8655451e5a917293eda0a99c432aefb7fbd7aec1e49c2fd91ccd047ece3a10",
+    "Proofs/AdaptiveMixedAffineComplexity1139.lean": "6128386f99b838571f668e06a28d27bf212b269fe7d59427693fee1a94132104",
+    "Proofs/AdaptiveMixedAffinePrimePowerFibers1139.lean": "6eb40e58e598dc5769d1ed78972bfac56a2d3461fe8d5f767c43ce939b3e95a7",
+    "Proofs/AdaptiveMixedCorrelationComplexity1139.lean": "b32038152047181c0fc1dddbe9133177c6f59016a91d596dad27866ec5cfa74d",
+    "Proofs/AdaptiveMixedLogWeightNormalization1139.lean": "52cf70e879b613f815a873bd762942271c33c8002dc5256caa8d77c4b64605f0",
+    "Proofs/AdaptiveMixedPairedActualLogWeightBounds1139.lean": "eac1a531df77e7853def70f76f8fda90bd295a4fd0456576feeccfe60dd3d172",
+    "Proofs/AdaptiveMixedPairedPrimePowerFibers1139.lean": "26d46f9580dca67ceb80ed119aa8724beb42995249503f739f48ac44930f7985",
+    "Proofs/AdaptiveMixedPairedSingularPositive1139.lean": "30f87c5905b522ebab99ecb0ba6662ab20c6b6fbf61cd261403f6aeca5c2648f",
+    "Proofs/AdaptiveMixedPatternDistribution1139.lean": "9ee91ee4ee96ec35395a5aac44fde73c412ec9619aa8d0aac68ba98e946dc479",
+    "Proofs/AdaptiveMixedPrimePowerNegligible1139.lean": "8ed6d5b024fb4966ea3d4d09ffe5d4deacb527b28e5717aa4e418db52cd3e107",
+    "Proofs/AdaptiveMixedPublishedGTZCapstone1139.lean": "3152903ed8b81ffebccfb0c75f8b517bbe13e3168378f83ec7e81833b2aecb8b",
+    "Proofs/AdaptiveMixedSharedTargetPrimePowerFibers1139.lean": "bb975c2e8c8c2e7cba2ac8029a6c63ed40d2937cd6f9e8137770457e497c57d3",
+    "Proofs/AdaptiveMixedSignedDomainGeometry1139.lean": "70929b3edeac198bfc3a6e244144cb682c9b5818bcd278aa46df3d348392d93f",
+    "Proofs/AdaptiveMixedSingularConvergence1139.lean": "a0e20ed1e3e619e4c3ce36b85bcd1fa61a43c1d8305948752b1480950d3f5af0",
+    "Proofs/AdaptiveMixedSingularSeries1139.lean": "b9cefe20f0a0e820a72a3d58c9c10867101a9869e1732d46ea256878eab650d7",
+    "Proofs/AdaptiveMixedVonMangoldtPrimeCountBridge1139.lean": "cb4926934ce9c5ec2805f8d4e6d332ae095623b69155eedb6ba91386e7506bfe",
+    "Proofs/AdaptivePrimeProgressionConsequence1139.lean": "621009c98631363f647eca52d0dd42ab4d2b8bff5b94446a077c45f9d2d4cb50",
+    "Proofs/AdaptivePrimeProgressionStrength1139.lean": "57994271fddfa0ab78b41b635d1024dd984f4d944eef3a38176cf2c648c7ff13",
+    "Proofs/AdaptiveSharedLabelFactorization1139.lean": "4c7d16d880a691e8820c68289c131bc9a04e1d5fce62005f80fd34f0e1adb14f",
+    "Proofs/AdaptiveSharedTargetActualFactorization1139.lean": "a8ff85cb89a84d92c78ed393872c1fb258c4d6c05dcece7943290db23d69afac",
+    "Proofs/AdaptiveSharedTargetDiagonalNegligible1139.lean": "ab405a5b676ed0e90edb04d4fb3df8960f3cc765f42cf4e5b27e3c09fb4bbbc4",
+    "Proofs/AdaptiveSupportIdentity1139.lean": "8f27db0989aac10beef4adf0658b4494e2d016f314f346a5f43f5593c323b047",
+    "Proofs/AffineDegreeFibers433.lean": "ef543adb659962a4b6a9b6e556bd5d9924b2c1cdd333d13cdc6bd1fea251a357",
+    "Proofs/AffineProgressionSieve433.lean": "bc1cfe3bc73285b5c55ece0a8424c974de9b927dcf8876174303a7041a0557eb",
+    "Proofs/AffineSieveDegreeSelectors433.lean": "725f2de1986d1d968c95ef29764b87c5b62cbd6afcd2b3f7fe9b405f9b3f7b52",
+    "Proofs/AffineSieveExceptions433.lean": "8f9221d809415b77888793c4d6d69d53c61271bb3a30deee1d13bc4bc452d93d",
+    "Proofs/AffineSieveRootRemainder433.lean": "bccfdd8c384d7063187066ac8d6176c2d91fbfe79b998cb8240870ecb90b1eff",
+    "Proofs/AllScaleRealStripLattice433.lean": "88297c8557cba3801af440bdd06d622b9bd7f3a19e64596c3d817e850bfa63c8",
+    "Proofs/AnalyticBridge.lean": "b5f34979c56fe905e607a94cac3377df1490b439746d00b67ba06373839b1e19",
+    "Proofs/AnalyticScalarCapacity433.lean": "fe332f742e37e56bb27f13f64a9cc69cad797d4b3017f454b8adc26b59672cc5",
+    "Proofs/ArbitraryPrimeRankLocalPatterns1139.lean": "980e1be332af416ef97d0d9d499722ad7403af0987a7047c067928464767f433",
+    "Proofs/Architect/Attribute.lean": "febf8a857a21edfc912220a0b2663815a519a0dc2077b0173d09fbf82f048a68",
+    "Proofs/Architect/Basic.lean": "16dcd336b4c674e697c37084c336657baed8016941fa9d2ba8dfa3299c2782e2",
+    "Proofs/Architect/CollectUsed.lean": "d9ed5ffeb9a11b4616919ebc5fa1b7307ee227a57a4cfd0632fa224d489606f6",
+    "Proofs/Architect/Command.lean": "82e50762a10845d5450ba78c854eb9ef146abaa063297216318816fcef2327de",
+    "Proofs/Architect/Content.lean": "81ddbe8b4604230fe91016be0ac5fbfd64b476fc16770b88104c58215c8720ea",
+    "Proofs/Architect/Load.lean": "f21341c905ccc89de024567f7b6b1d7fdd516f47f868eb3af10e4b07efea9da8",
+    "Proofs/Architect/Output.lean": "302ae6df9f4db4f2e73c4bd07867e90863a2587fdc9af40fef791cbf74ddc532",
+    "Proofs/Architect/Tactic.lean": "fc57e054aeca8f65e5fb52d14ae73c09d3dd6b06e77d810b5ad20ccbb20e98a5",
+    "Proofs/Architect.lean": "64d7bec8e568a3ffefc67da9a4db7116b46e931c9be720fde8f3302940bf0848",
+    "Proofs/Cleanup.lean": "14ed4459f51c0126b90c3c2fa36505c335d3da8b6953a3e344bca94f36c3374b",
+    "Proofs/CompatibleLogMinorArcs433.lean": "528fd1471aba6bcc9c4d2902b80601459be181ee81ec32c7673c7a9672c50785",
+    "Proofs/ConstructionAttack1139.lean": "86b896822bc0abc48a00798c9db06c30adade8dcac66ae5095b92aebb603955a",
+    "Proofs/DeficiencyAsymptotic433.lean": "c4fe8ad265d99909541b7e39b4fc7d4328c32d8f18814533b55f9b0eeb69b081",
+    "Proofs/DeficiencyClassification.lean": "0eedb5ea1e52c6b4e8ef54a02c5a4e97248417a2f628f4f52c1ed80021539544",
+    "Proofs/DeficiencyCoefficients.lean": "e3837496311fe4a8164ad883f0d26a0f946bc72ffdd2fa7ea431e7645c8bbdce",
+    "Proofs/DeficiencyDensity433.lean": "2c2336a39cb1336029c8514b554378b8fa4df7ced7a59de52d948d14ca858e1a",
+    "Proofs/DeficiencyFiniteMass433.lean": "122edb9041ac1ecca0a86e9601cfd7b30f0f7eb289e537dbb8472cb2dbccbdfc",
+    "Proofs/DeficiencyMainTail433.lean": "9f8f17d58fc2144f8c1fa89da3d55eba0fa79e912565eccd0c7f4588be4c97b1",
+    "Proofs/DeficiencyPrimePower433.lean": "f18b6e01d584b0c0ae20849a79c3a0cdcdeed2b2e8c255ee91b39885e11757b8",
+    "Proofs/DeficiencyRectangle433.lean": "8e799c5bed758576c655ea316dfc5546138b81bc6778c3ade86ebf63f690b9b3",
+    "Proofs/DeficiencySmooth433.lean": "e9ecde05468e9a9ca1679369878ea4b4913332900646d5ca6203aa0c61ab0610",
+    "Proofs/DeficiencySmoothTail433.lean": "f9a7229ae3d349f13260e4610fe909f43bd2c5fd9ce662d28c41071635279a96",
+    "Proofs/DeficiencyTruncation433.lean": "005c9b95d16edc837cadbe553ffee7ec6a157a6933671bcb193ba1fe6995f0d1",
+    "Proofs/DeficiencyTwoInputBridge433.lean": "65f687c00fb371e7cd3c7ad4879a2959d1aa696fb7af0f4c0e598db3502aecbc",
+    "Proofs/DeficiencyUpper433.lean": "4189b97e8c501c8b43b8d68b64d2eeb1965f108987a615cdf8654d2c6757e28f",
+    "Proofs/DeficiencyZeroCrt.lean": "5a962bcd27010e8ab3609521fce56d020db3c9bd9579bee4bb3451cde209638a",
+    "Proofs/DeficientCoreConstruction1139.lean": "ed398d2369b662154431d9fede2d0a581ebef4a73368b58dd78c890879071b6c",
+    "Proofs/ErdosProblems/Erdos730/AnalyticInputs.lean": "11c7aa677387f8fda2b6159327516a1a40153d5187e911acfbe92a4bdddab0c5",
+    "Proofs/ErdosProblems/Erdos730/PNTAP.lean": "c522579f2a50243879f6745d46298804c97620ae4b2698d49e4e42ec19e377bc",
+    "Proofs/ExactStripMinorArcs433.lean": "168d615097def827f5b550d4661ab313fd5452af860281844247430a8fff8e5c",
+    "Proofs/ExceptionalPrimeThree433.lean": "8b6678ad37e2312ddf68610b9c6c009f9c4843044ec012109013701ad8ddc437",
+    "Proofs/ExceptionalSelectorAssembly433.lean": "7369cb8f240b54dc2717c4b7da7fb9b2029c12aaf1c53a098322c2e3fb5d9e66",
+    "Proofs/ExpandedCoverConstruction1139.lean": "0ff46198d0bdb4d1eb0812c12ffd75f06a4dc421ae303174b3883bb4e2a0f2d4",
+    "Proofs/FixedCoreAsymptotic1139.lean": "aabfd028908d4b25675c95bd4704fda6c700a91253d9696b6b4ca950a6b10b95",
+    "Proofs/FixedSupportMargin1139.lean": "f2491ec64146c25d935b09a0eacac9c4885a427a6a9251eb956e53ac6d939038",
+    "Proofs/FullCoreClassification1139.lean": "6c4e7e4141afd573e7065b4d8905d8c55bf0769b7fd8f01ff72d0ff80c6f6ce8",
+    "Proofs/FullyCompatibleMinorArcs433.lean": "9bc747e7cf8e7ea1b722e429b6b33e72b166f4c7ae0bdf5294fb401da6c5d186",
+    "Proofs/GoalRootPNTLimsup433.lean": "06e9772fafc8270e010066e6521c7de0aa5bddee7e19a40ac57a341e94c58c5f",
+    "Proofs/GoalRootSparseLimsup433.lean": "e2c288950a62336641610b728beef899f242f6ed2a630b5f7a37438cbe1cb6d2",
+    "Proofs/GoldbachChainMaster.lean": "1fae00e87e55e3b8210344e81eb3e29861eaf38cc195e3ff586f5f48d3fede71",
+    "Proofs/GoldbachCircleBase.lean": "9a983af535b9f663b83f7707bbebea64beabd11cb1aa73e3e4b385bd0a10abc3",
+    "Proofs/GoldbachSW1.lean": "76087881c25be17d2dc629d9fb03ba57736db1c12840c839ad77b6466c0ca21c",
+    "Proofs/GoldbachSW2.lean": "f715c371836aeca74e45a5d69090393998e805e998560b7e8c9a3e8c8fb65b1f",
+    "Proofs/GoldbachSW3.lean": "270704b7f6850ff3cd08bad383c33e53fa56756e133d208eed7fd1ba0ffb1db9",
+    "Proofs/GreedyMatching.lean": "302c6d7988d125454904d8329e65400d466e1b56e0d7b9f698a481a614be390b",
+    "Proofs/IndependentConstructionBridge1139.lean": "d165a6c2fb6b79524956c057121940e0cedf5b0d55bf172204576e8bb7a72719",
+    "Proofs/IndependentRounding1139.lean": "5cfa1dc5988a74eff13b2ce14bc8b82bf252b7f51aa4cc7d7800390d5bfc8568",
+    "Proofs/LabelDoubleCoefficient433.lean": "222f344624436099db2b531705fd677087a6060f90452c1c8d3e9b68d775b1d9",
+    "Proofs/LabelFiberClosure433.lean": "38f3283e1d283914e0017cb88bd35b1c5f92fc02685b70139d88d78255489163",
+    "Proofs/LabelFiberSieve433.lean": "e5de8e2a560a2167c187f18841b610f38010b96bb6efd737da273817fbb5efb5",
+    "Proofs/LabelGlobalCrt433.lean": "b8bfcffc7828ba2568abb4910636cf3000cd0ac9d6aa57b554ffd50b09e237f6",
+    "Proofs/LabelUnitCrtCard433.lean": "73cae93a1a8baf3fa046bcaeeca62a5d89f5e3c1570276b4ef087e1e69d358b2",
+    "Proofs/LabelUnitSelectorBridge433.lean": "f06bc84b1a062e602a703b562fa5bcb3926f924841cd299fdd2ba1099e314c11",
+    "Proofs/ManuscriptLocal.lean": "9b4968d5711c6bb0ba589f87b8047ead6587162548336ea0e7026aa73dd6fc20",
+    "Proofs/MatchingAssembly.lean": "0288f37bcd965a88bda7b1f45f897eab505dc597da38414abd53ec663f49668a",
+    "Proofs/NoncircularScalarBridge433.lean": "807d5f969782dcefa57899db1c6c6effd9405e707f1dd1403319a20ddd92028f",
+    "Proofs/PrimeNumberTheoremAnd/Auxiliary.lean": "0438a06f0d9dac4e4bf5008b9f1f8e61ee3741d82b1b885ca290106d3a1e7e66",
+    "Proofs/PrimeNumberTheoremAnd/Consequences.lean": "ae5d80dd3cbf9d9555c3e5c3b15908e20952a8755e60492aa0b1b6b1be8748ef",
+    "Proofs/PrimeNumberTheoremAnd/Defs.lean": "442af26c43cf5cedbec7f3658a25b71e88ab9986985dfdde71c5db29b8a7bf40",
+    "Proofs/PrimeNumberTheoremAnd/EulerMaclaurin.lean": "08fd788793278c87392760e49d6bdab86eba9ed4e1a327396d4937946af5fd92",
+    "Proofs/PrimeNumberTheoremAnd/Fourier.lean": "283df5b0a39d33b4245fb0b0ad6a1f3e229916343cff3cf2e6e8aaef9933a1c2",
+    "Proofs/PrimeNumberTheoremAnd/IEANTN/Mertens.lean": "e6e55635a23742acb630d1ecb3c0b58a41c2996aaef2bd47abe9a0aecba78370",
+    "Proofs/PrimeNumberTheoremAnd/Mathlib/Algebra/Notation/Support.lean": "3e3827a361aed9056ae220a042af16f0b6e1c2cb2eaf8d1c12bbca5ca54ef21b",
+    "Proofs/PrimeNumberTheoremAnd/Mathlib/Analysis/Asymptotics/Asymptotics.lean": "479e2416914cf3616c32aa34ad990c921dc0a82bd2594fca94010b462afa6d8f",
+    "Proofs/PrimeNumberTheoremAnd/Mathlib/Analysis/Asymptotics/Uniformly.lean": "86d7aedb8b8735e80b51455427eb249b4a4d4f14783d6a062b84a6d6a0cf2d69",
+    "Proofs/PrimeNumberTheoremAnd/Mathlib/Analysis/SpecialFunctions/Log/Basic.lean": "917ac89628a7d5a93f1d7e9427ed9c3d991c0999283c14468a3dc6e0344905cf",
+    "Proofs/PrimeNumberTheoremAnd/Mathlib/NumberTheory/Sieve/AuxResults.lean": "f13798d3781d87aaf23b9024195c80aa6e38839736d77fb0737f05b5d6cf63dd",
+    "Proofs/PrimeNumberTheoremAnd/Mathlib/NumberTheory/Sieve/Basic.lean": "d9062bd6cbd1e5225b537017b1d9859b7a4bbdfe77db630029f20d545dc94236",
+    "Proofs/PrimeNumberTheoremAnd/Mathlib/NumberTheory/Sieve/Selberg.lean": "d886947447bc24facb1826b8b44c2511f8d6e27d80e27311a1ed4fa415745a20",
+    "Proofs/PrimeNumberTheoremAnd/Mathlib/NumberTheory/Sieve/SelbergBounds.lean": "3ae5660d08caaeb5b9c6562986cc69c123383b0234d4bd56576f54a3c4676aff",
+    "Proofs/PrimeNumberTheoremAnd/MediumPNT.lean": "2f0471877a6526b70d554bf25e3c69ca932922011d94b9639809fd18d84ff778",
+    "Proofs/PrimeNumberTheoremAnd/MellinCalculus.lean": "2af6033de32337319cb27c8c23419856077396ba3135fcf72c88b1aab1f8d352",
+    "Proofs/PrimeNumberTheoremAnd/PerronFormula.lean": "14b746daa8e1b5f092da150629561ec2b36c425ef3dab9f7244094a395155e5f",
+    "Proofs/PrimeNumberTheoremAnd/Rectangle.lean": "b26f09a895c1f69e74858075ce9b56fb5a8775d4f8b16726b8959ee2923d6ee4",
+    "Proofs/PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean": "eb95a758e1418094486becd4a48f7c43e8182731b39ba01743fa65862df91579",
+    "Proofs/PrimeNumberTheoremAnd/SmoothExistence.lean": "a5fa287967a75ee5b4dc6dce2ae08ef971a07dbfe3ffc6aef878f8e2c9b95918",
+    "Proofs/PrimeNumberTheoremAnd/Sobolev.lean": "419634c91dcf272b241a67e40804e88ca737d7a2c659d32462c6ef1186981ff0",
+    "Proofs/PrimeNumberTheoremAnd/Tactic/AdditiveCombination.lean": "cf92d28d41b7d6a75688a4d7245f8ceba5ff225f3a77566584aefcbc3c500cd6",
+    "Proofs/PrimeNumberTheoremAnd/Wiener.lean": "5114903225026f19c472278ed5efae8cd8478d4225472a4f64f1e20584ae72d1",
+    "Proofs/PrimeNumberTheoremAnd/ZetaBounds.lean": "a4710b14a591a415777318ee04f55e20a02e6a4faa0d4b55ea7a7633c52f7ecb",
+    "Proofs/PrimeNumberTheoremAnd/ZetaConj.lean": "021e5ae803c1c1d782d387b919d0a6b81402a037e0bac92b03841021c6bd3914",
+    "Proofs/PrimePatternMultiplicity433.lean": "6d0e4ab4813dc1b6f65e76e703fcc6ad379109049a8cad934c05445495fbb8f0",
+    "Proofs/PrimeProgressions433.lean": "e260908892f7f6d295e71dce67d7f93449d129b993739fb71a51ba0aa8ef9433",
+    "Proofs/PrincipalArcPositivity433.lean": "a783bfb4175eaefcc860dbaffe57c54791c096f87b1ca05a7c53c1d6d83ab8ca",
+    "Proofs/PrincipalPrimeOnly433.lean": "5bc3fc696662228ebf25cece2e92dc8a09ec2ea4f1d3051bf17db71d189d067e",
+    "Proofs/ProtectedReserveConductor1139.lean": "0c8da0e76ac0b01642b87ef22709d1c1246b186b8c49202d7c91377ac282b5da",
+    "Proofs/ProtectedReserveOmission1139.lean": "93b23ba6ce8b0dd04cb2575733dafcb0febf81f19a558af4f990e5f6c0a22df3",
+    "Proofs/ReserveCutoff.lean": "6aed22ffc47b4e298281dd565d4d6283d6bbdc776b10e63d8559ff0253368bd3",
+    "Proofs/ReserveDensity433.lean": "9a17cb1c52492c7578be7a74b11d3c65be0a9480624ea059c7b096f073d6529d",
+    "Proofs/Reuse689Sparse1139.lean": "3e80e90e6ce3248b281b36b6986770d8edb4912c9a0b43d649b83a2605158998",
+    "Proofs/RobustCrtBridge.lean": "3aa64e0a7f4c729e0f67fc3f77855f875de32753c14fd785e132a5cbad06a923",
+    "Proofs/RobustCrtDensity.lean": "61dcc474a00449fe3f98422bb8331cea08827116ee396278e8735cb5031836cc",
+    "Proofs/RobustSupportDensity.lean": "345b6817e7b4af9efb526b829f5d121c04c78cd759af0c6c28904096eb4ded58",
+    "Proofs/ScaleAdaptiveActualGlobalBudgetTransfer1139.lean": "da8ffda8588cf09370951d1a409495a81a052a44199c23a4b4359ec47b2cb352",
+    "Proofs/ScaleAdaptiveActualPointwiseHitTransfer1139.lean": "3a2e518268e8bd76da9dd4c1015ad29907ca581969f428b36b487574d28a28cd",
+    "Proofs/ScaleAdaptiveActualTypedPointwiseProfiles1139.lean": "984087310c72e36a4af2e548160c4cfd6f3855608eee40160b42d05b90a3e7b7",
+    "Proofs/ScaleAdaptiveBandActualTargetLoad1139.lean": "c2e050fa69501203a8f38f31e9c2707f674e6ea30352a057d71384cf5388b483",
+    "Proofs/ScaleAdaptiveBandIndexAggregation1139.lean": "83bd3b90772b26c1ec37f50f0a82340ba02b166d56eae3203c1b2f8380cabf4a",
+    "Proofs/ScaleAdaptiveBandPositiveTargetLoad1139.lean": "88e018a3da8fe7f6a18b537ea3208bec937c95960fed4d29da3543f2681cdd31",
+    "Proofs/ScaleAdaptiveColoredEulerAmplification1139.lean": "0cb3d0b5af0a24aa1e6aff75423b00a9aadd1c3f64ca65f75b0dda98b7084154",
+    "Proofs/ScaleAdaptiveConstantBandDegreeTransfer1139.lean": "3c139beee0a2b5b650e21335f340fd48144f0e002be139a0642d40b7c2e9782c",
+    "Proofs/ScaleAdaptiveConstantBandGlobalCorrelation1139.lean": "61d2a3daf7ea13d94569762464e3818c615242afd3898eb404c1668b73d7e8b0",
+    "Proofs/ScaleAdaptiveConstantBandTargetConcentration1139.lean": "924349b99e7d81dac7596e8a496958a6b8cdb6ea4c5314253b4df69a0ed0485c",
+    "Proofs/ScaleAdaptiveConstantBandTargetMoments1139.lean": "51684fdfd0a66a6ae3d950f824b93596237b4d4abf3c3961250d948646dd0ff3",
+    "Proofs/ScaleAdaptiveConstantBandTypedGlobalAssembly1139.lean": "c95756b004cb8009591e85e0f9f219fedb6dd262bba382da86dc137fc42d7047",
+    "Proofs/ScaleAdaptiveConstruction1139.lean": "3cd4b5600c7db7ee452ab4615d5e4a43e641805bfdc8f72429bc32140fa08420",
+    "Proofs/ScaleAdaptiveDyadicConductorBound1139.lean": "0cfd0526525fdcb9bc1985f5f82f5c9911a7e4aef82ac4d88d001e34e982ca00",
+    "Proofs/ScaleAdaptiveDyadicEulerShell1139.lean": "b2da18ce585cee97d0307508cb1e989a2014cf8558bf204346cead6d4334bb0f",
+    "Proofs/ScaleAdaptiveDyadicShellGeometry1139.lean": "a2179f0acb41767af6cc323402fbc5d8bd76af31b2fdc1a0196f1e56013386c8",
+    "Proofs/ScaleAdaptiveEligibleShellHitTransfer1139.lean": "e16cb1b1eb7a16740aed72c34ef037876d4547eebd61519279d7ec5a358fecc6",
+    "Proofs/ScaleAdaptiveFinalShellSupportIdentities1139.lean": "2ed5a1747cfe6744e8caed671d7b1bed9406b37a98175597c32947657991714a",
+    "Proofs/ScaleAdaptiveGTZConditionalOriginal1139.lean": "12ce6d2f3403c7861b5ab32d1a84e8ef298888b15a24f1aac749964e103b943e",
+    "Proofs/ScaleAdaptiveGTZDegreeRegularity1139.lean": "c25310878f121bb24e641564894b19489c2ef7275821b03d8c6e46c95693c384",
+    "Proofs/ScaleAdaptiveGTZGlobalCover1139.lean": "c9a294b5b01c6a32655297582f0d1542dd9775bbf8691a4008da9a063f037b57",
+    "Proofs/ScaleAdaptiveGTZSharedTargetMoments1139.lean": "e6a02ae335b476bad84f961a0b9c4e9e2abfc5c639a37eaf1f6507b7879d64e5",
+    "Proofs/ScaleAdaptiveGlobalExponentialBudgets1139.lean": "074b85aed58a8badd65f3a6eca86a78108b9576a31cfe0c4dcbb86457bfed83e",
+    "Proofs/ScaleAdaptiveGlobalGoodLabelIntersection1139.lean": "8d656fa17a1940c06bbfe3c3db2251653bbe2651253607aa3403a871c2161a6a",
+    "Proofs/ScaleAdaptiveGlobalJointHitTransfer1139.lean": "c67903c137c4ffe314957dcb1196d29c3199cc0189d8322071f1329ee8318668",
+    "Proofs/ScaleAdaptiveGlobalJointOptionAssembly1139.lean": "64f74c7419b05755f8769160fdbbf2c01dfb9ca1f3b990193c838a059f5650fb",
+    "Proofs/ScaleAdaptiveGlobalMomentConstruction1139.lean": "4404ed27fa1f3a99dffbbab5f6620c54dd7df5e17ef738abfedf2d1268756abb",
+    "Proofs/ScaleAdaptiveGlobalRestrictedMarginalIdentity1139.lean": "8de3b79bdc830ddf638f81940cf0f74a2ad058d58114d5b71f41547be11a6983",
+    "Proofs/ScaleAdaptiveGlobalTypedTargetClassification1139.lean": "626695e3a8b54b58e4331b1f5ca3ba4de2317d413d2f614e99c2492976dc5eff",
+    "Proofs/ScaleAdaptiveIntegerCleanupLedger1139.lean": "153f3e94b0a5aa8b384d0abb963b20cd19be050449b04e73b9df939f6e5dc18b",
+    "Proofs/ScaleAdaptiveMultiShellActualLoad1139.lean": "3e061d9cfc49cfe340113cbb17d9b7b83326b26d2f83f784e1c47b192485b14f",
+    "Proofs/ScaleAdaptiveParameterDecay1139.lean": "d028b77dadbe870aef8d15c9ac0eb506087e9239df4c150f868c5ce5c9ed58e2",
+    "Proofs/ScaleAdaptivePrimeSliceVariance1139.lean": "7e47453793913a6962cd43db6c569998caf3f493f4821d7a64e0db6e97b55f6c",
+    "Proofs/ScaleAdaptiveRestrictedMultiscaleLoad1139.lean": "a81fce35d809373368bb20e2197524ed5c4ac5af027361461948c361b9128a89",
+    "Proofs/ScaleAdaptiveTruncatedBandFirstMoment1139.lean": "9cb081097cdd8b194745f19e37386aa75e58209e545eb3328926fd7c6d2e87b9",
+    "Proofs/ScaleAdaptiveWeightedDegreeLimit1139.lean": "d6e06396c881183bf6a7a117f2eeeba1d9d519db9af114eb7c380a75658cefd6",
+    "Proofs/ScaleAdaptiveWeightedGTZTransfer1139.lean": "f7937178ea54247c27a43c4a5ed477f9992eed13283116c641e3579019cc8b0a",
+    "Proofs/SelbergCutoff433.lean": "006cd9d4cb876fe57ea8f12f55e0af53dc82cdc6c3c025c59fc5220237eb2074",
+    "Proofs/SelbergDenominator.lean": "5deec2425786891302304a2c185be44006ecad40db3f76cd8dda13a43d4ca690",
+    "Proofs/SelbergExplicitConstant433.lean": "103ab1fd8509376e31dca0d15861db9fb408999589a806d841bd73adef05167b",
+    "Proofs/SelbergFinite433.lean": "63d5b47f5e7ca643e113b805f71288a5029f728682e52474693b63b642cc4c88",
+    "Proofs/SelbergHarmonicBlocks.lean": "12a5e412ba636880eaca503067bc3005680dc600a0a5a14a5795de3262c14c2f",
+    "Proofs/SelbergOptimizedBridge433.lean": "8ec99d9b4cc0bf383e669c9cc0a79ad816b0b79f33defd5b6e92b83edc624e91",
+    "Proofs/SelbergSquarefree.lean": "097fbe1a3efc30ad6352abc088aaa79f6029742969e613b5e4b2059394504068",
+    "Proofs/SelbergSquarefreeComparison.lean": "7f8271a71fc6ce0c8f8db46973db902cf29c3538492e661076d1603843d50ce7",
+    "Proofs/SemiprimeIncidenceBarrier1139.lean": "ee57b5542c131d8a09f216995759b4eebd69df28fc4f39edf9a6900e0eb82e82",
+    "Proofs/SharedTargetFiberCovolume1139.lean": "4d567a99ce0b52d8ad12fabbe052ee4cccfb4c51a990d207142cd5fdd98926d5",
+    "Proofs/SharedTargetSingularFactorization1139.lean": "1dce5bcdf50c9a79c2cd5d7b5904f8467500fdc41267041e6bb55fa2e6f936b5",
+    "Proofs/SharpLabelCoefficientAssembly433.lean": "da8879efbc4d964123fd32639790701c8a529f43b671b46d27d36c3d5e502d7a",
+    "Proofs/ShiftedFareyDisjoint433.lean": "d91aebb8959a0b94f8f266cc69ce1da0d1fbbc383c67b82317a5cf6135a5fe2d",
+    "Proofs/ShiftedMajorArcAssembly433.lean": "75405ab63f72a967b7dce3d93a7fef4130320b430d40235f98473c567f7d3831",
+    "Proofs/ShiftedMajorArcDedup433.lean": "c25d22b2c4c92ec73c6428156a3abd814ce340cbb02ab669f49e2977f3ee4038",
+    "Proofs/SparseCoverBridge433.lean": "96c12e9f110ad33eb2b300e950ba00a017b32f9988e75ca1ef24a60eed03b136",
+    "Proofs/StrictGapIntervals1139.lean": "89bbf67dc84599d8304eb6b2e9533feb55c00c0e92067932f264b2e3d3dc1c1c",
+    "Proofs/Structural.lean": "3a92866fff27533d18e45d59a22e111965d03ee481948ddfebcfd4bf9731c965",
+    "Proofs/TernaryFourier433.lean": "20e69d38e909184ac077ccc469f89d17068d985f7eaddb2abcc423768ba17ce2",
+    "Proofs/TernaryMajorArcCompletion433.lean": "97077dfe0be9a00756ff6059231d6d068ef5a6028bdd6d866acbcc1a1d007670",
+    "Proofs/ThreePrimeLatticeLower433.lean": "88117afda3b4507e775a6f21532d4306674284c176c1cf6af4494fc27672255d",
+    "Proofs/ThreePrimeMajorArcClosure433.lean": "39300188cfbaddad99916c46fcf68fe608c2470c2e3afb0a70e80c810e6ba221",
+    "Proofs/ThreePrimeMajorArcError433.lean": "11ef4fa101a7d5db187adab02ac4c76261f742a90757cbe1fd66abb432d40c11",
+    "Proofs/ThreePrimeMajorArcReduction433.lean": "52ba46b1bcb675aba26d32a0f28fc8fe27b0414f763bf7d98cb4a437bb196d85",
+    "Proofs/ThreePrimePatternBridge433.lean": "14c5d15efdf019b4228aa2541b60c3f945c9d138c0e89eea3036a91ae9fd2407",
+    "Proofs/ThreePrimeWeightTransfer433.lean": "e92aa13f26b94012f33a3dd217e8a6e6ef9160d2c26cf834785c91eaa3581a94",
+    "Proofs/TwoInputAssembly433.lean": "b4599f500a0621cac7b5e7addd525f2d76bd09325585aa2d70ed84819b67774b",
+    "Proofs/TypedCoreMatchingBridge1139.lean": "b8ca1008ca6e191b48220bca259c353bda78d213f6faffed1107a30ef677e214",
+    "Proofs/TypedCoreRankBarrier1139.lean": "2465b41cfed2372aec6a71e2617eadf1ff5f6657c1e0a78c4de2a7a967720762",
+    "Proofs/UniformLocalFactors.lean": "d1d5c63047483839e5ce51d01dbf1827e043422ebafff970bdc41ec2a01d7951",
+    "Proofs/UniformMaxGap1139.lean": "300f4505a77f432ab43cc448e387958d006f589364894021a7cf9d73d9f30f89",
+    "Proofs/WeightedPrimePatternMomentBridge1139.lean": "99e34f55375419524d5e74e3ba9a746811d60872b33d4ab025ac0d6385f6e226"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 1483.42,
+    "env_compare_and_core_audit_seconds": 89.657,
+    "total_elapsed_seconds": 2059.409,
+    "user_cpu_seconds": 3580.132,
+    "system_cpu_seconds": 325.07,
+    "peak_rss_mib": 13500.0
+  },
+  "status": "PASS"
+}
