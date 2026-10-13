@@ -1,0 +1,382 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 306: unit fractions with semiprime denominators",
+    "description": "A complete Lean 4 proof of Erdős problem 306: every positive rational number whose reduced denominator is squarefree is a finite sum of reciprocals of distinct integers, each the product of two distinct primes. The proof follows Shisheng Li’s September 2026 paper “Unit fractions with semiprime denominators: an elementary proof of Erdős Problem #306,” which counts subsets of a complete bipartite graph between two widely separated ranges of primes with a finite Fourier argument adapted from Yuren Tang’s earlier Lean proof, and needs only Chebyshev-type prime bounds where Tang assumed two Rosser–Schoenfeld estimates as axioms. Diluting the same construction by the prime 3 also proves the Butler–Erdős–Graham theorem that every positive integer is a sum of reciprocals of distinct products of three distinct primes. For representations of 1, the package further shows that some prime must divide at least ten of the denominators, which is sharp, and that when no prime divides more than ten, at least 61 terms are needed (63 for an odd number of terms), with explicit 71-, 72-, and 73-term examples.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "Apache-2.0",
+    "homepage": "https://www.erdosproblems.com/306"
+  },
+  "classification": {
+    "arxiv": [
+      "math.NT",
+      "math.CO"
+    ],
+    "msc2020": [
+      "11D68",
+      "11A67"
+    ]
+  },
+  "toolchain": {
+    "lean": "leanprover/lean4:v4.35.0-rc2",
+    "lake_manifest": "lake-manifest.json",
+    "lake_manifest_sha256": "426fad2b266bd1870ef84a64b7305ed3738dcee3c2dd5d80ac0e6dc5e5c2d8b9",
+    "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55"
+  },
+  "sources": [
+    {
+      "title": "Unit fractions with semiprime denominators: an elementary proof of Erdős Problem #306",
+      "authors": [
+        "Shisheng Li"
+      ],
+      "type": "preprint",
+      "relationship": "formalizes",
+      "id": "https://arxiv.org/abs/2609.32140v1",
+      "location": "Theorem 1.1, Theorem 3.1, Proposition 4.2, and Sections 2–9",
+      "year": 2026,
+      "license": "CC-BY-4.0",
+      "author_endorsement": "not-contacted",
+      "note": "The two-prime theorem formalized here. The Lean proof adapts the companion development listed under related formalizations."
+    },
+    {
+      "title": "A Lean 4 formalisation of Erdős Problem 306",
+      "authors": [
+        "Yuren Tang"
+      ],
+      "type": "other",
+      "relationship": "background",
+      "id": "https://doi.org/10.5281/zenodo.20767390",
+      "year": 2026,
+      "author_endorsement": "not-contacted",
+      "note": "Earlier Lean proof of the two-prime theorem, conditional on two Rosser–Schoenfeld (1962) estimates declared as axioms. Li’s finite Fourier framework is adapted from it. No code from it is included."
+    },
+    {
+      "title": "Egyptian fractions with each denominator having three distinct prime divisors",
+      "authors": [
+        "Steve Butler",
+        "Paul Erdős",
+        "Ronald L. Graham"
+      ],
+      "type": "paper",
+      "relationship": "independently-proves",
+      "id": "https://math.colgate.edu/~integers/p51/p51.pdf",
+      "location": "Integers 15 (2015), Paper A51, Theorem 1",
+      "year": 2015,
+      "author_endorsement": "not-contacted",
+      "note": "First proof of the three-prime integer case. The formal proof here uses a different route, by dilution through Li’s construction."
+    },
+    {
+      "title": "Old and new problems and results in combinatorial number theory",
+      "authors": [
+        "Paul Erdős",
+        "Ronald L. Graham"
+      ],
+      "type": "book",
+      "relationship": "background",
+      "location": "Monographies de L’Enseignement Mathématique, Vol. 28 (1980)",
+      "year": 1980,
+      "author_endorsement": "not-contacted",
+      "note": "Original source of the question, cited as [ErGr80] by erdosproblems.com."
+    },
+    {
+      "title": "Erdős Problem 306",
+      "type": "other",
+      "relationship": "background",
+      "id": "https://www.erdosproblems.com/306",
+      "note": "Problem record, listed as open when this package was prepared. This record is not proof evidence."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/daizisheng/erdos-306/tree/1314c9a8bcedaaf986f61fb6cd7129a834116abb",
+      "relationship": "adapts",
+      "note": "Shisheng Li’s companion Lean development of arXiv:2609.32140 (CC BY 4.0), ported from Lean 4.29.0-rc6 to Lean 4.35.0-rc2. It proves the large-x Chebyshev bound from Erdős’s central binomial argument instead of citing Ramanujan’s inequality."
+    },
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/ad6e5df136da7c40c662d1a559e056a35a5872c7/FormalConjectures/ErdosProblems/306.lean",
+      "relationship": "builds-on",
+      "note": "Challenge and Solution restate erdos_306 and erdos_306.variants.integer_three_primes at this revision. Solution proves erdos_306 with answer True and proves the three-prime variant. Both upstream declarations end in sorry."
+    },
+    {
+      "id": "https://github.com/Yuren-Tang/erdos-306",
+      "relationship": "independent",
+      "note": "Yuren Tang’s Lean 4.28 proof of erdos_306 from two Rosser–Schoenfeld axioms. No source is imported."
+    }
+  ],
+  "status": {
+    "scope": "Complete affirmative answer to the original question: every positive rational with squarefree reduced denominator is a sum of reciprocals of distinct products of two distinct primes. Also proves the Formal Conjectures three-prime variant for positive integers. For representations of 1 by distinct two-prime denominators, proves that maximum prime incidence at least 10 is necessary and sufficient, and that incidence-10 representations have at least 61 terms, or at least 63 when the number of terms is odd. The exact minimum number of terms for incidence 10 is not determined; the smallest verified example has 68 terms.",
+    "completeness": "complete",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos306.Palomar.erdos_306",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos306.Palomar.erdos_306_formal_conjectures",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos306.Palomar.erdos_306_variants_integer_three_primes",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos306.Palomar.erdos_306_finset_omega_Omega",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos306.Palomar.integer_three_primes_finset",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos306.Palomar.exists_semiprime_set_sum_eq_one_iff_ten_le",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos306.Palomar.semiprime_set_card_ge_fifty_eight_of_sum_eq_one",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos306.Palomar.semiprime_set_card_ge_fifty_nine_of_sum_eq_one",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos306.Palomar.semiprime_set_card_ge_sixty_of_sum_eq_one",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos306.Palomar.semiprime_set_card_ge_sixty_one_of_sum_eq_one",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos306.Palomar.semiprime_set_card_ge_sixty_three_of_odd_card_of_sum_eq_one",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos306.Palomar.prime_edges_card_ge_fifty_nine_of_sum_eq_one",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos306.Palomar.prime_edges_card_ge_sixty_one_of_sum_eq_one",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos306.Palomar.sum_graphNeighbors_two_add_two_mul_card_mod_four_eq_two",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos306.Palomar.even_card_iff_sum_graphNeighbors_two_mod_four_eq_two",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos306.Palomar.odd_card_iff_four_dvd_sum_graphNeighbors_two",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos306.Palomar.prime_edges_card_ge_sixty_three_of_odd_card_of_sum_eq_one",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos306.Palomar.witnessEdges71Cell111_valid_and_sum_eq_one",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos306.Palomar.witnessEdges72Cell111_valid_and_sum_eq_one",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos306.Palomar.witnessEdges73Cell111_valid_and_sum_eq_one",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "role": "proof-search",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ]
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Statement fidelity against Formal Conjectures, the Challenge and Solution environment comparison, transitive axiom audits of all 20 exported theorems, and a local Comparator run on the Mathlib-only Challenge package all passed in Lean 4.35.0-rc2. The only axioms are propext, Classical.choice, and Quot.sound. The local Comparator run used no bwrap sandbox, and specialist review is not asserted."
+  },
+  "formalization": {
+    "map": [
+      {
+        "source": "FormalConjectures/ErdosProblems/306.lean (erdos_306); Li (2026), arXiv:2609.32140, Theorem 1.1",
+        "lean": "Erdos306.Palomar.erdos_306",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves the Formal Conjectures statement with answer True."
+      },
+      {
+        "source": "FormalConjectures/ErdosProblems/306.lean (erdos_306, right-hand side); Li (2026), arXiv:2609.32140, Theorem 1.1",
+        "lean": "Erdos306.Palomar.erdos_306_formal_conjectures",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves the proposition on the right of answer(sorry) ↔ … verbatim."
+      },
+      {
+        "source": "FormalConjectures/ErdosProblems/306.lean (erdos_306.variants.integer_three_primes); Butler, Erdős, and Graham (2015), Integers 15, A51, Theorem 1",
+        "lean": "Erdos306.Palomar.erdos_306_variants_integer_three_primes",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proved by prime dilution through Li’s construction, avoiding the prime 3."
+      },
+      {
+        "source": "Li (2026), arXiv:2609.32140, Theorem 1.1",
+        "lean": "Erdos306.Palomar.erdos_306_finset_omega_Omega",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Finite-set form of Theorem 1.1 with ω(n) = Ω(n) = 2."
+      },
+      {
+        "source": "Butler, Erdős, and Graham (2015), Integers 15, A51, Theorem 1",
+        "lean": "Erdos306.Palomar.integer_three_primes_finset",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Finite-set form of the three-prime integer theorem."
+      },
+      {
+        "source": "Local result: prime-incidence threshold for representations of 1",
+        "lean": "Erdos306.Palomar.exists_semiprime_set_sum_eq_one_iff_ten_le",
+        "module": "Solution",
+        "status": "proved",
+        "note": "A representation of 1 with every prime dividing at most d denominators exists if and only if d ≥ 10. The witness has 68 terms on primes up to 53."
+      },
+      {
+        "source": "Local result: head-prime row-admissibility defects",
+        "lean": "Erdos306.Palomar.semiprime_set_card_ge_fifty_eight_of_sum_eq_one",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Incidence-10 representations of 1 have at least 58 terms."
+      },
+      {
+        "source": "Local result: row-admissibility defects for primes up to 37",
+        "lean": "Erdos306.Palomar.semiprime_set_card_ge_fifty_nine_of_sum_eq_one",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Incidence-10 representations of 1 have at least 59 terms."
+      },
+      {
+        "source": "Local result: row-admissibility defects for primes up to 47",
+        "lean": "Erdos306.Palomar.semiprime_set_card_ge_sixty_of_sum_eq_one",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Incidence-10 representations of 1 have at least 60 terms."
+      },
+      {
+        "source": "Local result: row-admissibility defects for primes up to 47",
+        "lean": "Erdos306.Palomar.semiprime_set_card_ge_sixty_one_of_sum_eq_one",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Incidence-10 representations of 1 have at least 61 terms."
+      },
+      {
+        "source": "Local result: mod-4 parity at the prime 2",
+        "lean": "Erdos306.Palomar.semiprime_set_card_ge_sixty_three_of_odd_card_of_sum_eq_one",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Incidence-10 representations of 1 with an odd number of terms have at least 63 terms."
+      },
+      {
+        "source": "Local result: row-admissibility defects for primes up to 37",
+        "lean": "Erdos306.Palomar.prime_edges_card_ge_fifty_nine_of_sum_eq_one",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Prime-graph form of the 59-term bound."
+      },
+      {
+        "source": "Local result: row-admissibility defects for primes up to 47",
+        "lean": "Erdos306.Palomar.prime_edges_card_ge_sixty_one_of_sum_eq_one",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Prime-graph form of the 61-term bound."
+      },
+      {
+        "source": "Local result: mod-4 parity at the prime 2",
+        "lean": "Erdos306.Palomar.sum_graphNeighbors_two_add_two_mul_card_mod_four_eq_two",
+        "module": "Solution",
+        "status": "proved",
+        "note": "In any representation of 1, the neighbours q of 2 satisfy (Σ q + 2|E|) ≡ 2 (mod 4)."
+      },
+      {
+        "source": "Local result: mod-4 parity at the prime 2",
+        "lean": "Erdos306.Palomar.even_card_iff_sum_graphNeighbors_two_mod_four_eq_two",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Even term count is equivalent to Σ q ≡ 2 (mod 4) over neighbours of 2."
+      },
+      {
+        "source": "Local result: mod-4 parity at the prime 2",
+        "lean": "Erdos306.Palomar.odd_card_iff_four_dvd_sum_graphNeighbors_two",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Odd term count is equivalent to 4 dividing Σ q over neighbours of 2."
+      },
+      {
+        "source": "Local result: mod-4 parity at the prime 2",
+        "lean": "Erdos306.Palomar.prime_edges_card_ge_sixty_three_of_odd_card_of_sum_eq_one",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Prime-graph form of the odd 63-term bound."
+      },
+      {
+        "source": "Local result: explicit witness on primes up to 61",
+        "lean": "Erdos306.Palomar.witnessEdges71Cell111_valid_and_sum_eq_one",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Kernel-checked 71-term incidence-10 representation of 1."
+      },
+      {
+        "source": "Local result: explicit witness on primes up to 61",
+        "lean": "Erdos306.Palomar.witnessEdges72Cell111_valid_and_sum_eq_one",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Kernel-checked 72-term incidence-10 representation of 1."
+      },
+      {
+        "source": "Local result: explicit witness on primes up to 61",
+        "lean": "Erdos306.Palomar.witnessEdges73Cell111_valid_and_sum_eq_one",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Kernel-checked 73-term incidence-10 representation of 1."
+      }
+    ]
+  },
+  "acknowledgements": "The question was posed by Paul Erdős and Ronald L. Graham (1980). The main proof adapts Shisheng Li’s elementary argument and companion Lean development (arXiv:2609.32140, CC BY 4.0), whose finite Fourier framework comes from Yuren Tang’s earlier Lean proof. Steve Butler, Paul Erdős, and Ronald L. Graham first proved the three-prime integer case. Statement definitions are adapted from Formal Conjectures. Mathlib supplies the formal infrastructure."
+}

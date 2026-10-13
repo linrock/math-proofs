@@ -1,0 +1,32 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos306.Palomar.erdos_306",
+    "Erdos306.Palomar.erdos_306_formal_conjectures",
+    "Erdos306.Palomar.erdos_306_variants_integer_three_primes",
+    "Erdos306.Palomar.erdos_306_finset_omega_Omega",
+    "Erdos306.Palomar.integer_three_primes_finset",
+    "Erdos306.Palomar.exists_semiprime_set_sum_eq_one_iff_ten_le",
+    "Erdos306.Palomar.semiprime_set_card_ge_fifty_eight_of_sum_eq_one",
+    "Erdos306.Palomar.semiprime_set_card_ge_fifty_nine_of_sum_eq_one",
+    "Erdos306.Palomar.semiprime_set_card_ge_sixty_of_sum_eq_one",
+    "Erdos306.Palomar.semiprime_set_card_ge_sixty_one_of_sum_eq_one",
+    "Erdos306.Palomar.semiprime_set_card_ge_sixty_three_of_odd_card_of_sum_eq_one",
+    "Erdos306.Palomar.prime_edges_card_ge_fifty_nine_of_sum_eq_one",
+    "Erdos306.Palomar.prime_edges_card_ge_sixty_one_of_sum_eq_one",
+    "Erdos306.Palomar.sum_graphNeighbors_two_add_two_mul_card_mod_four_eq_two",
+    "Erdos306.Palomar.even_card_iff_sum_graphNeighbors_two_mod_four_eq_two",
+    "Erdos306.Palomar.odd_card_iff_four_dvd_sum_graphNeighbors_two",
+    "Erdos306.Palomar.prime_edges_card_ge_sixty_three_of_odd_card_of_sum_eq_one",
+    "Erdos306.Palomar.witnessEdges71Cell111_valid_and_sum_eq_one",
+    "Erdos306.Palomar.witnessEdges72Cell111_valid_and_sum_eq_one",
+    "Erdos306.Palomar.witnessEdges73Cell111_valid_and_sum_eq_one"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}
