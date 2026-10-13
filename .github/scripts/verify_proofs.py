@@ -2366,6 +2366,37 @@ def run_fc_statement_comparison(
                 )
                 if res_b.returncode != 0:
                     rc = res_b.returncode
+                elif fc_stmt_bridge_json.is_file():
+                    try:
+                        audit_rows = (
+                            json.loads(audit_json_path.read_text(encoding="utf-8"))
+                            if audit_json_path.is_file()
+                            else []
+                        )
+                        bridge_rows = json.loads(
+                            fc_stmt_bridge_json.read_text(encoding="utf-8")
+                        )
+                        existing_rows = {
+                            json.dumps(row, sort_keys=True, separators=(",", ":"))
+                            for row in audit_rows
+                        }
+                        for row in bridge_rows:
+                            row_key = json.dumps(
+                                row, sort_keys=True, separators=(",", ":")
+                            )
+                            if row_key not in existing_rows:
+                                audit_rows.append(row)
+                                existing_rows.add(row_key)
+                        audit_json_path.write_text(
+                            json.dumps(audit_rows, indent=2) + "\n",
+                            encoding="utf-8",
+                        )
+                    except Exception as exc:
+                        rc = 1
+                        print(
+                            f"fc-compare: could not persist Statement bridge audit for {pkg}: {exc}",
+                            file=lf,
+                        )
         if rc == 0 and strict:
             try:
                 audit_rows = json.loads(audit_json_path.read_text(encoding="utf-8"))
