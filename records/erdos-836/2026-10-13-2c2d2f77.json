@@ -1,0 +1,743 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-13-2c2d2f77",
+  "verification_date": "2026-10-13",
+  "state_sha256": "7ac0c8e8b8ddcb63464a3b42a6a1eb6d588fd9e83daec057456a082a8e98916e",
+  "package": "erdos-836",
+  "project_name": "Erd\u0151s 836: vertex counts and pairwise edge intersections in 3-chromatic intersecting uniform hypergraphs",
+  "package_commit": "2c2d2f773f1dde69452b0cde525ff6ee633c49d0",
+  "commit": "ad12db51383ed41ec8b6b54e0ffabfa828773d38",
+  "repository": "linrock/math-proofs",
+  "run_id": "38355517853",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 12723,
+    "lines": 266,
+    "sha256": "bbe39692d827960d234cccde2d5c25c6de481b69d0c209ece4c5c039dd611f08",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos836.Palomar.erdos_836.parts.i",
+    "Erdos836.Palomar.erdos_836.parts.ii",
+    "Erdos836.Palomar.exists_alon_fin_hypergraph",
+    "Erdos836.Palomar.not_erdos836QuadraticVertexQuestion",
+    "Erdos836.Palomar.erdos836LinearIntersectionConjecture_proved",
+    "Erdos836.Palomar.r_le_two_mul_add_one_of_forall_card_inter_le",
+    "Erdos836.Palomar.isTwoColorable_of_four_le_r_of_isLinearHypergraph",
+    "Erdos836.Palomar.r_le_five_of_not_hasPairwiseIntersectionAtLeast_three_of_not_isTwoColorable",
+    "Erdos836.Palomar.hasChromaticNumberThree_iff_not_isTwoColorable_of_isIntersecting",
+    "Erdos836.Palomar.three_le_vertexDegree_of_not_hasPairwiseIntersectionAtLeast_sub_one_of_not_isTwoColorable",
+    "Erdos836.Palomar.two_mul_r_add_one_le_card_activeVertices_of_not_hasPairwiseIntersectionAtLeast_sub_one",
+    "Erdos836.Palomar.four_le_vertexDegree_of_mem_inter_of_two_le_card_inter_of_not_hasPairwiseIntersectionAtLeast_sub_one",
+    "Erdos836.Palomar.three_mul_card_activeVertices_add_one_le_card_mul_r_of_four_le_r",
+    "Erdos836.Palomar.nine_le_card_and_nine_le_card_activeVertices_of_r_eq_four_of_not_hasPairwiseIntersectionAtLeast_three",
+    "Erdos836.Palomar.card_eq_seven_and_card_activeVertices_eq_seven_of_r_eq_three_of_isLinearHypergraph_of_not_isTwoColorable",
+    "Erdos836.Palomar.hasCodimensionOneAvoidingWitness_three"
+  ],
+  "declaration_lines": {
+    "Erdos836.Palomar.erdos_836.parts.i": {
+      "solution_line": 33,
+      "challenge_line": 131
+    },
+    "Erdos836.Palomar.erdos_836.parts.ii": {
+      "solution_line": 41,
+      "challenge_line": 141
+    },
+    "Erdos836.Palomar.exists_alon_fin_hypergraph": {
+      "solution_line": 51,
+      "challenge_line": 154
+    },
+    "Erdos836.Palomar.not_erdos836QuadraticVertexQuestion": {
+      "solution_line": 57,
+      "challenge_line": 161
+    },
+    "Erdos836.Palomar.erdos836LinearIntersectionConjecture_proved": {
+      "solution_line": 60,
+      "challenge_line": 165
+    },
+    "Erdos836.Palomar.r_le_two_mul_add_one_of_forall_card_inter_le": {
+      "solution_line": 64,
+      "challenge_line": 172
+    },
+    "Erdos836.Palomar.isTwoColorable_of_four_le_r_of_isLinearHypergraph": {
+      "solution_line": 71,
+      "challenge_line": 180
+    },
+    "Erdos836.Palomar.r_le_five_of_not_hasPairwiseIntersectionAtLeast_three_of_not_isTwoColorable": {
+      "solution_line": 77,
+      "challenge_line": 188
+    },
+    "Erdos836.Palomar.hasChromaticNumberThree_iff_not_isTwoColorable_of_isIntersecting": {
+      "solution_line": 85,
+      "challenge_line": 197
+    },
+    "Erdos836.Palomar.three_le_vertexDegree_of_not_hasPairwiseIntersectionAtLeast_sub_one_of_not_isTwoColorable": {
+      "solution_line": 91,
+      "challenge_line": 205
+    },
+    "Erdos836.Palomar.two_mul_r_add_one_le_card_activeVertices_of_not_hasPairwiseIntersectionAtLeast_sub_one": {
+      "solution_line": 100,
+      "challenge_line": 215
+    },
+    "Erdos836.Palomar.four_le_vertexDegree_of_mem_inter_of_two_le_card_inter_of_not_hasPairwiseIntersectionAtLeast_sub_one": {
+      "solution_line": 108,
+      "challenge_line": 224
+    },
+    "Erdos836.Palomar.three_mul_card_activeVertices_add_one_le_card_mul_r_of_four_le_r": {
+      "solution_line": 118,
+      "challenge_line": 235
+    },
+    "Erdos836.Palomar.nine_le_card_and_nine_le_card_activeVertices_of_r_eq_four_of_not_hasPairwiseIntersectionAtLeast_three": {
+      "solution_line": 125,
+      "challenge_line": 244
+    },
+    "Erdos836.Palomar.card_eq_seven_and_card_activeVertices_eq_seven_of_r_eq_three_of_isLinearHypergraph_of_not_isTwoColorable": {
+      "solution_line": 134,
+      "challenge_line": 254
+    },
+    "Erdos836.Palomar.hasCodimensionOneAvoidingWitness_three": {
+      "solution_line": 143,
+      "challenge_line": 262
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos836.Palomar.card_eq_seven_and_card_activeVertices_eq_seven_of_r_eq_three_of_isLinearHypergraph_of_not_isTwoColorable",
+    "Erdos836.Palomar.erdos836LinearIntersectionConjecture_proved",
+    "Erdos836.Palomar.erdos_836.parts.i",
+    "Erdos836.Palomar.erdos_836.parts.ii",
+    "Erdos836.Palomar.exists_alon_fin_hypergraph",
+    "Erdos836.Palomar.four_le_vertexDegree_of_mem_inter_of_two_le_card_inter_of_not_hasPairwiseIntersectionAtLeast_sub_one",
+    "Erdos836.Palomar.hasChromaticNumberThree_iff_not_isTwoColorable_of_isIntersecting",
+    "Erdos836.Palomar.hasCodimensionOneAvoidingWitness_three",
+    "Erdos836.Palomar.isTwoColorable_of_four_le_r_of_isLinearHypergraph",
+    "Erdos836.Palomar.nine_le_card_and_nine_le_card_activeVertices_of_r_eq_four_of_not_hasPairwiseIntersectionAtLeast_three",
+    "Erdos836.Palomar.not_erdos836QuadraticVertexQuestion",
+    "Erdos836.Palomar.r_le_five_of_not_hasPairwiseIntersectionAtLeast_three_of_not_isTwoColorable",
+    "Erdos836.Palomar.r_le_two_mul_add_one_of_forall_card_inter_le",
+    "Erdos836.Palomar.three_le_vertexDegree_of_not_hasPairwiseIntersectionAtLeast_sub_one_of_not_isTwoColorable",
+    "Erdos836.Palomar.three_mul_card_activeVertices_add_one_le_card_mul_r_of_four_le_r",
+    "Erdos836.Palomar.two_mul_r_add_one_le_card_activeVertices_of_not_hasPairwiseIntersectionAtLeast_sub_one"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 32,
+  "expected_axiom_audit_count": 32,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos836.Palomar.erdos_836.parts.i",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.erdos_836.parts.ii",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.exists_alon_fin_hypergraph",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.not_erdos836QuadraticVertexQuestion",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.erdos836LinearIntersectionConjecture_proved",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.r_le_two_mul_add_one_of_forall_card_inter_le",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.isTwoColorable_of_four_le_r_of_isLinearHypergraph",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.r_le_five_of_not_hasPairwiseIntersectionAtLeast_three_of_not_isTwoColorable",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.hasChromaticNumberThree_iff_not_isTwoColorable_of_isIntersecting",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.three_le_vertexDegree_of_not_hasPairwiseIntersectionAtLeast_sub_one_of_not_isTwoColorable",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.two_mul_r_add_one_le_card_activeVertices_of_not_hasPairwiseIntersectionAtLeast_sub_one",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.four_le_vertexDegree_of_mem_inter_of_two_le_card_inter_of_not_hasPairwiseIntersectionAtLeast_sub_one",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.three_mul_card_activeVertices_add_one_le_card_mul_r_of_four_le_r",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.nine_le_card_and_nine_le_card_activeVertices_of_r_eq_four_of_not_hasPairwiseIntersectionAtLeast_three",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.card_eq_seven_and_card_activeVertices_eq_seven_of_r_eq_three_of_isLinearHypergraph_of_not_isTwoColorable",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.hasCodimensionOneAvoidingWitness_three",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.statement_erdos_836_parts_i_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.statement_erdos_836_parts_ii_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.statement_exists_alon_fin_hypergraph_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.statement_not_erdos836QuadraticVertexQuestion_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.statement_erdos836LinearIntersectionConjecture_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.statement_r_le_two_mul_add_one_of_forall_card_inter_le_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.statement_isTwoColorable_of_four_le_r_of_isLinearHypergraph_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.statement_r_le_five_of_not_hasPairwiseIntersectionAtLeast_three_of_not_isTwoColorable_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.statement_hasChromaticNumberThree_iff_not_isTwoColorable_of_isIntersecting_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.statement_three_le_vertexDegree_of_not_hasPairwiseIntersectionAtLeast_sub_one_of_not_isTwoColorable_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.statement_two_mul_r_add_one_le_card_activeVertices_of_not_hasPairwiseIntersectionAtLeast_sub_one_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.statement_four_le_vertexDegree_of_mem_inter_of_two_le_card_inter_of_not_hasPairwiseIntersectionAtLeast_sub_one_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.statement_three_mul_card_activeVertices_add_one_le_card_mul_r_of_four_le_r_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.statement_nine_le_card_and_activeVertices_four_uniform_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.statement_card_eq_seven_and_card_activeVertices_eq_seven_of_r_eq_three_of_isLinearHypergraph_of_not_isTwoColorable_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos836.Palomar.statement_hasCodimensionOneAvoidingWitness_three_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Erdos836.HasCodimensionOneAvoidingWitness",
+      "kind": "def",
+      "declaration": "def Erdos836.HasCodimensionOneAvoidingWitness (r : Nat) : Prop :=\n  fun r =>\n  Exists fun n =>\n    Exists fun H =>\n      And (Erdos836.IsUniform r H)\n        (And (Erdos836.IsIntersecting H)\n          (And (Erdos836.HasChromaticNumberThree H) (Not (Erdos836.HasPairwiseIntersectionAtLeast H (HSub.hSub r 1)))))"
+    },
+    {
+      "name": "Erdos836.vertexDegree",
+      "kind": "def",
+      "declaration": "def Erdos836.vertexDegree.{u_1} {V : Type u_1} [DecidableEq V] (H : Finset (Finset V)) (v : V) : Nat :=\n  fun {V} [DecidableEq V] H v => Finset.card (Finset.filter (fun e => Membership.mem e v) H)"
+    },
+    {
+      "name": "Erdos836.HasPairwiseIntersectionAtLeast",
+      "kind": "def",
+      "declaration": "def Erdos836.HasPairwiseIntersectionAtLeast.{u_1} {V : Type u_1} [DecidableEq V] (H : Finset (Finset V)) (k : Nat) : Prop :=\n  fun {V} [DecidableEq V] H k =>\n  Exists fun e\u2081 =>\n    And (Membership.mem H e\u2081)\n      (Exists fun e\u2082 => And (Membership.mem H e\u2082) (And (Ne e\u2081 e\u2082) (LE.le k (Finset.card (Inter.inter e\u2081 e\u2082)))))"
+    },
+    {
+      "name": "Erdos836.IsLinearHypergraph",
+      "kind": "def",
+      "declaration": "def Erdos836.IsLinearHypergraph.{u_1} {V : Type u_1} [DecidableEq V] (H : Finset (Finset V)) : Prop :=\n  fun {V} [DecidableEq V] H =>\n  \u2200 (e\u2081 : Finset V),\n    Membership.mem H e\u2081 \u2192 \u2200 (e\u2082 : Finset V), Membership.mem H e\u2082 \u2192 Ne e\u2081 e\u2082 \u2192 LE.le (Finset.card (Inter.inter e\u2081 e\u2082)) 1"
+    },
+    {
+      "name": "Erdos836.Erdos836LinearIntersectionConjecture",
+      "kind": "def",
+      "declaration": "def Erdos836.Erdos836LinearIntersectionConjecture : Prop :=\n  Exists fun c =>\n  And (LT.lt 0 c)\n    (\u2200 (r : Nat),\n      LE.le 2 r \u2192\n        \u2200 (n : Nat) (H : Finset (Finset (Fin n))),\n          Erdos836.IsUniform r H \u2192\n            Erdos836.IsIntersecting H \u2192\n              Erdos836.HasChromaticNumberThree H \u2192\n                Exists fun e\u2081 =>\n                  And (Membership.mem H e\u2081)\n                    (Exists fun e\u2082 =>\n                      And (Membership.mem H e\u2082)\n                        (And (Ne e\u2081 e\u2082) (LE.le (HMul.hMul c \u2191r) \u2191(Finset.card (Inter.inter e\u2081 e\u2082))))))"
+    },
+    {
+      "name": "Erdos836.Erdos836QuadraticVertexQuestion",
+      "kind": "def",
+      "declaration": "def Erdos836.Erdos836QuadraticVertexQuestion : Prop :=\n  Exists fun C =>\n  And (LT.lt 0 C)\n    (\u2200 (r : Nat),\n      LE.le 2 r \u2192\n        \u2200 (n : Nat) (H : Finset (Finset (Fin n))),\n          Erdos836.IsUniform r H \u2192\n            Erdos836.IsIntersecting H \u2192\n              Erdos836.HasChromaticNumberThree H \u2192\n                LE.le (Finset.card (Erdos836.activeVertices H)) (HMul.hMul C (HPow.hPow r 2)))"
+    },
+    {
+      "name": "Erdos836.activeVertices",
+      "kind": "def",
+      "declaration": "def Erdos836.activeVertices.{u_1} {V : Type u_1} [DecidableEq V] (H : Finset (Finset V)) : Finset V :=\n  fun {V} [DecidableEq V] H => Finset.biUnion H id"
+    },
+    {
+      "name": "Erdos836.alonVertexCount",
+      "kind": "def",
+      "declaration": "def Erdos836.alonVertexCount (r : Nat) : Nat :=\n  fun r =>\n  HAdd.hAdd (HSub.hSub (HMul.hMul 2 r) 2) (HDiv.hDiv (Nat.choose (HSub.hSub (HMul.hMul 2 r) 2) (HSub.hSub r 1)) 2)"
+    },
+    {
+      "name": "Erdos836.IsTwoColorable",
+      "kind": "def",
+      "declaration": "def Erdos836.IsTwoColorable.{u_1} {V : Type u_1} (H : Finset (Finset V)) : Prop :=\n  fun {V} H => Erdos836.IsKColorable H 2"
+    },
+    {
+      "name": "Erdos836.IsProperColoring",
+      "kind": "def",
+      "declaration": "def Erdos836.IsProperColoring.{u_1, u_2} {V : Type u_1} (H : Finset (Finset V)) {C : Type u_2} (c : V \u2192 C) : Prop :=\n  fun {V} H {C} c =>\n  \u2200 (e : Finset V),\n    Membership.mem H e \u2192\n      Exists fun u => And (Membership.mem e u) (Exists fun v => And (Membership.mem e v) (Ne (c u) (c v)))"
+    },
+    {
+      "name": "Erdos836.IsKColorable",
+      "kind": "def",
+      "declaration": "def Erdos836.IsKColorable.{u_1} {V : Type u_1} (H : Finset (Finset V)) (k : Nat) : Prop :=\n  fun {V} H k => Exists fun c => Erdos836.IsProperColoring H c"
+    },
+    {
+      "name": "Erdos836.IsThreeColorable",
+      "kind": "def",
+      "declaration": "def Erdos836.IsThreeColorable.{u_1} {V : Type u_1} (H : Finset (Finset V)) : Prop :=\n  fun {V} H => Erdos836.IsKColorable H 3"
+    },
+    {
+      "name": "Erdos836.HasChromaticNumberThree",
+      "kind": "def",
+      "declaration": "def Erdos836.HasChromaticNumberThree.{u_1} {V : Type u_1} (H : Finset (Finset V)) : Prop :=\n  fun {V} H => And (Erdos836.IsThreeColorable H) (Not (Erdos836.IsTwoColorable H))"
+    },
+    {
+      "name": "Erdos836.IsIntersecting",
+      "kind": "def",
+      "declaration": "def Erdos836.IsIntersecting.{u_1} {V : Type u_1} [DecidableEq V] (H : Finset (Finset V)) : Prop :=\n  fun {V} [DecidableEq V] H =>\n  \u2200 (e\u2081 : Finset V), Membership.mem H e\u2081 \u2192 \u2200 (e\u2082 : Finset V), Membership.mem H e\u2082 \u2192 Finset.Nonempty (Inter.inter e\u2081 e\u2082)"
+    },
+    {
+      "name": "Erdos836.IsUniform",
+      "kind": "def",
+      "declaration": "def Erdos836.IsUniform.{u_1} {V : Type u_1} (r : Nat) (H : Finset (Finset V)) : Prop :=\n  fun {V} r H => \u2200 (e : Finset V), Membership.mem H e \u2192 Eq (Finset.card e) r"
+    },
+    {
+      "name": "Finset.IsProperHypergraphColoring",
+      "kind": "def",
+      "declaration": "def Finset.IsProperHypergraphColoring.{u_1, u_2} {V : Type u_1} (H : Finset (Finset V)) {C : Type u_2} (c : V \u2192 C) : Prop :=\n  fun {V} H {C} c =>\n  \u2200 (e : Finset V),\n    Membership.mem H e \u2192\n      Exists fun x => And (Membership.mem e x) (Exists fun y => And (Membership.mem e y) (Ne (c x) (c y)))"
+    },
+    {
+      "name": "Finset.HypergraphColorable",
+      "kind": "def",
+      "declaration": "def Finset.HypergraphColorable.{u_1} {V : Type u_1} (H : Finset (Finset V)) (k : Nat) : Prop :=\n  fun {V} H k => Exists fun c => Finset.IsProperHypergraphColoring H c"
+    },
+    {
+      "name": "Finset.HasHypergraphChromaticNumber",
+      "kind": "def",
+      "declaration": "def Finset.HasHypergraphChromaticNumber.{u_1} {V : Type u_1} (H : Finset (Finset V)) (k : Nat) : Prop :=\n  fun {V} H k => And (Finset.HypergraphColorable H k) (\u2200 (j : Nat), LT.lt j k \u2192 Not (Finset.HypergraphColorable H j))"
+    },
+    {
+      "name": "Finset.IsUniform",
+      "kind": "def",
+      "declaration": "def Finset.IsUniform.{u_1} {V : Type u_1} (H : Finset (Finset V)) (r : Nat) : Prop :=\n  fun {V} H r => \u2200 (e : Finset V), Membership.mem H e \u2192 Eq (Finset.card e) r"
+    },
+    {
+      "name": "Erdos836.Palomar.erdos_836.parts.i",
+      "kind": "theorem",
+      "declaration": "theorem Erdos836.Palomar.erdos_836.parts.i :\n  Iff False\n    (Exists fun C =>\n      And (LT.lt 0 C)\n        (\u2200 (r : Nat),\n          LE.le 2 r \u2192\n            \u2200 (n : Nat) (H : Finset (Finset (Fin n))),\n              Finset.IsUniform H r \u2192\n                Finset.HasHypergraphChromaticNumber H 3 \u2192\n                  Set.Intersecting (SetLike.coe H) \u2192\n                    LE.le (\u2191(Finset.card (Finset.biUnion H id))) (HMul.hMul C (HPow.hPow (\u2191r) 2))))"
+    },
+    {
+      "name": "Erdos836.Palomar.erdos_836.parts.ii",
+      "kind": "theorem",
+      "declaration": "theorem Erdos836.Palomar.erdos_836.parts.ii :\n  Iff True\n    (Exists fun c =>\n      And (LT.lt 0 c)\n        (\u2200 (r : Nat),\n          LE.le 2 r \u2192\n            \u2200 (n : Nat) (H : Finset (Finset (Fin n))),\n              Finset.IsUniform H r \u2192\n                Finset.HasHypergraphChromaticNumber H 3 \u2192\n                  Set.Intersecting (SetLike.coe H) \u2192\n                    Exists fun e =>\n                      And (Membership.mem H e)\n                        (Exists fun f =>\n                          And (Membership.mem H f)\n                            (And (Ne e f) (LE.le (HMul.hMul c \u2191r) \u2191(Finset.card (Inter.inter e f)))))))"
+    },
+    {
+      "name": "Erdos836.Palomar.exists_alon_fin_hypergraph",
+      "kind": "theorem",
+      "declaration": "theorem Erdos836.Palomar.exists_alon_fin_hypergraph {r : Nat} (hr : LE.le 2 r) :\n  Exists fun n =>\n    Exists fun H =>\n      And (Erdos836.IsUniform r H)\n        (And (Erdos836.IsIntersecting H)\n          (And (Erdos836.HasChromaticNumberThree H)\n            (LE.le (Erdos836.alonVertexCount r) (Finset.card (Erdos836.activeVertices H)))))"
+    },
+    {
+      "name": "Erdos836.Palomar.not_erdos836QuadraticVertexQuestion",
+      "kind": "theorem",
+      "declaration": "theorem Erdos836.Palomar.not_erdos836QuadraticVertexQuestion : Not Erdos836.Erdos836QuadraticVertexQuestion"
+    },
+    {
+      "name": "Erdos836.Palomar.erdos836LinearIntersectionConjecture_proved",
+      "kind": "theorem",
+      "declaration": "theorem Erdos836.Palomar.erdos836LinearIntersectionConjecture_proved : Erdos836.Erdos836LinearIntersectionConjecture"
+    },
+    {
+      "name": "Erdos836.Palomar.r_le_two_mul_add_one_of_forall_card_inter_le",
+      "kind": "theorem",
+      "declaration": "theorem Erdos836.Palomar.r_le_two_mul_add_one_of_forall_card_inter_le.{u_1} {V : Type u_1} [DecidableEq V] {r t : Nat}\n  (hr : LE.le 2 r) {H : Finset (Finset V)} (hunif : Erdos836.IsUniform r H) (hinter : Erdos836.IsIntersecting H)\n  (hnot2 : Not (Erdos836.IsTwoColorable H))\n  (ht :\n    \u2200 (e : Finset V),\n      Membership.mem H e \u2192 \u2200 (f : Finset V), Membership.mem H f \u2192 Ne e f \u2192 LE.le (Finset.card (Inter.inter e f)) t) :\n  LE.le r (HAdd.hAdd (HMul.hMul 2 t) 1)"
+    },
+    {
+      "name": "Erdos836.Palomar.isTwoColorable_of_four_le_r_of_isLinearHypergraph",
+      "kind": "theorem",
+      "declaration": "theorem Erdos836.Palomar.isTwoColorable_of_four_le_r_of_isLinearHypergraph.{u_1} {V : Type u_1} [DecidableEq V] {r : Nat}\n  (hr : LE.le 4 r) {H : Finset (Finset V)} (hunif : Erdos836.IsUniform r H) (hinter : Erdos836.IsIntersecting H)\n  (hlin : Erdos836.IsLinearHypergraph H) : Erdos836.IsTwoColorable H"
+    },
+    {
+      "name": "Erdos836.Palomar.r_le_five_of_not_hasPairwiseIntersectionAtLeast_three_of_not_isTwoColorable",
+      "kind": "theorem",
+      "declaration": "theorem Erdos836.Palomar.r_le_five_of_not_hasPairwiseIntersectionAtLeast_three_of_not_isTwoColorable.{u_1} {V : Type u_1}\n  [DecidableEq V] {r : Nat} (hr : LE.le 2 r) {H : Finset (Finset V)} (hunif : Erdos836.IsUniform r H)\n  (hinter : Erdos836.IsIntersecting H) (hnot2 : Not (Erdos836.IsTwoColorable H))\n  (hno3 : Not (Erdos836.HasPairwiseIntersectionAtLeast H 3)) : LE.le r 5"
+    },
+    {
+      "name": "Erdos836.Palomar.hasChromaticNumberThree_iff_not_isTwoColorable_of_isIntersecting",
+      "kind": "theorem",
+      "declaration": "theorem Erdos836.Palomar.hasChromaticNumberThree_iff_not_isTwoColorable_of_isIntersecting.{u_1} {V : Type u_1} [DecidableEq V]\n  {r : Nat} (hr : LE.le 2 r) {H : Finset (Finset V)} (hunif : Erdos836.IsUniform r H)\n  (hinter : Erdos836.IsIntersecting H) : Iff (Erdos836.HasChromaticNumberThree H) (Not (Erdos836.IsTwoColorable H))"
+    },
+    {
+      "name": "Erdos836.Palomar.three_le_vertexDegree_of_not_hasPairwiseIntersectionAtLeast_sub_one_of_not_isTwoColorable",
+      "kind": "theorem",
+      "declaration": "theorem Erdos836.Palomar.three_le_vertexDegree_of_not_hasPairwiseIntersectionAtLeast_sub_one_of_not_isTwoColorable.{u_1}\n  {V : Type u_1} [DecidableEq V] {r : Nat} (hr : LE.le 3 r) {H : Finset (Finset V)} (hunif : Erdos836.IsUniform r H)\n  (hinter : Erdos836.IsIntersecting H) (hnot2 : Not (Erdos836.IsTwoColorable H))\n  (hno : Not (Erdos836.HasPairwiseIntersectionAtLeast H (HSub.hSub r 1))) {v : V}\n  (hv : Membership.mem (Erdos836.activeVertices H) v) : LE.le 3 (Erdos836.vertexDegree H v)"
+    },
+    {
+      "name": "Erdos836.Palomar.two_mul_r_add_one_le_card_activeVertices_of_not_hasPairwiseIntersectionAtLeast_sub_one",
+      "kind": "theorem",
+      "declaration": "theorem Erdos836.Palomar.two_mul_r_add_one_le_card_activeVertices_of_not_hasPairwiseIntersectionAtLeast_sub_one.{u_1}\n  {V : Type u_1} [DecidableEq V] {r : Nat} (hr : LE.le 3 r) {H : Finset (Finset V)} (hunif : Erdos836.IsUniform r H)\n  (hinter : Erdos836.IsIntersecting H) (hnot2 : Not (Erdos836.IsTwoColorable H))\n  (hno : Not (Erdos836.HasPairwiseIntersectionAtLeast H (HSub.hSub r 1))) :\n  LE.le (HAdd.hAdd (HMul.hMul 2 r) 1) (Finset.card (Erdos836.activeVertices H))"
+    },
+    {
+      "name": "Erdos836.Palomar.four_le_vertexDegree_of_mem_inter_of_two_le_card_inter_of_not_hasPairwiseIntersectionAtLeast_sub_one",
+      "kind": "theorem",
+      "declaration": "theorem Erdos836.Palomar.four_le_vertexDegree_of_mem_inter_of_two_le_card_inter_of_not_hasPairwiseIntersectionAtLeast_sub_one.{u_1}\n  {V : Type u_1} [DecidableEq V] {r : Nat} (hr : LE.le 2 r) {H : Finset (Finset V)} (hunif : Erdos836.IsUniform r H)\n  (hinter : Erdos836.IsIntersecting H) (hnot2 : Not (Erdos836.IsTwoColorable H))\n  (hno : Not (Erdos836.HasPairwiseIntersectionAtLeast H (HSub.hSub r 1))) {e\u2081 e\u2082 : Finset V} (he\u2081 : Membership.mem H e\u2081)\n  (he\u2082 : Membership.mem H e\u2082) (hne21 : Ne e\u2082 e\u2081) (hcard : LE.le 2 (Finset.card (Inter.inter e\u2081 e\u2082))) {v : V}\n  (hv : Membership.mem (Inter.inter e\u2081 e\u2082) v) : LE.le 4 (Erdos836.vertexDegree H v)"
+    },
+    {
+      "name": "Erdos836.Palomar.three_mul_card_activeVertices_add_one_le_card_mul_r_of_four_le_r",
+      "kind": "theorem",
+      "declaration": "theorem Erdos836.Palomar.three_mul_card_activeVertices_add_one_le_card_mul_r_of_four_le_r.{u_1} {V : Type u_1} [DecidableEq V]\n  {r : Nat} (hr : LE.le 4 r) {H : Finset (Finset V)} (hunif : Erdos836.IsUniform r H)\n  (hinter : Erdos836.IsIntersecting H) (hnot2 : Not (Erdos836.IsTwoColorable H))\n  (hno : Not (Erdos836.HasPairwiseIntersectionAtLeast H (HSub.hSub r 1))) :\n  LE.le (HAdd.hAdd (HMul.hMul 3 (Finset.card (Erdos836.activeVertices H))) 1) (HMul.hMul (Finset.card H) r)"
+    },
+    {
+      "name": "Erdos836.Palomar.nine_le_card_and_nine_le_card_activeVertices_of_r_eq_four_of_not_hasPairwiseIntersectionAtLeast_three",
+      "kind": "theorem",
+      "declaration": "theorem Erdos836.Palomar.nine_le_card_and_nine_le_card_activeVertices_of_r_eq_four_of_not_hasPairwiseIntersectionAtLeast_three.{u_1}\n  {V : Type u_1} [DecidableEq V] {H : Finset (Finset V)} (hunif : Erdos836.IsUniform 4 H)\n  (hinter : Erdos836.IsIntersecting H) (hchrom : Erdos836.HasChromaticNumberThree H)\n  (hno3 : Not (Erdos836.HasPairwiseIntersectionAtLeast H 3)) :\n  And (LE.le 9 (Finset.card H))\n    (And (LE.le 9 (Finset.card (Erdos836.activeVertices H)))\n      (LE.le (HAdd.hAdd (HMul.hMul 3 (Finset.card (Erdos836.activeVertices H))) 1) (HMul.hMul (Finset.card H) 4)))"
+    },
+    {
+      "name": "Erdos836.Palomar.card_eq_seven_and_card_activeVertices_eq_seven_of_r_eq_three_of_isLinearHypergraph_of_not_isTwoColorable",
+      "kind": "theorem",
+      "declaration": "theorem Erdos836.Palomar.card_eq_seven_and_card_activeVertices_eq_seven_of_r_eq_three_of_isLinearHypergraph_of_not_isTwoColorable.{u_1}\n  {V : Type u_1} [DecidableEq V] {H : Finset (Finset V)} (hunif : Erdos836.IsUniform 3 H)\n  (hinter : Erdos836.IsIntersecting H) (hlin : Erdos836.IsLinearHypergraph H)\n  (hnot2 : Not (Erdos836.IsTwoColorable H)) :\n  And (Eq (Finset.card H) 7) (Eq (Finset.card (Erdos836.activeVertices H)) 7)"
+    },
+    {
+      "name": "Erdos836.Palomar.hasCodimensionOneAvoidingWitness_three",
+      "kind": "theorem",
+      "declaration": "theorem Erdos836.Palomar.hasCodimensionOneAvoidingWitness_three : Erdos836.HasCodimensionOneAvoidingWitness 3"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos836.erdos_836.parts.i",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.836",
+      "solution_declaration": "Erdos836.Palomar.erdos_836.parts.i",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos836.erdos_836.parts.ii",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.836",
+      "solution_declaration": "Erdos836.Palomar.erdos_836.parts.ii",
+      "match_mode": "resolves_open_answer_true_iff"
+    },
+    {
+      "target_declaration": "Erdos836.Challenge.statement_erdos836LinearIntersectionConjecture_proved",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos836.Palomar.erdos836LinearIntersectionConjecture_proved",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos836.Challenge.statement_three_mul_card_activeVertices_add_one_le_card_mul_r_of_four_le_r",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos836.Palomar.three_mul_card_activeVertices_add_one_le_card_mul_r_of_four_le_r",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos836.Challenge.statement_nine_le_card_and_nine_le_card_activeVertices_of_r_eq_four_of_not_hasPairwiseIntersectionAtLeast_three",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos836.Palomar.nine_le_card_and_nine_le_card_activeVertices_of_r_eq_four_of_not_hasPairwiseIntersectionAtLeast_three",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos836.Challenge.statement_hasCodimensionOneAvoidingWitness_three",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos836.Palomar.hasCodimensionOneAvoidingWitness_three",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos836.Challenge.statement_r_le_five_of_not_hasPairwiseIntersectionAtLeast_three_of_not_isTwoColorable",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos836.Palomar.r_le_five_of_not_hasPairwiseIntersectionAtLeast_three_of_not_isTwoColorable",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos836.Challenge.statement_three_le_vertexDegree_of_not_hasPairwiseIntersectionAtLeast_sub_one_of_not_isTwoColorable",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos836.Palomar.three_le_vertexDegree_of_not_hasPairwiseIntersectionAtLeast_sub_one_of_not_isTwoColorable",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos836.Challenge.statement_two_mul_r_add_one_le_card_activeVertices_of_not_hasPairwiseIntersectionAtLeast_sub_one",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos836.Palomar.two_mul_r_add_one_le_card_activeVertices_of_not_hasPairwiseIntersectionAtLeast_sub_one",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos836.Challenge.statement_hasChromaticNumberThree_iff_not_isTwoColorable_of_isIntersecting",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos836.Palomar.hasChromaticNumberThree_iff_not_isTwoColorable_of_isIntersecting",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos836.Challenge.statement_exists_alon_fin_hypergraph",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos836.Palomar.exists_alon_fin_hypergraph",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos836.Challenge.statement_card_eq_seven_and_card_activeVertices_eq_seven_of_r_eq_three_of_isLinearHypergraph_of_not_isTwoColorable",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos836.Palomar.card_eq_seven_and_card_activeVertices_eq_seven_of_r_eq_three_of_isLinearHypergraph_of_not_isTwoColorable",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos836.Challenge.statement_four_le_vertexDegree_of_mem_inter_of_two_le_card_inter_of_not_hasPairwiseIntersectionAtLeast_sub_one",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos836.Palomar.four_le_vertexDegree_of_mem_inter_of_two_le_card_inter_of_not_hasPairwiseIntersectionAtLeast_sub_one",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos836.Challenge.Erdos836LinearIntersectionConjecture",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos836.Palomar.erdos836LinearIntersectionConjecture_proved",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos836.Challenge.statement_not_erdos836QuadraticVertexQuestion",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos836.Palomar.not_erdos836QuadraticVertexQuestion",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos836.Challenge.statement_r_le_two_mul_add_one_of_forall_card_inter_le",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos836.Palomar.r_le_two_mul_add_one_of_forall_card_inter_le",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos836.Challenge.statement_isTwoColorable_of_four_le_r_of_isLinearHypergraph",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos836.Palomar.isTwoColorable_of_four_le_r_of_isLinearHypergraph",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos836.Challenge.statement_erdos_836_parts_ii",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos836.Palomar.erdos_836.parts.ii",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos836.Challenge.statement_erdos_836_parts_i",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos836.Palomar.erdos_836.parts.i",
+      "match_mode": "exact"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "e318903862396f96de3df57264e0158682b952fd3fb53ac23d876413e7b30f71"
+  },
+  "input_sha256": {
+    "Challenge.lean": "bbe39692d827960d234cccde2d5c25c6de481b69d0c209ece4c5c039dd611f08",
+    "Solution.lean": "8abf8c57c2b6a32703ac12e67d8e9f18b72d907363bbec8d90817978512b1a0d",
+    "AxiomAudit.lean": "75ebd8e313d8b83b627ea0fc2d530303a2354f49785475ad5dc302354f5c1f4f",
+    "Statement.lean": "820ae11e14d1f26fbc439d174f2e607925df8251d3186f4b76bb8045273c6d78",
+    "comparator.json": "250179945a60417f67df57d49429858f124009bbf23df1b1f36e95d0c787b1d9",
+    "formalization.yaml": "cba9d0758c4cbf1a03a89d075e19fe98f6f632de22f263dabb6b82ce196fccc9",
+    "lakefile.toml": "ebfb248b87652539e4674f25a0c3bf2bf31faabe882ee1ff973b3d26645ca329",
+    "lake-manifest.json": "0f5bba3142a534c6eb5f0a19d1db8b75c3c26f31d26f55d27d380f653c7aa990",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "694f3c136549331c558647cb21a7e3485ffc4ab5e112c14f4720c1441494cda5",
+    "Proofs/DegreeThreeVertexReplacementAndNineEdgeBound836.lean": "3fd2d08e74d4cee698cd2024a1a5f58728e5d49fdc36fa63d13f530db1640a82",
+    "Proofs/Erdos836Unified435.lean": "3859ddaff0692f731e718d72eb4487e75d3a52d0ebc88bccb167874fe203e378",
+    "Proofs/FourUniformCodimensionOneAvoidingBounds836.lean": "1dccb63851f89c278ca7553cd57724f8cb5287ea0b1ed90a5263ddb21941df02"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 44.342,
+    "env_compare_and_core_audit_seconds": 54.801,
+    "total_elapsed_seconds": 222.735,
+    "user_cpu_seconds": 121.923,
+    "system_cpu_seconds": 57.821,
+    "peak_rss_mib": 13328.09
+  },
+  "status": "PASS"
+}
