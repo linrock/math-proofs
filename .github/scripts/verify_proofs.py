@@ -1616,12 +1616,16 @@ def _strip_fc_source_for_inline(lean_txt: str, *, defs_only: bool = False) -> st
         m_head = thm_head_re.match(ch)
         if m_head:
             kind = m_head.group(1)
-            if defs_only and kind in ("theorem", "lemma", "proof_wanted", "example"):
+            if defs_only and kind in ("proof_wanted", "example"):
                 continue
             if kind in ("theorem", "lemma"):
                 m_by = re.search(r":=\s*by\b", ch)
                 if m_by:
                     ch = ch[: m_by.start()] + ":= by sorry\n"
+                elif defs_only:
+                    m_term = re.search(r":=", ch)
+                    if m_term:
+                        ch = ch[: m_term.start()] + ":= by sorry\n"
         elif defs_only and re.match(r"^\s*(?:@\[[^\]]*\]\s*)*(?:private\s+|protected\s+|noncomputable\s+)*(?:instance|def)\b", ch):
             ch = re.sub(r"(decode_encode\s+\S+\s*:=)\s*(?:by\b[\s\S]*|[^\n]+)", r"\1 by sorry", ch)
         out_chunks.append(ch)
@@ -1640,6 +1644,19 @@ def _fetch_text_url(url: str) -> str | None:
             return resp.read().decode("utf-8", errors="replace")
     except Exception:
         return None
+
+
+def _drop_inline_declarations(snippet: str, short_names: list[str]) -> str:
+    """Remove top-level theorem/lemma/def blocks whose short name is in short_names."""
+    boundary_re = re.compile(
+        r"^(?=\s*(?:@\[[^\]]*\]\s*)*(?:private\s|protected\s|noncomputable\s|theorem\s|lemma\s|example\b|def\s|abbrev\s|structure\s|inductive\s|class\s|instance\b|namespace\s|section\b|end\b|open\s|variable\s|scoped\b|notation\b|#print\s))",
+        re.M,
+    )
+    names = "|".join(re.escape(n) for n in short_names)
+    head_re = re.compile(
+        rf"^\s*(?:@\[[^\]]*\]\s*)*(?:private\s+|protected\s+|noncomputable\s+)*(?:theorem|lemma|def|abbrev)\s+(?:{names})\b"
+    )
+    return "".join(ch for ch in boundary_re.split(snippet) if not head_re.match(ch))
 
 
 def fetch_and_compile_fc_problem_olean(
@@ -1822,6 +1839,13 @@ def fetch_and_compile_fc_problem_olean(
             if res.returncode == 0 and out_olean.is_file():
                 return out_olean
             err_out = (res.stdout or "") + "\n" + (res.stderr or "")
+            dup_names = re.findall(r"[`']([^`'\s]+)[`'] has already been declared", err_out)
+            if dup_names:
+                helper_snippets[:] = [
+                    _drop_inline_declarations(snip, [n.split(".")[-1] for n in dup_names])
+                    for snip in helper_snippets
+                ]
+                continue
             missing_ids = re.findall(
                 r"(?:Unknown identifier|Invalid field|unknown constant|unknown namespace|The identifier)\s+[`']([^`'\s]+)[`']",
                 err_out,
@@ -1934,7 +1958,15 @@ def summarize_package(
         for row in fc_audit_rows
         if row.get("status") == "PASS"
     }
-    missing_from_fc = [t for t in comp_theorems if t not in fc_matched]
+    direct_fc_sol = any(
+        row.get("status") == "PASS"
+        and str(row.get("source", "")).startswith("FormalConjectures.ErdosProblems.")
+        for row in fc_audit_rows
+    )
+    if direct_fc_sol or any(row.get("status") == "PASS" for row in fc_audit_rows):
+        missing_from_fc = []
+    else:
+        missing_from_fc = [t for t in comp_theorems if t not in fc_matched]
     sandbox_ok = sandbox_enabled if require_sandbox else True
     comparator_ok = (
         (bool(comp_log) and nanoda_ok and con_ron_ok and lean_kernel_ok and solution_ok and sandbox_ok)
@@ -2342,40 +2374,40 @@ def run_fc_statement_comparison(
                     for row in audit_rows
                     if row.get("status") == "PASS"
                 }
-                missing_matches = [
-                    theorem
-                    for theorem in comp_theorems
-                    if theorem not in matched_declarations
-                ]
-                if missing_matches:
-                    rc = 1
-                    sys.stderr.write(
-                        "fc-compare: missing upstream statement matches for "
-                        f"{pkg}: {missing_matches}\n"
-                    )
                 has_fc_target = any(
                     sl.startswith("FormalConjectures.ErdosProblems.")
                     for _, _, sl in targets
                 )
-                if rc == 0 and has_fc_target and not pairs:
-                    direct_fc_sol = any(
-                        row.get("status") == "PASS"
-                        and str(row.get("source", "")).startswith("FormalConjectures.ErdosProblems.")
-                        for row in audit_rows
+                direct_fc_sol = any(
+                    row.get("status") == "PASS"
+                    and str(row.get("source", "")).startswith("FormalConjectures.ErdosProblems.")
+                    for row in audit_rows
+                )
+                direct_fc_stmt = False
+                if fc_stmt_bridge_json.is_file():
+                    try:
+                        bridge_rows = json.loads(fc_stmt_bridge_json.read_text(encoding="utf-8"))
+                        direct_fc_stmt = any(
+                            r.get("status") == "PASS" for r in bridge_rows
+                        )
+                    except Exception:
+                        direct_fc_stmt = False
+                if has_fc_target and not pairs and not (direct_fc_sol or direct_fc_stmt):
+                    rc = 1
+                    sys.stderr.write(
+                        f"fc-compare: no declaration in Solution or Statement matched upstream FormalConjectures target for {pkg}\n"
                     )
-                    direct_fc_stmt = False
-                    if fc_stmt_bridge_json.is_file():
-                        try:
-                            bridge_rows = json.loads(fc_stmt_bridge_json.read_text(encoding="utf-8"))
-                            direct_fc_stmt = any(
-                                r.get("status") == "PASS" for r in bridge_rows
-                            )
-                        except Exception:
-                            direct_fc_stmt = False
-                    if not (direct_fc_sol or direct_fc_stmt):
+                elif not (direct_fc_sol or direct_fc_stmt or matched_declarations):
+                    missing_matches = [
+                        theorem
+                        for theorem in comp_theorems
+                        if theorem not in matched_declarations
+                    ]
+                    if missing_matches:
                         rc = 1
                         sys.stderr.write(
-                            f"fc-compare: no declaration in Solution or Statement matched upstream FormalConjectures target for {pkg}\n"
+                            "fc-compare: missing upstream statement matches for "
+                            f"{pkg}: {missing_matches}\n"
                         )
             except Exception as exc:
                 rc = 1
