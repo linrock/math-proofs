@@ -1,0 +1,140 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-12-cf688ecc",
+  "verification_date": "2026-10-12",
+  "state_sha256": "a0256acaa314740da9e18ba01c94089e61a8f1222d90db87867de92cb019adac",
+  "package": "erdos-973",
+  "project_name": "Erd\u0151s 973: power sums cannot all be exponentially small",
+  "package_commit": "cf688ecc2fec705fb1f0b81e7736c424c8987387",
+  "commit": "ad12db51383ed41ec8b6b54e0ffabfa828773d38",
+  "repository": "linrock/math-proofs",
+  "run_id": "38357065860",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 2435,
+    "lines": 69,
+    "sha256": "228b5d5a14dffe87d561d97b68312b6e43d41bbd3d9b20979cc44c5bf061d456",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos973.Palomar.not_erdos_973",
+    "Erdos973.Palomar.eventually_exterior_power_sum_strict_lower_bound"
+  ],
+  "declaration_lines": {
+    "Erdos973.Palomar.not_erdos_973": {
+      "solution_line": 53,
+      "challenge_line": 59
+    },
+    "Erdos973.Palomar.eventually_exterior_power_sum_strict_lower_bound": {
+      "solution_line": 59,
+      "challenge_line": 64
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos973.Palomar.eventually_exterior_power_sum_strict_lower_bound",
+    "Erdos973.Palomar.not_erdos_973"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 2,
+  "expected_axiom_audit_count": 2,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos973.Palomar.not_erdos_973",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos973.Palomar.eventually_exterior_power_sum_strict_lower_bound",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Erdos973.Palomar.OriginalStatement",
+      "kind": "def",
+      "declaration": "def Erdos973.Palomar.OriginalStatement : Prop :=\n  Exists fun C =>\n  And (GT.gt C 1)\n    (\u2200 (n : Nat),\n      GE.ge n 2 \u2192\n        Exists fun z =>\n          And (Eq (z 1) 1)\n            (And (\u2200 (i : Nat), Membership.mem (Finset.Icc 1 n) i \u2192 LE.le 1 (Norm.norm (z i)))\n              (\u2200 (k : Nat),\n                Membership.mem (Finset.Icc 2 (HAdd.hAdd n 1)) k \u2192\n                  LT.lt (Norm.norm (Finset.sum (Finset.Icc 1 n) fun i => HPow.hPow (z i) k))\n                    (HPow.hPow C (Neg.neg \u2191n)))))"
+    },
+    {
+      "name": "Erdos973.Palomar.not_erdos_973",
+      "kind": "theorem",
+      "declaration": "theorem Erdos973.Palomar.not_erdos_973 : Not Erdos973.Palomar.OriginalStatement"
+    },
+    {
+      "name": "Erdos973.Palomar.eventually_exterior_power_sum_strict_lower_bound",
+      "kind": "theorem",
+      "declaration": "theorem Erdos973.Palomar.eventually_exterior_power_sum_strict_lower_bound (C : Real) (hC : LT.lt 1 C) :\n  Filter.Eventually\n    (fun n =>\n      \u2200 (z : Fin n \u2192 Complex),\n        (\u2200 (i : Fin n), LE.le 1 (Norm.norm (z i))) \u2192\n          Exists fun k =>\n            And (Membership.mem (Finset.Icc 2 (HAdd.hAdd n 1)) k)\n              (LT.lt (HPow.hPow C (Neg.neg \u2191n)) (Norm.norm (Finset.sum Finset.univ fun i => HPow.hPow (z i) k))))\n    Filter.atTop"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos973.erdos_973",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.973",
+      "solution_declaration": "Erdos973.Palomar.not_erdos_973",
+      "match_mode": "iff_false_to_not"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "e318903862396f96de3df57264e0158682b952fd3fb53ac23d876413e7b30f71"
+  },
+  "input_sha256": {
+    "Challenge.lean": "228b5d5a14dffe87d561d97b68312b6e43d41bbd3d9b20979cc44c5bf061d456",
+    "Solution.lean": "8a4f6c44785ff889e6491f727148112728166995ad3f2b73726b5944fe6636b5",
+    "AxiomAudit.lean": "b4eb15ed89b011e4e7bec9f86568fab0d934aebaf86c9270b5d7028300fb3bbd",
+    "comparator.json": "ff71a75d42f306242b33424262f8515dbeb03f2e9148a6df106bb609af5499c4",
+    "formalization.yaml": "3609113516f95a382404cdcbadaa3ec431a4f035348404af877e412734de2269",
+    "lakefile.toml": "f3c8eceb11232e59a0d965366a8d978684a0f8aaab2f9245aeb328462a340b97",
+    "lake-manifest.json": "41a5bf397368f0579aa4b17554e764c4ea261be0f99e52ec7db47ef1c0403785",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "694f3c136549331c558647cb21a7e3485ffc4ab5e112c14f4720c1441494cda5",
+    "Proofs/Decay973.lean": "706335c4ec389084856e499b696169a85556faeacf3d37574e1e223ebdafad6b",
+    "Proofs/ExteriorPowerSums973.lean": "f4992fafc776d601805293513c0468416675533300a39276d4508567f6e15f29",
+    "Proofs/HigherMoments973.lean": "d2833b97d8119a50c16192fed3de17a266320571e37a56c0e3fb54511e9755e6",
+    "Proofs/MomentObstruction973.lean": "558973f39ca6cf9ea6b26543da1562d4bca3055020e49c1fad03d134c8baeff9",
+    "Proofs/NewtonBridge973.lean": "232299fbd09038a28c4223a0221e380e59084bf1d38b78c1fa823c2af0e9ff63",
+    "Proofs/Normalization973.lean": "0b74a0b299453993188b9aad2df35cdae8eeca8be0a69604d53247382a89e9a8",
+    "Proofs/PolynomialBounds973.lean": "9f8ea78193579dff57939af22f843af5ed60dabf720a0c5a203d73cde35140db",
+    "Proofs/Statement973.lean": "834fd47df641551696f4141dce1fa8bc34f8fbdb35f8b9088f546355bdee2cdc",
+    "Proofs/TaylorResidual973.lean": "e48fadf1b89fcaaa753b26867b421699ba8f395b87efd0e739622da54b36b5f4",
+    "Proofs/TransformedRoots973.lean": "90cf97e75de1f43b100369dcd53081093ed72c5620f583520b3e5e5bf09b5c86",
+    "Proofs/ZeroSeparation973.lean": "4c974fbd026acedc46a3475f9a770c2b813a1387b1cc549c019763d86802ef06"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 22.087,
+    "env_compare_and_core_audit_seconds": 30.71,
+    "total_elapsed_seconds": 242.444,
+    "user_cpu_seconds": 151.837,
+    "system_cpu_seconds": 70.409,
+    "peak_rss_mib": 12215.55
+  },
+  "status": "PASS"
+}

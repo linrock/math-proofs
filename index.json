@@ -2,7 +2,7 @@
   "schema_version": 2,
   "lean_toolchain": "leanprover/lean4:v4.35.0-rc2",
   "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
-  "total_verified_packages": 1,
+  "total_verified_packages": 2,
   "packages": {
     "erdos-836": {
       "package": "erdos-836",
@@ -113,6 +113,47 @@
       },
       "verification_history": [
         "2026-10-13-2c2d2f77"
+      ]
+    },
+    "erdos-973": {
+      "package": "erdos-973",
+      "verification_id": "2026-10-12-cf688ecc",
+      "state_sha256": "a0256acaa314740da9e18ba01c94089e61a8f1222d90db87867de92cb019adac",
+      "project_name": "Erd\u0151s 973: power sums cannot all be exponentially small",
+      "status": "PASS",
+      "package_commit": "cf688ecc2fec705fb1f0b81e7736c424c8987387",
+      "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+      "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+      "challenge_sha256": "228b5d5a14dffe87d561d97b68312b6e43d41bbd3d9b20979cc44c5bf061d456",
+      "solution_sha256": "8a4f6c44785ff889e6491f727148112728166995ad3f2b73726b5944fe6636b5",
+      "exported_theorems": [
+        "Erdos973.Palomar.not_erdos_973",
+        "Erdos973.Palomar.eventually_exterior_power_sum_strict_lower_bound"
+      ],
+      "declaration_lines": {
+        "Erdos973.Palomar.not_erdos_973": {
+          "solution_line": 53,
+          "challenge_line": 59
+        },
+        "Erdos973.Palomar.eventually_exterior_power_sum_strict_lower_bound": {
+          "solution_line": 59,
+          "challenge_line": 64
+        }
+      },
+      "kernels": {
+        "nanoda_accepted": true,
+        "con_ron_accepted": true,
+        "lean_kernel_accepted": true
+      },
+      "fc_statement_matches": 1,
+      "record_json": "records/erdos-973/2026-10-12-cf688ecc.json",
+      "record_md": "records/erdos-973/2026-10-12-cf688ecc.md",
+      "commits": {
+        "cf688ecc2fec705fb1f0b81e7736c424c8987387": "2026-10-12-cf688ecc",
+        "ad12db51383ed41ec8b6b54e0ffabfa828773d38": "2026-10-12-cf688ecc"
+      },
+      "verification_history": [
+        "2026-10-12-cf688ecc"
       ]
     }
   }
