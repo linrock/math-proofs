@@ -1,0 +1,279 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-14-cd3cf0b1",
+  "verification_date": "2026-10-14",
+  "state_sha256": "70e26e36704a3fca3f2c35bbda89544ca28541b1dfca6508a1dc84c9d0372b85",
+  "package": "erdos-91",
+  "project_name": "Erd\u0151s 91: small distinct-distance minimizer classifications",
+  "package_commit": "cd3cf0b176e95209584bf35555a7c0e501255f6e",
+  "commit": "cd3cf0b176e95209584bf35555a7c0e501255f6e",
+  "repository": "linrock/math-proofs",
+  "run_id": "38519308211",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 3317,
+    "lines": 82,
+    "sha256": "6b395568cb9cbe10d3a3f2b0331fe4d39c694dd407bbf345e43ecf8f0bbbf9d5",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos91.Palomar.erdos_91_variants_three",
+    "Erdos91.Palomar.erdos_91_variants_four",
+    "Erdos91.Palomar.erdos_91_variants_six",
+    "Erdos91.Palomar.erdos_91_variants_seven"
+  ],
+  "declaration_lines": {
+    "Erdos91.Palomar.erdos_91_variants_three": {
+      "solution_line": 159,
+      "challenge_line": 71
+    },
+    "Erdos91.Palomar.erdos_91_variants_four": {
+      "solution_line": 162,
+      "challenge_line": 74
+    },
+    "Erdos91.Palomar.erdos_91_variants_six": {
+      "solution_line": 165,
+      "challenge_line": 77
+    },
+    "Erdos91.Palomar.erdos_91_variants_seven": {
+      "solution_line": 168,
+      "challenge_line": 80
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos91.Palomar.erdos_91_variants_four",
+    "Erdos91.Palomar.erdos_91_variants_seven",
+    "Erdos91.Palomar.erdos_91_variants_six",
+    "Erdos91.Palomar.erdos_91_variants_three"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 4,
+  "expected_axiom_audit_count": 4,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos91.Palomar.erdos_91_variants_three",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos91.Palomar.erdos_91_variants_four",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos91.Palomar.erdos_91_variants_six",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos91.Palomar.erdos_91_variants_seven",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Erdos91.Palomar.DilationEquivSimilar",
+      "kind": "def",
+      "declaration": "def Erdos91.Palomar.DilationEquivSimilar (A B : Finset Erdos91.Palomar.Plane) : Prop :=\n  fun A B => Exists fun f => Eq (Set.image (DFunLike.coe f) (SetLike.coe A)) (SetLike.coe B)"
+    },
+    {
+      "name": "Erdos91.Palomar.minimalDistinctDistances",
+      "kind": "def",
+      "declaration": "def Erdos91.Palomar.minimalDistinctDistances.{u_1} (X : Type u_1) [MetricSpace X] (n : Nat) : Nat :=\n  fun X [MetricSpace X] n =>\n  InfSet.sInf\n    (Set.ofPred fun m =>\n      Exists fun points => And (Eq (Finset.card points) n) (Eq (Erdos91.Palomar.distinctDistances points) m))"
+    },
+    {
+      "name": "Erdos91.Palomar.distanceSet",
+      "kind": "def",
+      "declaration": "def Erdos91.Palomar.distanceSet.{u_1} {X : Type u_1} [MetricSpace X] (points : Finset X) : Finset Real :=\n  fun {X} [MetricSpace X] points =>\n  Finset.image (fun pair => Dist.dist (Prod.fst pair) (Prod.snd pair)) (Finset.offDiag points)"
+    },
+    {
+      "name": "Erdos91.Palomar.distinctDistances",
+      "kind": "def",
+      "declaration": "def Erdos91.Palomar.distinctDistances.{u_1} {X : Type u_1} [MetricSpace X] (points : Finset X) : Nat :=\n  fun {X} [MetricSpace X] points => Finset.card (Erdos91.Palomar.distanceSet points)"
+    },
+    {
+      "name": "Erdos91.Palomar.IsOptimal",
+      "kind": "def",
+      "declaration": "def Erdos91.Palomar.IsOptimal (A : Finset Erdos91.Palomar.Plane) (n : Nat) : Prop :=\n  fun A n =>\n  And (Eq (Finset.card A) n)\n    (Eq (Erdos91.Palomar.distinctDistances A) (Erdos91.Palomar.minimalDistinctDistances Erdos91.Palomar.Plane n))"
+    },
+    {
+      "name": "Erdos91.Palomar.Plane",
+      "kind": "def",
+      "declaration": "def Erdos91.Palomar.Plane : Type :=\n  EuclideanSpace Real (Fin 2)"
+    },
+    {
+      "name": "Erdos91.Palomar.UniqueMinimizer",
+      "kind": "def",
+      "declaration": "def Erdos91.Palomar.UniqueMinimizer (n : Nat) : Prop :=\n  fun n =>\n  \u2200 (A B : Finset Erdos91.Palomar.Plane),\n    Erdos91.Palomar.IsOptimal A n \u2192 Erdos91.Palomar.IsOptimal B n \u2192 Erdos91.Palomar.DilationEquivSimilar A B"
+    },
+    {
+      "name": "Erdos91.Palomar.erdos_91_variants_three",
+      "kind": "theorem",
+      "declaration": "theorem Erdos91.Palomar.erdos_91_variants_three : Erdos91.Palomar.UniqueMinimizer 3"
+    },
+    {
+      "name": "Erdos91.Palomar.erdos_91_variants_four",
+      "kind": "theorem",
+      "declaration": "theorem Erdos91.Palomar.erdos_91_variants_four : Not (Erdos91.Palomar.UniqueMinimizer 4)"
+    },
+    {
+      "name": "Erdos91.Palomar.erdos_91_variants_six",
+      "kind": "theorem",
+      "declaration": "theorem Erdos91.Palomar.erdos_91_variants_six : Not (Erdos91.Palomar.UniqueMinimizer 6)"
+    },
+    {
+      "name": "Erdos91.Palomar.erdos_91_variants_seven",
+      "kind": "theorem",
+      "declaration": "theorem Erdos91.Palomar.erdos_91_variants_seven : Not (Erdos91.Palomar.UniqueMinimizer 7)"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos91.erdos_91.variants.four",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.91",
+      "solution_declaration": "Erdos91.Palomar.erdos_91_variants_four",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos91.erdos_91.variants.three",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.91",
+      "solution_declaration": "Erdos91.Palomar.erdos_91_variants_three",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos91.erdos_91.variants.seven",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.91",
+      "solution_declaration": "Erdos91.Palomar.erdos_91_variants_seven",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos91.erdos_91.variants.six",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.91",
+      "solution_declaration": "Erdos91.Palomar.erdos_91_variants_six",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos91.Challenge.statement_seven",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos91.Palomar.erdos_91_variants_seven",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos91.Challenge.statement_four",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos91.Palomar.erdos_91_variants_four",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos91.Challenge.statement_three",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos91.Palomar.erdos_91_variants_three",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos91.Challenge.statement_six",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos91.Palomar.erdos_91_variants_six",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos91.erdos_91.variants.four",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.91",
+      "solution_declaration": "Erdos91.Challenge.statement_four",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos91.erdos_91.variants.three",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.91",
+      "solution_declaration": "Erdos91.Challenge.statement_three",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos91.erdos_91.variants.seven",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.91",
+      "solution_declaration": "Erdos91.Challenge.statement_seven",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos91.erdos_91.variants.six",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.91",
+      "solution_declaration": "Erdos91.Challenge.statement_six",
+      "match_mode": "exact"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "e318903862396f96de3df57264e0158682b952fd3fb53ac23d876413e7b30f71"
+  },
+  "input_sha256": {
+    "Challenge.lean": "6b395568cb9cbe10d3a3f2b0331fe4d39c694dd407bbf345e43ecf8f0bbbf9d5",
+    "Solution.lean": "e63cad9ffafda1f1f01f465083d4b7efea862039d7313a4b3b50f17feb1bf25a",
+    "AxiomAudit.lean": "81b2e785de8a7414451da36e7ca13cf6bfba7c358e613c1454e7b4724164388d",
+    "Statement.lean": "f8c91ace5a3155280ec55c25e3ada855cbee723cd4d1637b8cfedff599e791e6",
+    "comparator.json": "1129b12a659e01cb17102b8b2469d37690929a041b43770f0eb8ed0802ce689f",
+    "formalization.yaml": "3d62cf0bff2caa500f4fff9371b2fd11ae99517741c6d998ab1100e9f56ecbb1",
+    "lakefile.toml": "ff2e9cedfafc0f9f0d1e36c77b9180da9b2525bf989ef99409869000a68463d8",
+    "lake-manifest.json": "fa9e6ee4c0c2861f9d6e8a1e1ddf943406dd6c63963340fe3d905ca8df5894ae",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "694f3c136549331c558647cb21a7e3485ffc4ab5e112c14f4720c1441494cda5",
+    "Proofs/Blueprint91.lean": "f45c8c8617418f49ecedb9fd9c583e9de2f29f80d919d9e78823d7a41b613db4",
+    "Proofs/HexagonMultiplicity91.lean": "3a974c5862488a6c1931f11e424c0d9e44a1b88df1b46061374d0749fbaed7c4",
+    "Proofs/MultiDeletionCore91.lean": "985c5a3a76608e4993114f4652eee3446a93289ad958931ffeed45b701b030ea",
+    "Proofs/TriangularDisksAndEisenstein91.lean": "f566d3c9c8ae8f9868a3580fcc2894e27d2bd6fd666dea76b35edd70a74ee486"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 264.16,
+    "env_compare_and_core_audit_seconds": 84.185,
+    "total_elapsed_seconds": 524.088,
+    "user_cpu_seconds": 378.996,
+    "system_cpu_seconds": 80.567,
+    "peak_rss_mib": 13337.31
+  },
+  "status": "PASS"
+}
