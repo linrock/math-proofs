@@ -1,0 +1,196 @@
+module
+
+/-
+Copyright 2026 The Formal Conjectures Authors.
+Copyright 2026 Linmiao Xu.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-/
+
+public import Solution
+public import Statement
+
+@[expose] public section
+
+namespace Erdos886.Palomar
+
+theorem statement_erdos_886_variants_rosenfeld_infinite_fidelity :
+    Erdos886.Challenge.statement_erdos_886_variants_rosenfeld_infinite :=
+  @erdos_886.variants.rosenfeld_infinite
+
+theorem statement_erdos_886_variants_rosenfeld_bound_fidelity :
+    Erdos886.Challenge.statement_erdos_886_variants_rosenfeld_bound :=
+  @erdos_886.variants.rosenfeld_bound
+
+theorem statement_card_erdos886Divisors_le_one_of_quarter_le_fidelity :
+    Erdos886.Challenge.statement_card_erdos886Divisors_le_one_of_quarter_le :=
+  @card_erdos886Divisors_le_one_of_quarter_le
+
+theorem statement_erdos_886_of_quarter_le_fidelity :
+    Erdos886.Challenge.statement_erdos_886_of_quarter_le :=
+  @erdos_886_of_quarter_le
+
+theorem statement_erdos_886_iff_forall_pos_lt_quarter_fidelity :
+    Erdos886.Challenge.statement_erdos_886_iff_forall_pos_lt_quarter :=
+  @erdos_886_iff_forall_pos_lt_quarter
+
+theorem statement_complementary_divisor_hyperbolic_identity_fidelity :
+    Erdos886.Challenge.statement_complementary_divisor_hyperbolic_identity :=
+  @complementary_divisor_hyperbolic_identity
+
+theorem statement_complementary_sum_strict_mono_of_ge_sqrt_fidelity :
+    Erdos886.Challenge.statement_complementary_sum_strict_mono_of_ge_sqrt :=
+  @complementary_sum_strict_mono_of_ge_sqrt
+
+theorem statement_fifth_order_hyperbolic_vandermonde_six_tuple_identity_fidelity :
+    Erdos886.Challenge.statement_fifth_order_hyperbolic_vandermonde_six_tuple_identity :=
+  @fifth_order_hyperbolic_vandermonde_six_tuple_identity
+
+theorem statement_six_tuple_product_le_mul_full_vandermonde_of_lt_fidelity :
+    Erdos886.Challenge.statement_six_tuple_product_le_mul_full_vandermonde_of_lt :=
+  @six_tuple_product_le_mul_full_vandermonde_of_lt
+
+theorem statement_sq_lt_full_vandermonde_of_six_mem_erdos886Divisors_fidelity :
+    Erdos886.Challenge.statement_sq_lt_full_vandermonde_of_six_mem_erdos886Divisors :=
+  @sq_lt_full_vandermonde_of_six_mem_erdos886Divisors
+
+theorem statement_gcd_mul_complementary_sum_diff_eq_diff_mul_gcd_sub_lcm_quotient_fidelity :
+    Erdos886.Challenge.statement_gcd_mul_complementary_sum_diff_eq_diff_mul_gcd_sub_lcm_quotient :=
+  @gcd_mul_complementary_sum_diff_eq_diff_mul_gcd_sub_lcm_quotient
+
+theorem statement_complementary_sum_diff_eq_reduced_diff_mul_gcd_sub_lcm_quotient_fidelity :
+    Erdos886.Challenge.statement_complementary_sum_diff_eq_reduced_diff_mul_gcd_sub_lcm_quotient :=
+  @complementary_sum_diff_eq_reduced_diff_mul_gcd_sub_lcm_quotient
+
+theorem statement_divisor_diff_eq_gcd_of_complementary_sum_diff_eq_one_fidelity :
+    Erdos886.Challenge.statement_divisor_diff_eq_gcd_of_complementary_sum_diff_eq_one :=
+  @divisor_diff_eq_gcd_of_complementary_sum_diff_eq_one
+
+theorem statement_gcd_complementary_divisors_eq_div_lcm_fidelity :
+    Erdos886.Challenge.statement_gcd_complementary_divisors_eq_div_lcm :=
+  @gcd_complementary_divisors_eq_div_lcm
+
+theorem statement_coprime_cofactor_four_factor_decomposition_fidelity :
+    Erdos886.Challenge.statement_coprime_cofactor_four_factor_decomposition :=
+  @coprime_cofactor_four_factor_decomposition
+
+theorem statement_lcm_complementary_divisors_eq_div_gcd_fidelity :
+    Erdos886.Challenge.statement_lcm_complementary_divisors_eq_div_gcd :=
+  @lcm_complementary_divisors_eq_div_gcd
+
+theorem statement_complementary_sum_diff_eq_coprime_cofactor_diff_mul_gcd_diff_fidelity :
+    Erdos886.Challenge.statement_complementary_sum_diff_eq_coprime_cofactor_diff_mul_gcd_diff :=
+  @complementary_sum_diff_eq_coprime_cofactor_diff_mul_gcd_diff
+
+theorem statement_double_oblong_factorization_of_complementary_sum_diff_eq_one_fidelity :
+    Erdos886.Challenge.statement_double_oblong_factorization_of_complementary_sum_diff_eq_one :=
+  @double_oblong_factorization_of_complementary_sum_diff_eq_one
+
+theorem statement_finset_lcm_erdos886Divisors_dvd_fidelity :
+    Erdos886.Challenge.statement_finset_lcm_erdos886Divisors_dvd :=
+  @finset_lcm_erdos886Divisors_dvd
+
+theorem statement_two_le_gcd_of_mem_erdos886Divisors_of_lt_fidelity :
+    Erdos886.Challenge.statement_two_le_gcd_of_mem_erdos886Divisors_of_lt :=
+  @two_le_gcd_of_mem_erdos886Divisors_of_lt
+
+theorem statement_six_mul_gcd_mul_complementary_gcd_le_of_mem_erdos886Divisors_fidelity :
+    Erdos886.Challenge.statement_six_mul_gcd_mul_complementary_gcd_le_of_mem_erdos886Divisors :=
+  @six_mul_gcd_mul_complementary_gcd_le_of_mem_erdos886Divisors
+
+theorem statement_padicValNat_coprime_cofactor_four_term_sum_fidelity :
+    Erdos886.Challenge.statement_padicValNat_coprime_cofactor_four_term_sum :=
+  @padicValNat_coprime_cofactor_four_term_sum
+
+theorem statement_card_erdos886Divisors_prime_pow_le_one_of_nonneg_fidelity :
+    Erdos886.Challenge.statement_card_erdos886Divisors_prime_pow_le_one_of_nonneg :=
+  @card_erdos886Divisors_prime_pow_le_one_of_nonneg
+
+theorem statement_erdos_886_of_eventual_coprime_cofactor_and_complementary_gcd_gap_bound_fidelity :
+    Erdos886.Challenge.statement_erdos_886_of_eventual_coprime_cofactor_and_complementary_gcd_gap_bound :=
+  @erdos_886_of_eventual_coprime_cofactor_and_complementary_gcd_gap_bound
+
+end Erdos886.Palomar
+
+#print Erdos886.Palomar.erdos_886.variants.rosenfeld_infinite
+#print Erdos886.Palomar.erdos_886.variants.rosenfeld_bound
+#print Erdos886.Palomar.card_erdos886Divisors_le_one_of_quarter_le
+#print Erdos886.Palomar.erdos_886_of_quarter_le
+#print Erdos886.Palomar.erdos_886_iff_forall_pos_lt_quarter
+#print Erdos886.Palomar.complementary_divisor_hyperbolic_identity
+#print Erdos886.Palomar.complementary_sum_strict_mono_of_ge_sqrt
+#print Erdos886.Palomar.fifth_order_hyperbolic_vandermonde_six_tuple_identity
+#print Erdos886.Palomar.six_tuple_product_le_mul_full_vandermonde_of_lt
+#print Erdos886.Palomar.sq_lt_full_vandermonde_of_six_mem_erdos886Divisors
+#print Erdos886.Palomar.gcd_mul_complementary_sum_diff_eq_diff_mul_gcd_sub_lcm_quotient
+#print Erdos886.Palomar.complementary_sum_diff_eq_reduced_diff_mul_gcd_sub_lcm_quotient
+#print Erdos886.Palomar.divisor_diff_eq_gcd_of_complementary_sum_diff_eq_one
+#print Erdos886.Palomar.gcd_complementary_divisors_eq_div_lcm
+#print Erdos886.Palomar.coprime_cofactor_four_factor_decomposition
+#print Erdos886.Palomar.lcm_complementary_divisors_eq_div_gcd
+#print Erdos886.Palomar.complementary_sum_diff_eq_coprime_cofactor_diff_mul_gcd_diff
+#print Erdos886.Palomar.double_oblong_factorization_of_complementary_sum_diff_eq_one
+#print Erdos886.Palomar.finset_lcm_erdos886Divisors_dvd
+#print Erdos886.Palomar.two_le_gcd_of_mem_erdos886Divisors_of_lt
+#print Erdos886.Palomar.six_mul_gcd_mul_complementary_gcd_le_of_mem_erdos886Divisors
+#print Erdos886.Palomar.padicValNat_coprime_cofactor_four_term_sum
+#print Erdos886.Palomar.card_erdos886Divisors_prime_pow_le_one_of_nonneg
+#print Erdos886.Palomar.erdos_886_of_eventual_coprime_cofactor_and_complementary_gcd_gap_bound
+#print axioms Erdos886.Palomar.erdos_886.variants.rosenfeld_infinite
+#print axioms Erdos886.Palomar.erdos_886.variants.rosenfeld_bound
+#print axioms Erdos886.Palomar.card_erdos886Divisors_le_one_of_quarter_le
+#print axioms Erdos886.Palomar.erdos_886_of_quarter_le
+#print axioms Erdos886.Palomar.erdos_886_iff_forall_pos_lt_quarter
+#print axioms Erdos886.Palomar.complementary_divisor_hyperbolic_identity
+#print axioms Erdos886.Palomar.complementary_sum_strict_mono_of_ge_sqrt
+#print axioms Erdos886.Palomar.fifth_order_hyperbolic_vandermonde_six_tuple_identity
+#print axioms Erdos886.Palomar.six_tuple_product_le_mul_full_vandermonde_of_lt
+#print axioms Erdos886.Palomar.sq_lt_full_vandermonde_of_six_mem_erdos886Divisors
+#print axioms Erdos886.Palomar.gcd_mul_complementary_sum_diff_eq_diff_mul_gcd_sub_lcm_quotient
+#print axioms Erdos886.Palomar.complementary_sum_diff_eq_reduced_diff_mul_gcd_sub_lcm_quotient
+#print axioms Erdos886.Palomar.divisor_diff_eq_gcd_of_complementary_sum_diff_eq_one
+#print axioms Erdos886.Palomar.gcd_complementary_divisors_eq_div_lcm
+#print axioms Erdos886.Palomar.coprime_cofactor_four_factor_decomposition
+#print axioms Erdos886.Palomar.lcm_complementary_divisors_eq_div_gcd
+#print axioms Erdos886.Palomar.complementary_sum_diff_eq_coprime_cofactor_diff_mul_gcd_diff
+#print axioms Erdos886.Palomar.double_oblong_factorization_of_complementary_sum_diff_eq_one
+#print axioms Erdos886.Palomar.finset_lcm_erdos886Divisors_dvd
+#print axioms Erdos886.Palomar.two_le_gcd_of_mem_erdos886Divisors_of_lt
+#print axioms Erdos886.Palomar.six_mul_gcd_mul_complementary_gcd_le_of_mem_erdos886Divisors
+#print axioms Erdos886.Palomar.padicValNat_coprime_cofactor_four_term_sum
+#print axioms Erdos886.Palomar.card_erdos886Divisors_prime_pow_le_one_of_nonneg
+#print axioms Erdos886.Palomar.erdos_886_of_eventual_coprime_cofactor_and_complementary_gcd_gap_bound
+#print axioms Erdos886.Palomar.statement_erdos_886_variants_rosenfeld_infinite_fidelity
+#print axioms Erdos886.Palomar.statement_erdos_886_variants_rosenfeld_bound_fidelity
+#print axioms Erdos886.Palomar.statement_card_erdos886Divisors_le_one_of_quarter_le_fidelity
+#print axioms Erdos886.Palomar.statement_erdos_886_of_quarter_le_fidelity
+#print axioms Erdos886.Palomar.statement_erdos_886_iff_forall_pos_lt_quarter_fidelity
+#print axioms Erdos886.Palomar.statement_complementary_divisor_hyperbolic_identity_fidelity
+#print axioms Erdos886.Palomar.statement_complementary_sum_strict_mono_of_ge_sqrt_fidelity
+#print axioms Erdos886.Palomar.statement_fifth_order_hyperbolic_vandermonde_six_tuple_identity_fidelity
+#print axioms Erdos886.Palomar.statement_six_tuple_product_le_mul_full_vandermonde_of_lt_fidelity
+#print axioms Erdos886.Palomar.statement_sq_lt_full_vandermonde_of_six_mem_erdos886Divisors_fidelity
+#print axioms Erdos886.Palomar.statement_gcd_mul_complementary_sum_diff_eq_diff_mul_gcd_sub_lcm_quotient_fidelity
+#print axioms Erdos886.Palomar.statement_complementary_sum_diff_eq_reduced_diff_mul_gcd_sub_lcm_quotient_fidelity
+#print axioms Erdos886.Palomar.statement_divisor_diff_eq_gcd_of_complementary_sum_diff_eq_one_fidelity
+#print axioms Erdos886.Palomar.statement_gcd_complementary_divisors_eq_div_lcm_fidelity
+#print axioms Erdos886.Palomar.statement_coprime_cofactor_four_factor_decomposition_fidelity
+#print axioms Erdos886.Palomar.statement_lcm_complementary_divisors_eq_div_gcd_fidelity
+#print axioms Erdos886.Palomar.statement_complementary_sum_diff_eq_coprime_cofactor_diff_mul_gcd_diff_fidelity
+#print axioms Erdos886.Palomar.statement_double_oblong_factorization_of_complementary_sum_diff_eq_one_fidelity
+#print axioms Erdos886.Palomar.statement_finset_lcm_erdos886Divisors_dvd_fidelity
+#print axioms Erdos886.Palomar.statement_two_le_gcd_of_mem_erdos886Divisors_of_lt_fidelity
+#print axioms Erdos886.Palomar.statement_six_mul_gcd_mul_complementary_gcd_le_of_mem_erdos886Divisors_fidelity
+#print axioms Erdos886.Palomar.statement_padicValNat_coprime_cofactor_four_term_sum_fidelity
+#print axioms Erdos886.Palomar.statement_card_erdos886Divisors_prime_pow_le_one_of_nonneg_fidelity
+#print axioms Erdos886.Palomar.statement_erdos_886_of_eventual_coprime_cofactor_and_complementary_gcd_gap_bound_fidelity

@@ -1,0 +1,377 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 886: divisors in short intervals above √n",
+    "description": "A Lean 4 formalization of unconditional results for Erdős Problem 886, attributed by Erdős to Ruzsa, on the number of divisors of n in the short interval (n^{1/2}, n^{1/2} + n^{1/2 - ε}). The package proves both Erdős–Rosenfeld variants from the 1997 Acta Arithmetica paper at the critical exponent ε = 1/4: there are infinitely many n with at least four divisors in (n^{1/2}, n^{1/2} + 16 n^{1/4}), and at most 1 + C² divisors lie in [n^{1/2}, n^{1/2} + C n^{1/4}] for every C > 0 and all sufficiently large n. It also proves unconditionally that the open interval contains at most one divisor for every ε ≥ 1/4, and derives the exact equivalence reducing the conjecture to the remaining window 0 < ε < 1/4. Supporting results include fifth-order hyperbolic Vandermonde determinant identities on 6-tuples of divisors, complementary-divisor GCD and LCM dualities, a four-factor coprime-cofactor decomposition, Finset LCM divisibility, and prime-power valuation bounds. The main conjecture erdos_886 remains open for 0 < ε < 1/4.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "Apache-2.0"
+  },
+  "classification": {
+    "arxiv": [
+      "math.NT"
+    ],
+    "msc2020": [
+      "11N25",
+      "11A05",
+      "11D75"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Erdős Problem 886",
+      "type": "other",
+      "relationship": "independently-proves",
+      "id": "https://www.erdosproblems.com/886",
+      "author_endorsement": "not-contacted",
+      "note": "Proves both Erdős–Rosenfeld variants, the unconditional regime ε ≥ 1/4, and a range of supporting divisor identities for Erdős Problem 886. The main conjecture erdos_886 for 0 < ε < 1/4 remains open."
+    },
+    {
+      "title": "The factor-difference set of integers",
+      "authors": [
+        "P. Erdős",
+        "M. Rosenfeld"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "id": "https://doi.org/10.4064/aa-79-4-353-359",
+      "location": "Acta Arithmetica 79 (1997), 353-359",
+      "author_endorsement": "not-contacted",
+      "note": "Primary source for erdos_886.variants.rosenfeld_infinite and erdos_886.variants.rosenfeld_bound at the critical exponent epsilon = 1/4."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/886.lean",
+      "relationship": "builds-on",
+      "note": "Challenge.lean, Statement.lean, and Solution.lean match Erdos886.Erdos886Divisors, Erdos886.erdos_886.variants.rosenfeld_infinite, and Erdos886.erdos_886.variants.rosenfeld_bound in Formal Conjectures."
+    }
+  ],
+  "status": {
+    "scope": "Proves 24 principal unconditional endpoints in Erdos886.Palomar (and 209 declarations across the 3 proof modules in Proofs/), including complete proofs of both Erdős–Rosenfeld variants erdos_886.variants.rosenfeld_infinite and erdos_886.variants.rosenfeld_bound, the unconditional bound (Erdos886Divisors n ε 1).card ≤ 1 for all n and all ε ≥ 1/4 (K = 1), the equivalence erdos_886_iff_forall_pos_lt_quarter, the 6-tuple fifth-order hyperbolic Vandermonde determinant identity and n² < V_6 bound, the GCD / LCM-quotient complementary-sum factorizations, the four-factor coprime-cofactor decomposition, the double-oblong step-1 factorization, Finset LCM divisibility, the 4-term p-adic valuation decomposition, and the prime-power bound (Erdos886Divisors (p^m) ε 1).card ≤ 1 for all ε ≥ 0. The original conjecture erdos_886 remains open for 0 < ε < 1/4.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos886.Palomar.erdos_886.variants.rosenfeld_infinite",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos886.Palomar.erdos_886.variants.rosenfeld_bound",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos886.Palomar.card_erdos886Divisors_le_one_of_quarter_le",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos886.Palomar.erdos_886_of_quarter_le",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos886.Palomar.erdos_886_iff_forall_pos_lt_quarter",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos886.Palomar.complementary_divisor_hyperbolic_identity",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos886.Palomar.complementary_sum_strict_mono_of_ge_sqrt",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos886.Palomar.fifth_order_hyperbolic_vandermonde_six_tuple_identity",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos886.Palomar.six_tuple_product_le_mul_full_vandermonde_of_lt",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos886.Palomar.sq_lt_full_vandermonde_of_six_mem_erdos886Divisors",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos886.Palomar.gcd_mul_complementary_sum_diff_eq_diff_mul_gcd_sub_lcm_quotient",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos886.Palomar.complementary_sum_diff_eq_reduced_diff_mul_gcd_sub_lcm_quotient",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos886.Palomar.divisor_diff_eq_gcd_of_complementary_sum_diff_eq_one",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos886.Palomar.gcd_complementary_divisors_eq_div_lcm",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos886.Palomar.coprime_cofactor_four_factor_decomposition",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos886.Palomar.lcm_complementary_divisors_eq_div_gcd",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos886.Palomar.complementary_sum_diff_eq_coprime_cofactor_diff_mul_gcd_diff",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos886.Palomar.double_oblong_factorization_of_complementary_sum_diff_eq_one",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos886.Palomar.finset_lcm_erdos886Divisors_dvd",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos886.Palomar.two_le_gcd_of_mem_erdos886Divisors_of_lt",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos886.Palomar.six_mul_gcd_mul_complementary_gcd_le_of_mem_erdos886Divisors",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos886.Palomar.padicValNat_coprime_cofactor_four_term_sum",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos886.Palomar.card_erdos886Divisors_prime_pow_le_one_of_nonneg",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos886.Palomar.erdos_886_of_eventual_coprime_cofactor_and_complementary_gcd_gap_bound",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "role": "proof-search",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "All proof modules in Proofs/ together with Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry in the proof modules."
+  },
+  "fidelity": {
+    "divergences": "None. Challenge.lean, Statement.lean, and Solution.lean use the exact Erdos886Divisors definition and the erdos_886, erdos_886.variants.rosenfeld_infinite, and erdos_886.variants.rosenfeld_bound signatures from FormalConjectures/ErdosProblems/886.lean."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Statement fidelity, non-vacuity, and transitive axioms (restricted to propext, Classical.choice, and Quot.sound) were verified across all 24 exported theorems in Solution.lean."
+  },
+  "alignment": {
+    "namespace": "Erdos886.Palomar",
+    "statements": [
+      {
+        "source": "Erdős and Rosenfeld (1997), The factor-difference set of integers, Acta Arithmetica 79, 353–359",
+        "lean": "Erdos886.Palomar.erdos_886.variants.rosenfeld_infinite",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves the infinitude of n with at least four divisors in (n^{1/2}, n^{1/2} + 16 n^{1/4})."
+      },
+      {
+        "source": "Erdős and Rosenfeld (1997), The factor-difference set of integers, Acta Arithmetica 79, 353–359",
+        "lean": "Erdos886.Palomar.erdos_886.variants.rosenfeld_bound",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that at most 1 + C² divisors lie in [n^{1/2}, n^{1/2} + C n^{1/4}] for every C > 0 and all sufficiently large n."
+      },
+      {
+        "source": "This package (original unconditional result)",
+        "lean": "Erdos886.Palomar.card_erdos886Divisors_le_one_of_quarter_le",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves (Erdos886Divisors n ε 1).card ≤ 1 for every n and every ε ≥ 1/4."
+      },
+      {
+        "source": "This package (original unconditional result)",
+        "lean": "Erdos886.Palomar.erdos_886_of_quarter_le",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves the main erdos_886 boundedness quantifier with K = 1 across the whole regime ε ≥ 1/4."
+      },
+      {
+        "source": "This package (original reduction)",
+        "lean": "Erdos886.Palomar.erdos_886_iff_forall_pos_lt_quarter",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Establishes the exact equivalence reducing erdos_886 to the critical window 0 < ε < 1/4."
+      },
+      {
+        "source": "This package (original identity)",
+        "lean": "Erdos886.Palomar.complementary_divisor_hyperbolic_identity",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves d (d + n/d - 2√n) = (d - √n)² for every divisor d of n."
+      },
+      {
+        "source": "This package (original monotonicity result)",
+        "lean": "Erdos886.Palomar.complementary_sum_strict_mono_of_ge_sqrt",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves d₁ + n/d₁ < d₂ + n/d₂ for divisors √n ≤ d₁ < d₂."
+      },
+      {
+        "source": "This package (original determinant identity)",
+        "lean": "Erdos886.Palomar.fifth_order_hyperbolic_vandermonde_six_tuple_identity",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves the exact unweighted fifth-order hyperbolic Vandermonde determinant identity on 6-tuples of divisors."
+      },
+      {
+        "source": "This package (original determinant bound)",
+        "lean": "Erdos886.Palomar.six_tuple_product_le_mul_full_vandermonde_of_lt",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves the division-free product bound d₁⋯d₆ ≤ n V₆(d₁, …, d₆) for increasing divisor 6-tuples."
+      },
+      {
+        "source": "This package (original determinant bound)",
+        "lean": "Erdos886.Palomar.sq_lt_full_vandermonde_of_six_mem_erdos886Divisors",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves the universal lower bound n² < V₆(d₁, …, d₆) on Erdos886Divisors n ε C."
+      },
+      {
+        "source": "This package (original identity)",
+        "lean": "Erdos886.Palomar.gcd_mul_complementary_sum_diff_eq_diff_mul_gcd_sub_lcm_quotient",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Factors the complementary-sum gap through gcd(d₁, d₂) and the lcm quotient."
+      },
+      {
+        "source": "This package (original identity)",
+        "lean": "Erdos886.Palomar.complementary_sum_diff_eq_reduced_diff_mul_gcd_sub_lcm_quotient",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Rewrites the complementary-sum gap in reduced coprime-cofactor form."
+      },
+      {
+        "source": "This package (original result)",
+        "lean": "Erdos886.Palomar.divisor_diff_eq_gcd_of_complementary_sum_diff_eq_one",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Shows a unit complementary-sum gap forces d₂ - d₁ = gcd(d₁, d₂)."
+      },
+      {
+        "source": "This package (original duality)",
+        "lean": "Erdos886.Palomar.gcd_complementary_divisors_eq_div_lcm",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves gcd(n/d₁, n/d₂) = n / lcm(d₁, d₂) for divisors d₁, d₂ of n."
+      },
+      {
+        "source": "This package (original decomposition)",
+        "lean": "Erdos886.Palomar.coprime_cofactor_four_factor_decomposition",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves n = gcd(d₁,d₂) · gcd(n/d₁,n/d₂) · (d₁/gcd(d₁,d₂)) · (d₂/gcd(d₁,d₂))."
+      },
+      {
+        "source": "This package (original duality)",
+        "lean": "Erdos886.Palomar.lcm_complementary_divisors_eq_div_gcd",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves lcm(n/d₁, n/d₂) = n / gcd(d₁, d₂) for divisors d₁, d₂ of n."
+      },
+      {
+        "source": "This package (original identity)",
+        "lean": "Erdos886.Palomar.complementary_sum_diff_eq_coprime_cofactor_diff_mul_gcd_diff",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Expresses the complementary-sum gap as a product of a reduced-difference factor and a gcd-difference factor."
+      },
+      {
+        "source": "This package (original factorization)",
+        "lean": "Erdos886.Palomar.double_oblong_factorization_of_complementary_sum_diff_eq_one",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Gives the double-oblong factorization of the minimal complementary-sum step."
+      },
+      {
+        "source": "This package (original divisibility result)",
+        "lean": "Erdos886.Palomar.finset_lcm_erdos886Divisors_dvd",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves (Erdos886Divisors n ε C).lcm id divides n."
+      },
+      {
+        "source": "This package (original result)",
+        "lean": "Erdos886.Palomar.two_le_gcd_of_mem_erdos886Divisors_of_lt",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves pairwise non-coprimality gcd(d₁, d₂) ≥ 2 for distinct divisors in the interval."
+      },
+      {
+        "source": "This package (original bound)",
+        "lean": "Erdos886.Palomar.six_mul_gcd_mul_complementary_gcd_le_of_mem_erdos886Divisors",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Bounds 6 · gcd(d₁,d₂) · gcd(n/d₁,n/d₂) for divisors in the interval."
+      },
+      {
+        "source": "This package (original valuation identity)",
+        "lean": "Erdos886.Palomar.padicValNat_coprime_cofactor_four_term_sum",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves the 4-term p-adic valuation decomposition of the coprime-cofactor factorization."
+      },
+      {
+        "source": "This package (original result)",
+        "lean": "Erdos886.Palomar.card_erdos886Divisors_prime_pow_le_one_of_nonneg",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves the unconditional prime-power bound (Erdos886Divisors (p^m) ε 1).card ≤ 1 for all ε ≥ 0."
+      },
+      {
+        "source": "This package (original conditional reduction)",
+        "lean": "Erdos886.Palomar.erdos_886_of_eventual_coprime_cofactor_and_complementary_gcd_gap_bound",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Reduces erdos_886 to eventual coprime-cofactor and complementary-GCD gap bounds."
+      }
+    ]
+  },
+  "acknowledgements": "The problem was posed by Paul Erdős and Imre Z. Ruzsa, with critical-exponent results by Paul Erdős and Moshe Rosenfeld. Mathlib and Formal Conjectures supply attributed formal definitions and infrastructure."
+}

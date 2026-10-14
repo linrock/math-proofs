@@ -1,0 +1,36 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos886.Palomar.erdos_886.variants.rosenfeld_infinite",
+    "Erdos886.Palomar.erdos_886.variants.rosenfeld_bound",
+    "Erdos886.Palomar.card_erdos886Divisors_le_one_of_quarter_le",
+    "Erdos886.Palomar.erdos_886_of_quarter_le",
+    "Erdos886.Palomar.erdos_886_iff_forall_pos_lt_quarter",
+    "Erdos886.Palomar.complementary_divisor_hyperbolic_identity",
+    "Erdos886.Palomar.complementary_sum_strict_mono_of_ge_sqrt",
+    "Erdos886.Palomar.fifth_order_hyperbolic_vandermonde_six_tuple_identity",
+    "Erdos886.Palomar.six_tuple_product_le_mul_full_vandermonde_of_lt",
+    "Erdos886.Palomar.sq_lt_full_vandermonde_of_six_mem_erdos886Divisors",
+    "Erdos886.Palomar.gcd_mul_complementary_sum_diff_eq_diff_mul_gcd_sub_lcm_quotient",
+    "Erdos886.Palomar.complementary_sum_diff_eq_reduced_diff_mul_gcd_sub_lcm_quotient",
+    "Erdos886.Palomar.divisor_diff_eq_gcd_of_complementary_sum_diff_eq_one",
+    "Erdos886.Palomar.gcd_complementary_divisors_eq_div_lcm",
+    "Erdos886.Palomar.coprime_cofactor_four_factor_decomposition",
+    "Erdos886.Palomar.lcm_complementary_divisors_eq_div_gcd",
+    "Erdos886.Palomar.complementary_sum_diff_eq_coprime_cofactor_diff_mul_gcd_diff",
+    "Erdos886.Palomar.double_oblong_factorization_of_complementary_sum_diff_eq_one",
+    "Erdos886.Palomar.finset_lcm_erdos886Divisors_dvd",
+    "Erdos886.Palomar.two_le_gcd_of_mem_erdos886Divisors_of_lt",
+    "Erdos886.Palomar.six_mul_gcd_mul_complementary_gcd_le_of_mem_erdos886Divisors",
+    "Erdos886.Palomar.padicValNat_coprime_cofactor_four_term_sum",
+    "Erdos886.Palomar.card_erdos886Divisors_prime_pow_le_one_of_nonneg",
+    "Erdos886.Palomar.erdos_886_of_eventual_coprime_cofactor_and_complementary_gcd_gap_bound"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}
