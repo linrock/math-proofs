@@ -2,7 +2,7 @@
   "schema_version": 2,
   "lean_toolchain": "leanprover/lean4:v4.35.0-rc2",
   "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
-  "total_verified_packages": 7,
+  "total_verified_packages": 8,
   "packages": {
     "erdos-18": {
       "package": "erdos-18",
@@ -335,6 +335,156 @@
       },
       "verification_history": [
         "2026-10-13-2c2d2f77"
+      ]
+    },
+    "erdos-886": {
+      "package": "erdos-886",
+      "verification_id": "2026-10-14-4a1f92f2",
+      "state_sha256": "fcead6f54a426e41a28f63a7566225f56cd4076f1eac18960390dfd08316f70f",
+      "project_name": "Erd\u0151s 886: divisors in short intervals above \u221an",
+      "status": "PASS",
+      "package_commit": "4a1f92f2aca5f32edb0c681f1e8fdca88b5d9494",
+      "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+      "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+      "challenge_sha256": "37b04a47e33a3b231bd7112857a0a095db80a1e5d84ad86f700c84495a649a57",
+      "solution_sha256": "41e2bcee7f0bcbb440440b525376cb548c6e816fb426db453fe03baf48f98c82",
+      "exported_theorems": [
+        "Erdos886.Palomar.erdos_886.variants.rosenfeld_infinite",
+        "Erdos886.Palomar.erdos_886.variants.rosenfeld_bound",
+        "Erdos886.Palomar.card_erdos886Divisors_le_one_of_quarter_le",
+        "Erdos886.Palomar.erdos_886_of_quarter_le",
+        "Erdos886.Palomar.erdos_886_iff_forall_pos_lt_quarter",
+        "Erdos886.Palomar.complementary_divisor_hyperbolic_identity",
+        "Erdos886.Palomar.complementary_sum_strict_mono_of_ge_sqrt",
+        "Erdos886.Palomar.fifth_order_hyperbolic_vandermonde_six_tuple_identity",
+        "Erdos886.Palomar.six_tuple_product_le_mul_full_vandermonde_of_lt",
+        "Erdos886.Palomar.sq_lt_full_vandermonde_of_six_mem_erdos886Divisors",
+        "Erdos886.Palomar.gcd_mul_complementary_sum_diff_eq_diff_mul_gcd_sub_lcm_quotient",
+        "Erdos886.Palomar.complementary_sum_diff_eq_reduced_diff_mul_gcd_sub_lcm_quotient",
+        "Erdos886.Palomar.divisor_diff_eq_gcd_of_complementary_sum_diff_eq_one",
+        "Erdos886.Palomar.gcd_complementary_divisors_eq_div_lcm",
+        "Erdos886.Palomar.coprime_cofactor_four_factor_decomposition",
+        "Erdos886.Palomar.lcm_complementary_divisors_eq_div_gcd",
+        "Erdos886.Palomar.complementary_sum_diff_eq_coprime_cofactor_diff_mul_gcd_diff",
+        "Erdos886.Palomar.double_oblong_factorization_of_complementary_sum_diff_eq_one",
+        "Erdos886.Palomar.finset_lcm_erdos886Divisors_dvd",
+        "Erdos886.Palomar.two_le_gcd_of_mem_erdos886Divisors_of_lt",
+        "Erdos886.Palomar.six_mul_gcd_mul_complementary_gcd_le_of_mem_erdos886Divisors",
+        "Erdos886.Palomar.padicValNat_coprime_cofactor_four_term_sum",
+        "Erdos886.Palomar.card_erdos886Divisors_prime_pow_le_one_of_nonneg",
+        "Erdos886.Palomar.erdos_886_of_eventual_coprime_cofactor_and_complementary_gcd_gap_bound"
+      ],
+      "declaration_lines": {
+        "Erdos886.Palomar.erdos_886.variants.rosenfeld_infinite": {
+          "solution_line": null,
+          "challenge_line": null
+        },
+        "Erdos886.Palomar.erdos_886.variants.rosenfeld_bound": {
+          "solution_line": null,
+          "challenge_line": null
+        },
+        "Erdos886.Palomar.card_erdos886Divisors_le_one_of_quarter_le": {
+          "solution_line": 58,
+          "challenge_line": 113
+        },
+        "Erdos886.Palomar.erdos_886_of_quarter_le": {
+          "solution_line": 65,
+          "challenge_line": 118
+        },
+        "Erdos886.Palomar.erdos_886_iff_forall_pos_lt_quarter": {
+          "solution_line": 71,
+          "challenge_line": 122
+        },
+        "Erdos886.Palomar.complementary_divisor_hyperbolic_identity": {
+          "solution_line": 80,
+          "challenge_line": 129
+        },
+        "Erdos886.Palomar.complementary_sum_strict_mono_of_ge_sqrt": {
+          "solution_line": 88,
+          "challenge_line": 135
+        },
+        "Erdos886.Palomar.fifth_order_hyperbolic_vandermonde_six_tuple_identity": {
+          "solution_line": 99,
+          "challenge_line": 144
+        },
+        "Erdos886.Palomar.six_tuple_product_le_mul_full_vandermonde_of_lt": {
+          "solution_line": 144,
+          "challenge_line": 185
+        },
+        "Erdos886.Palomar.sq_lt_full_vandermonde_of_six_mem_erdos886Divisors": {
+          "solution_line": 159,
+          "challenge_line": 196
+        },
+        "Erdos886.Palomar.gcd_mul_complementary_sum_diff_eq_diff_mul_gcd_sub_lcm_quotient": {
+          "solution_line": 175,
+          "challenge_line": 207
+        },
+        "Erdos886.Palomar.complementary_sum_diff_eq_reduced_diff_mul_gcd_sub_lcm_quotient": {
+          "solution_line": 185,
+          "challenge_line": 213
+        },
+        "Erdos886.Palomar.divisor_diff_eq_gcd_of_complementary_sum_diff_eq_one": {
+          "solution_line": 195,
+          "challenge_line": 219
+        },
+        "Erdos886.Palomar.gcd_complementary_divisors_eq_div_lcm": {
+          "solution_line": 205,
+          "challenge_line": 225
+        },
+        "Erdos886.Palomar.coprime_cofactor_four_factor_decomposition": {
+          "solution_line": 213,
+          "challenge_line": 230
+        },
+        "Erdos886.Palomar.lcm_complementary_divisors_eq_div_gcd": {
+          "solution_line": 220,
+          "challenge_line": 234
+        },
+        "Erdos886.Palomar.complementary_sum_diff_eq_coprime_cofactor_diff_mul_gcd_diff": {
+          "solution_line": 229,
+          "challenge_line": 240
+        },
+        "Erdos886.Palomar.double_oblong_factorization_of_complementary_sum_diff_eq_one": {
+          "solution_line": 242,
+          "challenge_line": 249
+        },
+        "Erdos886.Palomar.finset_lcm_erdos886Divisors_dvd": {
+          "solution_line": 255,
+          "challenge_line": 258
+        },
+        "Erdos886.Palomar.two_le_gcd_of_mem_erdos886Divisors_of_lt": {
+          "solution_line": 261,
+          "challenge_line": 262
+        },
+        "Erdos886.Palomar.six_mul_gcd_mul_complementary_gcd_le_of_mem_erdos886Divisors": {
+          "solution_line": 270,
+          "challenge_line": 267
+        },
+        "Erdos886.Palomar.padicValNat_coprime_cofactor_four_term_sum": {
+          "solution_line": 281,
+          "challenge_line": 274
+        },
+        "Erdos886.Palomar.card_erdos886Divisors_prime_pow_le_one_of_nonneg": {
+          "solution_line": 292,
+          "challenge_line": 282
+        },
+        "Erdos886.Palomar.erdos_886_of_eventual_coprime_cofactor_and_complementary_gcd_gap_bound": {
+          "solution_line": 302,
+          "challenge_line": 290
+        }
+      },
+      "kernels": {
+        "nanoda_accepted": true,
+        "con_ron_accepted": true,
+        "lean_kernel_accepted": true
+      },
+      "fc_statement_matches": 29,
+      "record_json": "records/erdos-886/2026-10-14-4a1f92f2.json",
+      "record_md": "records/erdos-886/2026-10-14-4a1f92f2.md",
+      "commits": {
+        "4a1f92f2aca5f32edb0c681f1e8fdca88b5d9494": "2026-10-14-4a1f92f2"
+      },
+      "verification_history": [
+        "2026-10-14-4a1f92f2"
       ]
     },
     "erdos-939": {

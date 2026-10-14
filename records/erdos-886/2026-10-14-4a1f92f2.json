@@ -1,0 +1,939 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-14-4a1f92f2",
+  "verification_date": "2026-10-14",
+  "state_sha256": "fcead6f54a426e41a28f63a7566225f56cd4076f1eac18960390dfd08316f70f",
+  "package": "erdos-886",
+  "project_name": "Erd\u0151s 886: divisors in short intervals above \u221an",
+  "package_commit": "4a1f92f2aca5f32edb0c681f1e8fdca88b5d9494",
+  "commit": "4a1f92f2aca5f32edb0c681f1e8fdca88b5d9494",
+  "repository": "linrock/math-proofs",
+  "run_id": "38510828158",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 23708,
+    "lines": 300,
+    "sha256": "37b04a47e33a3b231bd7112857a0a095db80a1e5d84ad86f700c84495a649a57",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos886.Palomar.erdos_886.variants.rosenfeld_infinite",
+    "Erdos886.Palomar.erdos_886.variants.rosenfeld_bound",
+    "Erdos886.Palomar.card_erdos886Divisors_le_one_of_quarter_le",
+    "Erdos886.Palomar.erdos_886_of_quarter_le",
+    "Erdos886.Palomar.erdos_886_iff_forall_pos_lt_quarter",
+    "Erdos886.Palomar.complementary_divisor_hyperbolic_identity",
+    "Erdos886.Palomar.complementary_sum_strict_mono_of_ge_sqrt",
+    "Erdos886.Palomar.fifth_order_hyperbolic_vandermonde_six_tuple_identity",
+    "Erdos886.Palomar.six_tuple_product_le_mul_full_vandermonde_of_lt",
+    "Erdos886.Palomar.sq_lt_full_vandermonde_of_six_mem_erdos886Divisors",
+    "Erdos886.Palomar.gcd_mul_complementary_sum_diff_eq_diff_mul_gcd_sub_lcm_quotient",
+    "Erdos886.Palomar.complementary_sum_diff_eq_reduced_diff_mul_gcd_sub_lcm_quotient",
+    "Erdos886.Palomar.divisor_diff_eq_gcd_of_complementary_sum_diff_eq_one",
+    "Erdos886.Palomar.gcd_complementary_divisors_eq_div_lcm",
+    "Erdos886.Palomar.coprime_cofactor_four_factor_decomposition",
+    "Erdos886.Palomar.lcm_complementary_divisors_eq_div_gcd",
+    "Erdos886.Palomar.complementary_sum_diff_eq_coprime_cofactor_diff_mul_gcd_diff",
+    "Erdos886.Palomar.double_oblong_factorization_of_complementary_sum_diff_eq_one",
+    "Erdos886.Palomar.finset_lcm_erdos886Divisors_dvd",
+    "Erdos886.Palomar.two_le_gcd_of_mem_erdos886Divisors_of_lt",
+    "Erdos886.Palomar.six_mul_gcd_mul_complementary_gcd_le_of_mem_erdos886Divisors",
+    "Erdos886.Palomar.padicValNat_coprime_cofactor_four_term_sum",
+    "Erdos886.Palomar.card_erdos886Divisors_prime_pow_le_one_of_nonneg",
+    "Erdos886.Palomar.erdos_886_of_eventual_coprime_cofactor_and_complementary_gcd_gap_bound"
+  ],
+  "declaration_lines": {
+    "Erdos886.Palomar.erdos_886.variants.rosenfeld_infinite": {
+      "solution_line": null,
+      "challenge_line": null
+    },
+    "Erdos886.Palomar.erdos_886.variants.rosenfeld_bound": {
+      "solution_line": null,
+      "challenge_line": null
+    },
+    "Erdos886.Palomar.card_erdos886Divisors_le_one_of_quarter_le": {
+      "solution_line": 58,
+      "challenge_line": 113
+    },
+    "Erdos886.Palomar.erdos_886_of_quarter_le": {
+      "solution_line": 65,
+      "challenge_line": 118
+    },
+    "Erdos886.Palomar.erdos_886_iff_forall_pos_lt_quarter": {
+      "solution_line": 71,
+      "challenge_line": 122
+    },
+    "Erdos886.Palomar.complementary_divisor_hyperbolic_identity": {
+      "solution_line": 80,
+      "challenge_line": 129
+    },
+    "Erdos886.Palomar.complementary_sum_strict_mono_of_ge_sqrt": {
+      "solution_line": 88,
+      "challenge_line": 135
+    },
+    "Erdos886.Palomar.fifth_order_hyperbolic_vandermonde_six_tuple_identity": {
+      "solution_line": 99,
+      "challenge_line": 144
+    },
+    "Erdos886.Palomar.six_tuple_product_le_mul_full_vandermonde_of_lt": {
+      "solution_line": 144,
+      "challenge_line": 185
+    },
+    "Erdos886.Palomar.sq_lt_full_vandermonde_of_six_mem_erdos886Divisors": {
+      "solution_line": 159,
+      "challenge_line": 196
+    },
+    "Erdos886.Palomar.gcd_mul_complementary_sum_diff_eq_diff_mul_gcd_sub_lcm_quotient": {
+      "solution_line": 175,
+      "challenge_line": 207
+    },
+    "Erdos886.Palomar.complementary_sum_diff_eq_reduced_diff_mul_gcd_sub_lcm_quotient": {
+      "solution_line": 185,
+      "challenge_line": 213
+    },
+    "Erdos886.Palomar.divisor_diff_eq_gcd_of_complementary_sum_diff_eq_one": {
+      "solution_line": 195,
+      "challenge_line": 219
+    },
+    "Erdos886.Palomar.gcd_complementary_divisors_eq_div_lcm": {
+      "solution_line": 205,
+      "challenge_line": 225
+    },
+    "Erdos886.Palomar.coprime_cofactor_four_factor_decomposition": {
+      "solution_line": 213,
+      "challenge_line": 230
+    },
+    "Erdos886.Palomar.lcm_complementary_divisors_eq_div_gcd": {
+      "solution_line": 220,
+      "challenge_line": 234
+    },
+    "Erdos886.Palomar.complementary_sum_diff_eq_coprime_cofactor_diff_mul_gcd_diff": {
+      "solution_line": 229,
+      "challenge_line": 240
+    },
+    "Erdos886.Palomar.double_oblong_factorization_of_complementary_sum_diff_eq_one": {
+      "solution_line": 242,
+      "challenge_line": 249
+    },
+    "Erdos886.Palomar.finset_lcm_erdos886Divisors_dvd": {
+      "solution_line": 255,
+      "challenge_line": 258
+    },
+    "Erdos886.Palomar.two_le_gcd_of_mem_erdos886Divisors_of_lt": {
+      "solution_line": 261,
+      "challenge_line": 262
+    },
+    "Erdos886.Palomar.six_mul_gcd_mul_complementary_gcd_le_of_mem_erdos886Divisors": {
+      "solution_line": 270,
+      "challenge_line": 267
+    },
+    "Erdos886.Palomar.padicValNat_coprime_cofactor_four_term_sum": {
+      "solution_line": 281,
+      "challenge_line": 274
+    },
+    "Erdos886.Palomar.card_erdos886Divisors_prime_pow_le_one_of_nonneg": {
+      "solution_line": 292,
+      "challenge_line": 282
+    },
+    "Erdos886.Palomar.erdos_886_of_eventual_coprime_cofactor_and_complementary_gcd_gap_bound": {
+      "solution_line": 302,
+      "challenge_line": 290
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos886.Palomar.card_erdos886Divisors_le_one_of_quarter_le",
+    "Erdos886.Palomar.card_erdos886Divisors_prime_pow_le_one_of_nonneg",
+    "Erdos886.Palomar.complementary_divisor_hyperbolic_identity",
+    "Erdos886.Palomar.complementary_sum_diff_eq_coprime_cofactor_diff_mul_gcd_diff",
+    "Erdos886.Palomar.complementary_sum_diff_eq_reduced_diff_mul_gcd_sub_lcm_quotient",
+    "Erdos886.Palomar.complementary_sum_strict_mono_of_ge_sqrt",
+    "Erdos886.Palomar.coprime_cofactor_four_factor_decomposition",
+    "Erdos886.Palomar.divisor_diff_eq_gcd_of_complementary_sum_diff_eq_one",
+    "Erdos886.Palomar.double_oblong_factorization_of_complementary_sum_diff_eq_one",
+    "Erdos886.Palomar.erdos_886.variants.rosenfeld_bound",
+    "Erdos886.Palomar.erdos_886.variants.rosenfeld_infinite",
+    "Erdos886.Palomar.erdos_886_iff_forall_pos_lt_quarter",
+    "Erdos886.Palomar.erdos_886_of_eventual_coprime_cofactor_and_complementary_gcd_gap_bound",
+    "Erdos886.Palomar.erdos_886_of_quarter_le",
+    "Erdos886.Palomar.fifth_order_hyperbolic_vandermonde_six_tuple_identity",
+    "Erdos886.Palomar.finset_lcm_erdos886Divisors_dvd",
+    "Erdos886.Palomar.gcd_complementary_divisors_eq_div_lcm",
+    "Erdos886.Palomar.gcd_mul_complementary_sum_diff_eq_diff_mul_gcd_sub_lcm_quotient",
+    "Erdos886.Palomar.lcm_complementary_divisors_eq_div_gcd",
+    "Erdos886.Palomar.padicValNat_coprime_cofactor_four_term_sum",
+    "Erdos886.Palomar.six_mul_gcd_mul_complementary_gcd_le_of_mem_erdos886Divisors",
+    "Erdos886.Palomar.six_tuple_product_le_mul_full_vandermonde_of_lt",
+    "Erdos886.Palomar.sq_lt_full_vandermonde_of_six_mem_erdos886Divisors",
+    "Erdos886.Palomar.two_le_gcd_of_mem_erdos886Divisors_of_lt"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 48,
+  "expected_axiom_audit_count": 48,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos886.Palomar.erdos_886.variants.rosenfeld_infinite",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.erdos_886.variants.rosenfeld_bound",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.card_erdos886Divisors_le_one_of_quarter_le",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.erdos_886_of_quarter_le",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.erdos_886_iff_forall_pos_lt_quarter",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.complementary_divisor_hyperbolic_identity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.complementary_sum_strict_mono_of_ge_sqrt",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.fifth_order_hyperbolic_vandermonde_six_tuple_identity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.six_tuple_product_le_mul_full_vandermonde_of_lt",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.sq_lt_full_vandermonde_of_six_mem_erdos886Divisors",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.gcd_mul_complementary_sum_diff_eq_diff_mul_gcd_sub_lcm_quotient",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.complementary_sum_diff_eq_reduced_diff_mul_gcd_sub_lcm_quotient",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.divisor_diff_eq_gcd_of_complementary_sum_diff_eq_one",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.gcd_complementary_divisors_eq_div_lcm",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.coprime_cofactor_four_factor_decomposition",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.lcm_complementary_divisors_eq_div_gcd",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.complementary_sum_diff_eq_coprime_cofactor_diff_mul_gcd_diff",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.double_oblong_factorization_of_complementary_sum_diff_eq_one",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.finset_lcm_erdos886Divisors_dvd",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.two_le_gcd_of_mem_erdos886Divisors_of_lt",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.six_mul_gcd_mul_complementary_gcd_le_of_mem_erdos886Divisors",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.padicValNat_coprime_cofactor_four_term_sum",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.card_erdos886Divisors_prime_pow_le_one_of_nonneg",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.erdos_886_of_eventual_coprime_cofactor_and_complementary_gcd_gap_bound",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.statement_erdos_886_variants_rosenfeld_infinite_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.statement_erdos_886_variants_rosenfeld_bound_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.statement_card_erdos886Divisors_le_one_of_quarter_le_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.statement_erdos_886_of_quarter_le_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.statement_erdos_886_iff_forall_pos_lt_quarter_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.statement_complementary_divisor_hyperbolic_identity_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.statement_complementary_sum_strict_mono_of_ge_sqrt_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.statement_fifth_order_hyperbolic_vandermonde_six_tuple_identity_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.statement_six_tuple_product_le_mul_full_vandermonde_of_lt_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.statement_sq_lt_full_vandermonde_of_six_mem_erdos886Divisors_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.statement_gcd_mul_complementary_sum_diff_eq_diff_mul_gcd_sub_lcm_quotient_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.statement_complementary_sum_diff_eq_reduced_diff_mul_gcd_sub_lcm_quotient_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.statement_divisor_diff_eq_gcd_of_complementary_sum_diff_eq_one_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.statement_gcd_complementary_divisors_eq_div_lcm_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.statement_coprime_cofactor_four_factor_decomposition_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.statement_lcm_complementary_divisors_eq_div_gcd_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.statement_complementary_sum_diff_eq_coprime_cofactor_diff_mul_gcd_diff_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.statement_double_oblong_factorization_of_complementary_sum_diff_eq_one_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.statement_finset_lcm_erdos886Divisors_dvd_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.statement_two_le_gcd_of_mem_erdos886Divisors_of_lt_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.statement_six_mul_gcd_mul_complementary_gcd_le_of_mem_erdos886Divisors_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.statement_padicValNat_coprime_cofactor_four_term_sum_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.statement_card_erdos886Divisors_prime_pow_le_one_of_nonneg_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos886.Palomar.statement_erdos_886_of_eventual_coprime_cofactor_and_complementary_gcd_gap_bound_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Erdos886.Erdos886Divisors",
+      "kind": "def",
+      "declaration": "def Erdos886.Erdos886Divisors (n : Nat) (\u03b5 C : Real) : Finset Nat :=\n  fun n \u03b5 C =>\n  Finset.filter\n    (fun d =>\n      And (LT.lt (HPow.hPow (\u2191n) (1 / 2)) \u2191d)\n        (LT.lt (\u2191d) (HAdd.hAdd (HPow.hPow (\u2191n) (1 / 2)) (HMul.hMul C (HPow.hPow (\u2191n) (HSub.hSub (1 / 2) \u03b5))))))\n    (Nat.divisors n)"
+    },
+    {
+      "name": "Erdos886.Palomar.erdos_886.variants.rosenfeld_infinite",
+      "kind": "theorem",
+      "declaration": "theorem Erdos886.Palomar.erdos_886.variants.rosenfeld_infinite :\n  Set.Infinite (Set.ofPred fun n => LE.le 4 (Finset.card (Erdos886.Erdos886Divisors n (1 / 4) 16)))"
+    },
+    {
+      "name": "Erdos886.Palomar.erdos_886.variants.rosenfeld_bound",
+      "kind": "theorem",
+      "declaration": "theorem Erdos886.Palomar.erdos_886.variants.rosenfeld_bound (C : Real) :\n  GT.gt C 0 \u2192\n    Filter.Eventually\n      (fun n =>\n        LE.le\n          (\u2191(Finset.card\n              (Finset.filter\n                (fun d =>\n                  And (LE.le (HPow.hPow (\u2191n) (1 / 2)) \u2191d)\n                    (LE.le (\u2191d) (HAdd.hAdd (HPow.hPow (\u2191n) (1 / 2)) (HMul.hMul C (HPow.hPow (\u2191n) (1 / 4))))))\n                (Nat.divisors n))))\n          (HAdd.hAdd 1 (HPow.hPow C 2)))\n      Filter.atTop"
+    },
+    {
+      "name": "Erdos886.Palomar.card_erdos886Divisors_le_one_of_quarter_le",
+      "kind": "theorem",
+      "declaration": "theorem Erdos886.Palomar.card_erdos886Divisors_le_one_of_quarter_le (n : Nat) (\u03b5 : Real) (h\u03b5 : LE.le (1 / 4) \u03b5) :\n  LE.le (Finset.card (Erdos886.Erdos886Divisors n \u03b5 1)) 1"
+    },
+    {
+      "name": "Erdos886.Palomar.erdos_886_of_quarter_le",
+      "kind": "theorem",
+      "declaration": "theorem Erdos886.Palomar.erdos_886_of_quarter_le (\u03b5 : Real) (h\u03b5 : LE.le (1 / 4) \u03b5) :\n  Exists fun K => Filter.Eventually (fun n => LE.le (Finset.card (Erdos886.Erdos886Divisors n \u03b5 1)) K) Filter.atTop"
+    },
+    {
+      "name": "Erdos886.Palomar.erdos_886_iff_forall_pos_lt_quarter",
+      "kind": "theorem",
+      "declaration": "theorem Erdos886.Palomar.erdos_886_iff_forall_pos_lt_quarter :\n  Iff\n    (\u2200 (\u03b5 : Real),\n      GT.gt \u03b5 0 \u2192\n        Exists fun K =>\n          Filter.Eventually (fun n => LE.le (Finset.card (Erdos886.Erdos886Divisors n \u03b5 1)) K) Filter.atTop)\n    (\u2200 (\u03b5 : Real),\n      LT.lt 0 \u03b5 \u2192\n        LT.lt \u03b5 (1 / 4) \u2192\n          Exists fun K =>\n            Filter.Eventually (fun n => LE.le (Finset.card (Erdos886.Erdos886Divisors n \u03b5 1)) K) Filter.atTop)"
+    },
+    {
+      "name": "Erdos886.Palomar.complementary_divisor_hyperbolic_identity",
+      "kind": "theorem",
+      "declaration": "theorem Erdos886.Palomar.complementary_divisor_hyperbolic_identity (n d : Nat) (hd : Membership.mem (Nat.divisors n) d) :\n  Eq (HMul.hMul (\u2191d) (HSub.hSub (HAdd.hAdd \u2191d \u2191(HDiv.hDiv n d)) (HMul.hMul 2 (HPow.hPow (\u2191n) (1 / 2)))))\n    (HPow.hPow (HSub.hSub (\u2191d) (HPow.hPow (\u2191n) (1 / 2))) 2)"
+    },
+    {
+      "name": "Erdos886.Palomar.complementary_sum_strict_mono_of_ge_sqrt",
+      "kind": "theorem",
+      "declaration": "theorem Erdos886.Palomar.complementary_sum_strict_mono_of_ge_sqrt (n d\u2081 d\u2082 : Nat) (hd\u2081 : Membership.mem (Nat.divisors n) d\u2081)\n  (hd\u2082 : Membership.mem (Nat.divisors n) d\u2082) (hs\u2081 : LE.le (HPow.hPow (\u2191n) (1 / 2)) \u2191d\u2081) (hlt : LT.lt d\u2081 d\u2082) :\n  LT.lt (HAdd.hAdd d\u2081 (HDiv.hDiv n d\u2081)) (HAdd.hAdd d\u2082 (HDiv.hDiv n d\u2082))"
+    },
+    {
+      "name": "Erdos886.Palomar.fifth_order_hyperbolic_vandermonde_six_tuple_identity",
+      "kind": "theorem",
+      "declaration": "theorem Erdos886.Palomar.fifth_order_hyperbolic_vandermonde_six_tuple_identity (n d\u2081 d\u2082 d\u2083 d\u2084 d\u2085 d\u2086 : Nat)\n  (hd\u2081 : Membership.mem (Nat.divisors n) d\u2081) (hd\u2082 : Membership.mem (Nat.divisors n) d\u2082)\n  (hd\u2083 : Membership.mem (Nat.divisors n) d\u2083) (hd\u2084 : Membership.mem (Nat.divisors n) d\u2084)\n  (hd\u2085 : Membership.mem (Nat.divisors n) d\u2085) (hd\u2086 : Membership.mem (Nat.divisors n) d\u2086) :\n  Eq\n    (HMul.hMul (HMul.hMul (HMul.hMul (HMul.hMul (HMul.hMul (HMul.hMul \u2191d\u2081 \u2191d\u2082) \u2191d\u2083) \u2191d\u2084) \u2191d\u2085) \u2191d\u2086)\n      (HSub.hSub\n        (HMul.hMul\n          (HMul.hMul (HMul.hMul (HMul.hMul (HSub.hSub \u2191d\u2086 \u2191d\u2085) (HSub.hSub \u2191d\u2086 \u2191d\u2084)) (HSub.hSub \u2191d\u2086 \u2191d\u2083))\n            (HSub.hSub \u2191d\u2086 \u2191d\u2082))\n          (HSub.hSub\n            (HMul.hMul (HMul.hMul (HMul.hMul (HSub.hSub \u2191d\u2085 \u2191d\u2084) (HSub.hSub \u2191d\u2085 \u2191d\u2083)) (HSub.hSub \u2191d\u2085 \u2191d\u2082))\n              (HSub.hSub\n                (HMul.hMul (HMul.hMul (HSub.hSub \u2191d\u2084 \u2191d\u2083) (HSub.hSub \u2191d\u2084 \u2191d\u2082))\n                  (HSub.hSub\n                    (HMul.hMul (HSub.hSub \u2191d\u2082 \u2191d\u2081)\n                      (HSub.hSub (HAdd.hAdd \u2191d\u2083 \u2191(HDiv.hDiv n d\u2083)) (HAdd.hAdd \u2191d\u2082 \u2191(HDiv.hDiv n d\u2082))))\n                    (HMul.hMul (HSub.hSub \u2191d\u2083 \u2191d\u2082)\n                      (HSub.hSub (HAdd.hAdd \u2191d\u2082 \u2191(HDiv.hDiv n d\u2082)) (HAdd.hAdd \u2191d\u2081 \u2191(HDiv.hDiv n d\u2081))))))\n                (HMul.hMul (HMul.hMul (HSub.hSub \u2191d\u2082 \u2191d\u2081) (HSub.hSub \u2191d\u2083 \u2191d\u2081))\n                  (HSub.hSub\n                    (HMul.hMul (HSub.hSub \u2191d\u2083 \u2191d\u2082)\n                      (HSub.hSub (HAdd.hAdd \u2191d\u2084 \u2191(HDiv.hDiv n d\u2084)) (HAdd.hAdd \u2191d\u2083 \u2191(HDiv.hDiv n d\u2083))))\n                    (HMul.hMul (HSub.hSub \u2191d\u2084 \u2191d\u2083)\n                      (HSub.hSub (HAdd.hAdd \u2191d\u2083 \u2191(HDiv.hDiv n d\u2083)) (HAdd.hAdd \u2191d\u2082 \u2191(HDiv.hDiv n d\u2082))))))))\n            (HMul.hMul (HMul.hMul (HMul.hMul (HSub.hSub \u2191d\u2082 \u2191d\u2081) (HSub.hSub \u2191d\u2083 \u2191d\u2081)) (HSub.hSub \u2191d\u2084 \u2191d\u2081))\n              (HSub.hSub\n                (HMul.hMul (HMul.hMul (HSub.hSub \u2191d\u2085 \u2191d\u2084) (HSub.hSub \u2191d\u2085 \u2191d\u2083))\n                  (HSub.hSub\n                    (HMul.hMul (HSub.hSub \u2191d\u2083 \u2191d\u2082)\n                      (HSub.hSub (HAdd.hAdd \u2191d\u2084 \u2191(HDiv.hDiv n d\u2084)) (HAdd.hAdd \u2191d\u2083 \u2191(HDiv.hDiv n d\u2083))))\n                    (HMul.hMul (HSub.hSub \u2191d\u2084 \u2191d\u2083)\n                      (HSub.hSub (HAdd.hAdd \u2191d\u2083 \u2191(HDiv.hDiv n d\u2083)) (HAdd.hAdd \u2191d\u2082 \u2191(HDiv.hDiv n d\u2082))))))\n                (HMul.hMul (HMul.hMul (HSub.hSub \u2191d\u2083 \u2191d\u2082) (HSub.hSub \u2191d\u2084 \u2191d\u2082))\n                  (HSub.hSub\n                    (HMul.hMul (HSub.hSub \u2191d\u2084 \u2191d\u2083)\n                      (HSub.hSub (HAdd.hAdd \u2191d\u2085 \u2191(HDiv.hDiv n d\u2085)) (HAdd.hAdd \u2191d\u2084 \u2191(HDiv.hDiv n d\u2084))))\n                    (HMul.hMul (HSub.hSub \u2191d\u2085 \u2191d\u2084)\n                      (HSub.hSub (HAdd.hAdd \u2191d\u2084 \u2191(HDiv.hDiv n d\u2084)) (HAdd.hAdd \u2191d\u2083 \u2191(HDiv.hDiv n d\u2083))))))))))\n        (HMul.hMul\n          (HMul.hMul (HMul.hMul (HMul.hMul (HSub.hSub \u2191d\u2082 \u2191d\u2081) (HSub.hSub \u2191d\u2083 \u2191d\u2081)) (HSub.hSub \u2191d\u2084 \u2191d\u2081))\n            (HSub.hSub \u2191d\u2085 \u2191d\u2081))\n          (HSub.hSub\n            (HMul.hMul (HMul.hMul (HMul.hMul (HSub.hSub \u2191d\u2086 \u2191d\u2085) (HSub.hSub \u2191d\u2086 \u2191d\u2084)) (HSub.hSub \u2191d\u2086 \u2191d\u2083))\n              (HSub.hSub\n                (HMul.hMul (HMul.hMul (HSub.hSub \u2191d\u2085 \u2191d\u2084) (HSub.hSub \u2191d\u2085 \u2191d\u2083))\n                  (HSub.hSub\n                    (HMul.hMul (HSub.hSub \u2191d\u2083 \u2191d\u2082)\n                      (HSub.hSub (HAdd.hAdd \u2191d\u2084 \u2191(HDiv.hDiv n d\u2084)) (HAdd.hAdd \u2191d\u2083 \u2191(HDiv.hDiv n d\u2083))))\n                    (HMul.hMul (HSub.hSub \u2191d\u2084 \u2191d\u2083)\n                      (HSub.hSub (HAdd.hAdd \u2191d\u2083 \u2191(HDiv.hDiv n d\u2083)) (HAdd.hAdd \u2191d\u2082 \u2191(HDiv.hDiv n d\u2082))))))\n                (HMul.hMul (HMul.hMul (HSub.hSub \u2191d\u2083 \u2191d\u2082) (HSub.hSub \u2191d\u2084 \u2191d\u2082))\n                  (HSub.hSub\n                    (HMul.hMul (HSub.hSub \u2191d\u2084 \u2191d\u2083)\n                      (HSub.hSub (HAdd.hAdd \u2191d\u2085 \u2191(HDiv.hDiv n d\u2085)) (HAdd.hAdd \u2191d\u2084 \u2191(HDiv.hDiv n d\u2084))))\n                    (HMul.hMul (HSub.hSub \u2191d\u2085 \u2191d\u2084)\n                      (HSub.hSub (HAdd.hAdd \u2191d\u2084 \u2191(HDiv.hDiv n d\u2084)) (HAdd.hAdd \u2191d\u2083 \u2191(HDiv.hDiv n d\u2083))))))))\n            (HMul.hMul (HMul.hMul (HMul.hMul (HSub.hSub \u2191d\u2083 \u2191d\u2082) (HSub.hSub \u2191d\u2084 \u2191d\u2082)) (HSub.hSub \u2191d\u2085 \u2191d\u2082))\n              (HSub.hSub\n                (HMul.hMul (HMul.hMul (HSub.hSub \u2191d\u2086 \u2191d\u2085) (HSub.hSub \u2191d\u2086 \u2191d\u2084))\n                  (HSub.hSub\n                    (HMul.hMul (HSub.hSub \u2191d\u2084 \u2191d\u2083)\n                      (HSub.hSub (HAdd.hAdd \u2191d\u2085 \u2191(HDiv.hDiv n d\u2085)) (HAdd.hAdd \u2191d\u2084 \u2191(HDiv.hDiv n d\u2084))))\n                    (HMul.hMul (HSub.hSub \u2191d\u2085 \u2191d\u2084)\n                      (HSub.hSub (HAdd.hAdd \u2191d\u2084 \u2191(HDiv.hDiv n d\u2084)) (HAdd.hAdd \u2191d\u2083 \u2191(HDiv.hDiv n d\u2083))))))\n                (HMul.hMul (HMul.hMul (HSub.hSub \u2191d\u2084 \u2191d\u2083) (HSub.hSub \u2191d\u2085 \u2191d\u2083))\n                  (HSub.hSub\n                    (HMul.hMul (HSub.hSub \u2191d\u2085 \u2191d\u2084)\n                      (HSub.hSub (HAdd.hAdd \u2191d\u2086 \u2191(HDiv.hDiv n d\u2086)) (HAdd.hAdd \u2191d\u2085 \u2191(HDiv.hDiv n d\u2085))))\n                    (HMul.hMul (HSub.hSub \u2191d\u2086 \u2191d\u2085)\n                      (HSub.hSub (HAdd.hAdd \u2191d\u2085 \u2191(HDiv.hDiv n d\u2085)) (HAdd.hAdd \u2191d\u2084 \u2191(HDiv.hDiv n d\u2084))))))))))))\n    (HMul.hMul\n      (HMul.hMul\n        (HMul.hMul\n          (HMul.hMul\n            (HMul.hMul\n              (HMul.hMul\n                (HMul.hMul\n                  (HMul.hMul\n                    (HMul.hMul\n                      (HMul.hMul\n                        (HMul.hMul\n                          (HMul.hMul\n                            (HMul.hMul (HMul.hMul (HMul.hMul (\u2191n) (HSub.hSub \u2191d\u2082 \u2191d\u2081)) (HSub.hSub \u2191d\u2083 \u2191d\u2082))\n                              (HSub.hSub \u2191d\u2084 \u2191d\u2083))\n                            (HSub.hSub \u2191d\u2085 \u2191d\u2084))\n                          (HSub.hSub \u2191d\u2086 \u2191d\u2085))\n                        (HSub.hSub \u2191d\u2083 \u2191d\u2081))\n                      (HSub.hSub \u2191d\u2084 \u2191d\u2082))\n                    (HSub.hSub \u2191d\u2085 \u2191d\u2083))\n                  (HSub.hSub \u2191d\u2086 \u2191d\u2084))\n                (HSub.hSub \u2191d\u2084 \u2191d\u2081))\n              (HSub.hSub \u2191d\u2085 \u2191d\u2082))\n            (HSub.hSub \u2191d\u2086 \u2191d\u2083))\n          (HSub.hSub \u2191d\u2085 \u2191d\u2081))\n        (HSub.hSub \u2191d\u2086 \u2191d\u2082))\n      (HSub.hSub \u2191d\u2086 \u2191d\u2081))"
+    },
+    {
+      "name": "Erdos886.Palomar.six_tuple_product_le_mul_full_vandermonde_of_lt",
+      "kind": "theorem",
+      "declaration": "theorem Erdos886.Palomar.six_tuple_product_le_mul_full_vandermonde_of_lt (n d\u2081 d\u2082 d\u2083 d\u2084 d\u2085 d\u2086 : Nat)\n  (hd\u2081 : Membership.mem (Nat.divisors n) d\u2081) (hd\u2082 : Membership.mem (Nat.divisors n) d\u2082)\n  (hd\u2083 : Membership.mem (Nat.divisors n) d\u2083) (hd\u2084 : Membership.mem (Nat.divisors n) d\u2084)\n  (hd\u2085 : Membership.mem (Nat.divisors n) d\u2085) (hd\u2086 : Membership.mem (Nat.divisors n) d\u2086) (hlt12 : LT.lt d\u2081 d\u2082)\n  (hlt23 : LT.lt d\u2082 d\u2083) (hlt34 : LT.lt d\u2083 d\u2084) (hlt45 : LT.lt d\u2084 d\u2085) (hlt56 : LT.lt d\u2085 d\u2086) :\n  LE.le (HMul.hMul (HMul.hMul (HMul.hMul (HMul.hMul (HMul.hMul d\u2081 d\u2082) d\u2083) d\u2084) d\u2085) d\u2086)\n    (HMul.hMul\n      (HMul.hMul\n        (HMul.hMul\n          (HMul.hMul\n            (HMul.hMul\n              (HMul.hMul\n                (HMul.hMul\n                  (HMul.hMul\n                    (HMul.hMul\n                      (HMul.hMul\n                        (HMul.hMul\n                          (HMul.hMul\n                            (HMul.hMul (HMul.hMul (HMul.hMul n (HSub.hSub d\u2082 d\u2081)) (HSub.hSub d\u2083 d\u2082)) (HSub.hSub d\u2084 d\u2083))\n                            (HSub.hSub d\u2085 d\u2084))\n                          (HSub.hSub d\u2086 d\u2085))\n                        (HSub.hSub d\u2083 d\u2081))\n                      (HSub.hSub d\u2084 d\u2082))\n                    (HSub.hSub d\u2085 d\u2083))\n                  (HSub.hSub d\u2086 d\u2084))\n                (HSub.hSub d\u2084 d\u2081))\n              (HSub.hSub d\u2085 d\u2082))\n            (HSub.hSub d\u2086 d\u2083))\n          (HSub.hSub d\u2085 d\u2081))\n        (HSub.hSub d\u2086 d\u2082))\n      (HSub.hSub d\u2086 d\u2081))"
+    },
+    {
+      "name": "Erdos886.Palomar.sq_lt_full_vandermonde_of_six_mem_erdos886Divisors",
+      "kind": "theorem",
+      "declaration": "theorem Erdos886.Palomar.sq_lt_full_vandermonde_of_six_mem_erdos886Divisors (n d\u2081 d\u2082 d\u2083 d\u2084 d\u2085 d\u2086 : Nat) (\u03b5 C : Real)\n  (hd\u2081 : Membership.mem (Erdos886.Erdos886Divisors n \u03b5 C) d\u2081)\n  (hd\u2082 : Membership.mem (Erdos886.Erdos886Divisors n \u03b5 C) d\u2082)\n  (hd\u2083 : Membership.mem (Erdos886.Erdos886Divisors n \u03b5 C) d\u2083)\n  (hd\u2084 : Membership.mem (Erdos886.Erdos886Divisors n \u03b5 C) d\u2084)\n  (hd\u2085 : Membership.mem (Erdos886.Erdos886Divisors n \u03b5 C) d\u2085)\n  (hd\u2086 : Membership.mem (Erdos886.Erdos886Divisors n \u03b5 C) d\u2086) (hlt12 : LT.lt d\u2081 d\u2082) (hlt23 : LT.lt d\u2082 d\u2083)\n  (hlt34 : LT.lt d\u2083 d\u2084) (hlt45 : LT.lt d\u2084 d\u2085) (hlt56 : LT.lt d\u2085 d\u2086) :\n  LT.lt (HPow.hPow n 2)\n    (HMul.hMul\n      (HMul.hMul\n        (HMul.hMul\n          (HMul.hMul\n            (HMul.hMul\n              (HMul.hMul\n                (HMul.hMul\n                  (HMul.hMul\n                    (HMul.hMul\n                      (HMul.hMul\n                        (HMul.hMul\n                          (HMul.hMul (HMul.hMul (HMul.hMul (HSub.hSub d\u2082 d\u2081) (HSub.hSub d\u2083 d\u2082)) (HSub.hSub d\u2084 d\u2083))\n                            (HSub.hSub d\u2085 d\u2084))\n                          (HSub.hSub d\u2086 d\u2085))\n                        (HSub.hSub d\u2083 d\u2081))\n                      (HSub.hSub d\u2084 d\u2082))\n                    (HSub.hSub d\u2085 d\u2083))\n                  (HSub.hSub d\u2086 d\u2084))\n                (HSub.hSub d\u2084 d\u2081))\n              (HSub.hSub d\u2085 d\u2082))\n            (HSub.hSub d\u2086 d\u2083))\n          (HSub.hSub d\u2085 d\u2081))\n        (HSub.hSub d\u2086 d\u2082))\n      (HSub.hSub d\u2086 d\u2081))"
+    },
+    {
+      "name": "Erdos886.Palomar.gcd_mul_complementary_sum_diff_eq_diff_mul_gcd_sub_lcm_quotient",
+      "kind": "theorem",
+      "declaration": "theorem Erdos886.Palomar.gcd_mul_complementary_sum_diff_eq_diff_mul_gcd_sub_lcm_quotient (n d\u2081 d\u2082 : Nat)\n  (hd\u2081 : Membership.mem (Nat.divisors n) d\u2081) (hd\u2082 : Membership.mem (Nat.divisors n) d\u2082)\n  (hge : LE.le (HPow.hPow (\u2191n) (1 / 2)) \u2191d\u2081) (hle : LE.le d\u2081 d\u2082) :\n  Eq (HMul.hMul (Nat.gcd d\u2081 d\u2082) (HSub.hSub (HAdd.hAdd d\u2082 (HDiv.hDiv n d\u2082)) (HAdd.hAdd d\u2081 (HDiv.hDiv n d\u2081))))\n    (HMul.hMul (HSub.hSub d\u2082 d\u2081) (HSub.hSub (Nat.gcd d\u2081 d\u2082) (HDiv.hDiv n (Nat.lcm d\u2081 d\u2082))))"
+    },
+    {
+      "name": "Erdos886.Palomar.complementary_sum_diff_eq_reduced_diff_mul_gcd_sub_lcm_quotient",
+      "kind": "theorem",
+      "declaration": "theorem Erdos886.Palomar.complementary_sum_diff_eq_reduced_diff_mul_gcd_sub_lcm_quotient (n d\u2081 d\u2082 : Nat)\n  (hd\u2081 : Membership.mem (Nat.divisors n) d\u2081) (hd\u2082 : Membership.mem (Nat.divisors n) d\u2082)\n  (hge : LE.le (HPow.hPow (\u2191n) (1 / 2)) \u2191d\u2081) (hle : LE.le d\u2081 d\u2082) :\n  Eq (HSub.hSub (HAdd.hAdd d\u2082 (HDiv.hDiv n d\u2082)) (HAdd.hAdd d\u2081 (HDiv.hDiv n d\u2081)))\n    (HMul.hMul (HDiv.hDiv (HSub.hSub d\u2082 d\u2081) (Nat.gcd d\u2081 d\u2082)) (HSub.hSub (Nat.gcd d\u2081 d\u2082) (HDiv.hDiv n (Nat.lcm d\u2081 d\u2082))))"
+    },
+    {
+      "name": "Erdos886.Palomar.divisor_diff_eq_gcd_of_complementary_sum_diff_eq_one",
+      "kind": "theorem",
+      "declaration": "theorem Erdos886.Palomar.divisor_diff_eq_gcd_of_complementary_sum_diff_eq_one (n d\u2081 d\u2082 : Nat)\n  (hd\u2081 : Membership.mem (Nat.divisors n) d\u2081) (hd\u2082 : Membership.mem (Nat.divisors n) d\u2082)\n  (hge : LE.le (HPow.hPow (\u2191n) (1 / 2)) \u2191d\u2081) (hlt : LT.lt d\u2081 d\u2082)\n  (hstep : Eq (HSub.hSub (HAdd.hAdd d\u2082 (HDiv.hDiv n d\u2082)) (HAdd.hAdd d\u2081 (HDiv.hDiv n d\u2081))) 1) :\n  Eq (HSub.hSub d\u2082 d\u2081) (Nat.gcd d\u2081 d\u2082)"
+    },
+    {
+      "name": "Erdos886.Palomar.gcd_complementary_divisors_eq_div_lcm",
+      "kind": "theorem",
+      "declaration": "theorem Erdos886.Palomar.gcd_complementary_divisors_eq_div_lcm (n d\u2081 d\u2082 : Nat) (hd\u2081 : Membership.mem (Nat.divisors n) d\u2081)\n  (hd\u2082 : Membership.mem (Nat.divisors n) d\u2082) :\n  Eq (Nat.gcd (HDiv.hDiv n d\u2081) (HDiv.hDiv n d\u2082)) (HDiv.hDiv n (Nat.lcm d\u2081 d\u2082))"
+    },
+    {
+      "name": "Erdos886.Palomar.coprime_cofactor_four_factor_decomposition",
+      "kind": "theorem",
+      "declaration": "theorem Erdos886.Palomar.coprime_cofactor_four_factor_decomposition (n d\u2081 d\u2082 : Nat) (hd\u2081 : Membership.mem (Nat.divisors n) d\u2081)\n  (hd\u2082 : Membership.mem (Nat.divisors n) d\u2082) :\n  Eq n\n    (HMul.hMul\n      (HMul.hMul (HMul.hMul (Nat.gcd d\u2081 d\u2082) (Nat.gcd (HDiv.hDiv n d\u2081) (HDiv.hDiv n d\u2082))) (HDiv.hDiv d\u2081 (Nat.gcd d\u2081 d\u2082)))\n      (HDiv.hDiv d\u2082 (Nat.gcd d\u2081 d\u2082)))"
+    },
+    {
+      "name": "Erdos886.Palomar.lcm_complementary_divisors_eq_div_gcd",
+      "kind": "theorem",
+      "declaration": "theorem Erdos886.Palomar.lcm_complementary_divisors_eq_div_gcd (n d\u2081 d\u2082 : Nat) (hd\u2081 : Membership.mem (Nat.divisors n) d\u2081)\n  (hd\u2082 : Membership.mem (Nat.divisors n) d\u2082) :\n  Eq (Nat.lcm (HDiv.hDiv n d\u2081) (HDiv.hDiv n d\u2082)) (HDiv.hDiv n (Nat.gcd d\u2081 d\u2082))"
+    },
+    {
+      "name": "Erdos886.Palomar.complementary_sum_diff_eq_coprime_cofactor_diff_mul_gcd_diff",
+      "kind": "theorem",
+      "declaration": "theorem Erdos886.Palomar.complementary_sum_diff_eq_coprime_cofactor_diff_mul_gcd_diff (n d\u2081 d\u2082 : Nat)\n  (hd\u2081 : Membership.mem (Nat.divisors n) d\u2081) (hd\u2082 : Membership.mem (Nat.divisors n) d\u2082)\n  (hge : LE.le (HPow.hPow (\u2191n) (1 / 2)) \u2191d\u2081) (hle : LE.le d\u2081 d\u2082) :\n  Eq (HSub.hSub (HAdd.hAdd d\u2082 (HDiv.hDiv n d\u2082)) (HAdd.hAdd d\u2081 (HDiv.hDiv n d\u2081)))\n    (HMul.hMul (HSub.hSub (HDiv.hDiv d\u2082 (Nat.gcd d\u2081 d\u2082)) (HDiv.hDiv d\u2081 (Nat.gcd d\u2081 d\u2082)))\n      (HSub.hSub (Nat.gcd d\u2081 d\u2082) (Nat.gcd (HDiv.hDiv n d\u2081) (HDiv.hDiv n d\u2082))))"
+    },
+    {
+      "name": "Erdos886.Palomar.double_oblong_factorization_of_complementary_sum_diff_eq_one",
+      "kind": "theorem",
+      "declaration": "theorem Erdos886.Palomar.double_oblong_factorization_of_complementary_sum_diff_eq_one (n d\u2081 d\u2082 : Nat)\n  (hd\u2081 : Membership.mem (Nat.divisors n) d\u2081) (hd\u2082 : Membership.mem (Nat.divisors n) d\u2082)\n  (hge : LE.le (HPow.hPow (\u2191n) (1 / 2)) \u2191d\u2081) (hlt : LT.lt d\u2081 d\u2082)\n  (hstep : Eq (HSub.hSub (HAdd.hAdd d\u2082 (HDiv.hDiv n d\u2082)) (HAdd.hAdd d\u2081 (HDiv.hDiv n d\u2081))) 1) :\n  And (Eq (HDiv.hDiv d\u2082 (Nat.gcd d\u2081 d\u2082)) (HAdd.hAdd (HDiv.hDiv d\u2081 (Nat.gcd d\u2081 d\u2082)) 1))\n    (And (Eq (Nat.gcd d\u2081 d\u2082) (HAdd.hAdd (Nat.gcd (HDiv.hDiv n d\u2081) (HDiv.hDiv n d\u2082)) 1))\n      (And (Eq (HSub.hSub (HDiv.hDiv n d\u2081) (HDiv.hDiv n d\u2082)) (Nat.gcd (HDiv.hDiv n d\u2081) (HDiv.hDiv n d\u2082)))\n        (Eq n\n          (HMul.hMul\n            (HMul.hMul\n              (HMul.hMul (HAdd.hAdd (Nat.gcd (HDiv.hDiv n d\u2081) (HDiv.hDiv n d\u2082)) 1)\n                (Nat.gcd (HDiv.hDiv n d\u2081) (HDiv.hDiv n d\u2082)))\n              (HDiv.hDiv d\u2081 (Nat.gcd d\u2081 d\u2082)))\n            (HAdd.hAdd (HDiv.hDiv d\u2081 (Nat.gcd d\u2081 d\u2082)) 1)))))"
+    },
+    {
+      "name": "Erdos886.Palomar.finset_lcm_erdos886Divisors_dvd",
+      "kind": "theorem",
+      "declaration": "theorem Erdos886.Palomar.finset_lcm_erdos886Divisors_dvd (n : Nat) (\u03b5 C : Real) :\n  Dvd.dvd (Finset.lcm (Erdos886.Erdos886Divisors n \u03b5 C) id) n"
+    },
+    {
+      "name": "Erdos886.Palomar.two_le_gcd_of_mem_erdos886Divisors_of_lt",
+      "kind": "theorem",
+      "declaration": "theorem Erdos886.Palomar.two_le_gcd_of_mem_erdos886Divisors_of_lt (n d\u2081 d\u2082 : Nat) (\u03b5 C : Real)\n  (hd\u2081 : Membership.mem (Erdos886.Erdos886Divisors n \u03b5 C) d\u2081)\n  (hd\u2082 : Membership.mem (Erdos886.Erdos886Divisors n \u03b5 C) d\u2082) (hlt : LT.lt d\u2081 d\u2082) : LE.le 2 (Nat.gcd d\u2081 d\u2082)"
+    },
+    {
+      "name": "Erdos886.Palomar.six_mul_gcd_mul_complementary_gcd_le_of_mem_erdos886Divisors",
+      "kind": "theorem",
+      "declaration": "theorem Erdos886.Palomar.six_mul_gcd_mul_complementary_gcd_le_of_mem_erdos886Divisors (n d\u2081 d\u2082 : Nat) (\u03b5 C : Real)\n  (h\u03b5 : LE.le 0 \u03b5) (hC : LE.le C 1) (hd\u2081 : Membership.mem (Erdos886.Erdos886Divisors n \u03b5 C) d\u2081)\n  (hd\u2082 : Membership.mem (Erdos886.Erdos886Divisors n \u03b5 C) d\u2082) (hlt : LT.lt d\u2081 d\u2082) :\n  And (LE.le (HMul.hMul 6 (HMul.hMul (Nat.gcd d\u2081 d\u2082) (Nat.gcd (HDiv.hDiv n d\u2081) (HDiv.hDiv n d\u2082)))) n)\n    (LE.le (HMul.hMul 2 (Nat.gcd d\u2081 d\u2082)) d\u2081)"
+    },
+    {
+      "name": "Erdos886.Palomar.padicValNat_coprime_cofactor_four_term_sum",
+      "kind": "theorem",
+      "declaration": "theorem Erdos886.Palomar.padicValNat_coprime_cofactor_four_term_sum (p n d\u2081 d\u2082 : Nat) [Fact (Nat.Prime p)]\n  (hd\u2081 : Membership.mem (Nat.divisors n) d\u2081) (hd\u2082 : Membership.mem (Nat.divisors n) d\u2082) :\n  Eq (padicValNat p n)\n    (HAdd.hAdd\n      (HAdd.hAdd (HAdd.hAdd (padicValNat p (Nat.gcd d\u2081 d\u2082)) (padicValNat p (Nat.gcd (HDiv.hDiv n d\u2081) (HDiv.hDiv n d\u2082))))\n        (padicValNat p (HDiv.hDiv d\u2081 (Nat.gcd d\u2081 d\u2082))))\n      (padicValNat p (HDiv.hDiv d\u2082 (Nat.gcd d\u2081 d\u2082))))"
+    },
+    {
+      "name": "Erdos886.Palomar.card_erdos886Divisors_prime_pow_le_one_of_nonneg",
+      "kind": "theorem",
+      "declaration": "theorem Erdos886.Palomar.card_erdos886Divisors_prime_pow_le_one_of_nonneg (p m : Nat) (hp : Nat.Prime p) (\u03b5 : Real)\n  (h\u03b5 : LE.le 0 \u03b5) : LE.le (Finset.card (Erdos886.Erdos886Divisors (HPow.hPow p m) \u03b5 1)) 1"
+    },
+    {
+      "name": "Erdos886.Palomar.erdos_886_of_eventual_coprime_cofactor_and_complementary_gcd_gap_bound",
+      "kind": "theorem",
+      "declaration": "theorem Erdos886.Palomar.erdos_886_of_eventual_coprime_cofactor_and_complementary_gcd_gap_bound\n  (hbound :\n    \u2200 (\u03b5 : Real),\n      LT.lt 0 \u03b5 \u2192\n        LT.lt \u03b5 (1 / 4) \u2192\n          Exists fun K =>\n            Filter.Eventually\n              (fun n =>\n                \u2200 (a : Nat),\n                  Membership.mem (Erdos886.Erdos886Divisors n \u03b5 1) a \u2192\n                    \u2200 (b : Nat),\n                      Membership.mem (Erdos886.Erdos886Divisors n \u03b5 1) b \u2192\n                        LE.le a b \u2192\n                          LE.le\n                            (HMul.hMul (HSub.hSub (HDiv.hDiv b (Nat.gcd a b)) (HDiv.hDiv a (Nat.gcd a b)))\n                              (HSub.hSub (Nat.gcd a b) (Nat.gcd (HDiv.hDiv n a) (HDiv.hDiv n b))))\n                            K)\n              Filter.atTop)\n  (\u03b5 : Real) :\n  GT.gt \u03b5 0 \u2192\n    Exists fun K => Filter.Eventually (fun n => LE.le (Finset.card (Erdos886.Erdos886Divisors n \u03b5 1)) K) Filter.atTop"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos886.erdos_886.variants.rosenfeld_bound",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.886",
+      "solution_declaration": "Erdos886.Palomar.erdos_886.variants.rosenfeld_bound",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.erdos_886.variants.rosenfeld_infinite",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.886",
+      "solution_declaration": "Erdos886.Palomar.erdos_886.variants.rosenfeld_infinite",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.Challenge.statement_finset_lcm_erdos886Divisors_dvd",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos886.Palomar.finset_lcm_erdos886Divisors_dvd",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.Challenge.statement_coprime_cofactor_four_factor_decomposition",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos886.Palomar.coprime_cofactor_four_factor_decomposition",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.Challenge.statement_complementary_sum_diff_eq_coprime_cofactor_diff_mul_gcd_diff",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos886.Palomar.complementary_sum_diff_eq_coprime_cofactor_diff_mul_gcd_diff",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.Challenge.statement_lcm_complementary_divisors_eq_div_gcd",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos886.Palomar.lcm_complementary_divisors_eq_div_gcd",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.Challenge.statement_two_le_gcd_of_mem_erdos886Divisors_of_lt",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos886.Palomar.two_le_gcd_of_mem_erdos886Divisors_of_lt",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.Challenge.statement_double_oblong_factorization_of_complementary_sum_diff_eq_one",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos886.Palomar.double_oblong_factorization_of_complementary_sum_diff_eq_one",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.Challenge.statement_gcd_complementary_divisors_eq_div_lcm",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos886.Palomar.gcd_complementary_divisors_eq_div_lcm",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.Challenge.statement_fifth_order_hyperbolic_vandermonde_six_tuple_identity",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos886.Palomar.fifth_order_hyperbolic_vandermonde_six_tuple_identity",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.Challenge.statement_complementary_sum_strict_mono_of_ge_sqrt",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos886.Palomar.complementary_sum_strict_mono_of_ge_sqrt",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.Challenge.statement_erdos_886_iff_forall_pos_lt_quarter",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos886.Palomar.erdos_886_iff_forall_pos_lt_quarter",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.Challenge.statement_card_erdos886Divisors_prime_pow_le_one_of_nonneg",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos886.Palomar.card_erdos886Divisors_prime_pow_le_one_of_nonneg",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.Challenge.statement_six_mul_gcd_mul_complementary_gcd_le_of_mem_erdos886Divisors",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos886.Palomar.six_mul_gcd_mul_complementary_gcd_le_of_mem_erdos886Divisors",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.Challenge.statement_gcd_mul_complementary_sum_diff_eq_diff_mul_gcd_sub_lcm_quotient",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos886.Palomar.gcd_mul_complementary_sum_diff_eq_diff_mul_gcd_sub_lcm_quotient",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.Challenge.statement_six_tuple_product_le_mul_full_vandermonde_of_lt",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos886.Palomar.six_tuple_product_le_mul_full_vandermonde_of_lt",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.Challenge.statement_sq_lt_full_vandermonde_of_six_mem_erdos886Divisors",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos886.Palomar.sq_lt_full_vandermonde_of_six_mem_erdos886Divisors",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.Challenge.statement_erdos_886_of_quarter_le",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos886.Palomar.erdos_886_of_quarter_le",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.Challenge.statement_divisor_diff_eq_gcd_of_complementary_sum_diff_eq_one",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos886.Palomar.divisor_diff_eq_gcd_of_complementary_sum_diff_eq_one",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.Challenge.statement_card_erdos886Divisors_le_one_of_quarter_le",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos886.Palomar.card_erdos886Divisors_le_one_of_quarter_le",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.Challenge.statement_erdos_886_variants_rosenfeld_bound",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos886.Palomar.erdos_886.variants.rosenfeld_bound",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.Challenge.statement_padicValNat_coprime_cofactor_four_term_sum",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos886.Palomar.padicValNat_coprime_cofactor_four_term_sum",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.Challenge.statement_erdos_886_of_eventual_coprime_cofactor_and_complementary_gcd_gap_bound",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos886.Palomar.erdos_886_of_eventual_coprime_cofactor_and_complementary_gcd_gap_bound",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.Challenge.statement_complementary_sum_diff_eq_reduced_diff_mul_gcd_sub_lcm_quotient",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos886.Palomar.complementary_sum_diff_eq_reduced_diff_mul_gcd_sub_lcm_quotient",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.Challenge.statement_complementary_divisor_hyperbolic_identity",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos886.Palomar.complementary_divisor_hyperbolic_identity",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.Challenge.statement_erdos_886_variants_rosenfeld_infinite",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos886.Palomar.erdos_886.variants.rosenfeld_infinite",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.erdos_886",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.886",
+      "solution_declaration": "Erdos886.Challenge.statement_erdos_886",
+      "match_mode": "resolves_open_answer_true_prop"
+    },
+    {
+      "target_declaration": "Erdos886.erdos_886.variants.rosenfeld_bound",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.886",
+      "solution_declaration": "Erdos886.Challenge.statement_erdos_886_variants_rosenfeld_bound",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos886.erdos_886.variants.rosenfeld_infinite",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.886",
+      "solution_declaration": "Erdos886.Challenge.statement_erdos_886_variants_rosenfeld_infinite",
+      "match_mode": "exact"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "e318903862396f96de3df57264e0158682b952fd3fb53ac23d876413e7b30f71"
+  },
+  "input_sha256": {
+    "Challenge.lean": "37b04a47e33a3b231bd7112857a0a095db80a1e5d84ad86f700c84495a649a57",
+    "Solution.lean": "41e2bcee7f0bcbb440440b525376cb548c6e816fb426db453fe03baf48f98c82",
+    "AxiomAudit.lean": "f212a3383c4805098866a37e69e4ce74688060dff2b16f63d38b5923dc1ff627",
+    "Statement.lean": "f25944884e2d343fa28cb9272be5d4a25b385deafc7ad2de288a7dc6d5eca8d0",
+    "comparator.json": "ce8fd972e0c496c1463cae1fa1348677cbb18e415a5b49f825d11e689e33a54a",
+    "formalization.yaml": "4853e12005cf875be13438ba2cad02e4eea997ad0e0014af28cb3c6dd2c8f842",
+    "lakefile.toml": "5111b2e2642d8fe8726b22ffda2c0e3c55dcc32b1c9a68b435deaf92ecc5ecfb",
+    "lake-manifest.json": "8db6582c38182b0ac91ecb55f4e23007a34d9da598fe3197b58c9eaf7f45ab02",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "694f3c136549331c558647cb21a7e3485ffc4ab5e112c14f4720c1441494cda5",
+    "Proofs/Blueprint886.lean": "80b56991e546709890afa9ea367f9830fe5ad5021aefb17fa42391d1f00ef8ae",
+    "Proofs/Erdos886Unified435.lean": "00efc41a4abade1afc430fc2a77a6450aa1c2cf915033ed4c1daedb2a457fb29",
+    "Proofs/SixTupleHyperbolicDeterminantsAndDivisorDifferenceGCD886.lean": "324aca0ad805e44b9c4f581d114c183f99c966fc3af8932ecad83ab7f30b846a"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 233.15,
+    "env_compare_and_core_audit_seconds": 70.27,
+    "total_elapsed_seconds": 439.641,
+    "user_cpu_seconds": 341.92,
+    "system_cpu_seconds": 76.019,
+    "peak_rss_mib": 13257.95
+  },
+  "status": "PASS"
+}
