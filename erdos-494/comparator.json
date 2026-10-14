@@ -1,0 +1,14 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos494.Palomar.erdos_494_variants_k_eq_2_card_not_pow_two",
+    "Erdos494.Palomar.erdos_494_variants_k_eq_3_card_gt_6"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "enable_nanoda": true
+}

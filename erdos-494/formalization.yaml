@@ -1,0 +1,116 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 494: sets determined by k-sum multisets",
+    "description": "A Lean 4 formalization of the Selfridge–Straus uniqueness theorems for finite sets of complex numbers. For k = 2, a set is determined by the multiset of sums of its pairs unless its cardinality is a power of two. For k = 3, Selfridge and Straus (1958) prove the same conclusion when the cardinality is greater than 6 and is neither 27 nor 486. The formal statements follow the corresponding open variants in Erdős Problem 494; the general uniqueness problem for all k and cardinalities remains outside this package's scope.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "Apache-2.0"
+  },
+  "classification": {
+    "arxiv": [
+      "math.CO",
+      "math.NT"
+    ],
+    "msc2020": [
+      "11B75",
+      "05A18"
+    ]
+  },
+  "sources": [
+    {
+      "title": "On the determination of numbers by their sums of a fixed order",
+      "authors": [
+        "John L. Selfridge",
+        "Ernst G. Straus"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "id": "https://doi.org/10.2140/pjm.1958.8.847",
+      "location": "Pacific Journal of Mathematics 8 (1958), 847–856",
+      "author_endorsement": "not-applicable",
+      "note": "Proves that A ⊂ ℂ is uniquely determined by its k-sum multiset for k = 2 (|A| ≠ 2^l) and k = 3 (|A| > 6, |A| ∉ {27, 486}). The problem page is https://www.erdosproblems.com/494."
+    },
+    {
+      "title": "Some unsolved problems",
+      "authors": [
+        "Paul Erdős"
+      ],
+      "type": "paper",
+      "relationship": "context",
+      "id": "https://doi.org/10.1090/s0002-9904-1961-1156-7",
+      "location": "Magyar Tud. Akad. Mat. Kutató Int. Közl. 6 (1961), 221–254",
+      "author_endorsement": "not-applicable",
+      "note": "Poses the product variant surveyed by Erdős Problem 494."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/494.lean",
+      "relationship": "builds-on",
+      "note": "Provides the unproved erdos_494.variants.k_eq_2_card_not_pow_two and erdos_494.variants.k_eq_3_card_gt_6 statements proved here."
+    }
+  ],
+  "status": {
+    "scope": "Proves erdos_494.variants.k_eq_2_card_not_pow_two and erdos_494.variants.k_eq_3_card_gt_6.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos494.Palomar.erdos_494_variants_k_eq_2_card_not_pow_two",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos494.Palomar.erdos_494_variants_k_eq_3_card_gt_6",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "All proof modules in Proofs/ together with Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry in the proof modules."
+  },
+  "fidelity": {
+    "divergences": "None. Challenge.lean, Statement.lean, and Solution.lean use the exact Erdos494.sumMultiset and Erdos494.Erdos494Unique definitions and theorem signatures from FormalConjectures/ErdosProblems/494.lean."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Statement fidelity and transitive axioms (restricted to propext, Classical.choice, and Quot.sound) were verified across all exported theorems in Solution.lean."
+  },
+  "alignment": {
+    "namespace": "Erdos494.Palomar",
+    "statements": [
+      {
+        "source": "Selfridge and Straus (1958), Pacific J. Math. 8, theorem for k = 2 and |A| ≠ 2^l; statement from FormalConjectures/ErdosProblems/494.lean (erdos_494.variants.k_eq_2_card_not_pow_two)",
+        "lean": "Erdos494.Palomar.erdos_494_variants_k_eq_2_card_not_pow_two",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves ∀ card : ℕ, (∀ l : ℕ, card ≠ 2 ^ l) → Erdos494Unique 2 card."
+      },
+      {
+        "source": "Selfridge and Straus (1958), Pacific J. Math. 8, theorem for k = 3 and |A| > 6 with |A| ∉ {27, 486}; statement from FormalConjectures/ErdosProblems/494.lean (erdos_494.variants.k_eq_3_card_gt_6)",
+        "lean": "Erdos494.Palomar.erdos_494_variants_k_eq_3_card_gt_6",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves ∀ card > 6, card ≠ 27 → card ≠ 486 → Erdos494Unique 3 card."
+      }
+    ]
+  },
+  "acknowledgements": "Mathlib supplies symmetric polynomials, Newton's identities, and complex algebra infrastructure; Formal Conjectures supplies the problem statement."
+}
