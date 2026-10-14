@@ -1644,6 +1644,11 @@ def _strip_fc_source_for_inline(lean_txt: str, *, defs_only: bool = False) -> st
     txt = re.sub(r"/--[\s\S]*?-/", "", txt)
     txt = re.sub(r"^\s*(?:public\s+|private\s+)?(?:meta\s+)?import\s+.*?\n", "", txt, flags=re.M)
     txt = re.sub(r"@\[\s*category\b[\s\S]*?\]\s*\n", "", txt)
+    if defs_only:
+        # The FC_UTIL_SHIM_HEADER already declares the common scoped plane notations.
+        # Inline helper sources must not redeclare them, or every use of the notation
+        # in the problem body becomes ambiguous and on-demand compilation fails.
+        txt = re.sub(r"^\s*scoped\[[^\]]*\]\s+notation\b[^\n]*\n", "", txt, flags=re.M)
     txt = re.sub(r"(@\[[^\]]*\])\s*\n\s*", r"\1 ", txt)
     boundary_re = re.compile(
         r"^(?=\s*(?:@\[[^\]]*\]\s*)*(?:private\s|protected\s|noncomputable\s|theorem\s|lemma\s|proof_wanted\s|example\b|def\s|abbrev\s|structure\s|inductive\s|class\s|instance\b|namespace\s|section\b|end\b|open\s|variable\s|scoped\b|notation\b|#print\s))",
