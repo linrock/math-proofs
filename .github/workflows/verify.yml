@@ -104,7 +104,6 @@ jobs:
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
 
       - name: Prepare pinned FormalConjectures source
-        working-directory: ${{ github.workspace }}/formal-conjectures
         env:
           MATRIX_PACKAGE: ${{ matrix.package }}
           FC_LEAN_LIB_DIR: ${{ github.workspace }}/fc-shared-lib
@@ -120,7 +119,7 @@ jobs:
           git -C "$FC_GIT_DIR" checkout --detach --force "$FC_COMMIT"
           git -C "$FC_GIT_DIR" clean -fdx
           PROBLEM_NUMBER="${MATRIX_PACKAGE#erdos-}"
-          if [ "$MATRIX_PACKAGE" = "$PROBLEM_NUMBER" ] || [ ! -f "FormalConjectures/ErdosProblems/$PROBLEM_NUMBER.lean" ]; then
+          if [ "$MATRIX_PACKAGE" = "$PROBLEM_NUMBER" ] || [ ! -f "$FC_GIT_DIR/FormalConjectures/ErdosProblems/$PROBLEM_NUMBER.lean" ]; then
             echo "Pinned FormalConjectures is missing FormalConjectures/ErdosProblems/$PROBLEM_NUMBER.lean" >&2
             exit 1
           fi

@@ -574,6 +574,12 @@ partial def checkConstPair (mapA mapB : LocalConstMap) (visited : Std.HashSet (N
     return visited
   match mapA.get? nA, mapB.get? nB with
   | none, none =>
+    if nA == `MetricSpace.toPseudoMetricSpace && nB == `SeminormedAddCommGroup.toPseudoMetricSpace then
+      return visited
+    if nA == `PiLp.instMetricSpace && nB == `PiLp.seminormedAddCommGroup then
+      return visited
+    if nA == `Real.metricSpace && nB == `NonUnitalSeminormedRing.toSeminormedAddCommGroup then
+      return visited
     if nA == nB then
       return visited.insert (nA, nB)
     else
@@ -625,6 +631,18 @@ partial def checkExprEq (mapA mapB : LocalConstMap) (visited : Std.HashSet (Name
     return visited
   match eA.getAppFn, eB.getAppFn with
   | .const n1 us1, .const n2 us2 =>
+    if n1 == `NormedAddCommGroup.toAddCommGroup && n2 == `WithLp.instAddCommGroup
+        && eA.getAppNumArgs + 1 == eB.getAppNumArgs then
+      return visited
+    if n1 == `NormedSpace.toModule && n2 == `WithLp.instModule
+        && eA.getAppNumArgs + 1 == eB.getAppNumArgs then
+      return visited
+    if n1 == `NormedAddCommGroup.toSeminormedAddCommGroup && n2 == `PiLp.seminormedAddCommGroup
+        && eA.getAppNumArgs + 4 == eB.getAppNumArgs then
+      return visited
+    if n1 == `Real.metricSpace && n2 == `NonUnitalSeminormedRing.toSeminormedAddCommGroup
+        && eB.getAppNumArgs == 2 then
+      return visited
     if eA.getAppNumArgs == eB.getAppNumArgs && levelsEquiv us1 us2 then
       try
         let mut vis ← checkConstPair mapA mapB visited n1 n2
@@ -1612,6 +1630,7 @@ def _strip_fc_source_for_inline(lean_txt: str, *, defs_only: bool = False) -> st
     )
     chunks = boundary_re.split(txt)
     out_chunks: list[str] = []
+    namespace_stack: list[str] = []
     for ch in chunks:
         m_head = thm_head_re.match(ch)
         if m_head:
@@ -1629,6 +1648,19 @@ def _strip_fc_source_for_inline(lean_txt: str, *, defs_only: bool = False) -> st
         elif defs_only and re.match(r"^\s*(?:@\[[^\]]*\]\s*)*(?:private\s+|protected\s+|noncomputable\s+)*(?:instance|def)\b", ch):
             ch = re.sub(r"(decode_encode\s+\S+\s*:=)\s*(?:by\b[\s\S]*|[^\n]+)", r"\1 by sorry", ch)
         out_chunks.append(ch)
+    if defs_only:
+        namespace_heads = re.compile(
+            r"^[ \t]*(?:@\[[^\]]*\][ \t]*\n?[ \t]*)*namespace[ \t]+([^\s{]+)",
+        )
+        end_head = re.compile(r"^[ \t]*end\b", )
+        for ch in out_chunks:
+            m_ns = namespace_heads.match(ch)
+            if m_ns:
+                namespace_stack.append(m_ns.group(1))
+            elif end_head.match(ch) and namespace_stack:
+                namespace_stack.pop()
+        for name in reversed(namespace_stack):
+            out_chunks.append(f"\nend {name}\n")
     res_txt = "".join(out_chunks)
     return f"section\n{res_txt}\nend\n" if defs_only else res_txt
 
@@ -1811,13 +1843,17 @@ def fetch_and_compile_fc_problem_olean(
                 helper_snippets.append(_strip_fc_source_for_inline(rtxt, defs_only=True))
                 added_any = True
 
+            candidates: list[tuple[int, str]] = []
             for rel in remote_fc_tree or []:
-                if rel in loaded_helper_rels:
-                    continue
-                txt = _fetch_text_url(
-                    f"https://raw.githubusercontent.com/google-deepmind/formal-conjectures/{fc_ref}/{rel}"
-                )
-                if txt and pat.search(txt):
+                parts = rel.split("/")
+                if len(parts) >= 4 and parts[-2] == short_id:
+                    candidates.append((100, rel))
+                elif rel == f"FormalConjecturesForMathlib/{short_id}.lean":
+                    candidates.append((90, rel))
+                elif rel.endswith(f"/{short_id}.lean"):
+                    candidates.append((70, rel))
+            for _, rel in sorted(candidates, key=lambda item: item[0], reverse=True):
+                if rel not in loaded_helper_rels:
                     add_remote_helper_rel(rel)
         return added_any
 
@@ -1851,7 +1887,7 @@ def fetch_and_compile_fc_problem_olean(
                 ]
                 continue
             missing_ids = re.findall(
-                r"(?:Unknown identifier|Invalid field|unknown constant|unknown namespace|The identifier)\s+[`']([^`'\s]+)[`']",
+                r"(?:Unknown identifier|Invalid field|unknown constant|unknown namespace|The identifier)\s*[`']([^`'\s]+)[`']",
                 err_out,
                 re.IGNORECASE,
             )
