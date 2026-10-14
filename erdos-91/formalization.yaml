@@ -1,0 +1,145 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 91: small distinct-distance minimizer classifications",
+    "description": "A Lean 4 formalization of the Formal Conjectures small-case classifications for planar distinct-distance minimizers. Explicit configurations prove nonuniqueness at four and seven points, while a triangle-invariance argument proves uniqueness at three points. The package proves the existing upstream statements for n = 3, 4, 6, and 7; eventual nonuniqueness remains open.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "Apache-2.0"
+  },
+  "classification": {
+    "arxiv": [
+      "math.MG",
+      "math.CO"
+    ],
+    "msc2020": [
+      "52C10",
+      "05D99"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Some combinatorial and metric problems in geometry",
+      "authors": [
+        "Paul Erdős"
+      ],
+      "type": "paper",
+      "relationship": "adapts",
+      "location": "Intuitive Geometry (Siófok, 1985), Colloq. Math. Soc. János Bolyai 48 (1987), 167–177",
+      "author_endorsement": "not-contacted",
+      "note": "Poses Erdős problem 91 and states the small-n uniqueness and nonuniqueness results for n = 3, 4, 5, 6, 7, 8, 9."
+    },
+    {
+      "title": "A note on Erdős's mysterious remark",
+      "authors": [
+        "Zoltán Kovács"
+      ],
+      "type": "paper",
+      "relationship": "background",
+      "id": "https://arxiv.org/abs/2412.05190",
+      "location": "arXiv:2412.05190 (2024)",
+      "author_endorsement": "not-contacted",
+      "note": "Discusses the small-n classification of planar distinct-distance minimizers."
+    },
+    {
+      "title": "Erdős Problem 91",
+      "type": "other",
+      "relationship": "background",
+      "id": "https://www.erdosproblems.com/91",
+      "note": "Problem catalog entry and forum discussion for Erdős problem 91."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/91.lean",
+      "relationship": "builds-on",
+      "note": "Uses the exact distanceSet, distinctDistances, minimalDistinctDistances, IsOptimal, DilationEquivSimilar, equiTriangle, and UniqueMinimizer definitions from FormalConjectures/ErdosProblems/91.lean and proves variants.three, variants.four, variants.six, and variants.seven."
+    }
+  ],
+  "status": {
+    "scope": "Proves the four existing Formal Conjectures statements for n = 3, 4, 6, and 7. The eventual nonuniqueness question remains open.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos91.Palomar.erdos_91_variants_three",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos91.Palomar.erdos_91_variants_four",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos91.Palomar.erdos_91_variants_six",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos91.Palomar.erdos_91_variants_seven",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "All proof modules in Proofs/ together with Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry in the proof modules, and all 4 exported theorems are verified via Comparator."
+  },
+  "fidelity": {
+    "divergences": "None. Challenge.lean, Statement.lean, and Solution.lean use the exact distanceSet, distinctDistances, minimalDistinctDistances, IsOptimal, DilationEquivSimilar, equiTriangle, and UniqueMinimizer definitions over EuclideanSpace ℝ (Fin 2) from FormalConjectures/ErdosProblems/91.lean."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Statement fidelity, non-vacuity, and transitive axioms (restricted to propext, Classical.choice, and Quot.sound) were verified across all 4 exported theorems in Solution.lean."
+  },
+  "alignment": {
+    "namespace": "Erdos91.Palomar",
+    "statements": [
+      {
+        "source": "FormalConjectures/ErdosProblems/91.lean (erdos_91.variants.three)",
+        "lean": "Erdos91.Palomar.erdos_91_variants_three",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves UniqueMinimizer 3."
+      },
+      {
+        "source": "FormalConjectures/ErdosProblems/91.lean (erdos_91.variants.four)",
+        "lean": "Erdos91.Palomar.erdos_91_variants_four",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves ¬ UniqueMinimizer 4."
+      },
+      {
+        "source": "FormalConjectures/ErdosProblems/91.lean (erdos_91.variants.six)",
+        "lean": "Erdos91.Palomar.erdos_91_variants_six",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves ¬ UniqueMinimizer 6."
+      },
+      {
+        "source": "FormalConjectures/ErdosProblems/91.lean (erdos_91.variants.seven)",
+        "lean": "Erdos91.Palomar.erdos_91_variants_seven",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves ¬ UniqueMinimizer 7."
+      }
+    ]
+  },
+  "acknowledgements": "The problem was posed by Erdős (1987). Mathlib and Formal Conjectures supply attributed formal definitions and Euclidean geometry infrastructure."
+}

@@ -1,0 +1,16 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos91.Palomar.erdos_91_variants_three",
+    "Erdos91.Palomar.erdos_91_variants_four",
+    "Erdos91.Palomar.erdos_91_variants_six",
+    "Erdos91.Palomar.erdos_91_variants_seven"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}
