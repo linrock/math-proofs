@@ -94,12 +94,6 @@ jobs:
             ~/.cache/mathlib
           key: lean435-ltar-${{ env.MATHLIB_REV }}-v1
 
-      - name: Restore pinned FormalConjectures olean cache
-        uses: actions/cache@v6
-        with:
-          path: fc-shared-lib/FormalConjectures
-          key: formal-conjectures-oleans-${{ env.FC_COMMIT }}-v1
-
       - name: Ensure Elan and pinned Lean toolchain
         run: |
           export PATH="$HOME/.elan/bin:$PATH"
@@ -109,12 +103,10 @@ jobs:
           elan toolchain install "$LEAN_TOOLCHAIN"
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
 
-      - name: Run package verification and environment audit
+      - name: Prepare pinned FormalConjectures source
+        working-directory: ${{ github.workspace }}/formal-conjectures
         env:
           MATRIX_PACKAGE: ${{ matrix.package }}
-          COMMIT_SHA: ${{ github.sha }}
-          GITHUB_REPO: ${{ github.repository }}
-          GITHUB_RUN_ID_VAL: ${{ github.run_id }}
           FC_LEAN_LIB_DIR: ${{ github.workspace }}/fc-shared-lib
           FC_COMMIT: ${{ env.FC_COMMIT }}
           FC_GIT_DIR: ${{ runner.temp }}/formal-conjectures
@@ -127,7 +119,22 @@ jobs:
           git -C "$FC_GIT_DIR" fetch --force origin "$FC_COMMIT"
           git -C "$FC_GIT_DIR" checkout --detach --force "$FC_COMMIT"
           git -C "$FC_GIT_DIR" clean -fdx
-          cp "$FC_GIT_DIR"/FormalConjectures/ErdosProblems/*.olean "$FC_LEAN_LIB_DIR/FormalConjectures/ErdosProblems/" 2>/dev/null || true
+          PROBLEM_NUMBER="${MATRIX_PACKAGE#erdos-}"
+          if [ "$MATRIX_PACKAGE" = "$PROBLEM_NUMBER" ] || [ ! -f "FormalConjectures/ErdosProblems/$PROBLEM_NUMBER.lean" ]; then
+            echo "Pinned FormalConjectures is missing FormalConjectures/ErdosProblems/$PROBLEM_NUMBER.lean" >&2
+            exit 1
+          fi
+
+      - name: Run package verification and environment audit
+        env:
+          MATRIX_PACKAGE: ${{ matrix.package }}
+          COMMIT_SHA: ${{ github.sha }}
+          GITHUB_REPO: ${{ github.repository }}
+          GITHUB_RUN_ID_VAL: ${{ github.run_id }}
+          FC_LEAN_LIB_DIR: ${{ github.workspace }}/fc-shared-lib
+          FC_COMMIT: ${{ env.FC_COMMIT }}
+          FC_GIT_DIR: ${{ runner.temp }}/formal-conjectures
+        run: |
           python3 .github/scripts/verify_proofs.py verify \
             --package "$MATRIX_PACKAGE" \
             --comparator \

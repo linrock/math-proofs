@@ -1839,6 +1839,10 @@ def fetch_and_compile_fc_problem_olean(
             if res.returncode == 0 and out_olean.is_file():
                 return out_olean
             err_out = (res.stdout or "") + "\n" + (res.stderr or "")
+            sys.stderr.write(
+                f"fc-compare: on-demand FormalConjectures {prob} compilation attempt "
+                f"{_attempt + 1}/6 failed:\n{err_out}\n"
+            )
             dup_names = re.findall(r"[`']([^`'\s]+)[`'] has already been declared", err_out)
             if dup_names:
                 helper_snippets[:] = [
