@@ -1,0 +1,103 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 18: Practicality of factorials and the bound on h(n!)",
+    "description": "A Lean 4 formalization of two classical results on representing integers as sums of distinct divisors of factorials, in the setting of Erdős Problem 18. A positive integer n is practical when every m ≤ n is a sum of distinct divisors of n, and for a practical n the function h(n) is the largest, over 1 ≤ m ≤ n, of the least number of distinct divisors of n whose sum is m. The package proves that n! is practical for every n (a textbook fact), and that h(n!) < n for all sufficiently large n, which is the classical linear upper bound of Erdős and Graham (1980); stronger asymptotic bounds of order n / log n are known from later literature. The conjectures erdos_18a, erdos_18b, and erdos_18c on the true order of h(n!) remain open and are not resolved here.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "Apache-2.0"
+  },
+  "classification": {
+    "arxiv": [
+      "math.NT"
+    ],
+    "msc2020": [
+      "11A25",
+      "11D68"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Old and New Problems and Results in Combinatorial Number Theory",
+      "authors": [
+        "Paul Erdős",
+        "Ronald L. Graham"
+      ],
+      "type": "book",
+      "relationship": "formalizes",
+      "id": "https://www.erdosproblems.com/18",
+      "location": "Monographies de L'Enseignement Mathématique 28, Université de Genève (1980)",
+      "author_endorsement": "not-applicable",
+      "note": "Source for the two factorial questions and the linear upper bound h(n!) < n; the practicality of n! is a classical textbook result recorded there."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/18.lean",
+      "relationship": "builds-on",
+      "note": "Statement module for Erdős problem 18. The package matches its definitions; factorial_isPractical is already proved inline upstream, while erdos_18_upper_bound remains a sorry upstream."
+    }
+  ],
+  "status": {
+    "scope": "Proves that n! is practical for every n, a classical textbook fact, and that h(n!) < n for all sufficiently large n, the classical linear upper bound of Erdős and Graham (1980). The conjectures erdos_18a, erdos_18b, and erdos_18c on the true order of h(n!) remain open.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos18.Palomar.factorial_isPractical",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos18.Palomar.erdos_18_upper_bound",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "All proof modules in Proofs/ together with Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry in the proof modules."
+  },
+  "fidelity": {
+    "divergences": "None. Challenge.lean, Statement.lean, and Solution.lean use the exact subsetSums, Nat.IsPractical, and Erdos18.practicalH definitions and theorem signatures from FormalConjectures/ErdosProblems/18.lean."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Statement fidelity and transitive axioms (restricted to propext, Classical.choice, and Quot.sound) were verified across all exported theorems in Solution.lean."
+  },
+  "alignment": {
+    "namespace": "Erdos18.Palomar",
+    "statements": [
+      {
+        "source": "Classical textbook result (practicality of factorials; cf. Erdős and Graham 1980)",
+        "lean": "Erdos18.Palomar.factorial_isPractical",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that n! is a practical number for every n, so that h(n!) is well defined."
+      },
+      {
+        "source": "Erdős and Graham (1980), Old and New Problems and Results in Combinatorial Number Theory, Monographies de L'Enseignement Mathématique 28",
+        "lean": "Erdos18.Palomar.erdos_18_upper_bound",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves the classical linear upper bound h(n!) < n for all sufficiently large n."
+      }
+    ]
+  },
+  "acknowledgements": "Mathlib supplies factorial, divisor, and finite-set summation infrastructure; Formal Conjectures supplies the problem statement."
+}
