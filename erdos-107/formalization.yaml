@@ -1,0 +1,140 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 107: Convex polygons in planar point sets",
+    "description": "A Lean 4 formalization of the Erdős–Szekeres convex polygon problem, including the cup–cap theorem, Klein's five-point theorem, and the eight-point pentagon-free construction. Erdős and Szekeres proved the binomial upper bound in 1935 and the exponential lower bound in 1960/61; the formalization additionally certifies the exact values f(3) = 3 and f(4) = 5, with the eight-point construction giving f(5) ≥ 9 against the binomial upper bound f(5) ≤ 21. It proves that a suitable finite point set always exists for every n ≥ 3 and establishes the corresponding binomial upper bound. The exact conjectured value 2^(n-2) + 1 remains open for n ≥ 6.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "Apache-2.0"
+  },
+  "classification": {
+    "arxiv": [
+      "math.CO",
+      "math.MG"
+    ],
+    "msc2020": [
+      "52C10"
+    ]
+  },
+  "sources": [
+    {
+      "title": "A combinatorial problem in geometry",
+      "authors": [
+        "Paul Erdős",
+        "George Szekeres"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "id": "https://www.erdosproblems.com/107",
+      "location": "Compositio Mathematica 2 (1935), 463–470",
+      "author_endorsement": "not-applicable",
+      "note": "Establishes the Erdős–Szekeres cup-cap upper bound f(n) ≤ C(2n-4, n-2) + 1 and Esther Klein's 5-point theorem f(4) = 5."
+    },
+    {
+      "title": "On some extremum problems in elementary geometry",
+      "authors": [
+        "Paul Erdős",
+        "George Szekeres"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "id": "https://www.erdosproblems.com/107",
+      "location": "Ann. Univ. Sci. Budapest. Eötvös Sect. Math. 3-4 (1960/61), 53-62",
+      "author_endorsement": "not-applicable",
+      "note": "Establishes the lower bound 2^(n-2) + 1 ≤ f(n); the 8-point pentagon-free construction gives f(5) ≥ 9."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/107.lean",
+      "relationship": "builds-on",
+      "note": "Completes the unproved nonempty_cardSet declaration on FormalConjectures main."
+    }
+  ],
+  "status": {
+    "scope": "Proves nonempty_cardSet and f_le_erdosSzekeresUpper for all n ≥ 3, f_eq_conjectured_of_le_four for 3 ≤ n ≤ 4, and ersz_bounds_of_le_five for 3 ≤ n ≤ 5. The general lower bound 2^(n-2) + 1 ≤ f(n) for n ≥ 6 and the open conjecture erdos_107 remain open.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos107.Palomar.nonempty_cardSet",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos107.Palomar.f_le_erdosSzekeresUpper",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos107.Palomar.f_eq_conjectured_of_le_four",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos107.Palomar.ersz_bounds_of_le_five",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "All proof modules in Proofs/ together with Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry in the proof modules."
+  },
+  "fidelity": {
+    "divergences": "None. Challenge.lean, Statement.lean, and Solution.lean use the exact NonTrilinear, ConvexIndep, HasConvexNGon, cardSet, and f definitions from FormalConjectures."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Statement fidelity and transitive axioms (restricted to propext, Classical.choice, and Quot.sound) were verified across all exported theorems in Solution.lean."
+  },
+  "alignment": {
+    "namespace": "Erdos107.Palomar",
+    "statements": [
+      {
+        "source": "Erdős and Szekeres (1935), Compositio Mathematica 2, 463-470; FormalConjectures/ErdosProblems/107.lean",
+        "lean": "Erdos107.Palomar.nonempty_cardSet",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves ∀ n ≥ 3, (cardSet n).Nonempty."
+      },
+      {
+        "source": "Erdős and Szekeres (1935), Compositio Mathematica 2, 463-470",
+        "lean": "Erdos107.Palomar.f_le_erdosSzekeresUpper",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves ∀ n ≥ 3, f n ≤ Nat.choose (2 * n - 4) (n - 2) + 1."
+      },
+      {
+        "source": "Esther Klein's Happy Ending theorem for 3 ≤ n ≤ 4",
+        "lean": "Erdos107.Palomar.f_eq_conjectured_of_le_four",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves ∀ n, 3 ≤ n → n ≤ 4 → f n = 2 ^ (n - 2) + 1."
+      },
+      {
+        "source": "Erdős and Szekeres (1935) for the upper bound; Erdős and Szekeres (1960/61) for the lower bound",
+        "lean": "Erdos107.Palomar.ersz_bounds_of_le_five",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves ∀ n, 3 ≤ n → n ≤ 5 → 2 ^ (n - 2) + 1 ≤ f n ∧ f n ≤ Nat.choose (2 * n - 4) (n - 2) + 1."
+      }
+    ]
+  },
+  "acknowledgements": "Mathlib supplies Euclidean inner-product and convex-hull infrastructure; Formal Conjectures supplies the problem statement."
+}

@@ -1,0 +1,16 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos107.Palomar.nonempty_cardSet",
+    "Erdos107.Palomar.f_le_erdosSzekeresUpper",
+    "Erdos107.Palomar.f_eq_conjectured_of_le_four",
+    "Erdos107.Palomar.ersz_bounds_of_le_five"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "enable_nanoda": true
+}
