@@ -1,0 +1,176 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-14-b246a416",
+  "verification_date": "2026-10-14",
+  "state_sha256": "d947122eabc8732e169edcfedc8bef6c669940ec3dc5ffdc07f6eaa922573d3c",
+  "package": "erdos-18",
+  "project_name": "Erd\u0151s 18: Practicality of factorials and the bound on h(n!)",
+  "package_commit": "b246a4165f55ada0614aa2b85c8bc6381522e808",
+  "commit": "4a1f92f2aca5f32edb0c681f1e8fdca88b5d9494",
+  "repository": "linrock/math-proofs",
+  "run_id": "38510893489",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 1384,
+    "lines": 55,
+    "sha256": "6e453fcfa0b340ef7886ff9a5bfba8f6a310b3208ee70c9fc5aee28838616f33",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos18.Palomar.factorial_isPractical",
+    "Erdos18.Palomar.erdos_18_upper_bound"
+  ],
+  "declaration_lines": {
+    "Erdos18.Palomar.factorial_isPractical": {
+      "solution_line": 28,
+      "challenge_line": 48
+    },
+    "Erdos18.Palomar.erdos_18_upper_bound": {
+      "solution_line": 31,
+      "challenge_line": 51
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos18.Palomar.erdos_18_upper_bound",
+    "Erdos18.Palomar.factorial_isPractical"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 2,
+  "expected_axiom_audit_count": 2,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos18.Palomar.factorial_isPractical",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos18.Palomar.erdos_18_upper_bound",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Erdos18.practicalH",
+      "kind": "def",
+      "declaration": "def Erdos18.practicalH (n : Nat) : Nat :=\n  fun n =>\n  Finset.sup (Finset.Icc 1 n) fun m =>\n    InfSet.sInf\n      (Set.ofPred fun k =>\n        Exists fun D =>\n          And (LE.le D (Nat.divisors n)) (And (Eq (Finset.card D) k) (Membership.mem (subsetSums (SetLike.coe D)) m)))"
+    },
+    {
+      "name": "subsetSums",
+      "kind": "def",
+      "declaration": "def subsetSums.{u_1} {M : Type u_1} [AddCommMonoid M] (A : Set M) : Set M :=\n  fun {M} [AddCommMonoid M] A =>\n  Set.ofPred fun n => Exists fun B => And (LE.le (SetLike.coe B) A) (Eq n (Finset.sum B fun i => i))"
+    },
+    {
+      "name": "Nat.IsPractical",
+      "kind": "def",
+      "declaration": "def Nat.IsPractical (n : Nat) : Prop :=\n  fun n => \u2200 (m : Nat), LE.le m n \u2192 Membership.mem (subsetSums (SetLike.coe (Nat.divisors n))) m"
+    },
+    {
+      "name": "Erdos18.Palomar.factorial_isPractical",
+      "kind": "theorem",
+      "declaration": "theorem Erdos18.Palomar.factorial_isPractical (n : Nat) : Nat.IsPractical (Nat.factorial n)"
+    },
+    {
+      "name": "Erdos18.Palomar.erdos_18_upper_bound",
+      "kind": "theorem",
+      "declaration": "theorem Erdos18.Palomar.erdos_18_upper_bound :\n  Filter.Eventually (fun n => LT.lt (Erdos18.practicalH (Nat.factorial n)) n) Filter.atTop"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos18.factorial_isPractical",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.18",
+      "solution_declaration": "Erdos18.Palomar.factorial_isPractical",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos18.erdos_18_upper_bound",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.18",
+      "solution_declaration": "Erdos18.Palomar.erdos_18_upper_bound",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos18.Palomar.UpperBoundStatement",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos18.Palomar.erdos_18_upper_bound",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos18.Palomar.FactorialIsPracticalStatement",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos18.Palomar.factorial_isPractical",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos18.factorial_isPractical",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.18",
+      "solution_declaration": "Erdos18.Palomar.FactorialIsPracticalStatement",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos18.erdos_18_upper_bound",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.18",
+      "solution_declaration": "Erdos18.Palomar.UpperBoundStatement",
+      "match_mode": "exact"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "e318903862396f96de3df57264e0158682b952fd3fb53ac23d876413e7b30f71"
+  },
+  "input_sha256": {
+    "Challenge.lean": "6e453fcfa0b340ef7886ff9a5bfba8f6a310b3208ee70c9fc5aee28838616f33",
+    "Solution.lean": "19aedb26fe603c42892273a225beaea6b949cb70317e9887ad8070202b3968b8",
+    "AxiomAudit.lean": "121a8be9d4507d59389fdcc7f92bbf13aa5cb5e406a82c34209f8a0e1dc5e78a",
+    "Statement.lean": "c56777143867c14dcd2a22ef5f5082d5fcf9cc1062bbbbdbb63687d6ea48e03d",
+    "comparator.json": "5ec9b703bcfed697b6f21ea180e58646e20ea1b32267d988ef9629f6fa9423c6",
+    "formalization.yaml": "12c8275e51f96a52d9eedba6d3796a64d05a0e2e04214db6c887fb69006174ae",
+    "lakefile.toml": "5f5df2cac2af13c5bd1fb4798a9fe0ee1515d007ae8c3c2774aed53c41fd9de3",
+    "lake-manifest.json": "85b645956e4d37b08a7abc5e5de395a92572a9106b4e0e28515e31c96b698066",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "694f3c136549331c558647cb21a7e3485ffc4ab5e112c14f4720c1441494cda5",
+    "Proofs/FactorialPracticalUpperBound18.lean": "815cb5b1959982c7f06f366e5c85fbee6d2831c95221f179a2e5421b2a2088ea"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 23.747,
+    "env_compare_and_core_audit_seconds": 69.02,
+    "total_elapsed_seconds": 192.587,
+    "user_cpu_seconds": 130.19,
+    "system_cpu_seconds": 75.917,
+    "peak_rss_mib": 13153.59
+  },
+  "status": "PASS"
+}
