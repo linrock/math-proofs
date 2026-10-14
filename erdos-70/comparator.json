@@ -1,0 +1,16 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos70.Palomar.not_ordinalCardinalRamsey3_continuum_aleph1_four",
+    "Erdos70.Palomar.erdos_70_omega_one_refuted",
+    "Erdos70.Palomar.ordinalCardinalRamsey3_continuum_omega_three",
+    "Erdos70.Palomar.erdos_70_omega_three_solved"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}
