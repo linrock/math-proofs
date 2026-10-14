@@ -2,7 +2,7 @@
   "schema_version": 2,
   "lean_toolchain": "leanprover/lean4:v4.35.0-rc2",
   "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
-  "total_verified_packages": 9,
+  "total_verified_packages": 10,
   "packages": {
     "erdos-18": {
       "package": "erdos-18",
@@ -94,6 +94,57 @@
       },
       "verification_history": [
         "2026-10-14-2b6531b7"
+      ]
+    },
+    "erdos-107": {
+      "package": "erdos-107",
+      "verification_id": "2026-10-14-3a14cb0b",
+      "state_sha256": "12829c4a85df97f2c8c0a6efc4a4f114e33ea289c191e3e9824fffd8e8196cc8",
+      "project_name": "Erd\u0151s 107: Convex polygons in planar point sets",
+      "status": "PASS",
+      "package_commit": "3a14cb0bb7a2d52ec6576b1b48387713b4f7bd61",
+      "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+      "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+      "challenge_sha256": "6527744ee961b3b1d57b5d861ae5a82a678d87d718a59d0082bc4dc516681215",
+      "solution_sha256": "6b22689d2b6fecdf19fbff3f6eb86c35fc18e5912b293345369b840fdfa9781d",
+      "exported_theorems": [
+        "Erdos107.Palomar.nonempty_cardSet",
+        "Erdos107.Palomar.f_le_erdosSzekeresUpper",
+        "Erdos107.Palomar.f_eq_conjectured_of_le_four",
+        "Erdos107.Palomar.ersz_bounds_of_le_five"
+      ],
+      "declaration_lines": {
+        "Erdos107.Palomar.nonempty_cardSet": {
+          "solution_line": 59,
+          "challenge_line": 57
+        },
+        "Erdos107.Palomar.f_le_erdosSzekeresUpper": {
+          "solution_line": 64,
+          "challenge_line": 60
+        },
+        "Erdos107.Palomar.f_eq_conjectured_of_le_four": {
+          "solution_line": 69,
+          "challenge_line": 63
+        },
+        "Erdos107.Palomar.ersz_bounds_of_le_five": {
+          "solution_line": 74,
+          "challenge_line": 66
+        }
+      },
+      "kernels": {
+        "nanoda_accepted": true,
+        "con_ron_accepted": true,
+        "lean_kernel_accepted": true
+      },
+      "fc_statement_matches": 6,
+      "record_json": "records/erdos-107/2026-10-14-3a14cb0b.json",
+      "record_md": "records/erdos-107/2026-10-14-3a14cb0b.md",
+      "commits": {
+        "3a14cb0bb7a2d52ec6576b1b48387713b4f7bd61": "2026-10-14-3a14cb0b",
+        "cd3cf0b176e95209584bf35555a7c0e501255f6e": "2026-10-14-3a14cb0b"
+      },
+      "verification_history": [
+        "2026-10-14-3a14cb0b"
       ]
     },
     "erdos-306": {
