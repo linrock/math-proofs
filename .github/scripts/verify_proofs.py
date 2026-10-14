@@ -1333,7 +1333,7 @@ def detect_changed_packages(
         return []
 
     changed_lines: list[str] = []
-    diff_succeeded = False
+    diff_accepted = False
     diff_specs: list[str] = []
     if head_sha:
         if base_sha and set(base_sha) != {"0"}:
@@ -1346,21 +1346,45 @@ def detect_changed_packages(
         if event_name == "push":
             diff_specs.append(f"origin/main...{head_sha}")
 
-    for spec in diff_specs:
+    def diff_names(spec: str) -> list[str] | None:
         try:
             out = subprocess.check_output(
                 ["git", "-C", str(REPO_ROOT), "diff", "--name-only", spec],
                 text=True,
                 stderr=subprocess.DEVNULL,
             )
-            changed_lines = out.splitlines()
-            diff_succeeded = True
-            if changed_lines or "..." not in spec:
-                break
+        except subprocess.CalledProcessError:
+            return None
+        return out.splitlines()
+
+    for spec in diff_specs:
+        lines = diff_names(spec)
+        if lines is None:
+            continue
+        if lines or "..." not in spec:
+            changed_lines = lines
+            diff_accepted = True
+            break
+
+    if not diff_accepted and head_sha and base_sha and set(base_sha) != {"0"}:
+        # A force-push leaves the previous tip unreachable from any ref, so it is
+        # absent from the checkout and the range diff fails. Fetch that commit by
+        # SHA and retry, otherwise the pushed range silently reports no changes.
+        try:
+            subprocess.run(
+                ["git", "-C", str(REPO_ROOT), "fetch", "--no-tags", "--quiet", "origin", base_sha],
+                check=True,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
         except subprocess.CalledProcessError:
             pass
+        lines = diff_names(f"{base_sha}..{head_sha}")
+        if lines:
+            changed_lines = lines
+            diff_accepted = True
 
-    if not diff_succeeded:
+    if not diff_accepted:
         try:
             out = subprocess.check_output(
                 ["git", "-C", str(REPO_ROOT), "show", "-m", "--first-parent", "--name-only", "--format=", "HEAD"],
