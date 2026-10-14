@@ -1,0 +1,171 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-14-a2d6dcb9",
+  "verification_date": "2026-10-14",
+  "state_sha256": "c51451b90e678122d6421326e7a51d721197598cdfe3e8375a82a0d62acca9ed",
+  "package": "erdos-494",
+  "project_name": "Erd\u0151s 494: sets determined by k-sum multisets",
+  "package_commit": "a2d6dcb99d4f11469cbb40c18959357031786c4c",
+  "commit": "a2d6dcb99d4f11469cbb40c18959357031786c4c",
+  "repository": "linrock/math-proofs",
+  "run_id": "38516195725",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 1316,
+    "lines": 44,
+    "sha256": "c27ea74a5f1dcbd4f5bf55a54ba8516852bb25f683cf9f235edd3edf26c506ad",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos494.Palomar.erdos_494_variants_k_eq_2_card_not_pow_two",
+    "Erdos494.Palomar.erdos_494_variants_k_eq_3_card_gt_6"
+  ],
+  "declaration_lines": {
+    "Erdos494.Palomar.erdos_494_variants_k_eq_2_card_not_pow_two": {
+      "solution_line": 26,
+      "challenge_line": 36
+    },
+    "Erdos494.Palomar.erdos_494_variants_k_eq_3_card_gt_6": {
+      "solution_line": 30,
+      "challenge_line": 40
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos494.Palomar.erdos_494_variants_k_eq_2_card_not_pow_two",
+    "Erdos494.Palomar.erdos_494_variants_k_eq_3_card_gt_6"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 2,
+  "expected_axiom_audit_count": 2,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos494.Palomar.erdos_494_variants_k_eq_2_card_not_pow_two",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos494.Palomar.erdos_494_variants_k_eq_3_card_gt_6",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Erdos494.sumMultiset",
+      "kind": "def",
+      "declaration": "def Erdos494.sumMultiset (A : Finset Complex) (k : Nat) : Multiset Complex :=\n  fun A k => Multiset.map (fun s => Finset.sum s id) (Finset.val (Finset.powersetCard k A))"
+    },
+    {
+      "name": "Erdos494.Erdos494Unique",
+      "kind": "def",
+      "declaration": "def Erdos494.Erdos494Unique (k card : Nat) : Prop :=\n  fun k card =>\n  \u2200 (A B : Finset Complex),\n    Eq (Finset.card A) card \u2192\n      Eq (Finset.card B) card \u2192 Eq (Erdos494.sumMultiset A k) (Erdos494.sumMultiset B k) \u2192 Eq A B"
+    },
+    {
+      "name": "Erdos494.Palomar.erdos_494_variants_k_eq_2_card_not_pow_two",
+      "kind": "theorem",
+      "declaration": "theorem Erdos494.Palomar.erdos_494_variants_k_eq_2_card_not_pow_two (card : Nat) :\n  (\u2200 (l : Nat), Ne card (HPow.hPow 2 l)) \u2192 Erdos494.Erdos494Unique 2 card"
+    },
+    {
+      "name": "Erdos494.Palomar.erdos_494_variants_k_eq_3_card_gt_6",
+      "kind": "theorem",
+      "declaration": "theorem Erdos494.Palomar.erdos_494_variants_k_eq_3_card_gt_6 (card : Nat) :\n  GT.gt card 6 \u2192 Ne card 27 \u2192 Ne card 486 \u2192 Erdos494.Erdos494Unique 3 card"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos494.erdos_494.variants.k_eq_3_card_gt_6",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.494",
+      "solution_declaration": "Erdos494.Palomar.erdos_494_variants_k_eq_3_card_gt_6",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos494.erdos_494.variants.k_eq_2_card_not_pow_two",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.494",
+      "solution_declaration": "Erdos494.Palomar.erdos_494_variants_k_eq_2_card_not_pow_two",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos494.Palomar.KEqTwoCardNotPowTwoStatement",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos494.Palomar.erdos_494_variants_k_eq_2_card_not_pow_two",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos494.Palomar.KEqThreeCardGtSixStatement",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos494.Palomar.erdos_494_variants_k_eq_3_card_gt_6",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos494.erdos_494.variants.k_eq_3_card_gt_6",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.494",
+      "solution_declaration": "Erdos494.Palomar.KEqThreeCardGtSixStatement",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos494.erdos_494.variants.k_eq_2_card_not_pow_two",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.494",
+      "solution_declaration": "Erdos494.Palomar.KEqTwoCardNotPowTwoStatement",
+      "match_mode": "exact"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "e318903862396f96de3df57264e0158682b952fd3fb53ac23d876413e7b30f71"
+  },
+  "input_sha256": {
+    "Challenge.lean": "c27ea74a5f1dcbd4f5bf55a54ba8516852bb25f683cf9f235edd3edf26c506ad",
+    "Solution.lean": "9faba18336ebd98f45e5090ba03252804ed7f4760e88054efeb71a45b38a9e68",
+    "AxiomAudit.lean": "aae5cf2bb4b95357b4b2b8e8331612f0184c273953ef9a67d476cf58c33541e2",
+    "Statement.lean": "65f8184b8ac876f4155c2e92b9fec530604efd534a7a1c771002653e57058ccb",
+    "comparator.json": "4e9cd85dabe9640cd86f6cad7c653b96bea5a06ac445e90ff20ead1ecf942b86",
+    "formalization.yaml": "73362641b36d330d2e0d8469b9fbe0063374c508bbb34df6197a5e5ac8242290",
+    "lakefile.toml": "b39301c63bc87f56a583436b2c6d16bf3c3fdde9109c2e3a15f1e4c0f056cf10",
+    "lake-manifest.json": "8bd04e47ebf9c2d0433aae1a95f6e471f698545d86e2e1ead5361e6a8c3be713",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "694f3c136549331c558647cb21a7e3485ffc4ab5e112c14f4720c1441494cda5",
+    "Proofs/SelfridgeStrausSumMultiset494.lean": "f038ffcb58522abea5d4686471c0b8ed496a13e0506ee401434bfc12138e1213"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 25.576,
+    "env_compare_and_core_audit_seconds": 61.427,
+    "total_elapsed_seconds": 218.573,
+    "user_cpu_seconds": 142.908,
+    "system_cpu_seconds": 49.286,
+    "peak_rss_mib": 13268.89
+  },
+  "status": "PASS"
+}
