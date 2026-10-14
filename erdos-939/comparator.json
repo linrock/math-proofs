@@ -1,0 +1,36 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos939.Palomar.erdos_939_variants_finite",
+    "Erdos939.Palomar.erdos_939_variants_infinite_of_six_le",
+    "Erdos939.Palomar.erdos_939_variants_triples",
+    "Erdos939.Palomar.erdos_939_variants_examples",
+    "Erdos939.Palomar.erdos_939_variants_seven",
+    "Erdos939.Palomar.erdos_939_variants_eight",
+    "Erdos939.Palomar.erdos_939_variants_euler",
+    "Erdos939.Palomar.erdos_939_variants_triples_infinite",
+    "Erdos939.Palomar.cohn_noncube_triples_infinite",
+    "Erdos939.Palomar.cohn_noncube_generalSums_three_two_infinite",
+    "Erdos939.Palomar.erdos_939_generalSums_three_two_infinite",
+    "Erdos939.Palomar.cambieFiveSet_mem_erdos939Sums_five",
+    "Erdos939.Palomar.landerParkinFiveSet_mem_erdos939GeneralSums_five_four",
+    "Erdos939.Palomar.r_full_iff_exists_squarefree_cores",
+    "Erdos939.Palomar.rad_pow_r_lt_sum_pow_pred_of_mem_erdos939Sums",
+    "Erdos939.Palomar.abc_quality_real_bound_of_mem_erdos939Sums",
+    "Erdos939.Palomar.rad_pow_four_le_and_lt_cube_of_mem_erdos939Sums_four",
+    "Erdos939.Palomar.walsh_twist_pair_mem_erdos939GeneralSums_three_two",
+    "Erdos939.Palomar.walsh_parametric_cube_scaling_coprime_iff",
+    "Erdos939.Palomar.erdos_939_iff_four_nonempty",
+    "Erdos939.Palomar.erdos_939_iff_exists_coprime_four_full_pair",
+    "Erdos939.Palomar.erdos939Sums_four_finite_of_abc_seven_sixths_bound",
+    "Erdos939.Palomar.erdos939Sums_five_finite_of_abc_five_fourths_threshold",
+    "Erdos939.Palomar.not_erdos_939_of_four_full_radical_obstruction"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "enable_nanoda": true
+}

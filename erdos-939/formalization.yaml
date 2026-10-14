@@ -1,0 +1,413 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 939: coprime sums of r-powerful numbers",
+    "description": "A Lean 4 formalization of results on Erdős problem 939, which asks whether the sum of r − 2 coprime r-powerful positive integers can itself be r-powerful for r ≥ 4. Using Stijn Cambie's explicit witnesses for r = 5, 7 and 8 and Liam Price's binomial odd-power splitting construction, it proves that such sums exist for r = 5, 7 and 8 and that there are infinitely many for every r ≥ 6, so the solution sets are not finite. It also formalizes Nitaj's (1995) and Cohn's (1998) infinite families of coprime 3-powerful triples a + b = c, Walsh's (2024) quadratic-twist criteria, and the Lander–Parkin (1967) fifth-power counterexample to Euler's conjecture. The main conjecture remains open: it reduces exactly to r = 4, where a positive coprime 4-powerful pair with 4-powerful sum would need abc quality above 4/3, and finiteness there is shown only conditionally on abc-type bounds.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "Apache-2.0"
+  },
+  "classification": {
+    "arxiv": [
+      "math.NT"
+    ],
+    "msc2020": [
+      "11D41",
+      "11N25"
+    ]
+  },
+  "sources": [
+    {
+      "title": "On a conjecture of Erdős on 3-powerful numbers",
+      "authors": [
+        "Abderrahmane Nitaj"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "location": "Bull. London Math. Soc. 27 (1995), 317-318",
+      "author_endorsement": "not-contacted",
+      "note": "Constructs infinitely many coprime 3-powerful solutions to a + b = c."
+    },
+    {
+      "title": "A conjecture of Erdős on 3-powerful numbers",
+      "authors": [
+        "J. H. E. Cohn"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "location": "Math. Comp. 67 (1998), 439-440",
+      "author_endorsement": "not-contacted",
+      "note": "Constructs infinitely many coprime 3-powerful solutions to a + b = c with none of a, b, c a cube."
+    },
+    {
+      "title": "A question of Erdős on 3-powerful numbers and an elliptic curve analogue of the Ankeny-Artin-Chowla conjecture",
+      "authors": [
+        "P. G. Walsh"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "location": "Rad Hrvat. Akad. Znan. Umjet. Mat. Znan. 29 (2024), 83-87",
+      "author_endorsement": "not-contacted",
+      "note": "arXiv:2404.03970. Formalizes quadratic-twist and radical-divisibility criteria for coprime 3-powerful triples.",
+      "id": "doi:10.21857/y7v64t4jky"
+    },
+    {
+      "title": "A counterexample to Euler's sum of powers conjecture",
+      "authors": [
+        "L. J. Lander",
+        "T. R. Parkin"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "location": "Math. Comp. 21 (1967), 101-103",
+      "author_endorsement": "not-contacted",
+      "note": "Certifies the fifth-power counterexample 27^5 + 84^5 + 110^5 + 133^5 = 144^5 resolving erdos_939.variants.euler."
+    },
+    {
+      "title": "Erdős Problem 939",
+      "authors": [
+        "Thomas F. Bloom",
+        "Stijn Cambie",
+        "Liam Price"
+      ],
+      "type": "other",
+      "relationship": "adapts",
+      "id": "https://www.erdosproblems.com/939",
+      "author_endorsement": "not-contacted",
+      "note": "Adapts Stijn Cambie's r = 5, 7, 8 witnesses and Liam Price's May 2026 binomial odd-power splitting construction for r >= 6 as recorded on the problem page and forum. The upstream statement file also records the r >= 6 construction."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/939.lean",
+      "relationship": "builds-on",
+      "note": "Statement source. The package proves the five variants that are sorry on origin/main (finite, infinite_of_six_le, triples, seven, eight) and independently re-proves examples and euler, which already have inline proofs upstream. erdos_939 itself is not resolved; it is reduced to (Erdos939Sums 4).Nonempty."
+    }
+  ],
+  "status": {
+    "scope": "Proves 24 theorems in Erdos939.Palomar across three proof modules in Proofs/. These cover the seven solved variants of FormalConjectures.ErdosProblems.939 (finite, infinite_of_six_le, triples, examples, seven, eight, euler), infinite families of coprime 3-powerful triples (Nitaj; Cohn, including non-cube triples), explicit witnesses at r = 5 (Cambie) and for the fifth-power Lander–Parkin identity, a squarefree-core decomposition of r-powerful numbers, the radical bound rad(prod S * sum S)^r < (sum S)^(r-1) with abc quality above r/(r-1), Walsh's quadratic-twist criteria, and the exact reduction erdos_939_iff_four_nonempty. Three further theorems are conditional only: finiteness of Erdos939Sums 4 under an abc bound with exponent 7/6, finiteness of Erdos939Sums 5 under a 5/4-exponent radical threshold, and a disproof of erdos_939 under a radical obstruction at r = 4. These hypotheses are not proved here. Whether (Erdos939Sums 4).Nonempty holds remains open, so erdos_939 itself is not resolved.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos939.Palomar.erdos_939_variants_finite",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos939.Palomar.erdos_939_variants_infinite_of_six_le",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos939.Palomar.erdos_939_variants_triples",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos939.Palomar.erdos_939_variants_examples",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos939.Palomar.erdos_939_variants_seven",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos939.Palomar.erdos_939_variants_eight",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos939.Palomar.erdos_939_variants_euler",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos939.Palomar.erdos_939_variants_triples_infinite",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos939.Palomar.cohn_noncube_triples_infinite",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos939.Palomar.cohn_noncube_generalSums_three_two_infinite",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos939.Palomar.erdos_939_generalSums_three_two_infinite",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos939.Palomar.cambieFiveSet_mem_erdos939Sums_five",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos939.Palomar.landerParkinFiveSet_mem_erdos939GeneralSums_five_four",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos939.Palomar.r_full_iff_exists_squarefree_cores",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos939.Palomar.rad_pow_r_lt_sum_pow_pred_of_mem_erdos939Sums",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos939.Palomar.abc_quality_real_bound_of_mem_erdos939Sums",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos939.Palomar.rad_pow_four_le_and_lt_cube_of_mem_erdos939Sums_four",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos939.Palomar.walsh_twist_pair_mem_erdos939GeneralSums_three_two",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos939.Palomar.walsh_parametric_cube_scaling_coprime_iff",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos939.Palomar.erdos_939_iff_four_nonempty",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos939.Palomar.erdos_939_iff_exists_coprime_four_full_pair",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos939.Palomar.erdos939Sums_four_finite_of_abc_seven_sixths_bound",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos939.Palomar.erdos939Sums_five_finite_of_abc_five_fourths_threshold",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos939.Palomar.not_erdos_939_of_four_full_radical_obstruction",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "The Challenge, Statement, Solution, AxiomAudit and three Proofs modules compile from source in Lean 4.35.0-rc2 with no sorry in Solution, Statement, AxiomAudit or Proofs."
+  },
+  "fidelity": {
+    "divergences": "None for the definitions: Nat.Full, Finset.Coprime and Erdos939.Erdos939Sums match FormalConjectures/ErdosProblems/939.lean. Upstream, erdos_939.variants.examples and erdos_939.variants.euler already have inline proofs; this package re-proves them independently without changing their statements."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Agent-reviewed: statement fidelity against the upstream statement file, non-vacuity, and transitive axioms across all 24 exported theorems. The three conditional theorems are conditional on unproved hypotheses."
+  },
+  "alignment": {
+    "namespace": "Erdos939.Palomar",
+    "statements": [
+      {
+        "source": "FormalConjectures/ErdosProblems/939.lean (erdos_939.variants.finite); uses the r >= 6 construction of Liam Price (erdosproblems.com/939, May 2026)",
+        "lean": "Erdos939.Palomar.erdos_939_variants_finite",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Unconditional resolution of erdos_939.variants.finite (False ↔ ∀ r >= 4, (Erdos939Sums r).Finite)."
+      },
+      {
+        "source": "FormalConjectures/ErdosProblems/939.lean (erdos_939.variants.infinite_of_six_le); construction of Liam Price (erdosproblems.com/939, May 2026)",
+        "lean": "Erdos939.Palomar.erdos_939_variants_infinite_of_six_le",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Unconditional resolution of erdos_939.variants.infinite_of_six_le (∀ r >= 6, (Erdos939Sums r).Infinite)."
+      },
+      {
+        "source": "FormalConjectures/ErdosProblems/939.lean (erdos_939.variants.triples); Nitaj (1995), Bull. London Math. Soc. 27, 317-318",
+        "lean": "Erdos939.Palomar.erdos_939_variants_triples",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Unconditional resolution of erdos_939.variants.triples via Nitaj's (1995) cubic tangent recurrence."
+      },
+      {
+        "source": "FormalConjectures/ErdosProblems/939.lean (erdos_939.variants.examples); witnesses of Stijn Cambie (erdosproblems.com/939)",
+        "lean": "Erdos939.Palomar.erdos_939_variants_examples",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Unconditional resolution of erdos_939.variants.examples (∃ r >= 4, (Erdos939Sums r).Nonempty)."
+      },
+      {
+        "source": "FormalConjectures/ErdosProblems/939.lean (erdos_939.variants.seven); witness of Stijn Cambie (erdosproblems.com/939)",
+        "lean": "Erdos939.Palomar.erdos_939_variants_seven",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Unconditional resolution of erdos_939.variants.seven ((Erdos939Sums 7).Nonempty)."
+      },
+      {
+        "source": "FormalConjectures/ErdosProblems/939.lean (erdos_939.variants.eight); witness of Stijn Cambie (erdosproblems.com/939)",
+        "lean": "Erdos939.Palomar.erdos_939_variants_eight",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Unconditional resolution of erdos_939.variants.eight ((Erdos939Sums 8).Nonempty)."
+      },
+      {
+        "source": "FormalConjectures/ErdosProblems/939.lean (erdos_939.variants.euler; Lander and Parkin 1967)",
+        "lean": "Erdos939.Palomar.erdos_939_variants_euler",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Unconditional resolution of erdos_939.variants.euler via Lander and Parkin's (1967) fifth-power counterexample."
+      },
+      {
+        "source": "Nitaj (1995), Bull. London Math. Soc. 27, 317-318",
+        "lean": "Erdos939.Palomar.erdos_939_variants_triples_infinite",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Nitaj's (1995) theorem: infinitude of coprime 3-powerful triples (a, b, c) with a + b = c."
+      },
+      {
+        "source": "Cohn (1998), Math. Comp. 67, 439-440",
+        "lean": "Erdos939.Palomar.cohn_noncube_triples_infinite",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Cohn's (1998) theorem: infinitude of coprime 3-powerful triples a + b = c in which none of a, b, c is a cube."
+      },
+      {
+        "source": "Cohn (1998), Math. Comp. 67, 439-440",
+        "lean": "Erdos939.Palomar.cohn_noncube_generalSums_three_two_infinite",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Infinitude of 2-element non-cube coprime 3-powerful sets in Erdos939GeneralSums 3 2 with non-cube sum."
+      },
+      {
+        "source": "Nitaj (1995), Bull. London Math. Soc. 27, 317-318",
+        "lean": "Erdos939.Palomar.erdos_939_generalSums_three_two_infinite",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Infinitude of 2-element coprime 3-powerful sets (Erdos939GeneralSums 3 2)."
+      },
+      {
+        "source": "Witness of Stijn Cambie (erdosproblems.com/939), r = 5",
+        "lean": "Erdos939.Palomar.cambieFiveSet_mem_erdos939Sums_five",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Cambie's r = 5 witness: cambieFiveSet in Erdos939Sums 5 with sum 3^7 * 61^5."
+      },
+      {
+        "source": "Lander and Parkin (1967), Math. Comp. 21, 101-103",
+        "lean": "Erdos939.Palomar.landerParkinFiveSet_mem_erdos939GeneralSums_five_four",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Lander-Parkin 4-summand 5-powerful witness in Erdos939GeneralSums 5 4 with sum 144^5."
+      },
+      {
+        "source": "Original to this formalization: canonical squarefree-core decomposition of r-powerful numbers",
+        "lean": "Erdos939.Palomar.r_full_iff_exists_squarefree_cores",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Canonical pairwise-coprime squarefree-core product characterization of r-powerful integers."
+      },
+      {
+        "source": "Original to this formalization: radical inequality for Erdos939Sums r",
+        "lean": "Erdos939.Palomar.rad_pow_r_lt_sum_pow_pred_of_mem_erdos939Sums",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Universal (r - 2)-summand radical inequality rad(prod S * sum S)^r < (sum S)^(r - 1) for S in Erdos939Sums r (r >= 4)."
+      },
+      {
+        "source": "Original to this formalization: abc quality lower bound r/(r-1) for Erdos939Sums r",
+        "lean": "Erdos939.Palomar.abc_quality_real_bound_of_mem_erdos939Sums",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Real-logarithmic ABC quality lower bound (r / (r - 1)) * log rad < log sum for S in Erdos939Sums r (r >= 4)."
+      },
+      {
+        "source": "Original to this formalization: abc quality bound above 4/3 for Erdos939Sums 4",
+        "lean": "Erdos939.Palomar.rad_pow_four_le_and_lt_cube_of_mem_erdos939Sums_four",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Universal 4-powerful ABC quality bound 4 * rad(ab(a+b))^4 < (a+b)^3 for {a, b} in Erdos939Sums 4."
+      },
+      {
+        "source": "Walsh (2024), Rad Hrvat. Akad. Znan. Umjet. Mat. Znan. 29, 83-87 (arXiv:2404.03970)",
+        "lean": "Erdos939.Palomar.walsh_twist_pair_mem_erdos939GeneralSums_three_two",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Walsh's (2024) quadratic-twist criterion for coprime 3-powerful sets in Erdos939GeneralSums 3 2."
+      },
+      {
+        "source": "Walsh (2024), Rad Hrvat. Akad. Znan. Umjet. Mat. Znan. 29, 83-87 (arXiv:2404.03970)",
+        "lean": "Erdos939.Palomar.walsh_parametric_cube_scaling_coprime_iff",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Diagonal cube-scaling coprimality characterization: Coprime (d^3 * a) (d^3 * b) iff d = 1."
+      },
+      {
+        "source": "Original to this formalization: exact reduction of erdos_939 to r = 4",
+        "lean": "Erdos939.Palomar.erdos_939_iff_four_nonempty",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Exact reduction of erdos_939 (∀ r >= 4, (Erdos939Sums r).Nonempty) to (Erdos939Sums 4).Nonempty."
+      },
+      {
+        "source": "Original to this formalization: reformulation of erdos_939 as a coprime 4-powerful pair with 4-powerful sum",
+        "lean": "Erdos939.Palomar.erdos_939_iff_exists_coprime_four_full_pair",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Equivalence between ∀ r >= 4, (Erdos939Sums r).Nonempty and existence of a positive coprime 4-powerful pair with 4-powerful sum."
+      },
+      {
+        "source": "Original to this formalization: conditional theorem, assumes an abc bound with exponent 7/6",
+        "lean": "Erdos939.Palomar.erdos939Sums_four_finite_of_abc_seven_sixths_bound",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Conditional ABC finiteness of Erdos939Sums 4 under (x+y)^6 <= K * rad(xy(x+y))^7. Conditional on the stated hypothesis."
+      },
+      {
+        "source": "Original to this formalization: conditional theorem, assumes a 5/4-exponent radical threshold",
+        "lean": "Erdos939.Palomar.erdos939Sums_five_finite_of_abc_five_fourths_threshold",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Conditional finiteness of Erdos939Sums 5 under a 5/4-exponent 3-summand radical threshold. Conditional on the stated hypothesis."
+      },
+      {
+        "source": "Original to this formalization: conditional theorem, assumes a radical obstruction at r = 4",
+        "lean": "Erdos939.Palomar.not_erdos_939_of_four_full_radical_obstruction",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Top-down conditional disproof of erdos_939 if every S in Erdos939Sums 4 satisfies (sum S)^3 <= rad(prod S * sum S)^4. Conditional on the stated hypothesis."
+      }
+    ]
+  },
+  "acknowledgements": "Mathlib and Formal Conjectures supply attributed formal definitions. Stijn Cambie's r = 5, 7, 8 witnesses and Liam Price's r >= 6 binomial-splitting construction come from the erdosproblems.com/939 discussion."
+}

@@ -1,0 +1,196 @@
+module
+
+/-
+Copyright 2025-2026 The Formal Conjectures Authors.
+Copyright 2026 Linmiao Xu.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-/
+
+public import Solution
+public import Statement
+
+@[expose] public section
+
+namespace Erdos939.Palomar
+
+theorem statement_erdos_939_variants_finite_fidelity :
+    Erdos939.Challenge.statement_erdos_939_variants_finite :=
+  erdos_939_variants_finite
+
+theorem statement_erdos_939_variants_infinite_of_six_le_fidelity :
+    Erdos939.Challenge.statement_erdos_939_variants_infinite_of_six_le :=
+  erdos_939_variants_infinite_of_six_le
+
+theorem statement_erdos_939_variants_triples_fidelity :
+    Erdos939.Challenge.statement_erdos_939_variants_triples :=
+  erdos_939_variants_triples
+
+theorem statement_erdos_939_variants_examples_fidelity :
+    Erdos939.Challenge.statement_erdos_939_variants_examples :=
+  erdos_939_variants_examples
+
+theorem statement_erdos_939_variants_seven_fidelity :
+    Erdos939.Challenge.statement_erdos_939_variants_seven :=
+  erdos_939_variants_seven
+
+theorem statement_erdos_939_variants_eight_fidelity :
+    Erdos939.Challenge.statement_erdos_939_variants_eight :=
+  erdos_939_variants_eight
+
+theorem statement_erdos_939_variants_euler_fidelity :
+    Erdos939.Challenge.statement_erdos_939_variants_euler :=
+  erdos_939_variants_euler
+
+theorem statement_erdos_939_variants_triples_infinite_fidelity :
+    Erdos939.Challenge.statement_erdos_939_variants_triples_infinite :=
+  erdos_939_variants_triples_infinite
+
+theorem statement_cohn_noncube_triples_infinite_fidelity :
+    Erdos939.Challenge.statement_cohn_noncube_triples_infinite :=
+  cohn_noncube_triples_infinite
+
+theorem statement_cohn_noncube_generalSums_three_two_infinite_fidelity :
+    Erdos939.Challenge.statement_cohn_noncube_generalSums_three_two_infinite :=
+  cohn_noncube_generalSums_three_two_infinite
+
+theorem statement_erdos_939_generalSums_three_two_infinite_fidelity :
+    Erdos939.Challenge.statement_erdos_939_generalSums_three_two_infinite :=
+  erdos_939_generalSums_three_two_infinite
+
+theorem statement_cambieFiveSet_mem_erdos939Sums_five_fidelity :
+    Erdos939.Challenge.statement_cambieFiveSet_mem_erdos939Sums_five :=
+  cambieFiveSet_mem_erdos939Sums_five
+
+theorem statement_landerParkinFiveSet_mem_erdos939GeneralSums_five_four_fidelity :
+    Erdos939.Challenge.statement_landerParkinFiveSet_mem_erdos939GeneralSums_five_four :=
+  landerParkinFiveSet_mem_erdos939GeneralSums_five_four
+
+theorem statement_r_full_iff_exists_squarefree_cores_fidelity :
+    Erdos939.Challenge.statement_r_full_iff_exists_squarefree_cores :=
+  r_full_iff_exists_squarefree_cores
+
+theorem statement_rad_pow_r_lt_sum_pow_pred_of_mem_erdos939Sums_fidelity :
+    Erdos939.Challenge.statement_rad_pow_r_lt_sum_pow_pred_of_mem_erdos939Sums :=
+  fun hr _ hS => rad_pow_r_lt_sum_pow_pred_of_mem_erdos939Sums hr hS
+
+theorem statement_abc_quality_real_bound_of_mem_erdos939Sums_fidelity :
+    Erdos939.Challenge.statement_abc_quality_real_bound_of_mem_erdos939Sums :=
+  fun hr _ hS => abc_quality_real_bound_of_mem_erdos939Sums hr hS
+
+theorem statement_rad_pow_four_le_and_lt_cube_of_mem_erdos939Sums_four_fidelity :
+    Erdos939.Challenge.statement_rad_pow_four_le_and_lt_cube_of_mem_erdos939Sums_four :=
+  fun hmem => rad_pow_four_le_and_lt_cube_of_mem_erdos939Sums_four hmem
+
+theorem statement_walsh_twist_pair_mem_erdos939GeneralSums_three_two_fidelity :
+    Erdos939.Challenge.statement_walsh_twist_pair_mem_erdos939GeneralSums_three_two :=
+  fun hd₁ hx₁ hd₂ hx₂ hd₃ hr₁ hr₂ hr₃ hcop hsum => walsh_twist_pair_mem_erdos939GeneralSums_three_two hd₁ hx₁ hd₂ hx₂ hd₃ hr₁ hr₂ hr₃ hcop hsum
+
+theorem statement_walsh_parametric_cube_scaling_coprime_iff_fidelity :
+    Erdos939.Challenge.statement_walsh_parametric_cube_scaling_coprime_iff :=
+  fun hd hcop => walsh_parametric_cube_scaling_coprime_iff hd hcop
+
+theorem statement_erdos_939_iff_four_nonempty_fidelity :
+    Erdos939.Challenge.statement_erdos_939_iff_four_nonempty :=
+  erdos_939_iff_four_nonempty
+
+theorem statement_erdos_939_iff_exists_coprime_four_full_pair_fidelity :
+    Erdos939.Challenge.statement_erdos_939_iff_exists_coprime_four_full_pair :=
+  erdos_939_iff_exists_coprime_four_full_pair
+
+theorem statement_erdos939Sums_four_finite_of_abc_seven_sixths_bound_fidelity :
+    Erdos939.Challenge.statement_erdos939Sums_four_finite_of_abc_seven_sixths_bound :=
+  fun habc => erdos939Sums_four_finite_of_abc_seven_sixths_bound habc
+
+theorem statement_erdos939Sums_five_finite_of_abc_five_fourths_threshold_fidelity :
+    Erdos939.Challenge.statement_erdos939Sums_five_finite_of_abc_five_fourths_threshold :=
+  fun habc => erdos939Sums_five_finite_of_abc_five_fourths_threshold habc
+
+theorem statement_not_erdos_939_of_four_full_radical_obstruction_fidelity :
+    Erdos939.Challenge.statement_not_erdos_939_of_four_full_radical_obstruction :=
+  not_erdos_939_of_four_full_radical_obstruction
+
+end Erdos939.Palomar
+
+#print Erdos939.Palomar.erdos_939_variants_finite
+#print Erdos939.Palomar.erdos_939_variants_infinite_of_six_le
+#print Erdos939.Palomar.erdos_939_variants_triples
+#print Erdos939.Palomar.erdos_939_variants_examples
+#print Erdos939.Palomar.erdos_939_variants_seven
+#print Erdos939.Palomar.erdos_939_variants_eight
+#print Erdos939.Palomar.erdos_939_variants_euler
+#print Erdos939.Palomar.erdos_939_variants_triples_infinite
+#print Erdos939.Palomar.cohn_noncube_triples_infinite
+#print Erdos939.Palomar.cohn_noncube_generalSums_three_two_infinite
+#print Erdos939.Palomar.erdos_939_generalSums_three_two_infinite
+#print Erdos939.Palomar.cambieFiveSet_mem_erdos939Sums_five
+#print Erdos939.Palomar.landerParkinFiveSet_mem_erdos939GeneralSums_five_four
+#print Erdos939.Palomar.r_full_iff_exists_squarefree_cores
+#print Erdos939.Palomar.rad_pow_r_lt_sum_pow_pred_of_mem_erdos939Sums
+#print Erdos939.Palomar.abc_quality_real_bound_of_mem_erdos939Sums
+#print Erdos939.Palomar.rad_pow_four_le_and_lt_cube_of_mem_erdos939Sums_four
+#print Erdos939.Palomar.walsh_twist_pair_mem_erdos939GeneralSums_three_two
+#print Erdos939.Palomar.walsh_parametric_cube_scaling_coprime_iff
+#print Erdos939.Palomar.erdos_939_iff_four_nonempty
+#print Erdos939.Palomar.erdos_939_iff_exists_coprime_four_full_pair
+#print Erdos939.Palomar.erdos939Sums_four_finite_of_abc_seven_sixths_bound
+#print Erdos939.Palomar.erdos939Sums_five_finite_of_abc_five_fourths_threshold
+#print Erdos939.Palomar.not_erdos_939_of_four_full_radical_obstruction
+#print axioms Erdos939.Palomar.erdos_939_variants_finite
+#print axioms Erdos939.Palomar.erdos_939_variants_infinite_of_six_le
+#print axioms Erdos939.Palomar.erdos_939_variants_triples
+#print axioms Erdos939.Palomar.erdos_939_variants_examples
+#print axioms Erdos939.Palomar.erdos_939_variants_seven
+#print axioms Erdos939.Palomar.erdos_939_variants_eight
+#print axioms Erdos939.Palomar.erdos_939_variants_euler
+#print axioms Erdos939.Palomar.erdos_939_variants_triples_infinite
+#print axioms Erdos939.Palomar.cohn_noncube_triples_infinite
+#print axioms Erdos939.Palomar.cohn_noncube_generalSums_three_two_infinite
+#print axioms Erdos939.Palomar.erdos_939_generalSums_three_two_infinite
+#print axioms Erdos939.Palomar.cambieFiveSet_mem_erdos939Sums_five
+#print axioms Erdos939.Palomar.landerParkinFiveSet_mem_erdos939GeneralSums_five_four
+#print axioms Erdos939.Palomar.r_full_iff_exists_squarefree_cores
+#print axioms Erdos939.Palomar.rad_pow_r_lt_sum_pow_pred_of_mem_erdos939Sums
+#print axioms Erdos939.Palomar.abc_quality_real_bound_of_mem_erdos939Sums
+#print axioms Erdos939.Palomar.rad_pow_four_le_and_lt_cube_of_mem_erdos939Sums_four
+#print axioms Erdos939.Palomar.walsh_twist_pair_mem_erdos939GeneralSums_three_two
+#print axioms Erdos939.Palomar.walsh_parametric_cube_scaling_coprime_iff
+#print axioms Erdos939.Palomar.erdos_939_iff_four_nonempty
+#print axioms Erdos939.Palomar.erdos_939_iff_exists_coprime_four_full_pair
+#print axioms Erdos939.Palomar.erdos939Sums_four_finite_of_abc_seven_sixths_bound
+#print axioms Erdos939.Palomar.erdos939Sums_five_finite_of_abc_five_fourths_threshold
+#print axioms Erdos939.Palomar.not_erdos_939_of_four_full_radical_obstruction
+#print axioms Erdos939.Palomar.statement_erdos_939_variants_finite_fidelity
+#print axioms Erdos939.Palomar.statement_erdos_939_variants_infinite_of_six_le_fidelity
+#print axioms Erdos939.Palomar.statement_erdos_939_variants_triples_fidelity
+#print axioms Erdos939.Palomar.statement_erdos_939_variants_examples_fidelity
+#print axioms Erdos939.Palomar.statement_erdos_939_variants_seven_fidelity
+#print axioms Erdos939.Palomar.statement_erdos_939_variants_eight_fidelity
+#print axioms Erdos939.Palomar.statement_erdos_939_variants_euler_fidelity
+#print axioms Erdos939.Palomar.statement_erdos_939_variants_triples_infinite_fidelity
+#print axioms Erdos939.Palomar.statement_cohn_noncube_triples_infinite_fidelity
+#print axioms Erdos939.Palomar.statement_cohn_noncube_generalSums_three_two_infinite_fidelity
+#print axioms Erdos939.Palomar.statement_erdos_939_generalSums_three_two_infinite_fidelity
+#print axioms Erdos939.Palomar.statement_cambieFiveSet_mem_erdos939Sums_five_fidelity
+#print axioms Erdos939.Palomar.statement_landerParkinFiveSet_mem_erdos939GeneralSums_five_four_fidelity
+#print axioms Erdos939.Palomar.statement_r_full_iff_exists_squarefree_cores_fidelity
+#print axioms Erdos939.Palomar.statement_rad_pow_r_lt_sum_pow_pred_of_mem_erdos939Sums_fidelity
+#print axioms Erdos939.Palomar.statement_abc_quality_real_bound_of_mem_erdos939Sums_fidelity
+#print axioms Erdos939.Palomar.statement_rad_pow_four_le_and_lt_cube_of_mem_erdos939Sums_four_fidelity
+#print axioms Erdos939.Palomar.statement_walsh_twist_pair_mem_erdos939GeneralSums_three_two_fidelity
+#print axioms Erdos939.Palomar.statement_walsh_parametric_cube_scaling_coprime_iff_fidelity
+#print axioms Erdos939.Palomar.statement_erdos_939_iff_four_nonempty_fidelity
+#print axioms Erdos939.Palomar.statement_erdos_939_iff_exists_coprime_four_full_pair_fidelity
+#print axioms Erdos939.Palomar.statement_erdos939Sums_four_finite_of_abc_seven_sixths_bound_fidelity
+#print axioms Erdos939.Palomar.statement_erdos939Sums_five_finite_of_abc_five_fourths_threshold_fidelity
+#print axioms Erdos939.Palomar.statement_not_erdos_939_of_four_full_radical_obstruction_fidelity
