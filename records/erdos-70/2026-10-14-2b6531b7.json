@@ -1,0 +1,239 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-14-2b6531b7",
+  "verification_date": "2026-10-14",
+  "state_sha256": "f233811fa0e459318c2e66862dc8be78d5a94ff914a7cdccc72affc2eef715e0",
+  "package": "erdos-70",
+  "project_name": "Erd\u0151s 70: continuum triple partitions (omega_one ZFC refutation and omega_three resolution)",
+  "package_commit": "2b6531b7186fe5c7663cc5580852d309a37b63b4",
+  "commit": "ce3554c83d599aa373c7b9426438454ca8f766fb",
+  "repository": "linrock/math-proofs",
+  "run_id": "38497540286",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 2654,
+    "lines": 68,
+    "sha256": "7e98f7fc3199dc05169b2ab10f73a90fda62dc1989cc788e04a12ac8d60a3386",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos70.Palomar.not_ordinalCardinalRamsey3_continuum_aleph1_four",
+    "Erdos70.Palomar.erdos_70_omega_one_refuted",
+    "Erdos70.Palomar.ordinalCardinalRamsey3_continuum_omega_three",
+    "Erdos70.Palomar.erdos_70_omega_three_solved"
+  ],
+  "declaration_lines": {
+    "Erdos70.Palomar.not_ordinalCardinalRamsey3_continuum_aleph1_four": {
+      "solution_line": 38,
+      "challenge_line": 47
+    },
+    "Erdos70.Palomar.erdos_70_omega_one_refuted": {
+      "solution_line": 42,
+      "challenge_line": 52
+    },
+    "Erdos70.Palomar.ordinalCardinalRamsey3_continuum_omega_three": {
+      "solution_line": 48,
+      "challenge_line": 59
+    },
+    "Erdos70.Palomar.erdos_70_omega_three_solved": {
+      "solution_line": 52,
+      "challenge_line": 64
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos70.Palomar.erdos_70_omega_one_refuted",
+    "Erdos70.Palomar.erdos_70_omega_three_solved",
+    "Erdos70.Palomar.not_ordinalCardinalRamsey3_continuum_aleph1_four",
+    "Erdos70.Palomar.ordinalCardinalRamsey3_continuum_omega_three"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 6,
+  "expected_axiom_audit_count": 6,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos70.Palomar.not_ordinalCardinalRamsey3_continuum_aleph1_four",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos70.Palomar.erdos_70_omega_one_refuted",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos70.Palomar.ordinalCardinalRamsey3_continuum_omega_three",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos70.Palomar.erdos_70_omega_three_solved",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos70.Palomar.statement_omega_one_refuted_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos70.Palomar.statement_omega_three_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Set.Triplewise",
+      "kind": "def",
+      "declaration": "def Set.Triplewise.{u_1} {\u03b1 : Type u_1} (s : Set \u03b1) (r : \u03b1 \u2192 \u03b1 \u2192 \u03b1 \u2192 Prop) : Prop :=\n  fun {\u03b1} s r =>\n  \u2200 \u2983x : \u03b1\u2984,\n    Membership.mem s x \u2192\n      \u2200 \u2983y : \u03b1\u2984, Membership.mem s y \u2192 \u2200 \u2983z : \u03b1\u2984, Membership.mem s z \u2192 Ne x y \u2192 Ne y z \u2192 Ne x z \u2192 r x y z"
+    },
+    {
+      "name": "Erdos70.Palomar.OrdinalCardinalRamsey3",
+      "kind": "def",
+      "declaration": "def Erdos70.Palomar.OrdinalCardinalRamsey3.{u} (\u03b1 \u03b2 : Ordinal) (c : Cardinal) : Prop :=\n  fun \u03b1 \u03b2 c =>\n  \u2200 (isRed : Ordinal.ToType \u03b1 \u2192 Ordinal.ToType \u03b1 \u2192 Ordinal.ToType \u03b1 \u2192 Prop),\n    (\u2200 (x y z : Ordinal.ToType \u03b1),\n        Ne x y \u2192 Ne y z \u2192 Ne x z \u2192 And (Iff (isRed x y z) (isRed y x z)) (Iff (isRed x y z) (isRed x z y))) \u2192\n      Or (Exists fun s => And (Eq (Ordinal.type fun x1 x2 => LT.lt x1 x2) \u03b2) (Set.Triplewise s isRed))\n        (Exists fun s => And (Eq (Cardinal.mk (Set.Elem s)) c) (Set.Triplewise s fun x y z => Not (isRed x y z)))"
+    },
+    {
+      "name": "Erdos70.Palomar.not_ordinalCardinalRamsey3_continuum_aleph1_four",
+      "kind": "theorem",
+      "declaration": "theorem Erdos70.Palomar.not_ordinalCardinalRamsey3_continuum_aleph1_four :\n  Not\n    (Erdos70.Palomar.OrdinalCardinalRamsey3 (Cardinal.ord Cardinal.continuum)\n      (Cardinal.ord (DFunLike.coe Cardinal.aleph 1)) 4)"
+    },
+    {
+      "name": "Erdos70.Palomar.erdos_70_omega_one_refuted",
+      "kind": "theorem",
+      "declaration": "theorem Erdos70.Palomar.erdos_70_omega_one_refuted :\n  Iff False\n    (\u2200 (n : Nat),\n      LE.le 2 n \u2192\n        Erdos70.Palomar.OrdinalCardinalRamsey3 (Cardinal.ord Cardinal.continuum)\n          (Cardinal.ord (DFunLike.coe Cardinal.aleph 1)) \u2191n)"
+    },
+    {
+      "name": "Erdos70.Palomar.ordinalCardinalRamsey3_continuum_omega_three",
+      "kind": "theorem",
+      "declaration": "theorem Erdos70.Palomar.ordinalCardinalRamsey3_continuum_omega_three :\n  Erdos70.Palomar.OrdinalCardinalRamsey3 (Cardinal.ord Cardinal.continuum) Ordinal.omega0 3"
+    },
+    {
+      "name": "Erdos70.Palomar.erdos_70_omega_three_solved",
+      "kind": "theorem",
+      "declaration": "theorem Erdos70.Palomar.erdos_70_omega_three_solved :\n  Iff True (Erdos70.Palomar.OrdinalCardinalRamsey3 (Cardinal.ord Cardinal.continuum) Ordinal.omega0 3)"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos70.erdos_70.variants.omega_one",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.70",
+      "solution_declaration": "Erdos70.Palomar.erdos_70_omega_one_refuted",
+      "match_mode": "resolves_open_answer_false_iff_univ_zero"
+    },
+    {
+      "target_declaration": "Erdos70.erdos_70.variants.omega_three",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.70",
+      "solution_declaration": "Erdos70.Palomar.ordinalCardinalRamsey3_continuum_omega_three",
+      "match_mode": "iff_true_to_prop_univ_zero"
+    },
+    {
+      "target_declaration": "Erdos70.erdos_70.variants.omega_three",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.70",
+      "solution_declaration": "Erdos70.Palomar.erdos_70_omega_three_solved",
+      "match_mode": "exact_univ_zero"
+    },
+    {
+      "target_declaration": "Erdos70.Challenge.statement_omega_one_refuted",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos70.Palomar.erdos_70_omega_one_refuted",
+      "match_mode": "not_to_iff_false"
+    },
+    {
+      "target_declaration": "Erdos70.Challenge.statement_omega_three",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos70.Palomar.ordinalCardinalRamsey3_continuum_omega_three",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos70.Challenge.statement_omega_three",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos70.Palomar.erdos_70_omega_three_solved",
+      "match_mode": "prop_to_iff_true"
+    },
+    {
+      "target_declaration": "Erdos70.erdos_70.variants.omega_one",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.70",
+      "solution_declaration": "Erdos70.Challenge.statement_omega_one_refuted",
+      "match_mode": "resolves_open_answer_false_not_univ_zero"
+    },
+    {
+      "target_declaration": "Erdos70.erdos_70.variants.omega_three",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.70",
+      "solution_declaration": "Erdos70.Challenge.statement_omega_three",
+      "match_mode": "iff_true_to_prop_univ_zero"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "e318903862396f96de3df57264e0158682b952fd3fb53ac23d876413e7b30f71"
+  },
+  "input_sha256": {
+    "Challenge.lean": "7e98f7fc3199dc05169b2ab10f73a90fda62dc1989cc788e04a12ac8d60a3386",
+    "Solution.lean": "af1011c1506301b57e05d3aa8c93db5cc8a95280d75342f8d41dbc791228136f",
+    "AxiomAudit.lean": "7e072cb29f1b0cce280d816db033f9b14853513032a128e9be2f847a27088039",
+    "Statement.lean": "e700630ae8f32685993c9a35afdc7fa4b3ccfcffc02eb1e6d04d6d00a7d165f6",
+    "comparator.json": "87c1ed743aa1e13020bfdaecfab05b5d0cb97651c15e376a02ae19a3fa8e8cf2",
+    "formalization.yaml": "713af411a8b0be54a0a05760ba32c5e6a244f57d6573dc21d8a8750818527cb9",
+    "lakefile.toml": "c17260624eba1c0f2daf3f78db74d5247cfdec13d70cb02335f369f2a275fb1c",
+    "lake-manifest.json": "89402a2b5cb70dbc35b55ef43516d3afb1eab7e378983232460f15a26755e241",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "e9d875f8a3d8ba852a2af20c011b19de52a7b579673680472878cde3615f0b72",
+    "Proofs/ContinuumTriplePartitions70.lean": "417df14e9087bcbc6f5cad6a74c28c02a0615b8c7d22ffd9d1fcf578d3e92a4f"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 34.308,
+    "env_compare_and_core_audit_seconds": 70.201,
+    "total_elapsed_seconds": 221.45,
+    "user_cpu_seconds": 142.142,
+    "system_cpu_seconds": 74.702,
+    "peak_rss_mib": 13236.74
+  },
+  "status": "PASS"
+}
