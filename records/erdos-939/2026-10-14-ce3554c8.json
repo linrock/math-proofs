@@ -1,0 +1,1065 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-14-ce3554c8",
+  "verification_date": "2026-10-14",
+  "state_sha256": "5465ecf65b714b6fb832f79c3e2031814a1d0b7d1e5060709d81529ffa19376d",
+  "package": "erdos-939",
+  "project_name": "Erd\u0151s 939: coprime sums of r-powerful numbers",
+  "package_commit": "ce3554c83d599aa373c7b9426438454ca8f766fb",
+  "commit": "4a1f92f2aca5f32edb0c681f1e8fdca88b5d9494",
+  "repository": "linrock/math-proofs",
+  "run_id": "38510842108",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 6778,
+    "lines": 146,
+    "sha256": "11354da1e75931e0a90b0bfbf255fffdec33b157d69bf41e593902a7928e52d8",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos939.Palomar.erdos_939_variants_finite",
+    "Erdos939.Palomar.erdos_939_variants_infinite_of_six_le",
+    "Erdos939.Palomar.erdos_939_variants_triples",
+    "Erdos939.Palomar.erdos_939_variants_examples",
+    "Erdos939.Palomar.erdos_939_variants_seven",
+    "Erdos939.Palomar.erdos_939_variants_eight",
+    "Erdos939.Palomar.erdos_939_variants_euler",
+    "Erdos939.Palomar.erdos_939_variants_triples_infinite",
+    "Erdos939.Palomar.cohn_noncube_triples_infinite",
+    "Erdos939.Palomar.cohn_noncube_generalSums_three_two_infinite",
+    "Erdos939.Palomar.erdos_939_generalSums_three_two_infinite",
+    "Erdos939.Palomar.cambieFiveSet_mem_erdos939Sums_five",
+    "Erdos939.Palomar.landerParkinFiveSet_mem_erdos939GeneralSums_five_four",
+    "Erdos939.Palomar.r_full_iff_exists_squarefree_cores",
+    "Erdos939.Palomar.rad_pow_r_lt_sum_pow_pred_of_mem_erdos939Sums",
+    "Erdos939.Palomar.abc_quality_real_bound_of_mem_erdos939Sums",
+    "Erdos939.Palomar.rad_pow_four_le_and_lt_cube_of_mem_erdos939Sums_four",
+    "Erdos939.Palomar.walsh_twist_pair_mem_erdos939GeneralSums_three_two",
+    "Erdos939.Palomar.walsh_parametric_cube_scaling_coprime_iff",
+    "Erdos939.Palomar.erdos_939_iff_four_nonempty",
+    "Erdos939.Palomar.erdos_939_iff_exists_coprime_four_full_pair",
+    "Erdos939.Palomar.erdos939Sums_four_finite_of_abc_seven_sixths_bound",
+    "Erdos939.Palomar.erdos939Sums_five_finite_of_abc_five_fourths_threshold",
+    "Erdos939.Palomar.not_erdos_939_of_four_full_radical_obstruction"
+  ],
+  "declaration_lines": {
+    "Erdos939.Palomar.erdos_939_variants_finite": {
+      "solution_line": 33,
+      "challenge_line": 60
+    },
+    "Erdos939.Palomar.erdos_939_variants_infinite_of_six_le": {
+      "solution_line": 36,
+      "challenge_line": 62
+    },
+    "Erdos939.Palomar.erdos_939_variants_triples": {
+      "solution_line": 39,
+      "challenge_line": 64
+    },
+    "Erdos939.Palomar.erdos_939_variants_examples": {
+      "solution_line": 43,
+      "challenge_line": 67
+    },
+    "Erdos939.Palomar.erdos_939_variants_seven": {
+      "solution_line": 46,
+      "challenge_line": 69
+    },
+    "Erdos939.Palomar.erdos_939_variants_eight": {
+      "solution_line": 49,
+      "challenge_line": 71
+    },
+    "Erdos939.Palomar.erdos_939_variants_euler": {
+      "solution_line": 52,
+      "challenge_line": 73
+    },
+    "Erdos939.Palomar.erdos_939_variants_triples_infinite": {
+      "solution_line": 56,
+      "challenge_line": 76
+    },
+    "Erdos939.Palomar.cohn_noncube_triples_infinite": {
+      "solution_line": 60,
+      "challenge_line": 79
+    },
+    "Erdos939.Palomar.cohn_noncube_generalSums_three_two_infinite": {
+      "solution_line": 66,
+      "challenge_line": 84
+    },
+    "Erdos939.Palomar.erdos_939_generalSums_three_two_infinite": {
+      "solution_line": 71,
+      "challenge_line": 88
+    },
+    "Erdos939.Palomar.cambieFiveSet_mem_erdos939Sums_five": {
+      "solution_line": 74,
+      "challenge_line": 90
+    },
+    "Erdos939.Palomar.landerParkinFiveSet_mem_erdos939GeneralSums_five_four": {
+      "solution_line": 77,
+      "challenge_line": 92
+    },
+    "Erdos939.Palomar.r_full_iff_exists_squarefree_cores": {
+      "solution_line": 80,
+      "challenge_line": 94
+    },
+    "Erdos939.Palomar.rad_pow_r_lt_sum_pow_pred_of_mem_erdos939Sums": {
+      "solution_line": 88,
+      "challenge_line": 101
+    },
+    "Erdos939.Palomar.abc_quality_real_bound_of_mem_erdos939Sums": {
+      "solution_line": 94,
+      "challenge_line": 106
+    },
+    "Erdos939.Palomar.rad_pow_four_le_and_lt_cube_of_mem_erdos939Sums_four": {
+      "solution_line": 99,
+      "challenge_line": 110
+    },
+    "Erdos939.Palomar.walsh_twist_pair_mem_erdos939GeneralSums_three_two": {
+      "solution_line": 107,
+      "challenge_line": 117
+    },
+    "Erdos939.Palomar.walsh_parametric_cube_scaling_coprime_iff": {
+      "solution_line": 115,
+      "challenge_line": 124
+    },
+    "Erdos939.Palomar.erdos_939_iff_four_nonempty": {
+      "solution_line": 119,
+      "challenge_line": 127
+    },
+    "Erdos939.Palomar.erdos_939_iff_exists_coprime_four_full_pair": {
+      "solution_line": 122,
+      "challenge_line": 129
+    },
+    "Erdos939.Palomar.erdos939Sums_four_finite_of_abc_seven_sixths_bound": {
+      "solution_line": 127,
+      "challenge_line": 133
+    },
+    "Erdos939.Palomar.erdos939Sums_five_finite_of_abc_five_fourths_threshold": {
+      "solution_line": 132,
+      "challenge_line": 137
+    },
+    "Erdos939.Palomar.not_erdos_939_of_four_full_radical_obstruction": {
+      "solution_line": 137,
+      "challenge_line": 141
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos939.Palomar.abc_quality_real_bound_of_mem_erdos939Sums",
+    "Erdos939.Palomar.cambieFiveSet_mem_erdos939Sums_five",
+    "Erdos939.Palomar.cohn_noncube_generalSums_three_two_infinite",
+    "Erdos939.Palomar.cohn_noncube_triples_infinite",
+    "Erdos939.Palomar.erdos939Sums_five_finite_of_abc_five_fourths_threshold",
+    "Erdos939.Palomar.erdos939Sums_four_finite_of_abc_seven_sixths_bound",
+    "Erdos939.Palomar.erdos_939_generalSums_three_two_infinite",
+    "Erdos939.Palomar.erdos_939_iff_exists_coprime_four_full_pair",
+    "Erdos939.Palomar.erdos_939_iff_four_nonempty",
+    "Erdos939.Palomar.erdos_939_variants_eight",
+    "Erdos939.Palomar.erdos_939_variants_euler",
+    "Erdos939.Palomar.erdos_939_variants_examples",
+    "Erdos939.Palomar.erdos_939_variants_finite",
+    "Erdos939.Palomar.erdos_939_variants_infinite_of_six_le",
+    "Erdos939.Palomar.erdos_939_variants_seven",
+    "Erdos939.Palomar.erdos_939_variants_triples",
+    "Erdos939.Palomar.erdos_939_variants_triples_infinite",
+    "Erdos939.Palomar.landerParkinFiveSet_mem_erdos939GeneralSums_five_four",
+    "Erdos939.Palomar.not_erdos_939_of_four_full_radical_obstruction",
+    "Erdos939.Palomar.r_full_iff_exists_squarefree_cores",
+    "Erdos939.Palomar.rad_pow_four_le_and_lt_cube_of_mem_erdos939Sums_four",
+    "Erdos939.Palomar.rad_pow_r_lt_sum_pow_pred_of_mem_erdos939Sums",
+    "Erdos939.Palomar.walsh_parametric_cube_scaling_coprime_iff",
+    "Erdos939.Palomar.walsh_twist_pair_mem_erdos939GeneralSums_three_two"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 48,
+  "expected_axiom_audit_count": 48,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos939.Palomar.erdos_939_variants_finite",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.erdos_939_variants_infinite_of_six_le",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.erdos_939_variants_triples",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.erdos_939_variants_examples",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.erdos_939_variants_seven",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.erdos_939_variants_eight",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.erdos_939_variants_euler",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.erdos_939_variants_triples_infinite",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.cohn_noncube_triples_infinite",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.cohn_noncube_generalSums_three_two_infinite",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.erdos_939_generalSums_three_two_infinite",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.cambieFiveSet_mem_erdos939Sums_five",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.landerParkinFiveSet_mem_erdos939GeneralSums_five_four",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.r_full_iff_exists_squarefree_cores",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.rad_pow_r_lt_sum_pow_pred_of_mem_erdos939Sums",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.abc_quality_real_bound_of_mem_erdos939Sums",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.rad_pow_four_le_and_lt_cube_of_mem_erdos939Sums_four",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.walsh_twist_pair_mem_erdos939GeneralSums_three_two",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.walsh_parametric_cube_scaling_coprime_iff",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.erdos_939_iff_four_nonempty",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.erdos_939_iff_exists_coprime_four_full_pair",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.erdos939Sums_four_finite_of_abc_seven_sixths_bound",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.erdos939Sums_five_finite_of_abc_five_fourths_threshold",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.not_erdos_939_of_four_full_radical_obstruction",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.statement_erdos_939_variants_finite_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.statement_erdos_939_variants_infinite_of_six_le_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.statement_erdos_939_variants_triples_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.statement_erdos_939_variants_examples_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.statement_erdos_939_variants_seven_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.statement_erdos_939_variants_eight_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.statement_erdos_939_variants_euler_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.statement_erdos_939_variants_triples_infinite_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.statement_cohn_noncube_triples_infinite_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.statement_cohn_noncube_generalSums_three_two_infinite_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.statement_erdos_939_generalSums_three_two_infinite_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.statement_cambieFiveSet_mem_erdos939Sums_five_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.statement_landerParkinFiveSet_mem_erdos939GeneralSums_five_four_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.statement_r_full_iff_exists_squarefree_cores_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.statement_rad_pow_r_lt_sum_pow_pred_of_mem_erdos939Sums_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.statement_abc_quality_real_bound_of_mem_erdos939Sums_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.statement_rad_pow_four_le_and_lt_cube_of_mem_erdos939Sums_four_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.statement_walsh_twist_pair_mem_erdos939GeneralSums_three_two_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.statement_walsh_parametric_cube_scaling_coprime_iff_fidelity",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.statement_erdos_939_iff_four_nonempty_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.statement_erdos_939_iff_exists_coprime_four_full_pair_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.statement_erdos939Sums_four_finite_of_abc_seven_sixths_bound_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.statement_erdos939Sums_five_finite_of_abc_five_fourths_threshold_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos939.Palomar.statement_not_erdos_939_of_four_full_radical_obstruction_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Erdos939.rad",
+      "kind": "def",
+      "declaration": "def Erdos939.rad (n : Nat) : Nat :=\n  fun n => Finset.prod (Nat.primeFactors n) fun p => p"
+    },
+    {
+      "name": "Erdos939.landerParkinFiveSet",
+      "kind": "def",
+      "declaration": "def Erdos939.landerParkinFiveSet : Finset Nat :=\n  Insert.insert (HPow.hPow 27 5)\n  (Insert.insert (HPow.hPow 84 5) (Insert.insert (HPow.hPow 110 5) (Singleton.singleton (HPow.hPow 133 5))))"
+    },
+    {
+      "name": "Erdos939.cambieFiveSet",
+      "kind": "def",
+      "declaration": "def Erdos939.cambieFiveSet : Finset Nat :=\n  Insert.insert (HMul.hMul (HMul.hMul (HPow.hPow 2 8) (HPow.hPow 3 10)) (HPow.hPow 5 7))\n  (Insert.insert (HMul.hMul (HPow.hPow 2 12) (HPow.hPow 23 6))\n    (Singleton.singleton (HMul.hMul (HPow.hPow 11 5) (HPow.hPow 13 5))))"
+    },
+    {
+      "name": "Erdos939.Erdos939GeneralSums",
+      "kind": "def",
+      "declaration": "def Erdos939.Erdos939GeneralSums (r k : Nat) : Set (Finset Nat) :=\n  fun r k =>\n  Set.ofPred fun S =>\n    And (Eq (Finset.card S) k)\n      (And (Finset.Coprime S)\n        (And (Nat.Full r (Finset.sum S fun s => s)) (\u2200 (s : Nat), Membership.mem S s \u2192 And (LT.lt 0 s) (Nat.Full r s))))"
+    },
+    {
+      "name": "Nat.Full",
+      "kind": "def",
+      "declaration": "def Nat.Full (k n : Nat) : Prop :=\n  fun k n => \u2200 (p : Nat), Membership.mem (Nat.primeFactors n) p \u2192 Dvd.dvd (HPow.hPow p k) n"
+    },
+    {
+      "name": "Finset.Coprime",
+      "kind": "def",
+      "declaration": "def Finset.Coprime (S : Finset Nat) : Prop :=\n  fun S => Eq (Finset.gcd S id) 1"
+    },
+    {
+      "name": "Erdos939.Erdos939Sums",
+      "kind": "def",
+      "declaration": "def Erdos939.Erdos939Sums (r : Nat) : Set (Finset Nat) :=\n  fun r =>\n  Set.ofPred fun S =>\n    And (Eq (Finset.card S) (HSub.hSub r 2))\n      (And (Finset.Coprime S)\n        (And (Nat.Full r (Finset.sum S fun s => s)) (\u2200 (s : Nat), Membership.mem S s \u2192 And (LT.lt 0 s) (Nat.Full r s))))"
+    },
+    {
+      "name": "Erdos939.Palomar.erdos_939_variants_finite",
+      "kind": "theorem",
+      "declaration": "theorem Erdos939.Palomar.erdos_939_variants_finite : Iff False (\u2200 (r : Nat), GE.ge r 4 \u2192 Set.Finite (Erdos939.Erdos939Sums r))"
+    },
+    {
+      "name": "Erdos939.Palomar.erdos_939_variants_infinite_of_six_le",
+      "kind": "theorem",
+      "declaration": "theorem Erdos939.Palomar.erdos_939_variants_infinite_of_six_le (r : Nat) : GE.ge r 6 \u2192 Set.Infinite (Erdos939.Erdos939Sums r)"
+    },
+    {
+      "name": "Erdos939.Palomar.erdos_939_variants_triples",
+      "kind": "theorem",
+      "declaration": "theorem Erdos939.Palomar.erdos_939_variants_triples :\n  Iff True\n    (Set.Infinite\n      (Set.ofPred fun x =>\n        Erdos939.Palomar.erdos_939_variants_triples.match_1 (fun x => Prop) x fun a b c =>\n          And (Finset.Coprime (Insert.insert a (Insert.insert b (Singleton.singleton c))))\n            (And (LT.lt 0 a)\n              (And (LT.lt 0 b) (And (Nat.Full 3 a) (And (Nat.Full 3 b) (And (Nat.Full 3 c) (Eq (HAdd.hAdd a b) c))))))))"
+    },
+    {
+      "name": "Erdos939.Palomar.erdos_939_variants_examples",
+      "kind": "theorem",
+      "declaration": "theorem Erdos939.Palomar.erdos_939_variants_examples : Exists fun r => And (GE.ge r 4) (Set.Nonempty (Erdos939.Erdos939Sums r))"
+    },
+    {
+      "name": "Erdos939.Palomar.erdos_939_variants_seven",
+      "kind": "theorem",
+      "declaration": "theorem Erdos939.Palomar.erdos_939_variants_seven : Set.Nonempty (Erdos939.Erdos939Sums 7)"
+    },
+    {
+      "name": "Erdos939.Palomar.erdos_939_variants_eight",
+      "kind": "theorem",
+      "declaration": "theorem Erdos939.Palomar.erdos_939_variants_eight : Set.Nonempty (Erdos939.Erdos939Sums 8)"
+    },
+    {
+      "name": "Erdos939.Palomar.erdos_939_variants_euler",
+      "kind": "theorem",
+      "declaration": "theorem Erdos939.Palomar.erdos_939_variants_euler :\n  Not\n    (\u2200 (k : Nat),\n      GE.ge k 4 \u2192\n        \u2200 (S : Finset Nat),\n          Eq (Finset.card S) (HSub.hSub k 1) \u2192\n            (\u2200 (s : Nat), Membership.mem S s \u2192 LT.lt 0 s) \u2192\n              Not (Exists fun q => Eq (Finset.sum S fun s => HPow.hPow s k) (HPow.hPow q k)))"
+    },
+    {
+      "name": "Erdos939.Palomar.erdos_939_variants_triples_infinite",
+      "kind": "theorem",
+      "declaration": "theorem Erdos939.Palomar.erdos_939_variants_triples_infinite :\n  Set.Infinite\n    (Set.ofPred fun x =>\n      Erdos939.Palomar.erdos_939_variants_triples_infinite.match_1 (fun x => Prop) x fun a b c =>\n        And (Finset.Coprime (Insert.insert a (Insert.insert b (Singleton.singleton c))))\n          (And (LT.lt 0 a)\n            (And (LT.lt 0 b) (And (Nat.Full 3 a) (And (Nat.Full 3 b) (And (Nat.Full 3 c) (Eq (HAdd.hAdd a b) c)))))))"
+    },
+    {
+      "name": "Erdos939.Palomar.cohn_noncube_triples_infinite",
+      "kind": "theorem",
+      "declaration": "theorem Erdos939.Palomar.cohn_noncube_triples_infinite :\n  Set.Infinite\n    (Set.ofPred fun x =>\n      Erdos939.Palomar.erdos_939_variants_triples_infinite.match_1 (fun x => Prop) x fun a b c =>\n        And (Finset.Coprime (Insert.insert a (Insert.insert b (Singleton.singleton c))))\n          (And (LT.lt 0 a)\n            (And (LT.lt 0 b)\n              (And (Nat.Full 3 a)\n                (And (Nat.Full 3 b)\n                  (And (Nat.Full 3 c)\n                    (And (\u2200 (k : Nat), Ne (HPow.hPow k 3) a)\n                      (And (\u2200 (k : Nat), Ne (HPow.hPow k 3) b)\n                        (And (\u2200 (k : Nat), Ne (HPow.hPow k 3) c) (Eq (HAdd.hAdd a b) c))))))))))"
+    },
+    {
+      "name": "Erdos939.Palomar.cohn_noncube_generalSums_three_two_infinite",
+      "kind": "theorem",
+      "declaration": "theorem Erdos939.Palomar.cohn_noncube_generalSums_three_two_infinite :\n  Set.Infinite\n    (Set.ofPred fun S =>\n      And (Membership.mem (Erdos939.Erdos939GeneralSums 3 2) S)\n        (And (\u2200 (k : Nat), Ne (HPow.hPow k 3) (Finset.sum S fun s => s))\n          (\u2200 (s : Nat), Membership.mem S s \u2192 \u2200 (k : Nat), Ne (HPow.hPow k 3) s)))"
+    },
+    {
+      "name": "Erdos939.Palomar.erdos_939_generalSums_three_two_infinite",
+      "kind": "theorem",
+      "declaration": "theorem Erdos939.Palomar.erdos_939_generalSums_three_two_infinite : Set.Infinite (Erdos939.Erdos939GeneralSums 3 2)"
+    },
+    {
+      "name": "Erdos939.Palomar.cambieFiveSet_mem_erdos939Sums_five",
+      "kind": "theorem",
+      "declaration": "theorem Erdos939.Palomar.cambieFiveSet_mem_erdos939Sums_five :\n  And (Membership.mem (Erdos939.Erdos939Sums 5) Erdos939.cambieFiveSet)\n    (Eq (Finset.sum Erdos939.cambieFiveSet fun s => s) (HMul.hMul (HPow.hPow 3 7) (HPow.hPow 61 5)))"
+    },
+    {
+      "name": "Erdos939.Palomar.landerParkinFiveSet_mem_erdos939GeneralSums_five_four",
+      "kind": "theorem",
+      "declaration": "theorem Erdos939.Palomar.landerParkinFiveSet_mem_erdos939GeneralSums_five_four :\n  And (Membership.mem (Erdos939.Erdos939GeneralSums 5 4) Erdos939.landerParkinFiveSet)\n    (Eq (Finset.sum Erdos939.landerParkinFiveSet fun s => s) (HPow.hPow 144 5))"
+    },
+    {
+      "name": "Erdos939.Palomar.r_full_iff_exists_squarefree_cores",
+      "kind": "theorem",
+      "declaration": "theorem Erdos939.Palomar.r_full_iff_exists_squarefree_cores (r n : Nat) (hr : LE.le 1 r) (hn : LT.lt 0 n) :\n  Iff (Nat.Full r n)\n    (Exists fun u =>\n      Exists fun v =>\n        And (\u2200 (j : Nat), Membership.mem (Finset.Ico 1 r) j \u2192 Squarefree (v j))\n          (And\n            (\u2200 (j\u2081 : Nat),\n              Membership.mem (Finset.Ico 1 r) j\u2081 \u2192\n                \u2200 (j\u2082 : Nat), Membership.mem (Finset.Ico 1 r) j\u2082 \u2192 Ne j\u2081 j\u2082 \u2192 Nat.Coprime (v j\u2081) (v j\u2082))\n            (Eq (HMul.hMul (HPow.hPow u r) (Finset.prod (Finset.Ico 1 r) fun j => HPow.hPow (v j) (HAdd.hAdd r j))) n)))"
+    },
+    {
+      "name": "Erdos939.Palomar.rad_pow_r_lt_sum_pow_pred_of_mem_erdos939Sums",
+      "kind": "theorem",
+      "declaration": "theorem Erdos939.Palomar.rad_pow_r_lt_sum_pow_pred_of_mem_erdos939Sums {r : Nat} (hr : LE.le 4 r) {S : Finset Nat}\n  (hS : Membership.mem (Erdos939.Erdos939Sums r) S) :\n  And\n    (LE.le (HPow.hPow (Erdos939.rad (HMul.hMul (Finset.prod S fun s => s) (Finset.sum S fun s => s))) r)\n      (HMul.hMul (Finset.prod S fun s => s) (Finset.sum S fun s => s)))\n    (And\n      (LT.lt (HMul.hMul (Finset.prod S fun s => s) (Finset.sum S fun s => s))\n        (HPow.hPow (Finset.sum S fun s => s) (HSub.hSub r 1)))\n      (LT.lt (HPow.hPow (Erdos939.rad (HMul.hMul (Finset.prod S fun s => s) (Finset.sum S fun s => s))) r)\n        (HPow.hPow (Finset.sum S fun s => s) (HSub.hSub r 1))))"
+    },
+    {
+      "name": "Erdos939.Palomar.abc_quality_real_bound_of_mem_erdos939Sums",
+      "kind": "theorem",
+      "declaration": "theorem Erdos939.Palomar.abc_quality_real_bound_of_mem_erdos939Sums {r : Nat} (hr : LE.le 4 r) {S : Finset Nat}\n  (hS : Membership.mem (Erdos939.Erdos939Sums r) S) :\n  LT.lt\n    (HMul.hMul (HDiv.hDiv \u2191r \u2191(HSub.hSub r 1))\n      (Real.log \u2191(Erdos939.rad (HMul.hMul (Finset.prod S fun s => s) (Finset.sum S fun s => s)))))\n    (Real.log \u2191(Finset.sum S fun s => s))"
+    },
+    {
+      "name": "Erdos939.Palomar.rad_pow_four_le_and_lt_cube_of_mem_erdos939Sums_four",
+      "kind": "theorem",
+      "declaration": "theorem Erdos939.Palomar.rad_pow_four_le_and_lt_cube_of_mem_erdos939Sums_four {a b : Nat}\n  (hmem : Membership.mem (Erdos939.Erdos939Sums 4) (Insert.insert a (Singleton.singleton b))) :\n  And\n    (Dvd.dvd (HPow.hPow (Erdos939.rad (HMul.hMul (HMul.hMul a b) (HAdd.hAdd a b))) 4)\n      (HMul.hMul (HMul.hMul a b) (HAdd.hAdd a b)))\n    (And\n      (LE.le (HPow.hPow (Erdos939.rad (HMul.hMul (HMul.hMul a b) (HAdd.hAdd a b))) 4)\n        (HMul.hMul (HMul.hMul a b) (HAdd.hAdd a b)))\n      (And (LT.lt (HMul.hMul (HMul.hMul a b) (HAdd.hAdd a b)) (HPow.hPow (HAdd.hAdd a b) 3))\n        (And\n          (LT.lt (HMul.hMul 4 (HPow.hPow (Erdos939.rad (HMul.hMul (HMul.hMul a b) (HAdd.hAdd a b))) 4))\n            (HPow.hPow (HAdd.hAdd a b) 3))\n          (LT.lt (HPow.hPow (Erdos939.rad (HMul.hMul (HMul.hMul a b) (HAdd.hAdd a b))) 4)\n            (HPow.hPow (HAdd.hAdd a b) 3)))))"
+    },
+    {
+      "name": "Erdos939.Palomar.walsh_twist_pair_mem_erdos939GeneralSums_three_two",
+      "kind": "theorem",
+      "declaration": "theorem Erdos939.Palomar.walsh_twist_pair_mem_erdos939GeneralSums_three_two {d\u2081 x\u2081 d\u2082 x\u2082 d\u2083 x\u2083 : Nat} (hd\u2081 : LT.lt 0 d\u2081)\n  (hx\u2081 : LT.lt 0 x\u2081) (hd\u2082 : LT.lt 0 d\u2082) (hx\u2082 : LT.lt 0 x\u2082) (hd\u2083 : LT.lt 0 d\u2083) (hr\u2081 : Dvd.dvd (Erdos939.rad d\u2081) x\u2081)\n  (hr\u2082 : Dvd.dvd (Erdos939.rad d\u2082) x\u2082) (hr\u2083 : Dvd.dvd (Erdos939.rad d\u2083) x\u2083)\n  (hcop : Nat.Coprime (HMul.hMul (HPow.hPow d\u2081 2) (HPow.hPow x\u2081 3)) (HMul.hMul (HPow.hPow d\u2082 2) (HPow.hPow x\u2082 3)))\n  (hsum :\n    Eq (HAdd.hAdd (HMul.hMul (HPow.hPow d\u2081 2) (HPow.hPow x\u2081 3)) (HMul.hMul (HPow.hPow d\u2082 2) (HPow.hPow x\u2082 3)))\n      (HMul.hMul (HPow.hPow d\u2083 2) (HPow.hPow x\u2083 3))) :\n  Membership.mem (Erdos939.Erdos939GeneralSums 3 2)\n    (Insert.insert (HMul.hMul (HPow.hPow d\u2081 2) (HPow.hPow x\u2081 3))\n      (Singleton.singleton (HMul.hMul (HPow.hPow d\u2082 2) (HPow.hPow x\u2082 3))))"
+    },
+    {
+      "name": "Erdos939.Palomar.walsh_parametric_cube_scaling_coprime_iff",
+      "kind": "theorem",
+      "declaration": "theorem Erdos939.Palomar.walsh_parametric_cube_scaling_coprime_iff {a b d : Nat} (hd : LT.lt 0 d) (hcop : Nat.Coprime a b) :\n  Iff (Nat.Coprime (HMul.hMul (HPow.hPow d 3) a) (HMul.hMul (HPow.hPow d 3) b)) (Eq d 1)"
+    },
+    {
+      "name": "Erdos939.Palomar.erdos_939_iff_four_nonempty",
+      "kind": "theorem",
+      "declaration": "theorem Erdos939.Palomar.erdos_939_iff_four_nonempty :\n  Iff (\u2200 (r : Nat), GE.ge r 4 \u2192 Set.Nonempty (Erdos939.Erdos939Sums r)) (Set.Nonempty (Erdos939.Erdos939Sums 4))"
+    },
+    {
+      "name": "Erdos939.Palomar.erdos_939_iff_exists_coprime_four_full_pair",
+      "kind": "theorem",
+      "declaration": "theorem Erdos939.Palomar.erdos_939_iff_exists_coprime_four_full_pair :\n  Iff (\u2200 (r : Nat), GE.ge r 4 \u2192 Set.Nonempty (Erdos939.Erdos939Sums r))\n    (Exists fun a =>\n      Exists fun b =>\n        And (LT.lt 0 a)\n          (And (LT.lt 0 b)\n            (And (Nat.Coprime a b) (And (Nat.Full 4 a) (And (Nat.Full 4 b) (Nat.Full 4 (HAdd.hAdd a b)))))))"
+    },
+    {
+      "name": "Erdos939.Palomar.erdos939Sums_four_finite_of_abc_seven_sixths_bound",
+      "kind": "theorem",
+      "declaration": "theorem Erdos939.Palomar.erdos939Sums_four_finite_of_abc_seven_sixths_bound {K : Nat}\n  (habc :\n    \u2200 (x y : Nat),\n      LT.lt 0 x \u2192\n        LT.lt 0 y \u2192\n          Nat.Coprime x y \u2192\n            LE.le (HPow.hPow (HAdd.hAdd x y) 6)\n              (HMul.hMul K (HPow.hPow (Erdos939.rad (HMul.hMul (HMul.hMul x y) (HAdd.hAdd x y))) 7))) :\n  Set.Finite (Erdos939.Erdos939Sums 4)"
+    },
+    {
+      "name": "Erdos939.Palomar.erdos939Sums_five_finite_of_abc_five_fourths_threshold",
+      "kind": "theorem",
+      "declaration": "theorem Erdos939.Palomar.erdos939Sums_five_finite_of_abc_five_fourths_threshold {B : Nat}\n  (habc :\n    \u2200 (S : Finset Nat),\n      Membership.mem (Erdos939.Erdos939Sums 5) S \u2192\n        LT.lt B (Finset.sum S fun s => s) \u2192\n          LE.le (HPow.hPow (Finset.sum S fun s => s) 4)\n            (HPow.hPow (Erdos939.rad (HMul.hMul (Finset.prod S fun s => s) (Finset.sum S fun s => s))) 5)) :\n  Set.Finite (Erdos939.Erdos939Sums 5)"
+    },
+    {
+      "name": "Erdos939.Palomar.not_erdos_939_of_four_full_radical_obstruction",
+      "kind": "theorem",
+      "declaration": "theorem Erdos939.Palomar.not_erdos_939_of_four_full_radical_obstruction\n  (habc :\n    \u2200 (S : Finset Nat),\n      Membership.mem (Erdos939.Erdos939Sums 4) S \u2192\n        LE.le (HPow.hPow (Finset.sum S fun s => s) 3)\n          (HPow.hPow (Erdos939.rad (HMul.hMul (Finset.prod S fun s => s) (Finset.sum S fun s => s))) 4)) :\n  And (Eq (Erdos939.Erdos939Sums 4) EmptyCollection.emptyCollection)\n    (Not (\u2200 (r : Nat), GE.ge r 4 \u2192 Set.Nonempty (Erdos939.Erdos939Sums r)))"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos939.erdos_939.variants.infinite_of_six_le",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.939",
+      "solution_declaration": "Erdos939.Palomar.erdos_939_variants_infinite_of_six_le",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.erdos_939.variants.seven",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.939",
+      "solution_declaration": "Erdos939.Palomar.erdos_939_variants_seven",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.erdos_939.variants.triples",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.939",
+      "solution_declaration": "Erdos939.Palomar.erdos_939_variants_triples",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.erdos_939.variants.triples",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.939",
+      "solution_declaration": "Erdos939.Palomar.erdos_939_variants_triples_infinite",
+      "match_mode": "iff_true_to_prop"
+    },
+    {
+      "target_declaration": "Erdos939.erdos_939.variants.eight",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.939",
+      "solution_declaration": "Erdos939.Palomar.erdos_939_variants_eight",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.erdos_939.variants.finite",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.939",
+      "solution_declaration": "Erdos939.Palomar.erdos_939_variants_finite",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.erdos_939.variants.examples",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.939",
+      "solution_declaration": "Erdos939.Palomar.erdos_939_variants_examples",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.erdos_939.variants.euler",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.939",
+      "solution_declaration": "Erdos939.Palomar.erdos_939_variants_euler",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_landerParkinFiveSet_mem_erdos939GeneralSums_five_four",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.landerParkinFiveSet_mem_erdos939GeneralSums_five_four",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_erdos_939_variants_triples_infinite",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.erdos_939_variants_triples",
+      "match_mode": "prop_to_iff_true"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_erdos_939_variants_triples_infinite",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.erdos_939_variants_triples_infinite",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_erdos939Sums_five_finite_of_abc_five_fourths_threshold",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.erdos939Sums_five_finite_of_abc_five_fourths_threshold",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_erdos_939_variants_examples",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.erdos_939_variants_examples",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_abc_quality_real_bound_of_mem_erdos939Sums",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.abc_quality_real_bound_of_mem_erdos939Sums",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_cohn_noncube_generalSums_three_two_infinite",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.cohn_noncube_generalSums_three_two_infinite",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_r_full_iff_exists_squarefree_cores",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.r_full_iff_exists_squarefree_cores",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_walsh_parametric_cube_scaling_coprime_iff",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.walsh_parametric_cube_scaling_coprime_iff",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_erdos_939_variants_euler",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.erdos_939_variants_euler",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_not_erdos_939_of_four_full_radical_obstruction",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.not_erdos_939_of_four_full_radical_obstruction",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_rad_pow_four_le_and_lt_cube_of_mem_erdos939Sums_four",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.rad_pow_four_le_and_lt_cube_of_mem_erdos939Sums_four",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_erdos_939_variants_finite",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.erdos_939_variants_finite",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_walsh_twist_pair_mem_erdos939GeneralSums_three_two",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.walsh_twist_pair_mem_erdos939GeneralSums_three_two",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_erdos_939_variants_infinite_of_six_le",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.erdos_939_variants_infinite_of_six_le",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_erdos_939_generalSums_three_two_infinite",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.erdos_939_generalSums_three_two_infinite",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_erdos_939_iff_exists_coprime_four_full_pair",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.erdos_939_iff_exists_coprime_four_full_pair",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_erdos939Sums_four_finite_of_abc_seven_sixths_bound",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.erdos939Sums_four_finite_of_abc_seven_sixths_bound",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_erdos_939_variants_eight",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.erdos_939_variants_eight",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_cohn_noncube_triples_infinite",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.cohn_noncube_triples_infinite",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_cambieFiveSet_mem_erdos939Sums_five",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.cambieFiveSet_mem_erdos939Sums_five",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_rad_pow_r_lt_sum_pow_pred_of_mem_erdos939Sums",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.rad_pow_r_lt_sum_pow_pred_of_mem_erdos939Sums",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_erdos_939_iff_four_nonempty",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.erdos_939_iff_four_nonempty",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_erdos_939_variants_triples",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.erdos_939_variants_triples",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_erdos_939_variants_triples",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.erdos_939_variants_triples_infinite",
+      "match_mode": "iff_true_to_prop"
+    },
+    {
+      "target_declaration": "Erdos939.Challenge.statement_erdos_939_variants_seven",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos939.Palomar.erdos_939_variants_seven",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.erdos_939.variants.infinite_of_six_le",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.939",
+      "solution_declaration": "Erdos939.Challenge.statement_erdos_939_variants_infinite_of_six_le",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.erdos_939.variants.seven",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.939",
+      "solution_declaration": "Erdos939.Challenge.statement_erdos_939_variants_seven",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.erdos_939.variants.triples",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.939",
+      "solution_declaration": "Erdos939.Challenge.statement_erdos_939_variants_triples_infinite",
+      "match_mode": "iff_true_to_prop"
+    },
+    {
+      "target_declaration": "Erdos939.erdos_939.variants.triples",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.939",
+      "solution_declaration": "Erdos939.Challenge.statement_erdos_939_variants_triples",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.erdos_939.variants.eight",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.939",
+      "solution_declaration": "Erdos939.Challenge.statement_erdos_939_variants_eight",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.erdos_939.variants.finite",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.939",
+      "solution_declaration": "Erdos939.Challenge.statement_erdos_939_variants_finite",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.erdos_939.variants.examples",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.939",
+      "solution_declaration": "Erdos939.Challenge.statement_erdos_939_variants_examples",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.erdos_939.variants.euler",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.939",
+      "solution_declaration": "Erdos939.Challenge.statement_erdos_939_variants_euler",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos939.erdos_939",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.939",
+      "solution_declaration": "Erdos939.Challenge.statement_erdos_939",
+      "match_mode": "resolves_open_answer_true_prop"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "e318903862396f96de3df57264e0158682b952fd3fb53ac23d876413e7b30f71"
+  },
+  "input_sha256": {
+    "Challenge.lean": "11354da1e75931e0a90b0bfbf255fffdec33b157d69bf41e593902a7928e52d8",
+    "Solution.lean": "241be6b50feed37ece24c7259466274c78fd90df75cad99054378d9e4569790b",
+    "AxiomAudit.lean": "4f6896d56ead17e712890ad85e07fba58a19fb5fdbdf9f5ff912360ee041ca53",
+    "Statement.lean": "db80cc6c494d0687e2f24bd86e70c575b289f1578321adfb05b3900d3aff37c4",
+    "comparator.json": "dee10132e653de0047f9dc94a2baaae2462c2f613d3c5eb57bff77fd3a44223f",
+    "formalization.yaml": "405c4a5943d79181c34a2b7fe9dc5b34b36d4e175a787285cf53eada04d4100d",
+    "lakefile.toml": "eea7847a6afcd2b5c636fd72d953b65dec6203a4f39a1155ef6451a70efd7aff",
+    "lake-manifest.json": "47087f429944789db2cd21ee071f004e52fbbc37fbf45814e6ba399e357771fc",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "694f3c136549331c558647cb21a7e3485ffc4ab5e112c14f4720c1441494cda5",
+    "Proofs/AbcQualityAndCohnRecurrence939.lean": "0c6c1d79941860a106d5cc8176ebcd418f5912dd18fe0ad00eda929723af5b02",
+    "Proofs/Blueprint939.lean": "bddcf885e0767bf25c626b2c4c526f6b3c9644fb877c99b792dd9b1523dc68ac",
+    "Proofs/PowerfulSumsAndNitaj939.lean": "fb2148d99381a55224d3962ffccda6c09d25f44b6af39a835590fc6365ad6d12"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 33.963,
+    "env_compare_and_core_audit_seconds": 85.93,
+    "total_elapsed_seconds": 235.435,
+    "user_cpu_seconds": 105.565,
+    "system_cpu_seconds": 55.78,
+    "peak_rss_mib": 13135.7
+  },
+  "status": "PASS"
+}
