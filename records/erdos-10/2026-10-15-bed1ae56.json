@@ -1,0 +1,257 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-15-bed1ae56",
+  "verification_date": "2026-10-15",
+  "state_sha256": "7d1a6fc94002cac11543b42bdd97b19ed1c14cb853657b428f03ad808d96adb7",
+  "package": "erdos-10",
+  "project_name": "Erd\u0151s 10: exceptions to prime plus powers of two",
+  "package_commit": "bed1ae569eaac7109327f644fa149b902b562873",
+  "commit": "bed1ae569eaac7109327f644fa149b902b562873",
+  "repository": "linrock/math-proofs",
+  "run_id": "38697794095",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 1353,
+    "lines": 52,
+    "sha256": "8283c185c96dc42983995f95986787a635959f6ee3200167d7c0f707fcd0371e",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos10.variants.two_mem_zero",
+    "Erdos10.variants.one_not_mem",
+    "Erdos10.variants.two_pows",
+    "Erdos10.variants.grechuk_example",
+    "Erdos10.variants.grechuk"
+  ],
+  "declaration_lines": {
+    "Erdos10.variants.two_mem_zero": {
+      "solution_line": 26,
+      "challenge_line": 34
+    },
+    "Erdos10.variants.one_not_mem": {
+      "solution_line": 29,
+      "challenge_line": 37
+    },
+    "Erdos10.variants.two_pows": {
+      "solution_line": 32,
+      "challenge_line": 40
+    },
+    "Erdos10.variants.grechuk_example": {
+      "solution_line": 36,
+      "challenge_line": 44
+    },
+    "Erdos10.variants.grechuk": {
+      "solution_line": 40,
+      "challenge_line": 48
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos10.variants.grechuk",
+    "Erdos10.variants.grechuk_example",
+    "Erdos10.variants.one_not_mem",
+    "Erdos10.variants.two_mem_zero",
+    "Erdos10.variants.two_pows"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 5,
+  "expected_axiom_audit_count": 5,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos10.variants.two_mem_zero",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos10.variants.one_not_mem",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos10.variants.two_pows",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos10.variants.grechuk_example",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos10.variants.grechuk",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Erdos10.sumPrimeAndTwoPows",
+      "kind": "def",
+      "declaration": "def Erdos10.sumPrimeAndTwoPows (k : Nat) : Set Nat :=\n  fun k =>\n  Set.ofPred fun x =>\n    Exists fun p =>\n      Exists fun pows =>\n        Exists fun x_1 =>\n          Exists fun x_2 => Eq (HAdd.hAdd p (Multiset.sum (Multiset.map (fun x => HPow.hPow 2 x) pows))) x"
+    },
+    {
+      "name": "Erdos10.variants.two_mem_zero",
+      "kind": "theorem",
+      "declaration": "theorem Erdos10.variants.two_mem_zero : Membership.mem (Erdos10.sumPrimeAndTwoPows 0) 2"
+    },
+    {
+      "name": "Erdos10.variants.one_not_mem",
+      "kind": "theorem",
+      "declaration": "theorem Erdos10.variants.one_not_mem (k : Nat) : Not (Membership.mem (Erdos10.sumPrimeAndTwoPows k) 1)"
+    },
+    {
+      "name": "Erdos10.variants.two_pows",
+      "kind": "theorem",
+      "declaration": "theorem Erdos10.variants.two_pows : Set.Infinite (SDiff.sdiff (Set.ofPred fun n => Even n) (Erdos10.sumPrimeAndTwoPows 2))"
+    },
+    {
+      "name": "Erdos10.variants.grechuk_example",
+      "kind": "theorem",
+      "declaration": "theorem Erdos10.variants.grechuk_example : Not (Membership.mem (Erdos10.sumPrimeAndTwoPows 3) 1117175146)"
+    },
+    {
+      "name": "Erdos10.variants.grechuk",
+      "kind": "theorem",
+      "declaration": "theorem Erdos10.variants.grechuk : Set.Infinite (SDiff.sdiff (Set.ofPred fun n => Even n) (Erdos10.sumPrimeAndTwoPows 3))"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos10.erdos_10.variants.grechuk",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.10",
+      "solution_declaration": "Erdos10.variants.grechuk",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos10.one_not_mem_sumPrimeAndTwoPows",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.10",
+      "solution_declaration": "Erdos10.variants.one_not_mem",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos10.two_mem_sumPrimeAndTwoPows_zero",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.10",
+      "solution_declaration": "Erdos10.variants.two_mem_zero",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos10.erdos_10.variants.grechuk_example",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.10",
+      "solution_declaration": "Erdos10.variants.grechuk_example",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos10.erdos_10.variants.two_pows",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.10",
+      "solution_declaration": "Erdos10.variants.two_pows",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos10.variants.GrechukExampleStatement",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos10.variants.grechuk_example",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos10.variants.TwoPowsStatement",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos10.variants.two_pows",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos10.variants.ThreePowsStatement",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos10.variants.grechuk",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos10.erdos_10.variants.grechuk",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.10",
+      "solution_declaration": "Erdos10.variants.ThreePowsStatement",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos10.erdos_10.variants.grechuk_example",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.10",
+      "solution_declaration": "Erdos10.variants.GrechukExampleStatement",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos10.erdos_10.variants.two_pows",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.10",
+      "solution_declaration": "Erdos10.variants.TwoPowsStatement",
+      "match_mode": "exact"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "e318903862396f96de3df57264e0158682b952fd3fb53ac23d876413e7b30f71"
+  },
+  "input_sha256": {
+    "Challenge.lean": "8283c185c96dc42983995f95986787a635959f6ee3200167d7c0f707fcd0371e",
+    "Solution.lean": "9f68067dae3f63bd62fe66b4aaf53bffba891c56c0d21772587c15567f979993",
+    "AxiomAudit.lean": "9bcadb5db61952faeb1654c7e3700e978e453b4267c2a6cb7ffa2d130da56ab1",
+    "Statement.lean": "8074571b58198f0764765b452b1ebde8fd1881b94ca8ddf45af814ff62247d7f",
+    "comparator.json": "3936571790b1054d62f5c049ae3a20a01cc48ba046d6d9a7163ebbc510b29500",
+    "formalization.yaml": "f5708f0854f65f9a881454a8c9f0cb998f3c09afc5c2ca095f79474690e3db4c",
+    "lakefile.toml": "208c9cbf9dfc407df3d18d430d7b3d4e8819edaf66cd08b573850c2a47d444d6",
+    "lake-manifest.json": "ea3cbf58b0ef545f56c38aa7ccc7a64c12a1de321fa3f949c44f79c4c550b12c",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "694f3c136549331c558647cb21a7e3485ffc4ab5e112c14f4720c1441494cda5",
+    "Proofs/PrimeAndTwoPowersCovering10.lean": "dd435180186eed73af4a4cdfd8735d300a9fee77786a313edeacfd466918d1e9"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 68.964,
+    "env_compare_and_core_audit_seconds": 91.819,
+    "total_elapsed_seconds": 285.891,
+    "user_cpu_seconds": 183.061,
+    "system_cpu_seconds": 50.561,
+    "peak_rss_mib": 13306.84
+  },
+  "status": "PASS"
+}
