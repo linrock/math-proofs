@@ -1,0 +1,167 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 726: upper-half prime-residue reciprocal sums and Mertens reductions",
+    "description": "A Lean 4 formalization of reductions for the 1975 Erdős–Graham–Ruzsa–Straus question of whether the reciprocal sum of primes p ≤ n whose residue n mod p lies in (p/2, p) is asymptotic to (log log n)/2. Adapting the second Mertens theorem from PrimeNumberTheoremAnd, it proves ∑_{p ≤ n} 1/p ~ log log n unconditionally. Kummer-carry equivalences, quotient-window and modular-reflection decompositions, and Abel summation with explicit PNT-remainder and discretization bounds reduce the open conjecture to vanishing of a signed small-prime tail relative to log log n.",
+    "url": "https://github.com/linrock/math-proofs/tree/main/erdos-726",
+    "license": "Apache-2.0",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ]
+  },
+  "classification": {
+    "arxiv": [
+      "math.NT"
+    ],
+    "msc2020": [
+      "11N05",
+      "11A41",
+      "11B65"
+    ]
+  },
+  "toolchain": {
+    "lean": "leanprover/lean4:v4.35.0-rc2",
+    "lake_manifest_sha256": "06ee9eb9a8a3ac71ea54ebb2bd2a3e533195562fe7038ae29efe97d5f24f965d",
+    "mathlib_rev": "065356127b1dc0016f66b7283ce0ce2c4055aa55"
+  },
+  "sources": [
+    {
+      "type": "paper",
+      "title": "On the prime factors of C(2n, n)",
+      "id": "https://www.erdosproblems.com/726",
+      "publication": "On the prime factors of C(2n, n), Math. Comp. 29 (1975), 83-92",
+      "authors": [
+        "Paul Erdős",
+        "Ronald L. Graham",
+        "Imre Z. Ruzsa",
+        "Ernst G. Straus"
+      ],
+      "year": 1975,
+      "relationship": "formalizes",
+      "license": "CC-BY-4.0",
+      "note": "Primary problem reference (Math. Comp. 29 (1975), 83-92) for the upper-half prime-residue reciprocal sum sum_{p <= n, p/2 < n mod p} 1/p ~ (log log n)/2 and its connection to bottom-digit Kummer carries of central binomial coefficients."
+    },
+    {
+      "type": "repository",
+      "title": "Formal Conjectures: Erdos Problem 726",
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/726.lean",
+      "authors": [
+        "The Formal Conjectures Authors"
+      ],
+      "year": 2026,
+      "relationship": "adapts",
+      "license": "Apache-2.0",
+      "note": "The package adapts the Formal Conjectures statement and declaration names, then proves Erdos726.erdos_726.variants.mertens_estimate unconditionally and establishes unconditional Mertens discrepancy reductions and conditional asymptotic equivalence and reduction theorems directly targeting Erdos726.erdos_726."
+    },
+    {
+      "type": "repository",
+      "title": "PrimeNumberTheoremAnd: Integrated Explicit Analytic Number Theory",
+      "id": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/tree/9ecc1b67cdbc36f4fab3ebeb5d6d25512392a078",
+      "publication": "PrimeNumberTheoremAnd/IEANTN/Mertens.lean",
+      "authors": [
+        "Li Xuanji",
+        "Giuseppe Sorge",
+        "Kim Morrison",
+        "Yan Yablonovskiy",
+        "Robby Sneiderman",
+        "Alejandro Radisic",
+        "Terence Tao",
+        "A. J. Irving",
+        "The PrimeNumberTheoremAnd Contributors"
+      ],
+      "year": 2026,
+      "relationship": "adapts",
+      "license": "Apache-2.0",
+      "note": "Adapts the second Mertens theorem section from PrimeNumberTheoremAnd/IEANTN/Mertens.lean at pinned commit 9ecc1b67cdbc36f4fab3ebeb5d6d25512392a078."
+    }
+  ],
+  "status": {
+    "completeness": "complete",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos726.variants.mertens_estimate",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos726.asymptotic_iff_discrepancy_isLittleO",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos726.iff_smallPrimeTail_of_log_add_two_bounds",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos726.of_smallPrimeTail_and_log_add_two_bounds",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos726.of_modular_reflection_and_log_add_two_bounds",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ],
+    "scope": "Proves five unconditional theorems covering the second Mertens theorem and top-down reductions of the open Erdős Problem 726 conjecture to a signed small-prime tail condition. The exact upper-half residue asymptotic remains open."
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "role": "proof-search",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ]
+  },
+  "acknowledgements": "The problem was posed by Paul Erdős, Ronald L. Graham, Imre Z. Ruzsa, and Ernst G. Straus (1975). The Formal Conjectures statement is adapted under Apache-2.0. The second Mertens theorem section of PrimeNumberTheoremAnd is adapted under Apache-2.0 from Li Xuanji, Giuseppe Sorge, and contributors. Mathlib supplies the remaining formal infrastructure.",
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Lean 4.35.0-rc2 compilation, Challenge–Solution environment matching, statement fidelity, non-vacuity, and transitive axioms (restricted to propext, Classical.choice, and Quot.sound) were verified across all five exported theorems in Solution.lean."
+  },
+  "formalization": {
+    "map": [
+      {
+        "source": "FormalConjectures/ErdosProblems/726.lean: erdos_726_variants_mertens_estimate",
+        "lean": "Erdos726.variants.mertens_estimate",
+        "module": "Solution",
+        "status": "proved"
+      },
+      {
+        "source": "FormalConjectures/ErdosProblems/726.lean: erdos_726_asymptotic_iff_discrepancy_isLittleO",
+        "lean": "Erdos726.asymptotic_iff_discrepancy_isLittleO",
+        "module": "Solution",
+        "status": "proved"
+      },
+      {
+        "source": "FormalConjectures/ErdosProblems/726.lean: erdos_726_iff_smallPrimeTail_of_log_add_two_bounds",
+        "lean": "Erdos726.iff_smallPrimeTail_of_log_add_two_bounds",
+        "module": "Solution",
+        "status": "proved"
+      },
+      {
+        "source": "FormalConjectures/ErdosProblems/726.lean: erdos_726_of_smallPrimeTail_and_log_add_two_bounds",
+        "lean": "Erdos726.of_smallPrimeTail_and_log_add_two_bounds",
+        "module": "Solution",
+        "status": "proved"
+      },
+      {
+        "source": "FormalConjectures/ErdosProblems/726.lean: erdos_726_of_modular_reflection_and_log_add_two_bounds",
+        "lean": "Erdos726.of_modular_reflection_and_log_add_two_bounds",
+        "module": "Solution",
+        "status": "proved"
+      }
+    ]
+  }
+}

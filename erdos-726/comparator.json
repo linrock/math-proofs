@@ -1,0 +1,17 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos726.variants.mertens_estimate",
+    "Erdos726.asymptotic_iff_discrepancy_isLittleO",
+    "Erdos726.iff_smallPrimeTail_of_log_add_two_bounds",
+    "Erdos726.of_smallPrimeTail_and_log_add_two_bounds",
+    "Erdos726.of_modular_reflection_and_log_add_two_bounds"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}
