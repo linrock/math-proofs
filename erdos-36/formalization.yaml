@@ -1,0 +1,208 @@
+{
+  "version": "v0.4",
+  "project": {
+  "name": "Erdős 36: classical minimum-overlap bounds",
+  "description": "A Lean 4 formalization of foundational results for Erdős's minimum overlap problem, posed in 1955. For balanced partitions of {1, ..., 2N}, the normalized minimum maximum difference overlap M(N)/N is subadditive and superadditive up to an additive constant, and a Fekete-type argument proves convergence to an asymptotic constant c. The formalization also proves classical lower and upper bounds due to Erdős (1/4 ≤ c ≤ 1/2), Scherk (1 - 1/√2 < c), Świerczkowski ((4 - √6)/5 < c), and Moser (√2/4 ≤ c), together with a combined Moser–Scherk quartic inequality and exact finite values through M(15) = 6. Determining the constant c remains open.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "Apache-2.0"
+  },
+  "classification": {
+    "arxiv": [
+      "math.CO",
+      "math.NT"
+    ],
+    "msc2020": [
+      "11B13",
+      "05A18"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Some remarks on number theory (in Hebrew)",
+      "authors": [
+        "Paul Erdős"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "location": "Riveon Lematematika 9 (1955), 45–48",
+      "author_endorsement": "not-contacted",
+      "note": "Source for the minimum-overlap problem and its classical 1/4 lower and 1/2 upper bounds."
+    },
+    {
+      "title": "On the minimal overlap problem of Erdős",
+      "authors": [
+        "Leo Moser"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "location": "Acta Arithmetica 5 (1959), 117–119",
+      "author_endorsement": "not-contacted",
+      "note": "Records Scherk's 1 - 1/√2 bound and establishes Moser's √2/4 second-moment lower bound."
+    },
+    {
+      "title": "On the intersection of a linear set with the translation of its complement",
+      "authors": [
+        "Stanisław Świerczkowski"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "location": "Colloquium Mathematicum 5 (1958), 185–197",
+      "author_endorsement": "not-contacted",
+      "note": "Establishes the (4 - √6)/5 lower bound."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/36.lean",
+      "relationship": "builds-on",
+      "note": "Uses the exact Overlap, MaxOverlap, M, and MinOverlapQuotient definitions and proves erdos_36.variants.exists, lower.erdos_1955, lower.scherk_1955, lower.swierczkowski_1958, and upper.erdos_1955."
+    }
+  ],
+  "status": {
+    "scope": "Proves existence of the asymptotic minimum-overlap constant c = lim M(N)/N, the classical lower and upper bounds of Erdős, Scherk, Świerczkowski, and Moser, the combined Moser–Scherk inequality, and exact finite values through N = 15. Determining the exact value of c remains open.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos36.liminf_eq_limsup_minOverlapQuotient",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos36.tendsto_minOverlapQuotient_liminf",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos36.minimum_overlap_variants_lower_erdos_1955",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos36.minimum_overlap_variants_lower_scherk_1955",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos36.minimum_overlap_variants_lower_swierczkowski_1958",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos36.moser_sqrt_two_div_four_le_liminf",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos36.minimum_overlap_variants_upper_erdos_1955",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos36.moser_scherk_combined_le_M",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos36.exact_values_M",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "All 2 proof modules in Proofs/ together with Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry in the proof modules, and all 9 exported theorems are verified by both Lean's default kernel and NanoDa via Comparator."
+  },
+  "fidelity": {
+    "divergences": "None. Challenge.lean, Statement.lean, and Solution.lean use the exact Overlap, MaxOverlap, M, and MinOverlapQuotient definitions from FormalConjectures/ErdosProblems/36.lean."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Statement fidelity, non-vacuity, and transitive axioms (restricted to propext, Classical.choice, and Quot.sound) were verified across all 9 exported theorems in Solution.lean, and both NanoDa and Lean's default kernel accepted the solution via Comparator."
+  },
+  "alignment": {
+    "namespace": "Erdos36",
+    "statements": [
+      {
+        "source": "Fekete limit equality liminf = limsup for M(N)/N",
+        "lean": "Erdos36.liminf_eq_limsup_minOverlapQuotient",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves atTop.liminf MinOverlapQuotient = atTop.limsup MinOverlapQuotient."
+      },
+      {
+        "source": "Formal Conjectures Erdős 36 variants.exists",
+        "lean": "Erdos36.tendsto_minOverlapQuotient_liminf",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves MinOverlapQuotient converges to its liminf."
+      },
+      {
+        "source": "Formal Conjectures minimum_overlap.variants.lower.erdos_1955",
+        "lean": "Erdos36.minimum_overlap_variants_lower_erdos_1955",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves 1/4 ≤ liminf M(N)/N."
+      },
+      {
+        "source": "Formal Conjectures minimum_overlap.variants.lower.scherk_1955",
+        "lean": "Erdos36.minimum_overlap_variants_lower_scherk_1955",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves 1 - 1/√2 < liminf M(N)/N."
+      },
+      {
+        "source": "Formal Conjectures minimum_overlap.variants.lower.swierczkowski_1958",
+        "lean": "Erdos36.minimum_overlap_variants_lower_swierczkowski_1958",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves (4 - √6)/5 < liminf M(N)/N."
+      },
+      {
+        "source": "Moser (1959) √2/4 second-moment lower bound",
+        "lean": "Erdos36.moser_sqrt_two_div_four_le_liminf",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves √2/4 ≤ liminf M(N)/N."
+      },
+      {
+        "source": "Formal Conjectures minimum_overlap.variants.upper.erdos_1955",
+        "lean": "Erdos36.minimum_overlap_variants_upper_erdos_1955",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves limsup M(N)/N ≤ 1/2."
+      },
+      {
+        "source": "Combined Moser–Scherk cap-and-moment lower bound",
+        "lean": "Erdos36.moser_scherk_combined_le_M",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves the combined quartic cap-and-moment inequality on M(n)."
+      },
+      {
+        "source": "Exact finite evaluations of M(n) up to n = 15",
+        "lean": "Erdos36.exact_values_M",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves M(1)=1, M(2)=1, M(3)=2, M(6)=3, M(7)=3, M(8)=4, M(9)=4, M(12)=5, M(14)=6, M(15)=6."
+      }
+    ]
+  },
+  "acknowledgements": "The problem was posed by Erdős (1955) and studied by Scherk (1955), Świerczkowski (1958), and Moser (1959)."
+}

@@ -1,0 +1,21 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos36.liminf_eq_limsup_minOverlapQuotient",
+    "Erdos36.tendsto_minOverlapQuotient_liminf",
+    "Erdos36.minimum_overlap_variants_lower_erdos_1955",
+    "Erdos36.minimum_overlap_variants_lower_scherk_1955",
+    "Erdos36.minimum_overlap_variants_lower_swierczkowski_1958",
+    "Erdos36.moser_sqrt_two_div_four_le_liminf",
+    "Erdos36.minimum_overlap_variants_upper_erdos_1955",
+    "Erdos36.moser_scherk_combined_le_M",
+    "Erdos36.exact_values_M"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}
