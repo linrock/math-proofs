@@ -15,6 +15,7 @@ VERIFICATION.json
 SHA256SUMS
 SUBMISSION.md
 source-manifest.json
+staging
 *.log
 *.olean
 *.olean.private
