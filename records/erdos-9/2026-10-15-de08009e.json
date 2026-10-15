@@ -1,0 +1,126 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-15-de08009e",
+  "verification_date": "2026-10-15",
+  "state_sha256": "a004087bb7654115dc7353547a42ff2f7277a8e6c46c63f7d26614c280a3df10",
+  "package": "erdos-9",
+  "project_name": "Erd\u0151s 9: odd integers outside prime plus two powers",
+  "package_commit": "de08009e59829727653bfa20b8d8f7ed1b1baf79",
+  "commit": "de08009e59829727653bfa20b8d8f7ed1b1baf79",
+  "repository": "linrock/math-proofs",
+  "run_id": "38686947387",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 859,
+    "lines": 27,
+    "sha256": "b8468ecf604a47e340b715be63c88a127be4099d79c579c8b336b39983ebc4d0",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos9.variants.infinite"
+  ],
+  "declaration_lines": {
+    "Erdos9.variants.infinite": {
+      "solution_line": null,
+      "challenge_line": null
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos9.variants.infinite"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 1,
+  "expected_axiom_audit_count": 1,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos9.variants.infinite",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Erdos9.Erdos9A",
+      "kind": "def",
+      "declaration": "def Erdos9.Erdos9A : Set Nat :=\n  Set.ofPred fun n =>\n  And (Odd n)\n    (Not\n      (Exists fun p =>\n        Exists fun k =>\n          Exists fun l => And (Nat.Prime p) (Eq n (HAdd.hAdd (HAdd.hAdd p (HPow.hPow 2 k)) (HPow.hPow 2 l)))))"
+    },
+    {
+      "name": "Erdos9.variants.infinite",
+      "kind": "theorem",
+      "declaration": "theorem Erdos9.variants.infinite : Set.Infinite Erdos9.Erdos9A"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos9.erdos_9.variants.infinite",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.9",
+      "solution_declaration": "Erdos9.variants.infinite",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos9.InfiniteStatement",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos9.variants.infinite",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos9.erdos_9.variants.infinite",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.9",
+      "solution_declaration": "Erdos9.InfiniteStatement",
+      "match_mode": "exact"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "e318903862396f96de3df57264e0158682b952fd3fb53ac23d876413e7b30f71"
+  },
+  "input_sha256": {
+    "Challenge.lean": "b8468ecf604a47e340b715be63c88a127be4099d79c579c8b336b39983ebc4d0",
+    "Solution.lean": "ca05cb3f4dbb0a116ec189416706e432deeab6f05e5690e680c3ac6b11fde312",
+    "AxiomAudit.lean": "0af8f37c774c78b9b25d1cb4033ea20cbca429a2a64d4726b02e3eaedf04e8b3",
+    "Statement.lean": "07abb52aab98ec944ba93b30bf919c862602d80fea3e1787633126e0d3143ff8",
+    "comparator.json": "56ffdc9e617d6976cdaf39141b944664e09bbdb8ca658f6e127e6966c983d72e",
+    "formalization.yaml": "f990a02e971cd0bf4f4f6cb5aa4b262c5fce815af18ccc077e45cfd6bb4611fa",
+    "lakefile.toml": "ace068a9d5bb11158396902c221f029ef1a72aaeb664e768aabd58e02dc7131d",
+    "lake-manifest.json": "f2b2e2f038d65d00f207ade5502fc5459a3e8a6750d33d4841889681f5d390bb",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "694f3c136549331c558647cb21a7e3485ffc4ab5e112c14f4720c1441494cda5",
+    "Proofs/Erdos9Unified435.lean": "bdcd7fa977510b24d3392d1f3ab3ea64d215216c2badacef3c6805a4cab2e449"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 39.293,
+    "env_compare_and_core_audit_seconds": 131.228,
+    "total_elapsed_seconds": 289.288,
+    "user_cpu_seconds": 113.802,
+    "system_cpu_seconds": 55.764,
+    "peak_rss_mib": 13210.16
+  },
+  "status": "PASS"
+}
