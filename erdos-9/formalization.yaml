@@ -1,0 +1,89 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 9: odd integers outside prime plus two powers",
+    "description": "A Lean 4 formalization of Schinzel's and Crocker's 1971 infinitude theorem for Erdős Problem 9. Crocker's Fermat-factor divisibility and covering-congruence construction yields an explicit strictly increasing sequence of odd integers that cannot be written as a prime plus two powers of two. The package proves the resulting infinite exceptional family as an exact Formal Conjectures declaration, while whether that exceptional set has positive upper density remains open.",
+    "authors": ["Linmiao Xu"],
+    "responsible_maintainers": ["Linmiao Xu"],
+    "license": "Apache-2.0"
+  },
+  "classification": {
+    "arxiv": ["math.NT"],
+    "msc2020": ["11P32", "11B13"]
+  },
+  "sources": [
+    {
+      "title": "Problems and results on combinatorial number theory. III.",
+      "authors": ["Paul Erdős"],
+      "type": "paper",
+      "relationship": "formalizes",
+      "id": "https://doi.org/10.1007/BFB0063064",
+      "location": "Number Theory Day, Lecture Notes in Mathematics 626, Springer (1977), 43–72",
+      "author_endorsement": "not-applicable",
+      "note": "Credits Schinzel with proving infinitude and poses the remaining positive-upper-density question."
+    },
+    {
+      "title": "On the sum of a prime and of two powers of two",
+      "authors": ["Roger Crocker"],
+      "type": "paper",
+      "relationship": "formalizes",
+      "id": "https://doi.org/10.2140/pjm.1971.36.103",
+      "location": "Pacific Journal of Mathematics 36 (1971), 103–107",
+      "author_endorsement": "not-applicable",
+      "note": "Constructs infinitely many odd integers not of the form p + 2^k + 2^l using Fermat-number divisibility and covering congruences."
+    },
+    {
+      "title": "FormalConjectures/ErdosProblems/9.lean",
+      "authors": ["The Formal Conjectures Authors"],
+      "type": "statement",
+      "relationship": "builds-on",
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/9.lean",
+      "location": "commit 2c24ebe7e977923a9e0b78793e21a24b3f4c7d2d",
+      "author_endorsement": "not-applicable",
+      "note": "Supplies the exact Erdos9A definition and the erdos_9.variants.infinite target."
+    }
+  ],
+  "related_formalizations": [],
+  "status": {
+    "scope": "Proves the exact upstream declaration erdos_9.variants.infinite: the exceptional odd set has infinitely many members. The main positive-upper-density question erdos_9 remains open.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": ["propext", "Classical.choice", "Quot.sound"],
+    "main_results": [
+      {
+        "declaration": "Erdos9.variants.infinite",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "All proof modules in Proofs/ together with Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry in the proof modules."
+  },
+  "fidelity": {
+    "divergences": "The package-local definition of Erdos9.Erdos9A intentionally restates the definition in FormalConjectures/ErdosProblems/9.lean; FCCompare verifies equivalence. No mathematical divergence."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Statement fidelity and transitive axioms (restricted to propext, Classical.choice, and Quot.sound) were verified for the exported theorem in Solution.lean."
+  },
+  "alignment": {
+    "namespace": "Erdos9",
+    "statements": [
+      {
+        "source": "Roger Crocker (1971), Pacific Journal of Mathematics 36, 103–107, as stated at FormalConjectures/ErdosProblems/9.lean: Erdos9.erdos_9.variants.infinite; Erdős (1977) credits Schinzel",
+        "lean": "Erdos9.variants.infinite",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves Erdos9A.Infinite."
+      }
+    ]
+  },
+  "acknowledgements": "Mathlib supplies the underlying mathematical library. Formal Conjectures supplies the problem statement. Roger Crocker's Fermat-factor and covering-congruence construction is central to the proof."
+}
