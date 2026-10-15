@@ -1,0 +1,16 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos667.variants.monotoneOn",
+    "Erdos667.variants.endpoint",
+    "Erdos667.variants.ramsey_lower_bound",
+    "Erdos667.variants.c_ge_inv_pred"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

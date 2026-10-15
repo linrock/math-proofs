@@ -1,0 +1,172 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 667: monotonicity and Ramsey bounds for locally dense clique exponents",
+    "description": "A Lean 4 formalization of the solved variants and Ramsey lower bounds for the Erdős, Faudree, Rousseau, and Schelp (1994) clique-growth exponent for graphs whose p-vertex sets each span at least q edges. Erdős and Szekeres’s 1935 binomial Ramsey theorem gives the universal bound 1/(p-1) ≤ c(p,q) for p ≥ 2 and q ≥ 1. Definition monotonicity proves that c(p,q) is nondecreasing in q, and the endpoint q = C(p-1,2)+1 has exponent 1. The Erdős conjecture that this exponent is strictly increasing remains open.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "Apache-2.0"
+  },
+  "classification": {
+    "arxiv": [
+      "math.CO"
+    ],
+    "msc2020": [
+      "05C35",
+      "05D10"
+    ]
+  },
+  "sources": [
+    {
+      "title": "A local density condition for triangles",
+      "authors": [
+        "Paul Erdős",
+        "Ralph J. Faudree",
+        "Cecil C. Rousseau",
+        "Richard H. Schelp"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "id": "https://doi.org/10.1016/0012-365X(94)90159-7",
+      "location": "Discrete Mathematics 127 (1994), 153–161",
+      "author_endorsement": "not-contacted",
+      "note": "Introduces the local density clique function H(n; p, q) and growth exponent c(p, q), noting the endpoint identity c(p, C(p - 1, 2) + 1) = 1 and the q = 1 classical Ramsey correspondence."
+    },
+    {
+      "title": "A combinatorial problem in geometry",
+      "authors": [
+        "Paul Erdős",
+        "George Szekeres"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "id": "https://www.numdam.org/item/CM_1935__2__463_0/",
+      "location": "Compositio Mathematica 2 (1935), 463–470",
+      "author_endorsement": "not-contacted",
+      "note": "Proves the binomial off-diagonal Ramsey theorem, yielding the clique lower bound 1 / (p - 1) <= c(p, 1) for all p >= 2."
+    },
+    {
+      "title": "Formal Conjectures: Erdős Problem 667",
+      "authors": [
+        "hbakkaoui-hash"
+      ],
+      "type": "other",
+      "relationship": "adapts",
+      "id": "https://github.com/google-deepmind/formal-conjectures/pull/4370",
+      "location": "FormalConjectures/ErdosProblems/667.lean on origin/main",
+      "note": "Adapts the LocalDense, H, and c definitions introduced by Formal Conjectures PR #4370."
+    },
+    {
+      "title": "Some unsolved problems",
+      "authors": [
+        "Paul Erdős"
+      ],
+      "type": "paper",
+      "relationship": "context",
+      "id": "https://doi.org/10.1017/CBO9780511662034.004",
+      "location": "In: Combinatorics, Geometry and Probability (Cambridge, 1993), Cambridge University Press (1997), 1–10",
+      "author_endorsement": "not-contacted",
+      "note": "Survey cited by Formal Conjectures for Erdős Problem 667; not used as a separate theorem input here."
+    },
+    {
+      "title": "Erdős Problem 667",
+      "type": "other",
+      "relationship": "background",
+      "id": "https://www.erdosproblems.com/667",
+      "note": "Problem catalog entry and discussion."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/667.lean",
+      "relationship": "builds-on",
+      "note": "Challenge.lean, Statement.lean, and Solution.lean match the definitions LocallyDense, H, and c and the theorem statements erdos_667.variants.monotoneOn and erdos_667.variants.endpoint from Formal Conjectures PR #4370 by hbakkaoui-hash."
+    }
+  ],
+  "status": {
+    "scope": "Proves monotonicity of c(p, q) in q on [1, C(p - 1, 2) + 1] (Erdos667.variants.monotoneOn), the right-endpoint identity c(p, C(p - 1, 2) + 1) = 1 for all p >= 2 (Erdos667.variants.endpoint), and the Erdős–Szekeres Ramsey lower bounds 1 / (p - 1) <= c(p, 1) and 1 / (p - 1) <= c(p, q) for all p >= 2, q >= 1 (Erdos667.variants.ramsey_lower_bound and Erdos667.variants.c_ge_inv_pred). The strict monotonicity conjecture across intermediate q (Erdos667.erdos_667) and the Spencer/AKS Ramsey upper bound c(p, 1) <= 2 / (p + 1) for p >= 3 remain open.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos667.variants.monotoneOn",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos667.variants.endpoint",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos667.variants.ramsey_lower_bound",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos667.variants.c_ge_inv_pred",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "Proofs/LocalDensityEndpointAndRamseyBounds667.lean together with Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry in the proof modules, and all 4 exported theorems are verified by both Lean's default kernel and NanoDa via Comparator."
+  },
+  "fidelity": {
+    "divergences": "None. The definitions of LocallyDense, H, and c and the statements of erdos_667.variants.monotoneOn and erdos_667.variants.endpoint match FormalConjectures/ErdosProblems/667.lean verbatim."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Statement fidelity, non-vacuity, and transitive axioms (restricted to propext, Classical.choice, and Quot.sound) were verified across all 4 exported theorems in Solution.lean."
+  },
+  "alignment": {
+    "namespace": "Erdos667",
+    "statements": [
+      {
+        "source": "FormalConjectures/ErdosProblems/667.lean, erdos_667.variants.monotoneOn (PR #4370 by hbakkaoui-hash)",
+        "lean": "Erdos667.variants.monotoneOn",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves MonotoneOn (c p) (Set.Icc 1 (Nat.choose (p - 1) 2 + 1)) for all p."
+      },
+      {
+        "source": "FormalConjectures/ErdosProblems/667.lean, erdos_667.variants.endpoint (PR #4370 by hbakkaoui-hash)",
+        "lean": "Erdos667.variants.endpoint",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves c p (Nat.choose (p - 1) 2 + 1) = 1 for all p >= 2."
+      },
+      {
+        "source": "Erdős and Szekeres (1935), Compositio Mathematica 2, 463–470; FormalConjectures/ErdosProblems/667.lean, lower-bound component of erdos_667.variants.ramsey_bounds",
+        "lean": "Erdos667.variants.ramsey_lower_bound",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves 1 / ((p : R) - 1) <= c p 1 for all p >= 2."
+      },
+      {
+        "source": "Erdős and Szekeres (1935), Compositio Mathematica 2, 463–470, with the q-monotonicity of H(n;p,q); auxiliary extension of the FormalConjectures Ramsey lower-bound variant",
+        "lean": "Erdos667.variants.c_ge_inv_pred",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves 1 / ((p : R) - 1) <= c p q for all p >= 2 and q >= 1."
+      }
+    ]
+  },
+  "acknowledgements": "The problem was posed by Erdős, Faudree, Rousseau, and Schelp (1994). Mathlib and Formal Conjectures supply attributed formal definitions and infrastructure. The adapted problem definitions are due to hbakkaoui-hash through Formal Conjectures PR #4370."
+}
