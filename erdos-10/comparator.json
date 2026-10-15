@@ -1,0 +1,17 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos10.variants.two_mem_zero",
+    "Erdos10.variants.one_not_mem",
+    "Erdos10.variants.two_pows",
+    "Erdos10.variants.grechuk_example",
+    "Erdos10.variants.grechuk"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "enable_nanoda": true
+}

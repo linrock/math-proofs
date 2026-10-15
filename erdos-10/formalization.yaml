@@ -1,0 +1,181 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 10: exceptions to prime plus powers of two",
+    "description": "A Lean 4 formalization of excluded integers in Erdős's problem on a prime plus powers of two. Building on Crocker's 1971 Fermat-factor covering construction, it proves that 1117175146 is not the sum of a prime and at most three powers of two, the explicit example observed by Bogdan Grechuk. The development also gives alternative proofs of the infinite even-exception statements for two and three powers and records reductions toward the asymptotic conjecture, which remains open.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "Apache-2.0"
+  },
+  "classification": {
+    "arxiv": [
+      "math.NT"
+    ],
+    "msc2020": [
+      "11P32",
+      "11B25"
+    ]
+  },
+  "sources": [
+    {
+      "title": "On integers of the form 2^k + p and some related problems",
+      "authors": [
+        "Paul Erdős"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "id": "https://www.erdosproblems.com/10",
+      "location": "Summa Brasiliensis Mathematicae 2 (1950), 113–123",
+      "author_endorsement": "not-applicable",
+      "note": "Poses the asymptotic problem in a form equivalent to asking whether finitely many powers of two suffice."
+    },
+    {
+      "title": "On the sum of a prime and of two powers of two",
+      "authors": [
+        "R. Crocker"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "id": "https://doi.org/10.2140/pjm.1971.36.103",
+      "location": "Pacific Journal of Mathematics 36 (1971), 103–107",
+      "author_endorsement": "not-applicable",
+      "note": "Constructs the Fermat-factor covering argument underlying the infinite two-power and three-power exceptions."
+    },
+    {
+      "title": "Landscape of 21st Century Mathematics: Selected Advances, 2001-2020",
+      "authors": [
+        "Bogdan Grechuk"
+      ],
+      "type": "book",
+      "relationship": "formalizes",
+      "id": "https://www.erdosproblems.com/10",
+      "location": "Springer, 2021",
+      "author_endorsement": "not-applicable",
+      "note": "Supplies the explicit witness 1117175146 and observes the parity transfer from the two-power to the three-power case."
+    },
+    {
+      "title": "FormalConjectures/ErdosProblems/10.lean",
+      "authors": [
+        "The Formal Conjectures Authors",
+        "Bogdan Grechuk",
+        "Daryxx"
+      ],
+      "type": "statement",
+      "relationship": "builds-on",
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/10.lean",
+      "location": "commit 2c24ebe7e977923a9e0b78793e21a24b3f4c7d2d",
+      "author_endorsement": "not-applicable",
+      "note": "Supplies the exact definitions and target statements. At this commit, the concrete Grechuk example is still marked by `sorry`, while the two infinite variants carry linked external formal proofs."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/DaryxXx/e112c74cc648b08a420b0959315cf65f",
+      "relationship": "alternative-proof",
+      "note": "External Lean proof by Daryxx already linked upstream for the infinite three-power variant; this package independently formalizes that variant and the unlinked explicit example."
+    },
+    {
+      "id": "https://github.com/anatoliiohorodnyk/lean-fc-proofs/blob/5da9642575b26c2c816a49bcb56b33fed5456619/Proofs/T_Erdos10_erdos_10_variants_two_pows.lean",
+      "relationship": "alternative-proof",
+      "note": "External Lean proof by Anatolii Ohorodnyk already linked upstream for the infinite two-power variant; the present proof uses a different explicit arithmetic progression."
+    }
+  ],
+  "status": {
+    "scope": "Proves the exact upstream statement that 1117175146 is not the sum of a prime and at most three powers of two. Also proves the stronger infinite even-exception statements for two and three powers, together with elementary membership and nonmembership witnesses. The asymptotic conjecture Erdos10.erdos_10 remains open.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos10.variants.two_mem_zero",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos10.variants.one_not_mem",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos10.variants.two_pows",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos10.variants.grechuk_example",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos10.variants.grechuk",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "All proof modules in Proofs/ together with Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry in the proof modules."
+  },
+  "fidelity": {
+    "divergences": "The package-local definition of Erdos10.sumPrimeAndTwoPows intentionally restates the definition in FormalConjectures/ErdosProblems/10.lean; FCCompare verifies equivalence. No mathematical divergence."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Statement fidelity and transitive axioms (restricted to propext, Classical.choice, and Quot.sound) were verified across all exported theorems in Solution.lean."
+  },
+  "alignment": {
+    "namespace": "Erdos10.variants",
+    "statements": [
+      {
+        "source": "The Formal Conjectures Authors, FormalConjectures/ErdosProblems/10.lean at commit 2c24ebe7: Erdos10.two_mem_sumPrimeAndTwoPows_zero",
+        "lean": "Erdos10.variants.two_mem_zero",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves 2 ∈ sumPrimeAndTwoPows 0."
+      },
+      {
+        "source": "The Formal Conjectures Authors, FormalConjectures/ErdosProblems/10.lean at commit 2c24ebe7: Erdos10.one_not_mem_sumPrimeAndTwoPows",
+        "lean": "Erdos10.variants.one_not_mem",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves ∀ k, 1 ∉ sumPrimeAndTwoPows k."
+      },
+      {
+        "source": "R. Crocker (1971), Pacific Journal of Mathematics 36, 103–107, as stated at FormalConjectures/ErdosProblems/10.lean at commit 2c24ebe7: Erdos10.erdos_10.variants.two_pows",
+        "lean": "Erdos10.variants.two_pows",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves Set.Infinite ({n : ℕ | Even n} \\ sumPrimeAndTwoPows 2)."
+      },
+      {
+        "source": "Bogdan Grechuk, Landscape of 21st Century Mathematics (Springer, 2021), explicit example; FormalConjectures/ErdosProblems/10.lean at commit 2c24ebe7: Erdos10.erdos_10.variants.grechuk_example",
+        "lean": "Erdos10.variants.grechuk_example",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves 1117175146 ∉ sumPrimeAndTwoPows 3."
+      },
+      {
+        "source": "R. Crocker (1971), Pacific Journal of Mathematics 36, 103–107, with Bogdan Grechuk's parity observation; FormalConjectures/ErdosProblems/10.lean at commit 2c24ebe7: Erdos10.erdos_10.variants.grechuk",
+        "lean": "Erdos10.variants.grechuk",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves Set.Infinite ({n : ℕ | Even n} \\ sumPrimeAndTwoPows 3)."
+      }
+    ]
+  },
+  "acknowledgements": "Mathlib supplies modular arithmetic, primes, and multiset infrastructure. Formal Conjectures supplies the problem statements. R. Crocker's Fermat-factor covering construction and Bogdan Grechuk's explicit example and parity observation are central to the proof. Daryxx is credited for the external Lean proof linked upstream for the infinite three-power variant, and Anatolii Ohorodnyk for the linked proof of the infinite two-power variant."
+}
