@@ -52,7 +52,7 @@
       ],
       "type": "book",
       "relationship": "formalizes",
-      "id": "https://www.erdosproblems.com/10",
+      "id": "https://doi.org/10.1007/978-3-030-80627-9",
       "location": "Springer, 2021",
       "author_endorsement": "not-applicable",
       "note": "Supplies the explicit witness 1117175146 and observes the parity transfer from the two-power to the three-power case."
