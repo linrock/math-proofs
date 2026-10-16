@@ -2,7 +2,7 @@
   "schema_version": 2,
   "lean_toolchain": "leanprover/lean4:v4.35.0-rc2",
   "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
-  "total_verified_packages": 13,
+  "total_verified_packages": 15,
   "packages": {
     "erdos-9": {
       "package": "erdos-9",
@@ -133,6 +133,82 @@
       },
       "verification_history": [
         "2026-10-14-b246a416"
+      ]
+    },
+    "erdos-36": {
+      "package": "erdos-36",
+      "verification_id": "2026-10-15-22db103d",
+      "state_sha256": "e70f8f88ab79059aeac4c1586c6cd02317e7e8737c6fa263a5a87479a3b0d268",
+      "project_name": "Erd\u0151s 36: classical minimum-overlap bounds",
+      "status": "PASS",
+      "package_commit": "22db103d7b6109baca46f2623a7287b965a56936",
+      "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+      "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+      "challenge_sha256": "97757d23dbad8cf4d90692c2b56d148fcd819d84e9d83120784aae2acd4e6c42",
+      "solution_sha256": "0b1f9dd65aa202e4e33271a6ef05485345b807c352344eb0ad08cdcc5f0ed4fa",
+      "exported_theorems": [
+        "Erdos36.liminf_eq_limsup_minOverlapQuotient",
+        "Erdos36.tendsto_minOverlapQuotient_liminf",
+        "Erdos36.minimum_overlap_variants_lower_erdos_1955",
+        "Erdos36.minimum_overlap_variants_lower_scherk_1955",
+        "Erdos36.minimum_overlap_variants_lower_swierczkowski_1958",
+        "Erdos36.moser_sqrt_two_div_four_le_liminf",
+        "Erdos36.minimum_overlap_variants_upper_erdos_1955",
+        "Erdos36.moser_scherk_combined_le_M",
+        "Erdos36.exact_values_M"
+      ],
+      "declaration_lines": {
+        "Erdos36.liminf_eq_limsup_minOverlapQuotient": {
+          "solution_line": 44,
+          "challenge_line": 57
+        },
+        "Erdos36.tendsto_minOverlapQuotient_liminf": {
+          "solution_line": 48,
+          "challenge_line": 62
+        },
+        "Erdos36.minimum_overlap_variants_lower_erdos_1955": {
+          "solution_line": 52,
+          "challenge_line": 67
+        },
+        "Erdos36.minimum_overlap_variants_lower_scherk_1955": {
+          "solution_line": 56,
+          "challenge_line": 72
+        },
+        "Erdos36.minimum_overlap_variants_lower_swierczkowski_1958": {
+          "solution_line": 60,
+          "challenge_line": 77
+        },
+        "Erdos36.moser_sqrt_two_div_four_le_liminf": {
+          "solution_line": 64,
+          "challenge_line": 82
+        },
+        "Erdos36.minimum_overlap_variants_upper_erdos_1955": {
+          "solution_line": 68,
+          "challenge_line": 87
+        },
+        "Erdos36.moser_scherk_combined_le_M": {
+          "solution_line": 72,
+          "challenge_line": 92
+        },
+        "Erdos36.exact_values_M": {
+          "solution_line": 79,
+          "challenge_line": 100
+        }
+      },
+      "kernels": {
+        "nanoda_accepted": true,
+        "con_ron_accepted": true,
+        "lean_kernel_accepted": true
+      },
+      "fc_statement_matches": 8,
+      "record_json": "records/erdos-36/2026-10-15-22db103d.json",
+      "record_md": "records/erdos-36/2026-10-15-22db103d.md",
+      "commits": {
+        "22db103d7b6109baca46f2623a7287b965a56936": "2026-10-15-22db103d",
+        "d16a9d73d85f1377e83798f5d9585ee4c4140979": "2026-10-15-22db103d"
+      },
+      "verification_history": [
+        "2026-10-15-22db103d"
       ]
     },
     "erdos-70": {
@@ -455,6 +531,56 @@
       },
       "verification_history": [
         "2026-10-14-a2d6dcb9"
+      ]
+    },
+    "erdos-667": {
+      "package": "erdos-667",
+      "verification_id": "2026-10-15-d16a9d73",
+      "state_sha256": "ba3757cf71bde6c6085ab0a656d6f154528a5e4bb2f509083191e558ad013d47",
+      "project_name": "Erd\u0151s 667: monotonicity and Ramsey bounds for locally dense clique exponents",
+      "status": "PASS",
+      "package_commit": "d16a9d73d85f1377e83798f5d9585ee4c4140979",
+      "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+      "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+      "challenge_sha256": "6baa017b4dfa0daf094079eba3d2dbdd101c42b85c703c996c79080bf3b92a12",
+      "solution_sha256": "fb5ff95ab6381fc36a6e0bf8745aba6047dd98b19f841716d9ab54e7b086b2fa",
+      "exported_theorems": [
+        "Erdos667.variants.monotoneOn",
+        "Erdos667.variants.endpoint",
+        "Erdos667.variants.ramsey_lower_bound",
+        "Erdos667.variants.c_ge_inv_pred"
+      ],
+      "declaration_lines": {
+        "Erdos667.variants.monotoneOn": {
+          "solution_line": 41,
+          "challenge_line": 49
+        },
+        "Erdos667.variants.endpoint": {
+          "solution_line": 45,
+          "challenge_line": 55
+        },
+        "Erdos667.variants.ramsey_lower_bound": {
+          "solution_line": 49,
+          "challenge_line": 61
+        },
+        "Erdos667.variants.c_ge_inv_pred": {
+          "solution_line": 53,
+          "challenge_line": 66
+        }
+      },
+      "kernels": {
+        "nanoda_accepted": true,
+        "con_ron_accepted": true,
+        "lean_kernel_accepted": true
+      },
+      "fc_statement_matches": 4,
+      "record_json": "records/erdos-667/2026-10-15-d16a9d73.json",
+      "record_md": "records/erdos-667/2026-10-15-d16a9d73.md",
+      "commits": {
+        "d16a9d73d85f1377e83798f5d9585ee4c4140979": "2026-10-15-d16a9d73"
+      },
+      "verification_history": [
+        "2026-10-15-d16a9d73"
       ]
     },
     "erdos-836": {

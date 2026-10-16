@@ -1,0 +1,361 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-15-22db103d",
+  "verification_date": "2026-10-15",
+  "state_sha256": "e70f8f88ab79059aeac4c1586c6cd02317e7e8737c6fa263a5a87479a3b0d268",
+  "package": "erdos-36",
+  "project_name": "Erd\u0151s 36: classical minimum-overlap bounds",
+  "package_commit": "22db103d7b6109baca46f2623a7287b965a56936",
+  "commit": "d16a9d73d85f1377e83798f5d9585ee4c4140979",
+  "repository": "linrock/math-proofs",
+  "run_id": "38856600519",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 4386,
+    "lines": 105,
+    "sha256": "97757d23dbad8cf4d90692c2b56d148fcd819d84e9d83120784aae2acd4e6c42",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos36.liminf_eq_limsup_minOverlapQuotient",
+    "Erdos36.tendsto_minOverlapQuotient_liminf",
+    "Erdos36.minimum_overlap_variants_lower_erdos_1955",
+    "Erdos36.minimum_overlap_variants_lower_scherk_1955",
+    "Erdos36.minimum_overlap_variants_lower_swierczkowski_1958",
+    "Erdos36.moser_sqrt_two_div_four_le_liminf",
+    "Erdos36.minimum_overlap_variants_upper_erdos_1955",
+    "Erdos36.moser_scherk_combined_le_M",
+    "Erdos36.exact_values_M"
+  ],
+  "declaration_lines": {
+    "Erdos36.liminf_eq_limsup_minOverlapQuotient": {
+      "solution_line": 44,
+      "challenge_line": 57
+    },
+    "Erdos36.tendsto_minOverlapQuotient_liminf": {
+      "solution_line": 48,
+      "challenge_line": 62
+    },
+    "Erdos36.minimum_overlap_variants_lower_erdos_1955": {
+      "solution_line": 52,
+      "challenge_line": 67
+    },
+    "Erdos36.minimum_overlap_variants_lower_scherk_1955": {
+      "solution_line": 56,
+      "challenge_line": 72
+    },
+    "Erdos36.minimum_overlap_variants_lower_swierczkowski_1958": {
+      "solution_line": 60,
+      "challenge_line": 77
+    },
+    "Erdos36.moser_sqrt_two_div_four_le_liminf": {
+      "solution_line": 64,
+      "challenge_line": 82
+    },
+    "Erdos36.minimum_overlap_variants_upper_erdos_1955": {
+      "solution_line": 68,
+      "challenge_line": 87
+    },
+    "Erdos36.moser_scherk_combined_le_M": {
+      "solution_line": 72,
+      "challenge_line": 92
+    },
+    "Erdos36.exact_values_M": {
+      "solution_line": 79,
+      "challenge_line": 100
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos36.exact_values_M",
+    "Erdos36.liminf_eq_limsup_minOverlapQuotient",
+    "Erdos36.minimum_overlap_variants_lower_erdos_1955",
+    "Erdos36.minimum_overlap_variants_lower_scherk_1955",
+    "Erdos36.minimum_overlap_variants_lower_swierczkowski_1958",
+    "Erdos36.minimum_overlap_variants_upper_erdos_1955",
+    "Erdos36.moser_scherk_combined_le_M",
+    "Erdos36.moser_sqrt_two_div_four_le_liminf",
+    "Erdos36.tendsto_minOverlapQuotient_liminf"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 13,
+  "expected_axiom_audit_count": 13,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos36.liminf_eq_limsup_minOverlapQuotient",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos36.tendsto_minOverlapQuotient_liminf",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos36.minimum_overlap_variants_lower_erdos_1955",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos36.minimum_overlap_variants_lower_scherk_1955",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos36.minimum_overlap_variants_lower_swierczkowski_1958",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos36.moser_sqrt_two_div_four_le_liminf",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos36.minimum_overlap_variants_upper_erdos_1955",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos36.moser_scherk_combined_le_M",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos36.exact_values_M",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos36.statement_scherk_1955_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos36.statement_swierczkowski_1958_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos36.statement_exists_limit_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos36.nonvacuity_M_fourteen",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Erdos36.Overlap",
+      "kind": "def",
+      "declaration": "def Erdos36.Overlap (A B : Finset Int) (k : Int) : Nat :=\n  fun A B k =>\n  Finset.card\n    (Finset.filter (fun x => Erdos36.Overlap.match_1 (fun x => Prop) x fun a b => Eq (HSub.hSub a b) k)\n      (Finset.product A B))"
+    },
+    {
+      "name": "Erdos36.MaxOverlap",
+      "kind": "def",
+      "declaration": "def Erdos36.MaxOverlap (A B : Finset Int) : Nat :=\n  fun A B => iSup (Erdos36.Overlap A B)"
+    },
+    {
+      "name": "Erdos36.M",
+      "kind": "def",
+      "declaration": "def Erdos36.M (n : Nat) : Nat :=\n  fun n =>\n  InfSet.sInf\n    (Set.ofPred fun x =>\n      Exists fun A =>\n        Exists fun B =>\n          Exists fun _disjoint => Exists fun _union => Exists fun _same_card => Eq (Erdos36.MaxOverlap A B) x)"
+    },
+    {
+      "name": "Erdos36.MinOverlapQuotient",
+      "kind": "def",
+      "declaration": "def Erdos36.MinOverlapQuotient (N : Nat) : Real :=\n  fun N => HDiv.hDiv \u2191(Erdos36.M N) \u2191N"
+    },
+    {
+      "name": "Erdos36.liminf_eq_limsup_minOverlapQuotient",
+      "kind": "theorem",
+      "declaration": "theorem Erdos36.liminf_eq_limsup_minOverlapQuotient :\n  Eq (Filter.liminf Erdos36.MinOverlapQuotient Filter.atTop) (Filter.limsup Erdos36.MinOverlapQuotient Filter.atTop)"
+    },
+    {
+      "name": "Erdos36.tendsto_minOverlapQuotient_liminf",
+      "kind": "theorem",
+      "declaration": "theorem Erdos36.tendsto_minOverlapQuotient_liminf :\n  Filter.Tendsto Erdos36.MinOverlapQuotient Filter.atTop (nhds (Filter.liminf Erdos36.MinOverlapQuotient Filter.atTop))"
+    },
+    {
+      "name": "Erdos36.minimum_overlap_variants_lower_erdos_1955",
+      "kind": "theorem",
+      "declaration": "theorem Erdos36.minimum_overlap_variants_lower_erdos_1955 :\n  LE.le (1 / 4) (Filter.liminf Erdos36.MinOverlapQuotient Filter.atTop)"
+    },
+    {
+      "name": "Erdos36.minimum_overlap_variants_lower_scherk_1955",
+      "kind": "theorem",
+      "declaration": "theorem Erdos36.minimum_overlap_variants_lower_scherk_1955 :\n  LT.lt (HSub.hSub 1 (Inv.inv (Real.sqrt 2))) (Filter.liminf Erdos36.MinOverlapQuotient Filter.atTop)"
+    },
+    {
+      "name": "Erdos36.minimum_overlap_variants_lower_swierczkowski_1958",
+      "kind": "theorem",
+      "declaration": "theorem Erdos36.minimum_overlap_variants_lower_swierczkowski_1958 :\n  LT.lt (HDiv.hDiv (HSub.hSub 4 (HPow.hPow 6 (1 / 2))) 5) (Filter.liminf Erdos36.MinOverlapQuotient Filter.atTop)"
+    },
+    {
+      "name": "Erdos36.moser_sqrt_two_div_four_le_liminf",
+      "kind": "theorem",
+      "declaration": "theorem Erdos36.moser_sqrt_two_div_four_le_liminf :\n  LE.le (HDiv.hDiv (Real.sqrt 2) 4) (Filter.liminf Erdos36.MinOverlapQuotient Filter.atTop)"
+    },
+    {
+      "name": "Erdos36.minimum_overlap_variants_upper_erdos_1955",
+      "kind": "theorem",
+      "declaration": "theorem Erdos36.minimum_overlap_variants_upper_erdos_1955 :\n  LE.le (Filter.limsup Erdos36.MinOverlapQuotient Filter.atTop) (1 / 2)"
+    },
+    {
+      "name": "Erdos36.moser_scherk_combined_le_M",
+      "kind": "theorem",
+      "declaration": "theorem Erdos36.moser_scherk_combined_le_M (n R : Nat) :\n  LE.le\n    (HAdd.hAdd\n      (HAdd.hAdd (HMul.hMul (HMul.hMul 12 (HPow.hPow R 2)) (HPow.hPow n 2))\n        (HMul.hMul (HMul.hMul 6 (HPow.hPow R 2)) (Erdos36.M n)))\n      (HMul.hMul 6\n        (Finset.sum (Finset.range R) fun k =>\n          HMul.hMul (HSub.hSub (HPow.hPow R 2) (HPow.hPow (HAdd.hAdd k 1) 2))\n            (HSub.hSub (HMul.hMul 2 (Erdos36.M n)) (HSub.hSub (HSub.hSub (HMul.hMul 2 n) 1) k)))))\n    (HAdd.hAdd (HMul.hMul 8 (HPow.hPow n 4))\n      (HMul.hMul (HMul.hMul (HMul.hMul 4 R) (HSub.hSub (HMul.hMul 4 (HPow.hPow R 2)) 1)) (Erdos36.M n)))"
+    },
+    {
+      "name": "Erdos36.exact_values_M",
+      "kind": "theorem",
+      "declaration": "theorem Erdos36.exact_values_M :\n  And (Eq (Erdos36.M 1) 1)\n    (And (Eq (Erdos36.M 2) 1)\n      (And (Eq (Erdos36.M 3) 2)\n        (And (Eq (Erdos36.M 6) 3)\n          (And (Eq (Erdos36.M 7) 3)\n            (And (Eq (Erdos36.M 8) 4)\n              (And (Eq (Erdos36.M 9) 4)\n                (And (Eq (Erdos36.M 12) 5) (And (Eq (Erdos36.M 14) 6) (Eq (Erdos36.M 15) 6)))))))))"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos36.minimum_overlap.variants.lower.swierczkowski_1958",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.36",
+      "solution_declaration": "Erdos36.minimum_overlap_variants_lower_swierczkowski_1958",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos36.minimum_overlap.variants.lower.scherk_1955",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.36",
+      "solution_declaration": "Erdos36.minimum_overlap_variants_lower_scherk_1955",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos36.minimum_overlap.variants.lower.erdos_1955",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.36",
+      "solution_declaration": "Erdos36.minimum_overlap_variants_lower_erdos_1955",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos36.minimum_overlap.variants.upper.erdos_1955",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.36",
+      "solution_declaration": "Erdos36.minimum_overlap_variants_upper_erdos_1955",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos36.Challenge.statement_swierczkowski_1958",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos36.minimum_overlap_variants_lower_swierczkowski_1958",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos36.Challenge.statement_scherk_1955",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos36.minimum_overlap_variants_lower_scherk_1955",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos36.minimum_overlap.variants.lower.swierczkowski_1958",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.36",
+      "solution_declaration": "Erdos36.Challenge.statement_swierczkowski_1958",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos36.minimum_overlap.variants.lower.scherk_1955",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.36",
+      "solution_declaration": "Erdos36.Challenge.statement_scherk_1955",
+      "match_mode": "exact"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "e318903862396f96de3df57264e0158682b952fd3fb53ac23d876413e7b30f71"
+  },
+  "input_sha256": {
+    "Challenge.lean": "97757d23dbad8cf4d90692c2b56d148fcd819d84e9d83120784aae2acd4e6c42",
+    "Solution.lean": "0b1f9dd65aa202e4e33271a6ef05485345b807c352344eb0ad08cdcc5f0ed4fa",
+    "AxiomAudit.lean": "731fa7800d563a7039106dea7c166215e53936664ee837cfd18f4687c182a025",
+    "Statement.lean": "e67244546d60cbcf05e45144290b30d02275045bbe8a815edca82e95dd990866",
+    "comparator.json": "2c9e11518e80e191bfbb5f11a47bbcb49069081a1332a63a3d543a8cef8f1423",
+    "formalization.yaml": "1a7cbc6a026c7b9592badf553ef3bb5ba295fabbfafef0fcfc85fb8a252f684e",
+    "lakefile.toml": "f30d136d9bec13759e58f87a9f071bf75f0a3f74723c4a31c030ec2c75d95f34",
+    "lake-manifest.json": "7913affc63e688dd5e1cd3fb0274aa60b565fe9dddc9e0d444ebb64a59dda839",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "694f3c136549331c558647cb21a7e3485ffc4ab5e112c14f4720c1441494cda5",
+    "Proofs/MinimumOverlapFoundations36.lean": "1e4ffeaf13ff6d727445def927616a458885319342c0d420032064aa0e89e5db",
+    "Proofs/MoserScherkAndFeketeLimit36.lean": "d7af514655c6e76c1ef9b68c5ef5268d2e2688143d3552c55145a908b4c844e2"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 72.026,
+    "env_compare_and_core_audit_seconds": 71.699,
+    "total_elapsed_seconds": 284.641,
+    "user_cpu_seconds": 180.126,
+    "system_cpu_seconds": 72.823,
+    "peak_rss_mib": 13274.64
+  },
+  "status": "PASS"
+}

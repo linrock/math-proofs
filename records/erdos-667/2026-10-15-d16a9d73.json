@@ -1,0 +1,216 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-15-d16a9d73",
+  "verification_date": "2026-10-15",
+  "state_sha256": "ba3757cf71bde6c6085ab0a656d6f154528a5e4bb2f509083191e558ad013d47",
+  "package": "erdos-667",
+  "project_name": "Erd\u0151s 667: monotonicity and Ramsey bounds for locally dense clique exponents",
+  "package_commit": "d16a9d73d85f1377e83798f5d9585ee4c4140979",
+  "commit": "d16a9d73d85f1377e83798f5d9585ee4c4140979",
+  "repository": "linrock/math-proofs",
+  "run_id": "38856600519",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 2614,
+    "lines": 71,
+    "sha256": "6baa017b4dfa0daf094079eba3d2dbdd101c42b85c703c996c79080bf3b92a12",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos667.variants.monotoneOn",
+    "Erdos667.variants.endpoint",
+    "Erdos667.variants.ramsey_lower_bound",
+    "Erdos667.variants.c_ge_inv_pred"
+  ],
+  "declaration_lines": {
+    "Erdos667.variants.monotoneOn": {
+      "solution_line": 41,
+      "challenge_line": 49
+    },
+    "Erdos667.variants.endpoint": {
+      "solution_line": 45,
+      "challenge_line": 55
+    },
+    "Erdos667.variants.ramsey_lower_bound": {
+      "solution_line": 49,
+      "challenge_line": 61
+    },
+    "Erdos667.variants.c_ge_inv_pred": {
+      "solution_line": 53,
+      "challenge_line": 66
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos667.variants.c_ge_inv_pred",
+    "Erdos667.variants.endpoint",
+    "Erdos667.variants.monotoneOn",
+    "Erdos667.variants.ramsey_lower_bound"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 6,
+  "expected_axiom_audit_count": 6,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos667.variants.monotoneOn",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos667.variants.endpoint",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos667.variants.ramsey_lower_bound",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos667.variants.c_ge_inv_pred",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos667.statement_endpoint_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos667.nonvacuity_H_three_two_eq",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Erdos667.LocallyDense",
+      "kind": "def",
+      "declaration": "def Erdos667.LocallyDense (p q : Nat) {n : Nat} (G : SimpleGraph (Fin n)) : Prop :=\n  fun p q {n} G =>\n  \u2200 (s : Finset (Fin n)),\n    Eq (Finset.card s) p \u2192 LE.le q (Set.ncard (SimpleGraph.edgeSet (SimpleGraph.induce (SetLike.coe s) G)))"
+    },
+    {
+      "name": "Erdos667.H",
+      "kind": "def",
+      "declaration": "def Erdos667.H (p q n : Nat) : Nat :=\n  fun p q n =>\n  Nat.findGreatest\n    (fun m => \u2200 (G : SimpleGraph (Fin n)), Erdos667.LocallyDense p q G \u2192 Not (SimpleGraph.CliqueFree G m)) n"
+    },
+    {
+      "name": "Erdos667.c",
+      "kind": "def",
+      "declaration": "def Erdos667.c (p q : Nat) : Real :=\n  fun p q => Filter.liminf (fun n => HDiv.hDiv (Real.log \u2191(Erdos667.H p q n)) (Real.log \u2191n)) Filter.atTop"
+    },
+    {
+      "name": "Erdos667.variants.monotoneOn",
+      "kind": "theorem",
+      "declaration": "theorem Erdos667.variants.monotoneOn (p : Nat) :\n  MonotoneOn (Erdos667.c p) (Set.Icc 1 (HAdd.hAdd (Nat.choose (HSub.hSub p 1) 2) 1))"
+    },
+    {
+      "name": "Erdos667.variants.endpoint",
+      "kind": "theorem",
+      "declaration": "theorem Erdos667.variants.endpoint (p : Nat) (hp : LE.le 2 p) : Eq (Erdos667.c p (HAdd.hAdd (Nat.choose (HSub.hSub p 1) 2) 1)) 1"
+    },
+    {
+      "name": "Erdos667.variants.ramsey_lower_bound",
+      "kind": "theorem",
+      "declaration": "theorem Erdos667.variants.ramsey_lower_bound (p : Nat) (hp : LE.le 2 p) :\n  LE.le (HDiv.hDiv 1 (HSub.hSub (\u2191p) 1)) (Erdos667.c p 1)"
+    },
+    {
+      "name": "Erdos667.variants.c_ge_inv_pred",
+      "kind": "theorem",
+      "declaration": "theorem Erdos667.variants.c_ge_inv_pred {p q : Nat} (hp : LE.le 2 p) (hq : LE.le 1 q) :\n  LE.le (HDiv.hDiv 1 (HSub.hSub (\u2191p) 1)) (Erdos667.c p q)"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos667.erdos_667.variants.monotoneOn",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.667",
+      "solution_declaration": "Erdos667.variants.monotoneOn",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos667.erdos_667.variants.endpoint",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.667",
+      "solution_declaration": "Erdos667.variants.endpoint",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos667.Challenge.statement_endpoint",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos667.variants.endpoint",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos667.erdos_667.variants.endpoint",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.667",
+      "solution_declaration": "Erdos667.Challenge.statement_endpoint",
+      "match_mode": "exact"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "e318903862396f96de3df57264e0158682b952fd3fb53ac23d876413e7b30f71"
+  },
+  "input_sha256": {
+    "Challenge.lean": "6baa017b4dfa0daf094079eba3d2dbdd101c42b85c703c996c79080bf3b92a12",
+    "Solution.lean": "fb5ff95ab6381fc36a6e0bf8745aba6047dd98b19f841716d9ab54e7b086b2fa",
+    "AxiomAudit.lean": "3b9aa8b0affd8e47ec1df7bffb0cb9ec1a1edeeef810ac3f18a5583dddc3beee",
+    "Statement.lean": "b7fcb1cee1573568b6090ee9995923f20022bb6227c4b90c30e1948e82dbef87",
+    "comparator.json": "910c8f38cd2dff104a95bf4de49ca1ca882fe5483b61f0c2e1415f3cd5bdde73",
+    "formalization.yaml": "4340a71421849c6e15dbe2ac4e4e3e6c4140825aa9253bc79f8257197de8efcf",
+    "lakefile.toml": "46124b13652315a4ef443a6f47d27af637c39b373753dfba96d9d022bd4070ec",
+    "lake-manifest.json": "2421f4633d225168fe4efbfe7e38a0add98d4dd1376df1fbbd6469a57186b60e",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "e9d875f8a3d8ba852a2af20c011b19de52a7b579673680472878cde3615f0b72",
+    "Proofs/LocalDensityEndpointAndRamseyBounds667.lean": "17e6c74b54d50d853e73be3a2f27ad945185d98b6622fa2f699041b18a82e6a9"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 25.343,
+    "env_compare_and_core_audit_seconds": 50.768,
+    "total_elapsed_seconds": 206.935,
+    "user_cpu_seconds": 133.027,
+    "system_cpu_seconds": 71.795,
+    "peak_rss_mib": 13245.42
+  },
+  "status": "PASS"
+}
