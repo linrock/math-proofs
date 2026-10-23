@@ -1,0 +1,260 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 33: additive complements to the squares",
+    "description": "A Lean 4 formalization of the open problem asking for the smallest limsup of |A ∩ [1, N]| / √N over additive complements A of the squares, that is, sets A such that every natural number has the form a + n². The package proves both solved upstream variants: the strict lower bound above 1 and van Doorn's explicit Fibonacci block construction giving the upper bound 2φ^(5/2). It also derives the rational lower bounds 5/4, 63/50 and 127/100 for the infimum by evaluating Cilleruelo's step-function method at finite resolutions R = 60, 150 and 500, with every arithmetic input checked in the kernel. All three rational bounds are strictly weaker than the known asymptotic lower bound 4/π of Cilleruelo, Habsieger, and Balasubramanian–Ramana; the exact value of the infimum remains open.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "Apache-2.0"
+  },
+  "classification": {
+    "arxiv": [
+      "math.NT",
+      "math.CO"
+    ],
+    "msc2020": [
+      "11B13",
+      "11P05"
+    ]
+  },
+  "sources": [
+    {
+      "title": "On the additive completion of sets of integers",
+      "authors": [
+        "Leo Moser"
+      ],
+      "type": "paper",
+      "relationship": "adapts",
+      "location": "Proceedings of Symposia in Pure Mathematics 8, American Mathematical Society (1965), 175–180",
+      "id": "https://doi.org/10.1090/pspum/008/0175874",
+      "author_endorsement": "not-contacted",
+      "note": "The package formalizes Moser's weighted-representation bound and the Moser–Abel identity. Combined with a Cilleruelo step-function computation at resolution R = 60, these give the strict bound 5/4 above 1; larger resolutions then sharpen it to 63/50 and 127/100."
+    },
+    {
+      "title": "The additive completion of k-th powers",
+      "authors": [
+        "Javier Cilleruelo"
+      ],
+      "type": "paper",
+      "relationship": "adapts",
+      "location": "Journal of Number Theory 44(3) (1993), 237–243",
+      "id": "https://doi.org/10.1006/jnth.1993.1049",
+      "author_endorsement": "not-contacted",
+      "note": "Introduces the step-function prefix-sum method for additive complements of k-th powers, and proves the asymptotic lower bound 4/π for the square case. The package adapts that method to the squares at finite step resolutions R = 60, 150, and 500; the step sums and the resulting rational bounds 5/4, 63/50, and 127/100 are computed here, not taken from the paper, and are all weaker than the paper's 4/π."
+    },
+    {
+      "title": "Problems and results in additive number theory",
+      "authors": [
+        "Paul Erdős"
+      ],
+      "type": "paper",
+      "relationship": "poses",
+      "location": "Colloque sur la Théorie des Nombres, Bruxelles (1955), Centre Belge de Recherches Mathématiques (1956), 127–137; Problem 33 is stated at p. 134",
+      "author_endorsement": "not-contacted",
+      "note": "The original posing of Problem 33, asking for the limsup density of an additive complement of the squares."
+    },
+    {
+      "title": "Erdős Problem 33 discussion: the Fibonacci block construction",
+      "authors": [
+        "Wouter van Doorn"
+      ],
+      "type": "other",
+      "relationship": "adapts",
+      "id": "https://www.erdosproblems.com/33",
+      "location": "erdosproblems.com/33 discussion",
+      "author_endorsement": "not-contacted",
+      "note": "Contributor discussion of the shifted-block complement construction whose Fibonacci width sequence attains the upper bound 2φ^(5/2); no separate publication was located. The package formalizes that construction and Cassini-ratio estimate."
+    },
+    {
+      "title": "Erdős Problem 33",
+      "type": "other",
+      "relationship": "documents",
+      "id": "https://www.erdosproblems.com/33",
+      "note": "Problem catalog entry. Records Erdős's observation that the infimum is finite and greater than 1, and van Doorn's Fibonacci block construction achieving the upper bound 2φ^(5/2).",
+      "authors": [
+        "Paul Erdős",
+        "Thomas F. Bloom (catalog)"
+      ],
+      "location": "erdosproblems.com/33",
+      "author_endorsement": "not-contacted"
+    },
+    {
+      "title": "On the additive completion of polynomial sets",
+      "authors": [
+        "Laurent Habsieger"
+      ],
+      "type": "paper",
+      "relationship": "background",
+      "location": "Journal of Number Theory 51 (1995), 130–135",
+      "author_endorsement": "not-contacted",
+      "note": "Independently proves the asymptotic lower bound 4/π for additive complements of the squares. Not formalized in this package; cited for the state of the art that the rational bounds 5/4, 63/50, and 127/100 do not improve."
+    },
+    {
+      "title": "Additive complements of the squares",
+      "authors": [
+        "R. Balasubramanian",
+        "D. S. Ramana"
+      ],
+      "type": "paper",
+      "relationship": "background",
+      "location": "C. R. Math. Acad. Sci. Soc. R. Can. 23 (2001), 6–11",
+      "author_endorsement": "not-contacted",
+      "note": "Independently obtains the asymptotic lower bound 4/π, together with the more general bound for complements confined to [0, δN]. Not formalized in this package; cited as background for the best known lower bound."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/e750f777b32aeae464c01809e0d223dd62e99fab/FormalConjectures/ErdosProblems/33.lean",
+      "relationship": "builds-on",
+      "note": "Uses the exact AdditiveBasisCondition definition and proves both erdos_33.variants.one_mem_lowerBounds and erdos_33.variants.vanDoorn. It does not prove or close the main open value question erdos_33."
+    }
+  ],
+  "status": {
+    "scope": "Proves both solved variants of Erdős problem 33 — the strict lower bound greater than 1 and van Doorn's 2φ^(5/2) upper bound — together with the rational lower bounds 5/4 = 1.25, 63/50 = 1.26 and 127/100 = 1.27 on the infimum. Those three bounds are finite-resolution instances of Cilleruelo's step-function method: the step sums S(60) = 2879, S(150) = 17815 and S(500) = 196830 are computed and kernel-checked here, and the resulting inequalities quantify over every additive complement. All three are weaker than the known asymptotic bound 4/π ≈ 1.2732 due to Cilleruelo (1993), Habsieger (1995) and Balasubramanian–Ramana (2001), so they do not improve the state of the art and do not close the main value question, whose exact value remains open.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos33.erdos_33_variants_one_mem_lowerBounds",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos33.erdos_33_variants_vanDoorn",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos33.sixty_three_fiftieths_le_iInf_limsup",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos33.exists_ge_sixty_three_fiftieths_normalizedPrefixRatio",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos33.additiveBasisCondition_vanDoornUnion",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos33.two_mul_sum_fibBlockWidth_div_sqrt_start_le",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos33.one_hundred_twenty_seven_over_one_hundred_le_iInf_limsup",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos33.exists_ge_one_hundred_twenty_seven_over_one_hundred_normalizedPrefixRatio",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone packaging."
+      }
+    ],
+    "notes": "All 2 proof modules in Proofs/ together with Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry in the proof modules, and all 8 exported theorems are accepted by Comparator's three kernels (NanoDa, con-ron, and the Lean default kernel) in the saved verification run. The rational bounds 5/4, 63/50, and 127/100 are included as auxiliary kernel-checked derivations; none of them improves the published asymptotic bound 4/pi."
+  },
+  "fidelity": {
+    "divergences": "Challenge.lean, Statement.lean, and Solution.lean use the exact AdditiveBasisCondition definition and EReal limsup statements from FormalConjectures/ErdosProblems/33.lean, matched by FCCompare. That definition asks that every natural number be of the form a + n^2; the upstream docstring records that this was changed from 'every large integer' on the grounds that the two conditions are equivalent and that the original paper used the every-integer formulation. The package neither verifies that historical claim nor formalizes the finite-modification equivalence between the two conventions. No other divergence is intended: the two exported variant theorems are stated exactly as upstream, and the six remaining exported theorems are package-local auxiliary results with no upstream counterpart."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Statement fidelity, non-vacuity, and transitive axioms (restricted to propext, Classical.choice, and Quot.sound) were verified across all 8 exported theorems in Solution.lean and across the two auxiliary 5/4-bound theorems in Erdos33.Core audited by AxiomAudit.lean. The two upstream variant statements match FormalConjectures/ErdosProblems/33.lean exactly under FCCompare."
+  },
+  "alignment": {
+    "namespace": "Erdos33",
+    "statements": [
+      {
+        "source": "FormalConjectures/ErdosProblems/33.lean (erdos_33.variants.one_mem_lowerBounds); the strict lower bound 5/4 used in the proof is Moser (1965), Proc. Sympos. Pure Math. 8, 175-180, combined with the package's Cilleruelo step sum at R = 60",
+        "lean": "Erdos33.erdos_33_variants_one_mem_lowerBounds",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves 1 < inf_A limsup |A ∩ [1, N]|/√N."
+      },
+      {
+        "source": "FormalConjectures/ErdosProblems/33.lean (erdos_33.variants.vanDoorn); Wouter van Doorn, erdosproblems.com/33 discussion (no separate publication located)",
+        "lean": "Erdos33.erdos_33_variants_vanDoorn",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves inf_A limsup |A ∩ [1, N]|/√N ≤ 2 φ^(5/2)."
+      },
+      {
+        "source": "Moser (1965), Proc. Sympos. Pure Math. 8, 175-180, weighted-representation bound and Moser-Abel identity, instantiated with the package's Cilleruelo step sum at R = 60",
+        "lean": "Erdos33.Core.five_fourths_le_iInf_limsup",
+        "module": "SquareComplementBounds33",
+        "status": "proved",
+        "note": "Proves 5/4 <= inf_A limsup |A ∩ [1, N]|/sqrt(N) via S(60) = 2879. Weaker than the published asymptotic bound 4/pi of Cilleruelo, Habsieger, and Balasubramanian-Ramana."
+      },
+      {
+        "source": "Moser (1965), Proc. Sympos. Pure Math. 8, 175-180, weighted-representation bound and Moser-Abel identity, instantiated with the package's Cilleruelo step sum at R = 60",
+        "lean": "Erdos33.Core.exists_ge_five_fourths_normalizedPrefixRatio",
+        "module": "SquareComplementBounds33",
+        "status": "proved",
+        "note": "Proves forall M, exists N >= M, 5/4 <= |A ∩ [1, N]|/sqrt(N) for every square additive complement A."
+      },
+      {
+        "source": "Cilleruelo (1993), J. Number Theory 44, 237-243, step-function method instantiated at R = 150; the step sum S(150) = 17815 is computed in this package, not taken from the paper",
+        "lean": "Erdos33.sixty_three_fiftieths_le_iInf_limsup",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves 63/50 <= inf_A limsup |A ∩ [1, N]|/sqrt(N) via S(150) = 17815. Weaker than the published asymptotic bound 4/pi of Cilleruelo, Habsieger, and Balasubramanian-Ramana."
+      },
+      {
+        "source": "Cilleruelo (1993), J. Number Theory 44, 237-243, step-function method instantiated at R = 150; the step sum S(150) = 17815 is computed in this package, not taken from the paper",
+        "lean": "Erdos33.exists_ge_sixty_three_fiftieths_normalizedPrefixRatio",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves ∀ M, ∃ N ≥ M, 63/50 ≤ |A ∩ [1, N]|/√N."
+      },
+      {
+        "source": "Wouter van Doorn, erdosproblems.com/33 discussion; explicit shifted-block complement construction with arbitrary positive integer widths",
+        "lean": "Erdos33.additiveBasisCondition_vanDoornUnion",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves AdditiveBasisCondition (vanDoornUnion M) for any M_j ≥ 1."
+      },
+      {
+        "source": "Wouter van Doorn, erdosproblems.com/33 discussion; Fibonacci width sequence M_j = F_{j+2} and the Cassini-ratio estimate",
+        "lean": "Erdos33.two_mul_sum_fibBlockWidth_div_sqrt_start_le",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves 2 ∑_{j=0}^K F_{j+2} / √B_K ≤ 2 φ^(5/2) for all K ≥ 1."
+      },
+      {
+        "source": "Cilleruelo (1993), J. Number Theory 44, 237-243, step-function method instantiated at R = 500; the step sum S(500) = 196830 is computed in this package, not taken from the paper",
+        "lean": "Erdos33.one_hundred_twenty_seven_over_one_hundred_le_iInf_limsup",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves 127/100 <= inf_A limsup |A ∩ [1, N]|/sqrt(N) via S(500) = 196830. Weaker than the published asymptotic bound 4/pi of Cilleruelo, Habsieger, and Balasubramanian-Ramana."
+      },
+      {
+        "source": "Cilleruelo (1993), J. Number Theory 44, 237-243, step-function method instantiated at R = 500; the step sum S(500) = 196830 is computed in this package, not taken from the paper",
+        "lean": "Erdos33.exists_ge_one_hundred_twenty_seven_over_one_hundred_normalizedPrefixRatio",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves ∀ M, ∃ N ≥ M, 127/100 ≤ |A ∩ [1, N]|/√N."
+      }
+    ]
+  },
+  "acknowledgements": "The problem was posed by Erdős. The step-function method and the best known asymptotic lower bound 4/π are due to Cilleruelo (1993), Habsieger (1995), and Balasubramanian–Ramana (2001); the earlier weighted-representation bound is Moser's (1965). The upper bound is van Doorn's Fibonacci block construction. The rational bounds 5/4, 63/50 and 127/100 are computed in this package and are all weaker than 4/π. Mathlib and Formal Conjectures supply attributed formal definitions."
+}

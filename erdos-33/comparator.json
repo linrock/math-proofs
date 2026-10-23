@@ -1,0 +1,20 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos33.erdos_33_variants_one_mem_lowerBounds",
+    "Erdos33.erdos_33_variants_vanDoorn",
+    "Erdos33.sixty_three_fiftieths_le_iInf_limsup",
+    "Erdos33.exists_ge_sixty_three_fiftieths_normalizedPrefixRatio",
+    "Erdos33.additiveBasisCondition_vanDoornUnion",
+    "Erdos33.two_mul_sum_fibBlockWidth_div_sqrt_start_le",
+    "Erdos33.one_hundred_twenty_seven_over_one_hundred_le_iInf_limsup",
+    "Erdos33.exists_ge_one_hundred_twenty_seven_over_one_hundred_normalizedPrefixRatio"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}
