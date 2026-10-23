@@ -1,0 +1,124 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 692: a valley in the divisor-interval density",
+    "description": "A Lean 4 formalization of Cambie's (2025) counterexample to unimodality of delta_1(n,m), the natural density of integers with exactly one divisor in (n,m). The proof computes the periodic residue counts delta_1(3,6) = 7/20, delta_1(3,7) = 1/3 and delta_1(3,8) = 38/105, adapted from Pietro Monticone's Lean gist, and supplies the missing step that the periodic proportion is the natural density of the Formal Conjectures definition. That bridge turns the rational comparison into an inequality for every admissible density function, so the upstream declaration is proved exactly rather than for one choice of delta.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "Apache-2.0"
+  },
+  "classification": {
+    "arxiv": [
+      "math.NT"
+    ],
+    "msc2020": [
+      "11N25"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Resolution of Erdős' problems about unimodularity",
+      "authors": [
+        "Stijn Cambie"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "id": "https://doi.org/10.1016/j.jnt.2025.08.014",
+      "location": "Journal of Number Theory 280 (March 2026), 271–277",
+      "author_endorsement": "not-applicable",
+      "note": "Published version of arXiv:2501.10333. Disproves unimodality of delta_1(n, m) via the n = 3 valley at m = 7."
+    },
+    {
+      "title": "The distribution of integers with a divisor in a given interval",
+      "authors": [
+        "Kevin Ford"
+      ],
+      "type": "paper",
+      "relationship": "background",
+      "id": "https://doi.org/10.4007/annals.2008.168.367",
+      "location": "Annals of Mathematics 168, no. 2 (2008), 367–433",
+      "author_endorsement": "not-applicable",
+      "note": "Cited by Formal Conjectures for the upstream Erdős upper-bound variant; this package does not formalize that bound."
+    },
+    {
+      "title": "Some unconventional problems in number theory",
+      "authors": [
+        "Paul Erdős"
+      ],
+      "type": "paper",
+      "relationship": "poses",
+      "location": "Astérisque 61 (1979), 73–82; the δ₁(n,m) question appears at p. 77",
+      "author_endorsement": "not-applicable",
+      "note": "Original posing of the problem, cited by Formal Conjectures as Er79e."
+    },
+    {
+      "title": "Lean proof of Erdős Problem 692 (gist)",
+      "authors": [
+        "Pietro Monticone"
+      ],
+      "type": "repository",
+      "relationship": "adapts",
+      "id": "https://gist.githubusercontent.com/pitmonticone/96516af9100a37a1da81908dc0b0410c/raw/a1d6ca7f3835c58b257e5e715c8fdf3a224e1bd0/Erdos692.lean",
+      "location": "Proofs/PlbyErdos692.lean",
+      "author_endorsement": "not-contacted",
+      "note": "Source of the explicit n = 3 periodic-count arithmetic and of the package's retained proof module of the same name, released under Apache-2.0. The upstream erdos_692.parts.i declaration links this gist as its formal proof."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/0214b275653a2aa8fe5e44f01a0954723516801f/FormalConjectures/ErdosProblems/692.lean",
+      "relationship": "builds-on",
+      "note": "Provides the Formal Conjectures definitions and target statements for Erdős Problem 692."
+    }
+  ],
+  "status": {
+    "scope": "Proves the exact upstream declaration erdos_692.variants.cambie_three, still `sorry` with no formal-proof link at the pinned commit: every density function for the divisor set in (3,7) lies below its counterparts at (3,6) and (3,8). The periodic counts are adapted from Pietro Monticone's gist, while the new bridge shows that any function satisfying the upstream IsDelta₁ definition agrees with them. Auxiliary, unpublished results: erdos_692.parts.i in the `False ↔` form (already externally proved upstream), Cambie's n = 2 valley, and the n = 0 and n = 1 cases of the open parts.ii maximization question. The general parts.ii case, erdos_upper_bound and cambie_local_maxima are not addressed.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos692.erdos_692_variants_cambie_three",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone packaging."
+      }
+    ],
+    "notes": "All proof modules in Proofs/ together with Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry in the proof modules."
+  },
+  "fidelity": {
+    "divergences": "None. Challenge.lean, Statement.lean and Solution.lean use the definitions and theorem type of FormalConjectures/ErdosProblems/692.lean verbatim; FCCompare matches them in exact mode."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Statement fidelity and transitive axioms (propext, Classical.choice, Quot.sound) were verified for the exported theorem; the proof modules contain no sorry."
+  },
+  "alignment": {
+    "namespace": "Erdos692",
+    "statements": [
+      {
+        "source": "Stijn Cambie, Resolution of Erdős' problems about unimodularity, J. Number Theory 280 (2026) 271-277, DOI 10.1016/j.jnt.2025.08.014, arXiv:2501.10333; statement from FormalConjectures/ErdosProblems/692.lean at commit 0214b275653a2aa8fe5e44f01a0954723516801f (erdos_692.variants.cambie_three)",
+        "lean": "Erdos692.erdos_692_variants_cambie_three",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Exact upstream statement: delta 3 7 < delta 3 6 and delta 3 7 < delta 3 8 for every density function, evaluated at 7/20, 1/3 and 38/105."
+      }
+    ]
+  },
+  "acknowledgements": "Stijn Cambie proved the counterexample and Erdős posed the question. Pietro Monticone's Lean formalization (Apache-2.0) supplies the explicit n = 3 periodic counts and is retained as Proofs/PlbyErdos692.lean with its original notice. Mathlib and Formal Conjectures supply the attributed definitions and infrastructure."
+}
