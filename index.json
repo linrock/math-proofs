@@ -2,7 +2,7 @@
   "schema_version": 2,
   "lean_toolchain": "leanprover/lean4:v4.35.0-rc2",
   "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
-  "total_verified_packages": 18,
+  "total_verified_packages": 20,
   "packages": {
     "erdos-9": {
       "package": "erdos-9",
@@ -284,11 +284,11 @@
     },
     "erdos-58": {
       "package": "erdos-58",
-      "verification_id": "2026-10-23-1f6f15be",
-      "state_sha256": "95d9f879c15faddc85278cae8a116038c1ea72bd0e3d15d58656f369f9eaeefa",
+      "verification_id": "2026-10-23-74888aff",
+      "state_sha256": "cd84e4ff59165e0c992216f3a041516c24177743a6230211efe54cdfe32517f1",
       "project_name": "Erd\u0151s 58: odd cycle lengths and chromatic number",
       "status": "PASS",
-      "package_commit": "1f6f15be04f783cf5fabcf7f8477b4d8c03c685c",
+      "package_commit": "74888affffcf320d798f78a2fb45d13c86704d89",
       "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
       "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
       "challenge_sha256": "f5a718a94004e5f635c7c0fd659d976cc3e3a6b6b1dec79739426bbfd10a1a70",
@@ -308,13 +308,15 @@
         "lean_kernel_accepted": true
       },
       "fc_statement_matches": 3,
-      "record_json": "records/erdos-58/2026-10-23-1f6f15be.json",
-      "record_md": "records/erdos-58/2026-10-23-1f6f15be.md",
+      "record_json": "records/erdos-58/2026-10-23-74888aff.json",
+      "record_md": "records/erdos-58/2026-10-23-74888aff.md",
       "commits": {
-        "1f6f15be04f783cf5fabcf7f8477b4d8c03c685c": "2026-10-23-1f6f15be"
+        "1f6f15be04f783cf5fabcf7f8477b4d8c03c685c": "2026-10-23-1f6f15be",
+        "74888affffcf320d798f78a2fb45d13c86704d89": "2026-10-23-74888aff"
       },
       "verification_history": [
-        "2026-10-23-1f6f15be"
+        "2026-10-23-1f6f15be",
+        "2026-10-23-74888aff"
       ]
     },
     "erdos-70": {
@@ -689,11 +691,11 @@
     },
     "erdos-692": {
       "package": "erdos-692",
-      "verification_id": "2026-10-23-b8e7531a",
-      "state_sha256": "6b6e2b1e3cfbc4e77aecb2e5fcc3fef47c6429340e64b1d24e31ac86c526d15e",
+      "verification_id": "2026-10-23-74888aff",
+      "state_sha256": "871f3dcb52c0acf2a5edd84567033b21dbd7241cf3d07620fa51d49c826f853d",
       "project_name": "Erd\u0151s 692: a valley in the divisor-interval density",
       "status": "PASS",
-      "package_commit": "b8e7531a14cbe5c18ea1ae2e9e85b811bc3c7a46",
+      "package_commit": "74888affffcf320d798f78a2fb45d13c86704d89",
       "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
       "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
       "challenge_sha256": "d28f478bce98cfd484e1b316dd20e1d872d3a58d1f82bfd3cb64e7928d374975",
@@ -713,14 +715,71 @@
         "lean_kernel_accepted": true
       },
       "fc_statement_matches": 3,
-      "record_json": "records/erdos-692/2026-10-23-b8e7531a.json",
-      "record_md": "records/erdos-692/2026-10-23-b8e7531a.md",
+      "record_json": "records/erdos-692/2026-10-23-74888aff.json",
+      "record_md": "records/erdos-692/2026-10-23-74888aff.md",
       "commits": {
+        "74888affffcf320d798f78a2fb45d13c86704d89": "2026-10-23-74888aff",
         "b8e7531a14cbe5c18ea1ae2e9e85b811bc3c7a46": "2026-10-23-b8e7531a",
         "1f6f15be04f783cf5fabcf7f8477b4d8c03c685c": "2026-10-23-b8e7531a"
       },
       "verification_history": [
-        "2026-10-23-b8e7531a"
+        "2026-10-23-b8e7531a",
+        "2026-10-23-74888aff"
+      ]
+    },
+    "erdos-726": {
+      "package": "erdos-726",
+      "verification_id": "2026-10-23-74888aff",
+      "state_sha256": "88e8f61f07c214c7d4fc320d3666e5e6f8149fe66f21854d72820bc1f5ee9ba8",
+      "project_name": "Erd\u0151s 726: upper-half prime-residue reciprocal sums and Mertens reductions",
+      "status": "PASS",
+      "package_commit": "74888affffcf320d798f78a2fb45d13c86704d89",
+      "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+      "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+      "challenge_sha256": "db25f8ee238bfa198c4181812029927d23c89cb045ded0e4e1fcbddd273cf920",
+      "solution_sha256": "babf378301f709e8f2d5da13e0315fabcf37ec464af4d603bfcb68d75278d25b",
+      "exported_theorems": [
+        "Erdos726.variants.mertens_estimate",
+        "Erdos726.asymptotic_iff_discrepancy_isLittleO",
+        "Erdos726.iff_smallPrimeTail_of_log_add_two_bounds",
+        "Erdos726.of_smallPrimeTail_and_log_add_two_bounds",
+        "Erdos726.of_modular_reflection_and_log_add_two_bounds"
+      ],
+      "declaration_lines": {
+        "Erdos726.variants.mertens_estimate": {
+          "solution_line": null,
+          "challenge_line": null
+        },
+        "Erdos726.asymptotic_iff_discrepancy_isLittleO": {
+          "solution_line": 41,
+          "challenge_line": 110
+        },
+        "Erdos726.iff_smallPrimeTail_of_log_add_two_bounds": {
+          "solution_line": 50,
+          "challenge_line": 118
+        },
+        "Erdos726.of_smallPrimeTail_and_log_add_two_bounds": {
+          "solution_line": 68,
+          "challenge_line": 135
+        },
+        "Erdos726.of_modular_reflection_and_log_add_two_bounds": {
+          "solution_line": 86,
+          "challenge_line": 152
+        }
+      },
+      "kernels": {
+        "nanoda_accepted": true,
+        "con_ron_accepted": true,
+        "lean_kernel_accepted": true
+      },
+      "fc_statement_matches": 4,
+      "record_json": "records/erdos-726/2026-10-23-74888aff.json",
+      "record_md": "records/erdos-726/2026-10-23-74888aff.md",
+      "commits": {
+        "74888affffcf320d798f78a2fb45d13c86704d89": "2026-10-23-74888aff"
+      },
+      "verification_history": [
+        "2026-10-23-74888aff"
       ]
     },
     "erdos-836": {
@@ -1174,6 +1233,76 @@
       },
       "verification_history": [
         "2026-10-12-cf688ecc"
+      ]
+    },
+    "erdos-1105": {
+      "package": "erdos-1105",
+      "verification_id": "2026-10-23-74888aff",
+      "state_sha256": "7d095899db2463bca40038cb7361b460603bec7aae1e63be286dbc4d90a56c16",
+      "project_name": "Erd\u0151s 1105: anti-Ramsey numbers for cycles and paths",
+      "status": "PASS",
+      "package_commit": "74888affffcf320d798f78a2fb45d13c86704d89",
+      "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+      "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+      "challenge_sha256": "9ad59ea231bbbf0e9c8a50831ed7167940b87561007951d8be730cc7d4bc7c57",
+      "solution_sha256": "514ea58012cdf1fa57a91b4bc05af1b0c221921647118e957980be89c6b9347b",
+      "exported_theorems": [
+        "Erdos1105.Results.erdos_1105_cycles",
+        "Erdos1105.Results.erdos_1105_paths",
+        "Erdos1105.Results.erdos_1105_parts_i",
+        "Erdos1105.Results.erdos_1105_parts_ii",
+        "Erdos1105.Results.antiRamseyNum_triangle",
+        "Erdos1105.Results.cycle_fullBlock_lower",
+        "Erdos1105.Results.cycle_real_lower",
+        "Erdos1105.Results.cycle_linear_upper"
+      ],
+      "declaration_lines": {
+        "Erdos1105.Results.erdos_1105_cycles": {
+          "solution_line": 55,
+          "challenge_line": 117
+        },
+        "Erdos1105.Results.erdos_1105_paths": {
+          "solution_line": 63,
+          "challenge_line": 125
+        },
+        "Erdos1105.Results.erdos_1105_parts_i": {
+          "solution_line": 72,
+          "challenge_line": 134
+        },
+        "Erdos1105.Results.erdos_1105_parts_ii": {
+          "solution_line": 79,
+          "challenge_line": 141
+        },
+        "Erdos1105.Results.antiRamseyNum_triangle": {
+          "solution_line": 89,
+          "challenge_line": 151
+        },
+        "Erdos1105.Results.cycle_fullBlock_lower": {
+          "solution_line": 96,
+          "challenge_line": 158
+        },
+        "Erdos1105.Results.cycle_real_lower": {
+          "solution_line": 103,
+          "challenge_line": 165
+        },
+        "Erdos1105.Results.cycle_linear_upper": {
+          "solution_line": 112,
+          "challenge_line": 174
+        }
+      },
+      "kernels": {
+        "nanoda_accepted": true,
+        "con_ron_accepted": true,
+        "lean_kernel_accepted": true
+      },
+      "fc_statement_matches": 14,
+      "record_json": "records/erdos-1105/2026-10-23-74888aff.json",
+      "record_md": "records/erdos-1105/2026-10-23-74888aff.md",
+      "commits": {
+        "74888affffcf320d798f78a2fb45d13c86704d89": "2026-10-23-74888aff"
+      },
+      "verification_history": [
+        "2026-10-23-74888aff"
       ]
     },
     "erdos-1139": {

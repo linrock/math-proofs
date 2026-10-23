@@ -1,0 +1,144 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-23-74888aff",
+  "verification_date": "2026-10-23",
+  "state_sha256": "cd84e4ff59165e0c992216f3a041516c24177743a6230211efe54cdfe32517f1",
+  "package": "erdos-58",
+  "project_name": "Erd\u0151s 58: odd cycle lengths and chromatic number",
+  "package_commit": "74888affffcf320d798f78a2fb45d13c86704d89",
+  "commit": "74888affffcf320d798f78a2fb45d13c86704d89",
+  "repository": "linrock/math-proofs",
+  "run_id": "39917279686",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 1618,
+    "lines": 52,
+    "sha256": "f5a718a94004e5f635c7c0fd659d976cc3e3a6b6b1dec79739426bbfd10a1a70",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos58.erdos_58"
+  ],
+  "declaration_lines": {
+    "Erdos58.erdos_58": {
+      "solution_line": null,
+      "challenge_line": 45
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos58.erdos_58"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 1,
+  "expected_axiom_audit_count": 1,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos58.erdos_58",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "SimpleGraph.cycleLengths",
+      "kind": "def",
+      "declaration": "def SimpleGraph.cycleLengths.{u_2} {V : Type u_2} (G : SimpleGraph V) : Set Nat :=\n  fun {V} G =>\n  Set.ofPred fun m =>\n    Exists fun a => Exists fun w => And (SimpleGraph.Walk.IsCycle w) (Eq (SimpleGraph.Walk.length w) m)"
+    },
+    {
+      "name": "SimpleGraph.oddCycleLengths",
+      "kind": "def",
+      "declaration": "def SimpleGraph.oddCycleLengths.{u_2} {V : Type u_2} (G : SimpleGraph V) : Set Nat :=\n  fun {V} G => Set.ofPred fun m => And (Membership.mem (SimpleGraph.cycleLengths G) m) (Odd m)"
+    },
+    {
+      "name": "Erdos58.erdos_58",
+      "kind": "theorem",
+      "declaration": "theorem Erdos58.erdos_58.{u_1} {V : Type u_1} (G : SimpleGraph V) (k : Nat) (hG : Set.Finite (SimpleGraph.oddCycleLengths G))\n  (hk : LE.le (Set.ncard (SimpleGraph.oddCycleLengths G)) k) :\n  And (LE.le (SimpleGraph.chromaticNumber G) (HAdd.hAdd (HMul.hMul 2 \u2191k) 2))\n    (Iff (Eq (SimpleGraph.chromaticNumber G) (HAdd.hAdd (HMul.hMul 2 \u2191k) 2))\n      (SimpleGraph.IsContained (SimpleGraph.completeGraph (Fin (HAdd.hAdd (HMul.hMul 2 k) 2))) G))"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos58.erdos_58",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.58",
+      "solution_declaration": "Erdos58.erdos_58",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos58.Challenge.statement",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos58.erdos_58",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos58.erdos_58",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.58",
+      "solution_declaration": "Erdos58.Challenge.statement",
+      "match_mode": "exact"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "a85b0ff8664c52ab923e0daf7e20cbc394272cd3831cc492ab144105d8091361"
+  },
+  "input_sha256": {
+    "Challenge.lean": "f5a718a94004e5f635c7c0fd659d976cc3e3a6b6b1dec79739426bbfd10a1a70",
+    "Solution.lean": "b8295277b5f93a92c23cf266c240ccd0774b45f2228dd8d183dd0d143aea07ca",
+    "AxiomAudit.lean": "4a9503c145e6ee0aed7776415c069e82897316277ba0ec7121f566570f8d0aed",
+    "Statement.lean": "673d05453c14cc3258f5899e8b407a9b038b6e16c12aec3d68caff80fe075956",
+    "comparator.json": "b59f7b7981dfb5552fabb907f3a02b0e35a9020e9ccd24d2cfc4ea49e773fda5",
+    "formalization.yaml": "45a6f873ec6bf44cb8020f0d643e11a884aae4438baa7824c6a49bb557a6d3d2",
+    "lakefile.toml": "598d9e6c564c8e4c7492779967411ef1eb15421620cfc687797b19980d6c13c7",
+    "lake-manifest.json": "8c9dc6cec73321076bcc12e8f424d33a47f2b11c5341e20513266f4dd9209154",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "694f3c136549331c558647cb21a7e3485ffc4ab5e112c14f4720c1441494cda5",
+    "Proofs/Layer1058.lean": "8eabe1e00952efd6ed9a0f4afb69fe502fc5d625063ab8aabf6185b2d05421f1",
+    "Proofs/Layer1158.lean": "1d90f633e9a2d0eb2f43723a096ecc8703fa9deacf45c24a5aeb4b154e634d5c",
+    "Proofs/Layer1258.lean": "7eeea5bed85473c25bfaa224b44eb73128bd993c2a05d465bb244fbe84eaf4b8",
+    "Proofs/Layer1358.lean": "8f0fb39f79255183cbe8e4c5df861a3c89727c9d6561674d2f4f77614e59d49e",
+    "Proofs/Layer158.lean": "1a2c03d278365eac6a29473291cbca29273e292bada8147512a1e5fc7d50fce8",
+    "Proofs/Layer258.lean": "18e418e5b913424e8dc152097e20948e84217b8e3eb717846ce66641bddd91c4",
+    "Proofs/Layer358.lean": "f322b41470b65e22d5f1ab824c7d6d0f8a18616527c5c0dafa5f5508a4d585f0",
+    "Proofs/Layer458.lean": "36cf18a31147d6285e0f842e4abe016d6d7ba4da791bbb6b8f28d7942b27f0aa",
+    "Proofs/Layer558.lean": "e5ffdc770ae8915ba1af5ab5a1ee0056de94a0794209335c88c6b497b5397c69",
+    "Proofs/Layer658.lean": "2ac08689343c2c2f94c745d73b27a53449003ead198377d0c08b516397b5741a",
+    "Proofs/Layer758.lean": "325587c8371ad4b0da8fdfc01d99713a4531419460e1de28f4b4e06fb02c9c21",
+    "Proofs/Layer858.lean": "a981468af9e8b6e3ed5e0eed4aa3e9f87682f1651c9d7f3e12cc188a9eea5b20",
+    "Proofs/Layer958.lean": "1fa5a55d50a88e578dd5a868c23ccefb151ba903cabeefbc7ccb517a7d0f6321",
+    "Proofs/OddCycleExtraction108.lean": "9e99a79ecf3fe3e714b0353ecacbec919d03113511e6df2bc5a3956e3efe8568"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 42.293,
+    "env_compare_and_core_audit_seconds": 33.015,
+    "total_elapsed_seconds": 180.774,
+    "user_cpu_seconds": 100.3,
+    "system_cpu_seconds": 44.875,
+    "peak_rss_mib": 12569.88
+  },
+  "status": "PASS"
+}

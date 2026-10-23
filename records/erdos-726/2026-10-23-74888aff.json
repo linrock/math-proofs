@@ -1,0 +1,293 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-23-74888aff",
+  "verification_date": "2026-10-23",
+  "state_sha256": "88e8f61f07c214c7d4fc320d3666e5e6f8149fe66f21854d72820bc1f5ee9ba8",
+  "package": "erdos-726",
+  "project_name": "Erd\u0151s 726: upper-half prime-residue reciprocal sums and Mertens reductions",
+  "package_commit": "74888affffcf320d798f78a2fb45d13c86704d89",
+  "commit": "74888affffcf320d798f78a2fb45d13c86704d89",
+  "repository": "linrock/math-proofs",
+  "run_id": "39917279686",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 7672,
+    "lines": 177,
+    "sha256": "db25f8ee238bfa198c4181812029927d23c89cb045ded0e4e1fcbddd273cf920",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos726.variants.mertens_estimate",
+    "Erdos726.asymptotic_iff_discrepancy_isLittleO",
+    "Erdos726.iff_smallPrimeTail_of_log_add_two_bounds",
+    "Erdos726.of_smallPrimeTail_and_log_add_two_bounds",
+    "Erdos726.of_modular_reflection_and_log_add_two_bounds"
+  ],
+  "declaration_lines": {
+    "Erdos726.variants.mertens_estimate": {
+      "solution_line": null,
+      "challenge_line": null
+    },
+    "Erdos726.asymptotic_iff_discrepancy_isLittleO": {
+      "solution_line": 41,
+      "challenge_line": 110
+    },
+    "Erdos726.iff_smallPrimeTail_of_log_add_two_bounds": {
+      "solution_line": 50,
+      "challenge_line": 118
+    },
+    "Erdos726.of_smallPrimeTail_and_log_add_two_bounds": {
+      "solution_line": 68,
+      "challenge_line": 135
+    },
+    "Erdos726.of_modular_reflection_and_log_add_two_bounds": {
+      "solution_line": 86,
+      "challenge_line": 152
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos726.asymptotic_iff_discrepancy_isLittleO",
+    "Erdos726.iff_smallPrimeTail_of_log_add_two_bounds",
+    "Erdos726.of_modular_reflection_and_log_add_two_bounds",
+    "Erdos726.of_smallPrimeTail_and_log_add_two_bounds",
+    "Erdos726.variants.mertens_estimate"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 5,
+  "expected_axiom_audit_count": 5,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos726.variants.mertens_estimate",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos726.asymptotic_iff_discrepancy_isLittleO",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos726.iff_smallPrimeTail_of_log_add_two_bounds",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos726.of_smallPrimeTail_and_log_add_two_bounds",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos726.of_modular_reflection_and_log_add_two_bounds",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Erdos726.dividingOddBoundedPrimes",
+      "kind": "def",
+      "declaration": "def Erdos726.dividingOddBoundedPrimes (B n : Nat) : Finset Nat :=\n  fun B n => Finset.filter (fun p => Dvd.dvd p n) (Erdos726.oddPrimeRange B)"
+    },
+    {
+      "name": "Erdos726.dividingOddBoundedSum",
+      "kind": "def",
+      "declaration": "def Erdos726.dividingOddBoundedSum (B n : Nat) : Real :=\n  fun B n => Finset.sum (Erdos726.dividingOddBoundedPrimes B n) fun p => HDiv.hDiv 1 \u2191p"
+    },
+    {
+      "name": "Erdos726.upperBoundedPrimes",
+      "kind": "def",
+      "declaration": "def Erdos726.upperBoundedPrimes (B n : Nat) : Finset Nat :=\n  fun B n => Finset.filter (fun p => LT.lt (HDiv.hDiv \u2191p \u21912) \u2191(HMod.hMod n p)) (Erdos726.primeRange B)"
+    },
+    {
+      "name": "Erdos726.upperBoundedPrimeSum",
+      "kind": "def",
+      "declaration": "def Erdos726.upperBoundedPrimeSum (B n : Nat) : Real :=\n  fun B n => Finset.sum (Erdos726.upperBoundedPrimes B n) fun p => HDiv.hDiv 1 \u2191p"
+    },
+    {
+      "name": "Erdos726.oddPrimeRange",
+      "kind": "def",
+      "declaration": "def Erdos726.oddPrimeRange (n : Nat) : Finset Nat :=\n  fun n => Finset.filter (fun p => And (Nat.Prime p) (Eq (HMod.hMod p 2) 1)) (Finset.range (HAdd.hAdd n 1))"
+    },
+    {
+      "name": "Erdos726.lowerSmallPrimeTail",
+      "kind": "def",
+      "declaration": "def Erdos726.lowerSmallPrimeTail (n K : Nat) : Finset Nat :=\n  fun n K => Finset.filter (fun p => LE.le (HAdd.hAdd K 1) (HDiv.hDiv n p)) (Erdos726.lowerComplementPrimes n)"
+    },
+    {
+      "name": "Erdos726.lowerSmallPrimeTailSum",
+      "kind": "def",
+      "declaration": "def Erdos726.lowerSmallPrimeTailSum (n K : Nat) : Real :=\n  fun n K => Finset.sum (Erdos726.lowerSmallPrimeTail n K) fun p => HDiv.hDiv 1 \u2191p"
+    },
+    {
+      "name": "Erdos726.upperSmallPrimeTail",
+      "kind": "def",
+      "declaration": "def Erdos726.upperSmallPrimeTail (n K : Nat) : Finset Nat :=\n  fun n K => Finset.filter (fun p => LE.le (HAdd.hAdd K 1) (HDiv.hDiv n p)) (Erdos726.upperHalfPrimes n)"
+    },
+    {
+      "name": "Erdos726.upperSmallPrimeTailSum",
+      "kind": "def",
+      "declaration": "def Erdos726.upperSmallPrimeTailSum (n K : Nat) : Real :=\n  fun n K => Finset.sum (Erdos726.upperSmallPrimeTail n K) fun p => HDiv.hDiv 1 \u2191p"
+    },
+    {
+      "name": "Erdos726.largePrimeWindowMajorant",
+      "kind": "def",
+      "declaration": "def Erdos726.largePrimeWindowMajorant (n K : Nat) (\u03b4 : Real) : Real :=\n  fun n K \u03b4 =>\n  HAdd.hAdd\n    (HAdd.hAdd\n      (HAdd.hAdd\n        (HMul.hMul (HDiv.hDiv (HMul.hMul (\u2191K) (HAdd.hAdd (\u2191K) 2)) \u2191n)\n          (HDiv.hDiv 1 (Real.log \u2191(HDiv.hDiv n (HAdd.hAdd K 1)))))\n        (HDiv.hDiv (Real.log (HAdd.hAdd (\u2191K) 2)) (HMul.hMul (Real.log \u2191(HDiv.hDiv n (HAdd.hAdd K 1))) (Real.log \u2191n))))\n      (HMul.hMul (HMul.hMul 4 \u2191K) \u03b4))\n    (HDiv.hDiv \u2191(HSub.hSub (Erdos726.primeCount n) (Erdos726.primeCount (HDiv.hDiv n (HAdd.hAdd K 1)))) \u2191n)"
+    },
+    {
+      "name": "Erdos726.primeRange",
+      "kind": "def",
+      "declaration": "def Erdos726.primeRange (n : Nat) : Finset Nat :=\n  fun n => Finset.filter (fun p => Nat.Prime p) (Finset.range (HAdd.hAdd n 1))"
+    },
+    {
+      "name": "Erdos726.primeCount",
+      "kind": "def",
+      "declaration": "def Erdos726.primeCount (m : Nat) : Nat :=\n  fun m => Finset.card (Erdos726.primeRange m)"
+    },
+    {
+      "name": "Erdos726.pntRemainder",
+      "kind": "def",
+      "declaration": "def Erdos726.pntRemainder (M : Nat \u2192 Real) (m : Nat) : Real :=\n  fun M m => HSub.hSub (\u2191(Erdos726.primeCount m)) (M m)"
+    },
+    {
+      "name": "Erdos726.lowerComplementPrimes",
+      "kind": "def",
+      "declaration": "def Erdos726.lowerComplementPrimes (n : Nat) : Finset Nat :=\n  fun n =>\n  Finset.filter (fun p => And (Nat.Prime p) (Not (LT.lt (HDiv.hDiv \u2191p \u21912) \u2191(HMod.hMod n p))))\n    (Finset.range (HAdd.hAdd n 1))"
+    },
+    {
+      "name": "Erdos726.lowerComplementPrimeSum",
+      "kind": "def",
+      "declaration": "def Erdos726.lowerComplementPrimeSum (n : Nat) : Real :=\n  fun n => Finset.sum (Erdos726.lowerComplementPrimes n) fun p => HDiv.hDiv 1 \u2191p"
+    },
+    {
+      "name": "Erdos726.upperHalfPrimes",
+      "kind": "def",
+      "declaration": "def Erdos726.upperHalfPrimes (n : Nat) : Finset Nat :=\n  fun n =>\n  Finset.filter (fun p => And (Nat.Prime p) (LT.lt (HDiv.hDiv \u2191p \u21912) \u2191(HMod.hMod n p))) (Finset.range (HAdd.hAdd n 1))"
+    },
+    {
+      "name": "Erdos726.upperHalfPrimeSum",
+      "kind": "def",
+      "declaration": "def Erdos726.upperHalfPrimeSum (n : Nat) : Real :=\n  fun n => Finset.sum (Erdos726.upperHalfPrimes n) fun p => HDiv.hDiv 1 \u2191p"
+    },
+    {
+      "name": "Erdos726.variants.mertens_estimate",
+      "kind": "theorem",
+      "declaration": "theorem Erdos726.variants.mertens_estimate :\n  Asymptotics.IsEquivalent Filter.atTop\n    (fun n => Finset.sum (Finset.filter (fun p => Nat.Prime p) (Finset.range (HAdd.hAdd n 1))) fun p => HDiv.hDiv 1 \u2191p)\n    fun n => Real.log (Real.log \u2191n)"
+    },
+    {
+      "name": "Erdos726.asymptotic_iff_discrepancy_isLittleO",
+      "kind": "theorem",
+      "declaration": "theorem Erdos726.asymptotic_iff_discrepancy_isLittleO :\n  Iff\n    (Asymptotics.IsEquivalent Filter.atTop\n      (fun n =>\n        Finset.sum\n          (Finset.filter (fun p => And (Nat.Prime p) (LT.lt (HDiv.hDiv \u2191p \u21912) \u2191(HMod.hMod n p)))\n            (Finset.range (HAdd.hAdd n 1)))\n          fun p => HDiv.hDiv 1 \u2191p)\n      fun n => HDiv.hDiv (Real.log (Real.log \u2191n)) 2)\n    (Asymptotics.IsLittleO Filter.atTop\n      (fun n => HSub.hSub (Erdos726.upperHalfPrimeSum n) (Erdos726.lowerComplementPrimeSum n)) fun n =>\n      Real.log (Real.log \u2191n))"
+    },
+    {
+      "name": "Erdos726.iff_smallPrimeTail_of_log_add_two_bounds",
+      "kind": "theorem",
+      "declaration": "theorem Erdos726.iff_smallPrimeTail_of_log_add_two_bounds (K : Nat \u2192 Nat) (\u03b4 : Nat \u2192 Real) (N\u2080 : Nat)\n  (h\u03b4 : \u2200 (n : Nat), GE.ge n N\u2080 \u2192 LE.le 0 (\u03b4 n))\n  (h2 : \u2200 (n : Nat), GE.ge n N\u2080 \u2192 LE.le 2 (HDiv.hDiv n (HAdd.hAdd (K n) 1)))\n  (hK : \u2200 (n : Nat), GE.ge n N\u2080 \u2192 LE.le (HAdd.hAdd (K n) 1) (HDiv.hDiv n (HAdd.hAdd (K n) 1)))\n  (hR :\n    \u2200 (n : Nat),\n      GE.ge n N\u2080 \u2192\n        \u2200 (m : Nat),\n          LE.le m n \u2192\n            LE.le (abs (Erdos726.pntRemainder (fun m => HDiv.hDiv (\u2191m) (Real.log \u2191m)) m)) (HMul.hMul (\u03b4 n) \u2191m))\n  (hmaj :\n    Filter.Tendsto (fun n => HDiv.hDiv (Erdos726.largePrimeWindowMajorant n (K n) (\u03b4 n)) (Real.log (Real.log \u2191n)))\n      Filter.atTop (nhds 0)) :\n  Iff\n    (Asymptotics.IsEquivalent Filter.atTop\n      (fun n =>\n        Finset.sum\n          (Finset.filter (fun p => And (Nat.Prime p) (LT.lt (HDiv.hDiv \u2191p \u21912) \u2191(HMod.hMod n p)))\n            (Finset.range (HAdd.hAdd n 1)))\n          fun p => HDiv.hDiv 1 \u2191p)\n      fun n => HDiv.hDiv (Real.log (Real.log \u2191n)) 2)\n    (Filter.Tendsto\n      (fun n =>\n        HDiv.hDiv (HSub.hSub (Erdos726.upperSmallPrimeTailSum n (K n)) (Erdos726.lowerSmallPrimeTailSum n (K n)))\n          (Real.log (Real.log \u2191n)))\n      Filter.atTop (nhds 0))"
+    },
+    {
+      "name": "Erdos726.of_smallPrimeTail_and_log_add_two_bounds",
+      "kind": "theorem",
+      "declaration": "theorem Erdos726.of_smallPrimeTail_and_log_add_two_bounds (K : Nat \u2192 Nat) (\u03b4 : Nat \u2192 Real) (N\u2080 : Nat)\n  (h\u03b4 : \u2200 (n : Nat), GE.ge n N\u2080 \u2192 LE.le 0 (\u03b4 n))\n  (h2 : \u2200 (n : Nat), GE.ge n N\u2080 \u2192 LE.le 2 (HDiv.hDiv n (HAdd.hAdd (K n) 1)))\n  (hK : \u2200 (n : Nat), GE.ge n N\u2080 \u2192 LE.le (HAdd.hAdd (K n) 1) (HDiv.hDiv n (HAdd.hAdd (K n) 1)))\n  (hR :\n    \u2200 (n : Nat),\n      GE.ge n N\u2080 \u2192\n        \u2200 (m : Nat),\n          LE.le m n \u2192\n            LE.le (abs (Erdos726.pntRemainder (fun m => HDiv.hDiv (\u2191m) (Real.log \u2191m)) m)) (HMul.hMul (\u03b4 n) \u2191m))\n  (hmaj :\n    Filter.Tendsto (fun n => HDiv.hDiv (Erdos726.largePrimeWindowMajorant n (K n) (\u03b4 n)) (Real.log (Real.log \u2191n)))\n      Filter.atTop (nhds 0))\n  (htail :\n    Filter.Tendsto\n      (fun n =>\n        HDiv.hDiv (HSub.hSub (Erdos726.upperSmallPrimeTailSum n (K n)) (Erdos726.lowerSmallPrimeTailSum n (K n)))\n          (Real.log (Real.log \u2191n)))\n      Filter.atTop (nhds 0)) :\n  Asymptotics.IsEquivalent Filter.atTop\n    (fun n =>\n      Finset.sum\n        (Finset.filter (fun p => And (Nat.Prime p) (LT.lt (HDiv.hDiv \u2191p \u21912) \u2191(HMod.hMod n p)))\n          (Finset.range (HAdd.hAdd n 1)))\n        fun p => HDiv.hDiv 1 \u2191p)\n    fun n => HDiv.hDiv (Real.log (Real.log \u2191n)) 2"
+    },
+    {
+      "name": "Erdos726.of_modular_reflection_and_log_add_two_bounds",
+      "kind": "theorem",
+      "declaration": "theorem Erdos726.of_modular_reflection_and_log_add_two_bounds (K M : Nat \u2192 Nat) (\u03b4 : Nat \u2192 Real) (N\u2080 : Nat)\n  (h\u03b4 : \u2200 (n : Nat), GE.ge n N\u2080 \u2192 LE.le 0 (\u03b4 n))\n  (h2 : \u2200 (n : Nat), GE.ge n N\u2080 \u2192 LE.le 2 (HDiv.hDiv n (HAdd.hAdd (K n) 1)))\n  (hK : \u2200 (n : Nat), GE.ge n N\u2080 \u2192 LE.le (HAdd.hAdd (K n) 1) (HDiv.hDiv n (HAdd.hAdd (K n) 1)))\n  (hle : \u2200 (n : Nat), GE.ge n N\u2080 \u2192 LE.le n (M n))\n  (hM :\n    \u2200 (n : Nat),\n      GE.ge n N\u2080 \u2192\n        \u2200 (p : Nat), Membership.mem (Erdos726.oddPrimeRange (HDiv.hDiv n (HAdd.hAdd (K n) 1))) p \u2192 Dvd.dvd p (M n))\n  (hR :\n    \u2200 (n : Nat),\n      GE.ge n N\u2080 \u2192\n        \u2200 (m : Nat),\n          LE.le m n \u2192\n            LE.le (abs (Erdos726.pntRemainder (fun m => HDiv.hDiv (\u2191m) (Real.log \u2191m)) m)) (HMul.hMul (\u03b4 n) \u2191m))\n  (hmaj :\n    Filter.Tendsto (fun n => HDiv.hDiv (Erdos726.largePrimeWindowMajorant n (K n) (\u03b4 n)) (Real.log (Real.log \u2191n)))\n      Filter.atTop (nhds 0))\n  (hrefl :\n    Filter.Tendsto\n      (fun n =>\n        HDiv.hDiv\n          (HAdd.hAdd\n            (HAdd.hAdd\n              (abs\n                (HSub.hSub (Erdos726.upperBoundedPrimeSum (HDiv.hDiv n (HAdd.hAdd (K n) 1)) n)\n                  (Erdos726.upperBoundedPrimeSum (HDiv.hDiv n (HAdd.hAdd (K n) 1)) (HSub.hSub (M n) n))))\n              (Erdos726.dividingOddBoundedSum (HDiv.hDiv n (HAdd.hAdd (K n) 1)) n))\n            (1 / 2))\n          (Real.log (Real.log \u2191n)))\n      Filter.atTop (nhds 0)) :\n  Asymptotics.IsEquivalent Filter.atTop\n    (fun n =>\n      Finset.sum\n        (Finset.filter (fun p => And (Nat.Prime p) (LT.lt (HDiv.hDiv \u2191p \u21912) \u2191(HMod.hMod n p)))\n          (Finset.range (HAdd.hAdd n 1)))\n        fun p => HDiv.hDiv 1 \u2191p)\n    fun n => HDiv.hDiv (Real.log (Real.log \u2191n)) 2"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos726.erdos_726.variants.mertens_estimate",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.726",
+      "solution_declaration": "Erdos726.variants.mertens_estimate",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos726.Challenge.statement_variants_mertens_estimate",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos726.variants.mertens_estimate",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos726.erdos_726.variants.mertens_estimate",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.726",
+      "solution_declaration": "Erdos726.Challenge.statement_variants_mertens_estimate",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos726.erdos_726",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.726",
+      "solution_declaration": "Erdos726.Challenge.statement_erdos_726",
+      "match_mode": "resolves_open_answer_true_prop"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "a85b0ff8664c52ab923e0daf7e20cbc394272cd3831cc492ab144105d8091361"
+  },
+  "input_sha256": {
+    "Challenge.lean": "db25f8ee238bfa198c4181812029927d23c89cb045ded0e4e1fcbddd273cf920",
+    "Solution.lean": "babf378301f709e8f2d5da13e0315fabcf37ec464af4d603bfcb68d75278d25b",
+    "AxiomAudit.lean": "225b86b2b6611e496faf32962135e806939cf31871d750b02c32e42111aca5fc",
+    "Statement.lean": "9f866dc65a891188f3c620d97f79c3fd08d8b57e1362e6b40cc95c919ee6d397",
+    "comparator.json": "56a6255a8beb2d41123463db6b82b278c4dea5bf603da9eba89a940b311183c8",
+    "formalization.yaml": "4a50e150ee9867e4cf3751e4753ff23502846ee7688c7771e2f434e548690afe",
+    "lakefile.toml": "67d51cf37e29ce536a9eacb17aa3f2659ceca980051d02ac712c92cec719df12",
+    "lake-manifest.json": "4bdea0baa19686a59e4319975afab417853aedf93f742d5aee0498e1dbe707b8",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "0d4550e8ed1966fc0264b1eabb35ee7013c3dc8054d28a7c09d6d25298236cea",
+    "Proofs/AbelSummationPrimeCountVariation726.lean": "3bbbf70a9fdb1fc70eb58e8330ab6b5d77fedba39ac7d80bc2bb0ef04eea618d",
+    "Proofs/Blueprint726.lean": "97a7f4b77c4abdff27df11b5d1f8fbc7370798430846dfabae4972128f811058",
+    "Proofs/Erdos726Unified435.lean": "198b8c12a2072b53ee048d03a7554fee7f1ac7b895132dd26d533bcf0722a42f",
+    "Proofs/LogDensityTrapezoidalDefectDecomposition726.lean": "a09fcfdc5de570c5b8a9e6bcb25d421506c102e4f35b7b0327ac2f600317a085",
+    "Proofs/SmallPrimeTailReflectionDiscrepancy726.lean": "6e957fb666c0bc34f3e9ca2b3d9c75b1610a0cb06ee8dccebb91c8c755a0fd5d"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 96.231,
+    "env_compare_and_core_audit_seconds": 69.684,
+    "total_elapsed_seconds": 398.761,
+    "user_cpu_seconds": 213.588,
+    "system_cpu_seconds": 78.634,
+    "peak_rss_mib": 13728.74
+  },
+  "status": "PASS"
+}

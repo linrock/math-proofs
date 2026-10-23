@@ -1,0 +1,142 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-23-74888aff",
+  "verification_date": "2026-10-23",
+  "state_sha256": "871f3dcb52c0acf2a5edd84567033b21dbd7241cf3d07620fa51d49c826f853d",
+  "package": "erdos-692",
+  "project_name": "Erd\u0151s 692: a valley in the divisor-interval density",
+  "package_commit": "74888affffcf320d798f78a2fb45d13c86704d89",
+  "commit": "74888affffcf320d798f78a2fb45d13c86704d89",
+  "repository": "linrock/math-proofs",
+  "run_id": "39917279686",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 1495,
+    "lines": 34,
+    "sha256": "d28f478bce98cfd484e1b316dd20e1d872d3a58d1f82bfd3cb64e7928d374975",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos692.erdos_692_variants_cambie_three"
+  ],
+  "declaration_lines": {
+    "Erdos692.erdos_692_variants_cambie_three": {
+      "solution_line": 26,
+      "challenge_line": 33
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos692.erdos_692_variants_cambie_three"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 1,
+  "expected_axiom_audit_count": 1,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos692.erdos_692_variants_cambie_three",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Erdos692.exactlyOneDivisorIn",
+      "kind": "def",
+      "declaration": "def Erdos692.exactlyOneDivisorIn (n m : Nat) : Set Nat :=\n  fun n m => Set.ofPred fun x => Eq (Set.ncard (Set.ofPred fun d => And (Membership.mem (Set.Ioo n m) d) (Dvd.dvd d x))) 1"
+    },
+    {
+      "name": "Set.partialDensity",
+      "kind": "def",
+      "declaration": "def Set.partialDensity.{u_1} {\u03b2 : Type u_1} [Preorder \u03b2] [LocallyFiniteOrderBot \u03b2] (S : Set \u03b2) (A : Set \u03b2 := Set.univ)\n  (b : \u03b2) : Real :=\n  fun {\u03b2} [Preorder \u03b2] [LocallyFiniteOrderBot \u03b2] S A b =>\n  HDiv.hDiv \u2191(Set.ncard (Inter.inter (Inter.inter S A) (Set.Iio b))) \u2191(Set.ncard (Inter.inter A (Set.Iio b)))"
+    },
+    {
+      "name": "Set.HasDensity",
+      "kind": "def",
+      "declaration": "def Set.HasDensity.{u_1} {\u03b2 : Type u_1} [Preorder \u03b2] [LocallyFiniteOrderBot \u03b2] (S : Set \u03b2) (\u03b1 : Real)\n  (A : Set \u03b2 := Set.univ) : Prop :=\n  fun {\u03b2} [Preorder \u03b2] [LocallyFiniteOrderBot \u03b2] S \u03b1 A =>\n  Filter.Tendsto (fun b => Set.partialDensity S A b) Filter.atTop (nhds \u03b1)"
+    },
+    {
+      "name": "Erdos692.IsDelta\u2081",
+      "kind": "def",
+      "declaration": "def Erdos692.IsDelta\u2081 (n m : Nat) (\u03b4 : Real) : Prop :=\n  fun n m \u03b4 => Set.HasDensity (Erdos692.exactlyOneDivisorIn n m) \u03b4"
+    },
+    {
+      "name": "Erdos692.erdos_692_variants_cambie_three",
+      "kind": "theorem",
+      "declaration": "theorem Erdos692.erdos_692_variants_cambie_three (\u03b4 : Nat \u2192 Nat \u2192 Real) :\n  (\u2200 (a b : Nat), Erdos692.IsDelta\u2081 a b (\u03b4 a b)) \u2192 And (LT.lt (\u03b4 3 7) (\u03b4 3 6)) (LT.lt (\u03b4 3 7) (\u03b4 3 8))"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos692.erdos_692.variants.cambie_three",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.692",
+      "solution_declaration": "Erdos692.erdos_692_variants_cambie_three",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos692.CambieThreeStatement",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos692.erdos_692_variants_cambie_three",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos692.erdos_692.variants.cambie_three",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.692",
+      "solution_declaration": "Erdos692.CambieThreeStatement",
+      "match_mode": "exact"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "a85b0ff8664c52ab923e0daf7e20cbc394272cd3831cc492ab144105d8091361"
+  },
+  "input_sha256": {
+    "Challenge.lean": "d28f478bce98cfd484e1b316dd20e1d872d3a58d1f82bfd3cb64e7928d374975",
+    "Solution.lean": "516d9eb32c191fe2023e27b0be0d56c4fe9e62bef47ae549f6c22aefc8e6b5f2",
+    "AxiomAudit.lean": "0df4a68fbfa539aa0ab845d1a9ee5cbe302f25d12e660042ea83094eb83c7e53",
+    "Statement.lean": "c56bd176badc194fabf3363469d75d0b69ff0b4394ef9ded3384096d377f7753",
+    "comparator.json": "264f11d774b75299d805961d01d9bf3eb49750ab3dab3ae7b31a74d33a014c43",
+    "formalization.yaml": "6f5dfb7b6680f8bc9b1c3bde316811929c5d38d41ab96389b5e653d40302d97e",
+    "lakefile.toml": "a15c9468094cca7bc9eba5ca8ab823c1adfbc3780664aee6b519469e887bd056",
+    "lake-manifest.json": "fa5a9339bcbd879e326fca82cf4a06a20f383a83510491c1d1d5dee6055e01b3",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "694f3c136549331c558647cb21a7e3485ffc4ab5e112c14f4720c1441494cda5",
+    "Proofs/DivisorIntervalDensityAndExtrema692.lean": "59190fd892488ab454ee486f5f590283908811eb66b0539101ad0c4caf725c3f",
+    "Proofs/PlbyErdos692.lean": "458c8b6494b8ab2e61d2833103aa5b45af29a5be99096c4b6d608c70521c6089"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 22.247,
+    "env_compare_and_core_audit_seconds": 67.82,
+    "total_elapsed_seconds": 196.266,
+    "user_cpu_seconds": 92.842,
+    "system_cpu_seconds": 49.591,
+    "peak_rss_mib": 13611.05
+  },
+  "status": "PASS"
+}

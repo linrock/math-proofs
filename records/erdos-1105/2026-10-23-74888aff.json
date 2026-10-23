@@ -1,0 +1,380 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-23-74888aff",
+  "verification_date": "2026-10-23",
+  "state_sha256": "7d095899db2463bca40038cb7361b460603bec7aae1e63be286dbc4d90a56c16",
+  "package": "erdos-1105",
+  "project_name": "Erd\u0151s 1105: anti-Ramsey numbers for cycles and paths",
+  "package_commit": "74888affffcf320d798f78a2fb45d13c86704d89",
+  "commit": "74888affffcf320d798f78a2fb45d13c86704d89",
+  "repository": "linrock/math-proofs",
+  "run_id": "39917279686",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 8534,
+    "lines": 179,
+    "sha256": "9ad59ea231bbbf0e9c8a50831ed7167940b87561007951d8be730cc7d4bc7c57",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos1105.Results.erdos_1105_cycles",
+    "Erdos1105.Results.erdos_1105_paths",
+    "Erdos1105.Results.erdos_1105_parts_i",
+    "Erdos1105.Results.erdos_1105_parts_ii",
+    "Erdos1105.Results.antiRamseyNum_triangle",
+    "Erdos1105.Results.cycle_fullBlock_lower",
+    "Erdos1105.Results.cycle_real_lower",
+    "Erdos1105.Results.cycle_linear_upper"
+  ],
+  "declaration_lines": {
+    "Erdos1105.Results.erdos_1105_cycles": {
+      "solution_line": 55,
+      "challenge_line": 117
+    },
+    "Erdos1105.Results.erdos_1105_paths": {
+      "solution_line": 63,
+      "challenge_line": 125
+    },
+    "Erdos1105.Results.erdos_1105_parts_i": {
+      "solution_line": 72,
+      "challenge_line": 134
+    },
+    "Erdos1105.Results.erdos_1105_parts_ii": {
+      "solution_line": 79,
+      "challenge_line": 141
+    },
+    "Erdos1105.Results.antiRamseyNum_triangle": {
+      "solution_line": 89,
+      "challenge_line": 151
+    },
+    "Erdos1105.Results.cycle_fullBlock_lower": {
+      "solution_line": 96,
+      "challenge_line": 158
+    },
+    "Erdos1105.Results.cycle_real_lower": {
+      "solution_line": 103,
+      "challenge_line": 165
+    },
+    "Erdos1105.Results.cycle_linear_upper": {
+      "solution_line": 112,
+      "challenge_line": 174
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos1105.Results.antiRamseyNum_triangle",
+    "Erdos1105.Results.cycle_fullBlock_lower",
+    "Erdos1105.Results.cycle_linear_upper",
+    "Erdos1105.Results.cycle_real_lower",
+    "Erdos1105.Results.erdos_1105_cycles",
+    "Erdos1105.Results.erdos_1105_parts_i",
+    "Erdos1105.Results.erdos_1105_parts_ii",
+    "Erdos1105.Results.erdos_1105_paths"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 12,
+  "expected_axiom_audit_count": 12,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos1105.Results.erdos_1105_cycles",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1105.Results.erdos_1105_paths",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1105.Results.erdos_1105_parts_i",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1105.Results.erdos_1105_parts_ii",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1105.Results.antiRamseyNum_triangle",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1105.Results.cycle_fullBlock_lower",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1105.Results.cycle_real_lower",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1105.Results.cycle_linear_upper",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1105.erdos_1105.parts.i",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1105.erdos_1105.parts.ii",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1105.Results.statement_i_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1105.Results.statement_ii_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Erdos1105.Results.IsRainbow",
+      "kind": "def",
+      "declaration": "def Erdos1105.Results.IsRainbow.{u_1, u_2, u_3} {\u03b1 : Type u_1} {V : Type u_2} {K : Type u_3} {H : SimpleGraph \u03b1}\n  {G : SimpleGraph V} (f : SimpleGraph.Hom H G) (c : SimpleGraph.EdgeLabeling G K) : Prop :=\n  fun {\u03b1} {V} {K} {H} {G} f c => Function.Injective (SimpleGraph.EdgeLabeling.pullback c f)"
+    },
+    {
+      "name": "Erdos1105.Results.antiRamseyNum",
+      "kind": "def",
+      "declaration": "def Erdos1105.Results.antiRamseyNum.{u_1} {\u03b1 : Type u_1} [Fintype \u03b1] (H : SimpleGraph \u03b1) (n : Nat) : Nat :=\n  fun {\u03b1} [Fintype \u03b1] H n =>\n  SupSet.sSup\n    (Set.ofPred fun k =>\n      Exists fun c =>\n        And (Function.Surjective c)\n          (\u2200 (f : SimpleGraph.Copy H Top.top), Not (Erdos1105.Results.IsRainbow (SimpleGraph.Copy.toHom f) c)))"
+    },
+    {
+      "name": "Erdos1105.Results.erdos_1105_cycles",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1105.Results.erdos_1105_cycles (k : Nat) :\n  LE.le 3 k \u2192\n    Asymptotics.IsBigO Filter.atTop\n      (fun n =>\n        HSub.hSub (\u2191(Erdos1105.Results.antiRamseyNum (SimpleGraph.cycleGraph k) n))\n          (HMul.hMul (HAdd.hAdd (HDiv.hDiv (HSub.hSub (\u2191k) 2) 2) (HDiv.hDiv 1 (HSub.hSub (\u2191k) 1))) \u2191n))\n      fun x => 1"
+    },
+    {
+      "name": "Erdos1105.Results.erdos_1105_paths",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1105.Results.erdos_1105_paths (k n : Nat) :\n  LE.le 5 k \u2192\n    LE.le k n \u2192\n      have \u2113 := HDiv.hDiv (HSub.hSub k 1) 2;\n      have \u03b5 := ite (Odd k) 1 2;\n      Eq (Erdos1105.Results.antiRamseyNum (SimpleGraph.pathGraph k) n)\n        (Max.max (HAdd.hAdd (Nat.choose (HSub.hSub k 2) 2) 1)\n          (HAdd.hAdd\n            (HAdd.hAdd (Nat.choose (HSub.hSub \u2113 1) 2) (HMul.hMul (HSub.hSub \u2113 1) (HAdd.hAdd (HSub.hSub n \u2113) 1))) \u03b5))"
+    },
+    {
+      "name": "Erdos1105.Results.erdos_1105_parts_i",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1105.Results.erdos_1105_parts_i (k : Nat) :\n  LE.le 3 k \u2192\n    Asymptotics.IsBigO Filter.atTop\n      (fun n =>\n        HSub.hSub (\u2191(Erdos1105.Results.antiRamseyNum (SimpleGraph.cycleGraph k) n))\n          (HMul.hMul (HAdd.hAdd (HDiv.hDiv (HSub.hSub (\u2191k) 2) 2) (HDiv.hDiv 1 (HSub.hSub (\u2191k) 1))) \u2191n))\n      fun x => 1"
+    },
+    {
+      "name": "Erdos1105.Results.erdos_1105_parts_ii",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1105.Results.erdos_1105_parts_ii (k n : Nat) :\n  LE.le 5 k \u2192\n    LE.le k n \u2192\n      have \u2113 := HDiv.hDiv (HSub.hSub k 1) 2;\n      have \u03b5 := ite (Odd k) 1 2;\n      Eq (Erdos1105.Results.antiRamseyNum (SimpleGraph.pathGraph k) n)\n        (Max.max (HAdd.hAdd (Nat.choose (HSub.hSub k 2) 2) 1)\n          (HAdd.hAdd\n            (HAdd.hAdd (Nat.choose (HSub.hSub \u2113 1) 2) (HMul.hMul (HSub.hSub \u2113 1) (HAdd.hAdd (HSub.hSub n \u2113) 1))) \u03b5))"
+    },
+    {
+      "name": "Erdos1105.Results.antiRamseyNum_triangle",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1105.Results.antiRamseyNum_triangle (n : Nat) (hn : LE.le 3 n) :\n  Eq (Erdos1105.Results.antiRamseyNum (SimpleGraph.cycleGraph 3) n) (HSub.hSub n 1)"
+    },
+    {
+      "name": "Erdos1105.Results.cycle_fullBlock_lower",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1105.Results.cycle_fullBlock_lower (k n : Nat) (hk : LE.le 3 k) (hn : LE.le k n) :\n  LE.le (HSub.hSub (HMul.hMul (HDiv.hDiv n (HSub.hSub k 1)) (HAdd.hAdd (Nat.choose (HSub.hSub k 1) 2) 1)) 1)\n    (Erdos1105.Results.antiRamseyNum (SimpleGraph.cycleGraph k) n)"
+    },
+    {
+      "name": "Erdos1105.Results.cycle_real_lower",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1105.Results.cycle_real_lower (k n : Nat) (hk : LE.le 3 k) (hn : LE.le k n) :\n  LE.le\n    (HSub.hSub\n      (HSub.hSub (HMul.hMul (HAdd.hAdd (HDiv.hDiv (HSub.hSub (\u2191k) 2) 2) (HDiv.hDiv 1 (HSub.hSub (\u2191k) 1))) \u2191n)\n        (HMul.hMul (HAdd.hAdd (HDiv.hDiv (HSub.hSub (\u2191k) 2) 2) (HDiv.hDiv 1 (HSub.hSub (\u2191k) 1))) \u2191(HSub.hSub k 1)))\n      1)\n    \u2191(Erdos1105.Results.antiRamseyNum (SimpleGraph.cycleGraph k) n)"
+    },
+    {
+      "name": "Erdos1105.Results.cycle_linear_upper",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1105.Results.cycle_linear_upper (k n : Nat) (hk : LE.le 3 k) (hn : LE.le k n) :\n  LE.le (\u2191(Erdos1105.Results.antiRamseyNum (SimpleGraph.cycleGraph k) n))\n    (HSub.hSub (HMul.hMul (HAdd.hAdd (HDiv.hDiv (HSub.hSub (\u2191k) 2) 2) (HDiv.hDiv 1 (HSub.hSub (\u2191k) 1))) \u2191n) 1)"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos1105.erdos_1105.parts.i",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.1105",
+      "solution_declaration": "Erdos1105.Results.erdos_1105_cycles",
+      "match_mode": "iff_true_to_prop"
+    },
+    {
+      "target_declaration": "Erdos1105.erdos_1105.parts.i",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.1105",
+      "solution_declaration": "Erdos1105.Results.erdos_1105_parts_i",
+      "match_mode": "iff_true_to_prop"
+    },
+    {
+      "target_declaration": "Erdos1105.erdos_1105.parts.i",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.1105",
+      "solution_declaration": "Erdos1105.erdos_1105.parts.i",
+      "match_mode": "iff_true_to_prop"
+    },
+    {
+      "target_declaration": "Erdos1105.erdos_1105.parts.ii",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.1105",
+      "solution_declaration": "Erdos1105.Results.erdos_1105_paths",
+      "match_mode": "iff_true_to_prop"
+    },
+    {
+      "target_declaration": "Erdos1105.erdos_1105.parts.ii",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.1105",
+      "solution_declaration": "Erdos1105.Results.erdos_1105_parts_ii",
+      "match_mode": "iff_true_to_prop"
+    },
+    {
+      "target_declaration": "Erdos1105.erdos_1105.parts.ii",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.1105",
+      "solution_declaration": "Erdos1105.erdos_1105.parts.ii",
+      "match_mode": "iff_true_to_prop"
+    },
+    {
+      "target_declaration": "Erdos1105.Challenge.statement_i",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1105.Results.erdos_1105_cycles",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1105.Challenge.statement_i",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1105.Results.erdos_1105_parts_i",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1105.Challenge.statement_i",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1105.erdos_1105.parts.i",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1105.Challenge.statement_ii",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1105.Results.erdos_1105_paths",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1105.Challenge.statement_ii",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1105.Results.erdos_1105_parts_ii",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1105.Challenge.statement_ii",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1105.erdos_1105.parts.ii",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1105.erdos_1105.parts.i",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.1105",
+      "solution_declaration": "Erdos1105.Challenge.statement_i",
+      "match_mode": "iff_true_to_prop"
+    },
+    {
+      "target_declaration": "Erdos1105.erdos_1105.parts.ii",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.1105",
+      "solution_declaration": "Erdos1105.Challenge.statement_ii",
+      "match_mode": "iff_true_to_prop"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "a85b0ff8664c52ab923e0daf7e20cbc394272cd3831cc492ab144105d8091361"
+  },
+  "input_sha256": {
+    "Challenge.lean": "9ad59ea231bbbf0e9c8a50831ed7167940b87561007951d8be730cc7d4bc7c57",
+    "Solution.lean": "514ea58012cdf1fa57a91b4bc05af1b0c221921647118e957980be89c6b9347b",
+    "AxiomAudit.lean": "080cca5e9454c1b659e7611c10851fc575366f5ce0a52af12950eb65bc9cab16",
+    "Statement.lean": "ff3ddbf50e583a8476b6f798b74c0d2fd9a14053eee2386fd409dbc41d097321",
+    "comparator.json": "b28e94712a3797d07d7537ea29d684a90bc497693c7beb8ebd498b3b7c2ae05c",
+    "formalization.yaml": "933ca719e2c7dae68087c7663ac3a96a532bfae02ecb47f67ad27be155fda579",
+    "lakefile.toml": "5af9e507583d6143e2aa29a5e0f4b564690c10a1b0fb40941d4c54ad6cc02a25",
+    "lake-manifest.json": "29a29c3cf4a989e2bc4ac1c0da558e28563ccab7ab3d2c7d4ffdfd84e3b2d816",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "232c66950058de0289bb8be17398cbe7679ccf5d1c903f512bddb003a79796dd",
+    "Proofs/CycleAsymptoticAndPathSeed.lean": "e9e7dc288b764cf8b5c053aeaeaf4dbf99f18a3e99fa84008aaa2d12987fa154",
+    "Proofs/CycleBlockAndTriangleBounds.lean": "e6257d9ab96c05a0c7ec96e48549bd0903367f16d9cc838f971143c77d38e372",
+    "Proofs/CycleRepresentativeExchange.lean": "0673781e5b629fce427d59040ad72c2b4d0547392b93d654a73bc9e7ff57a2c9",
+    "Proofs/PathConeAndVineCycles.lean": "616be4b23a468c1e47a413ad62b359e130db4c891b99ef11a04e6a40cc3c3bb9",
+    "Proofs/PathKernelAndUniversalExact.lean": "874e55926ab3bcdaa65cd4fc388ed0f32dfef3895f619e4474147712dc513580",
+    "Proofs/PathLowerAndSmallCases.lean": "f9474197f8685276531cd3b475377ddb084d49508b117d6998a66190af5ff198",
+    "Proofs/PathResidualDecomposition.lean": "b1f2e16479c6509ac3f2596e2d37443c61031c91e32ebf438812c0210a789573",
+    "Proofs/PathRestorationAndCircumference.lean": "38ee2fae9c2a8da4107e22bc172c1e78be6b50d8163b2bf7b1459e8f95be4be9"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 230.506,
+    "env_compare_and_core_audit_seconds": 22.669,
+    "total_elapsed_seconds": 421.157,
+    "user_cpu_seconds": 296.931,
+    "system_cpu_seconds": 47.152,
+    "peak_rss_mib": 8286.11
+  },
+  "status": "PASS"
+}
