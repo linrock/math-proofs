@@ -24,7 +24,7 @@ public import Mathlib
 noncomputable section
 open scoped BigOperators
 
-namespace Erdos306.PrimeResidueAndRowPotential
+namespace Erdos306.Core.PrimeResidueAndRowPotential
 
 def incidenceDegree {α : Type*} [DecidableEq α]
     (E : Finset (α × α)) (v : α) : ℕ :=
@@ -72,35 +72,30 @@ def witnessEdges73Cell111 : Finset (ℕ × ℕ) :=
    (31, 41), (31, 47), (31, 53), (31, 59), (37, 41), (37, 43), (37, 59), (41, 43), (41, 47), (41, 53),
    (43, 61), (53, 59), (59, 61)}
 
-end Erdos306.PrimeResidueAndRowPotential
+end Erdos306.Core.PrimeResidueAndRowPotential
 
-namespace Erdos306.Palomar
+namespace Erdos306
 
-open ArithmeticFunction Finset Erdos306.PrimeResidueAndRowPotential
+open ArithmeticFunction Finset Erdos306.Core.PrimeResidueAndRowPotential
 open scoped ArithmeticFunction.omega ArithmeticFunction.Omega
 
 theorem erdos_306 :
-    True ↔ ∀ (q : ℚ), 0 < q → Squarefree q.den →
-      ∃ k : ℕ, ∃ (n : Fin (k + 1) → ℕ), n 0 = 1 ∧ StrictMono n ∧
-      (∀ i ∈ Finset.Icc 1 (Fin.last k), ω (n i) = 2 ∧ Ω (n i) = 2) ∧
-      q = ∑ i ∈ Finset.Icc 1 (Fin.last k), (1 : ℚ) / (n i) := by
-  sorry
-
-theorem erdos_306_formal_conjectures :
     ∀ (q : ℚ), 0 < q → Squarefree q.den →
       ∃ k : ℕ, ∃ (n : Fin (k + 1) → ℕ), n 0 = 1 ∧ StrictMono n ∧
       (∀ i ∈ Finset.Icc 1 (Fin.last k), ω (n i) = 2 ∧ Ω (n i) = 2) ∧
       q = ∑ i ∈ Finset.Icc 1 (Fin.last k), (1 : ℚ) / (n i) := by
   sorry
 
-theorem erdos_306_variants_integer_three_primes (m : ℕ) (h : 0 < m) :
+namespace variants
+
+theorem integer_three_primes (m : ℕ) (h : 0 < m) :
     ∃ k > (0 : ℕ), ∃ (n : Fin (k + 1) → ℕ), n 0 = 1 ∧
     ∀ i, (hik : i < k) → n ⟨i, Nat.lt_succ_of_lt hik⟩ < n ⟨(i + 1), Nat.succ_lt_succ hik⟩ ∧
     (∀ i ∈ Finset.Icc 1 (Fin.last k), ω (n i) = 3 ∧ Ω (n i) = 3) ∧
     m = ∑ i ∈ Finset.Icc 1 (Fin.last k), (1 : ℚ) / (n i) := by
   sorry
 
-theorem erdos_306_finset_omega_Omega (q : ℚ) (hq : 0 < q) (hsq : Squarefree q.den) :
+theorem finset_omega_Omega (q : ℚ) (hq : 0 < q) (hsq : Squarefree q.den) :
     ∃ F : Finset ℕ,
       (∀ n ∈ F, ω n = 2 ∧ Ω n = 2) ∧
       ∑ n ∈ F, (1 : ℚ) / n = q := by
@@ -112,14 +107,14 @@ theorem integer_three_primes_finset (m : ℕ) (hm : 0 < m) :
       (m : ℚ) = ∑ n ∈ F, (1 : ℚ) / (n : ℚ) := by
   sorry
 
-theorem exists_semiprime_set_sum_eq_one_iff_ten_le (d : ℕ) :
+theorem incidence_ten_iff (d : ℕ) :
     (∃ S : Finset ℕ,
       (∀ n ∈ S, ω n = 2 ∧ Ω n = 2) ∧
       (∀ p : ℕ, p.Prime → (S.filter fun n => p ∣ n).card ≤ d) ∧
       (∑ n ∈ S, (1 : ℚ) / (n : ℚ)) = 1) ↔ 10 ≤ d := by
   sorry
 
-theorem semiprime_set_card_ge_fifty_eight_of_sum_eq_one
+theorem semiprime_card_ge_fifty_eight
     (S : Finset ℕ)
     (hS : ∀ n ∈ S, ω n = 2 ∧ Ω n = 2)
     (hdeg : ∀ p : ℕ, p.Prime → (S.filter fun n => p ∣ n).card ≤ 10)
@@ -127,7 +122,7 @@ theorem semiprime_set_card_ge_fifty_eight_of_sum_eq_one
     58 ≤ S.card := by
   sorry
 
-theorem semiprime_set_card_ge_fifty_nine_of_sum_eq_one
+theorem semiprime_card_ge_fifty_nine
     (S : Finset ℕ)
     (hS : ∀ n ∈ S, ω n = 2 ∧ Ω n = 2)
     (hdeg : ∀ p : ℕ, p.Prime → (S.filter fun n => p ∣ n).card ≤ 10)
@@ -135,7 +130,7 @@ theorem semiprime_set_card_ge_fifty_nine_of_sum_eq_one
     59 ≤ S.card := by
   sorry
 
-theorem semiprime_set_card_ge_sixty_of_sum_eq_one
+theorem semiprime_card_ge_sixty
     (S : Finset ℕ)
     (hS : ∀ n ∈ S, ω n = 2 ∧ Ω n = 2)
     (hdeg : ∀ p : ℕ, p.Prime → (S.filter fun n => p ∣ n).card ≤ 10)
@@ -143,7 +138,7 @@ theorem semiprime_set_card_ge_sixty_of_sum_eq_one
     60 ≤ S.card := by
   sorry
 
-theorem semiprime_set_card_ge_sixty_one_of_sum_eq_one
+theorem semiprime_card_ge_sixty_one
     (S : Finset ℕ)
     (hS : ∀ n ∈ S, ω n = 2 ∧ Ω n = 2)
     (hdeg : ∀ p : ℕ, p.Prime → (S.filter fun n => p ∣ n).card ≤ 10)
@@ -151,7 +146,7 @@ theorem semiprime_set_card_ge_sixty_one_of_sum_eq_one
     61 ≤ S.card := by
   sorry
 
-theorem semiprime_set_card_ge_sixty_three_of_odd_card_of_sum_eq_one
+theorem semiprime_card_ge_sixty_three_of_odd_card
     (S : Finset ℕ)
     (hS : ∀ n ∈ S, ω n = 2 ∧ Ω n = 2)
     (hdeg : ∀ p : ℕ, p.Prime → (S.filter fun n => p ∣ n).card ≤ 10)
@@ -160,7 +155,7 @@ theorem semiprime_set_card_ge_sixty_three_of_odd_card_of_sum_eq_one
     63 ≤ S.card := by
   sorry
 
-theorem prime_edges_card_ge_fifty_nine_of_sum_eq_one
+theorem prime_edges_card_ge_fifty_nine
     (E : Finset (ℕ × ℕ))
     (hE : ∀ e ∈ E, e.1.Prime ∧ e.2.Prime ∧ e.1 < e.2)
     (hdeg : ∀ p : ℕ, p.Prime → incidenceDegree E p ≤ 10)
@@ -168,7 +163,7 @@ theorem prime_edges_card_ge_fifty_nine_of_sum_eq_one
     59 ≤ E.card := by
   sorry
 
-theorem prime_edges_card_ge_sixty_one_of_sum_eq_one
+theorem prime_edges_card_ge_sixty_one
     (E : Finset (ℕ × ℕ))
     (hE : ∀ e ∈ E, e.1.Prime ∧ e.2.Prime ∧ e.1 < e.2)
     (hdeg : ∀ p : ℕ, p.Prime → incidenceDegree E p ≤ 10)
@@ -197,7 +192,7 @@ theorem odd_card_iff_four_dvd_sum_graphNeighbors_two
     ¬ 2 ∣ E.card ↔ 4 ∣ ∑ q ∈ graphNeighbors E 2, q := by
   sorry
 
-theorem prime_edges_card_ge_sixty_three_of_odd_card_of_sum_eq_one
+theorem prime_edges_card_ge_sixty_three_of_odd_card
     (E : Finset (ℕ × ℕ))
     (hE : ∀ e ∈ E, e.1.Prime ∧ e.2.Prime ∧ e.1 < e.2)
     (hdeg : ∀ p : ℕ, p.Prime → incidenceDegree E p ≤ 10)
@@ -206,7 +201,7 @@ theorem prime_edges_card_ge_sixty_three_of_odd_card_of_sum_eq_one
     63 ≤ E.card := by
   sorry
 
-theorem witnessEdges71Cell111_valid_and_sum_eq_one (d : ℕ) (hd : 10 ≤ d) :
+theorem witness_71_cell_111 (d : ℕ) (hd : 10 ≤ d) :
     (∀ e ∈ witnessEdges71Cell111,
       e.1 ∈ primes61 ∧ e.2 ∈ primes61 ∧ e.1.Prime ∧ e.2.Prime ∧ e.1 < e.2) ∧
       (∑ e ∈ witnessEdges71Cell111, (1 : ℚ) / ((e.1 : ℚ) * (e.2 : ℚ))) = 1 ∧
@@ -219,7 +214,7 @@ theorem witnessEdges71Cell111_valid_and_sum_eq_one (d : ℕ) (hd : 10 ≤ d) :
       ∀ p ∈ primes61, incidenceDegree witnessEdges71Cell111 p ≤ d := by
   sorry
 
-theorem witnessEdges72Cell111_valid_and_sum_eq_one (d : ℕ) (hd : 10 ≤ d) :
+theorem witness_72_cell_111 (d : ℕ) (hd : 10 ≤ d) :
     (∀ e ∈ witnessEdges72Cell111,
       e.1 ∈ primes61 ∧ e.2 ∈ primes61 ∧ e.1.Prime ∧ e.2.Prime ∧ e.1 < e.2) ∧
       (∑ e ∈ witnessEdges72Cell111, (1 : ℚ) / ((e.1 : ℚ) * (e.2 : ℚ))) = 1 ∧
@@ -231,7 +226,7 @@ theorem witnessEdges72Cell111_valid_and_sum_eq_one (d : ℕ) (hd : 10 ≤ d) :
       ∀ p ∈ primes61, incidenceDegree witnessEdges72Cell111 p ≤ d := by
   sorry
 
-theorem witnessEdges73Cell111_valid_and_sum_eq_one (d : ℕ) (hd : 10 ≤ d) :
+theorem witness_73_cell_111 (d : ℕ) (hd : 10 ≤ d) :
     (∀ e ∈ witnessEdges73Cell111,
       e.1 ∈ primes61 ∧ e.2 ∈ primes61 ∧ e.1.Prime ∧ e.2.Prime ∧ e.1 < e.2) ∧
       (∑ e ∈ witnessEdges73Cell111, (1 : ℚ) / ((e.1 : ℚ) * (e.2 : ℚ))) = 1 ∧
@@ -243,6 +238,8 @@ theorem witnessEdges73Cell111_valid_and_sum_eq_one (d : ℕ) (hd : 10 ≤ d) :
       ∀ p ∈ primes61, incidenceDegree witnessEdges73Cell111 p ≤ d := by
   sorry
 
-end Erdos306.Palomar
+end variants
+
+end Erdos306
 
 end

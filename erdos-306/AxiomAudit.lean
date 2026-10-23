@@ -21,25 +21,24 @@ public import Solution
 
 @[expose] public section
 
-#print axioms Erdos306.Palomar.erdos_306
-#print axioms Erdos306.Palomar.erdos_306_formal_conjectures
-#print axioms Erdos306.Palomar.erdos_306_variants_integer_three_primes
-#print axioms Erdos306.Palomar.erdos_306_finset_omega_Omega
-#print axioms Erdos306.Palomar.integer_three_primes_finset
-#print axioms Erdos306.Palomar.exists_semiprime_set_sum_eq_one_iff_ten_le
-#print axioms Erdos306.Palomar.semiprime_set_card_ge_fifty_eight_of_sum_eq_one
-#print axioms Erdos306.Palomar.semiprime_set_card_ge_fifty_nine_of_sum_eq_one
-#print axioms Erdos306.Palomar.semiprime_set_card_ge_sixty_of_sum_eq_one
-#print axioms Erdos306.Palomar.semiprime_set_card_ge_sixty_one_of_sum_eq_one
-#print axioms Erdos306.Palomar.semiprime_set_card_ge_sixty_three_of_odd_card_of_sum_eq_one
-#print axioms Erdos306.Palomar.prime_edges_card_ge_fifty_nine_of_sum_eq_one
-#print axioms Erdos306.Palomar.prime_edges_card_ge_sixty_one_of_sum_eq_one
-#print axioms Erdos306.Palomar.sum_graphNeighbors_two_add_two_mul_card_mod_four_eq_two
-#print axioms Erdos306.Palomar.even_card_iff_sum_graphNeighbors_two_mod_four_eq_two
-#print axioms Erdos306.Palomar.odd_card_iff_four_dvd_sum_graphNeighbors_two
-#print axioms Erdos306.Palomar.prime_edges_card_ge_sixty_three_of_odd_card_of_sum_eq_one
-#print axioms Erdos306.Palomar.witnessEdges71Cell111_valid_and_sum_eq_one
-#print axioms Erdos306.Palomar.witnessEdges72Cell111_valid_and_sum_eq_one
-#print axioms Erdos306.Palomar.witnessEdges73Cell111_valid_and_sum_eq_one
+#print axioms Erdos306.erdos_306
+#print axioms Erdos306.variants.integer_three_primes
+#print axioms Erdos306.variants.finset_omega_Omega
+#print axioms Erdos306.variants.integer_three_primes_finset
+#print axioms Erdos306.variants.incidence_ten_iff
+#print axioms Erdos306.variants.semiprime_card_ge_fifty_eight
+#print axioms Erdos306.variants.semiprime_card_ge_fifty_nine
+#print axioms Erdos306.variants.semiprime_card_ge_sixty
+#print axioms Erdos306.variants.semiprime_card_ge_sixty_one
+#print axioms Erdos306.variants.semiprime_card_ge_sixty_three_of_odd_card
+#print axioms Erdos306.variants.prime_edges_card_ge_fifty_nine
+#print axioms Erdos306.variants.prime_edges_card_ge_sixty_one
+#print axioms Erdos306.variants.sum_graphNeighbors_two_add_two_mul_card_mod_four_eq_two
+#print axioms Erdos306.variants.even_card_iff_sum_graphNeighbors_two_mod_four_eq_two
+#print axioms Erdos306.variants.odd_card_iff_four_dvd_sum_graphNeighbors_two
+#print axioms Erdos306.variants.prime_edges_card_ge_sixty_three_of_odd_card
+#print axioms Erdos306.variants.witness_71_cell_111
+#print axioms Erdos306.variants.witness_72_cell_111
+#print axioms Erdos306.variants.witness_73_cell_111
 
 end

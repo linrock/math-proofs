@@ -34,7 +34,7 @@ set_option maxRecDepth 16384
 noncomputable section
 open scoped BigOperators
 
-namespace Erdos306.PrimeResidueAndRowPotential
+namespace Erdos306.Core.PrimeResidueAndRowPotential
 
 /-! ## Part 1: 11-Element `U_37(p)` Local Row-Admissibility Defect Envelope and `|E| ≥ 59` -/
 
@@ -1233,11 +1233,11 @@ theorem witnessEdges73Cell111_valid_and_sum_eq_one (d : ℕ) (hd : 10 ≤ d) :
   exact sum_edges_inv_eq_one_of_cleared_nat_sum witnessEdges73Cell111 (primorial47 * 53 * 59 * 61)
     (by decide) (by decide) (by decide)
 
-end Erdos306.PrimeResidueAndRowPotential
+end Erdos306.Core.PrimeResidueAndRowPotential
 
 /-! ## Part 4: Direct Bridges to `FormalConjectures.ErdosProblems.306` (`erdos_306` and `erdos_306.variants.integer_three_primes`) -/
 
-namespace Erdos306
+namespace Erdos306.Core
 
 open ArithmeticFunction Finset
 open scoped ArithmeticFunction.omega ArithmeticFunction.Omega
@@ -1394,14 +1394,14 @@ theorem integer_three_primes_finset (m : ℕ) (hm : 0 < m) :
   push_cast
   field_simp
 
-theorem erdos_306_iff_true :
+theorem erdos_306_iff_true_core :
     True ↔ ∀ (q : ℚ), 0 < q → Squarefree q.den →
       ∃ k : ℕ, ∃ (n : Fin (k + 1) → ℕ), n 0 = 1 ∧ StrictMono n ∧
       (∀ i ∈ Finset.Icc 1 (Fin.last k), ω (n i) = 2 ∧ Ω (n i) = 2) ∧
       q = ∑ i ∈ Finset.Icc 1 (Fin.last k), (1 : ℚ) / (n i) :=
-  ⟨fun _ => erdos_306_formal_conjectures, fun _ => trivial⟩
+  ⟨fun _ => erdos_306_fc_core, fun _ => trivial⟩
 
-theorem erdos_306.variants.integer_three_primes (m : ℕ) (h : 0 < m) :
+theorem integer_three_primes_fc_core (m : ℕ) (h : 0 < m) :
     ∃ k > (0 : ℕ), ∃ (n : Fin (k + 1) → ℕ), n 0 = 1 ∧
     ∀ i, (hik : i < k) → n ⟨i, Nat.lt_succ_of_lt hik⟩ < n ⟨(i + 1), Nat.succ_lt_succ hik⟩ ∧
     (∀ i ∈ Finset.Icc 1 (Fin.last k), ω (n i) = 3 ∧ Ω (n i) = 3) ∧
@@ -1452,5 +1452,5 @@ theorem erdos_306.variants.integer_three_primes (m : ℕ) (h : 0 < m) :
   refine ⟨?_, hfac, hsum_eq⟩
   exact hmono (by simp [Fin.lt_def, hik])
 
-end Erdos306
+end Erdos306.Core
 

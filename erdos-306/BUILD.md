@@ -16,7 +16,7 @@ The first command fetches Mathlib's build cache. The build compiles the three
 `Proofs`, `Solution`, `AxiomAudit`, and `Statement` use `-E hasSorry`.
 `Challenge` contains the intentional statement placeholders.
 
-The last command prints the transitive axioms of all 20 `Solution` theorems.
+The last command prints the transitive axioms of all 19 `Solution` theorems.
 Expect only `propext`, `Classical.choice`, and `Quot.sound`.
 
 `./verify.sh` runs the same build and axiom audit and checks the axiom report

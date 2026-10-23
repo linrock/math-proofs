@@ -1,7 +1,7 @@
 # Provenance and licenses for Erdős #306
 
 The `erdos_306` and `erdos_306.variants.integer_three_primes` statements are
-adapted from [google-deepmind/formal-conjectures](https://github.com/google-deepmind/formal-conjectures/blob/ad6e5df136da7c40c662d1a559e056a35a5872c7/FormalConjectures/ErdosProblems/306.lean)
+adapted from [google-deepmind/formal-conjectures](https://github.com/google-deepmind/formal-conjectures/blob/7db2ea3b91bfbd0ab620215163e6c488bbb916d5/FormalConjectures/ErdosProblems/306.lean)
 and appear in `Challenge.lean`, `Statement.lean`, `Solution.lean`, and the
 `Representation` and Formal Conjectures bridge sections of
 `Proofs/Erdos306Unified435.lean`. They retain the Formal Conjectures

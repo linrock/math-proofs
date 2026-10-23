@@ -14,11 +14,11 @@ Lean 4.35.0-rc2. The contribution here is a packaged, machine-checked proof of
 known mathematics together with several finite results about representations
 of `1`. No novelty is claimed for the main theorem.
 
-[Solution.lean](Solution.lean) exports 20 theorems in `Erdos306.Palomar`.
-[Challenge.lean](Challenge.lean) states the same 20 targets using only Mathlib
+[Solution.lean](Solution.lean) exports 19 theorems in `Erdos306` and
+`Erdos306.variants`. [Challenge.lean](Challenge.lean) states the same 19 targets using only Mathlib
 and contains intentional statement placeholders. Solution does not import
 Challenge. [Statement.lean](Statement.lean) checks that the exported statements
-match the [Formal Conjectures statement](https://github.com/google-deepmind/formal-conjectures/blob/ad6e5df136da7c40c662d1a559e056a35a5872c7/FormalConjectures/ErdosProblems/306.lean),
+match the [Formal Conjectures statement](https://github.com/google-deepmind/formal-conjectures/blob/7db2ea3b91bfbd0ab620215163e6c488bbb916d5/FormalConjectures/ErdosProblems/306.lean),
 and [AxiomAudit.lean](AxiomAudit.lean) prints the axioms of every endpoint.
 Every endpoint depends only on `propext`, `Classical.choice`, and `Quot.sound`.
 
@@ -26,14 +26,15 @@ Every endpoint depends only on `propext`, `Classical.choice`, and `Quot.sound`.
 
 | Theorem in `Solution.lean` | Statement |
 | --- | --- |
-| `erdos_306`, `erdos_306_formal_conjectures`, `erdos_306_finset_omega_Omega` | The original question, with answer `True`, in the Formal Conjectures form and a finite-set form. |
-| `erdos_306_variants_integer_three_primes`, `integer_three_primes_finset` | Every positive integer is a sum of reciprocals of distinct products of three distinct primes. |
-| `exists_semiprime_set_sum_eq_one_iff_ten_le` | `1` has a representation in which every prime divides at most `d` denominators if and only if `d ≥ 10`. |
-| `semiprime_set_card_ge_*_of_sum_eq_one`, `prime_edges_card_ge_*_of_sum_eq_one` | When every prime divides at most ten denominators, a representation of `1` has at least 61 terms, and at least 63 if the number of terms is odd. |
-| `sum_graphNeighbors_two_add_two_mul_card_mod_four_eq_two` and its two corollaries | For any representation of `1`, with `q` ranging over the primes paired with `2`, `Σ q + 2·(number of terms) ≡ 2 (mod 4)`. |
-| `witnessEdges{71,72,73}Cell111_valid_and_sum_eq_one` | Explicit 71-, 72-, and 73-term representations of `1` on primes up to 61, each prime dividing at most ten denominators. |
+| `erdos_306`, `variants.finset_omega_Omega` | The original question in the current upstream plain-proposition form, and a finite-set form. |
+| `variants.integer_three_primes`, `variants.integer_three_primes_finset` | Every positive integer is a sum of reciprocals of distinct products of three distinct primes. |
+| `variants.incidence_ten_iff` | `1` has a representation in which every prime divides at most `d` denominators if and only if `d ≥ 10`. |
+| `variants.semiprime_card_ge_*`, `variants.prime_edges_card_ge_*` | When every prime divides at most ten denominators, a representation of `1` has at least 61 terms, and at least 63 if the number of terms is odd. |
+| `variants.sum_graphNeighbors_two_add_two_mul_card_mod_four_eq_two` and its two corollaries | For any representation of `1`, with `q` ranging over the primes paired with `2`, `Σ q + 2·(number of terms) ≡ 2 (mod 4)`. |
+| `variants.witness_{71,72,73}_cell_111` | Explicit 71-, 72-, and 73-term representations of `1` on primes up to 61, each prime dividing at most ten denominators. |
 
-All names above are in the `Erdos306.Palomar` namespace.
+The main theorem is `Erdos306.erdos_306`; every other public result is in
+`Erdos306.variants`.
 
 ## Attribution and scope
 

@@ -607,8 +607,8 @@ namespace `Erdos306`, in dependency order:
   9. `Asymptotics`       — `eps_le` and `eventually_large`
  10. `Core`              — Proposition 4.2 (`prop_core`) and Theorem 3.1 (`thm_small`)
  11. `Reduction`         — §3 prime-dilution reduction (`thm_main_of_small`)
- 12. `Main`              — Theorem 1.1 (`erdos_306`), plus the arXiv v1 Ramanujan pathway
- 13. `FormalConjectures` — `erdos_306_formal_conjectures` proving the exact RHS of
+ 12. `Main`              — Theorem 1.1 (`erdos_306_semiprime_finset`), plus the arXiv v1 Ramanujan pathway
+ 13. `FormalConjectures` — `erdos_306_fc_core` proving the exact proposition of
                            `FormalConjectures.ErdosProblems.«306».erdos_306`
 -/
 
@@ -3752,7 +3752,7 @@ section
 /-- **Theorem 1.1 (Erdős Problem #306).**  Every positive rational number whose reduced
 denominator is squarefree is a finite sum of reciprocals of pairwise distinct natural numbers,
 each a product of two distinct primes. -/
-theorem erdos_306 (q : ℚ) (hq : 0 < q) (hsq : Squarefree q.den) :
+theorem erdos_306_semiprime_finset (q : ℚ) (hq : 0 < q) (hsq : Squarefree q.den) :
     ∃ F : Finset ℕ, (∀ n ∈ F, ∃ p r : ℕ, p.Prime ∧ r.Prime ∧ p ≠ r ∧ n = p * r) ∧
       ∑ n ∈ F, (1 : ℚ) / n = q := by
   obtain ⟨F, hF, hsum⟩ := thm_main_of_small thm_small q hq hsq
@@ -3767,8 +3767,8 @@ end
 /-
 The statement of Erdős Problem #306 as formalised in Google DeepMind's `formal-conjectures`
 repository (`FormalConjectures/ErdosProblems/306.lean`, theorem `Erdos306.erdos_306`), derived
-from `Erdos306.erdos_306`.  There the statement reads `answer(...) ↔ P`; the theorem below
-proves `P`, so the answer is `True`.
+from `Erdos306.erdos_306_semiprime_finset`.  The current upstream statement is the
+plain proposition `P`; the theorem below proves that exact proposition.
 -/
 
 section
@@ -3779,12 +3779,12 @@ open scoped ArithmeticFunction.omega ArithmeticFunction.Omega
 /-- **Erdős Problem #306**, in the exact form of `formal-conjectures`: every positive rational
 with squarefree denominator is `1/n_1 + ⋯ + 1/n_k` with `1 < n_1 < ⋯ < n_k`, each `n_i` a
 product of two distinct primes (`ω(n_i) = Ω(n_i) = 2`). -/
-theorem erdos_306_formal_conjectures : ∀ (q : ℚ), 0 < q → Squarefree q.den →
+theorem erdos_306_fc_core : ∀ (q : ℚ), 0 < q → Squarefree q.den →
     ∃ k : ℕ, ∃ (n : Fin (k + 1) → ℕ), n 0 = 1 ∧ StrictMono n ∧
     (∀ i ∈ Finset.Icc 1 (Fin.last k), ω (n i) = 2 ∧ Ω (n i) = 2) ∧
     q = ∑ i ∈ Finset.Icc 1 (Fin.last k), (1 : ℚ) / (n i) := by
   intro q hq hsq
-  obtain ⟨F, hF, hsum⟩ := erdos_306 q hq hsq
+  obtain ⟨F, hF, hsum⟩ := erdos_306_semiprime_finset q hq hsq
   -- `F` is nonempty since `q > 0`
   obtain ⟨m, hm⟩ : ∃ m, F.card = m + 1 := by
     refine Nat.exists_eq_succ_of_ne_zero fun h => ?_
@@ -3879,20 +3879,20 @@ theorem lem_cheb_of_ramanujan (hR : RamanujanInequality) : ∃ x0 : ℝ, ∀ x �
 
 /-- The conditional Theorem 1.1 (`erdos_306_of_ramanujan`) from the ancillary Lean files
 of `arXiv:2609.32140v1`. -/
-theorem erdos_306_of_ramanujan (_hR : RamanujanInequality) (q : ℚ) (hq : 0 < q)
+theorem erdos_306_of_ramanujan_core (_hR : RamanujanInequality) (q : ℚ) (hq : 0 < q)
     (hsq : Squarefree q.den) :
     ∃ F : Finset ℕ, (∀ n ∈ F, ∃ p r : ℕ, p.Prime ∧ r.Prime ∧ p ≠ r ∧ n = p * r) ∧
       ∑ n ∈ F, (1 : ℚ) / n = q :=
-  erdos_306 q hq hsq
+  erdos_306_semiprime_finset q hq hsq
 
-/-- Finset form of `erdos_306_formal_conjectures` using `ArithmeticFunction.cardDistinctFactors` (`ω`)
+/-- Finset form of `erdos_306_fc_core` using `ArithmeticFunction.cardDistinctFactors` (`ω`)
 and `ArithmeticFunction.cardFactors` (`Ω`). -/
 theorem erdos_306_finset_omega_Omega (q : ℚ) (hq : 0 < q) (hsq : Squarefree q.den) :
     ∃ F : Finset ℕ,
       (∀ n ∈ F, ArithmeticFunction.cardDistinctFactors n = 2 ∧
         ArithmeticFunction.cardFactors n = 2) ∧
       ∑ n ∈ F, (1 : ℚ) / n = q := by
-  obtain ⟨F, hF, hsum⟩ := erdos_306 q hq hsq
+  obtain ⟨F, hF, hsum⟩ := erdos_306_semiprime_finset q hq hsq
   refine ⟨F, fun n hn => ?_, hsum⟩
   obtain ⟨p, r, hp, hr, hpr, rfl⟩ := hF n hn
   refine ⟨?_, ?_⟩
@@ -3908,7 +3908,7 @@ of reciprocals of distinct squarefree semiprimes. -/
 theorem exists_semiprime_unit_fraction_sum_eq_one :
     ∃ F : Finset ℕ, (∀ n ∈ F, ∃ p r : ℕ, p.Prime ∧ r.Prime ∧ p ≠ r ∧ n = p * r) ∧
       ∑ n ∈ F, (1 : ℚ) / n = 1 :=
-  erdos_306 1 one_pos (by simp)
+  erdos_306_semiprime_finset 1 one_pos (by simp)
 
 end
 
@@ -3944,7 +3944,7 @@ row-potential exclusions and squarefree-denominator reductions for Erdős Proble
    - Explicit through-61 boundary controls (`p ∈ {53, 59, 61}`).
 -/
 
-namespace Erdos306.PrimeResidueAndRowPotential
+namespace Erdos306.Core.PrimeResidueAndRowPotential
 
 /-! ### Part 1: Cleared-Denominator Row Sum and `ZMod p` Inverse Characterization -/
 
@@ -4929,7 +4929,7 @@ set_option maxRecDepth 16384
 /-!
 ## Bilateral Additive Row-Defect Pruning, Even-Degree Parity at `2`, and Minimax Prime Incidence (`= 10`) for Erdős #306
 
-This part builds on `Erdos306.PrimeResidueAndRowPotential`, `Erdos306.GraphDual`,
+This part builds on `Erdos306.Core.PrimeResidueAndRowPotential`, `Erdos306.GraphDual`,
 `Erdos306.Representation`, and `Erdos306.PrimeIncidence` with 26
 universally quantified structural theorems that formalize the bilateral additive row-cost
 pruning method and resolve the extremal minimum-incidence (`= 10`) representation question for `1`:
@@ -6379,5 +6379,5 @@ theorem exists_card_sixty_eight_witness_in_every_active_tail_cell
   · have h := witnessEdgesAllThreeTailPrimes_valid_and_sum_eq_one d hd
     exact ⟨h.1, h.2.1, h.2.2.1, by decide, by decide, by decide, h.2.2.2.2.2.2⟩
 
-end Erdos306.PrimeResidueAndRowPotential
+end Erdos306.Core.PrimeResidueAndRowPotential
 

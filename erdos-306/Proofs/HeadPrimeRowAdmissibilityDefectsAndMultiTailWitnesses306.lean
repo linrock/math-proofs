@@ -32,7 +32,7 @@ set_option maxRecDepth 16384
 noncomputable section
 open scoped BigOperators
 
-namespace Erdos306.PrimeResidueAndRowPotential
+namespace Erdos306.Core.PrimeResidueAndRowPotential
 
 /-! ## Part 1: Directed Constant-Tail Row Decomposition and Head-Row Capacity Defect Conservation -/
 
@@ -1001,5 +1001,5 @@ theorem witnessEdges75Cell100_valid_and_sum_eq_one (d : ℕ) (hd : 10 ≤ d) :
   exact sum_edges_inv_eq_one_of_cleared_nat_sum witnessEdges75Cell100 (primorial47 * 53)
     (by decide) (by decide) (by decide)
 
-end Erdos306.PrimeResidueAndRowPotential
+end Erdos306.Core.PrimeResidueAndRowPotential
 
