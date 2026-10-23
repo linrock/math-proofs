@@ -1,0 +1,356 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-23-8c9a8ab7",
+  "verification_date": "2026-10-23",
+  "state_sha256": "8652b32f3ea9e0088f39ccacb632614a9d58bceaa416bf43dc705fc632c68671",
+  "package": "erdos-33",
+  "project_name": "Erd\u0151s 33: additive complements to the squares",
+  "package_commit": "8c9a8ab727c1f06935b48a5ab4db145572cab9e9",
+  "commit": "1f6f15be04f783cf5fabcf7f8477b4d8c03c685c",
+  "repository": "linrock/math-proofs",
+  "run_id": "39911002788",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 5619,
+    "lines": 123,
+    "sha256": "09337279f3ce77cd24b98c375a55931a873af1275ba26d80862bbc853eeeb059",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos33.erdos_33_variants_one_mem_lowerBounds",
+    "Erdos33.erdos_33_variants_vanDoorn",
+    "Erdos33.sixty_three_fiftieths_le_iInf_limsup",
+    "Erdos33.exists_ge_sixty_three_fiftieths_normalizedPrefixRatio",
+    "Erdos33.additiveBasisCondition_vanDoornUnion",
+    "Erdos33.two_mul_sum_fibBlockWidth_div_sqrt_start_le",
+    "Erdos33.one_hundred_twenty_seven_over_one_hundred_le_iInf_limsup",
+    "Erdos33.exists_ge_one_hundred_twenty_seven_over_one_hundred_normalizedPrefixRatio"
+  ],
+  "declaration_lines": {
+    "Erdos33.erdos_33_variants_one_mem_lowerBounds": {
+      "solution_line": 70,
+      "challenge_line": 72
+    },
+    "Erdos33.erdos_33_variants_vanDoorn": {
+      "solution_line": 75,
+      "challenge_line": 78
+    },
+    "Erdos33.sixty_three_fiftieths_le_iInf_limsup": {
+      "solution_line": 81,
+      "challenge_line": 85
+    },
+    "Erdos33.exists_ge_sixty_three_fiftieths_normalizedPrefixRatio": {
+      "solution_line": 87,
+      "challenge_line": 92
+    },
+    "Erdos33.additiveBasisCondition_vanDoornUnion": {
+      "solution_line": 92,
+      "challenge_line": 98
+    },
+    "Erdos33.two_mul_sum_fibBlockWidth_div_sqrt_start_le": {
+      "solution_line": 98,
+      "challenge_line": 104
+    },
+    "Erdos33.one_hundred_twenty_seven_over_one_hundred_le_iInf_limsup": {
+      "solution_line": 113,
+      "challenge_line": 111
+    },
+    "Erdos33.exists_ge_one_hundred_twenty_seven_over_one_hundred_normalizedPrefixRatio": {
+      "solution_line": 119,
+      "challenge_line": 118
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos33.additiveBasisCondition_vanDoornUnion",
+    "Erdos33.erdos_33_variants_one_mem_lowerBounds",
+    "Erdos33.erdos_33_variants_vanDoorn",
+    "Erdos33.exists_ge_one_hundred_twenty_seven_over_one_hundred_normalizedPrefixRatio",
+    "Erdos33.exists_ge_sixty_three_fiftieths_normalizedPrefixRatio",
+    "Erdos33.one_hundred_twenty_seven_over_one_hundred_le_iInf_limsup",
+    "Erdos33.sixty_three_fiftieths_le_iInf_limsup",
+    "Erdos33.two_mul_sum_fibBlockWidth_div_sqrt_start_le"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 13,
+  "expected_axiom_audit_count": 13,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos33.erdos_33_variants_one_mem_lowerBounds",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos33.erdos_33_variants_vanDoorn",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos33.sixty_three_fiftieths_le_iInf_limsup",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos33.exists_ge_sixty_three_fiftieths_normalizedPrefixRatio",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos33.additiveBasisCondition_vanDoornUnion",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos33.two_mul_sum_fibBlockWidth_div_sqrt_start_le",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos33.one_hundred_twenty_seven_over_one_hundred_le_iInf_limsup",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos33.exists_ge_one_hundred_twenty_seven_over_one_hundred_normalizedPrefixRatio",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos33.Core.five_fourths_le_iInf_limsup",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos33.Core.exists_ge_five_fourths_normalizedPrefixRatio",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos33.statement_one_mem_lowerBounds_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos33.statement_vanDoorn_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos33.nonvacuity_fib_complement",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Erdos33.fibBlockWidth",
+      "kind": "def",
+      "declaration": "def Erdos33.fibBlockWidth (j : Nat) : Nat :=\n  fun j => Nat.fib (HAdd.hAdd j 2)"
+    },
+    {
+      "name": "Erdos33.vanDoornBlockStart",
+      "kind": "def",
+      "declaration": "def Erdos33.vanDoornBlockStart (M : Nat \u2192 Nat) (j : Nat) : Nat :=\n  fun M j => Nat.rec 0 (fun k acc => HAdd.hAdd (HAdd.hAdd acc (HPow.hPow (M k) 2)) (HMul.hMul 2 (M k))) j"
+    },
+    {
+      "name": "Erdos33.vanDoornBlock",
+      "kind": "def",
+      "declaration": "def Erdos33.vanDoornBlock (B M : Nat) : Set Nat :=\n  fun B M => Set.ofPred fun a => And (LE.le B a) (LE.le a (HAdd.hAdd B (HMul.hMul 2 M)))"
+    },
+    {
+      "name": "Erdos33.vanDoornUnion",
+      "kind": "def",
+      "declaration": "def Erdos33.vanDoornUnion (M : Nat \u2192 Nat) : Set Nat :=\n  fun M => Set.iUnion fun j => Erdos33.vanDoornBlock (Erdos33.vanDoornBlockStart M j) (M j)"
+    },
+    {
+      "name": "Erdos33.prefixCount",
+      "kind": "def",
+      "declaration": "def Erdos33.prefixCount (A : Set Nat) (N : Nat) : Nat :=\n  fun A N => Finset.card (Finset.filter (fun x => Membership.mem A x) (Finset.Icc 1 N))"
+    },
+    {
+      "name": "Erdos33.normalizedPrefixRatio",
+      "kind": "def",
+      "declaration": "def Erdos33.normalizedPrefixRatio (A : Set Nat) (N : Nat) : Real :=\n  fun A N => HDiv.hDiv (\u2191(Erdos33.prefixCount A N)) (Real.sqrt \u2191N)"
+    },
+    {
+      "name": "Erdos33.IsSquareAdditiveComplement",
+      "kind": "def",
+      "declaration": "def Erdos33.IsSquareAdditiveComplement (A : Set Nat) : Prop :=\n  fun A => \u2200 (n : Nat), Exists fun a => And (Membership.mem A a) (Exists fun k => Eq n (HAdd.hAdd (HPow.hPow k 2) a))"
+    },
+    {
+      "name": "Erdos33.AdditiveBasisCondition",
+      "kind": "def",
+      "declaration": "def Erdos33.AdditiveBasisCondition (A : Set Nat) : Prop :=\n  fun A => \u2200 (k : Nat), Exists fun n => Exists fun a => And (Membership.mem A a) (Eq k (HAdd.hAdd a (HPow.hPow n 2)))"
+    },
+    {
+      "name": "Erdos33.erdos_33_variants_one_mem_lowerBounds",
+      "kind": "theorem",
+      "declaration": "theorem Erdos33.erdos_33_variants_one_mem_lowerBounds :\n  LT.lt 1\n    (iInf fun A =>\n      Filter.limsup\n        (fun N => HDiv.hDiv (\u2191(Set.ncard (Inter.inter (Subtype.val A) (Set.Icc 1 N)))) (Real.toEReal (Real.sqrt \u2191N)))\n        Filter.atTop)"
+    },
+    {
+      "name": "Erdos33.erdos_33_variants_vanDoorn",
+      "kind": "theorem",
+      "declaration": "theorem Erdos33.erdos_33_variants_vanDoorn :\n  LE.le\n    (iInf fun A =>\n      Filter.limsup\n        (fun N => HDiv.hDiv (\u2191(Set.ncard (Inter.inter (Subtype.val A) (Set.Icc 1 N)))) (Real.toEReal (Real.sqrt \u2191N)))\n        Filter.atTop)\n    (Real.toEReal (HMul.hMul 2 (HPow.hPow Real.goldenRatio (5 / 2))))"
+    },
+    {
+      "name": "Erdos33.sixty_three_fiftieths_le_iInf_limsup",
+      "kind": "theorem",
+      "declaration": "theorem Erdos33.sixty_three_fiftieths_le_iInf_limsup :\n  LE.le (Real.toEReal (63 / 50))\n    (iInf fun A =>\n      Filter.limsup\n        (fun N => HDiv.hDiv (\u2191(Set.ncard (Inter.inter (Subtype.val A) (Set.Icc 1 N)))) (Real.toEReal (Real.sqrt \u2191N)))\n        Filter.atTop)"
+    },
+    {
+      "name": "Erdos33.exists_ge_sixty_three_fiftieths_normalizedPrefixRatio",
+      "kind": "theorem",
+      "declaration": "theorem Erdos33.exists_ge_sixty_three_fiftieths_normalizedPrefixRatio {A : Set Nat} (hA : Erdos33.IsSquareAdditiveComplement A)\n  (M : Nat) : Exists fun N => And (LE.le M N) (LE.le (63 / 50) (Erdos33.normalizedPrefixRatio A N))"
+    },
+    {
+      "name": "Erdos33.additiveBasisCondition_vanDoornUnion",
+      "kind": "theorem",
+      "declaration": "theorem Erdos33.additiveBasisCondition_vanDoornUnion {M : Nat \u2192 Nat} (hM : \u2200 (j : Nat), LE.le 1 (M j)) :\n  Erdos33.AdditiveBasisCondition (Erdos33.vanDoornUnion M)"
+    },
+    {
+      "name": "Erdos33.two_mul_sum_fibBlockWidth_div_sqrt_start_le",
+      "kind": "theorem",
+      "declaration": "theorem Erdos33.two_mul_sum_fibBlockWidth_div_sqrt_start_le {K : Nat} (hK : LE.le 1 K) :\n  LE.le\n    (HDiv.hDiv (HMul.hMul 2 \u2191(Finset.sum (Finset.range (HAdd.hAdd K 1)) fun j => Erdos33.fibBlockWidth j))\n      (Real.sqrt \u2191(Erdos33.vanDoornBlockStart Erdos33.fibBlockWidth K)))\n    (HMul.hMul 2 (HPow.hPow Real.goldenRatio (5 / 2)))"
+    },
+    {
+      "name": "Erdos33.one_hundred_twenty_seven_over_one_hundred_le_iInf_limsup",
+      "kind": "theorem",
+      "declaration": "theorem Erdos33.one_hundred_twenty_seven_over_one_hundred_le_iInf_limsup :\n  LE.le (Real.toEReal (127 / 100))\n    (iInf fun A =>\n      Filter.limsup\n        (fun N => HDiv.hDiv (\u2191(Set.ncard (Inter.inter (Subtype.val A) (Set.Icc 1 N)))) (Real.toEReal (Real.sqrt \u2191N)))\n        Filter.atTop)"
+    },
+    {
+      "name": "Erdos33.exists_ge_one_hundred_twenty_seven_over_one_hundred_normalizedPrefixRatio",
+      "kind": "theorem",
+      "declaration": "theorem Erdos33.exists_ge_one_hundred_twenty_seven_over_one_hundred_normalizedPrefixRatio {A : Set Nat}\n  (hA : Erdos33.IsSquareAdditiveComplement A) (M : Nat) :\n  Exists fun N => And (LE.le M N) (LE.le (127 / 100) (Erdos33.normalizedPrefixRatio A N))"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos33.erdos_33.variants.one_mem_lowerBounds",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.33",
+      "solution_declaration": "Erdos33.erdos_33_variants_one_mem_lowerBounds",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos33.erdos_33.variants.vanDoorn",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.33",
+      "solution_declaration": "Erdos33.erdos_33_variants_vanDoorn",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos33.Challenge.statement_vanDoorn",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos33.erdos_33_variants_vanDoorn",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos33.Challenge.statement_one_mem_lowerBounds",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos33.erdos_33_variants_one_mem_lowerBounds",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos33.erdos_33.variants.one_mem_lowerBounds",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.33",
+      "solution_declaration": "Erdos33.Challenge.statement_one_mem_lowerBounds",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos33.erdos_33.variants.vanDoorn",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.33",
+      "solution_declaration": "Erdos33.Challenge.statement_vanDoorn",
+      "match_mode": "exact"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "a85b0ff8664c52ab923e0daf7e20cbc394272cd3831cc492ab144105d8091361"
+  },
+  "input_sha256": {
+    "Challenge.lean": "09337279f3ce77cd24b98c375a55931a873af1275ba26d80862bbc853eeeb059",
+    "Solution.lean": "278cf3b11af4ad7fb2217cdcf6cf65c38ff69afaefcf1bdabc72a7f195f8793a",
+    "AxiomAudit.lean": "365a59453d9d6e4f5d446cfcd07e4ac922cb9bf0f72dab320afe6efc9f08749d",
+    "Statement.lean": "beceb1ccc36a8d3abaf267e2ec14e870e327f64abfa013afa88d23eb318141aa",
+    "comparator.json": "d853260ba3e06dffb5b634dd8046c380f50213be2322f22e06e7c159bfe963ec",
+    "formalization.yaml": "946f8219ad8217565c91ff364e9caebb25cce34e8f043d631a621528f39811e3",
+    "lakefile.toml": "cd53287f6074f2588264745dfed6e03c2b727c15d95cac8bf116388a1c1193e7",
+    "lake-manifest.json": "09189e2855c980fecd347ae66bcc012793957c0d1b2d1badc2f37909339bd90e",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "0d4550e8ed1966fc0264b1eabb35ee7013c3dc8054d28a7c09d6d25298236cea",
+    "Proofs/FibonacciVanDoorn33.lean": "69af4dddeb38a49a250f027de130457490e3f5c7067c145351774279fbaa0bac",
+    "Proofs/SquareComplementBounds33.lean": "cab767499d51fa9cdc5e026251bb010edb8ae2d692e9afc79e2f57500dfd7aa2"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 35.614,
+    "env_compare_and_core_audit_seconds": 51.493,
+    "total_elapsed_seconds": 230.473,
+    "user_cpu_seconds": 142.053,
+    "system_cpu_seconds": 72.155,
+    "peak_rss_mib": 13643.14
+  },
+  "status": "PASS"
+}
