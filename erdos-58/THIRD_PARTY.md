@@ -23,8 +23,9 @@ recorded so that this package is described as an independent proof rather than
 the first formalization of the statement.
 
 The shortest-odd-closed-walk extraction in `Proofs/OddCycleExtraction108.lean`
-is a restatement of the argument developed in this repository's Erdős #108
-research topic.
+is an elementary argument written for this package: a shortest odd closed walk
+has no repeated vertex other than its base point, so its vertices induce an odd
+cycle of the same length.
 
 Apache-2.0 license notices and acknowledgements are retained in the Lean
 headers, `formalization.yaml`, and `README.md`.

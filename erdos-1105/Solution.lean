@@ -28,12 +28,12 @@ public import PathKernelAndUniversalExact
 /-!
 # Erdős Problem 1105: complete proved endpoints for cycles and paths
 
-This module proves the eight independent targets in `Erdos1105.Palomar`
+This module proves the eight independent targets in `Erdos1105.Results`
 together with the literal `Erdos1105.erdos_1105.parts.i` and
 `Erdos1105.erdos_1105.parts.ii` declarations over `SimpleGraph.antiRamseyNum`.
 -/
 
-namespace Erdos1105.Palomar
+namespace Erdos1105.Results
 
 open SimpleGraph Asymptotics Filter
 
@@ -68,21 +68,21 @@ theorem erdos_1105_paths :
       (ℓ - 1) * (n - ℓ + 1) + ε) :=
   ErdosProblems.PathUpperReduction.PathEightNineBase1105.erdos_1105_parts_ii_exact
 
-/-- Elaborated Formal Conjectures `True ↔` form of Part (i). -/
-theorem erdos_1105_parts_i : True ↔
+/-- Formal Conjectures statement of Part (i), restated with `SimpleGraph.antiRamseyNum`. -/
+theorem erdos_1105_parts_i :
     ∀ k, 3 ≤ k →
     ((fun n => (antiRamseyNum (cycleGraph k) n : ℝ) - ((k - 2 : ℝ) / 2 + 1 / (k - 1)) * n)
       =O[atTop] (fun _ => (1 : ℝ))) :=
-  ⟨fun _ => erdos_1105_cycles, fun _ => True.intro⟩
+  erdos_1105_cycles
 
-/-- Elaborated Formal Conjectures `True ↔` form of Part (ii). -/
-theorem erdos_1105_parts_ii : True ↔
+/-- Formal Conjectures statement of Part (ii), restated with `SimpleGraph.antiRamseyNum`. -/
+theorem erdos_1105_parts_ii :
     ∀ (k n : ℕ), 5 ≤ k → k ≤ n →
     let ℓ := (k - 1) / 2
     let ε := if Odd k then 1 else 2
     antiRamseyNum (pathGraph k) n = max ((k - 2).choose 2 + 1) ((ℓ - 1).choose 2 +
       (ℓ - 1) * (n - ℓ + 1) + ε) :=
-  ⟨fun _ => erdos_1105_paths, fun _ => True.intro⟩
+  erdos_1105_paths
 
 /-- Erdős–Simonovits–Sós (1975) exact anti-Ramsey formula for the triangle $C_3$:
 for every $n \ge 3$, $\mathrm{AR}(n, C_3) = n - 1$. -/
@@ -114,28 +114,28 @@ theorem cycle_linear_upper (k n : ℕ) (hk : 3 ≤ k) (hn : k ≤ n) :
       ((k - 2 : ℝ) / 2 + 1 / (k - 1)) * n - 1 :=
   ErdosProblems.AntiRamseyCycleOriginalHighNewStructure.cycle_linear_upper k n hk hn
 
-end Erdos1105.Palomar
+end Erdos1105.Results
 
 namespace Erdos1105
 
 open SimpleGraph Asymptotics Filter
 
 /-- Literal Formal Conjectures statement of Erdős Problem 1105, Part (i),
-with `answer(True)` elaborated as `True` and `SimpleGraph.antiRamseyNum`. -/
-theorem erdos_1105.parts.i : True ↔
+over `SimpleGraph.antiRamseyNum`. -/
+theorem erdos_1105.parts.i :
     ∀ k, 3 ≤ k →
     ((fun n => (antiRamseyNum (cycleGraph k) n : ℝ) - ((k - 2 : ℝ) / 2 + 1 / (k - 1)) * n)
       =O[atTop] (fun _ => (1 : ℝ))) :=
-  Erdos1105.Palomar.erdos_1105_parts_i
+  Erdos1105.Results.erdos_1105_parts_i
 
 /-- Literal Formal Conjectures statement of Erdős Problem 1105, Part (ii),
-with `answer(True)` elaborated as `True` and `SimpleGraph.antiRamseyNum`. -/
-theorem erdos_1105.parts.ii : True ↔
+over `SimpleGraph.antiRamseyNum`. -/
+theorem erdos_1105.parts.ii :
     ∀ (k n : ℕ), 5 ≤ k → k ≤ n →
     let ℓ := (k - 1) / 2
     let ε := if Odd k then 1 else 2
     antiRamseyNum (pathGraph k) n = max ((k - 2).choose 2 + 1) ((ℓ - 1).choose 2 +
       (ℓ - 1) * (n - ℓ + 1) + ε) :=
-  Erdos1105.Palomar.erdos_1105_parts_ii
+  Erdos1105.Results.erdos_1105_parts_ii
 
 end Erdos1105

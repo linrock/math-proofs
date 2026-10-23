@@ -169,7 +169,7 @@
     "methods": [
       {
         "method": "agent",
-        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone packaging."
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
       }
     ],
     "notes": "All 2 proof modules in Proofs/ together with Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry in the proof modules, and all 8 exported theorems are accepted by Comparator's three kernels (NanoDa, con-ron, and the Lean default kernel) in the saved verification run. The rational bounds 5/4, 63/50, and 127/100 are included as auxiliary kernel-checked derivations; none of them improves the published asymptotic bound 4/pi."
@@ -199,28 +199,28 @@
         "note": "Proves inf_A limsup |A ∩ [1, N]|/√N ≤ 2 φ^(5/2)."
       },
       {
-        "source": "Moser (1965), Proc. Sympos. Pure Math. 8, 175-180, weighted-representation bound and Moser-Abel identity, instantiated with the package's Cilleruelo step sum at R = 60",
+        "source": "Moser (1965), Proc. Sympos. Pure Math. 8, 175-180, weighted-representation bound and Moser-Abel identity, combined with the step-function prefix-sum method of Cilleruelo (1993), J. Number Theory 44(3), 237-243, at R = 60; the step sum S(60) is computed in this package",
         "lean": "Erdos33.Core.five_fourths_le_iInf_limsup",
         "module": "SquareComplementBounds33",
         "status": "proved",
         "note": "Proves 5/4 <= inf_A limsup |A ∩ [1, N]|/sqrt(N) via S(60) = 2879. Weaker than the published asymptotic bound 4/pi of Cilleruelo, Habsieger, and Balasubramanian-Ramana."
       },
       {
-        "source": "Moser (1965), Proc. Sympos. Pure Math. 8, 175-180, weighted-representation bound and Moser-Abel identity, instantiated with the package's Cilleruelo step sum at R = 60",
+        "source": "Moser (1965), Proc. Sympos. Pure Math. 8, 175-180, weighted-representation bound and Moser-Abel identity, combined with the step-function prefix-sum method of Cilleruelo (1993), J. Number Theory 44(3), 237-243, at R = 60; the step sum S(60) is computed in this package",
         "lean": "Erdos33.Core.exists_ge_five_fourths_normalizedPrefixRatio",
         "module": "SquareComplementBounds33",
         "status": "proved",
         "note": "Proves forall M, exists N >= M, 5/4 <= |A ∩ [1, N]|/sqrt(N) for every square additive complement A."
       },
       {
-        "source": "Cilleruelo (1993), J. Number Theory 44, 237-243, step-function method instantiated at R = 150; the step sum S(150) = 17815 is computed in this package, not taken from the paper",
+        "source": "Cilleruelo (1993), J. Number Theory 44(3), 237-243, step-function prefix-sum method combined with the weighted-representation bound and Moser-Abel identity of Moser (1965), Proc. Sympos. Pure Math. 8, 175-180, at R = 150; the step sum S(150) = 17815 is computed in this package",
         "lean": "Erdos33.sixty_three_fiftieths_le_iInf_limsup",
         "module": "Solution",
         "status": "proved",
         "note": "Proves 63/50 <= inf_A limsup |A ∩ [1, N]|/sqrt(N) via S(150) = 17815. Weaker than the published asymptotic bound 4/pi of Cilleruelo, Habsieger, and Balasubramanian-Ramana."
       },
       {
-        "source": "Cilleruelo (1993), J. Number Theory 44, 237-243, step-function method instantiated at R = 150; the step sum S(150) = 17815 is computed in this package, not taken from the paper",
+        "source": "Cilleruelo (1993), J. Number Theory 44(3), 237-243, step-function prefix-sum method combined with the weighted-representation bound and Moser-Abel identity of Moser (1965), Proc. Sympos. Pure Math. 8, 175-180, at R = 150; the step sum S(150) = 17815 is computed in this package",
         "lean": "Erdos33.exists_ge_sixty_three_fiftieths_normalizedPrefixRatio",
         "module": "Solution",
         "status": "proved",
@@ -241,14 +241,14 @@
         "note": "Proves 2 ∑_{j=0}^K F_{j+2} / √B_K ≤ 2 φ^(5/2) for all K ≥ 1."
       },
       {
-        "source": "Cilleruelo (1993), J. Number Theory 44, 237-243, step-function method instantiated at R = 500; the step sum S(500) = 196830 is computed in this package, not taken from the paper",
+        "source": "Cilleruelo (1993), J. Number Theory 44(3), 237-243, step-function prefix-sum method combined with the weighted-representation bound and Moser-Abel identity of Moser (1965), Proc. Sympos. Pure Math. 8, 175-180, at R = 500; the step sum S(500) = 196830 is computed in this package",
         "lean": "Erdos33.one_hundred_twenty_seven_over_one_hundred_le_iInf_limsup",
         "module": "Solution",
         "status": "proved",
         "note": "Proves 127/100 <= inf_A limsup |A ∩ [1, N]|/sqrt(N) via S(500) = 196830. Weaker than the published asymptotic bound 4/pi of Cilleruelo, Habsieger, and Balasubramanian-Ramana."
       },
       {
-        "source": "Cilleruelo (1993), J. Number Theory 44, 237-243, step-function method instantiated at R = 500; the step sum S(500) = 196830 is computed in this package, not taken from the paper",
+        "source": "Cilleruelo (1993), J. Number Theory 44(3), 237-243, step-function prefix-sum method combined with the weighted-representation bound and Moser-Abel identity of Moser (1965), Proc. Sympos. Pure Math. 8, 175-180, at R = 500; the step sum S(500) = 196830 is computed in this package",
         "lean": "Erdos33.exists_ge_one_hundred_twenty_seven_over_one_hundred_normalizedPrefixRatio",
         "module": "Solution",
         "status": "proved",

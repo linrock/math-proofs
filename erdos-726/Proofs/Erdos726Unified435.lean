@@ -22,8 +22,10 @@ public import Mathlib
 /-! ## Adapted construction: second Mertens theorem from PrimeNumberTheoremAnd
 
 The `Mertens` section below is adapted from `PrimeNumberTheoremAnd/IEANTN/Mertens.lean`
-at pinned commit `9ecc1b67cdbc36f4fab3ebeb5d6d25512392a078`, with contributions by
-Li Xuanji, Giuseppe Sorge, and PrimeNumberTheoremAnd contributors under Apache-2.0.
+at pinned commit `9ecc1b67cdbc36f4fab3ebeb5d6d25512392a078`. That section presents an
+exposition of the second Mertens theorem associated in the upstream project with Leo Goldmakher;
+Li Xuanji, Giuseppe Sorge, and other repository contributors appear in the adapted file's commit
+history. The adaptation is Apache-2.0.
 -/
 
 @[expose] public section
@@ -36,9 +38,6 @@ set_option maxHeartbeats 800000
 
 set_option autoImplicit false
 set_option relaxedAutoImplicit false
-
-
-theorem Filter.EventuallyEq.iff_eventually {α : Type _} {β : Type _} {l : Filter α} {f g : α → β} : f =ᶠ[l] g ↔ ∀ᶠ (x : α) in l, f x = g x := by rfl
 
 
 namespace Real
@@ -716,7 +715,7 @@ def primeRange (n : ℕ) : Finset ℕ :=
 
 /-- Primes `p ≤ n` whose least residue `n % p` lies in the upper half `(p / 2, p)`. -/
 def upperHalfPrimes (n : ℕ) : Finset ℕ :=
-  (range (n + 1)).filter (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / 2 < ((n % p : ℕ) : ℝ))
+  (range (n + 1)).filter (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ))
 
 /-- Upper-half prime reciprocal sum `∑_{p ≤ n, p/2 < n % p} 1 / p` (`Erdos726.erdos_726`). -/
 def upperHalfPrimeSum (n : ℕ) : ℝ :=
@@ -805,15 +804,11 @@ theorem upperHalfPrimeSum_le_fullPrimeReciprocalSum (n : ℕ) :
   intro p _ _
   positivity
 
-end Erdos726
+/-! ## Half-interval membership and Kummer digit carries -/
 
-namespace Erdos726
-
-/-! ## Section 1: Real Half-Interval Predicate and Kummer Digit Carry -/
-
-/-- The real-cast upper-half remainder predicate `(p : ℝ) / 2 < ((n % p : ℕ) : ℝ)` from `erdos_726`. -/
+/-- The real-cast upper-half remainder predicate `(p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ)` from `erdos_726`. -/
 def inUpperHalfReal (n p : ℕ) : Prop :=
-  (p : ℝ) / 2 < ((n % p : ℕ) : ℝ)
+  (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ)
 
 /-- The bottom-digit base-`p` Kummer carry `(2 * n) / p - 2 * (n / p)` of `choose(2n, n)`. -/
 def kummerCarry (n p : ℕ) : ℕ :=
@@ -824,7 +819,7 @@ theorem inUpperHalfReal_iff_lt_two_mul_mod :
     ∀ n p : ℕ, inUpperHalfReal n p ↔ p < 2 * (n % p) := by
   intro n p
   unfold inUpperHalfReal
-  rw [div_lt_iff₀ (by norm_num : (0 : ℝ) < 2)]
+  rw [div_lt_iff₀ (by norm_num : (0 : ℝ) < ((2 : ℕ) : ℝ))]
   rw [← Nat.cast_two, ← Nat.cast_mul, Nat.cast_lt]
   omega
 
@@ -884,7 +879,7 @@ theorem odd_inUpperHalfReal_iff_kummerCarry_eq_one :
   rw [inUpperHalfReal_iff_lt_two_mul_mod, kummerCarry_eq_one_iff_le_two_mul_mod n p hp]
   omega
 
-/-! ## Section 2: Parity, Divisibility, Prime-Power, and Quotient-Window Exclusions -/
+/-! ## Parity, divisibility, prime-power, and quotient-window exclusions -/
 
 /-- The even prime `2` never belongs to `upperHalfPrimes n`. -/
 theorem two_not_mem_upperHalfPrimes :
@@ -957,11 +952,11 @@ theorem mem_upperHalfPrimes_of_prime_in_middle_interval :
   rw [hq_eq]
   omega
 
-/-! ## Section 3: Mertens Decomposition into Upper-Half, Lower-Half, and Dividing Primes -/
+/-! ## Splitting the prime sum by residue position -/
 
 /-- The complement prime set `p ≤ n` where `n % p` lies in the lower half `[0, p / 2]`. -/
 def lowerComplementPrimes (n : ℕ) : Finset ℕ :=
-  (range (n + 1)).filter (fun p : ℕ ↦ p.Prime ∧ ¬((p : ℝ) / 2 < ((n % p : ℕ) : ℝ)))
+  (range (n + 1)).filter (fun p : ℕ ↦ p.Prime ∧ ¬((p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ)))
 
 /-- The lower-half complement prime reciprocal sum. -/
 def lowerComplementPrimeSum (n : ℕ) : ℝ :=
@@ -1049,7 +1044,7 @@ theorem dividingPrimeRange_subset_lowerComplementPrimes :
   intro p _ _
   positivity
 
-/-! ## Section 4: Residue-Complement Involution `r ↔ p - r` and Modular Period Reflection -/
+/-! ## The residue involution and modular period reflection -/
 
 /-- For an odd modulus `p` and nonzero residue `0 < r < p`, the complement `p - r` lies in the
 upper half iff `r` lies in the strict lower half `2 * r < p`. -/
@@ -1116,15 +1111,15 @@ theorem inUpperHalfReal_periodic_of_add_mul :
   unfold inUpperHalfReal
   rw [Nat.add_mul_mod_self_right]
 
-/-! ## Section 5: Weighted Indicator, Interval Splitting, and Truncated-Support Bounds -/
+/-! ## Weighted indicators and truncated support bounds -/
 
 /-- The weighted prime-residue indicator `(1 / p) * 1_{n mod p ∈ (p/2, p)}`. -/
 def upperHalfIndicator (n p : ℕ) : ℝ :=
-  if (p : ℝ) / 2 < ((n % p : ℕ) : ℝ) then (1 : ℝ) / (p : ℝ) else 0
+  if (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ) then (1 : ℝ) / (p : ℝ) else 0
 
 /-- Upper-half primes restricted to a half-open interval `[a, b)`. -/
 def upperHalfIntervalPrimes (n a b : ℕ) : Finset ℕ :=
-  (Finset.Ico a b).filter (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / 2 < ((n % p : ℕ) : ℝ))
+  (Finset.Ico a b).filter (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ))
 
 /-- Upper-half prime reciprocal sum restricted to `[a, b)`. -/
 def upperHalfIntervalSum (n a b : ℕ) : ℝ :=
@@ -1156,8 +1151,8 @@ theorem upperHalfIntervalSum_split :
   intro n a b c hab hbc
   unfold upperHalfIntervalSum upperHalfIntervalPrimes
   have hdisj : Disjoint
-      ((Finset.Ico a b).filter (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / 2 < ((n % p : ℕ) : ℝ)))
-      ((Finset.Ico b c).filter (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / 2 < ((n % p : ℕ) : ℝ))) := by
+      ((Finset.Ico a b).filter (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ)))
+      ((Finset.Ico b c).filter (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ))) := by
     exact Finset.disjoint_filter_filter (Finset.Ico_disjoint_Ico_consecutive a b c)
   rw [← Finset.sum_union hdisj, ← Finset.filter_union, Finset.Ico_union_Ico_eq_Ico hab hbc]
 
@@ -1200,15 +1195,47 @@ theorem middleHarmonicPrimeSum_le_upperHalfPrimeSum :
   positivity
 
 
-end Erdos726
-
-namespace Erdos726
-
-/-! ## Section 1: Kummer Carry Weighted Sums and Signed Discrepancy -/
+/-! ## Carry-weighted sums and the signed discrepancy -/
 
 /-- The finite set of odd primes `p ≤ n`. -/
 def oddPrimeRange (n : ℕ) : Finset ℕ :=
   (range (n + 1)).filter (fun p : ℕ ↦ p.Prime ∧ p % 2 = 1)
+
+/-- Primes `p ≤ B` whose remainder `n % p` lies in the upper half `(p / 2, p)`. -/
+def upperBoundedPrimes (B n : ℕ) : Finset ℕ :=
+  (primeRange B).filter (fun p : ℕ ↦ (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ))
+
+/-- Primes `p ≤ B` whose remainder `n % p` lies in the lower complement `[0, p / 2]`. -/
+def lowerBoundedPrimes (B n : ℕ) : Finset ℕ :=
+  (primeRange B).filter (fun p : ℕ ↦ ¬((p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ)))
+
+/-- Odd primes `p ≤ B` not dividing `n` whose remainder lies in the strict lower half `(0, p / 2)`. -/
+def strictLowerOddBoundedPrimes (B n : ℕ) : Finset ℕ :=
+  (oddPrimeRange B).filter (fun p : ℕ ↦ ¬(p ∣ n) ∧ ¬((p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ)))
+
+/-- Odd primes `p ≤ B` dividing `n`. -/
+def dividingOddBoundedPrimes (B n : ℕ) : Finset ℕ :=
+  (oddPrimeRange B).filter (fun p : ℕ ↦ p ∣ n)
+
+/-- Reciprocal sum over `upperBoundedPrimes B n`. -/
+def upperBoundedPrimeSum (B n : ℕ) : ℝ :=
+  ∑ p ∈ upperBoundedPrimes B n, (1 : ℝ) / (p : ℝ)
+
+/-- Reciprocal sum over `lowerBoundedPrimes B n`. -/
+def lowerBoundedPrimeSum (B n : ℕ) : ℝ :=
+  ∑ p ∈ lowerBoundedPrimes B n, (1 : ℝ) / (p : ℝ)
+
+/-- Reciprocal sum over `strictLowerOddBoundedPrimes B n`. -/
+def strictLowerOddBoundedSum (B n : ℕ) : ℝ :=
+  ∑ p ∈ strictLowerOddBoundedPrimes B n, (1 : ℝ) / (p : ℝ)
+
+/-- Reciprocal sum over `dividingOddBoundedPrimes B n`. -/
+def dividingOddBoundedSum (B n : ℕ) : ℝ :=
+  ∑ p ∈ dividingOddBoundedPrimes B n, (1 : ℝ) / (p : ℝ)
+
+/-- Reciprocal sum over all odd primes `p ≤ B`. -/
+def oddPrimeReciprocalSum (B : ℕ) : ℝ :=
+  ∑ p ∈ oddPrimeRange B, (1 : ℝ) / (p : ℝ)
 
 /-- The weighted Kummer carry term `kummerCarry(n, p) / p`. -/
 def kummerCarryTerm (n p : ℕ) : ℝ :=
@@ -1344,7 +1371,7 @@ theorem sum_oddPrimeRange_signedKummerCarry_eq_discrepancy :
   have hadd := upperHalfPrimeSum_add_lowerComplementPrimeSum n
   linarith
 
-/-! ## Section 2: Harmonic Quotient Window Fibers `U_k(n)`, `L_k(n)`, and `Q_k(n)` -/
+/-! ## Harmonic quotient-window fibers -/
 
 /-- The `k`-th quotient fiber `Q_k(n) = {p ≤ n prime | n / p = k}`. -/
 def quotientPrimeFiber (n k : ℕ) : Finset ℕ :=
@@ -1491,7 +1518,7 @@ theorem upperQuotientPrimes_one_eq_middleHarmonicPrimes :
   unfold upperQuotientSum middleHarmonicPrimeSum
   rw [hset]
 
-/-! ## Section 3: Pairwise Disjointness, Cutoff Partition, and Exhaustion at `K ≥ n / 2` -/
+/-! ## Disjointness of the fibers and exhaustion past `n / 2` -/
 
 /-- The small-prime (large-quotient `n / p ≥ K + 1`) tail of `upperHalfPrimes n`. -/
 def upperSmallPrimeTail (n K : ℕ) : Finset ℕ :=
@@ -1679,7 +1706,7 @@ theorem discrepancy_eq_sum_quotient_windows_of_half_le :
     (lowerSmallPrimeTail_eq_empty_of_half_le n K hK).2,
     zero_add, zero_add, ← Finset.sum_sub_distrib]
 
-/-! ## Section 4: Bilateral Window Reciprocal Sandwich and Discrepancy Bounds -/
+/-! ## Two-sided window sandwich and discrepancy bounds -/
 
 /-- Bilateral reciprocal bounds for `upperQuotientSum n k` in terms of `|U_k(n)|`:
 `((2k + 1) / (2n)) |U_k(n)| ≤ upperQuotientSum n k ≤ ((k + 1) / n) |U_k(n)|`. -/
@@ -1820,7 +1847,7 @@ theorem abs_upperHalfPrimeSum_sub_half_mertens_le_cutoff :
     (fun k : ℕ ↦ upperQuotientSum n k - lowerQuotientSum n k) (Finset.Icc 1 K)
   linarith
 
-/-! ## Section 5: Positive and Negative Falsifying Controls -/
+/-! ## Positive and negative controls -/
 
 /-- Positive control at `n = 5`: `upperHalfPrimes 5 = {3}` and `upperHalfPrimeSum 5 = 1 / 3`. -/
 theorem positive_control_upperHalfPrimeSum_five :

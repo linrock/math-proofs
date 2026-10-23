@@ -2,7 +2,7 @@
   "version": "v0.4",
   "project": {
     "name": "Erdős 1105: anti-Ramsey numbers for cycles and paths",
-    "description": "A complete Lean 4 proof of both parts of Erdős problem 1105 on the anti-Ramsey number AR(n, H), the maximum number of colors in a surjective edge-coloring of K_n with no rainbow copy of H. Part (i) proves the Erdős–Simonovits–Sós (1975) cycle formula AR(n, C_k) = ((k - 2) / 2 + 1 / (k - 1)) n + O(1) for every fixed k ≥ 3 (Montellano-Ballesteros and Neumann-Lara 2005; Choi 2011), together with the exact triangle value AR(n, C_3) = n - 1 and the explicit two-sided bounds ⌊n / (k - 1)⌋(choose(k - 1, 2) + 1) - 1 ≤ AR(n, C_k) ≤ ((k - 2) / 2 + 1 / (k - 1)) n - 1 for all n ≥ k ≥ 3 via private-color deletion and weak anticyclic block decompositions. Part (ii) proves the Simonovits–Sós (1984) and Yuan (2021) exact path formula AR(n, P_k) = max(choose(k - 2, 2) + 1, choose(ℓ - 1, 2) + (ℓ - 1)(n - ℓ + 1) + ε) for all n ≥ k ≥ 5, where ℓ = ⌊(k - 1) / 2⌋ and ε = 1 for odd k and 2 for even k, via representative-graph exchanges, finite host-window reduction, degree-core elimination, and 2-connected circumference bounds.",
+    "description": "A Lean 4 formalization of the two known solved formulas in Erdős problem 1105 on the anti-Ramsey number AR(n, H), the maximum number of colors in a surjective edge-coloring of K_n with no rainbow copy of H. Part (i) formalizes the Erdős–Simonovits–Sós (1975) cycle formula AR(n, C_k) = ((k - 2) / 2 + 1 / (k - 1)) n + O(1) for every fixed k ≥ 3, proved by Montellano-Ballesteros and Neumann-Lara (2005), with Choi (2011) supplying the upper-bound approach, together with the exact triangle value AR(n, C_3) = n - 1 and explicit supporting two-sided bounds. Part (ii) formalizes the exact path formula for all n ≥ k ≥ 5, the range supplied by Yuan (2021); Simonovits–Sós (1984) proved it for large n, via representative-graph exchanges, finite host-window reduction, degree-core elimination, and 2-connected circumference bounds. The package proves the two displayed part statements; two trailing upstream TODO comments mention potential additional ESS75 and Simonovits–Sós variants but do not specify formal statements.",
     "authors": [
       "Linmiao Xu"
     ],
@@ -44,22 +44,22 @@
       ],
       "type": "paper",
       "relationship": "adapts",
-      "id": "https://doi.org/10.1007/s00373-005-0619-3",
+      "id": "https://doi.org/10.1007/s00373-005-0619-y",
       "location": "Graphs and Combinatorics 21 (2005), 343–354",
       "author_endorsement": "not-contacted",
       "note": "Establishes the exact anti-Ramsey formula for cycles C_k across all k >= 3 and n >= k, implying the asymptotic formula of Part (i)."
     },
     {
-      "title": "Problems in Graph Theory and Probability",
+      "title": "Problems in graph theory and probability",
       "authors": [
-        "Jongook Choi"
+        "Jihyeok Choi"
       ],
       "type": "other",
       "relationship": "adapts",
-      "id": "https://doi.org/10.31274/etd-180810-2269",
-      "location": "PhD dissertation, Iowa State University (2011), Chapter 3: On Anti-Ramsey Numbers of Cycles, pp. 74–88",
+      "id": "https://doi.org/10.31274/etd-180810-267",
+      "location": "PhD dissertation, Iowa State University (2011); Chapter \"A short proof of anti-Ramsey number for cycles\", p. 79",
       "author_endorsement": "not-contacted",
-      "note": "Proves the linear cycle upper bound AR(n, C_k) ≤ ((k - 2) / 2 + 1 / (k - 1)) n - 1 via private (NEW) vertex colors, weak anticyclic block decompositions (Lemma 3.2.3), and Gallai's triangle theorem."
+      "note": "Proves the linear cycle upper bound AR(n, C_k) <= ((k - 2) / 2 + 1 / (k - 1)) n - 1 via private new vertex colors, weak anticyclic block decompositions (Lemma 3.2.3), and Gallai's triangle theorem."
     },
     {
       "title": "On restricted colourings of K_n",
@@ -69,13 +69,13 @@
       ],
       "type": "paper",
       "relationship": "background",
-      "id": "https://doi.org/10.1007/BF02579163",
+      "id": "https://doi.org/10.1007/BF02579162",
       "location": "Combinatorica 4 (1984), 101–110",
       "author_endorsement": "not-contacted",
-      "note": "Formulates the exact anti-Ramsey path formula for P_k and proves it for large n."
+      "note": "Formulates the exact anti-Ramsey path formula for P_k and proves it for large n (paths of at least 13 vertices with n > c t^2); the announced broader two-regime formula is not proved there."
     },
     {
-      "title": "The anti-Ramsey number for paths",
+      "title": "Anti-Ramsey numbers for paths",
       "authors": [
         "Long-Tu Yuan"
       ],
@@ -92,22 +92,34 @@
       "relationship": "background",
       "id": "https://www.erdosproblems.com/1105",
       "note": "Problem catalog entry and references."
+    },
+    {
+      "title": "On maximal paths and circuits of graphs",
+      "authors": [
+        "Paul Erdős",
+        "Tibor Gallai"
+      ],
+      "type": "paper",
+      "relationship": "background",
+      "id": "https://doi.org/10.1007/BF02024498",
+      "location": "Acta Math. Acad. Sci. Hungar. 10 (1959), 337-356",
+      "note": "Erdős–Gallai bound used for the clique-block step in the cycle argument."
     }
   ],
   "related_formalizations": [
     {
-      "id": "https://github.com/google-deepmind/formal-conjectures/blob/eb1c5ce1bf406e46a6af5f859f097a5c5350a462/FormalConjectures/ErdosProblems/1105.lean",
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/75a6d3d52d0b87e78317f2fcc37319d807779030/FormalConjectures/ErdosProblems/1105.lean",
       "relationship": "builds-on",
-      "note": "The attributed Apache-2.0 definitions SimpleGraph.IsRainbow and SimpleGraph.antiRamseyNum from Formal Conjectures are retained in Proofs/CycleRepresentativeExchange.lean, Challenge.lean, and Solution.lean, and Statement.lean, Challenge.lean, and Solution.lean reproduce the exact Erdős 1105 statements over SimpleGraph.antiRamseyNum with answer(True) elaborated as True. The upstream declarations end in sorry."
+      "note": "The attributed Apache-2.0 definitions SimpleGraph.IsRainbow and SimpleGraph.antiRamseyNum from Formal Conjectures are retained in Proofs/CycleRepresentativeExchange.lean, Challenge.lean, and Solution.lean, and Statement.lean, Challenge.lean, and Solution.lean reproduce the Erdős 1105 statements over SimpleGraph.antiRamseyNum in their current upstream form. The upstream declarations end in sorry."
     },
     {
-      "id": "https://github.com/plby/lean-proofs/blob/main/src/latest/ErdosProblems/Erdos1105.lean",
+      "id": "https://github.com/plby/lean-proofs/blob/cecc3fc4b7725db36692f0eca3c24712a481cfba/src/latest/ErdosProblems/Erdos1105.lean",
       "relationship": "independent",
-      "note": "Independent Lean 4.33.0 formalization of both parts of Erdős Problem 1105 using a custom Erdos1105.antiRamseyNum definition over (⊤ : SimpleGraph (Fin n)).edgeSet → Fin q (written prior to Formal Conjectures PR #5829). No code is imported or adapted. In contrast, our development on Lean 4.35.0-rc2 proves the literal Formal Conjectures declarations over SimpleGraph.antiRamseyNum and TopEdgeLabeling, exports explicit non-asymptotic cycle sandwich bounds across all n ≥ k ≥ 3, and proves Part (ii) via an explicit finite host-window reduction, additive seed-first path filling, and 2-connected circumference bounds."
+      "note": "Independent Lean 4.33.0 formalization of both formulas using a custom antiRamseyNum definition over (⊤ : SimpleGraph (Fin n)).edgeSet → Fin q. No code is imported or adapted from that repository."
     }
   ],
   "status": {
-    "scope": "Complete unconditional Lean 4 proofs of both parts of Erdős Problem 1105: Part (i) for all cycle orders k ≥ 3 as n → ∞ (Erdos1105.Palomar.erdos_1105_cycles, Erdos1105.Palomar.erdos_1105_parts_i, and Erdos1105.erdos_1105.parts.i) together with the exact triangle formula AR(n, C_3) = n - 1 (Erdos1105.Palomar.antiRamseyNum_triangle) and explicit non-asymptotic cycle lower and upper bounds for all n ≥ k ≥ 3 (Erdos1105.Palomar.cycle_fullBlock_lower, Erdos1105.Palomar.cycle_real_lower, and Erdos1105.Palomar.cycle_linear_upper), and Part (ii) for all path orders k ≥ 5 and all host orders n ≥ k (Erdos1105.Palomar.erdos_1105_paths, Erdos1105.Palomar.erdos_1105_parts_ii, and Erdos1105.erdos_1105.parts.ii).",
+    "scope": "Formalizes the two known solved formulas in Erdős Problem 1105. For cycles, the package proves AR(n, C_k) = ((k - 2) / 2 + 1 / (k - 1)) n + O(1) for every fixed k >= 3, with the exact triangle value AR(n, C_3) = n - 1 and explicit two-sided supporting bounds. For paths, it proves the exact Simonovits–Sós (1984) and Yuan (2021) formula for all n >= k >= 5. Two trailing TODO comments in 1105.lean propose further ESS75 and Simonovits–Sós variants but state no formal declaration; neither is addressed, and the ESS75 triangle value is proved as a supporting result.",
     "sorry_count": 0,
     "sorry_in_definitions": 0,
     "axioms": [
@@ -117,42 +129,42 @@
     ],
     "main_results": [
       {
-        "declaration": "Erdos1105.Palomar.erdos_1105_cycles",
+        "declaration": "Erdos1105.Results.erdos_1105_cycles",
         "file": "Solution.lean",
         "comparator_config": "comparator.json"
       },
       {
-        "declaration": "Erdos1105.Palomar.erdos_1105_paths",
+        "declaration": "Erdos1105.Results.erdos_1105_paths",
         "file": "Solution.lean",
         "comparator_config": "comparator.json"
       },
       {
-        "declaration": "Erdos1105.Palomar.erdos_1105_parts_i",
+        "declaration": "Erdos1105.Results.erdos_1105_parts_i",
         "file": "Solution.lean",
         "comparator_config": "comparator.json"
       },
       {
-        "declaration": "Erdos1105.Palomar.erdos_1105_parts_ii",
+        "declaration": "Erdos1105.Results.erdos_1105_parts_ii",
         "file": "Solution.lean",
         "comparator_config": "comparator.json"
       },
       {
-        "declaration": "Erdos1105.Palomar.antiRamseyNum_triangle",
+        "declaration": "Erdos1105.Results.antiRamseyNum_triangle",
         "file": "Solution.lean",
         "comparator_config": "comparator.json"
       },
       {
-        "declaration": "Erdos1105.Palomar.cycle_fullBlock_lower",
+        "declaration": "Erdos1105.Results.cycle_fullBlock_lower",
         "file": "Solution.lean",
         "comparator_config": "comparator.json"
       },
       {
-        "declaration": "Erdos1105.Palomar.cycle_real_lower",
+        "declaration": "Erdos1105.Results.cycle_real_lower",
         "file": "Solution.lean",
         "comparator_config": "comparator.json"
       },
       {
-        "declaration": "Erdos1105.Palomar.cycle_linear_upper",
+        "declaration": "Erdos1105.Results.cycle_linear_upper",
         "file": "Solution.lean",
         "comparator_config": "comparator.json"
       }
@@ -162,73 +174,73 @@
     "methods": [
       {
         "method": "agent",
-        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone package preparation."
       }
     ],
-    "notes": "All 8 proof modules in Proofs/ plus Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4 with zero sorry in Proofs/ and are verified by both Lean's default kernel and NanoDa via Comparator."
+    "notes": "All proof modules in Proofs/ together with Statement, Solution, AxiomAudit, and Challenge compile in Lean 4.35.0-rc2 with zero sorry in the proof modules."
   },
   "fidelity": {
     "divergences": "None. Both universal statements preserve the exact quantifiers, domains (k >= 3 for cycles, n >= k >= 5 for paths), definitions (surjective TopEdgeLabeling on Fin n avoiding injective rainbow copies of cycleGraph k and pathGraph k), and formulas from Formal Conjectures."
   },
   "review": {
     "status": "agent-reviewed",
-    "notes": "Lean 4.35.0-rc2 (compiler commit 11acb17ec6b07a8f9e9173e6845197929540936b) with canonical Mathlib commit 065356127b1dc0016f66b7283ce0ce2c4055aa55 passed fresh source builds for all 8 proof modules in Proofs/ plus Statement, Solution, AxiomAudit, and Challenge. Zero sorry occur in the proof modules. All twelve endpoint and statement-fidelity axiom audits passed using only propext, Classical.choice, and Quot.sound. Comparator matched all eight selected theorems in Challenge and Solution, and both NanoDa and Lean's default kernel accepted the solution."
+    "notes": "Lean 4.35.0-rc2 (compiler commit 11acb17ec6b07a8f9e9173e6845197929540936b) with canonical Mathlib commit 065356127b1dc0016f66b7283ce0ce2c4055aa55 compiled all 8 proof modules in Proofs/ plus Statement, Solution, AxiomAudit, and Challenge (incremental build reusing cached dependencies). Zero sorry occur in the proof modules. All twelve endpoint and statement-fidelity axiom audits passed using only propext, Classical.choice, and Quot.sound. Challenge and Solution state the same eight theorems; the package configuration retains Comparator support, which was not run during this verification."
   },
   "alignment": {
-    "namespace": "Erdos1105.Palomar",
+    "namespace": "Erdos1105.Results",
     "statements": [
       {
-        "source": "Erdős Problem 1105, Part (i): asymptotic anti-Ramsey number for cycles C_k (k >= 3)",
-        "lean": "Erdos1105.Palomar.erdos_1105_cycles",
+        "source": "Montellano-Ballesteros–Neumann-Lara (2005), Graphs and Combinatorics 21, 343–354; Choi (2011) thesis Ch. 3 for the upper-bound approach; Formal Conjectures 1105.lean erdos_1105.parts.i",
+        "lean": "Erdos1105.Results.erdos_1105_cycles",
         "module": "Solution",
         "status": "proved",
         "note": "Proves that AR(n, C_k) - ((k - 2) / 2 + 1 / (k - 1)) * n = O(1) as n -> infinity for every k >= 3."
       },
       {
-        "source": "Erdős Problem 1105, Part (ii): exact anti-Ramsey number for paths P_k (n >= k >= 5)",
-        "lean": "Erdos1105.Palomar.erdos_1105_paths",
+        "source": "Simonovits–Sós (1984), Combinatorica 4, 101–110; Yuan (2021), arXiv:2102.00807; Formal Conjectures 1105.lean erdos_1105.parts.ii",
+        "lean": "Erdos1105.Results.erdos_1105_paths",
         "module": "Solution",
         "status": "proved",
         "note": "Proves the exact maximum formula for AR(n, P_k) for all k >= 5 and all n >= k."
       },
       {
-        "source": "Formal Conjectures Erdős 1105 literal Part (i) statement",
-        "lean": "Erdos1105.Palomar.erdos_1105_parts_i",
+        "source": "FormalConjectures/ErdosProblems/1105.lean, theorem Erdos1105.erdos_1105.parts.i",
+        "lean": "Erdos1105.Results.erdos_1105_parts_i",
         "module": "Solution",
         "status": "proved",
-        "note": "Proves the True ↔ cycle proposition and verifies definitional equality with Statement.lean over SimpleGraph.antiRamseyNum."
+        "note": "Proves the cycle proposition and verifies definitional equality with Statement.lean over SimpleGraph.antiRamseyNum."
       },
       {
-        "source": "Formal Conjectures Erdős 1105 literal Part (ii) statement",
-        "lean": "Erdos1105.Palomar.erdos_1105_parts_ii",
+        "source": "FormalConjectures/ErdosProblems/1105.lean, theorem Erdos1105.erdos_1105.parts.ii",
+        "lean": "Erdos1105.Results.erdos_1105_parts_ii",
         "module": "Solution",
         "status": "proved",
-        "note": "Proves the True ↔ path proposition and verifies definitional equality with Statement.lean over SimpleGraph.antiRamseyNum."
+        "note": "Proves the path proposition and verifies definitional equality with Statement.lean over SimpleGraph.antiRamseyNum."
       },
       {
         "source": "Erdős, Simonovits, and Sós (1975): exact anti-Ramsey number for the triangle C_3 (n >= 3)",
-        "lean": "Erdos1105.Palomar.antiRamseyNum_triangle",
+        "lean": "Erdos1105.Results.antiRamseyNum_triangle",
         "module": "Solution",
         "status": "proved",
         "note": "Proves AR(n, C_3) = n - 1 for every n >= 3."
       },
       {
         "source": "Erdős, Simonovits, and Sós (1975): ordered (k - 1)-clique block lower bound for C_k (n >= k >= 3)",
-        "lean": "Erdos1105.Palomar.cycle_fullBlock_lower",
+        "lean": "Erdos1105.Results.cycle_fullBlock_lower",
         "module": "Solution",
         "status": "proved",
         "note": "Proves (n / (k - 1)) * (choose(k - 1, 2) + 1) - 1 <= AR(n, C_k) for all n >= k >= 3."
       },
       {
         "source": "Erdős, Simonovits, and Sós (1975): explicit real linear lower bound for C_k (n >= k >= 3)",
-        "lean": "Erdos1105.Palomar.cycle_real_lower",
+        "lean": "Erdos1105.Results.cycle_real_lower",
         "module": "Solution",
         "status": "proved",
         "note": "Proves ((k - 2) / 2 + 1 / (k - 1)) * n - ((k - 2) / 2 + 1 / (k - 1)) * (k - 1) - 1 <= AR(n, C_k) for all n >= k >= 3."
       },
       {
-        "source": "Montellano-Ballesteros and Neumann-Lara (2005); Choi (2011): explicit linear upper bound for C_k (n >= k >= 3)",
-        "lean": "Erdos1105.Palomar.cycle_linear_upper",
+        "source": "Montellano-Ballesteros and Neumann-Lara (2005); Jihyeok Choi (2011): explicit linear upper bound for C_k (n >= k >= 3)",
+        "lean": "Erdos1105.Results.cycle_linear_upper",
         "module": "Solution",
         "status": "proved",
         "note": "Proves AR(n, C_k) <= ((k - 2) / 2 + 1 / (k - 1)) * n - 1 for all n >= k >= 3."

@@ -1131,8 +1131,9 @@ universe u
 
 open SimpleGraph
 
-/-- Precisely the finite positive-k equality implication still missing.
-This is a proposition definition, not an axiom or a proved theorem. -/
+/-- The finite positive-`k` equality implication, isolated here as the intermediate
+proposition used by `statement_iff_finite_positive_equality`. It is later discharged in
+`Layer1158` by `finite_gyarfas`. This is a proposition definition, not an axiom. -/
 def FinitePositiveEquality : Prop :=
   ∀ {V : Type u} [Finite V] (G : SimpleGraph V) (k : ℕ),
     0 < k → G.oddCycleLengths.Finite → G.oddCycleLengths.ncard ≤ k →

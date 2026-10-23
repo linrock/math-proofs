@@ -111,7 +111,7 @@
       "configFile": "lakefile.lean"
     }
   ],
-  "name": "Erdos1105Palomar",
+  "name": "Erdos1105",
   "lakeDir": ".lake",
   "fixedToolchain": true
 }

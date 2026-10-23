@@ -27,7 +27,7 @@ transitive-axiom checks for the submitted Erdős #1105 endpoints. Only
 
 open SimpleGraph Asymptotics Filter
 
-namespace Erdos1105.Palomar
+namespace Erdos1105.Results
 
 /-- The separately stated Part (i) target is definitionally the proved proposition. -/
 theorem statement_i_fidelity : Erdos1105.Challenge.statement_i :=
@@ -37,12 +37,12 @@ theorem statement_i_fidelity : Erdos1105.Challenge.statement_i :=
 theorem statement_ii_fidelity : Erdos1105.Challenge.statement_ii :=
   Erdos1105.erdos_1105.parts.ii
 
-/-- `Erdos1105.Palomar.IsRainbow` is definitionally identical to `SimpleGraph.IsRainbow`. -/
-theorem isRainbow_def_eq : @Erdos1105.Palomar.IsRainbow = @SimpleGraph.IsRainbow :=
+/-- `Erdos1105.Results.IsRainbow` is definitionally identical to `SimpleGraph.IsRainbow`. -/
+theorem isRainbow_def_eq : @Erdos1105.Results.IsRainbow = @SimpleGraph.IsRainbow :=
   rfl
 
-/-- `Erdos1105.Palomar.antiRamseyNum` is definitionally identical to `SimpleGraph.antiRamseyNum`. -/
-theorem antiRamseyNum_def_eq : @Erdos1105.Palomar.antiRamseyNum = @SimpleGraph.antiRamseyNum :=
+/-- `Erdos1105.Results.antiRamseyNum` is definitionally identical to `SimpleGraph.antiRamseyNum`. -/
+theorem antiRamseyNum_def_eq : @Erdos1105.Results.antiRamseyNum = @SimpleGraph.antiRamseyNum :=
   rfl
 
 /-- `SimpleGraph.EdgeLabeling G K` is definitionally `G.edgeSet → K`. -/
@@ -99,7 +99,7 @@ theorem isBigO_iff_audit {α : Type*} (l : Filter α) (f g : α → ℝ) :
     (f =O[l] g) ↔ ∃ c : ℝ, ∀ᶠ x in l, ‖f x‖ ≤ c * ‖g x‖ :=
   Asymptotics.isBigO_iff
 
-end Erdos1105.Palomar
+end Erdos1105.Results
 
 #print SimpleGraph.EdgeLabeling
 #print SimpleGraph.TopEdgeLabeling
@@ -117,29 +117,29 @@ end Erdos1105.Palomar
 #print Filter.atTop
 #print SimpleGraph.IsRainbow
 #print SimpleGraph.antiRamseyNum
-#print Erdos1105.Palomar.IsRainbow
-#print Erdos1105.Palomar.antiRamseyNum
+#print Erdos1105.Results.IsRainbow
+#print Erdos1105.Results.antiRamseyNum
 #print Erdos1105.Challenge.statement_i
 #print Erdos1105.Challenge.statement_ii
-#print Erdos1105.Palomar.erdos_1105_cycles
-#print Erdos1105.Palomar.erdos_1105_paths
-#print Erdos1105.Palomar.erdos_1105_parts_i
-#print Erdos1105.Palomar.erdos_1105_parts_ii
-#print Erdos1105.Palomar.antiRamseyNum_triangle
-#print Erdos1105.Palomar.cycle_fullBlock_lower
-#print Erdos1105.Palomar.cycle_real_lower
-#print Erdos1105.Palomar.cycle_linear_upper
+#print Erdos1105.Results.erdos_1105_cycles
+#print Erdos1105.Results.erdos_1105_paths
+#print Erdos1105.Results.erdos_1105_parts_i
+#print Erdos1105.Results.erdos_1105_parts_ii
+#print Erdos1105.Results.antiRamseyNum_triangle
+#print Erdos1105.Results.cycle_fullBlock_lower
+#print Erdos1105.Results.cycle_real_lower
+#print Erdos1105.Results.cycle_linear_upper
 #print Erdos1105.erdos_1105.parts.i
 #print Erdos1105.erdos_1105.parts.ii
-#print axioms Erdos1105.Palomar.erdos_1105_cycles
-#print axioms Erdos1105.Palomar.erdos_1105_paths
-#print axioms Erdos1105.Palomar.erdos_1105_parts_i
-#print axioms Erdos1105.Palomar.erdos_1105_parts_ii
-#print axioms Erdos1105.Palomar.antiRamseyNum_triangle
-#print axioms Erdos1105.Palomar.cycle_fullBlock_lower
-#print axioms Erdos1105.Palomar.cycle_real_lower
-#print axioms Erdos1105.Palomar.cycle_linear_upper
+#print axioms Erdos1105.Results.erdos_1105_cycles
+#print axioms Erdos1105.Results.erdos_1105_paths
+#print axioms Erdos1105.Results.erdos_1105_parts_i
+#print axioms Erdos1105.Results.erdos_1105_parts_ii
+#print axioms Erdos1105.Results.antiRamseyNum_triangle
+#print axioms Erdos1105.Results.cycle_fullBlock_lower
+#print axioms Erdos1105.Results.cycle_real_lower
+#print axioms Erdos1105.Results.cycle_linear_upper
 #print axioms Erdos1105.erdos_1105.parts.i
 #print axioms Erdos1105.erdos_1105.parts.ii
-#print axioms Erdos1105.Palomar.statement_i_fidelity
-#print axioms Erdos1105.Palomar.statement_ii_fidelity
+#print axioms Erdos1105.Results.statement_i_fidelity
+#print axioms Erdos1105.Results.statement_ii_fidelity

@@ -7,7 +7,7 @@ lake exe cache get
 ./verify.sh
 ```
 
-The first command downloads canonical compiled Mathlib dependencies. The [verify.sh](verify.sh) script runs the Palomar preliminary checks, verifies the compiler and Mathlib revisions, builds `Statement`, `Solution`, `AxiomAudit`, and `Challenge` (including all 8 proof modules in `Proofs/` with `-j1 -M8192 -E hasSorry`), and runs a standalone endpoint axiom audit on `AxiomAudit.lean` verifying that all 12 endpoint and statement-fidelity theorems depend only on `propext`, `Classical.choice`, and `Quot.sound`.
+The first command downloads canonical compiled Mathlib dependencies. The [verify.sh](verify.sh) script runs the preliminary checks, verifies the compiler and Mathlib revisions, builds `Statement`, `Solution`, `AxiomAudit`, and `Challenge` (including all 8 proof modules in `Proofs/` with `-j1 -M8192 -E hasSorry`), and runs a standalone endpoint axiom audit on `AxiomAudit.lean` verifying that all 12 endpoint and statement-fidelity theorems depend only on `propext`, `Classical.choice`, and `Quot.sound`.
 
 A normal Lake build and explicit endpoint audit can also be run directly:
 

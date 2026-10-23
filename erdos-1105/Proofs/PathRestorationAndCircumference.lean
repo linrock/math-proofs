@@ -1,7 +1,7 @@
 module
 
 /-
-Copyright 2025-2026 The Formal Conjectures Authors (cycleLengths, oddCycleLengths in Erdos58).
+Copyright 2025-2026 The Formal Conjectures Authors (cycleLengths, oddCycleLengths in SimpleGraph).
 Copyright 2026 Linmiao Xu.
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -870,7 +870,7 @@ def oddCycleLengths {V : Type*} (G : SimpleGraph V) : Set ℕ :=
 
 end SimpleGraph
 
-namespace Erdos58
+namespace Erdos1105.GraphHelpers
 
 /-- The properties of a finite normal DFS forest needed by the coloring proof.
 They require actual simple graph paths, not merely numerical depth labels. -/
@@ -881,12 +881,6 @@ structure NormalDepth {V : Type*} (G : SimpleGraph V) where
     depth u < depth v → depth w < depth v → depth u = depth w → u = w
   back_path : ∀ {u v}, G.Adj u v → depth u < depth v →
     ∃ p : G.Walk u v, p.IsPath ∧ p.length = depth v - depth u
-
-end Erdos58
-
-end
-
-namespace Erdos58
 
 open SimpleGraph
 
@@ -935,10 +929,6 @@ theorem earlier_parity_neighbors_bound [Finite V] (D : NormalDepth G)
     have hw_lt : D.depth w < D.depth v := hw.2.1
     omega
   exact Set.ncard_le_ncard_of_injOn f hmaps hinj hfin
-
-end Erdos58
-
-namespace Erdos58
 
 open SimpleGraph
 
@@ -1072,10 +1062,6 @@ theorem fan_odd_cycle_length (p : G.Walk a b) (hp : p.IsPath)
   rw [Nat.odd_iff]
   omega
 
-end Erdos58
-
-namespace Erdos58
-
 open SimpleGraph
 
 variable {V : Type*} {G : SimpleGraph V} {a b c : V}
@@ -1113,10 +1099,6 @@ theorem cycle_of_two_paths (p q : G.Walk a b) (hp : p.IsPath) (hq : q.IsPath)
 
 theorem two_paths_cycle_length (p q : G.Walk a b) :
     (p.append q.reverse).length = p.length + q.length := by simp
-
-end Erdos58
-
-namespace Erdos58
 
 open SimpleGraph
 
@@ -1501,7 +1483,7 @@ theorem twoConnectors (hG : G.Connected)
   exact ⟨a₁', ha₁', a₂', ha₂', b₁', hb₁', b₂', hb₂', ha', hb',
     q₁, q₂, hq₁, hq₂, hd, hA₁, hB₁, hA₂, hB₂⟩
 
-end Erdos58
+end Erdos1105.GraphHelpers
 
 namespace ErdosProblems.PathUpperReduction
 
@@ -1545,7 +1527,7 @@ theorem exists_internal_cut_detour
   have hA0 : p (0 : Fin (s + 1)) ∈ A := ⟨0, hi0, rfl⟩
   have hBlast : p (Fin.last s) ∈ B := ⟨Fin.last s, hilast, rfl⟩
   obtain ⟨u, hu, v, hv, q, hq, hsub, hA, hB⟩ :=
-    Erdos58.TwoConnector.trim_between_sets initial.bypass initial.bypass_isPath
+    Erdos1105.GraphHelpers.TwoConnector.trim_between_sets initial.bypass initial.bypass_isPath
       A B hA0 hBlast
   change u ∈ p '' {j | j < i} at hu
   change v ∈ p '' {j | i < j} at hv
@@ -2221,18 +2203,18 @@ variable {V : Type*} {G : SimpleGraph V} {u v : V}
 
 theorem interval_getVert (P : G.Walk u v) (i j n : ℕ) (hij : i ≤ j)
     (hn : i + n ≤ j) :
-    (Erdos58.pathInterval P i j hij).getVert n = P.getVert (i + n) := by
-  simp only [Erdos58.pathInterval, Walk.getVert_copy, Walk.drop_getVert,
+    (Erdos1105.GraphHelpers.pathInterval P i j hij).getVert n = P.getVert (i + n) := by
+  simp only [Erdos1105.GraphHelpers.pathInterval, Walk.getVert_copy, Walk.drop_getVert,
     Walk.take_getVert, Nat.min_eq_right hn]
 
 theorem interval_support (P : G.Walk u v) (i j : ℕ) (hij : i ≤ j)
     (hj : j ≤ P.length) (z : V) :
-    z ∈ (Erdos58.pathInterval P i j hij).support ↔
+    z ∈ (Erdos1105.GraphHelpers.pathInterval P i j hij).support ↔
       ∃ k, i ≤ k ∧ k ≤ j ∧ P.getVert k = z := by
   constructor
   · intro hz
     obtain ⟨n, hn, hnl⟩ := Walk.mem_support_iff_exists_getVert.mp hz
-    rw [Erdos58.pathInterval_length P i j hij hj] at hnl
+    rw [Erdos1105.GraphHelpers.pathInterval_length P i j hij hj] at hnl
     have hsum : i + n ≤ j := by omega
     exact ⟨i + n, by omega, hsum, (interval_getVert P i j n hij hsum).symm.trans hn⟩
   · rintro ⟨k, hik, hkj, hk⟩
@@ -2240,7 +2222,7 @@ theorem interval_support (P : G.Walk u v) (i j : ℕ) (hij : i ≤ j)
     refine ⟨k - i, ?_, ?_⟩
     · rw [interval_getVert P i j (k - i) hij (by omega)]
       simpa [Nat.add_sub_of_le hik] using hk
-    · rw [Erdos58.pathInterval_length P i j hij hj]
+    · rw [Erdos1105.GraphHelpers.pathInterval_length P i j hij hj]
       omega
 
 def Interior (P : G.Walk u v) {α : Type*} (L R : α → ℕ)
@@ -2249,7 +2231,7 @@ def Interior (P : G.Walk u v) {α : Type*} (L R : α → ℕ)
 
 theorem interval_contacts (P : G.Walk u v) (hp : P.IsPath) (i j : ℕ)
     (hij : i ≤ j) (hj : j ≤ P.length) (k : ℕ) (hk : k ≤ P.length)
-    (hmem : P.getVert k ∈ (Erdos58.pathInterval P i j hij).support) : i ≤ k ∧ k ≤ j := by
+    (hmem : P.getVert k ∈ (Erdos1105.GraphHelpers.pathInterval P i j hij).support) : i ≤ k ∧ k ≤ j := by
   obtain ⟨m, him, hmj, hmk⟩ := (interval_support P i j hij hj (P.getVert k)).mp hmem
   have : m = k := hp.getVert_injOn (show m ≤ P.length from le_trans hmj hj) hk hmk
   omega
@@ -2290,15 +2272,15 @@ theorem rails_close (P : G.Walk u v) (hp : P.IsPath) {α : Type*} (L R : α → 
     {W : G.Walk (P.getVert 0) (P.getVert P.length)}
     (h : Rails P L R Q previous P.length U W)
     (hprev : previous < P.length) (hs : 2 ≤ P.length) :
-    let S := Erdos58.pathInterval P previous P.length hprev.le
+    let S := Erdos1105.GraphHelpers.pathInterval P previous P.length hprev.le
     ((U.append S).append W.reverse).IsCycle ∧
     (∀ z, z ∈ ((U.append S).append W.reverse).support ↔
       z ∈ U.support ∨ z ∈ S.support ∨ z ∈ W.support) := by
   dsimp only
-  let S := Erdos58.pathInterval P previous P.length hprev.le
-  have hS : S.IsPath := Erdos58.pathInterval_isPath P hp previous P.length hprev.le
+  let S := Erdos1105.GraphHelpers.pathInterval P previous P.length hprev.le
+  have hS : S.IsPath := Erdos1105.GraphHelpers.pathInterval_isPath P hp previous P.length hprev.le
   have hUS : (U.append S).IsPath := by
-    apply Erdos58.path_append_of_meet_only U S h.1 hS
+    apply Erdos1105.GraphHelpers.path_append_of_meet_only U S h.1 hS
     intro z hz hzS
     obtain ⟨k, hkprev, hks, hk⟩ := (interval_support P previous P.length hprev.le (by omega) z).mp hzS
     have hkU := h.2.2.1 k hks (hk.symm ▸ hz)
@@ -2326,14 +2308,14 @@ theorem rails_close (P : G.Walk u v) (hp : P.IsPath) {α : Type*} (L R : α → 
     have hi := hp.getVert_injOn (show 0 ≤ P.length from Nat.zero_le _) (show previous ≤ P.length from hprev.le) he
     omega
   have hlenS : S.length = P.length - previous :=
-    Erdos58.pathInterval_length P previous P.length hprev.le (by omega)
+    Erdos1105.GraphHelpers.pathInterval_length P previous P.length hprev.le (by omega)
   have hlen : 3 ≤ (U.append S).length + W.length := by
     rw [Walk.length_append, hlenS]
     by_cases he : previous = 0
     · omega
     · have := hUpos he
       omega
-  refine ⟨Erdos58.cycle_of_two_paths (U.append S) W hUS h.2.1 hmeet hlen, ?_⟩
+  refine ⟨Erdos1105.GraphHelpers.cycle_of_two_paths (U.append S) W hUS h.2.1 hmeet hlen, ?_⟩
   intro z
   simp only [Walk.mem_support_append_iff, Walk.support_reverse, List.mem_reverse]
   tauto
@@ -2348,14 +2330,14 @@ theorem rails_step (P : G.Walk u v) (hp : P.IsPath) {α : Type*} (L R : α → �
     (h : Rails P L R Q previous reach U W) (n : α)
     (ha : previous ≤ L n) (har : L n < reach) (hrb : reach < R n)
     (hb : R n ≤ P.length) :
-    let S := Erdos58.pathInterval P previous (L n) ha
+    let S := Erdos1105.GraphHelpers.pathInterval P previous (L n) ha
     Rails P L R Q reach (R n) W ((U.append S).append (Q n)) := by
   dsimp only
-  let S := Erdos58.pathInterval P previous (L n) ha
-  have hS : S.IsPath := Erdos58.pathInterval_isPath P hp previous (L n) ha
+  let S := Erdos1105.GraphHelpers.pathInterval P previous (L n) ha
+  have hS : S.IsPath := Erdos1105.GraphHelpers.pathInterval_isPath P hp previous (L n) ha
   have haP : L n ≤ P.length := by omega
   have hUS : (U.append S).IsPath := by
-    apply Erdos58.path_append_of_meet_only U S h.1 hS
+    apply Erdos1105.GraphHelpers.path_append_of_meet_only U S h.1 hS
     intro z hz hzS
     obtain ⟨k, hpk, hka, hkz⟩ := (interval_support P previous (L n) ha haP z).mp hzS
     have hku := h.2.2.1 k (by omega) (hkz.symm ▸ hz)
@@ -2381,7 +2363,7 @@ theorem rails_step (P : G.Walk u v) (hp : P.IsPath) {α : Type*} (L R : α → �
     · have := hUScontact (R n) hb (he ▸ hz)
       omega
   have hnew : ((U.append S).append (Q n)).IsPath :=
-    Erdos58.path_append_of_meet_only (U.append S) (Q n) hUS (paths n) hUSQ
+    Erdos1105.GraphHelpers.path_append_of_meet_only (U.append S) (Q n) hUS (paths n) hUSQ
   refine ⟨h.2.1, hnew, ?_, ?_, ?_, ?_⟩
   · intro k hk hmem
     rcases h.2.2.2.1 k hk hmem with he | he | he <;> omega
@@ -2415,7 +2397,7 @@ theorem rails_step (P : G.Walk u v) (hp : P.IsPath) {α : Type*} (L R : α → �
       · rcases (Walk.mem_support_append_iff _ _).mp hzUS with hzU | hzS
         · obtain ⟨l, hl, hzl⟩ := h.2.2.2.2.2 z (Or.inl hzU) hzP
           exact ⟨l, by omega, hzl⟩
-        · exact (hzP (Erdos58.pathInterval_support_subset P previous (L n) ha hzS)).elim
+        · exact (hzP (Erdos1105.GraphHelpers.pathInterval_support_subset P previous (L n) ha hzS)).elim
       · refine ⟨n, le_rfl, hzQ, ?_, ?_⟩
         · intro he
           exact hzP (he ▸ Walk.getVert_mem_support P (L n))
@@ -2454,7 +2436,7 @@ theorem rails_finish (P : G.Walk u v) (hp : P.IsPath) (hs : 2 ≤ P.length)
     obtain ⟨he, hprev⟩ := hc
     subst reach
     obtain ⟨hcycle, heq⟩ := rails_close P hp L R Q h hprev hs
-    refine ⟨(U.append (Erdos58.pathInterval P previous P.length hprev.le)).append W.reverse,
+    refine ⟨(U.append (Erdos1105.GraphHelpers.pathInterval P previous P.length hprev.le)).append W.reverse,
       hcycle, ?_⟩
     intro z
     rw [heq]
@@ -2465,7 +2447,7 @@ theorem rails_finish (P : G.Walk u v) (hp : P.IsPath) (hs : 2 ≤ P.length)
     obtain ⟨ha, har, hrb, hb, ht⟩ := hc
     have hn := rails_step P hp L R Q paths contact separate h n ha har hrb hb
     obtain ⟨C, hC, heq⟩ := ih reach (R n) ht W
-      ((U.append (Erdos58.pathInterval P previous (L n) ha)).append (Q n)) hn
+      ((U.append (Erdos1105.GraphHelpers.pathInterval P previous (L n) ha)).append (Q n)) hn
     refine ⟨C, hC, ?_⟩
     intro z
     rw [heq]
@@ -2633,14 +2615,14 @@ theorem crossing_cycle (P : G.Walk u v) (hp : P.IsPath) (i j : ℕ)
       ∀ z, z ∈ C.support ↔
         (∃ k, k ≤ j ∧ P.getVert k = z) ∨
         (∃ k, i ≤ k ∧ k ≤ P.length ∧ P.getVert k = z) := by
-  let S := Erdos58.pathInterval P 0 j (Nat.zero_le j)
-  let T := Erdos58.pathInterval P i P.length hi.le
+  let S := Erdos1105.GraphHelpers.pathInterval P 0 j (Nat.zero_le j)
+  let T := Erdos1105.GraphHelpers.pathInterval P i P.length hi.le
   let A := S.append hb.toWalk
   let B := ha.toWalk.append T
-  have hS : S.IsPath := Erdos58.pathInterval_isPath P hp 0 j (Nat.zero_le j)
-  have hT : T.IsPath := Erdos58.pathInterval_isPath P hp i P.length hi.le
+  have hS : S.IsPath := Erdos1105.GraphHelpers.pathInterval_isPath P hp 0 j (Nat.zero_le j)
+  have hT : T.IsPath := Erdos1105.GraphHelpers.pathInterval_isPath P hp i P.length hi.le
   have hA : A.IsPath := by
-    apply Erdos58.path_append_of_meet_only S hb.toWalk hS hb.isPath_toWalk
+    apply Erdos1105.GraphHelpers.path_append_of_meet_only S hb.toWalk hS hb.isPath_toWalk
     intro z hz hzE
     simp only [SimpleGraph.Adj.support_toWalk, List.mem_cons, List.not_mem_nil, or_false] at hzE
     rcases hzE with he | he
@@ -2649,7 +2631,7 @@ theorem crossing_cycle (P : G.Walk u v) (hp : P.IsPath) (i j : ℕ)
         P.length le_rfl (he ▸ hz)
       omega
   have hB : B.IsPath := by
-    apply Erdos58.path_append_of_meet_only ha.toWalk T ha.isPath_toWalk hT
+    apply Erdos1105.GraphHelpers.path_append_of_meet_only ha.toWalk T ha.isPath_toWalk hT
     intro z hzE hz
     simp only [SimpleGraph.Adj.support_toWalk, List.mem_cons, List.not_mem_nil, or_false] at hzE
     rcases hzE with he | he
@@ -2687,11 +2669,11 @@ theorem crossing_cycle (P : G.Walk u v) (hp : P.IsPath) (i j : ℕ)
         omega
       · exact Or.inr he
   have hAlen : A.length = j + 1 := by
-    simp [A, S, Erdos58.pathInterval_length P 0 j (Nat.zero_le j) (by omega)]
+    simp [A, S, Erdos1105.GraphHelpers.pathInterval_length P 0 j (Nat.zero_le j) (by omega)]
   have hBlen : B.length = 1 + (P.length - i) := by
-    simp [B, T, Erdos58.pathInterval_length P i P.length hi.le le_rfl, Nat.add_comm]
-  refine ⟨A.append B.reverse, Erdos58.cycle_of_two_paths A B hA hB hmeet (by omega), ?_, ?_⟩
-  · rw [Erdos58.two_paths_cycle_length, hAlen, hBlen]
+    simp [B, T, Erdos1105.GraphHelpers.pathInterval_length P i P.length hi.le le_rfl, Nat.add_comm]
+  refine ⟨A.append B.reverse, Erdos1105.GraphHelpers.cycle_of_two_paths A B hA hB hmeet (by omega), ?_, ?_⟩
+  · rw [Erdos1105.GraphHelpers.two_paths_cycle_length, hAlen, hBlen]
     omega
   · intro z
     simp only [Walk.mem_support_append_iff, Walk.support_reverse, List.mem_reverse,
@@ -2871,7 +2853,7 @@ theorem adjacent_endpoint_cycle (P : G.Walk u v) (hp : P.IsPath) (hs : 2 ≤ P.l
   have hW : W.IsPath := by simpa only [W, Walk.isPath_copy] using hp
   have hlen : W.length = P.length := by simp [W]
   refine ⟨Walk.cons he W.reverse, ?_, ?_⟩
-  · exact Erdos58.cycle_of_path_and_edge W.reverse hW.reverse he (by simp only [Walk.length_reverse]; omega)
+  · exact Erdos1105.GraphHelpers.cycle_of_path_and_edge W.reverse hW.reverse he (by simp only [Walk.length_reverse]; omega)
   · simp [hlen]
 
 theorem endpoint_crossing_branch (P : G.Walk u v) (hp : P.IsPath)
@@ -2972,14 +2954,14 @@ theorem terminal_fusion (P : G.Walk u v) (hp : P.IsPath) {α : Type*}
       (∀ z, z ∈ U.support ∨ z ∈ W.support → z ∈ C.support) ∧
       (∀ k, (previous ≤ k ∧ k ≤ b) ∨ (reach ≤ k ∧ k ≤ P.length) →
         P.getVert k ∈ C.support) := by
-  let S := Erdos58.pathInterval P previous b hpb
-  let T := Erdos58.pathInterval P reach P.length hrs.le
+  let S := Erdos1105.GraphHelpers.pathInterval P previous b hpb
+  let T := Erdos1105.GraphHelpers.pathInterval P reach P.length hrs.le
   let E := he.toWalk
-  have hS : S.IsPath := Erdos58.pathInterval_isPath P hp previous b hpb
-  have hT : T.IsPath := Erdos58.pathInterval_isPath P hp reach P.length hrs.le
+  have hS : S.IsPath := Erdos1105.GraphHelpers.pathInterval_isPath P hp previous b hpb
+  have hT : T.IsPath := Erdos1105.GraphHelpers.pathInterval_isPath P hp reach P.length hrs.le
   have hbP : b ≤ P.length := by omega
   have hUS : (U.append S).IsPath := by
-    apply Erdos58.path_append_of_meet_only U S h.1 hS
+    apply Erdos1105.GraphHelpers.path_append_of_meet_only U S h.1 hS
     intro z hz hzS
     obtain ⟨k, hpk, hkb, hkz⟩ := (interval_support P previous b hpb hbP z).mp hzS
     have := h.2.2.1 k (by omega) (hkz.symm ▸ hz)
@@ -2992,7 +2974,7 @@ theorem terminal_fusion (P : G.Walk u v) (hp : P.IsPath) {α : Type*}
       omega
     · exact (interval_contacts P hp previous b hpb hbP k hk hmem).2
   have hUSE : ((U.append S).append E).IsPath := by
-    apply Erdos58.path_append_of_meet_only (U.append S) E hUS he.isPath_toWalk
+    apply Erdos1105.GraphHelpers.path_append_of_meet_only (U.append S) E hUS he.isPath_toWalk
     intro z hz hzE
     simp only [E, Adj.support_toWalk, List.mem_cons, List.not_mem_nil, or_false] at hzE
     rcases hzE with hzE | hzE
@@ -3000,7 +2982,7 @@ theorem terminal_fusion (P : G.Walk u v) (hp : P.IsPath) {α : Type*}
     · have := hUScontact P.length le_rfl (hzE ▸ hz)
       omega
   have hWT : (W.append T).IsPath := by
-    apply Erdos58.path_append_of_meet_only W T h.2.1 hT
+    apply Erdos1105.GraphHelpers.path_append_of_meet_only W T h.2.1 hT
     intro z hz hzT
     obtain ⟨k, hrk, hks, hkz⟩ := (interval_support P reach P.length hrs.le le_rfl z).mp hzT
     rcases h.2.2.2.1 k hks (hkz.symm ▸ hz) with he0 | hep | her
@@ -3040,12 +3022,12 @@ theorem terminal_fusion (P : G.Walk u v) (hp : P.IsPath) {α : Type*}
     have := hp.getVert_injOn (show 0 ≤ P.length from Nat.zero_le _) hrs.le heq
     omega
   have hTlen : T.length = P.length - reach :=
-    Erdos58.pathInterval_length P reach P.length hrs.le le_rfl
+    Erdos1105.GraphHelpers.pathInterval_length P reach P.length hrs.le le_rfl
   have hlen : 3 ≤ A.length + B.length := by
     simp only [A, B, E, Walk.length_append, Adj.length_toWalk]
     omega
   let C := A.append B.reverse
-  refine ⟨C, Erdos58.cycle_of_two_paths A B hUSE hWT hmeet hlen, ?_, ?_⟩
+  refine ⟨C, Erdos1105.GraphHelpers.cycle_of_two_paths A B hUSE hWT hmeet hlen, ?_, ?_⟩
   · intro z hz
     simp only [C, A, B, Walk.mem_support_append_iff, Walk.support_reverse, List.mem_reverse]
     tauto
@@ -3126,7 +3108,7 @@ theorem boundary_finish (P : G.Walk u v) (hp : P.IsPath) (hs : 2 ≤ P.length)
         exact ⟨P.length, hrs.le, le_rfl, rfl⟩
   | cons m ms ih =>
     obtain ⟨ha, har, hrb, hb, ht⟩ := hc
-    let S := Erdos58.pathInterval P previous (L n) ha
+    let S := Erdos1105.GraphHelpers.pathInterval P previous (L n) ha
     have hn := rails_step P hp L R Q paths contact separate h n ha har hrb hb
     have htail : ∀ l ∈ m :: ms, R l = P.length → ∀ b ∈ B, L l ≤ b := by
       intro l hl he b hbB
@@ -3164,9 +3146,9 @@ theorem first_modified_rails (P : G.Walk u v) (hp : P.IsPath) {α : Type*}
       Rails P L R Q (R first) (R second) U W ∧
       ∀ k, k ≤ L second ∨ (a ≤ k ∧ k ≤ R first) →
         P.getVert k ∈ U.support ∨ P.getVert k ∈ W.support := by
-  let S := Erdos58.pathInterval P 0 (L second) (Nat.zero_le _)
+  let S := Erdos1105.GraphHelpers.pathInterval P 0 (L second) (Nat.zero_le _)
   let W := (Walk.nil.append S).append (Q second)
-  let T := Erdos58.pathInterval P a (R first) har
+  let T := Erdos1105.GraphHelpers.pathInterval P a (R first) har
   let U := he.toWalk.append T
   have hrP : R first ≤ P.length := by omega
   have hlP : L second ≤ P.length := by omega
@@ -3176,9 +3158,9 @@ theorem first_modified_rails (P : G.Walk u v) (hp : P.IsPath) {α : Type*}
   have hbase : Rails P L R Q (R first) (R second)
       ((Q first).copy (by rw [hL]) rfl) W :=
     rails_step P hp L R Q paths contact separate hi second (Nat.zero_le _) hcross hrr hb
-  have hT : T.IsPath := Erdos58.pathInterval_isPath P hp a (R first) har
+  have hT : T.IsPath := Erdos1105.GraphHelpers.pathInterval_isPath P hp a (R first) har
   have hU : U.IsPath := by
-    apply Erdos58.path_append_of_meet_only he.toWalk T he.isPath_toWalk hT
+    apply Erdos1105.GraphHelpers.path_append_of_meet_only he.toWalk T he.isPath_toWalk hT
     intro z hz hzT
     simp only [Adj.support_toWalk, List.mem_cons, List.not_mem_nil, or_false] at hz
     rcases hz with hz | hz
@@ -3289,7 +3271,7 @@ theorem noncrossing_vine_cycle (P : G.Walk u v) (hp : P.IsPath) (hs : 2 ≤ P.le
         have hrails' : Rails P L R Q (R first) P.length U W' := by
           simpa only [Rails, W', Walk.support_copy, Walk.isPath_copy, hright] using hrails
         have hprev : R first < P.length := by omega
-        let S := Erdos58.pathInterval P (R first) P.length hprev.le
+        let S := Erdos1105.GraphHelpers.pathInterval P (R first) P.length hprev.le
         let C := (U.append S).append W'.reverse
         obtain ⟨hC, hsupport⟩ := rails_close P hp L R Q hrails' hprev hs
         have hkeep : ∀ k, k ≤ L second ∨ (a ≤ k ∧ k ≤ R first) → P.getVert k ∈ C.support := by
@@ -3986,7 +3968,7 @@ theorem left_neighbors_on_path (A B : Finset V) (P : G.Walk x y)
       simp only [Q, Walk.length_cons]
       omega
     let C := Walk.cons hzy.symm Q
-    have hC : C.IsCycle := Erdos58.cycle_of_path_and_edge Q hQ hzy.symm htwo
+    have hC : C.IsCycle := Erdos1105.GraphHelpers.cycle_of_path_and_edge Q hQ hzy.symm htwo
     have hshort := noLong y C hC
     simp only [C, Q, Walk.length_cons] at hshort
     omega

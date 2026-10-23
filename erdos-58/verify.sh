@@ -30,7 +30,7 @@ if command -v jq >/dev/null 2>&1; then
     exit 1
   }
 fi
-echo "PASS: preliminary module-header, line-count, and sources checks"
+echo "PASS: Palomar preliminary module-header, line-count, and sources checks"
 
 compiler_version="$(lake env lean --version)"
 printf '%s\n' "$compiler_version" | tee .verification/toolchain.log

@@ -373,7 +373,7 @@ theorem abs_upperHalfPrimeSum_sub_half_mertens_le_reflection_and_log_add_two :
   unfold invLog at hmaster
   linarith
 
-/-! ## Section 3: Zero-`sorry` Conditional Asymptotic Reductions Targeting `Erdos726.erdos_726` -/
+/-! ## Conditional asymptotic reductions toward the main conjecture -/
 
 /-- Concrete majorant for the large-prime signed window discrepancy over `1 ≤ k ≤ K` produced by
 `abs_sum_largePrime_window_discrepancy_le_log_add_two`. -/
@@ -388,7 +388,7 @@ def largePrimeWindowMajorant (n K : ℕ) (δ : ℝ) : ℝ :=
 theorem upperHalfPrimeSum_eq_formalConjectures_sum :
     upperHalfPrimeSum =
       (fun n : ℕ ↦ ∑ p ∈ (range (n + 1)).filter
-          (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / 2 < ((n % p : ℕ) : ℝ)),
+          (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ)),
         (1 : ℝ) / (p : ℝ)) :=
   rfl
 
@@ -417,7 +417,7 @@ theorem mertens_error_div_log_log_tendsto_zero :
 of `(upperHalfPrimeSum n - Real.log (Real.log (n : ℝ)) / 2) / Real.log (Real.log (n : ℝ))`. -/
 theorem erdos_726_asymptotic_iff_sub_div_log_log_tendsto_zero :
     ((fun n : ℕ ↦ ∑ p ∈ (range (n + 1)).filter
-        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / 2 < ((n % p : ℕ) : ℝ)),
+        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ)),
       (1 : ℝ) / (p : ℝ))
     ~[atTop] (fun n : ℕ ↦ Real.log (Real.log (n : ℝ)) / 2)) ↔
     Filter.Tendsto
@@ -453,7 +453,7 @@ prime reciprocal sum is asymptotic to `log(log n) / 2` if and only if the upper-
 discrepancy `(upperHalfPrimeSum n - lowerComplementPrimeSum n) / log(log n)` tends to `0`. -/
 theorem erdos_726_asymptotic_iff_discrepancy_tendsto_zero :
     ((fun n : ℕ ↦ ∑ p ∈ (range (n + 1)).filter
-        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / 2 < ((n % p : ℕ) : ℝ)),
+        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ)),
       (1 : ℝ) / (p : ℝ))
     ~[atTop] (fun n : ℕ ↦ Real.log (Real.log (n : ℝ)) / 2)) ↔
     Filter.Tendsto
@@ -483,7 +483,7 @@ theorem erdos_726_asymptotic_iff_discrepancy_tendsto_zero :
 `(fun n ↦ upperHalfPrimeSum n - lowerComplementPrimeSum n) =o[atTop] (fun n ↦ Real.log (Real.log (n : ℝ)))`. -/
 theorem erdos_726_asymptotic_iff_discrepancy_isLittleO :
     ((fun n : ℕ ↦ ∑ p ∈ (range (n + 1)).filter
-        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / 2 < ((n % p : ℕ) : ℝ)),
+        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ)),
       (1 : ℝ) / (p : ℝ))
     ~[atTop] (fun n : ℕ ↦ Real.log (Real.log (n : ℝ)) / 2)) ↔
     (fun n : ℕ ↦ upperHalfPrimeSum n - lowerComplementPrimeSum n)
@@ -518,7 +518,7 @@ theorem erdos_726_asymptotic_iff_smallPrimeTail_of_window_tendsto (K : ℕ → �
       (fun n : ℕ ↦ (∑ k ∈ Finset.Icc 1 (K n), (upperQuotientSum n k - lowerQuotientSum n k)) /
         Real.log (Real.log (n : ℝ))) atTop (nhds 0)) :
     ((fun n : ℕ ↦ ∑ p ∈ (range (n + 1)).filter
-        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / 2 < ((n % p : ℕ) : ℝ)),
+        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ)),
       (1 : ℝ) / (p : ℝ))
     ~[atTop] (fun n : ℕ ↦ Real.log (Real.log (n : ℝ)) / 2)) ↔
     Filter.Tendsto
@@ -581,7 +581,7 @@ theorem erdos_726_iff_smallPrimeTail_of_log_add_two_bounds
       (fun n : ℕ ↦ largePrimeWindowMajorant n (K n) (δ n) / Real.log (Real.log (n : ℝ)))
       atTop (nhds 0)) :
     ((fun n : ℕ ↦ ∑ p ∈ (range (n + 1)).filter
-        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / 2 < ((n % p : ℕ) : ℝ)),
+        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ)),
       (1 : ℝ) / (p : ℝ))
     ~[atTop] (fun n : ℕ ↦ Real.log (Real.log (n : ℝ)) / 2)) ↔
     Filter.Tendsto
@@ -607,7 +607,7 @@ theorem erdos_726_of_smallPrimeTail_and_log_add_two_bounds
       (fun n : ℕ ↦ (upperSmallPrimeTailSum n (K n) - lowerSmallPrimeTailSum n (K n)) /
         Real.log (Real.log (n : ℝ))) atTop (nhds 0)) :
     (fun n : ℕ ↦ ∑ p ∈ (range (n + 1)).filter
-        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / 2 < ((n % p : ℕ) : ℝ)),
+        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ)),
       (1 : ℝ) / (p : ℝ))
     ~[atTop] (fun n : ℕ ↦ Real.log (Real.log (n : ℝ)) / 2) :=
   (erdos_726_iff_smallPrimeTail_of_log_add_two_bounds K δ N₀ hδ h2 hK hR hmaj).mpr htail
@@ -634,7 +634,7 @@ theorem erdos_726_of_modular_reflection_and_log_add_two_bounds
           Real.log (Real.log (n : ℝ)))
       atTop (nhds 0)) :
     (fun n : ℕ ↦ ∑ p ∈ (range (n + 1)).filter
-        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / 2 < ((n % p : ℕ) : ℝ)),
+        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ)),
       (1 : ℝ) / (p : ℝ))
     ~[atTop] (fun n : ℕ ↦ Real.log (Real.log (n : ℝ)) / 2) := by
   apply erdos_726_of_smallPrimeTail_and_log_add_two_bounds K δ N₀ hδ h2 hK hR hmaj

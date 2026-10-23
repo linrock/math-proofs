@@ -96,7 +96,7 @@
     "methods": [
       {
         "method": "agent",
-        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone packaging."
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
       }
     ],
     "notes": "All proof modules in Proofs/ together with Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry in the proof modules."

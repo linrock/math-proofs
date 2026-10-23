@@ -35,42 +35,6 @@ namespace Erdos726
 
 /-! ## Section 1: Bounded-Horizon Prime Residue Sets and Small-Prime Tail Support -/
 
-/-- Primes `p ≤ B` whose remainder `n % p` lies in the upper half `(p / 2, p)`. -/
-def upperBoundedPrimes (B n : ℕ) : Finset ℕ :=
-  (primeRange B).filter (fun p : ℕ ↦ (p : ℝ) / 2 < ((n % p : ℕ) : ℝ))
-
-/-- Primes `p ≤ B` whose remainder `n % p` lies in the lower complement `[0, p / 2]`. -/
-def lowerBoundedPrimes (B n : ℕ) : Finset ℕ :=
-  (primeRange B).filter (fun p : ℕ ↦ ¬((p : ℝ) / 2 < ((n % p : ℕ) : ℝ)))
-
-/-- Odd primes `p ≤ B` not dividing `n` whose remainder lies in the strict lower half `(0, p / 2)`. -/
-def strictLowerOddBoundedPrimes (B n : ℕ) : Finset ℕ :=
-  (oddPrimeRange B).filter (fun p : ℕ ↦ ¬(p ∣ n) ∧ ¬((p : ℝ) / 2 < ((n % p : ℕ) : ℝ)))
-
-/-- Odd primes `p ≤ B` dividing `n`. -/
-def dividingOddBoundedPrimes (B n : ℕ) : Finset ℕ :=
-  (oddPrimeRange B).filter (fun p : ℕ ↦ p ∣ n)
-
-/-- Reciprocal sum over `upperBoundedPrimes B n`. -/
-def upperBoundedPrimeSum (B n : ℕ) : ℝ :=
-  ∑ p ∈ upperBoundedPrimes B n, (1 : ℝ) / (p : ℝ)
-
-/-- Reciprocal sum over `lowerBoundedPrimes B n`. -/
-def lowerBoundedPrimeSum (B n : ℕ) : ℝ :=
-  ∑ p ∈ lowerBoundedPrimes B n, (1 : ℝ) / (p : ℝ)
-
-/-- Reciprocal sum over `strictLowerOddBoundedPrimes B n`. -/
-def strictLowerOddBoundedSum (B n : ℕ) : ℝ :=
-  ∑ p ∈ strictLowerOddBoundedPrimes B n, (1 : ℝ) / (p : ℝ)
-
-/-- Reciprocal sum over `dividingOddBoundedPrimes B n`. -/
-def dividingOddBoundedSum (B n : ℕ) : ℝ :=
-  ∑ p ∈ dividingOddBoundedPrimes B n, (1 : ℝ) / (p : ℝ)
-
-/-- Reciprocal sum over all odd primes `p ≤ B`. -/
-def oddPrimeReciprocalSum (B : ℕ) : ℝ :=
-  ∑ p ∈ oddPrimeRange B, (1 : ℝ) / (p : ℝ)
-
 /-- Division threshold symmetry: for `0 < p`, `p ≤ n / (K + 1)` iff `K + 1 ≤ n / p`. -/
 theorem prime_le_div_succ_iff_succ_le_div :
     ∀ n K p : ℕ, 0 < p → (p ≤ n / (K + 1) ↔ K + 1 ≤ n / p) := by
@@ -186,7 +150,7 @@ theorem upperBoundedPrimes_subset_oddPrimeRange :
 theorem upperBoundedPrimes_eq_oddPrimeRange_filter :
     ∀ B n : ℕ,
       upperBoundedPrimes B n =
-        (oddPrimeRange B).filter (fun p : ℕ ↦ ¬(p ∣ n) ∧ (p : ℝ) / 2 < ((n % p : ℕ) : ℝ)) := by
+        (oddPrimeRange B).filter (fun p : ℕ ↦ ¬(p ∣ n) ∧ (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ)) := by
   intro B n
   ext p
   constructor

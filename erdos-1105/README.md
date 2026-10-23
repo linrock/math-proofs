@@ -1,6 +1,6 @@
 # Erdős #1105: anti-Ramsey numbers for cycles and paths
 
-This standalone Lean 4 project gives a complete formal proof of both parts of
+This standalone Lean 4 project formalizes the two known solved formulas in
 [Erdős problem #1105](https://www.erdosproblems.com/1105). For a finite simple
 graph $H$ and host order $n$, the **anti-Ramsey number** $\mathrm{AR}(n, H)$
 (`SimpleGraph.antiRamseyNum H n`) is the maximum number of colors in a
@@ -18,12 +18,12 @@ Both parts are celebrated theorems in extremal graph theory:
 [Erdős, Simonovits, and Sós (1975)](https://real.mtak.hu/110457/1/1975-05.pdf)
 introduced anti-Ramsey numbers, proved the exact triangle formula
 $\mathrm{AR}(n, C_3) = n - 1$, and conjectured the cycle formula;
-[Montellano-Ballesteros and Neumann-Lara (2005)](https://doi.org/10.1007/s00373-005-0619-3)
+[Montellano-Ballesteros and Neumann-Lara (2005)](https://doi.org/10.1007/s00373-005-0619-y)
 proved the exact formula for $\mathrm{AR}(n, C_k)$ across all $k \ge 3$ and
 $n \ge k$, with a streamlined weak-block decomposition proof of the linear
-upper bound given in Jongook Choi's 2011 Iowa State University dissertation
+upper bound given in Jihyeok Choi's 2011 Iowa State University dissertation
 (*Problems in Graph Theory and Probability*, Chapter 3);
-[Simonovits and Sós (1984)](https://doi.org/10.1007/BF02579163) formulated the
+[Simonovits and Sós (1984)](https://doi.org/10.1007/BF02579162) formulated the
 two-branch path formula and proved it for large $n$; and
 [Yuan (2021)](https://arxiv.org/abs/2102.00807) established the exact path
 formula across all $n \ge k \ge 5$.
@@ -36,21 +36,21 @@ formula across all $n \ge k \ge 5$.
 
 | Declaration | Meaning |
 | --- | --- |
-| `Erdos1105.Palomar.erdos_1105_cycles` | Direct universal statement of Part (i) for all $k \ge 3$. |
-| `Erdos1105.Palomar.erdos_1105_paths` | Direct universal statement of Part (ii) for all $k \ge 5$ and $n \ge k$. |
-| `Erdos1105.Palomar.erdos_1105_parts_i` | Elaborated `True ↔` form of Part (i). |
-| `Erdos1105.Palomar.erdos_1105_parts_ii` | Elaborated `True ↔` form of Part (ii). |
-| `Erdos1105.Palomar.antiRamseyNum_triangle` | Erdős–Simonovits–Sós (1975) exact triangle theorem: $\mathrm{AR}(n, C_3) = n - 1$ for all $n \ge 3$. |
-| `Erdos1105.Palomar.cycle_fullBlock_lower` | Ordered $(k - 1)$-clique block lower bound: $\lfloor n / (k - 1) \rfloor (\binom{k - 1}{2} + 1) - 1 \le \mathrm{AR}(n, C_k)$ for all $n \ge k \ge 3$. |
-| `Erdos1105.Palomar.cycle_real_lower` | Explicit real linear lower bound: $(\frac{k - 2}{2} + \frac{1}{k - 1}) n - (\frac{k - 2}{2} + \frac{1}{k - 1})(k - 1) - 1 \le \mathrm{AR}(n, C_k)$ for all $n \ge k \ge 3$. |
-| `Erdos1105.Palomar.cycle_linear_upper` | Explicit linear upper bound: $\mathrm{AR}(n, C_k) \le (\frac{k - 2}{2} + \frac{1}{k - 1}) n - 1$ for all $n \ge k \ge 3$. |
+| `Erdos1105.Results.erdos_1105_cycles` | Direct universal statement of Part (i) for all $k \ge 3$. |
+| `Erdos1105.Results.erdos_1105_paths` | Direct universal statement of Part (ii) for all $k \ge 5$ and $n \ge k$. |
+| `Erdos1105.Results.erdos_1105_parts_i` | Part (i) restated over the Formal Conjectures definition modules. |
+| `Erdos1105.Results.erdos_1105_parts_ii` | Part (ii) restated over the Formal Conjectures definition modules. |
+| `Erdos1105.Results.antiRamseyNum_triangle` | Erdős–Simonovits–Sós (1975) exact triangle theorem: $\mathrm{AR}(n, C_3) = n - 1$ for all $n \ge 3$. |
+| `Erdos1105.Results.cycle_fullBlock_lower` | Ordered $(k - 1)$-clique block lower bound: $\lfloor n / (k - 1) \rfloor (\binom{k - 1}{2} + 1) - 1 \le \mathrm{AR}(n, C_k)$ for all $n \ge k \ge 3$. |
+| `Erdos1105.Results.cycle_real_lower` | Explicit real linear lower bound: $(\frac{k - 2}{2} + \frac{1}{k - 1}) n - (\frac{k - 2}{2} + \frac{1}{k - 1})(k - 1) - 1 \le \mathrm{AR}(n, C_k)$ for all $n \ge k \ge 3$. |
+| `Erdos1105.Results.cycle_linear_upper` | Explicit linear upper bound: $\mathrm{AR}(n, C_k) \le (\frac{k - 2}{2} + \frac{1}{k - 1}) n - 1$ for all $n \ge k \ge 3$. |
 | `Erdos1105.erdos_1105.parts.i` | Literal Formal Conjectures Part (i) over `SimpleGraph.antiRamseyNum`. |
 | `Erdos1105.erdos_1105.parts.ii` | Literal Formal Conjectures Part (ii) over `SimpleGraph.antiRamseyNum`. |
 
 [Challenge.lean](Challenge.lean) is a standalone Mathlib-only benchmark
-declaring `IsRainbow`, `antiRamseyNum`, and the eight `Erdos1105.Palomar`
+declaring `IsRainbow`, `antiRamseyNum`, and the eight `Erdos1105.Results`
 theorem targets with intentional `sorry` placeholders; `Solution.lean` never
-imports `Challenge.lean`. [comparator.json](comparator.json) compares all eight
+imports `Challenge.lean`. [comparator.json](comparator.json) is configured to compare all eight
 theorems in `Challenge` and `Solution` using both NanoDa and Lean's default
 kernel.
 
@@ -127,15 +127,15 @@ and Part (ii) into five main components:
 The problem statements in `Statement.lean`, `Challenge.lean`, and
 `Solution.lean` and the `SimpleGraph.IsRainbow` and `SimpleGraph.antiRamseyNum`
 definitions from
-[`FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Coloring/Vertex.lean`](https://github.com/google-deepmind/formal-conjectures/blob/eb1c5ce1bf406e46a6af5f859f097a5c5350a462/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Coloring/Vertex.lean)
+[`FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Coloring/Vertex.lean`](https://github.com/google-deepmind/formal-conjectures/blob/503c56d91478837c1fdce1cc14ff3adfc752f8b6/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Coloring/Vertex.lean)
 are reproduced with their Apache-2.0 attribution and
 [license text](third_party/FORMAL-CONJECTURES-LICENSE.txt). The upstream
-[`FormalConjectures/ErdosProblems/1105.lean`](https://github.com/google-deepmind/formal-conjectures/blob/eb1c5ce1bf406e46a6af5f859f097a5c5350a462/FormalConjectures/ErdosProblems/1105.lean)
+[`FormalConjectures/ErdosProblems/1105.lean`](https://github.com/google-deepmind/formal-conjectures/blob/75a6d3d52d0b87e78317f2fcc37319d807779030/FormalConjectures/ErdosProblems/1105.lean)
 declarations end in `sorry`.
 
 An independent Lean `v4.33.0` formalization of both parts of Erdős #1105 was
 previously published in
-[`plby/lean-proofs`](https://github.com/plby/lean-proofs/blob/main/src/latest/ErdosProblems/Erdos1105.lean)
+[`plby/lean-proofs`](https://github.com/plby/lean-proofs/blob/cecc3fc4b7725db36692f0eca3c24712a481cfba/src/latest/ErdosProblems/Erdos1105.lean)
 using a custom `Erdos1105.antiRamseyNum` definition over `(⊤ : SimpleGraph (Fin n)).edgeSet → Fin q`
 (written before `formal-conjectures` updated `SimpleGraph.antiRamseyNum` to
 `TopEdgeLabeling (Fin n) (Fin k)` in PR #5829); no code from that repository is
@@ -151,6 +151,7 @@ bounds.
 ## Build and verification
 
 See [BUILD.md](BUILD.md) for reproduction commands and
-[THIRD_PARTY.md](THIRD_PARTY.md) for source attribution. Both `./verify.sh`
-and `lake env lake comparator --config comparator.json` pass, with both
-`nanoda_bin` and Lean's default kernel accepting `Solution`.
+[THIRD_PARTY.md](THIRD_PARTY.md) for source attribution. `./verify.sh` passes: it builds every target from source, audits transitive
+axioms, and checks `Solution` against `Challenge`. Comparator
+(`lake env lake comparator --config comparator.json`) is configured for the
+package but was not run during this verification.

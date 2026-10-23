@@ -23,7 +23,7 @@
     {
       "title": "Erdős Problem 58",
       "type": "other",
-      "relationship": "independently-proves",
+      "relationship": "documents",
       "id": "https://www.erdosproblems.com/58",
       "author_endorsement": "not-contacted",
       "note": "Problem statement and published theorem status."
@@ -87,7 +87,7 @@
     {
       "id": "https://github.com/CHENLexiao8848/awards/blob/73816cf2bec00082a6a1ffbf565ef0f0b1017c49/submissions/jsp-000078-CHENLexiao8848-complete/JSP000078/General.lean",
       "relationship": "independent",
-      "note": "A public prize-submission package proving the same unrestricted Formal Conjectures statement for arbitrary vertex types, with the same odd-cycle-length definitions and no admitted step. It is not imported here; the proof in this package was developed separately. It records that this package is an independent proof, not the first formalization of the statement."
+      "note": "A public prize-submission package proving the same unrestricted Formal Conjectures statement for arbitrary vertex types, with the same odd-cycle-length definitions and no admitted step; its own verification record reports a full replay across all 160 mathematical modules with only propext, Classical.choice, and Quot.sound. It is not imported here, and the proof in this package was developed separately. It establishes that this package is an independent proof rather than the first formalization of the statement."
     }
   ],
   "status": {
@@ -111,7 +111,7 @@
     "methods": [
       {
         "method": "agent",
-        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone packaging."
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
       }
     ],
     "notes": "All proof modules together with Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry."
@@ -135,5 +135,5 @@
       }
     ]
   },
-  "acknowledgements": "The Formal Conjectures Authors supply the odd-cycle-length definitions, Mathlib supplies graph theory and finite-coloring compactness infrastructure, the plby/lean-proofs finite-vertex development and a public prize-submission package supply related prior formalizations, and the repository's Erdős #108 topic supplies the shortest-odd-closed-walk extraction restated in Proofs/OddCycleExtraction108.lean."
+  "acknowledgements": "The Formal Conjectures Authors supply the odd-cycle-length definitions, Mathlib supplies graph theory and finite-coloring compactness infrastructure, the plby/lean-proofs finite-vertex development and a public prize-submission package supply related prior formalizations, and the shortest-odd-closed-walk extraction in Proofs/OddCycleExtraction108.lean is an elementary argument written for this package."
 }

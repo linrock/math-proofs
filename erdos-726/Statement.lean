@@ -33,10 +33,10 @@ namespace Erdos726.Challenge
 
 open Erdos726
 
-/-- Canonical `FormalConjectures.ErdosProblems.«726»` open statement (`erdos_726` with `answer(True)` elaborated as `True`). -/
+/-- Canonical `FormalConjectures.ErdosProblems.«726»` open statement, restated with the
+upstream remainder convention `n % p` computed in `ℕ` before the cast to `ℝ`. -/
 abbrev statement_erdos_726 : Prop :=
-  True ↔
-    (fun n : ℕ ↦ ∑ p ∈ (range (n + 1)).filter
+  (fun n : ℕ ↦ ∑ p ∈ (range (n + 1)).filter
         (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / 2 < ((n % p : ℕ) : ℝ)),
       (1 : ℝ) / (p : ℝ))
     ~[atTop] (fun n : ℕ ↦ Real.log (Real.log (n : ℝ)) / 2)

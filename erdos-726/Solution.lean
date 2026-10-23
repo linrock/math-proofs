@@ -40,7 +40,7 @@ theorem variants.mertens_estimate :
 
 theorem asymptotic_iff_discrepancy_isLittleO :
     ((fun n : ℕ ↦ ∑ p ∈ (range (n + 1)).filter
-        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / 2 < ((n % p : ℕ) : ℝ)),
+        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ)),
       (1 : ℝ) / (p : ℝ))
     ~[atTop] (fun n : ℕ ↦ Real.log (Real.log (n : ℝ)) / 2)) ↔
     (fun n : ℕ ↦ upperHalfPrimeSum n - lowerComplementPrimeSum n)
@@ -57,7 +57,7 @@ theorem iff_smallPrimeTail_of_log_add_two_bounds (K : ℕ → ℕ) (δ : ℕ →
       (fun n : ℕ ↦ largePrimeWindowMajorant n (K n) (δ n) / Real.log (Real.log (n : ℝ)))
       atTop (nhds 0)) :
     ((fun n : ℕ ↦ ∑ p ∈ (range (n + 1)).filter
-        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / 2 < ((n % p : ℕ) : ℝ)),
+        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ)),
       (1 : ℝ) / (p : ℝ))
     ~[atTop] (fun n : ℕ ↦ Real.log (Real.log (n : ℝ)) / 2)) ↔
     Filter.Tendsto
@@ -78,7 +78,7 @@ theorem of_smallPrimeTail_and_log_add_two_bounds (K : ℕ → ℕ) (δ : ℕ →
       (fun n : ℕ ↦ (upperSmallPrimeTailSum n (K n) - lowerSmallPrimeTailSum n (K n)) /
         Real.log (Real.log (n : ℝ))) atTop (nhds 0)) :
     (fun n : ℕ ↦ ∑ p ∈ (range (n + 1)).filter
-        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / 2 < ((n % p : ℕ) : ℝ)),
+        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ)),
       (1 : ℝ) / (p : ℝ))
     ~[atTop] (fun n : ℕ ↦ Real.log (Real.log (n : ℝ)) / 2) :=
   Erdos726.erdos_726_of_smallPrimeTail_and_log_add_two_bounds K δ N₀ hδ h2 hK hR hmaj htail
@@ -102,7 +102,7 @@ theorem of_modular_reflection_and_log_add_two_bounds (K M : ℕ → ℕ) (δ : �
           Real.log (Real.log (n : ℝ)))
       atTop (nhds 0)) :
     (fun n : ℕ ↦ ∑ p ∈ (range (n + 1)).filter
-        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / 2 < ((n % p : ℕ) : ℝ)),
+        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ)),
       (1 : ℝ) / (p : ℝ))
     ~[atTop] (fun n : ℕ ↦ Real.log (Real.log (n : ℝ)) / 2) :=
   Erdos726.erdos_726_of_modular_reflection_and_log_add_two_bounds K M δ N₀ hδ h2 hK hle hM hR hmaj hrefl

@@ -17,3 +17,7 @@ $$\sum_{p \le n,\; p/2 < n \bmod p} \frac{1}{p} \sim \frac{\log\log n}{2}.$$
     $$\frac{\log(K+1)}{\log\lfloor n/(K+1) \rfloor \cdot \log n} \le \frac{1}{\log\lfloor n/(K+1) \rfloor} - \frac{1}{\log n} \le \frac{\log(K+2)}{\log\lfloor n/(K+1) \rfloor \cdot \log n},$$
     and bound both the cumulative logarithmic-density trapezoidal defect and the deviation of $\sum_{k=1}^K u_k(n)$ from half the large-prime fiber sum.
   - `asymptotic_iff_discrepancy_isLittleO`, `iff_smallPrimeTail_of_log_add_two_bounds`, `of_smallPrimeTail_and_log_add_two_bounds`, and `of_modular_reflection_and_log_add_two_bounds`: unconditionally discharge the Mertens constant and error $(M + E_{2,p}(n))/\log\log n \to 0$ to prove that `Erdos726` holds if and only if $\text{upperHalfPrimeSum}(n) - \text{lowerComplementPrimeSum}(n) = o(\log\log n)$, and establish conditional asymptotic equivalence and top-down reductions to $o(\log\log n)$ small-prime tail discrepancy and modular period reflection.
+
+## Scope
+
+`variants.mertens_estimate` formalizes the classical second Mertens theorem, following the PrimeNumberTheoremAnd development of Leo Goldmakher's proof; it is not a new mathematical discovery. The other main results are new conditional reductions and do not resolve `erdos_726`, which remains open.

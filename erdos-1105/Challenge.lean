@@ -59,7 +59,7 @@ The eight intentional `sorry` placeholders below are matched by proved
 declarations in `Solution.lean`; `Solution.lean` does not import this module.
 -/
 
-namespace Erdos1105.Palomar
+namespace Erdos1105.Results
 
 open SimpleGraph Asymptotics Filter
 
@@ -130,15 +130,15 @@ theorem erdos_1105_paths :
       (ℓ - 1) * (n - ℓ + 1) + ε) := by
   sorry
 
-/-- Elaborated Formal Conjectures `True ↔` form of Part (i). -/
-theorem erdos_1105_parts_i : True ↔
+/-- Formal Conjectures statement of Part (i) over `SimpleGraph.antiRamseyNum`. -/
+theorem erdos_1105_parts_i :
     ∀ k, 3 ≤ k →
     ((fun n => (antiRamseyNum (cycleGraph k) n : ℝ) - ((k - 2 : ℝ) / 2 + 1 / (k - 1)) * n)
       =O[atTop] (fun _ => (1 : ℝ))) := by
   sorry
 
-/-- Elaborated Formal Conjectures `True ↔` form of Part (ii). -/
-theorem erdos_1105_parts_ii : True ↔
+/-- Formal Conjectures statement of Part (ii) over `SimpleGraph.antiRamseyNum`. -/
+theorem erdos_1105_parts_ii :
     ∀ (k n : ℕ), 5 ≤ k → k ≤ n →
     let ℓ := (k - 1) / 2
     let ε := if Odd k then 1 else 2
@@ -176,4 +176,4 @@ theorem cycle_linear_upper (k n : ℕ) (hk : 3 ≤ k) (hn : k ≤ n) :
       ((k - 2 : ℝ) / 2 + 1 / (k - 1)) * n - 1 := by
   sorry
 
-end Erdos1105.Palomar
+end Erdos1105.Results

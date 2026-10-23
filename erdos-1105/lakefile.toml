@@ -1,4 +1,4 @@
-name = "Erdos1105Palomar"
+name = "Erdos1105"
 version = "0.1.0"
 defaultTargets = ["Challenge", "Solution", "AxiomAudit"]
 

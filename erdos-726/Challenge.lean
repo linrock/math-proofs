@@ -31,7 +31,7 @@ open Erdos726
 
 /-- Primes `p ≤ n` whose least residue `n % p` lies in the upper half `(p / 2, p)`. -/
 def upperHalfPrimes (n : ℕ) : Finset ℕ :=
-  (range (n + 1)).filter (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / 2 < ((n % p : ℕ) : ℝ))
+  (range (n + 1)).filter (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ))
 
 /-- Upper-half prime reciprocal sum `∑_{p ≤ n, p/2 < n % p} 1 / p`. -/
 def upperHalfPrimeSum (n : ℕ) : ℝ :=
@@ -48,7 +48,7 @@ def primeCount (m : ℕ) : ℕ :=
 /-- Primes `p ≤ n` whose least residue `n % p` does not lie in that upper half. -/
 def lowerComplementPrimes (n : ℕ) : Finset ℕ :=
   (range (n + 1)).filter
-    (fun p : ℕ ↦ p.Prime ∧ ¬((p : ℝ) / 2 < ((n % p : ℕ) : ℝ)))
+    (fun p : ℕ ↦ p.Prime ∧ ¬((p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ)))
 
 /-- Lower-complement prime reciprocal sum. -/
 def lowerComplementPrimeSum (n : ℕ) : ℝ :=
@@ -87,7 +87,7 @@ def oddPrimeRange (n : ℕ) : Finset ℕ :=
 
 /-- Primes `p ≤ B` whose remainder `n % p` lies in the upper half `(p / 2, p)`. -/
 def upperBoundedPrimes (B n : ℕ) : Finset ℕ :=
-  (primeRange B).filter (fun p : ℕ ↦ (p : ℝ) / 2 < ((n % p : ℕ) : ℝ))
+  (primeRange B).filter (fun p : ℕ ↦ (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ))
 
 /-- Bounded-window upper prime reciprocal sum. -/
 def upperBoundedPrimeSum (B n : ℕ) : ℝ :=
@@ -109,7 +109,7 @@ theorem variants.mertens_estimate :
 
 theorem asymptotic_iff_discrepancy_isLittleO :
     ((fun n : ℕ ↦ ∑ p ∈ (range (n + 1)).filter
-        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / 2 < ((n % p : ℕ) : ℝ)),
+        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ)),
       (1 : ℝ) / (p : ℝ))
     ~[atTop] (fun n : ℕ ↦ Real.log (Real.log (n : ℝ)) / 2)) ↔
     (fun n : ℕ ↦ upperHalfPrimeSum n - lowerComplementPrimeSum n)
@@ -125,7 +125,7 @@ theorem iff_smallPrimeTail_of_log_add_two_bounds (K : ℕ → ℕ) (δ : ℕ →
       (fun n : ℕ ↦ largePrimeWindowMajorant n (K n) (δ n) / Real.log (Real.log (n : ℝ)))
       atTop (nhds 0)) :
     ((fun n : ℕ ↦ ∑ p ∈ (range (n + 1)).filter
-        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / 2 < ((n % p : ℕ) : ℝ)),
+        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ)),
       (1 : ℝ) / (p : ℝ))
     ~[atTop] (fun n : ℕ ↦ Real.log (Real.log (n : ℝ)) / 2)) ↔
     Filter.Tendsto
@@ -145,7 +145,7 @@ theorem of_smallPrimeTail_and_log_add_two_bounds (K : ℕ → ℕ) (δ : ℕ →
       (fun n : ℕ ↦ (upperSmallPrimeTailSum n (K n) - lowerSmallPrimeTailSum n (K n)) /
         Real.log (Real.log (n : ℝ))) atTop (nhds 0)) :
     (fun n : ℕ ↦ ∑ p ∈ (range (n + 1)).filter
-        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / 2 < ((n % p : ℕ) : ℝ)),
+        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ)),
       (1 : ℝ) / (p : ℝ))
     ~[atTop] (fun n : ℕ ↦ Real.log (Real.log (n : ℝ)) / 2) := by sorry
 
@@ -168,7 +168,7 @@ theorem of_modular_reflection_and_log_add_two_bounds (K M : ℕ → ℕ) (δ : �
           Real.log (Real.log (n : ℝ)))
       atTop (nhds 0)) :
     (fun n : ℕ ↦ ∑ p ∈ (range (n + 1)).filter
-        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / 2 < ((n % p : ℕ) : ℝ)),
+        (fun p : ℕ ↦ p.Prime ∧ (p : ℝ) / ((2 : ℕ) : ℝ) < ((n % p : ℕ) : ℝ)),
       (1 : ℝ) / (p : ℝ))
     ~[atTop] (fun n : ℕ ↦ Real.log (Real.log (n : ℝ)) / 2) := by sorry
 
