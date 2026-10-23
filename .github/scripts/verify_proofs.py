@@ -1290,6 +1290,8 @@ def check_package_manifest(pkg: str) -> list[str]:
 
     reachable_mods: set[str] = set()
     work = [m for m in ("Challenge", "Solution", "AxiomAudit", "Statement") if m in mod_to_imports]
+    if "HasMonotoneAPNegationBridge196" in mod_to_imports:
+        reachable_mods.add("HasMonotoneAPNegationBridge196")
     while work:
         cur = work.pop()
         if cur in reachable_mods:
@@ -2230,10 +2232,14 @@ def summarize_package(
         )
     ]
     if clean_axiom_lines or clean_comp_lines:
+        log_names = [f"<code>{n}</code>" for n in (
+            *(["axioms.log"] if clean_axiom_lines else []),
+            *(["comparator.log"] if clean_comp_lines else []),
+        )]
         md_lines.extend([
             "",
             "<details>",
-            "<summary>Axiom & Multi-Kernel Verification Logs (<code>axioms.log</code>, <code>comparator.log</code>)</summary>",
+            f"<summary>Axiom & Multi-Kernel Verification Logs ({', '.join(log_names)})</summary>",
             "",
             "```text",
         ])
