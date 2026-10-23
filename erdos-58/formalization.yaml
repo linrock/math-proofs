@@ -1,0 +1,139 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 58: odd cycle lengths and chromatic number",
+    "description": "A complete Lean 4 proof of the theorem of Gyárfás (1992) that a simple graph with at most k distinct odd simple-cycle lengths has chromatic number at most 2k + 2, with equality exactly when the graph contains a copy of the complete graph on 2k + 2 vertices. The argument reconstructs Gyárfás's longest-odd-cycle and common-contact analysis from the published exposition, combining a normal-depth forest coloring bound, a finite vertex-critical core, and explicit path and cycle witnesses. Finite-target coloring compactness then removes the finiteness restriction on the vertex type, so infinite graphs with only finitely many odd-cycle lengths are included. This is an independent formalization of the statement rather than the first one; two related public Lean developments are recorded in the manifest.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "Apache-2.0"
+  },
+  "classification": {
+    "arxiv": [
+      "math.CO"
+    ],
+    "msc2020": [
+      "05C15"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Erdős Problem 58",
+      "type": "other",
+      "relationship": "independently-proves",
+      "id": "https://www.erdosproblems.com/58",
+      "author_endorsement": "not-contacted",
+      "note": "Problem statement and published theorem status."
+    },
+    {
+      "title": "Graphs with k odd cycle lengths",
+      "type": "paper",
+      "relationship": "formalizes",
+      "id": "https://www.renyi.hu/~gyarfas/Cikkek/57_Gyarfas_GraphsWithKOddCycleLengths.pdf",
+      "authors": [
+        "András Gyárfás"
+      ],
+      "author_endorsement": "not-contacted",
+      "note": "Primary published theorem and proof strategy formalized here.",
+      "doi": "10.1016/0012-365x(92)90037-g",
+      "location": "Discrete Mathematics 103 (1992), 41–48"
+    },
+    {
+      "title": "Some of my favourite unsolved problems",
+      "type": "paper",
+      "relationship": "background",
+      "id": "https://doi.org/10.1017/cbo9780511983917.039",
+      "authors": [
+        "Paul Erdős"
+      ],
+      "author_endorsement": "not-contacted",
+      "note": "Original source posing Erdős Problem 58 (Bollobás–Erdős).",
+      "location": "A tribute to Paul Erdős, Cambridge University Press (1990), 467-478"
+    },
+    {
+      "title": "A strengthening on odd cycles in graphs of given chromatic number",
+      "location": "SIAM Journal on Discrete Mathematics 35(4) (2021), 2317-2327",
+      "type": "paper",
+      "relationship": "background",
+      "id": "https://doi.org/10.1137/20M1387882",
+      "authors": [
+        "Jun Gao",
+        "Qingyi Huo",
+        "Jie Ma"
+      ],
+      "author_endorsement": "not-contacted",
+      "note": "Subsequent strengthening listed by the Formal Conjectures statement; not a dependency of this proof."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/e750f777b32aeae464c01809e0d223dd62e99fab/FormalConjectures/ErdosProblems/58.lean",
+      "relationship": "adapts",
+      "note": "The exported theorem matches the declaration in this pinned Formal Conjectures file exactly. That declaration carries only a sorry and has no formal_proof link; the proof in this package is independent."
+    },
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/c83a94d785d0fb3b9b9a2a94e8ffff8cce76a346/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Circumference.lean",
+      "relationship": "adapts",
+      "note": "The odd-cycle-length definitions SimpleGraph.cycleLengths and SimpleGraph.oddCycleLengths are restated from this Apache-2.0 file (unchanged since b82b08faa) in Proofs/Layer158.lean, Challenge.lean, and Statement.lean, because they are not available in the pinned Mathlib revision."
+    },
+    {
+      "id": "https://github.com/plby/lean-proofs/blob/8822f7ddef30fadbd92e1c6ab4ed897af356af5e/src/latest/ErdosProblems/Erdos58.lean",
+      "relationship": "independently-proves",
+      "note": "An existing Apache-2.0 Lean proof of the finite-vertex case; its authors are recorded in that repository and it credits András Gyárfás as the informal author. This package does not import that proof; it proves the unrestricted Formal Conjectures statement with a separate finite-target coloring compactness layer."
+    },
+    {
+      "id": "https://github.com/CHENLexiao8848/awards/blob/73816cf2bec00082a6a1ffbf565ef0f0b1017c49/submissions/jsp-000078-CHENLexiao8848-complete/JSP000078/General.lean",
+      "relationship": "independent",
+      "note": "A public prize-submission package proving the same unrestricted Formal Conjectures statement for arbitrary vertex types, with the same odd-cycle-length definitions and no admitted step. It is not imported here; the proof in this package was developed separately. It records that this package is an independent proof, not the first formalization of the statement."
+    }
+  ],
+  "status": {
+    "scope": "Unconditionally proves the exact unrestricted Formal Conjectures declaration erdos_58 for arbitrary vertex types: finitely many distinct odd simple-cycle lengths, at most k of them, imply chromatic number at most 2k + 2, and equality is equivalent to containment of K_(2k + 2). Includes k = 0 and infinite vertex types. Finiteness of the vertex type is removed from the proved finite case by finite-target coloring compactness. No remaining variant or subcase of that declaration is left open.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos58.erdos_58",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone packaging."
+      }
+    ],
+    "notes": "All proof modules together with Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry."
+  },
+  "fidelity": {
+    "divergences": "None. The exported theorem is written with the same odd-cycle-length definitions and complete-graph containment relation as the pinned Formal Conjectures declaration."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Statement fidelity, non-vacuity, and transitive axioms (restricted to propext, Classical.choice, and Quot.sound) were verified across all exported theorems in Solution.lean."
+  },
+  "alignment": {
+    "namespace": "Erdos58",
+    "statements": [
+      {
+        "source": "Gyárfás (1992), Graphs with k odd cycle lengths, Discrete Math. 103, 41-48; exact declaration FormalConjectures/ErdosProblems/58.lean erdos_58, blob 13f46eb8c2cf60e1b9d800ed246bf3408cedb94b at pinned commit e750f777b32aeae464c01809e0d223dd62e99fab and at origin/main c83a94d785d0fb3b9b9a2a94e8ffff8cce76a346 (unchanged; last touched by 6fbb54f24). The definitions SimpleGraph.cycleLengths and SimpleGraph.oddCycleLengths come from FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Circumference.lean (blob 08b5da1a82f2e4ad251b18d4c94def8fc715f694), restated here.",
+        "lean": "Erdos58.erdos_58",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves the unrestricted universal theorem, including the equality characterization, for arbitrary vertex types."
+      }
+    ]
+  },
+  "acknowledgements": "The Formal Conjectures Authors supply the odd-cycle-length definitions, Mathlib supplies graph theory and finite-coloring compactness infrastructure, the plby/lean-proofs finite-vertex development and a public prize-submission package supply related prior formalizations, and the repository's Erdős #108 topic supplies the shortest-odd-closed-walk extraction restated in Proofs/OddCycleExtraction108.lean."
+}
