@@ -1,0 +1,940 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-24-410fa907",
+  "verification_date": "2026-10-24",
+  "state_sha256": "b437dad83395c23074b87d82a636d4bcbdd6197fd91c4bd2970e0c226b37979a",
+  "package": "erdos-1122",
+  "project_name": "Erd\u0151s 1122: rigidity of additive functions with sparse descents",
+  "package_commit": "410fa9071d430791d9342617e35eeb94da78bbc8",
+  "commit": "e2be3af4e77f1b5fff2a3a83535ee5f112478db3",
+  "repository": "linrock/math-proofs",
+  "run_id": "40133340205",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 18620,
+    "lines": 300,
+    "sha256": "0e643deda77d5726dfc4f532bbb43dbd1fec21ab5979cb63ad0de0eaeda0e00c",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos1122.erdos_1122.variants.monotone",
+    "Erdos1122.erdos_1122.variants.sub_tendsto_zero",
+    "Erdos1122.Core.erdos1122_conjecture_implies_empty_descent_prop",
+    "Erdos1122.Core.coprime_cross_step_diff_eq",
+    "Erdos1122.Core.finitely_supported_erdos1122_unconditional",
+    "Erdos1122.Core.coprime_additive_mul_of_descentSet_empty",
+    "Erdos1122.Core.empty_descent_eq_scaled_log_unconditional",
+    "Erdos1122.Core.erdos1122_empty_descent_prop_holds",
+    "Erdos1122.Core.coprime_additive_mul_of_isLittleO_diff",
+    "Erdos1122.Core.littleO_diff_eq_scaled_log_unconditional",
+    "Erdos1122.Core.erdos1122_littleO_diff_prop_holds",
+    "Erdos1122.Core.wirsing_zero_density_eventually_exists_good_sandwich_shift",
+    "Erdos1122.Core.controlled_descent_telescoping_additive_defect_bound",
+    "Erdos1122.Core.coprime_additive_mul_of_isLittleO_descentCount_of_hasBoundedDownwardJumps",
+    "Erdos1122.Core.controlled_descent_log_ratio_diff_le_descentCount",
+    "Erdos1122.Core.sublogarithmic_descentCount_eq_scaled_log_of_hasBoundedDownwardJumps",
+    "Erdos1122.Core.trajectory_sublinear_descent_eq_scaled_log_of_hasBoundedDownwardJumps",
+    "Erdos1122.Core.exists_zero_descent_shifted_div_trajectory_of_mul_descentCount_lt",
+    "Erdos1122.Core.isScaledLogOnPos_iff_exists_boundedDyadicShellOscillation_of_isLittleO_descentCount_of_hasBoundedDownwardJumps",
+    "Erdos1122.Core.erdos1122_conjecture_of_boundedDownwardJumps_and_dyadicShellOscillation",
+    "Erdos1122.Core.completely_additive_dyadic_step_bounds_of_hasBoundedDownwardJumps",
+    "Erdos1122.Core.completely_additive_dyadic_shell_complement_eq",
+    "Erdos1122.Core.completely_additive_dyadic_shell_window_oscillation_bound",
+    "Erdos1122.Core.completely_additive_iterated_binary_halving_defect_le",
+    "Erdos1122.Core.completely_additive_iterated_simultaneous_binary_halving_diff_le",
+    "Erdos1122.Core.completely_additive_pow_two_shell_oscillation_of_hasBoundedDyadicShellOscillation",
+    "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_subshell_downward_drift",
+    "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_shell_descent_card_le",
+    "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_bitLength_zero_shell_bound",
+    "Erdos1122.Core.erdos_1122_of_boundedDownwardJumps_and_subshell_downward_drift"
+  ],
+  "declaration_lines": {
+    "Erdos1122.erdos_1122.variants.monotone": {
+      "solution_line": null,
+      "challenge_line": null
+    },
+    "Erdos1122.erdos_1122.variants.sub_tendsto_zero": {
+      "solution_line": null,
+      "challenge_line": null
+    },
+    "Erdos1122.Core.erdos1122_conjecture_implies_empty_descent_prop": {
+      "solution_line": 63,
+      "challenge_line": 96
+    },
+    "Erdos1122.Core.coprime_cross_step_diff_eq": {
+      "solution_line": 67,
+      "challenge_line": 100
+    },
+    "Erdos1122.Core.finitely_supported_erdos1122_unconditional": {
+      "solution_line": 73,
+      "challenge_line": 106
+    },
+    "Erdos1122.Core.coprime_additive_mul_of_descentSet_empty": {
+      "solution_line": 79,
+      "challenge_line": 112
+    },
+    "Erdos1122.Core.empty_descent_eq_scaled_log_unconditional": {
+      "solution_line": 84,
+      "challenge_line": 117
+    },
+    "Erdos1122.Core.erdos1122_empty_descent_prop_holds": {
+      "solution_line": 89,
+      "challenge_line": 122
+    },
+    "Erdos1122.Core.coprime_additive_mul_of_isLittleO_diff": {
+      "solution_line": 94,
+      "challenge_line": 127
+    },
+    "Erdos1122.Core.littleO_diff_eq_scaled_log_unconditional": {
+      "solution_line": 100,
+      "challenge_line": 133
+    },
+    "Erdos1122.Core.erdos1122_littleO_diff_prop_holds": {
+      "solution_line": 105,
+      "challenge_line": 138
+    },
+    "Erdos1122.Core.wirsing_zero_density_eventually_exists_good_sandwich_shift": {
+      "solution_line": 112,
+      "challenge_line": 145
+    },
+    "Erdos1122.Core.controlled_descent_telescoping_additive_defect_bound": {
+      "solution_line": 121,
+      "challenge_line": 154
+    },
+    "Erdos1122.Core.coprime_additive_mul_of_isLittleO_descentCount_of_hasBoundedDownwardJumps": {
+      "solution_line": 131,
+      "challenge_line": 164
+    },
+    "Erdos1122.Core.controlled_descent_log_ratio_diff_le_descentCount": {
+      "solution_line": 139,
+      "challenge_line": 172
+    },
+    "Erdos1122.Core.sublogarithmic_descentCount_eq_scaled_log_of_hasBoundedDownwardJumps": {
+      "solution_line": 148,
+      "challenge_line": 181
+    },
+    "Erdos1122.Core.trajectory_sublinear_descent_eq_scaled_log_of_hasBoundedDownwardJumps": {
+      "solution_line": 156,
+      "challenge_line": 189
+    },
+    "Erdos1122.Core.exists_zero_descent_shifted_div_trajectory_of_mul_descentCount_lt": {
+      "solution_line": 166,
+      "challenge_line": 199
+    },
+    "Erdos1122.Core.isScaledLogOnPos_iff_exists_boundedDyadicShellOscillation_of_isLittleO_descentCount_of_hasBoundedDownwardJumps": {
+      "solution_line": 171,
+      "challenge_line": 204
+    },
+    "Erdos1122.Core.erdos1122_conjecture_of_boundedDownwardJumps_and_dyadicShellOscillation": {
+      "solution_line": 178,
+      "challenge_line": 211
+    },
+    "Erdos1122.Core.completely_additive_dyadic_step_bounds_of_hasBoundedDownwardJumps": {
+      "solution_line": 188,
+      "challenge_line": 221
+    },
+    "Erdos1122.Core.completely_additive_dyadic_shell_complement_eq": {
+      "solution_line": 196,
+      "challenge_line": 229
+    },
+    "Erdos1122.Core.completely_additive_dyadic_shell_window_oscillation_bound": {
+      "solution_line": 201,
+      "challenge_line": 234
+    },
+    "Erdos1122.Core.completely_additive_iterated_binary_halving_defect_le": {
+      "solution_line": 208,
+      "challenge_line": 241
+    },
+    "Erdos1122.Core.completely_additive_iterated_simultaneous_binary_halving_diff_le": {
+      "solution_line": 216,
+      "challenge_line": 249
+    },
+    "Erdos1122.Core.completely_additive_pow_two_shell_oscillation_of_hasBoundedDyadicShellOscillation": {
+      "solution_line": 224,
+      "challenge_line": 257
+    },
+    "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_subshell_downward_drift": {
+      "solution_line": 231,
+      "challenge_line": 264
+    },
+    "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_shell_descent_card_le": {
+      "solution_line": 240,
+      "challenge_line": 273
+    },
+    "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_bitLength_zero_shell_bound": {
+      "solution_line": 248,
+      "challenge_line": 281
+    },
+    "Erdos1122.Core.erdos_1122_of_boundedDownwardJumps_and_subshell_downward_drift": {
+      "solution_line": 256,
+      "challenge_line": 289
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos1122.Core.completely_additive_dyadic_shell_complement_eq",
+    "Erdos1122.Core.completely_additive_dyadic_shell_window_oscillation_bound",
+    "Erdos1122.Core.completely_additive_dyadic_step_bounds_of_hasBoundedDownwardJumps",
+    "Erdos1122.Core.completely_additive_iterated_binary_halving_defect_le",
+    "Erdos1122.Core.completely_additive_iterated_simultaneous_binary_halving_diff_le",
+    "Erdos1122.Core.completely_additive_pow_two_shell_oscillation_of_hasBoundedDyadicShellOscillation",
+    "Erdos1122.Core.controlled_descent_log_ratio_diff_le_descentCount",
+    "Erdos1122.Core.controlled_descent_telescoping_additive_defect_bound",
+    "Erdos1122.Core.coprime_additive_mul_of_descentSet_empty",
+    "Erdos1122.Core.coprime_additive_mul_of_isLittleO_descentCount_of_hasBoundedDownwardJumps",
+    "Erdos1122.Core.coprime_additive_mul_of_isLittleO_diff",
+    "Erdos1122.Core.coprime_cross_step_diff_eq",
+    "Erdos1122.Core.empty_descent_eq_scaled_log_unconditional",
+    "Erdos1122.Core.erdos1122_conjecture_implies_empty_descent_prop",
+    "Erdos1122.Core.erdos1122_conjecture_of_boundedDownwardJumps_and_dyadicShellOscillation",
+    "Erdos1122.Core.erdos1122_empty_descent_prop_holds",
+    "Erdos1122.Core.erdos1122_littleO_diff_prop_holds",
+    "Erdos1122.Core.erdos_1122_of_boundedDownwardJumps_and_subshell_downward_drift",
+    "Erdos1122.Core.exists_zero_descent_shifted_div_trajectory_of_mul_descentCount_lt",
+    "Erdos1122.Core.finitely_supported_erdos1122_unconditional",
+    "Erdos1122.Core.isScaledLogOnPos_iff_exists_boundedDyadicShellOscillation_of_isLittleO_descentCount_of_hasBoundedDownwardJumps",
+    "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_bitLength_zero_shell_bound",
+    "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_shell_descent_card_le",
+    "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_subshell_downward_drift",
+    "Erdos1122.Core.littleO_diff_eq_scaled_log_unconditional",
+    "Erdos1122.Core.sublogarithmic_descentCount_eq_scaled_log_of_hasBoundedDownwardJumps",
+    "Erdos1122.Core.trajectory_sublinear_descent_eq_scaled_log_of_hasBoundedDownwardJumps",
+    "Erdos1122.Core.wirsing_zero_density_eventually_exists_good_sandwich_shift",
+    "Erdos1122.erdos_1122.variants.monotone",
+    "Erdos1122.erdos_1122.variants.sub_tendsto_zero"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 30,
+  "expected_axiom_audit_count": 30,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos1122.erdos_1122.variants.monotone",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.erdos_1122.variants.sub_tendsto_zero",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.erdos1122_conjecture_implies_empty_descent_prop",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.coprime_cross_step_diff_eq",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.finitely_supported_erdos1122_unconditional",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.coprime_additive_mul_of_descentSet_empty",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.empty_descent_eq_scaled_log_unconditional",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.erdos1122_empty_descent_prop_holds",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.coprime_additive_mul_of_isLittleO_diff",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.littleO_diff_eq_scaled_log_unconditional",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.erdos1122_littleO_diff_prop_holds",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.wirsing_zero_density_eventually_exists_good_sandwich_shift",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.controlled_descent_telescoping_additive_defect_bound",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.coprime_additive_mul_of_isLittleO_descentCount_of_hasBoundedDownwardJumps",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.controlled_descent_log_ratio_diff_le_descentCount",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.sublogarithmic_descentCount_eq_scaled_log_of_hasBoundedDownwardJumps",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.trajectory_sublinear_descent_eq_scaled_log_of_hasBoundedDownwardJumps",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.exists_zero_descent_shifted_div_trajectory_of_mul_descentCount_lt",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.isScaledLogOnPos_iff_exists_boundedDyadicShellOscillation_of_isLittleO_descentCount_of_hasBoundedDownwardJumps",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.erdos1122_conjecture_of_boundedDownwardJumps_and_dyadicShellOscillation",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.completely_additive_dyadic_step_bounds_of_hasBoundedDownwardJumps",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.completely_additive_dyadic_shell_complement_eq",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.completely_additive_dyadic_shell_window_oscillation_bound",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.completely_additive_iterated_binary_halving_defect_le",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.completely_additive_iterated_simultaneous_binary_halving_diff_le",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.completely_additive_pow_two_shell_oscillation_of_hasBoundedDyadicShellOscillation",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_subshell_downward_drift",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_shell_descent_card_le",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_bitLength_zero_shell_bound",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos1122.Core.erdos_1122_of_boundedDownwardJumps_and_subshell_downward_drift",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Erdos1122.HasBoundedDyadicShellOscillation",
+      "kind": "def",
+      "declaration": "def Erdos1122.HasBoundedDyadicShellOscillation (f : Nat \u2192 Real) (C : Real) : Prop :=\n  fun f C =>\n  \u2200 (u : Nat), LE.le 1 u \u2192 \u2200 (q : Nat), LE.le u q \u2192 LE.le q (HMul.hMul 2 u) \u2192 LE.le (abs (HSub.hSub (f q) (f u))) C"
+    },
+    {
+      "name": "Erdos1122.divWindow",
+      "kind": "def",
+      "declaration": "def Erdos1122.divWindow (a m j : Nat) : Finset Nat :=\n  fun a m j =>\n  Finset.Ico (HMul.hMul a (HDiv.hDiv m (HPow.hPow a (HAdd.hAdd j 1))))\n    (HMul.hMul a (HAdd.hAdd (HDiv.hDiv m (HPow.hPow a (HAdd.hAdd j 1))) 1))"
+    },
+    {
+      "name": "Erdos1122.trajDescentCount",
+      "kind": "def",
+      "declaration": "def Erdos1122.trajDescentCount (f : Nat \u2192 Real) (X a m s : Nat) : Nat :=\n  fun f X a m s =>\n  Finset.sum (Finset.range s) fun j =>\n    Finset.card (Inter.inter (Erdos1122.divWindow a m j) (Erdos1122.descentFinset f X))"
+    },
+    {
+      "name": "Erdos1122.HasBoundedDownwardJumps",
+      "kind": "def",
+      "declaration": "def Erdos1122.HasBoundedDownwardJumps (f : Nat \u2192 Real) (D : Real) : Prop :=\n  fun f D => \u2200 (n : Nat), LE.le 1 n \u2192 LE.le (HSub.hSub (f n) (f (HAdd.hAdd n 1))) D"
+    },
+    {
+      "name": "Erdos1122.HasPrefixBoundedDownwardJumps",
+      "kind": "def",
+      "declaration": "def Erdos1122.HasPrefixBoundedDownwardJumps (f : Nat \u2192 Real) (X : Nat) (D : Real) : Prop :=\n  fun f X D => \u2200 (n : Nat), Membership.mem (Erdos1122.descentFinset f X) n \u2192 LE.le (HSub.hSub (f n) (f (HAdd.hAdd n 1))) D"
+    },
+    {
+      "name": "Erdos1122.sandwichWLow",
+      "kind": "def",
+      "declaration": "def Erdos1122.sandwichWLow (a b k : Nat) : Nat :=\n  fun a b k => HAdd.hAdd (HMul.hMul (HMul.hMul a (HPow.hPow b 2)) k) 1"
+    },
+    {
+      "name": "Erdos1122.sandwichWHigh",
+      "kind": "def",
+      "declaration": "def Erdos1122.sandwichWHigh (a b k : Nat) : Nat :=\n  fun a b k => HAdd.hAdd (HAdd.hAdd (HMul.hMul (HMul.hMul a (HPow.hPow b 2)) k) (HMul.hMul a b)) 1"
+    },
+    {
+      "name": "Erdos1122.Erdos1122LittleODiffProp",
+      "kind": "def",
+      "declaration": "def Erdos1122.Erdos1122LittleODiffProp : Prop :=\n  \u2200 (f : Nat \u2192 Real),\n  Erdos1122.IsCoprimeAdditive f \u2192\n    (Asymptotics.IsLittleO Filter.atTop (fun n => HSub.hSub (f (HAdd.hAdd n 1)) (f n)) fun x => 1) \u2192\n      Erdos1122.IsScaledLogOnPos f"
+    },
+    {
+      "name": "Erdos1122.descentSet",
+      "kind": "def",
+      "declaration": "def Erdos1122.descentSet (f : Nat \u2192 Real) : Set Nat :=\n  fun f => Set.ofPred fun n => And (LE.le 1 n) (LT.lt (f (HAdd.hAdd n 1)) (f n))"
+    },
+    {
+      "name": "Erdos1122.Erdos1122EmptyDescentProp",
+      "kind": "def",
+      "declaration": "def Erdos1122.Erdos1122EmptyDescentProp : Prop :=\n  \u2200 (f : Nat \u2192 Real),\n  Erdos1122.IsCoprimeAdditive f \u2192\n    Eq (Erdos1122.descentSet f) EmptyCollection.emptyCollection \u2192 Erdos1122.IsScaledLogOnPos f"
+    },
+    {
+      "name": "Erdos1122.IsScaledLogOnPos",
+      "kind": "def",
+      "declaration": "def Erdos1122.IsScaledLogOnPos (f : Nat \u2192 Real) : Prop :=\n  fun f => Exists fun c => \u2200 (n : Nat), LE.le 1 n \u2192 Eq (f n) (HMul.hMul c (Real.log \u2191n))"
+    },
+    {
+      "name": "Erdos1122.descentFinset",
+      "kind": "def",
+      "declaration": "def Erdos1122.descentFinset (f : Nat \u2192 Real) (X : Nat) : Finset Nat :=\n  fun f X => Finset.filter (fun n => LT.lt (f (HAdd.hAdd n 1)) (f n)) (Finset.Icc 1 X)"
+    },
+    {
+      "name": "Erdos1122.descentCount",
+      "kind": "def",
+      "declaration": "def Erdos1122.descentCount (f : Nat \u2192 Real) (X : Nat) : Nat :=\n  fun f X => Finset.card (Erdos1122.descentFinset f X)"
+    },
+    {
+      "name": "Erdos1122.IsCoprimeAdditive",
+      "kind": "def",
+      "declaration": "def Erdos1122.IsCoprimeAdditive (f : Nat \u2192 Real) : Prop :=\n  fun f =>\n  \u2200 (a : Nat), GT.gt a 0 \u2192 \u2200 (b : Nat), GT.gt b 0 \u2192 Nat.Coprime a b \u2192 Eq (f (HMul.hMul a b)) (HAdd.hAdd (f a) (f b))"
+    },
+    {
+      "name": "Erdos1122.Erdos1122Conjecture",
+      "kind": "def",
+      "declaration": "def Erdos1122.Erdos1122Conjecture : Prop :=\n  \u2200 (f : Nat \u2192 Real),\n  Erdos1122.IsCoprimeAdditive f \u2192\n    (Asymptotics.IsLittleO Filter.atTop (fun X => \u2191(Erdos1122.descentCount f X)) fun X => \u2191X) \u2192\n      Erdos1122.IsScaledLogOnPos f"
+    },
+    {
+      "name": "Erdos1122.erdos_1122.variants.monotone",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.erdos_1122.variants.monotone (f : Nat \u2192 Real)\n  (hf :\n    \u2200 (a : Nat), GT.gt a 0 \u2192 \u2200 (b : Nat), GT.gt b 0 \u2192 Nat.Coprime a b \u2192 Eq (f (HMul.hMul a b)) (HAdd.hAdd (f a) (f b)))\n  (hmono : \u2200 (n : Nat), GE.ge n 1 \u2192 LE.le (f n) (f (HAdd.hAdd n 1))) :\n  Exists fun c => \u2200 (n : Nat), GT.gt n 0 \u2192 Eq (f n) (HMul.hMul c (Real.log \u2191n))"
+    },
+    {
+      "name": "Erdos1122.erdos_1122.variants.sub_tendsto_zero",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.erdos_1122.variants.sub_tendsto_zero (f : Nat \u2192 Real)\n  (hf :\n    \u2200 (a : Nat), GT.gt a 0 \u2192 \u2200 (b : Nat), GT.gt b 0 \u2192 Nat.Coprime a b \u2192 Eq (f (HMul.hMul a b)) (HAdd.hAdd (f a) (f b)))\n  (hdiff : Filter.Tendsto (fun n => HSub.hSub (f (HAdd.hAdd n 1)) (f n)) Filter.atTop (nhds 0)) :\n  Exists fun c => \u2200 (n : Nat), GT.gt n 0 \u2192 Eq (f n) (HMul.hMul c (Real.log \u2191n))"
+    },
+    {
+      "name": "Erdos1122.Core.erdos1122_conjecture_implies_empty_descent_prop",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.erdos1122_conjecture_implies_empty_descent_prop :\n  Erdos1122.Erdos1122Conjecture \u2192 Erdos1122.Erdos1122EmptyDescentProp"
+    },
+    {
+      "name": "Erdos1122.Core.coprime_cross_step_diff_eq",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.coprime_cross_step_diff_eq {f : Nat \u2192 Real} (hf : Erdos1122.IsCoprimeAdditive f) {a b : Nat}\n  (ha : LT.lt 0 a) (hb : LT.lt 0 b) (hcop1 : Nat.Coprime a (HAdd.hAdd b 1)) (hcop2 : Nat.Coprime (HAdd.hAdd a 1) b) :\n  Eq (HSub.hSub (f (HMul.hMul (HAdd.hAdd a 1) b)) (f (HMul.hMul a (HAdd.hAdd b 1))))\n    (HSub.hSub (HSub.hSub (f (HAdd.hAdd a 1)) (f a)) (HSub.hSub (f (HAdd.hAdd b 1)) (f b)))"
+    },
+    {
+      "name": "Erdos1122.Core.finitely_supported_erdos1122_unconditional",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.finitely_supported_erdos1122_unconditional {f : Nat \u2192 Real} (hf : Erdos1122.IsCoprimeAdditive f)\n  {Q : Nat} (hQ : LE.le 1 Q) (hsupp : \u2200 (m : Nat), GT.gt m 0 \u2192 Nat.Coprime Q m \u2192 Eq (f m) 0)\n  (ho : Asymptotics.IsLittleO Filter.atTop (fun X => \u2191(Erdos1122.descentCount f X)) fun X => \u2191X) :\n  And (Eq (Erdos1122.descentSet f) EmptyCollection.emptyCollection)\n    (And (\u2200 (n : Nat), LE.le 1 n \u2192 Eq (f n) 0) (Erdos1122.IsScaledLogOnPos f))"
+    },
+    {
+      "name": "Erdos1122.Core.coprime_additive_mul_of_descentSet_empty",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.coprime_additive_mul_of_descentSet_empty {f : Nat \u2192 Real} (hf : Erdos1122.IsCoprimeAdditive f)\n  (hempty : Eq (Erdos1122.descentSet f) EmptyCollection.emptyCollection) {a b : Nat} (ha : LE.le 1 a) (hb : LE.le 1 b) :\n  Eq (f (HMul.hMul a b)) (HAdd.hAdd (f a) (f b))"
+    },
+    {
+      "name": "Erdos1122.Core.empty_descent_eq_scaled_log_unconditional",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.empty_descent_eq_scaled_log_unconditional {f : Nat \u2192 Real} (hf : Erdos1122.IsCoprimeAdditive f)\n  (hempty : Eq (Erdos1122.descentSet f) EmptyCollection.emptyCollection) :\n  And (\u2200 (m : Nat), LE.le 1 m \u2192 Eq (f m) (HMul.hMul (HDiv.hDiv (f 2) (Real.log 2)) (Real.log \u2191m)))\n    (Erdos1122.IsScaledLogOnPos f)"
+    },
+    {
+      "name": "Erdos1122.Core.erdos1122_empty_descent_prop_holds",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.erdos1122_empty_descent_prop_holds :\n  And Erdos1122.Erdos1122EmptyDescentProp\n    (\u2200 (f : Nat \u2192 Real),\n      Erdos1122.IsCoprimeAdditive f \u2192\n        Eq (Erdos1122.descentSet f) EmptyCollection.emptyCollection \u2192 Erdos1122.IsScaledLogOnPos f)"
+    },
+    {
+      "name": "Erdos1122.Core.coprime_additive_mul_of_isLittleO_diff",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.coprime_additive_mul_of_isLittleO_diff {f : Nat \u2192 Real} (hf : Erdos1122.IsCoprimeAdditive f)\n  (ho : Asymptotics.IsLittleO Filter.atTop (fun n => HSub.hSub (f (HAdd.hAdd n 1)) (f n)) fun x => 1) {a b : Nat}\n  (ha : LE.le 1 a) (hb : LE.le 1 b) : Eq (f (HMul.hMul a b)) (HAdd.hAdd (f a) (f b))"
+    },
+    {
+      "name": "Erdos1122.Core.littleO_diff_eq_scaled_log_unconditional",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.littleO_diff_eq_scaled_log_unconditional {f : Nat \u2192 Real} (hf : Erdos1122.IsCoprimeAdditive f)\n  (ho : Asymptotics.IsLittleO Filter.atTop (fun n => HSub.hSub (f (HAdd.hAdd n 1)) (f n)) fun x => 1) :\n  And (\u2200 (m : Nat), LE.le 1 m \u2192 Eq (f m) (HMul.hMul (HDiv.hDiv (f 2) (Real.log 2)) (Real.log \u2191m)))\n    (Erdos1122.IsScaledLogOnPos f)"
+    },
+    {
+      "name": "Erdos1122.Core.erdos1122_littleO_diff_prop_holds",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.erdos1122_littleO_diff_prop_holds :\n  And Erdos1122.Erdos1122LittleODiffProp\n    (\u2200 (f : Nat \u2192 Real),\n      Erdos1122.IsCoprimeAdditive f \u2192\n        (Asymptotics.IsLittleO Filter.atTop (fun n => HSub.hSub (f (HAdd.hAdd n 1)) (f n)) fun x => 1) \u2192\n          Erdos1122.IsScaledLogOnPos f)"
+    },
+    {
+      "name": "Erdos1122.Core.wirsing_zero_density_eventually_exists_good_sandwich_shift",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.wirsing_zero_density_eventually_exists_good_sandwich_shift {f : Nat \u2192 Real}\n  (hf : Erdos1122.IsCoprimeAdditive f)\n  (ho : Asymptotics.IsLittleO Filter.atTop (fun X => \u2191(Erdos1122.descentCount f X)) fun X => \u2191X) {a b : Nat}\n  (ha : LE.le 1 a) (hb : LE.le 1 b) :\n  Exists fun K\u2080 =>\n    \u2200 (K : Nat),\n      GE.ge K K\u2080 \u2192\n        Exists fun k =>\n          And (Membership.mem (Finset.Icc 1 K) k)\n            (LE.le (abs (HSub.hSub (HSub.hSub (f (HMul.hMul a b)) (f a)) (f b)))\n              (HSub.hSub (f (Erdos1122.sandwichWHigh a b k)) (f (Erdos1122.sandwichWLow a b k))))"
+    },
+    {
+      "name": "Erdos1122.Core.controlled_descent_telescoping_additive_defect_bound",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.controlled_descent_telescoping_additive_defect_bound {f : Nat \u2192 Real}\n  (hf : Erdos1122.IsCoprimeAdditive f) {X a b : Nat} {D : Real} (hD0 : LE.le 0 D)\n  (hD : Erdos1122.HasPrefixBoundedDownwardJumps f X D) (ha : LE.le 1 a) (hb : LE.le 1 b) (K : Nat)\n  (hX_in : LE.le (Erdos1122.sandwichWLow a b (HAdd.hAdd K 1)) (HAdd.hAdd X 1))\n  (hX_out : LE.le (HMul.hMul a (Erdos1122.sandwichWHigh a b K)) (HAdd.hAdd X 1)) :\n  LE.le (HMul.hMul (\u2191K) (abs (HSub.hSub (HSub.hSub (f (HMul.hMul a b)) (f a)) (f b))))\n    (HAdd.hAdd (HSub.hSub (f (Erdos1122.sandwichWLow a b (HAdd.hAdd K 1))) (f (Erdos1122.sandwichWLow a b 1)))\n      (HMul.hMul (HMul.hMul 2 D) \u2191(Erdos1122.descentCount f X)))"
+    },
+    {
+      "name": "Erdos1122.Core.coprime_additive_mul_of_isLittleO_descentCount_of_hasBoundedDownwardJumps",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.coprime_additive_mul_of_isLittleO_descentCount_of_hasBoundedDownwardJumps {f : Nat \u2192 Real}\n  (hf : Erdos1122.IsCoprimeAdditive f)\n  (ho : Asymptotics.IsLittleO Filter.atTop (fun X => \u2191(Erdos1122.descentCount f X)) fun X => \u2191X) {D : Real}\n  (hD : Erdos1122.HasBoundedDownwardJumps f D) {a b : Nat} (ha : LE.le 1 a) (hb : LE.le 1 b) :\n  Eq (f (HMul.hMul a b)) (HAdd.hAdd (f a) (f b))"
+    },
+    {
+      "name": "Erdos1122.Core.controlled_descent_log_ratio_diff_le_descentCount",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.controlled_descent_log_ratio_diff_le_descentCount {f : Nat \u2192 Real} {X : Nat} {D : Real} (hD0 : LE.le 0 D)\n  (hD : Erdos1122.HasPrefixBoundedDownwardJumps f X D)\n  (hpow : \u2200 (b : Nat), LE.le 1 b \u2192 \u2200 (r : Nat), Eq (f (HPow.hPow b r)) (HMul.hMul (\u2191r) (f b))) {m n : Nat} (k : Nat)\n  (hm : LE.le 2 m) (hn : LE.le 2 n) (hk : LE.le 1 k)\n  (hX : LE.le (HPow.hPow n (HAdd.hAdd (Nat.log n (HPow.hPow m k)) 1)) (HAdd.hAdd X 1)) :\n  LE.le (abs (HSub.hSub (HDiv.hDiv (f m) (Real.log \u2191m)) (HDiv.hDiv (f n) (Real.log \u2191n))))\n    (HDiv.hDiv (HAdd.hAdd (abs (f n)) (HMul.hMul D \u2191(Erdos1122.descentCount f X))) (HMul.hMul (\u2191k) (Real.log \u2191m)))"
+    },
+    {
+      "name": "Erdos1122.Core.sublogarithmic_descentCount_eq_scaled_log_of_hasBoundedDownwardJumps",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.sublogarithmic_descentCount_eq_scaled_log_of_hasBoundedDownwardJumps {f : Nat \u2192 Real}\n  (hf : Erdos1122.IsCoprimeAdditive f) {D : Real} (hD : Erdos1122.HasBoundedDownwardJumps f D)\n  (ho_lin : Asymptotics.IsLittleO Filter.atTop (fun X => \u2191(Erdos1122.descentCount f X)) fun X => \u2191X)\n  (ho_log : Asymptotics.IsLittleO Filter.atTop (fun X => \u2191(Erdos1122.descentCount f X)) fun X => Real.log \u2191X) :\n  And (\u2200 (m : Nat), LE.le 1 m \u2192 Eq (f m) (HMul.hMul (HDiv.hDiv (f 2) (Real.log 2)) (Real.log \u2191m)))\n    (Erdos1122.IsScaledLogOnPos f)"
+    },
+    {
+      "name": "Erdos1122.Core.trajectory_sublinear_descent_eq_scaled_log_of_hasBoundedDownwardJumps",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.trajectory_sublinear_descent_eq_scaled_log_of_hasBoundedDownwardJumps {f : Nat \u2192 Real}\n  (hf : Erdos1122.IsCoprimeAdditive f)\n  (ho : Asymptotics.IsLittleO Filter.atTop (fun X => \u2191(Erdos1122.descentCount f X)) fun X => \u2191X) {D : Real}\n  (hD : Erdos1122.HasBoundedDownwardJumps f D)\n  (htraj :\n    \u2200 (b : Nat),\n      LE.le 2 b \u2192\n        Asymptotics.IsLittleO Filter.atTop\n          (fun k =>\n            \u2191(Erdos1122.trajDescentCount f (HMul.hMul 2 (HAdd.hAdd (HDiv.hDiv (HPow.hPow b k) 2) 1)) 2 (HPow.hPow b k)\n                (Nat.log 2 (HPow.hPow b k))))\n          fun k => \u2191k) :\n  And (\u2200 (m : Nat), LE.le 1 m \u2192 Eq (f m) (HMul.hMul (HDiv.hDiv (f 2) (Real.log 2)) (Real.log \u2191m)))\n    (Erdos1122.IsScaledLogOnPos f)"
+    },
+    {
+      "name": "Erdos1122.Core.exists_zero_descent_shifted_div_trajectory_of_mul_descentCount_lt",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.exists_zero_descent_shifted_div_trajectory_of_mul_descentCount_lt (f : Nat \u2192 Real) (X : Nat)\n  {a m s U : Nat} (ha : LE.le 1 a) (hm : LE.le (HPow.hPow a s) m)\n  (hU : LT.lt (HMul.hMul s (Erdos1122.descentCount f X)) U) :\n  Exists fun u => And (Membership.mem (Finset.Icc 1 U) u) (Eq (Erdos1122.trajDescentCount f X a (HMul.hMul u m) s) 0)"
+    },
+    {
+      "name": "Erdos1122.Core.isScaledLogOnPos_iff_exists_boundedDyadicShellOscillation_of_isLittleO_descentCount_of_hasBoundedDownwardJumps",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.isScaledLogOnPos_iff_exists_boundedDyadicShellOscillation_of_isLittleO_descentCount_of_hasBoundedDownwardJumps\n  {f : Nat \u2192 Real} (hf : Erdos1122.IsCoprimeAdditive f)\n  (ho : Asymptotics.IsLittleO Filter.atTop (fun X => \u2191(Erdos1122.descentCount f X)) fun X => \u2191X) {D : Real}\n  (hD : Erdos1122.HasBoundedDownwardJumps f D) :\n  Iff (Erdos1122.IsScaledLogOnPos f) (Exists fun C => Erdos1122.HasBoundedDyadicShellOscillation f C)"
+    },
+    {
+      "name": "Erdos1122.Core.erdos1122_conjecture_of_boundedDownwardJumps_and_dyadicShellOscillation",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.erdos1122_conjecture_of_boundedDownwardJumps_and_dyadicShellOscillation\n  (hjump :\n    \u2200 (f : Nat \u2192 Real),\n      Erdos1122.IsCoprimeAdditive f \u2192\n        (Asymptotics.IsLittleO Filter.atTop (fun X => \u2191(Erdos1122.descentCount f X)) fun X => \u2191X) \u2192\n          Exists fun D => Erdos1122.HasBoundedDownwardJumps f D)\n  (hshell :\n    \u2200 (f : Nat \u2192 Real),\n      Erdos1122.IsCoprimeAdditive f \u2192\n        (Asymptotics.IsLittleO Filter.atTop (fun X => \u2191(Erdos1122.descentCount f X)) fun X => \u2191X) \u2192\n          Exists fun C => Erdos1122.HasBoundedDyadicShellOscillation f C) :\n  Erdos1122.Erdos1122Conjecture"
+    },
+    {
+      "name": "Erdos1122.Core.completely_additive_dyadic_step_bounds_of_hasBoundedDownwardJumps",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.completely_additive_dyadic_step_bounds_of_hasBoundedDownwardJumps {f : Nat \u2192 Real}\n  (hmul : \u2200 (x : Nat), GE.ge x 1 \u2192 \u2200 (y : Nat), GE.ge y 1 \u2192 Eq (f (HMul.hMul x y)) (HAdd.hAdd (f x) (f y))) {D : Real}\n  (hD : Erdos1122.HasBoundedDownwardJumps f D) {m : Nat} (hm : LE.le 1 m) :\n  And (LE.le (Neg.neg D) (HSub.hSub (f (HAdd.hAdd (HMul.hMul 2 m) 1)) (f (HMul.hMul 2 m))))\n    (And\n      (LE.le (HSub.hSub (f (HAdd.hAdd (HMul.hMul 2 m) 1)) (f (HMul.hMul 2 m)))\n        (HAdd.hAdd (HSub.hSub (f (HAdd.hAdd m 1)) (f m)) D))\n      (LE.le (Neg.neg D) (HSub.hSub (f (HMul.hMul 2 m)) (f (HSub.hSub (HMul.hMul 2 m) 1)))))"
+    },
+    {
+      "name": "Erdos1122.Core.completely_additive_dyadic_shell_complement_eq",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.completely_additive_dyadic_shell_complement_eq {f : Nat \u2192 Real}\n  (hmul : \u2200 (x : Nat), GE.ge x 1 \u2192 \u2200 (y : Nat), GE.ge y 1 \u2192 Eq (f (HMul.hMul x y)) (HAdd.hAdd (f x) (f y))) {u : Nat}\n  (hu : LE.le 1 u) (q : Nat) : Eq (HAdd.hAdd (HSub.hSub (f q) (f u)) (HSub.hSub (f (HMul.hMul 2 u)) (f q))) (f 2)"
+    },
+    {
+      "name": "Erdos1122.Core.completely_additive_dyadic_shell_window_oscillation_bound",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.completely_additive_dyadic_shell_window_oscillation_bound {f : Nat \u2192 Real}\n  (hmul : \u2200 (x : Nat), GE.ge x 1 \u2192 \u2200 (y : Nat), GE.ge y 1 \u2192 Eq (f (HMul.hMul x y)) (HAdd.hAdd (f x) (f y))) {X : Nat}\n  {D : Real} (hD0 : LE.le 0 D) (hD : Erdos1122.HasPrefixBoundedDownwardJumps f X D) {u q : Nat} (hu : LE.le 1 u)\n  (huq : LE.le u q) (hq2u : LE.le q (HMul.hMul 2 u)) (hX : LE.le (HMul.hMul 2 u) (HAdd.hAdd X 1)) :\n  LE.le (abs (HSub.hSub (f q) (f u)))\n    (HAdd.hAdd (abs (f 2))\n      (HMul.hMul D \u2191(Finset.card (Inter.inter (Finset.Ico u (HMul.hMul 2 u)) (Erdos1122.descentFinset f X)))))"
+    },
+    {
+      "name": "Erdos1122.Core.completely_additive_iterated_binary_halving_defect_le",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.completely_additive_iterated_binary_halving_defect_le {f : Nat \u2192 Real}\n  (hmul : \u2200 (x : Nat), GE.ge x 1 \u2192 \u2200 (y : Nat), GE.ge y 1 \u2192 Eq (f (HMul.hMul x y)) (HAdd.hAdd (f x) (f y))) {B : Real}\n  (hB0 : LE.le 0 B)\n  (hcarry :\n    \u2200 (m : Nat), LE.le 1 m \u2192 LE.le (abs (HSub.hSub (HSub.hSub (f (HAdd.hAdd (HMul.hMul 2 m) 1)) (f 2)) (f m))) B)\n  (s : Nat) {q : Nat} (hq : LE.le 1 (HDiv.hDiv q (HPow.hPow 2 s))) :\n  LE.le (abs (HSub.hSub (HSub.hSub (f q) (HMul.hMul (\u2191s) (f 2))) (f (HDiv.hDiv q (HPow.hPow 2 s))))) (HMul.hMul (\u2191s) B)"
+    },
+    {
+      "name": "Erdos1122.Core.completely_additive_iterated_simultaneous_binary_halving_diff_le",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.completely_additive_iterated_simultaneous_binary_halving_diff_le {f : Nat \u2192 Real}\n  (hmul : \u2200 (x : Nat), GE.ge x 1 \u2192 \u2200 (y : Nat), GE.ge y 1 \u2192 Eq (f (HMul.hMul x y)) (HAdd.hAdd (f x) (f y))) {B : Real}\n  (hB0 : LE.le 0 B)\n  (hcarry :\n    \u2200 (m : Nat), LE.le 1 m \u2192 LE.le (abs (HSub.hSub (HSub.hSub (f (HAdd.hAdd (HMul.hMul 2 m) 1)) (f 2)) (f m))) B)\n  (s : Nat) {u q : Nat} (hu : LE.le 1 (HDiv.hDiv u (HPow.hPow 2 s))) (hq : LE.le 1 (HDiv.hDiv q (HPow.hPow 2 s))) :\n  LE.le\n    (abs\n      (HSub.hSub (HSub.hSub (f q) (f u))\n        (HSub.hSub (f (HDiv.hDiv q (HPow.hPow 2 s))) (f (HDiv.hDiv u (HPow.hPow 2 s))))))\n    (HMul.hMul (HMul.hMul 2 \u2191s) B)"
+    },
+    {
+      "name": "Erdos1122.Core.completely_additive_pow_two_shell_oscillation_of_hasBoundedDyadicShellOscillation",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.completely_additive_pow_two_shell_oscillation_of_hasBoundedDyadicShellOscillation {f : Nat \u2192 Real}\n  (hmul : \u2200 (x : Nat), GE.ge x 1 \u2192 \u2200 (y : Nat), GE.ge y 1 \u2192 Eq (f (HMul.hMul x y)) (HAdd.hAdd (f x) (f y))) {C : Real}\n  (hC : Erdos1122.HasBoundedDyadicShellOscillation f C) (s : Nat) {u q : Nat} (hu : LE.le 1 u)\n  (hlow : LE.le (HMul.hMul (HPow.hPow 2 s) u) q) (hhigh : LE.le q (HMul.hMul (HPow.hPow 2 (HAdd.hAdd s 1)) u)) :\n  And (LE.le (abs (HSub.hSub (HSub.hSub (f q) (f u)) (HMul.hMul (\u2191s) (f 2)))) C)\n    (LE.le (abs (HSub.hSub (f q) (f u))) (HAdd.hAdd C (HMul.hMul (\u2191s) (abs (f 2)))))"
+    },
+    {
+      "name": "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_subshell_downward_drift",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_subshell_downward_drift\n  {f : Nat \u2192 Real} (hf : Erdos1122.IsCoprimeAdditive f)\n  (ho : Asymptotics.IsLittleO Filter.atTop (fun X => \u2191(Erdos1122.descentCount f X)) fun X => \u2191X) {D M : Real}\n  (hD : Erdos1122.HasBoundedDownwardJumps f D)\n  (hdrift :\n    \u2200 (u : Nat),\n      LE.le 1 u \u2192\n        \u2200 (q : Nat),\n          LE.le u q \u2192\n            LE.le q (HMul.hMul 2 u) \u2192\n              And (LE.le (HSub.hSub (f u) (f q)) M) (LE.le (HSub.hSub (f q) (f (HMul.hMul 2 u))) M)) :\n  And (\u2200 (m : Nat), LE.le 1 m \u2192 Eq (f m) (HMul.hMul (HDiv.hDiv (f 2) (Real.log 2)) (Real.log \u2191m)))\n    (Erdos1122.IsScaledLogOnPos f)"
+    },
+    {
+      "name": "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_shell_descent_card_le",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_shell_descent_card_le\n  {f : Nat \u2192 Real} (hf : Erdos1122.IsCoprimeAdditive f)\n  (ho : Asymptotics.IsLittleO Filter.atTop (fun X => \u2191(Erdos1122.descentCount f X)) fun X => \u2191X) {D : Real}\n  (hD : Erdos1122.HasBoundedDownwardJumps f D) {K : Nat}\n  (hcard :\n    \u2200 (u : Nat),\n      LE.le 1 u \u2192\n        LE.le (Finset.card (Inter.inter (Finset.Ico u (HMul.hMul 2 u)) (Erdos1122.descentFinset f (HMul.hMul 2 u))))\n          K) :\n  And (\u2200 (m : Nat), LE.le 1 m \u2192 Eq (f m) (HMul.hMul (HDiv.hDiv (f 2) (Real.log 2)) (Real.log \u2191m)))\n    (Erdos1122.IsScaledLogOnPos f)"
+    },
+    {
+      "name": "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_bitLength_zero_shell_bound",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_bitLength_zero_shell_bound\n  {f : Nat \u2192 Real} (hf : Erdos1122.IsCoprimeAdditive f)\n  (ho : Asymptotics.IsLittleO Filter.atTop (fun X => \u2191(Erdos1122.descentCount f X)) fun X => \u2191X) {D B : Real}\n  (hD : Erdos1122.HasBoundedDownwardJumps f D)\n  (hB :\n    \u2200 (u : Nat), LE.le 1 u \u2192 \u2200 (q : Nat), LE.le u q \u2192 LT.lt q (HMul.hMul 2 u) \u2192 LE.le (abs (HSub.hSub (f q) (f u))) B) :\n  And (\u2200 (m : Nat), LE.le 1 m \u2192 Eq (f m) (HMul.hMul (HDiv.hDiv (f 2) (Real.log 2)) (Real.log \u2191m)))\n    (Erdos1122.IsScaledLogOnPos f)"
+    },
+    {
+      "name": "Erdos1122.Core.erdos_1122_of_boundedDownwardJumps_and_subshell_downward_drift",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1122.Core.erdos_1122_of_boundedDownwardJumps_and_subshell_downward_drift\n  (hjump :\n    \u2200 (f : Nat \u2192 Real),\n      Erdos1122.IsCoprimeAdditive f \u2192\n        (Asymptotics.IsLittleO Filter.atTop (fun X => \u2191(Erdos1122.descentCount f X)) fun X => \u2191X) \u2192\n          Exists fun D => Erdos1122.HasBoundedDownwardJumps f D)\n  (hdrift :\n    \u2200 (f : Nat \u2192 Real),\n      Erdos1122.IsCoprimeAdditive f \u2192\n        (Asymptotics.IsLittleO Filter.atTop (fun X => \u2191(Erdos1122.descentCount f X)) fun X => \u2191X) \u2192\n          Exists fun M =>\n            \u2200 (u : Nat),\n              LE.le 1 u \u2192\n                \u2200 (q : Nat),\n                  LE.le u q \u2192\n                    LE.le q (HMul.hMul 2 u) \u2192\n                      And (LE.le (HSub.hSub (f u) (f q)) M) (LE.le (HSub.hSub (f q) (f (HMul.hMul 2 u))) M)) :\n  Erdos1122.Erdos1122Conjecture"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos1122.erdos_1122.variants.sub_tendsto_zero",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.1122",
+      "solution_declaration": "Erdos1122.erdos_1122.variants.sub_tendsto_zero",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.erdos_1122.variants.monotone",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.1122",
+      "solution_declaration": "Erdos1122.erdos_1122.variants.monotone",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_sublogarithmic_descentCount_eq_scaled_log_of_hasBoundedDownwardJumps",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.sublogarithmic_descentCount_eq_scaled_log_of_hasBoundedDownwardJumps",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_trajectory_sublinear_descent_eq_scaled_log_of_hasBoundedDownwardJumps",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.trajectory_sublinear_descent_eq_scaled_log_of_hasBoundedDownwardJumps",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_completely_additive_dyadic_shell_window_oscillation_bound",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.completely_additive_dyadic_shell_window_oscillation_bound",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_completely_additive_iterated_binary_halving_defect_le",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.completely_additive_iterated_binary_halving_defect_le",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_wirsing_zero_density_eventually_exists_good_sandwich_shift",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.wirsing_zero_density_eventually_exists_good_sandwich_shift",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_erdos1122_empty_descent_prop_holds",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.erdos1122_empty_descent_prop_holds",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_erdos1122_conjecture_of_boundedDownwardJumps_and_dyadicShellOscillation",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.erdos1122_conjecture_of_boundedDownwardJumps_and_dyadicShellOscillation",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_empty_descent_eq_scaled_log_unconditional",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.empty_descent_eq_scaled_log_unconditional",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_erdos1122_littleO_diff_prop_holds",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.erdos1122_littleO_diff_prop_holds",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_completely_additive_dyadic_shell_complement_eq",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.completely_additive_dyadic_shell_complement_eq",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_controlled_descent_telescoping_additive_defect_bound",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.controlled_descent_telescoping_additive_defect_bound",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_coprime_cross_step_diff_eq",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.coprime_cross_step_diff_eq",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_shell_descent_card_le",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_shell_descent_card_le",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_coprime_additive_mul_of_isLittleO_diff",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.coprime_additive_mul_of_isLittleO_diff",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_erdos1122_conjecture_implies_empty_descent_prop",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.erdos1122_conjecture_implies_empty_descent_prop",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_completely_additive_iterated_simultaneous_binary_halving_diff_le",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.completely_additive_iterated_simultaneous_binary_halving_diff_le",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_controlled_descent_log_ratio_diff_le_descentCount",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.controlled_descent_log_ratio_diff_le_descentCount",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_bitLength_zero_shell_bound",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_bitLength_zero_shell_bound",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_littleO_diff_eq_scaled_log_unconditional",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.littleO_diff_eq_scaled_log_unconditional",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_completely_additive_pow_two_shell_oscillation_of_hasBoundedDyadicShellOscillation",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.completely_additive_pow_two_shell_oscillation_of_hasBoundedDyadicShellOscillation",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_exists_zero_descent_shifted_div_trajectory_of_mul_descentCount_lt",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.exists_zero_descent_shifted_div_trajectory_of_mul_descentCount_lt",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_subshell_downward_drift",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_subshell_downward_drift",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_completely_additive_dyadic_step_bounds_of_hasBoundedDownwardJumps",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.completely_additive_dyadic_step_bounds_of_hasBoundedDownwardJumps",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_coprime_additive_mul_of_descentSet_empty",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.coprime_additive_mul_of_descentSet_empty",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_isScaledLogOnPos_iff_exists_boundedDyadicShellOscillation_of_isLittleO_descentCount_of_hasBoundedDownwardJumps",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.isScaledLogOnPos_iff_exists_boundedDyadicShellOscillation_of_isLittleO_descentCount_of_hasBoundedDownwardJumps",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_erdos_1122_of_boundedDownwardJumps_and_subshell_downward_drift",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.erdos_1122_of_boundedDownwardJumps_and_subshell_downward_drift",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_coprime_additive_mul_of_isLittleO_descentCount_of_hasBoundedDownwardJumps",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.coprime_additive_mul_of_isLittleO_descentCount_of_hasBoundedDownwardJumps",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos1122.Challenge.statement_finitely_supported_erdos1122_unconditional",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos1122.Core.finitely_supported_erdos1122_unconditional",
+      "match_mode": "exact"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "a85b0ff8664c52ab923e0daf7e20cbc394272cd3831cc492ab144105d8091361"
+  },
+  "input_sha256": {
+    "Challenge.lean": "0e643deda77d5726dfc4f532bbb43dbd1fec21ab5979cb63ad0de0eaeda0e00c",
+    "Solution.lean": "56964d6642cb32a930db95dfba1ee0611f635ec75a348a12c437ae4210817f52",
+    "AxiomAudit.lean": "4611d300303ef0ddc7c21a870e623b68f925f4ec1e9137eb09316ac3d56d2e59",
+    "Statement.lean": "9f4e5aa8ee87bf97028448776024cc3cb55a0c74ebb2814ab50d16a345f04ec9",
+    "comparator.json": "d63e8ee2bcafa1686f06ca488d785dbd9e638bd5b943462d7a725eea8f722a3e",
+    "formalization.yaml": "00f5783a493e7e8569fd3cacc5244b40d3f675bfcd40cc0ac2486789d10ed440",
+    "lakefile.toml": "67fdedb09a9431324e2a19322ce3c59c84b88af3c80a1da2deaad3300a5d11b2",
+    "lake-manifest.json": "71970daaffedb3ba9fb7e34f729a67505080f5165ad24dd494575231874b89e0",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "694f3c136549331c558647cb21a7e3485ffc4ab5e112c14f4720c1441494cda5",
+    "Proofs/Blueprint1122.lean": "0cfba761a5e7a5b798f7bfae85ff20c0446c3e68e8c75d7c7751d9229c18673b",
+    "Proofs/ControlledDescentLogRatioSqueezeAndRigidity1122.lean": "71cd53f7dcd5be833b374fd57155f9ea891f188c59669b9b1b5403f8d19fbb3b",
+    "Proofs/ControlledDescentTelescopingAndBoundedJumpRigidity1122.lean": "fda4dcb860569bd8d40600bdcf231945bc322880f8d5b1387198a29d1b551df3",
+    "Proofs/Erdos1122Unified435.lean": "50fc6a55a66d78a1882b8152debd767d0cca6d1ff8caac65022e6e902a829de3",
+    "Proofs/WirsingWindowAveragingAndLittleODiffRigidity1122.lean": "a24c6a4400485e2b008e9e374c9fc52496e033255123049b76fe56fee96e4819"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 59.327,
+    "env_compare_and_core_audit_seconds": 66.166,
+    "total_elapsed_seconds": 257.134,
+    "user_cpu_seconds": 151.107,
+    "system_cpu_seconds": 58.093,
+    "peak_rss_mib": 13525.72
+  },
+  "status": "PASS"
+}

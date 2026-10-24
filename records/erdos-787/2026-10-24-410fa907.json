@@ -1,0 +1,117 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-24-410fa907",
+  "verification_date": "2026-10-24",
+  "state_sha256": "2d2e40a521d5450625ac2f1a600bd998f97df0519a466c04383a37c876b3ee68",
+  "package": "erdos-787",
+  "project_name": "Erd\u0151s 787: logarithmic restricted sum-avoiding lower bound",
+  "package_commit": "410fa9071d430791d9342617e35eeb94da78bbc8",
+  "commit": "e2be3af4e77f1b5fff2a3a83535ee5f112478db3",
+  "repository": "linrock/math-proofs",
+  "run_id": "40133340205",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 1773,
+    "lines": 61,
+    "sha256": "7ce890ad4d30b7109749703b65ad82bd11ae3b9b8c61d1cdd0694c6b3d2b4cd9",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos787.variants.klarner"
+  ],
+  "declaration_lines": {
+    "Erdos787.variants.klarner": {
+      "solution_line": null,
+      "challenge_line": null
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos787.variants.klarner"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 1,
+  "expected_axiom_audit_count": 1,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos787.variants.klarner",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Finset.restrictedSumset",
+      "kind": "def",
+      "declaration": "def Finset.restrictedSumset.{u_1} {\u03b1 : Type u_1} [Add \u03b1] [DecidableEq \u03b1] (S : Finset \u03b1) : Finset \u03b1 :=\n  fun {\u03b1} [Add \u03b1] [DecidableEq \u03b1] S => Finset.image (fun p => HAdd.hAdd (Prod.fst p) (Prod.snd p)) (Finset.offDiag S)"
+    },
+    {
+      "name": "Erdos787.g",
+      "kind": "def",
+      "declaration": "def Erdos787.g.{u_1} (G : Type u_1) [Add G] [DecidableEq G] (n : Nat) : Nat :=\n  fun G [Add G] [DecidableEq G] n =>\n  SupSet.sSup\n    (Set.ofPred fun m =>\n      \u2200 (A : Finset G),\n        Eq (Finset.card A) n \u2192\n          Exists fun B => And (LE.le B A) (And (LE.le m (Finset.card B)) (Disjoint (Finset.restrictedSumset B) A)))"
+    },
+    {
+      "name": "Erdos787.variants.klarner",
+      "kind": "theorem",
+      "declaration": "theorem Erdos787.variants.klarner :\n  Exists fun c =>\n    And (GT.gt c 0) (Filter.Eventually (fun n => LE.le (HMul.hMul c (Real.log \u2191n)) \u2191(Erdos787.g Real n)) Filter.atTop)"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos787.erdos_787.variants.klarner",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.787",
+      "solution_declaration": "Erdos787.variants.klarner",
+      "match_mode": "exact"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "a85b0ff8664c52ab923e0daf7e20cbc394272cd3831cc492ab144105d8091361"
+  },
+  "input_sha256": {
+    "Challenge.lean": "7ce890ad4d30b7109749703b65ad82bd11ae3b9b8c61d1cdd0694c6b3d2b4cd9",
+    "Solution.lean": "0f7a5e5e5248591925ef075e04b6dec4af5b7d89cbdacb3dbee9cf04439d33d9",
+    "AxiomAudit.lean": "1c6ff342de0552450e57ff981365582bc1b0adb1162c2f6bdf8b8c1a7cb04540",
+    "comparator.json": "f12f4e41095c19b9fc426d07bcfe1b49c1cf31f149612c9407b21f8ac5b7a0f3",
+    "formalization.yaml": "9f2838e50bae9c28b494b753fa0eba85f41293f7dcf47b48d46093894e922256",
+    "lakefile.toml": "ba9293f8e9d616eb5142680082b5abf392820fc11d651fbc705571fc1072628b",
+    "lake-manifest.json": "44887bdaa87126d5cb2c37dbb7b47ec200e05d6090a82111fafd6c2c3916a20d",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "5c58c5576e2e2520a37a0c1b67431580315ea83e3e5dc99a279723ba7a84b02b",
+    "Proofs/Erdos787Base.lean": "5265646d1c3d638bb8c1fe1dab7ad15fa0c3ef65b6cff55d3fbec1de6e1b41a9",
+    "Proofs/Erdos787Proofs.lean": "bec21dc3fead98a8c7c0b203e3a035d1c9382c1832a123d32dda218cae8fad16"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 18.962,
+    "env_compare_and_core_audit_seconds": 73.296,
+    "total_elapsed_seconds": 215.262,
+    "user_cpu_seconds": 111.668,
+    "system_cpu_seconds": 38.065,
+    "peak_rss_mib": 13741.63
+  },
+  "status": "PASS"
+}

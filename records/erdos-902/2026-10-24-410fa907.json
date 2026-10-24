@@ -1,0 +1,509 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-24-410fa907",
+  "verification_date": "2026-10-24",
+  "state_sha256": "0e284e7accd98171c0d12d7d51ccbcc404824a9aee27e057013ee84493b2f9eb",
+  "package": "erdos-902",
+  "project_name": "Erd\u0151s 902: Sch\u00fctte's paradoxical tournaments",
+  "package_commit": "410fa9071d430791d9342617e35eeb94da78bbc8",
+  "commit": "e2be3af4e77f1b5fff2a3a83535ee5f112478db3",
+  "repository": "linrock/math-proofs",
+  "run_id": "40133340205",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 12098,
+    "lines": 282,
+    "sha256": "ce5dd973c18540679353c273a9104b7a12120de2c9a701cf5f8b920f78415343",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos902.Core.hasParadoxicalTournament_zero_iff_and_f_zero",
+    "Erdos902.Core.hasParadoxicalTournament_one_iff_and_f_one",
+    "Erdos902.Core.paley7Digraph_dom2_and_f_two",
+    "Erdos902.Core.hasParadoxicalTournament_three_iff_and_f_three",
+    "Erdos902.Core.hasParadoxicalTournament_four_67_and_f_four_bounds",
+    "Erdos902.Core.erdos_and_szekeres_lower_bounds",
+    "Erdos902.Core.hasParadoxicalTournament_of_erdosProbabilisticCriterion",
+    "Erdos902.Core.erdos_szekeres_f_sandwich",
+    "Erdos902.Core.unit_leading_and_quintic_upper_bounds",
+    "Erdos902.Core.isTournament_and_regular_paleyFinDigraph",
+    "Erdos902.Core.isParadoxicalTournament_of_second_moment_commonOutNeigh",
+    "Erdos902.Core.twenty_nine_seventy_nine_lower_bound_and_not_criterion_ten",
+    "Erdos902.erdos_902.variants.f_two",
+    "Erdos902.erdos_902.variants.erdos_lower",
+    "Erdos902.erdos_902.variants.szekeres_f_three",
+    "Erdos902.erdos_902.variants.szekeres_lower"
+  ],
+  "declaration_lines": {
+    "Erdos902.Core.hasParadoxicalTournament_zero_iff_and_f_zero": {
+      "solution_line": 104,
+      "challenge_line": 131
+    },
+    "Erdos902.Core.hasParadoxicalTournament_one_iff_and_f_one": {
+      "solution_line": 108,
+      "challenge_line": 137
+    },
+    "Erdos902.Core.paley7Digraph_dom2_and_f_two": {
+      "solution_line": 114,
+      "challenge_line": 144
+    },
+    "Erdos902.Core.hasParadoxicalTournament_three_iff_and_f_three": {
+      "solution_line": 133,
+      "challenge_line": 152
+    },
+    "Erdos902.Core.hasParadoxicalTournament_four_67_and_f_four_bounds": {
+      "solution_line": 153,
+      "challenge_line": 160
+    },
+    "Erdos902.Core.erdos_and_szekeres_lower_bounds": {
+      "solution_line": 159,
+      "challenge_line": 167
+    },
+    "Erdos902.Core.hasParadoxicalTournament_of_erdosProbabilisticCriterion": {
+      "solution_line": 171,
+      "challenge_line": 176
+    },
+    "Erdos902.Core.erdos_szekeres_f_sandwich": {
+      "solution_line": 176,
+      "challenge_line": 184
+    },
+    "Erdos902.Core.unit_leading_and_quintic_upper_bounds": {
+      "solution_line": 183,
+      "challenge_line": 194
+    },
+    "Erdos902.Core.isTournament_and_regular_paleyFinDigraph": {
+      "solution_line": 199,
+      "challenge_line": 206
+    },
+    "Erdos902.Core.isParadoxicalTournament_of_second_moment_commonOutNeigh": {
+      "solution_line": 207,
+      "challenge_line": 217
+    },
+    "Erdos902.Core.twenty_nine_seventy_nine_lower_bound_and_not_criterion_ten": {
+      "solution_line": 214,
+      "challenge_line": 226
+    },
+    "Erdos902.erdos_902.variants.f_two": {
+      "solution_line": null,
+      "challenge_line": null
+    },
+    "Erdos902.erdos_902.variants.erdos_lower": {
+      "solution_line": null,
+      "challenge_line": null
+    },
+    "Erdos902.erdos_902.variants.szekeres_f_three": {
+      "solution_line": null,
+      "challenge_line": null
+    },
+    "Erdos902.erdos_902.variants.szekeres_lower": {
+      "solution_line": null,
+      "challenge_line": null
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos902.Core.erdos_and_szekeres_lower_bounds",
+    "Erdos902.Core.erdos_szekeres_f_sandwich",
+    "Erdos902.Core.hasParadoxicalTournament_four_67_and_f_four_bounds",
+    "Erdos902.Core.hasParadoxicalTournament_of_erdosProbabilisticCriterion",
+    "Erdos902.Core.hasParadoxicalTournament_one_iff_and_f_one",
+    "Erdos902.Core.hasParadoxicalTournament_three_iff_and_f_three",
+    "Erdos902.Core.hasParadoxicalTournament_zero_iff_and_f_zero",
+    "Erdos902.Core.isParadoxicalTournament_of_second_moment_commonOutNeigh",
+    "Erdos902.Core.isTournament_and_regular_paleyFinDigraph",
+    "Erdos902.Core.paley7Digraph_dom2_and_f_two",
+    "Erdos902.Core.twenty_nine_seventy_nine_lower_bound_and_not_criterion_ten",
+    "Erdos902.Core.unit_leading_and_quintic_upper_bounds",
+    "Erdos902.erdos_902.variants.erdos_lower",
+    "Erdos902.erdos_902.variants.f_two",
+    "Erdos902.erdos_902.variants.szekeres_f_three",
+    "Erdos902.erdos_902.variants.szekeres_lower"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 16,
+  "expected_axiom_audit_count": 16,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos902.Core.hasParadoxicalTournament_zero_iff_and_f_zero",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos902.Core.hasParadoxicalTournament_one_iff_and_f_one",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos902.Core.paley7Digraph_dom2_and_f_two",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos902.Core.hasParadoxicalTournament_three_iff_and_f_three",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos902.Core.hasParadoxicalTournament_four_67_and_f_four_bounds",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos902.Core.erdos_and_szekeres_lower_bounds",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos902.Core.hasParadoxicalTournament_of_erdosProbabilisticCriterion",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos902.Core.erdos_szekeres_f_sandwich",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos902.Core.unit_leading_and_quintic_upper_bounds",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos902.Core.isTournament_and_regular_paleyFinDigraph",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos902.Core.isParadoxicalTournament_of_second_moment_commonOutNeigh",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos902.Core.twenty_nine_seventy_nine_lower_bound_and_not_criterion_ten",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos902.erdos_902.variants.f_two",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos902.erdos_902.variants.erdos_lower",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos902.erdos_902.variants.szekeres_f_three",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos902.erdos_902.variants.szekeres_lower",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Erdos902.HasPropertyS",
+      "kind": "def",
+      "declaration": "def Erdos902.HasPropertyS.{u_1} {V : Type u_1} (G : Digraph V) (n : Nat) : Prop :=\n  fun {V} G n =>\n  \u2200 (E : Finset V),\n    Eq (Finset.card E) n \u2192\n      Exists fun x => And (Not (Membership.mem E x)) (\u2200 (e : V), Membership.mem E e \u2192 Digraph.Adj G x e)"
+    },
+    {
+      "name": "Erdos902.f",
+      "kind": "def",
+      "declaration": "def Erdos902.f (n : Nat) : Nat :=\n  fun n =>\n  InfSet.sInf\n    (Set.ofPred fun m =>\n      And (LE.le n m) (Exists fun G => And (Erdos902.Core.IsTournament G) (Erdos902.HasPropertyS G n)))"
+    },
+    {
+      "name": "Erdos902.Core.commonOutNeigh",
+      "kind": "def",
+      "declaration": "def Erdos902.Core.commonOutNeigh {N : Nat} (G : Digraph (Fin N)) (u v : Fin N) : Finset (Fin N) :=\n  fun {N} G u v => Inter.inter (Erdos902.Core.outNeigh G u) (Erdos902.Core.outNeigh G v)"
+    },
+    {
+      "name": "Erdos902.Core.inNeigh",
+      "kind": "def",
+      "declaration": "def Erdos902.Core.inNeigh {N : Nat} (G : Digraph (Fin N)) (v : Fin N) : Finset (Fin N) :=\n  fun {N} G v => Finset.filter (fun u => Digraph.Adj G u v) Finset.univ"
+    },
+    {
+      "name": "Erdos902.Core.outNeigh",
+      "kind": "def",
+      "declaration": "def Erdos902.Core.outNeigh {N : Nat} (G : Digraph (Fin N)) (v : Fin N) : Finset (Fin N) :=\n  fun {N} G v => Finset.filter (fun u => Digraph.Adj G v u) Finset.univ"
+    },
+    {
+      "name": "Erdos902.Core.paleyFinDigraph",
+      "kind": "def",
+      "declaration": "def Erdos902.Core.paleyFinDigraph (p : Nat) : Digraph (Fin p) :=\n  fun p => Digraph.mk fun u v => And (Ne \u2191\u2191u \u2191\u2191v) (IsSquare (HSub.hSub \u2191\u2191v \u2191\u2191u))"
+    },
+    {
+      "name": "Erdos902.Core.ErdosProbabilisticCriterion",
+      "kind": "def",
+      "declaration": "def Erdos902.Core.ErdosProbabilisticCriterion (n N : Nat) : Prop :=\n  fun n N =>\n  LT.lt (HMul.hMul (Nat.choose N n) (HPow.hPow (HSub.hSub (HPow.hPow 2 n) 1) (HSub.hSub N n)))\n    (HPow.hPow (HPow.hPow 2 n) (HSub.hSub N n))"
+    },
+    {
+      "name": "Erdos902.Core.isQR67",
+      "kind": "def",
+      "declaration": "def Erdos902.Core.isQR67 (d : Nat) : Bool :=\n  fun d =>\n  ite (LT.lt d 29)\n    (ite (LT.lt d 16)\n      (ite (LT.lt d 9) (ite (LT.lt d 4) (BEq.beq d 1) (ite (Eq (BEq.beq d 4) Bool.true) Bool.true (BEq.beq d 6)))\n        (ite (Eq (BEq.beq d 9) Bool.true) Bool.true\n          (ite (LT.lt d 14) (BEq.beq d 10) (ite (Eq (BEq.beq d 14) Bool.true) Bool.true (BEq.beq d 15)))))\n      (ite (Eq (BEq.beq d 16) Bool.true) Bool.true\n        (ite (LT.lt d 22) (ite (LT.lt d 19) (BEq.beq d 17) (ite (Eq (BEq.beq d 19) Bool.true) Bool.true (BEq.beq d 21)))\n          (ite (Eq (BEq.beq d 22) Bool.true) Bool.true\n            (ite (LT.lt d 24) (BEq.beq d 23)\n              (ite (Eq (BEq.beq d 24) Bool.true) Bool.true (ite (LT.lt d 26) (BEq.beq d 25) (BEq.beq d 26))))))))\n    (ite (Eq (BEq.beq d 29) Bool.true) Bool.true\n      (ite (LT.lt d 47)\n        (ite (LT.lt d 37) (ite (LT.lt d 35) (BEq.beq d 33) (ite (Eq (BEq.beq d 35) Bool.true) Bool.true (BEq.beq d 36)))\n          (ite (Eq (BEq.beq d 37) Bool.true) Bool.true (ite (LT.lt d 40) (BEq.beq d 39) (BEq.beq d 40))))\n        (ite (Eq (BEq.beq d 47) Bool.true) Bool.true\n          (ite (LT.lt d 59)\n            (ite (LT.lt d 55) (ite (LT.lt d 54) (BEq.beq d 49) (BEq.beq d 54))\n              (ite (Eq (BEq.beq d 55) Bool.true) Bool.true (BEq.beq d 56)))\n            (ite (Eq (BEq.beq d 59) Bool.true) Bool.true\n              (ite (LT.lt d 64) (ite (LT.lt d 62) (BEq.beq d 60) (BEq.beq d 62))\n                (ite (Eq (BEq.beq d 64) Bool.true) Bool.true (BEq.beq d 65))))))))"
+    },
+    {
+      "name": "Erdos902.Core.paley67Digraph",
+      "kind": "def",
+      "declaration": "def Erdos902.Core.paley67Digraph : Digraph (Fin 67) :=\n  Digraph.mk fun u v => Eq (Erdos902.Core.isQR67 (HMod.hMod (HSub.hSub (HAdd.hAdd (\u2191v) 67) \u2191u) 67)) Bool.true"
+    },
+    {
+      "name": "Erdos902.Core.isQR19",
+      "kind": "def",
+      "declaration": "def Erdos902.Core.isQR19 (d : Nat) : Bool :=\n  fun d =>\n  Bool.or\n    (Bool.or\n      (Bool.or\n        (Bool.or\n          (Bool.or (Bool.or (Bool.or (Bool.or (BEq.beq d 1) (BEq.beq d 4)) (BEq.beq d 5)) (BEq.beq d 6)) (BEq.beq d 7))\n          (BEq.beq d 9))\n        (BEq.beq d 11))\n      (BEq.beq d 16))\n    (BEq.beq d 17)"
+    },
+    {
+      "name": "Erdos902.Core.paley19Digraph",
+      "kind": "def",
+      "declaration": "def Erdos902.Core.paley19Digraph : Digraph (Fin 19) :=\n  Digraph.mk fun u v => Eq (Erdos902.Core.isQR19 (HMod.hMod (HSub.hSub (HAdd.hAdd (\u2191v) 19) \u2191u) 19)) Bool.true"
+    },
+    {
+      "name": "Erdos902.Core.paley7Digraph",
+      "kind": "def",
+      "declaration": "def Erdos902.Core.paley7Digraph : Digraph (Fin 7) :=\n  Digraph.mk fun u v =>\n  have d := HMod.hMod (HSub.hSub (HAdd.hAdd (\u2191v) 7) \u2191u) 7;\n  Or (Eq d 1) (Or (Eq d 2) (Eq d 4))"
+    },
+    {
+      "name": "Erdos902.Core.paley3Digraph",
+      "kind": "def",
+      "declaration": "def Erdos902.Core.paley3Digraph : Digraph (Fin 3) :=\n  Digraph.mk fun u v => Eq (HMod.hMod (HSub.hSub (HAdd.hAdd (\u2191v) 3) \u2191u) 3) 1"
+    },
+    {
+      "name": "Erdos902.Core.f",
+      "kind": "def",
+      "declaration": "def Erdos902.Core.f (n : Nat) : Nat :=\n  fun n => InfSet.sInf (Set.ofPred fun N => Erdos902.Core.HasParadoxicalTournament n N)"
+    },
+    {
+      "name": "Erdos902.Core.Dominates",
+      "kind": "def",
+      "declaration": "def Erdos902.Core.Dominates.{u_1} {V : Type u_1} (G : Digraph V) (v : V) (S : Finset V) : Prop :=\n  fun {V} G v S => \u2200 (u : V), Membership.mem S u \u2192 Digraph.Adj G v u"
+    },
+    {
+      "name": "Erdos902.Core.IsTournament",
+      "kind": "def",
+      "declaration": "def Erdos902.Core.IsTournament.{u_1} {V : Type u_1} (G : Digraph V) : Prop :=\n  fun {V} G =>\n  And (\u2200 (v : V), Not (Digraph.Adj G v v)) (\u2200 (u v : V), Ne u v \u2192 Iff (Digraph.Adj G u v) (Not (Digraph.Adj G v u)))"
+    },
+    {
+      "name": "Erdos902.Core.IsParadoxicalTournament",
+      "kind": "def",
+      "declaration": "def Erdos902.Core.IsParadoxicalTournament.{u_1} {V : Type u_1} [Fintype V] (n : Nat) (G : Digraph V) : Prop :=\n  fun {V} [Fintype V] n G =>\n  And (Erdos902.Core.IsTournament G)\n    (And (LE.le n (Fintype.card V))\n      (\u2200 (S : Finset V), Eq (Finset.card S) n \u2192 Exists fun v => Erdos902.Core.Dominates G v S))"
+    },
+    {
+      "name": "Erdos902.Core.HasParadoxicalTournament",
+      "kind": "def",
+      "declaration": "def Erdos902.Core.HasParadoxicalTournament (n N : Nat) : Prop :=\n  fun n N => Exists fun G => Erdos902.Core.IsParadoxicalTournament n G"
+    },
+    {
+      "name": "Erdos902.Core.hasParadoxicalTournament_zero_iff_and_f_zero",
+      "kind": "theorem",
+      "declaration": "theorem Erdos902.Core.hasParadoxicalTournament_zero_iff_and_f_zero (N : Nat) :\n  And (Iff (Erdos902.Core.HasParadoxicalTournament 0 N) (LE.le 1 N)) (Eq (Erdos902.Core.f 0) 1)"
+    },
+    {
+      "name": "Erdos902.Core.hasParadoxicalTournament_one_iff_and_f_one",
+      "kind": "theorem",
+      "declaration": "theorem Erdos902.Core.hasParadoxicalTournament_one_iff_and_f_one (N : Nat) :\n  And (Erdos902.Core.IsParadoxicalTournament 1 Erdos902.Core.paley3Digraph)\n    (And (Iff (Erdos902.Core.HasParadoxicalTournament 1 N) (LE.le 3 N)) (Eq (Erdos902.Core.f 1) 3))"
+    },
+    {
+      "name": "Erdos902.Core.paley7Digraph_dom2_and_f_two",
+      "kind": "theorem",
+      "declaration": "theorem Erdos902.Core.paley7Digraph_dom2_and_f_two (N : Nat) :\n  And (Erdos902.Core.IsParadoxicalTournament 2 Erdos902.Core.paley7Digraph)\n    (And (Iff (Erdos902.Core.HasParadoxicalTournament 2 N) (LE.le 7 N)) (Eq (Erdos902.Core.f 2) 7))"
+    },
+    {
+      "name": "Erdos902.Core.hasParadoxicalTournament_three_iff_and_f_three",
+      "kind": "theorem",
+      "declaration": "theorem Erdos902.Core.hasParadoxicalTournament_three_iff_and_f_three (N : Nat) :\n  And (Erdos902.Core.IsParadoxicalTournament 3 Erdos902.Core.paley19Digraph)\n    (And (Iff (Erdos902.Core.HasParadoxicalTournament 3 N) (LE.le 19 N))\n      (And (LE.le 14 (Erdos902.Core.f 3)) (And (LE.le (Erdos902.Core.f 3) 19) (Eq (Erdos902.Core.f 3) 19))))"
+    },
+    {
+      "name": "Erdos902.Core.hasParadoxicalTournament_four_67_and_f_four_bounds",
+      "kind": "theorem",
+      "declaration": "theorem Erdos902.Core.hasParadoxicalTournament_four_67_and_f_four_bounds :\n  And (Erdos902.Core.IsParadoxicalTournament 4 Erdos902.Core.paley67Digraph)\n    (And (Erdos902.Core.HasParadoxicalTournament 4 67)\n      (And (LE.le 47 (Erdos902.Core.f 4)) (LE.le (Erdos902.Core.f 4) 67)))"
+    },
+    {
+      "name": "Erdos902.Core.erdos_and_szekeres_lower_bounds",
+      "kind": "theorem",
+      "declaration": "theorem Erdos902.Core.erdos_and_szekeres_lower_bounds (k N : Nat) :\n  And\n    (Erdos902.Core.HasParadoxicalTournament k N \u2192\n      And (LE.le (HSub.hSub (HPow.hPow 2 (HAdd.hAdd k 1)) 1) N) (LE.le (HPow.hPow 2 k) N))\n    (And\n      (LE.le 1 k \u2192\n        And (LE.le (HSub.hSub (HPow.hPow 2 (HAdd.hAdd k 1)) 1) (Erdos902.Core.f k))\n          (LE.le (HSub.hSub (HMul.hMul (HAdd.hAdd k 2) (HPow.hPow 2 (HSub.hSub k 1))) 1) (Erdos902.Core.f k)))\n      (LE.le 1 k \u2192\n        Erdos902.Core.HasParadoxicalTournament k N \u2192\n          And (LE.le (HSub.hSub (HMul.hMul (HAdd.hAdd k 2) (HPow.hPow 2 (HSub.hSub k 1))) 1) N)\n            (LT.lt (HMul.hMul k (HPow.hPow 2 (HSub.hSub k 1))) N)))"
+    },
+    {
+      "name": "Erdos902.Core.hasParadoxicalTournament_of_erdosProbabilisticCriterion",
+      "kind": "theorem",
+      "declaration": "theorem Erdos902.Core.hasParadoxicalTournament_of_erdosProbabilisticCriterion {n N : Nat} (hnN : LE.le n N)\n  (hcrit : Erdos902.Core.ErdosProbabilisticCriterion n N) : Erdos902.Core.HasParadoxicalTournament n N"
+    },
+    {
+      "name": "Erdos902.Core.erdos_szekeres_f_sandwich",
+      "kind": "theorem",
+      "declaration": "theorem Erdos902.Core.erdos_szekeres_f_sandwich (n : Nat) (hn : LE.le 1 n) :\n  And (LE.le (HSub.hSub (HPow.hPow 2 (HAdd.hAdd n 1)) 1) (Erdos902.Core.f n))\n    (And (LE.le (HSub.hSub (HMul.hMul (HAdd.hAdd n 2) (HPow.hPow 2 (HSub.hSub n 1))) 1) (Erdos902.Core.f n))\n      (And\n        (LE.le (Erdos902.Core.f n)\n          (HAdd.hAdd n (HMul.hMul (HMul.hMul (HMul.hMul 2 n) (HAdd.hAdd n 1)) (HPow.hPow 2 n))))\n        (LE.le (Erdos902.Core.f n) (HMul.hMul (HMul.hMul 5 (HPow.hPow n 2)) (HPow.hPow 2 n)))))"
+    },
+    {
+      "name": "Erdos902.Core.unit_leading_and_quintic_upper_bounds",
+      "kind": "theorem",
+      "declaration": "theorem Erdos902.Core.unit_leading_and_quintic_upper_bounds :\n  And\n    (\u2200 (n : Nat),\n      LE.le 1 n \u2192\n        And (Erdos902.Core.HasParadoxicalTournament n (HMul.hMul (HMul.hMul n (HAdd.hAdd n 1)) (HPow.hPow 2 n)))\n          (And (LE.le (Erdos902.Core.f n) (HMul.hMul (HMul.hMul n (HAdd.hAdd n 1)) (HPow.hPow 2 n)))\n            (LE.le (Erdos902.Core.f n) (HAdd.hAdd n (HMul.hMul (HAdd.hAdd (HPow.hPow n 2) 5) (HPow.hPow 2 n))))))\n    (And\n      (\u2200 (n : Nat),\n        LE.le 11 n \u2192\n          And (Erdos902.Core.HasParadoxicalTournament n (HMul.hMul (HPow.hPow n 2) (HPow.hPow 2 n)))\n            (LE.le (Erdos902.Core.f n) (HMul.hMul (HPow.hPow n 2) (HPow.hPow 2 n))))\n      (And (LE.le (Erdos902.Core.f 5) 965)\n        (And (LE.le (Erdos902.Core.f 6) 2630)\n          (And (LE.le (Erdos902.Core.f 7) 6919)\n            (And (LE.le (Erdos902.Core.f 8) 17416)\n              (And (LE.le (Erdos902.Core.f 9) 43017) (LE.le (Erdos902.Core.f 10) 103434)))))))"
+    },
+    {
+      "name": "Erdos902.Core.isTournament_and_regular_paleyFinDigraph",
+      "kind": "theorem",
+      "declaration": "theorem Erdos902.Core.isTournament_and_regular_paleyFinDigraph {p : Nat} [Fact (Nat.Prime p)] (hp : Eq (HMod.hMod p 4) 3) :\n  And (Erdos902.Core.IsTournament (Erdos902.Core.paleyFinDigraph p))\n    (\u2200 (u : Fin p),\n      And (Eq (Finset.card (Erdos902.Core.outNeigh (Erdos902.Core.paleyFinDigraph p) u)) (HDiv.hDiv (HSub.hSub p 1) 2))\n        (Eq (Finset.card (Erdos902.Core.inNeigh (Erdos902.Core.paleyFinDigraph p) u)) (HDiv.hDiv (HSub.hSub p 1) 2)))"
+    },
+    {
+      "name": "Erdos902.Core.isParadoxicalTournament_of_second_moment_commonOutNeigh",
+      "kind": "theorem",
+      "declaration": "theorem Erdos902.Core.isParadoxicalTournament_of_second_moment_commonOutNeigh {k N : Nat} {G : Digraph (Fin N)}\n  (hG : Erdos902.Core.IsTournament G) (hkN : LE.le k N)\n  (hsm :\n    LT.lt\n      (HMul.hMul (HSub.hSub (Nat.choose N k) 1)\n        (Finset.sum Finset.univ fun u =>\n          Finset.sum Finset.univ fun v => Nat.choose (Finset.card (Erdos902.Core.commonOutNeigh G u v)) k))\n      (HPow.hPow (Finset.sum Finset.univ fun v => Nat.choose (Finset.card (Erdos902.Core.outNeigh G v)) k) 2)) :\n  Erdos902.Core.IsParadoxicalTournament k G"
+    },
+    {
+      "name": "Erdos902.Core.twenty_nine_seventy_nine_lower_bound_and_not_criterion_ten",
+      "kind": "theorem",
+      "declaration": "theorem Erdos902.Core.twenty_nine_seventy_nine_lower_bound_and_not_criterion_ten :\n  And\n    (\u2200 (n : Nat),\n      LE.le 8 n \u2192\n        LE.le (HMul.hMul 29 (HPow.hPow (HPow.hPow 2 n) (HPow.hPow 2 n)))\n          (HMul.hMul 79 (HPow.hPow (HSub.hSub (HPow.hPow 2 n) 1) (HPow.hPow 2 n))))\n    (And (Not (Erdos902.Core.ErdosProbabilisticCriterion 10 (HMul.hMul (HPow.hPow 10 2) (HPow.hPow 2 10))))\n      (\u2200 (n : Nat),\n        LE.le 1 n \u2192\n          LE.le n 10 \u2192 Not (Erdos902.Core.ErdosProbabilisticCriterion n (HMul.hMul (HPow.hPow n 2) (HPow.hPow 2 n)))))"
+    },
+    {
+      "name": "Erdos902.erdos_902.variants.f_two",
+      "kind": "theorem",
+      "declaration": "theorem Erdos902.erdos_902.variants.f_two : Eq (Erdos902.f 2) 7"
+    },
+    {
+      "name": "Erdos902.erdos_902.variants.erdos_lower",
+      "kind": "theorem",
+      "declaration": "theorem Erdos902.erdos_902.variants.erdos_lower (n : Nat) : LE.le (HSub.hSub (HPow.hPow 2 (HAdd.hAdd n 1)) 1) (Erdos902.f n)"
+    },
+    {
+      "name": "Erdos902.erdos_902.variants.szekeres_f_three",
+      "kind": "theorem",
+      "declaration": "theorem Erdos902.erdos_902.variants.szekeres_f_three : Eq (Erdos902.f 3) 19"
+    },
+    {
+      "name": "Erdos902.erdos_902.variants.szekeres_lower",
+      "kind": "theorem",
+      "declaration": "theorem Erdos902.erdos_902.variants.szekeres_lower :\n  Exists fun c =>\n    And (GT.gt c 0)\n      (Filter.Eventually (fun n => LE.le (HMul.hMul (HMul.hMul c \u2191n) (HPow.hPow 2 n)) \u2191(Erdos902.f n)) Filter.atTop)"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos902.erdos_902.variants.erdos_lower",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.902",
+      "solution_declaration": "Erdos902.erdos_902.variants.erdos_lower",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos902.erdos_902.variants.szekeres_lower",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.902",
+      "solution_declaration": "Erdos902.erdos_902.variants.szekeres_lower",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos902.erdos_902.variants.f_two",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.902",
+      "solution_declaration": "Erdos902.erdos_902.variants.f_two",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos902.erdos_902.variants.szekeres_f_three",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.902",
+      "solution_declaration": "Erdos902.erdos_902.variants.szekeres_f_three",
+      "match_mode": "exact"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "a85b0ff8664c52ab923e0daf7e20cbc394272cd3831cc492ab144105d8091361"
+  },
+  "input_sha256": {
+    "Challenge.lean": "ce5dd973c18540679353c273a9104b7a12120de2c9a701cf5f8b920f78415343",
+    "Solution.lean": "0ac1cf65b7fc45d63d8f5d8a0d7b18d963d5a6495437b70c3fbf869a0e1c1b1a",
+    "AxiomAudit.lean": "0060adfda48c58573dc19959113c17cbf06a907408e808c556d1c73a29946478",
+    "Statement.lean": "143763e47bf9d7ff0633a18a10c391fc87882bad62078c8ce2b288fa2fd5b97f",
+    "comparator.json": "c391d222d64462f67b8b50fa6f2cc010aad03877f9e3e69d804d39275be9b001",
+    "formalization.yaml": "0feafc16bf547456e3c00af78d8d2c66e64153494bce06d096e7e224270359b8",
+    "lakefile.toml": "f14b782d7008937d23d74c7e4de79ceab933a5f7f2a079666a72f27497f44470",
+    "lake-manifest.json": "c6b294ce549cfee60c17d5710a60b804905ecc39dad4278b080c7031202b1d48",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "694f3c136549331c558647cb21a7e3485ffc4ab5e112c14f4720c1441494cda5",
+    "Proofs/Alignment902.lean": "a85620334030504ab53fd7671d1a67b5706bad21aedddf3dcdce026228089713",
+    "Proofs/Blueprint902.lean": "9ad9384c9e20d0ca34dd41959efa638a63d085491f47da34364c0717530a77b4",
+    "Proofs/Erdos902Unified435.lean": "0dc15a25644f1dde26387f4556fe40ce3a01529f3652818cf8fb8ea95ff156ab",
+    "Proofs/QuinticBinomialDecayAndKendallBabingtonSmithBounds902.lean": "02d8d074245a9b381a60280cf2b232147c3bbb24dcaf3088f0a8c376a8c78cd1",
+    "Proofs/SecondOrderBinomialDecayAndTransitiveTripleCounting902.lean": "3b6e020819d8f7803632a1f305856b91908586d88efafe0b74a94bb625cd106c",
+    "Proofs/SolutionUpstream902.lean": "db255ca35ec734a243091a4df8a3f1cc42ffd8eb35ef2107e7b8048f101560d6",
+    "Proofs/SzekeresParityRefinementAndTightenedBinomialBounds902.lean": "46ecb2423d3db5f8361d3ffffe3c362ec123cc01865feb3da1334852891df794"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 92.425,
+    "env_compare_and_core_audit_seconds": 76.386,
+    "total_elapsed_seconds": 313.9,
+    "user_cpu_seconds": 202.381,
+    "system_cpu_seconds": 80.432,
+    "peak_rss_mib": 13678.16
+  },
+  "status": "PASS"
+}

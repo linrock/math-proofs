@@ -2,7 +2,7 @@
   "schema_version": 2,
   "lean_toolchain": "leanprover/lean4:v4.35.0-rc2",
   "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
-  "total_verified_packages": 20,
+  "total_verified_packages": 24,
   "packages": {
     "erdos-9": {
       "package": "erdos-9",
@@ -782,6 +782,42 @@
         "2026-10-23-74888aff"
       ]
     },
+    "erdos-787": {
+      "package": "erdos-787",
+      "verification_id": "2026-10-24-410fa907",
+      "state_sha256": "2d2e40a521d5450625ac2f1a600bd998f97df0519a466c04383a37c876b3ee68",
+      "project_name": "Erd\u0151s 787: logarithmic restricted sum-avoiding lower bound",
+      "status": "PASS",
+      "package_commit": "410fa9071d430791d9342617e35eeb94da78bbc8",
+      "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+      "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+      "challenge_sha256": "7ce890ad4d30b7109749703b65ad82bd11ae3b9b8c61d1cdd0694c6b3d2b4cd9",
+      "solution_sha256": "0f7a5e5e5248591925ef075e04b6dec4af5b7d89cbdacb3dbee9cf04439d33d9",
+      "exported_theorems": [
+        "Erdos787.variants.klarner"
+      ],
+      "declaration_lines": {
+        "Erdos787.variants.klarner": {
+          "solution_line": null,
+          "challenge_line": null
+        }
+      },
+      "kernels": {
+        "nanoda_accepted": true,
+        "con_ron_accepted": true,
+        "lean_kernel_accepted": true
+      },
+      "fc_statement_matches": 1,
+      "record_json": "records/erdos-787/2026-10-24-410fa907.json",
+      "record_md": "records/erdos-787/2026-10-24-410fa907.md",
+      "commits": {
+        "410fa9071d430791d9342617e35eeb94da78bbc8": "2026-10-24-410fa907",
+        "e2be3af4e77f1b5fff2a3a83535ee5f112478db3": "2026-10-24-410fa907"
+      },
+      "verification_history": [
+        "2026-10-24-410fa907"
+      ]
+    },
     "erdos-836": {
       "package": "erdos-836",
       "verification_id": "2026-10-13-2c2d2f77",
@@ -1041,6 +1077,117 @@
       },
       "verification_history": [
         "2026-10-14-4a1f92f2"
+      ]
+    },
+    "erdos-902": {
+      "package": "erdos-902",
+      "verification_id": "2026-10-24-410fa907",
+      "state_sha256": "0e284e7accd98171c0d12d7d51ccbcc404824a9aee27e057013ee84493b2f9eb",
+      "project_name": "Erd\u0151s 902: Sch\u00fctte's paradoxical tournaments",
+      "status": "PASS",
+      "package_commit": "410fa9071d430791d9342617e35eeb94da78bbc8",
+      "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+      "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+      "challenge_sha256": "ce5dd973c18540679353c273a9104b7a12120de2c9a701cf5f8b920f78415343",
+      "solution_sha256": "0ac1cf65b7fc45d63d8f5d8a0d7b18d963d5a6495437b70c3fbf869a0e1c1b1a",
+      "exported_theorems": [
+        "Erdos902.Core.hasParadoxicalTournament_zero_iff_and_f_zero",
+        "Erdos902.Core.hasParadoxicalTournament_one_iff_and_f_one",
+        "Erdos902.Core.paley7Digraph_dom2_and_f_two",
+        "Erdos902.Core.hasParadoxicalTournament_three_iff_and_f_three",
+        "Erdos902.Core.hasParadoxicalTournament_four_67_and_f_four_bounds",
+        "Erdos902.Core.erdos_and_szekeres_lower_bounds",
+        "Erdos902.Core.hasParadoxicalTournament_of_erdosProbabilisticCriterion",
+        "Erdos902.Core.erdos_szekeres_f_sandwich",
+        "Erdos902.Core.unit_leading_and_quintic_upper_bounds",
+        "Erdos902.Core.isTournament_and_regular_paleyFinDigraph",
+        "Erdos902.Core.isParadoxicalTournament_of_second_moment_commonOutNeigh",
+        "Erdos902.Core.twenty_nine_seventy_nine_lower_bound_and_not_criterion_ten",
+        "Erdos902.erdos_902.variants.f_two",
+        "Erdos902.erdos_902.variants.erdos_lower",
+        "Erdos902.erdos_902.variants.szekeres_f_three",
+        "Erdos902.erdos_902.variants.szekeres_lower"
+      ],
+      "declaration_lines": {
+        "Erdos902.Core.hasParadoxicalTournament_zero_iff_and_f_zero": {
+          "solution_line": 104,
+          "challenge_line": 131
+        },
+        "Erdos902.Core.hasParadoxicalTournament_one_iff_and_f_one": {
+          "solution_line": 108,
+          "challenge_line": 137
+        },
+        "Erdos902.Core.paley7Digraph_dom2_and_f_two": {
+          "solution_line": 114,
+          "challenge_line": 144
+        },
+        "Erdos902.Core.hasParadoxicalTournament_three_iff_and_f_three": {
+          "solution_line": 133,
+          "challenge_line": 152
+        },
+        "Erdos902.Core.hasParadoxicalTournament_four_67_and_f_four_bounds": {
+          "solution_line": 153,
+          "challenge_line": 160
+        },
+        "Erdos902.Core.erdos_and_szekeres_lower_bounds": {
+          "solution_line": 159,
+          "challenge_line": 167
+        },
+        "Erdos902.Core.hasParadoxicalTournament_of_erdosProbabilisticCriterion": {
+          "solution_line": 171,
+          "challenge_line": 176
+        },
+        "Erdos902.Core.erdos_szekeres_f_sandwich": {
+          "solution_line": 176,
+          "challenge_line": 184
+        },
+        "Erdos902.Core.unit_leading_and_quintic_upper_bounds": {
+          "solution_line": 183,
+          "challenge_line": 194
+        },
+        "Erdos902.Core.isTournament_and_regular_paleyFinDigraph": {
+          "solution_line": 199,
+          "challenge_line": 206
+        },
+        "Erdos902.Core.isParadoxicalTournament_of_second_moment_commonOutNeigh": {
+          "solution_line": 207,
+          "challenge_line": 217
+        },
+        "Erdos902.Core.twenty_nine_seventy_nine_lower_bound_and_not_criterion_ten": {
+          "solution_line": 214,
+          "challenge_line": 226
+        },
+        "Erdos902.erdos_902.variants.f_two": {
+          "solution_line": null,
+          "challenge_line": null
+        },
+        "Erdos902.erdos_902.variants.erdos_lower": {
+          "solution_line": null,
+          "challenge_line": null
+        },
+        "Erdos902.erdos_902.variants.szekeres_f_three": {
+          "solution_line": null,
+          "challenge_line": null
+        },
+        "Erdos902.erdos_902.variants.szekeres_lower": {
+          "solution_line": null,
+          "challenge_line": null
+        }
+      },
+      "kernels": {
+        "nanoda_accepted": true,
+        "con_ron_accepted": true,
+        "lean_kernel_accepted": true
+      },
+      "fc_statement_matches": 4,
+      "record_json": "records/erdos-902/2026-10-24-410fa907.json",
+      "record_md": "records/erdos-902/2026-10-24-410fa907.md",
+      "commits": {
+        "410fa9071d430791d9342617e35eeb94da78bbc8": "2026-10-24-410fa907",
+        "e2be3af4e77f1b5fff2a3a83535ee5f112478db3": "2026-10-24-410fa907"
+      },
+      "verification_history": [
+        "2026-10-24-410fa907"
       ]
     },
     "erdos-939": {
@@ -1305,6 +1452,187 @@
         "2026-10-23-74888aff"
       ]
     },
+    "erdos-1122": {
+      "package": "erdos-1122",
+      "verification_id": "2026-10-24-410fa907",
+      "state_sha256": "b437dad83395c23074b87d82a636d4bcbdd6197fd91c4bd2970e0c226b37979a",
+      "project_name": "Erd\u0151s 1122: rigidity of additive functions with sparse descents",
+      "status": "PASS",
+      "package_commit": "410fa9071d430791d9342617e35eeb94da78bbc8",
+      "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+      "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+      "challenge_sha256": "0e643deda77d5726dfc4f532bbb43dbd1fec21ab5979cb63ad0de0eaeda0e00c",
+      "solution_sha256": "56964d6642cb32a930db95dfba1ee0611f635ec75a348a12c437ae4210817f52",
+      "exported_theorems": [
+        "Erdos1122.erdos_1122.variants.monotone",
+        "Erdos1122.erdos_1122.variants.sub_tendsto_zero",
+        "Erdos1122.Core.erdos1122_conjecture_implies_empty_descent_prop",
+        "Erdos1122.Core.coprime_cross_step_diff_eq",
+        "Erdos1122.Core.finitely_supported_erdos1122_unconditional",
+        "Erdos1122.Core.coprime_additive_mul_of_descentSet_empty",
+        "Erdos1122.Core.empty_descent_eq_scaled_log_unconditional",
+        "Erdos1122.Core.erdos1122_empty_descent_prop_holds",
+        "Erdos1122.Core.coprime_additive_mul_of_isLittleO_diff",
+        "Erdos1122.Core.littleO_diff_eq_scaled_log_unconditional",
+        "Erdos1122.Core.erdos1122_littleO_diff_prop_holds",
+        "Erdos1122.Core.wirsing_zero_density_eventually_exists_good_sandwich_shift",
+        "Erdos1122.Core.controlled_descent_telescoping_additive_defect_bound",
+        "Erdos1122.Core.coprime_additive_mul_of_isLittleO_descentCount_of_hasBoundedDownwardJumps",
+        "Erdos1122.Core.controlled_descent_log_ratio_diff_le_descentCount",
+        "Erdos1122.Core.sublogarithmic_descentCount_eq_scaled_log_of_hasBoundedDownwardJumps",
+        "Erdos1122.Core.trajectory_sublinear_descent_eq_scaled_log_of_hasBoundedDownwardJumps",
+        "Erdos1122.Core.exists_zero_descent_shifted_div_trajectory_of_mul_descentCount_lt",
+        "Erdos1122.Core.isScaledLogOnPos_iff_exists_boundedDyadicShellOscillation_of_isLittleO_descentCount_of_hasBoundedDownwardJumps",
+        "Erdos1122.Core.erdos1122_conjecture_of_boundedDownwardJumps_and_dyadicShellOscillation",
+        "Erdos1122.Core.completely_additive_dyadic_step_bounds_of_hasBoundedDownwardJumps",
+        "Erdos1122.Core.completely_additive_dyadic_shell_complement_eq",
+        "Erdos1122.Core.completely_additive_dyadic_shell_window_oscillation_bound",
+        "Erdos1122.Core.completely_additive_iterated_binary_halving_defect_le",
+        "Erdos1122.Core.completely_additive_iterated_simultaneous_binary_halving_diff_le",
+        "Erdos1122.Core.completely_additive_pow_two_shell_oscillation_of_hasBoundedDyadicShellOscillation",
+        "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_subshell_downward_drift",
+        "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_shell_descent_card_le",
+        "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_bitLength_zero_shell_bound",
+        "Erdos1122.Core.erdos_1122_of_boundedDownwardJumps_and_subshell_downward_drift"
+      ],
+      "declaration_lines": {
+        "Erdos1122.erdos_1122.variants.monotone": {
+          "solution_line": null,
+          "challenge_line": null
+        },
+        "Erdos1122.erdos_1122.variants.sub_tendsto_zero": {
+          "solution_line": null,
+          "challenge_line": null
+        },
+        "Erdos1122.Core.erdos1122_conjecture_implies_empty_descent_prop": {
+          "solution_line": 63,
+          "challenge_line": 96
+        },
+        "Erdos1122.Core.coprime_cross_step_diff_eq": {
+          "solution_line": 67,
+          "challenge_line": 100
+        },
+        "Erdos1122.Core.finitely_supported_erdos1122_unconditional": {
+          "solution_line": 73,
+          "challenge_line": 106
+        },
+        "Erdos1122.Core.coprime_additive_mul_of_descentSet_empty": {
+          "solution_line": 79,
+          "challenge_line": 112
+        },
+        "Erdos1122.Core.empty_descent_eq_scaled_log_unconditional": {
+          "solution_line": 84,
+          "challenge_line": 117
+        },
+        "Erdos1122.Core.erdos1122_empty_descent_prop_holds": {
+          "solution_line": 89,
+          "challenge_line": 122
+        },
+        "Erdos1122.Core.coprime_additive_mul_of_isLittleO_diff": {
+          "solution_line": 94,
+          "challenge_line": 127
+        },
+        "Erdos1122.Core.littleO_diff_eq_scaled_log_unconditional": {
+          "solution_line": 100,
+          "challenge_line": 133
+        },
+        "Erdos1122.Core.erdos1122_littleO_diff_prop_holds": {
+          "solution_line": 105,
+          "challenge_line": 138
+        },
+        "Erdos1122.Core.wirsing_zero_density_eventually_exists_good_sandwich_shift": {
+          "solution_line": 112,
+          "challenge_line": 145
+        },
+        "Erdos1122.Core.controlled_descent_telescoping_additive_defect_bound": {
+          "solution_line": 121,
+          "challenge_line": 154
+        },
+        "Erdos1122.Core.coprime_additive_mul_of_isLittleO_descentCount_of_hasBoundedDownwardJumps": {
+          "solution_line": 131,
+          "challenge_line": 164
+        },
+        "Erdos1122.Core.controlled_descent_log_ratio_diff_le_descentCount": {
+          "solution_line": 139,
+          "challenge_line": 172
+        },
+        "Erdos1122.Core.sublogarithmic_descentCount_eq_scaled_log_of_hasBoundedDownwardJumps": {
+          "solution_line": 148,
+          "challenge_line": 181
+        },
+        "Erdos1122.Core.trajectory_sublinear_descent_eq_scaled_log_of_hasBoundedDownwardJumps": {
+          "solution_line": 156,
+          "challenge_line": 189
+        },
+        "Erdos1122.Core.exists_zero_descent_shifted_div_trajectory_of_mul_descentCount_lt": {
+          "solution_line": 166,
+          "challenge_line": 199
+        },
+        "Erdos1122.Core.isScaledLogOnPos_iff_exists_boundedDyadicShellOscillation_of_isLittleO_descentCount_of_hasBoundedDownwardJumps": {
+          "solution_line": 171,
+          "challenge_line": 204
+        },
+        "Erdos1122.Core.erdos1122_conjecture_of_boundedDownwardJumps_and_dyadicShellOscillation": {
+          "solution_line": 178,
+          "challenge_line": 211
+        },
+        "Erdos1122.Core.completely_additive_dyadic_step_bounds_of_hasBoundedDownwardJumps": {
+          "solution_line": 188,
+          "challenge_line": 221
+        },
+        "Erdos1122.Core.completely_additive_dyadic_shell_complement_eq": {
+          "solution_line": 196,
+          "challenge_line": 229
+        },
+        "Erdos1122.Core.completely_additive_dyadic_shell_window_oscillation_bound": {
+          "solution_line": 201,
+          "challenge_line": 234
+        },
+        "Erdos1122.Core.completely_additive_iterated_binary_halving_defect_le": {
+          "solution_line": 208,
+          "challenge_line": 241
+        },
+        "Erdos1122.Core.completely_additive_iterated_simultaneous_binary_halving_diff_le": {
+          "solution_line": 216,
+          "challenge_line": 249
+        },
+        "Erdos1122.Core.completely_additive_pow_two_shell_oscillation_of_hasBoundedDyadicShellOscillation": {
+          "solution_line": 224,
+          "challenge_line": 257
+        },
+        "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_subshell_downward_drift": {
+          "solution_line": 231,
+          "challenge_line": 264
+        },
+        "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_shell_descent_card_le": {
+          "solution_line": 240,
+          "challenge_line": 273
+        },
+        "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_bitLength_zero_shell_bound": {
+          "solution_line": 248,
+          "challenge_line": 281
+        },
+        "Erdos1122.Core.erdos_1122_of_boundedDownwardJumps_and_subshell_downward_drift": {
+          "solution_line": 256,
+          "challenge_line": 289
+        }
+      },
+      "kernels": {
+        "nanoda_accepted": true,
+        "con_ron_accepted": true,
+        "lean_kernel_accepted": true
+      },
+      "fc_statement_matches": 30,
+      "record_json": "records/erdos-1122/2026-10-24-410fa907.json",
+      "record_md": "records/erdos-1122/2026-10-24-410fa907.md",
+      "commits": {
+        "410fa9071d430791d9342617e35eeb94da78bbc8": "2026-10-24-410fa907",
+        "e2be3af4e77f1b5fff2a3a83535ee5f112478db3": "2026-10-24-410fa907"
+      },
+      "verification_history": [
+        "2026-10-24-410fa907"
+      ]
+    },
     "erdos-1139": {
       "package": "erdos-1139",
       "verification_id": "2026-10-12-cf688ecc",
@@ -1369,6 +1697,42 @@
       },
       "verification_history": [
         "2026-10-12-cf688ecc"
+      ]
+    },
+    "erdos-1198": {
+      "package": "erdos-1198",
+      "verification_id": "2026-10-24-410fa907",
+      "state_sha256": "adeac1fe0193125f2e973c8cc4e8f60e4798b861efc514d5534c5c103ef47643",
+      "project_name": "Erd\u0151s 1198: Hindman's monochromatic finite-sums theorem",
+      "status": "PASS",
+      "package_commit": "410fa9071d430791d9342617e35eeb94da78bbc8",
+      "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+      "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+      "challenge_sha256": "5b73f4aa28741273a17465fc19f259e19437e4a3dbffd39efd978841862ce1da",
+      "solution_sha256": "f658ea6cf448ee0dbb0aba62dab5f60fe2b3246404f7a7f0f951346e8919cdb4",
+      "exported_theorems": [
+        "Erdos1198.erdos_1198.variants.hindman"
+      ],
+      "declaration_lines": {
+        "Erdos1198.erdos_1198.variants.hindman": {
+          "solution_line": null,
+          "challenge_line": null
+        }
+      },
+      "kernels": {
+        "nanoda_accepted": true,
+        "con_ron_accepted": true,
+        "lean_kernel_accepted": true
+      },
+      "fc_statement_matches": 1,
+      "record_json": "records/erdos-1198/2026-10-24-410fa907.json",
+      "record_md": "records/erdos-1198/2026-10-24-410fa907.md",
+      "commits": {
+        "410fa9071d430791d9342617e35eeb94da78bbc8": "2026-10-24-410fa907",
+        "e2be3af4e77f1b5fff2a3a83535ee5f112478db3": "2026-10-24-410fa907"
+      },
+      "verification_history": [
+        "2026-10-24-410fa907"
       ]
     }
   }

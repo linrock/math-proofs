@@ -1,0 +1,106 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-24-410fa907",
+  "verification_date": "2026-10-24",
+  "state_sha256": "adeac1fe0193125f2e973c8cc4e8f60e4798b861efc514d5534c5c103ef47643",
+  "package": "erdos-1198",
+  "project_name": "Erd\u0151s 1198: Hindman's monochromatic finite-sums theorem",
+  "package_commit": "410fa9071d430791d9342617e35eeb94da78bbc8",
+  "commit": "e2be3af4e77f1b5fff2a3a83535ee5f112478db3",
+  "repository": "linrock/math-proofs",
+  "run_id": "40133340205",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 919,
+    "lines": 31,
+    "sha256": "5b73f4aa28741273a17465fc19f259e19437e4a3dbffd39efd978841862ce1da",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos1198.erdos_1198.variants.hindman"
+  ],
+  "declaration_lines": {
+    "Erdos1198.erdos_1198.variants.hindman": {
+      "solution_line": null,
+      "challenge_line": null
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos1198.erdos_1198.variants.hindman"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 1,
+  "expected_axiom_audit_count": 1,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos1198.erdos_1198.variants.hindman",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Erdos1198.erdos_1198.variants.hindman",
+      "kind": "theorem",
+      "declaration": "theorem Erdos1198.erdos_1198.variants.hindman (c : Nat \u2192 Fin 2) :\n  Exists fun a =>\n    And (StrictMono a)\n      (And (LT.lt 0 (a 0))\n        (Exists fun col => \u2200 (T : Finset Nat), Finset.Nonempty T \u2192 Eq (c (Finset.sum T fun i => a i)) col))"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos1198.erdos_1198.variants.hindman",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.1198",
+      "solution_declaration": "Erdos1198.erdos_1198.variants.hindman",
+      "match_mode": "exact"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "a85b0ff8664c52ab923e0daf7e20cbc394272cd3831cc492ab144105d8091361"
+  },
+  "input_sha256": {
+    "Challenge.lean": "5b73f4aa28741273a17465fc19f259e19437e4a3dbffd39efd978841862ce1da",
+    "Solution.lean": "f658ea6cf448ee0dbb0aba62dab5f60fe2b3246404f7a7f0f951346e8919cdb4",
+    "AxiomAudit.lean": "b10688ac5bb9239af8008e6dcabfeb6f5c17cb2e234c2c22ca3d3029a289ed8a",
+    "comparator.json": "bdba012f47f8f0a5d888cfb28df51299c9bd4d7d519d09d57a42ada6ed013824",
+    "formalization.yaml": "6149e188098b0d0edf7f22011d3d4ff1c1e2569b4eadaa263fcbf3e23c4e458e",
+    "lakefile.toml": "5761825953014ca42b175aae54eb573c85a2da95977ab85cf1c09b655596e913",
+    "lake-manifest.json": "10c9b809343a7d8dd0cf1aef8ec0a370fad72ee265890403c0251f8fa2fa9562",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "0e28075dc6db3b60a3eeaada6a0f50612d3195af284dedd998805b3478fc66c0",
+    "Proofs/HindmanBlockConstruction1198.lean": "cadf82f980301a4f17df8d8a1ab13fe5cee70913eb0edafe64c9730a34eb44f3"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 45.638,
+    "env_compare_and_core_audit_seconds": 18.998,
+    "total_elapsed_seconds": 169.479,
+    "user_cpu_seconds": 77.369,
+    "system_cpu_seconds": 46.473,
+    "peak_rss_mib": 11433.97
+  },
+  "status": "PASS"
+}
