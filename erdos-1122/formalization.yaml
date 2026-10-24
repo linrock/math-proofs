@@ -1,0 +1,488 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 1122: rigidity of additive functions with sparse descents",
+    "description": "A Lean 4 formalization of Erdős's 1946 rigidity theorems for additive arithmetic functions, whose descent set A = {n ≥ 1 : f(n + 1) < f(n)} is measured by its counting function on [1, X]. For f : ℕ → ℝ additive on coprime arguments, the package proves that an empty descent set, and separately that f(n + 1) - f(n) = o(1), each force f(n) = c log n for a single real c, in the form the two solved variants take on erdosproblems.com. It also develops the coprime-sandwich and dyadic-shell machinery behind Erdős's argument and reduces the package's descent-count formulation of the main conjecture to bounded downward jumps together with a dyadic-shell oscillation or downward-drift hypothesis; a formal bridge from that formulation to the upstream hypothesis that the descent set has natural density zero is not included.",
+    "url": "https://github.com/linrock/math-proofs/tree/main/erdos-1122",
+    "license": "Apache-2.0",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ]
+  },
+  "classification": {
+    "arxiv": [
+      "math.NT"
+    ],
+    "msc2020": [
+      "11N64",
+      "11A25"
+    ]
+  },
+  "toolchain": {
+    "lean": "leanprover/lean4:v4.35.0-rc2",
+    "lake_manifest_sha256": "71970daaffedb3ba9fb7e34f729a67505080f5165ad24dd494575231874b89e0",
+    "mathlib_rev": "065356127b1dc0016f66b7283ce0ce2c4055aa55"
+  },
+  "sources": [
+    {
+      "type": "web",
+      "title": "Erdős Problem #1122",
+      "id": "https://www.erdosproblems.com/1122",
+      "authors": [
+        "Paul Erdős",
+        "Thomas F. Bloom"
+      ],
+      "year": 2026,
+      "relationship": "formalizes",
+      "license": "CC-BY-4.0",
+      "note": "Problem catalogue entry curated by Thomas F. Bloom, with the statement of Erdős Problem 1122, the historical remarks behind it, and the reference list. The two solved variants packaged here are stated on this page and in Erdős's 1946 paper."
+    },
+    {
+      "type": "paper",
+      "title": "On the distribution function of additive functions",
+      "id": "https://doi.org/10.2307/1969031",
+      "authors": [
+        "Paul Erdős"
+      ],
+      "year": 1946,
+      "relationship": "formalizes",
+      "license": "not-applicable",
+      "location": "Ann. of Math. (2) 47 (1946), 1-20",
+      "author_endorsement": "not-applicable",
+      "note": "Primary source for the monotone and vanishing consecutive-difference variants packaged here."
+    },
+    {
+      "type": "paper",
+      "title": "Additive functions in short intervals, gaps and a conjecture of Erdős",
+      "id": "https://doi.org/10.1007/s11139-022-00623-y",
+      "authors": [
+        "Alexander P. Mangerel"
+      ],
+      "year": 2022,
+      "relationship": "background",
+      "license": "not-applicable",
+      "location": "Ramanujan J. 59 (2022), 1023-1090",
+      "author_endorsement": "not-applicable",
+      "note": "Background for zero-density descent gaps and the local additive-function machinery used by the package's intermediate theorems."
+    },
+    {
+      "type": "paper",
+      "title": "Das asymptotische Verhalten von Summen über multiplikativen Funktionen",
+      "id": "https://doi.org/10.1007/BF01351892",
+      "authors": [
+        "Eduard Wirsing"
+      ],
+      "year": 1961,
+      "relationship": "background",
+      "license": "not-applicable",
+      "location": "Math. Ann. 143 (1961), 75-102",
+      "author_endorsement": "not-applicable",
+      "note": "Background for the window-averaging technique used by the package's Wirsing-style coprime sandwich lemmas. The package's lemmas are package-local and are not claimed to be stated in this paper."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/c094b979118b89adb77cf5f8d923ac9dd2e51b1d/FormalConjectures/ErdosProblems/1122.lean",
+      "relationship": "builds-on",
+      "note": "Pinned Formal Conjectures source of the two target declarations erdos_1122.variants.monotone and erdos_1122.variants.sub_tendsto_zero, together with the coprime-additivity formulation they share. The definitions and both statements in Statement.lean and Challenge.lean follow this file. The upstream file is licensed Apache-2.0."
+    }
+  ],
+  "status": {
+    "scope": "Proves the two upstream variants erdos_1122.variants.monotone and erdos_1122.variants.sub_tendsto_zero (Erdős 1946), which are the declarations the package targets in FormalConjectures/ErdosProblems/1122.lean. The main conjecture erdos_1122 remains open and is not proved or disproved. The package also proves 28 auxiliary theorems in the Erdos1122.Core namespace. Among these, the coprime cross-step identity, the finitely supported case, the empty-descent and o(1)-difference logarithmic rigidity results, and the Wirsing window-averaged shift existence hold without extra hypotheses beyond the stated ones. The remaining results carry distinct hypotheses: the K-window telescoping bound assumes a prefix jump bound and two endpoint range conditions; the Nat.log ratio squeeze assumes a prefix jump bound, power additivity, and a finite range condition; the dyadic-shell equivalence assumes coprime additivity, o(X) descent density, and bounded downward jumps, and concludes shell oscillation; the shell-cardinality and half-open shell oscillation hypotheses enter through separate rigidity reductions; and the two conditional reductions assume their stated uniformity hypotheses over every coprime-additive function with o(X) descent density. The conditional reductions state that the descent-count form `Erdos1122Conjecture` of the main conjecture follows from those extra hypotheses.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos1122.erdos_1122.variants.monotone",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.erdos_1122.variants.sub_tendsto_zero",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.erdos1122_conjecture_implies_empty_descent_prop",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.coprime_cross_step_diff_eq",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.finitely_supported_erdos1122_unconditional",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.coprime_additive_mul_of_descentSet_empty",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.empty_descent_eq_scaled_log_unconditional",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.erdos1122_empty_descent_prop_holds",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.coprime_additive_mul_of_isLittleO_diff",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.littleO_diff_eq_scaled_log_unconditional",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.erdos1122_littleO_diff_prop_holds",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.wirsing_zero_density_eventually_exists_good_sandwich_shift",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.controlled_descent_telescoping_additive_defect_bound",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.coprime_additive_mul_of_isLittleO_descentCount_of_hasBoundedDownwardJumps",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.controlled_descent_log_ratio_diff_le_descentCount",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.sublogarithmic_descentCount_eq_scaled_log_of_hasBoundedDownwardJumps",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.trajectory_sublinear_descent_eq_scaled_log_of_hasBoundedDownwardJumps",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.exists_zero_descent_shifted_div_trajectory_of_mul_descentCount_lt",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.isScaledLogOnPos_iff_exists_boundedDyadicShellOscillation_of_isLittleO_descentCount_of_hasBoundedDownwardJumps",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.erdos1122_conjecture_of_boundedDownwardJumps_and_dyadicShellOscillation",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.completely_additive_dyadic_step_bounds_of_hasBoundedDownwardJumps",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.completely_additive_dyadic_shell_complement_eq",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.completely_additive_dyadic_shell_window_oscillation_bound",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.completely_additive_iterated_binary_halving_defect_le",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.completely_additive_iterated_simultaneous_binary_halving_diff_le",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.completely_additive_pow_two_shell_oscillation_of_hasBoundedDyadicShellOscillation",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_subshell_downward_drift",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_shell_descent_card_le",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_bitLength_zero_shell_bound",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos1122.Core.erdos_1122_of_boundedDownwardJumps_and_subshell_downward_drift",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "All modules under Proofs/ and the Statement, Solution, and AxiomAudit modules build from source in Lean 4.35.0-rc2 with zero sorry. Challenge.lean is the statement file: it declares the 30 exported targets with `:= by sorry` on purpose, so that Comparator can check that Solution proves the same statements under the same names."
+  },
+  "fidelity": {
+    "divergences": "The two upstream variants are reproduced exactly. The package-local `Erdos1122Conjecture` replaces the upstream hypothesis that the descent set {n | 1 ≤ n ∧ f (n + 1) < f n} has natural density zero with the equivalent condition descentCount f X = o(X); the two are equivalent conditions but the bridge between them is not formalized here, and no `formal_proof` link is claimed for `erdos_1122`."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Statement fidelity, non-vacuity, and transitive axioms (restricted to propext, Classical.choice, and Quot.sound) were verified across all 30 exported theorems in Solution.lean."
+  },
+  "alignment": {
+    "namespace": "Erdos1122",
+    "statements": [
+      {
+        "source": "Paul Erdős (1946), “On the distribution function of additive functions”, Ann. of Math. (2) 47, 1-20; upstream declaration erdos_1122.variants.monotone in google-deepmind/formal-conjectures, FormalConjectures/ErdosProblems/1122.lean at commit c094b979118b89adb77cf5f8d923ac9dd2e51b1d",
+        "lean": "Erdos1122.erdos_1122.variants.monotone",
+        "module": "Solution",
+        "status": "proved",
+        "relationship": "formalizes",
+        "note": "Exact upstream statement. For every f : ℕ → ℝ that is additive on coprime positive arguments and satisfies f n ≤ f (n + 1) for all n ≥ 1, there is a real c with f n = c log n for every n ≥ 1. No further hypothesis is used."
+      },
+      {
+        "source": "Paul Erdős (1946), “On the distribution function of additive functions”, Ann. of Math. (2) 47, 1-20; upstream declaration erdos_1122.variants.sub_tendsto_zero in google-deepmind/formal-conjectures, FormalConjectures/ErdosProblems/1122.lean at commit c094b979118b89adb77cf5f8d923ac9dd2e51b1d",
+        "lean": "Erdos1122.erdos_1122.variants.sub_tendsto_zero",
+        "module": "Solution",
+        "status": "proved",
+        "relationship": "formalizes",
+        "note": "Exact upstream statement. For every f : ℕ → ℝ that is additive on coprime positive arguments and satisfies f (n + 1) - f n → 0, there is a real c with f n = c log n for every n ≥ 1. No further hypothesis is used."
+      },
+      {
+        "source": "Package-local implication relating the two statements of google-deepmind/formal-conjectures, FormalConjectures/ErdosProblems/1122.lean at commit c094b979118b89adb77cf5f8d923ac9dd2e51b1d (erdos_1122 and erdos_1122.variants.monotone); no separate published source",
+        "lean": "Erdos1122.Core.erdos1122_conjecture_implies_empty_descent_prop",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Hypothesis-free implication: the main conjecture (descent count o(X) forces a scaled logarithm) implies Erdős's empty-descent proposition. The implication holds because an empty descent set has descent count 0, hence density zero. It is a reduction, not a proof of either side."
+      },
+      {
+        "source": "Package-local identity used in the coprime-sandwich argument for Paul Erdős (1946), “On the distribution function of additive functions”, Ann. of Math. (2) 47, 1-20; no separate published source",
+        "lean": "Erdos1122.Core.coprime_cross_step_diff_eq",
+        "module": "Solution",
+        "status": "proved",
+        "note": "For coprime-additive f and positive a, b with a coprime to b + 1 and a + 1 coprime to b, the identity f((a + 1)b) - f(a(b + 1)) = (f(a + 1) - f a) - (f(b + 1) - f b) holds. The two coprimality side conditions are essential to the statement."
+      },
+      {
+        "source": "Package-local theorem about the conjecture erdos_1122 in google-deepmind/formal-conjectures, FormalConjectures/ErdosProblems/1122.lean at commit c094b979118b89adb77cf5f8d923ac9dd2e51b1d; no separate published source",
+        "lean": "Erdos1122.Core.finitely_supported_erdos1122_unconditional",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Let f be coprime-additive and vanish on every positive integer coprime to some fixed Q ≥ 1. If its descent count is o(X), then the descent set of f is empty, f vanishes on all positive integers, and f is a scaled logarithm. Both the support hypothesis and the o(X) hypothesis appear in the statement."
+      },
+      {
+        "source": "Paul Erdős (1946), “On the distribution function of additive functions”, Ann. of Math. (2) 47, 1-20, monotone (empty descent set) case behind variants.monotone; complete additivity is derived inside the package",
+        "lean": "Erdos1122.Core.coprime_additive_mul_of_descentSet_empty",
+        "module": "Solution",
+        "status": "proved",
+        "note": "If f is coprime-additive with empty descent set, then f is completely additive: f(a b) = f a + f b for all a, b ≥ 1, with no coprimality restriction on a and b."
+      },
+      {
+        "source": "Paul Erdős (1946), “On the distribution function of additive functions”, Ann. of Math. (2) 47, 1-20, monotone case with explicit constant f 2 / log 2",
+        "lean": "Erdos1122.Core.empty_descent_eq_scaled_log_unconditional",
+        "module": "Solution",
+        "status": "proved",
+        "note": "If f is coprime-additive with empty descent set, then f m = (f 2 / log 2) log m for every m ≥ 1, and consequently f is a scaled logarithm. The constant is explicit, so this is a strong form of Erdős's monotone theorem."
+      },
+      {
+        "source": "Paul Erdős (1946), “On the distribution function of additive functions”, Ann. of Math. (2) 47, 1-20, monotone case, stated as the proposition behind variants.monotone in google-deepmind/formal-conjectures, FormalConjectures/ErdosProblems/1122.lean at commit c094b979118b89adb77cf5f8d923ac9dd2e51b1d",
+        "lean": "Erdos1122.Core.erdos1122_empty_descent_prop_holds",
+        "module": "Solution",
+        "status": "proved",
+        "note": "The empty-descent proposition holds, and it is restated as the pointwise claim that every coprime-additive f with empty descent set is a scaled logarithm. This is Erdős's 1946 monotone case in proposition form."
+      },
+      {
+        "source": "Paul Erdős (1946), “On the distribution function of additive functions”, Ann. of Math. (2) 47, 1-20, vanishing consecutive-difference case behind variants.sub_tendsto_zero; complete additivity is derived inside the package",
+        "lean": "Erdos1122.Core.coprime_additive_mul_of_isLittleO_diff",
+        "module": "Solution",
+        "status": "proved",
+        "note": "If f is coprime-additive and f(n + 1) - f n = o(1), then f is completely additive: f(a b) = f a + f b for all a, b ≥ 1. The o(1) hypothesis is on consecutive values only."
+      },
+      {
+        "source": "Paul Erdős (1946), “On the distribution function of additive functions”, Ann. of Math. (2) 47, 1-20, vanishing consecutive-difference case with explicit constant f 2 / log 2",
+        "lean": "Erdos1122.Core.littleO_diff_eq_scaled_log_unconditional",
+        "module": "Solution",
+        "status": "proved",
+        "note": "If f is coprime-additive and f(n + 1) - f n = o(1), then f m = (f 2 / log 2) log m for every m ≥ 1, and f is a scaled logarithm. The constant is explicit."
+      },
+      {
+        "source": "Paul Erdős (1946), “On the distribution function of additive functions”, Ann. of Math. (2) 47, 1-20, vanishing consecutive-difference case, stated as the proposition behind variants.sub_tendsto_zero in google-deepmind/formal-conjectures, FormalConjectures/ErdosProblems/1122.lean at commit c094b979118b89adb77cf5f8d923ac9dd2e51b1d",
+        "lean": "Erdos1122.Core.erdos1122_littleO_diff_prop_holds",
+        "module": "Solution",
+        "status": "proved",
+        "note": "The vanishing-consecutive-difference proposition holds, and it is restated as the pointwise claim that every coprime-additive f with f(n + 1) - f n = o(1) is a scaled logarithm."
+      },
+      {
+        "source": "Package-local window-averaging bound for the coprime sandwich under descent count o(X); the averaging technique is that of Eduard Wirsing (1961), “Das asymptotische Verhalten von Summen über multiplikativen Funktionen”, Math. Ann. 143, 75-102, and the surrounding problem is Paul Erdős (1946), “On the distribution function of additive functions”, Ann. of Math. (2) 47, 1-20. No published statement of this bound is claimed",
+        "lean": "Erdos1122.Core.wirsing_zero_density_eventually_exists_good_sandwich_shift",
+        "module": "Solution",
+        "status": "proved",
+        "note": "For coprime-additive f with descent count o(X) and any a, b ≥ 1, all sufficiently large K admit k ∈ [1, K] with |f(a b) - f a - f b| ≤ f(w_+(a, b, k)) - f(w_-(a, b, k)), where w_± are the two coprime sandwich endpoints. The o(X) density hypothesis is what produces the shift."
+      },
+      {
+        "source": "Package-local K-window telescoping bound under bounded downward jumps; setting and goal from Paul Erdős (1946), “On the distribution function of additive functions”, Ann. of Math. (2) 47, 1-20. No separate published source",
+        "lean": "Erdos1122.Core.controlled_descent_telescoping_additive_defect_bound",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Let f be coprime-additive, D ≥ 0 bound downward jumps f n - f(n + 1) on the descent prefix up to X, and let a, b ≥ 1 and K be such that the low endpoint at K + 1 and a times the high endpoint at K are both at most X + 1. Then K |f(a b) - f a - f b| ≤ f(w_-(a, b, K + 1)) - f(w_-(a, b, 1)) + 2 D · descentCount f X. The prefix hypothesis and both range conditions are required."
+      },
+      {
+        "source": "Package-local complete-additivity result under descent count o(X) and bounded downward jumps; setting from Paul Erdős (1946), “On the distribution function of additive functions”, Ann. of Math. (2) 47, 1-20. No separate published source",
+        "lean": "Erdos1122.Core.coprime_additive_mul_of_isLittleO_descentCount_of_hasBoundedDownwardJumps",
+        "module": "Solution",
+        "status": "proved",
+        "note": "If f is coprime-additive, has descent count o(X), and has downward jumps f n - f(n + 1) bounded above by a single D, then f is completely additive: f(a b) = f a + f b for all a, b ≥ 1. Bounded downward jumps are an additional hypothesis beyond the conjecture's."
+      },
+      {
+        "source": "Package-local logarithmic ratio squeeze under a descent-prefix jump bound and power additivity; setting from Paul Erdős (1946), “On the distribution function of additive functions”, Ann. of Math. (2) 47, 1-20. No separate published source",
+        "lean": "Erdos1122.Core.controlled_descent_log_ratio_diff_le_descentCount",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Assume D ≥ 0 bounds downward jumps on the descent prefix up to X, and f is power-additive (f(b^r) = r f b for b ≥ 1). For m, n ≥ 2, k ≥ 1 and n^(Nat.log n (m^k) + 1) ≤ X + 1, the logarithmic ratios satisfy |f m / log m - f n / log n| ≤ (|f n| + D · descentCount f X) / (k log m). Power additivity and the range inequality are hypotheses; no additivity of f is assumed."
+      },
+      {
+        "source": "Package-local rigidity theorem for descent count o(log X) with bounded downward jumps; strengthening of the setting in Paul Erdős (1946), “On the distribution function of additive functions”, Ann. of Math. (2) 47, 1-20. No separate published source",
+        "lean": "Erdos1122.Core.sublogarithmic_descentCount_eq_scaled_log_of_hasBoundedDownwardJumps",
+        "module": "Solution",
+        "status": "proved",
+        "note": "If f is coprime-additive, downward jumps are bounded by D, and the descent count is both o(X) and o(log X), then f m = (f 2 / log 2) log m for every m ≥ 1 and f is a scaled logarithm. This strengthens the density hypothesis to sublogarithmic descent counts at the cost of bounded downward jumps."
+      },
+      {
+        "source": "Package-local rigidity theorem for sublinear base-2 trajectory descents with bounded downward jumps; setting from Paul Erdős (1946), “On the distribution function of additive functions”, Ann. of Math. (2) 47, 1-20. No separate published source",
+        "lean": "Erdos1122.Core.trajectory_sublinear_descent_eq_scaled_log_of_hasBoundedDownwardJumps",
+        "module": "Solution",
+        "status": "proved",
+        "note": "If f is coprime-additive with descent count o(X) and downward jumps bounded by D, and for every b ≥ 2 the descent count along the base-2 division trajectory of b^k is o(k), then f m = (f 2 / log 2) log m for every m ≥ 1 and f is a scaled logarithm. Both the global and the trajectory hypotheses are needed."
+      },
+      {
+        "source": "Package-local pigeonhole lemma for shifted base-a division trajectories; no published source",
+        "lean": "Erdos1122.Core.exists_zero_descent_shifted_div_trajectory_of_mul_descentCount_lt",
+        "module": "Solution",
+        "status": "proved",
+        "note": "For any f, X and integers a ≥ 1, m, s, U with a^s ≤ m and s · descentCount f X < U, some u ∈ [1, U] has a completely descent-free s-step base-a division trajectory through u * m. This is a pigeonhole existence statement and carries no additivity assumption."
+      },
+      {
+        "source": "Package-local equivalence between scaled logarithms and bounded dyadic-shell oscillation, under descent count o(X) and bounded downward jumps; setting from Paul Erdős (1946), “On the distribution function of additive functions”, Ann. of Math. (2) 47, 1-20. No separate published source",
+        "lean": "Erdos1122.Core.isScaledLogOnPos_iff_exists_boundedDyadicShellOscillation_of_isLittleO_descentCount_of_hasBoundedDownwardJumps",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Under coprime additivity, descent count o(X), and bounded downward jumps, being a scaled logarithm is equivalent to the existence of a uniform constant C with |f q - f u| ≤ C for every u ≥ 1 and every q with u ≤ q ≤ 2u. The forward direction is proved directly; coprime additivity, o(X) descent density, and bounded downward jumps are used for the reverse implication."
+      },
+      {
+        "source": "Package-local conditional reduction of erdos_1122 in google-deepmind/formal-conjectures, FormalConjectures/ErdosProblems/1122.lean at commit c094b979118b89adb77cf5f8d923ac9dd2e51b1d to two uniformity hypotheses; no published source",
+        "lean": "Erdos1122.Core.erdos1122_conjecture_of_boundedDownwardJumps_and_dyadicShellOscillation",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Conditional reduction: if every coprime-additive f with descent count o(X) has bounded downward jumps, and likewise has bounded dyadic-shell oscillation, then the main conjecture holds. Both uniformity statements are hypotheses about all such f, so this does not prove the conjecture."
+      },
+      {
+        "source": "Package-local binary-carry step bounds for completely additive functions with bounded downward jumps; no published source",
+        "lean": "Erdos1122.Core.completely_additive_dyadic_step_bounds_of_hasBoundedDownwardJumps",
+        "module": "Solution",
+        "status": "proved",
+        "note": "For completely additive f with downward jumps bounded by D and m ≥ 1, the odd dyadic step satisfies -D ≤ f(2m + 1) - f(2m) ≤ (f(m + 1) - f m) + D, and the even step satisfies -D ≤ f(2m) - f(2m - 1). Complete additivity and the jump bound are both required."
+      },
+      {
+        "source": "Package-local dyadic-shell complement identity for completely additive functions; no published source",
+        "lean": "Erdos1122.Core.completely_additive_dyadic_shell_complement_eq",
+        "module": "Solution",
+        "status": "proved",
+        "note": "For completely additive f and u ≥ 1, the complementary identity (f q - f u) + (f(2u) - f q) = f 2 holds for every q, with no ordering condition relating u and q."
+      },
+      {
+        "source": "Package-local window oscillation bound on a dyadic shell using a descent-prefix jump bound; no published source",
+        "lean": "Erdos1122.Core.completely_additive_dyadic_shell_window_oscillation_bound",
+        "module": "Solution",
+        "status": "proved",
+        "note": "For completely additive f, D ≥ 0 bounding downward jumps on the descent prefix up to X, and u ≤ q ≤ 2u with 2u ≤ X + 1, one has |f q - f u| ≤ |f 2| + D · |[u, 2u) ∩ descent set below X|. The prefix bound and the range condition are hypotheses."
+      },
+      {
+        "source": "Package-local iterated binary-halving defect bound from a binary carry bound; no published source",
+        "lean": "Erdos1122.Core.completely_additive_iterated_binary_halving_defect_le",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Let f be completely additive, B ≥ 0 bound the binary carry defect |f(2m + 1) - f 2 - f m| for m ≥ 1, and s ≥ 0 with q / 2^s ≥ 1. Then |f q - s · f 2 - f(q / 2^s)| ≤ s · B. The carry-defect hypothesis is separate from additivity."
+      },
+      {
+        "source": "Package-local simultaneous iterated binary-halving difference bound; no published source",
+        "lean": "Erdos1122.Core.completely_additive_iterated_simultaneous_binary_halving_diff_le",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Under the same complete additivity and binary carry defect bound B, for s ≥ 0 and u, q with u / 2^s ≥ 1 and q / 2^s ≥ 1, the simultaneous halving difference obeys |(f q - f u) - (f(q / 2^s) - f(u / 2^s))| ≤ 2 s B."
+      },
+      {
+        "source": "Package-local multi-shell oscillation bound from bounded dyadic-shell oscillation; no published source",
+        "lean": "Erdos1122.Core.completely_additive_pow_two_shell_oscillation_of_hasBoundedDyadicShellOscillation",
+        "module": "Solution",
+        "status": "proved",
+        "note": "For completely additive f with bounded dyadic-shell oscillation constant C, and 2^s u ≤ q ≤ 2^(s + 1) u with u ≥ 1, both |f q - f u - s · f 2| ≤ C and |f q - f u| ≤ C + s |f 2| hold. The shell oscillation hypothesis is exactly the input."
+      },
+      {
+        "source": "Package-local conditional rigidity theorem using a sub-shell downward drift bound; setting from Paul Erdős (1946), “On the distribution function of additive functions”, Ann. of Math. (2) 47, 1-20. No published source",
+        "lean": "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_subshell_downward_drift",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Assume coprime additivity, descent count o(X), a downward jump bound D, and a uniform M with f u - f q ≤ M and f q - f(2u) ≤ M for every u ≥ 1 and every q with u ≤ q ≤ 2u. Then f m = (f 2 / log 2) log m for every m ≥ 1 and f is a scaled logarithm. The sub-shell drift bound is an extra hypothesis, so this is a conditional reduction."
+      },
+      {
+        "source": "Package-local conditional rigidity theorem using a uniform shell descent-count bound; setting from Paul Erdős (1946), “On the distribution function of additive functions”, Ann. of Math. (2) 47, 1-20. No published source",
+        "lean": "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_shell_descent_card_le",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Assume coprime additivity, descent count o(X), a downward jump bound D, and a uniform K bounding the number of descents in [u, 2u) for every u ≥ 1. Then f m = (f 2 / log 2) log m for every m ≥ 1 and f is a scaled logarithm. The shell-cardinality hypothesis is extra."
+      },
+      {
+        "source": "Package-local conditional rigidity theorem using a half-open shell oscillation bound; setting from Paul Erdős (1946), “On the distribution function of additive functions”, Ann. of Math. (2) 47, 1-20. No published source",
+        "lean": "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_bitLength_zero_shell_bound",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Assume coprime additivity, descent count o(X), a downward jump bound D, and a uniform B with |f q - f u| ≤ B for all u ≤ q < 2u with u ≥ 1. Then f m = (f 2 / log 2) log m for every m ≥ 1 and f is a scaled logarithm. The half-open shell bound is extra."
+      },
+      {
+        "source": "Package-local conditional reduction of erdos_1122 in google-deepmind/formal-conjectures, FormalConjectures/ErdosProblems/1122.lean at commit c094b979118b89adb77cf5f8d923ac9dd2e51b1d to bounded downward jumps and uniform sub-shell drift; no published source",
+        "lean": "Erdos1122.Core.erdos_1122_of_boundedDownwardJumps_and_subshell_downward_drift",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Conditional reduction: if every coprime-additive f with descent count o(X) has bounded downward jumps and admits a uniform sub-shell downward drift bound M, then the main conjecture holds. Both uniformity statements are hypotheses, so the main conjecture remains open."
+      }
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos1122.erdos_1122.variants.monotone",
+    "Erdos1122.erdos_1122.variants.sub_tendsto_zero",
+    "Erdos1122.Core.erdos1122_conjecture_implies_empty_descent_prop",
+    "Erdos1122.Core.coprime_cross_step_diff_eq",
+    "Erdos1122.Core.finitely_supported_erdos1122_unconditional",
+    "Erdos1122.Core.coprime_additive_mul_of_descentSet_empty",
+    "Erdos1122.Core.empty_descent_eq_scaled_log_unconditional",
+    "Erdos1122.Core.erdos1122_empty_descent_prop_holds",
+    "Erdos1122.Core.coprime_additive_mul_of_isLittleO_diff",
+    "Erdos1122.Core.littleO_diff_eq_scaled_log_unconditional",
+    "Erdos1122.Core.erdos1122_littleO_diff_prop_holds",
+    "Erdos1122.Core.wirsing_zero_density_eventually_exists_good_sandwich_shift",
+    "Erdos1122.Core.controlled_descent_telescoping_additive_defect_bound",
+    "Erdos1122.Core.coprime_additive_mul_of_isLittleO_descentCount_of_hasBoundedDownwardJumps",
+    "Erdos1122.Core.controlled_descent_log_ratio_diff_le_descentCount",
+    "Erdos1122.Core.sublogarithmic_descentCount_eq_scaled_log_of_hasBoundedDownwardJumps",
+    "Erdos1122.Core.trajectory_sublinear_descent_eq_scaled_log_of_hasBoundedDownwardJumps",
+    "Erdos1122.Core.exists_zero_descent_shifted_div_trajectory_of_mul_descentCount_lt",
+    "Erdos1122.Core.isScaledLogOnPos_iff_exists_boundedDyadicShellOscillation_of_isLittleO_descentCount_of_hasBoundedDownwardJumps",
+    "Erdos1122.Core.erdos1122_conjecture_of_boundedDownwardJumps_and_dyadicShellOscillation",
+    "Erdos1122.Core.completely_additive_dyadic_step_bounds_of_hasBoundedDownwardJumps",
+    "Erdos1122.Core.completely_additive_dyadic_shell_complement_eq",
+    "Erdos1122.Core.completely_additive_dyadic_shell_window_oscillation_bound",
+    "Erdos1122.Core.completely_additive_iterated_binary_halving_defect_le",
+    "Erdos1122.Core.completely_additive_iterated_simultaneous_binary_halving_diff_le",
+    "Erdos1122.Core.completely_additive_pow_two_shell_oscillation_of_hasBoundedDyadicShellOscillation",
+    "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_subshell_downward_drift",
+    "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_shell_descent_card_le",
+    "Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_bitLength_zero_shell_bound",
+    "Erdos1122.Core.erdos_1122_of_boundedDownwardJumps_and_subshell_downward_drift"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

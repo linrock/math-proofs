@@ -1,0 +1,56 @@
+module
+
+/-
+Copyright 2025-2026 The Formal Conjectures Authors.
+Copyright 2026 Linmiao Xu.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-/
+
+public import Solution
+
+@[expose] public section
+
+#print axioms Erdos1122.erdos_1122.variants.monotone
+#print axioms Erdos1122.erdos_1122.variants.sub_tendsto_zero
+
+#print axioms Erdos1122.Core.erdos1122_conjecture_implies_empty_descent_prop
+#print axioms Erdos1122.Core.coprime_cross_step_diff_eq
+#print axioms Erdos1122.Core.finitely_supported_erdos1122_unconditional
+#print axioms Erdos1122.Core.coprime_additive_mul_of_descentSet_empty
+#print axioms Erdos1122.Core.empty_descent_eq_scaled_log_unconditional
+#print axioms Erdos1122.Core.erdos1122_empty_descent_prop_holds
+#print axioms Erdos1122.Core.coprime_additive_mul_of_isLittleO_diff
+#print axioms Erdos1122.Core.littleO_diff_eq_scaled_log_unconditional
+#print axioms Erdos1122.Core.erdos1122_littleO_diff_prop_holds
+#print axioms Erdos1122.Core.wirsing_zero_density_eventually_exists_good_sandwich_shift
+#print axioms Erdos1122.Core.controlled_descent_telescoping_additive_defect_bound
+#print axioms Erdos1122.Core.coprime_additive_mul_of_isLittleO_descentCount_of_hasBoundedDownwardJumps
+#print axioms Erdos1122.Core.controlled_descent_log_ratio_diff_le_descentCount
+#print axioms Erdos1122.Core.sublogarithmic_descentCount_eq_scaled_log_of_hasBoundedDownwardJumps
+#print axioms Erdos1122.Core.trajectory_sublinear_descent_eq_scaled_log_of_hasBoundedDownwardJumps
+#print axioms Erdos1122.Core.exists_zero_descent_shifted_div_trajectory_of_mul_descentCount_lt
+#print axioms Erdos1122.Core.isScaledLogOnPos_iff_exists_boundedDyadicShellOscillation_of_isLittleO_descentCount_of_hasBoundedDownwardJumps
+#print axioms Erdos1122.Core.erdos1122_conjecture_of_boundedDownwardJumps_and_dyadicShellOscillation
+#print axioms Erdos1122.Core.completely_additive_dyadic_step_bounds_of_hasBoundedDownwardJumps
+#print axioms Erdos1122.Core.completely_additive_dyadic_shell_complement_eq
+#print axioms Erdos1122.Core.completely_additive_dyadic_shell_window_oscillation_bound
+#print axioms Erdos1122.Core.completely_additive_iterated_binary_halving_defect_le
+#print axioms Erdos1122.Core.completely_additive_iterated_simultaneous_binary_halving_diff_le
+#print axioms Erdos1122.Core.completely_additive_pow_two_shell_oscillation_of_hasBoundedDyadicShellOscillation
+#print axioms Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_subshell_downward_drift
+#print axioms Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_shell_descent_card_le
+#print axioms Erdos1122.Core.isScaledLogOnPos_of_isLittleO_descentCount_of_hasBoundedDownwardJumps_of_bitLength_zero_shell_bound
+#print axioms Erdos1122.Core.erdos_1122_of_boundedDownwardJumps_and_subshell_downward_drift
+
+end

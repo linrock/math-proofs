@@ -1,0 +1,28 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos902.Core.hasParadoxicalTournament_zero_iff_and_f_zero",
+    "Erdos902.Core.hasParadoxicalTournament_one_iff_and_f_one",
+    "Erdos902.Core.paley7Digraph_dom2_and_f_two",
+    "Erdos902.Core.hasParadoxicalTournament_three_iff_and_f_three",
+    "Erdos902.Core.hasParadoxicalTournament_four_67_and_f_four_bounds",
+    "Erdos902.Core.erdos_and_szekeres_lower_bounds",
+    "Erdos902.Core.hasParadoxicalTournament_of_erdosProbabilisticCriterion",
+    "Erdos902.Core.erdos_szekeres_f_sandwich",
+    "Erdos902.Core.unit_leading_and_quintic_upper_bounds",
+    "Erdos902.Core.isTournament_and_regular_paleyFinDigraph",
+    "Erdos902.Core.isParadoxicalTournament_of_second_moment_commonOutNeigh",
+    "Erdos902.Core.twenty_nine_seventy_nine_lower_bound_and_not_criterion_ten",
+    "Erdos902.erdos_902.variants.f_two",
+    "Erdos902.erdos_902.variants.erdos_lower",
+    "Erdos902.erdos_902.variants.szekeres_f_three",
+    "Erdos902.erdos_902.variants.szekeres_lower"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

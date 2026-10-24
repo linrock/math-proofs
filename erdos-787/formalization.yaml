@@ -1,0 +1,159 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 787: logarithmic restricted sum-avoiding lower bound",
+    "description": "A Lean 4 formalization of the logarithmic lower bound for Erdős Problem 787. For a finite set A of reals, the problem asks for the largest guaranteed subset B whose restricted pairwise sums avoid A. The package proves that some positive constant c satisfies c log n ≤ g(n) for all sufficiently large n, uniformly over every n-element set of reals. The proof peels the largest element of the positive or negative part, where each conflict removes at most one element per halving, and thereby obtains the explicit constant c = 1/16 from n = 1024 onward. The exact asymptotic order of g(n) remains open, and the stronger published bounds of Choi, Sanders, Ruzsa, and Beker are not formalized here.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "Apache-2.0"
+  },
+  "classification": {
+    "arxiv": [
+      "math.CO"
+    ],
+    "msc2020": [
+      "05D10",
+      "11B25"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Extremal problems in number theory",
+      "authors": [
+        "Paul Erdős"
+      ],
+      "type": "paper",
+      "relationship": "background",
+      "id": "https://doi.org/10.1090/pspum/008/0174539",
+      "location": "Proceedings of Symposia in Pure Mathematics, Vol. VIII (1965), 181–189, especially p. 187",
+      "author_endorsement": "not-contacted",
+      "note": "States the restricted sum-free subset problem for n-element sets of reals and attributes the Omega (log n) lower bound to Klarner. This source sets the problem; the formal proof here is a self-contained argument and does not reproduce its text."
+    },
+    {
+      "title": "Sum-avoiding subsets",
+      "authors": [
+        "Imre Z. Ruzsa"
+      ],
+      "type": "paper",
+      "relationship": "independently-proves",
+      "id": "https://doi.org/10.1007/s11139-005-0826-4",
+      "location": "The Ramanujan Journal 9 (2005), 77–82",
+      "author_endorsement": "not-contacted",
+      "note": "Gives a published greedy proof of the logarithmic lower bound. This package proves the same asymptotic statement by a self-contained conflict-peeling argument with an explicit constant and threshold; nothing is transcribed from the paper."
+    },
+    {
+      "title": "On a combinatorial problem in number theory",
+      "authors": [
+        "S. L. G. Choi"
+      ],
+      "type": "paper",
+      "relationship": "background",
+      "id": "https://doi.org/10.1112/plms/s3-23.4.629",
+      "location": "Proceedings of the London Mathematical Society (3) 23 (1971), 629–642, especially p. 630",
+      "author_endorsement": "not-contacted",
+      "note": "Records the attribution of the logarithmic lower bound to Klarner and notes that the proof appears lost. This clarifies the attribution of the result formalized here."
+    },
+    {
+      "title": "Erdős Problem 787: maximal size additive combinatorics",
+      "type": "other",
+      "relationship": "background",
+      "id": "https://www.erdosproblems.com/787",
+      "note": "Problem catalog entry recording the statement, known bounds, and discussion. This is a secondary source, not proof evidence."
+    },
+    {
+      "title": "The Erdős-Moser sum-free set problem",
+      "authors": [
+        "Tom Sanders"
+      ],
+      "type": "paper",
+      "relationship": "background",
+      "id": "https://doi.org/10.4153/S0008439520000580",
+      "location": "Canadian Journal of Mathematics 73 (2021), 63–107",
+      "author_endorsement": "not-contacted",
+      "note": "Proves a stronger lower bound discussed in the problem statement; that result is not formalized in this package."
+    },
+    {
+      "title": "The Erdős-Moser sum-free set problem via improved bounds for k-configurations",
+      "authors": [
+        "A. Beker"
+      ],
+      "type": "paper",
+      "relationship": "background",
+      "id": "https://arxiv.org/abs/2501.10203",
+      "location": "arXiv:2501.10203 (2025)",
+      "author_endorsement": "not-contacted",
+      "note": "Proves a stronger lower bound discussed in the problem statement; that result is not formalized in this package."
+    },
+    {
+      "title": "Formal Conjectures: Erdős Problem 787",
+      "authors": [
+        "The Formal Conjectures Authors"
+      ],
+      "type": "software",
+      "relationship": "adapts",
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/c094b979118b89adb77cf5f8d923ac9dd2e51b1d/FormalConjectures/ErdosProblems/787.lean",
+      "location": "FormalConjectures/ErdosProblems/787.lean at commit c094b979118b89adb77cf5f8d923ac9dd2e51b1d",
+      "license": "Apache-2.0",
+      "author_endorsement": "not-contacted",
+      "note": "The helper lemmas `disjoint_restrictedSumset_iff` and `le_g` in `Proofs/Erdos787Proofs.lean` are adapted from this Apache-2.0-licensed file. The package also restates the definition of `g` and the target statement `erdos_787.variants.klarner`."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/c094b979118b89adb77cf5f8d923ac9dd2e51b1d/FormalConjectures/ErdosProblems/787.lean",
+      "relationship": "adapts",
+      "license": "Apache-2.0",
+      "note": "Pinned at commit c094b979118b89adb77cf5f8d923ac9dd2e51b1d. Supplies the definition of `g`, the target statement `erdos_787.variants.klarner` (still `sorry` upstream), and the helper lemmas `disjoint_restrictedSumset_iff` and `le_g`, whose proofs are adapted in `Proofs/Erdos787Proofs.lean`."
+    }
+  ],
+  "status": {
+    "scope": "Proves erdos_787.variants.klarner exactly: for every n-element A ⊆ ℝ there is B ⊆ A with |B| at least floor(log₂ n) - 4 and no restricted sum of two distinct elements of B in A, hence c = 1/16 works for all n ≥ 1024. The open estimate erdos_787 and the variants integers, choi, sanders, ruzsa, and beker are not addressed.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos787.variants.klarner",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "All proof modules in Proofs/ together with Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry in the proof modules."
+  },
+  "fidelity": {
+    "divergences": "None. Challenge.lean and Solution.lean preserve the exact definition of g and restrictedSumset and the exact theorem type of erdos_787.variants.klarner from the pinned FormalConjectures/ErdosProblems/787.lean."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "The exported theorem was matched against the upstream declaration by an automated statement comparison, and its transitive axioms were checked to be propext, Classical.choice, and Quot.sound."
+  },
+  "alignment": {
+    "namespace": "Erdos787",
+    "statements": [
+      {
+        "source": "Erdős (1965), p. 187, attributing the bound to Klarner; FormalConjectures/ErdosProblems/787.lean at c094b979118b89adb77cf5f8d923ac9dd2e51b1d, declaration erdos_787.variants.klarner",
+        "lean": "Erdos787.variants.klarner",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Exact statement match with erdos_787.variants.klarner. Proves that c = 1/16 satisfies c * log n ≤ g ℝ n for every n ≥ 1024."
+      }
+    ]
+  },
+  "acknowledgements": "Mathlib supplies the underlying mathematical library. Formal Conjectures supplies the problem statement and the two interface lemmas `disjoint_restrictedSumset_iff` and `le_g`, adapted under Apache-2.0. The conflict-peeling argument is package-local. Erdős (1965), Choi (1971), and Ruzsa (2005) supply the result's history and attribution."
+}

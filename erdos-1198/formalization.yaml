@@ -1,0 +1,124 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 1198: Hindman's monochromatic finite-sums theorem",
+    "description": "A Lean 4 formalization of the Hindman case of Erdős Problem 1198. For every two-colouring of the natural numbers, the package constructs a strictly increasing sequence of positive integers whose nonempty finite sums all receive the same colour. The proof applies the partition-regular form of Hindman's theorem (1974) to obtain a monochromatic finite-sums set, then groups that set into consecutive blocks whose sums are increasing. The main Smith-counterexample statement of Problem 1198 is not formalized.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "Apache-2.0"
+  },
+  "classification": {
+    "arxiv": [
+      "math.CO"
+    ],
+    "msc2020": [
+      "05D10"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Finite sums from sequences within cells of a partition of N",
+      "authors": [
+        "Neil Hindman"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "id": "https://doi.org/10.1016/0097-3165(74)90023-5",
+      "location": "Journal of Combinatorial Theory, Series A 17(1) (1974), 1-11",
+      "year": 1974,
+      "license": "not-applicable",
+      "author_endorsement": "not-contacted",
+      "note": "Hindman's finite-sums theorem: every finite colouring of the positive integers has a monochromatic finite-sums set. The package proves the two-colour form for an increasing positive sequence. The partition-regular strengthening used in the proof is supplied by Mathlib."
+    },
+    {
+      "title": "A survey of problems in combinatorial number theory",
+      "authors": [
+        "Paul Erdős"
+      ],
+      "type": "paper",
+      "relationship": "poses",
+      "id": "https://doi.org/10.1016/S0167-5060(08)70697-6",
+      "location": "Annals of Discrete Mathematics (1980), 89-115; the problem is stated at p. 104",
+      "year": 1980,
+      "license": "not-applicable",
+      "author_endorsement": "not-contacted",
+      "note": "Original source of Erdős Problem 1198, including the observation that the singleton-set case is Hindman's theorem."
+    },
+    {
+      "title": "Partitions and (m and n) sums of products",
+      "authors": [
+        "Gregory L. Smith"
+      ],
+      "type": "paper",
+      "relationship": "background",
+      "id": "https://doi.org/10.1016/0097-3165(95)90029-2",
+      "location": "Journal of Combinatorial Theory, Series A 72(1) (1995), 77-94",
+      "year": 1995,
+      "license": "not-applicable",
+      "author_endorsement": "not-contacted",
+      "note": "Gives the counterexample to the main sums-of-products statement of Problem 1198. The counterexample is not formalized in this package."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/c094b979118b89adb77cf5f8d923ac9dd2e51b1d/FormalConjectures/ErdosProblems/1198.lean",
+      "relationship": "builds-on",
+      "note": "Pinned source of the exact declaration erdos_1198.variants.hindman (namespace Erdos1198) at commit c094b979118b89adb77cf5f8d923ac9dd2e51b1d. The declaration is still a sorry there; no upstream proof is imported."
+    },
+    {
+      "id": "https://github.com/leanprover-community/mathlib4/blob/065356127b1dc0016f66b7283ce0ce2c4055aa55/Mathlib/Combinatorics/Hindman.lean",
+      "relationship": "uses",
+      "note": "Pinned source of Hindman.FS_partition_regular, the partition-regular form of Hindman's theorem applied to the constant stream of ones in the reduction step. Contributed by David Wärn; Apache-2.0. The packaged theorem reuses it directly and does not reprove it."
+    }
+  ],
+  "status": {
+    "scope": "Proves the Hindman finite-sums variant erdos_1198.variants.hindman for every two-colouring: there is a strictly increasing sequence of positive integers whose nonempty finite sums share one colour. The main Smith-counterexample declaration erdos_1198 is not proved in this package: upstream it is tagged `research solved` but its body is still `sorry` and carries no `formal_proof` attribute.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos1198.erdos_1198.variants.hindman",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "The proof module together with Solution, AxiomAudit, and Challenge compiles from source in Lean 4.35.0-rc2 with no sorry in the proof module."
+  },
+  "fidelity": {
+    "divergences": "None. The packaged theorem has the exact type of erdos_1198.variants.hindman in the pinned upstream statement file."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Statement fidelity, non-vacuity, and transitive axioms (restricted to propext, Classical.choice, and Quot.sound) were verified for the exported theorem."
+  },
+  "alignment": {
+    "namespace": "Erdos1198",
+    "statements": [
+      {
+        "source": "Neil Hindman, Finite sums from sequences within cells of a partition of N, J. Combinatorial Theory Ser. A 17(1) (1974), 1-11, DOI 10.1016/0097-3165(74)90023-5; exact statement of erdos_1198.variants.hindman in the pinned upstream file at commit c094b979118b89adb77cf5f8d923ac9dd2e51b1d",
+        "lean": "Erdos1198.erdos_1198.variants.hindman",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Exact definitional match with the pinned upstream declaration, confirmed by the final statement comparison. Proves the universal statement for an arbitrary two-colouring, with strict monotonicity and positivity of the first term."
+      }
+    ]
+  },
+  "acknowledgements": "Mathlib supplies the partition-regular Hindman theorem and the supporting combinatorial library. Formal Conjectures supplies the exact problem statement at the pinned commit."
+}
