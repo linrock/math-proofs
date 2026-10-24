@@ -21,7 +21,12 @@ concurrency:
 env:
   LEAN_TOOLCHAIN: "leanprover/lean4:v4.35.0-rc2"
   MATHLIB_REV: "065356127b1dc0016f66b7283ce0ce2c4055aa55"
-  FC_COMMIT: "bdda9748e16d1df263db93d5241011fb399abfae"
+  # FormalConjectures is deliberately unpinned: every run resolves the upstream
+  # default branch at run time, so new upstream problem files are picked up
+  # automatically. The resolved commit SHA is exported as FC_COMMIT for the
+  # provenance steps and printed to the job summary.
+  FC_REPO: "https://github.com/google-deepmind/formal-conjectures.git"
+  FC_REF: "main"
 
 jobs:
   preflight:
@@ -47,7 +52,6 @@ jobs:
           PR_BASE_REF: ${{ github.event.pull_request.base.ref }}
           HEAD_SHA: ${{ github.sha }}
           INPUT_PROBLEMS: ${{ inputs.problems }}
-          FC_COMMIT: ${{ env.FC_COMMIT }}
         run: |
           BASE_SHA="$EVENT_BEFORE"
           if [[ "$EVENT_NAME" == "pull_request" ]]; then
@@ -60,7 +64,6 @@ jobs:
             --head-sha "$HEAD_SHA" \
             --problems "$INPUT_PROBLEMS" \
             --github-output "$GITHUB_OUTPUT"
-          test "$FC_COMMIT" = "bdda9748e16d1df263db93d5241011fb399abfae"
 
   verify:
     name: Verify ${{ matrix.package }}
@@ -103,24 +106,31 @@ jobs:
           elan toolchain install "$LEAN_TOOLCHAIN"
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
 
-      - name: Prepare pinned FormalConjectures source
+      - name: Prepare FormalConjectures source (latest ${{ env.FC_REF }})
         env:
           MATRIX_PACKAGE: ${{ matrix.package }}
           FC_LEAN_LIB_DIR: ${{ github.workspace }}/fc-shared-lib
-          FC_COMMIT: ${{ env.FC_COMMIT }}
           FC_GIT_DIR: ${{ runner.temp }}/formal-conjectures
         run: |
           mkdir -p "$(dirname "$FC_GIT_DIR")" "$FC_LEAN_LIB_DIR"
           mkdir -p "$FC_LEAN_LIB_DIR/FormalConjectures/ErdosProblems"
           if [ ! -d "$FC_GIT_DIR/.git" ]; then
-            git clone --filter=blob:none --no-checkout https://github.com/google-deepmind/formal-conjectures.git "$FC_GIT_DIR"
+            git clone --filter=blob:none --no-checkout "$FC_REPO" "$FC_GIT_DIR"
           fi
-          git -C "$FC_GIT_DIR" fetch --force origin "$FC_COMMIT"
-          git -C "$FC_GIT_DIR" checkout --detach --force "$FC_COMMIT"
+          git -C "$FC_GIT_DIR" fetch --force origin "$FC_REF"
+          git -C "$FC_GIT_DIR" checkout --detach --force FETCH_HEAD
           git -C "$FC_GIT_DIR" clean -fdx
+          FC_RESOLVED_COMMIT="$(git -C "$FC_GIT_DIR" rev-parse HEAD)"
+          echo "Resolved FormalConjectures $FC_REF to $FC_RESOLVED_COMMIT"
+          echo "FC_COMMIT=$FC_RESOLVED_COMMIT" >> "$GITHUB_ENV"
+          {
+            echo "### FormalConjectures source: \`$FC_REF\` (unpinned)"
+            echo ""
+            echo "Resolved at run time to [\`$FC_RESOLVED_COMMIT\`](https://github.com/google-deepmind/formal-conjectures/commit/$FC_RESOLVED_COMMIT)."
+          } >> "$GITHUB_STEP_SUMMARY"
           PROBLEM_NUMBER="${MATRIX_PACKAGE#erdos-}"
           if [ "$MATRIX_PACKAGE" = "$PROBLEM_NUMBER" ] || [ ! -f "$FC_GIT_DIR/FormalConjectures/ErdosProblems/$PROBLEM_NUMBER.lean" ]; then
-            echo "Pinned FormalConjectures is missing FormalConjectures/ErdosProblems/$PROBLEM_NUMBER.lean" >&2
+            echo "FormalConjectures $FC_REF is missing FormalConjectures/ErdosProblems/$PROBLEM_NUMBER.lean" >&2
             exit 1
           fi
 
@@ -131,7 +141,6 @@ jobs:
           GITHUB_REPO: ${{ github.repository }}
           GITHUB_RUN_ID_VAL: ${{ github.run_id }}
           FC_LEAN_LIB_DIR: ${{ github.workspace }}/fc-shared-lib
-          FC_COMMIT: ${{ env.FC_COMMIT }}
           FC_GIT_DIR: ${{ runner.temp }}/formal-conjectures
         run: |
           python3 .github/scripts/verify_proofs.py verify \
