@@ -866,15 +866,17 @@ public unsafe def main (args : List String) : IO UInt32 := do
         | some (nsPref, thmSub) => nameStr.startsWith nsPref || (nameStr.splitOn thmSub).length > 1
         | none => true
       !ci.name.isInternalDetail && inProbScope && (isThmLike ci || isStatementDef ci)
+    let allowSolStmtDef := solOlean.fileName == some "Statement.olean"
     let solThmNames := restArgs.map strToName
     let mut solCands : Array ConstantInfo := #[]
     let mut seenSol : NameSet := {}
     for n in solThmNames do
       if let some ci := mapSol.get? n then
-        solCands := solCands.push ci
-        seenSol := seenSol.insert n
+        if isThmLike ci || (allowSolStmtDef && isStatementDef ci) then
+          solCands := solCands.push ci
+          seenSol := seenSol.insert n
     for ci in sMd.constants do
-      if !ci.name.isInternalDetail && (isThmLike ci || isStatementDef ci) && !seenSol.contains ci.name then
+      if !ci.name.isInternalDetail && (isThmLike ci || (allowSolStmtDef && isStatementDef ci)) && !seenSol.contains ci.name then
         solCands := solCands.push ci
         seenSol := seenSol.insert ci.name
     for infoFC in targetCands do
@@ -1290,8 +1292,6 @@ def check_package_manifest(pkg: str) -> list[str]:
 
     reachable_mods: set[str] = set()
     work = [m for m in ("Challenge", "Solution", "AxiomAudit", "Statement") if m in mod_to_imports]
-    if "HasMonotoneAPNegationBridge196" in mod_to_imports:
-        reachable_mods.add("HasMonotoneAPNegationBridge196")
     while work:
         cur = work.pop()
         if cur in reachable_mods:
@@ -1746,12 +1746,12 @@ def fetch_and_compile_fc_problem_olean(
             pass
 
     fc_git_env = os.environ.get("FC_GIT_DIR", "").strip()
-    local_fc_root = pathlib.Path(fc_git_env).resolve() if fc_git_env else (REPO_ROOT.parent / "formal-conjectures")
-    local_prob_file = local_fc_root / "FormalConjectures" / "ErdosProblems" / f"{prob}.lean"
+    local_fc_root = pathlib.Path(fc_git_env).resolve() if fc_git_env else None
+    local_prob_file = (local_fc_root / "FormalConjectures" / "ErdosProblems" / f"{prob}.lean") if local_fc_root else None
     prob_raw: str | None = None
-    if local_prob_file.is_file():
+    if local_prob_file and local_prob_file.is_file():
         prob_raw = local_prob_file.read_text(encoding="utf-8", errors="replace")
-    elif (local_fc_root / ".git").is_dir():
+    elif local_fc_root and (local_fc_root / ".git").is_dir():
         for git_ref in (f"erdos-{prob}", fc_ref, "origin/main", "main"):
             try:
                 prob_raw = subprocess.check_output(
@@ -1804,8 +1804,8 @@ def fetch_and_compile_fc_problem_olean(
         if not identifiers:
             return False
         added_any = False
-        fc_mathlib_dir = local_fc_root / "FormalConjecturesForMathlib"
-        if fc_mathlib_dir.is_dir():
+        fc_mathlib_dir = (local_fc_root / "FormalConjecturesForMathlib") if local_fc_root else None
+        if local_fc_root and fc_mathlib_dir and fc_mathlib_dir.is_dir():
             def add_local_helper_rel(rel: str) -> None:
                 nonlocal added_any
                 if rel in loaded_helper_rels:
@@ -1940,6 +1940,20 @@ def summarize_package(
 ) -> int:
     pkg_dir = REPO_ROOT / pkg
     ver_dir = pkg_dir / ".verification"
+    if ver_dir.is_dir():
+        for vf in list(ver_dir.iterdir()):
+            if vf.name.endswith((".olean", ".olean.server", ".olean.private", ".ilean", ".ir", ".trace")):
+                vf.unlink(missing_ok=True)
+            elif vf.suffix == ".log" and vf.is_file():
+                ltxt = vf.read_text(encoding="utf-8", errors="replace")
+                lclean = re.sub(
+                    r"warning:\s+[\w-]+:\s+repository has local changes:\n\s+/[^\n]+\n?",
+                    "",
+                    ltxt,
+                )
+                lclean = lclean.replace(str(REPO_ROOT) + "/", "").replace(str(REPO_ROOT), ".")
+                if lclean != ltxt:
+                    vf.write_text(lclean, encoding="utf-8")
     comp = json.loads((pkg_dir / "comparator.json").read_text(encoding="utf-8"))
     fy = json.loads((pkg_dir / "formalization.yaml").read_text(encoding="utf-8"))
     comp_theorems: list[str] = comp.get("theorem_names", [])
@@ -2200,7 +2214,7 @@ def summarize_package(
     if fc_audit_rows:
         md_lines.extend([
             "",
-            "### Statement-Equivalence Audit (`FCCompare`)",
+            "### Statement-Equivalence Audit",
             "",
             "| Source | Target Declaration | Solution Declaration | Match Mode | Status |",
             "| --- | --- | --- | --- | --- |",
@@ -2348,10 +2362,10 @@ def run_fc_statement_comparison(
         if not pairs and stmt_olean.is_file():
             targets.append(("discover", stmt_olean.resolve(), "Statement"))
         fc_git_env = os.environ.get("FC_GIT_DIR", "").strip()
-        fc_root_check = pathlib.Path(fc_git_env).resolve() if fc_git_env else (REPO_ROOT.parent / "formal-conjectures")
+        fc_root_check = pathlib.Path(fc_git_env).resolve() if fc_git_env else None
         local_fc_prob = (
             fc_root_check / "FormalConjectures" / "ErdosProblems" / f"{prob_m.group(1)}.lean"
-            if prob_m
+            if (prob_m and fc_root_check)
             else None
         )
         if prob_m and not added_fc and not pairs and strict and (not stmt_olean.is_file() or (local_fc_prob and local_fc_prob.is_file())):
