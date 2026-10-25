@@ -1,0 +1,625 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-25-994b4c04",
+  "verification_date": "2026-10-25",
+  "state_sha256": "b6c8b2f6957203ca4fd83b3329eb58120e806cadabaf8fa65e011356d0b2177c",
+  "package": "erdos-600",
+  "project_name": "Erd\u0151s 600: Ruzsa\u2013Szemer\u00e9di bound for triangle-covered graphs",
+  "package_commit": "994b4c04dc4cf77c4b27364e27f179622104c681",
+  "commit": "994b4c04dc4cf77c4b27364e27f179622104c681",
+  "repository": "linrock/math-proofs",
+  "run_id": "40233608092",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 13539,
+    "lines": 270,
+    "sha256": "986c10d799b311f8e042fe8ca4af448916efde9bb006f99cd1cfea506455aa92",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos600.erdos_600.variants.ruzsa_szemeredi_upper_bound",
+    "Erdos600.locallyLinear_iff_trianglesContaining",
+    "Erdos600.eFunction_two_eq",
+    "Erdos600.behrend_asymptotic_lower_bound_eFunction",
+    "Erdos600.card_edgeFinset_le_two_mul_sub_one_mul_sub_card",
+    "Erdos600.eFunction_eq_choose_two_succ_iff_of_three_le",
+    "Erdos600.maxAdmissibleEdges_superadditive",
+    "Erdos600.degree_add_degree_le_card_add_sub_one_of_isAdmissibleBookFree",
+    "Erdos600.three_mul_ruzsaSzemerediNumberNat_le_mul_div_two",
+    "Erdos600.nine_mul_card_cliqueFinset_sq_le_card_edgeFinset_mul_edgeTriangleIncidenceSqSum",
+    "Erdos600.maxAdmissibleEdges_le_mul_add_sub_one_div_four",
+    "Erdos600.card_trianglesContaining_weightedBlowupGraph_eq_commonNeighborWeightSum",
+    "Erdos600.isAdmissibleBookFree_weightedBlowupGraph_iff_of_pos",
+    "Erdos600.card_edgeFinset_weightedBlowupGraph_eq_blowupEdgeQuadraticForm",
+    "Erdos600.sq_mul_maxAdmissibleEdges_le_maxAdmissibleEdges_mul",
+    "Erdos600.four_mul_crossTriangleCount_add_six_mul_residualTriangleCount_eq_sum_degree",
+    "Erdos600.card_edgeFinset_add_sub_one_mul_card_bookHeavyEdgeFinset_le_edgeTriangleIncidenceSum",
+    "Erdos600.erdos_600_parts_ii_of_forall_exists_deleteEdges_isLittleO"
+  ],
+  "declaration_lines": {
+    "Erdos600.erdos_600.variants.ruzsa_szemeredi_upper_bound": {
+      "solution_line": null,
+      "challenge_line": null
+    },
+    "Erdos600.locallyLinear_iff_trianglesContaining": {
+      "solution_line": null,
+      "challenge_line": 154
+    },
+    "Erdos600.eFunction_two_eq": {
+      "solution_line": null,
+      "challenge_line": 161
+    },
+    "Erdos600.behrend_asymptotic_lower_bound_eFunction": {
+      "solution_line": null,
+      "challenge_line": 166
+    },
+    "Erdos600.card_edgeFinset_le_two_mul_sub_one_mul_sub_card": {
+      "solution_line": null,
+      "challenge_line": 172
+    },
+    "Erdos600.eFunction_eq_choose_two_succ_iff_of_three_le": {
+      "solution_line": null,
+      "challenge_line": 180
+    },
+    "Erdos600.maxAdmissibleEdges_superadditive": {
+      "solution_line": null,
+      "challenge_line": 185
+    },
+    "Erdos600.degree_add_degree_le_card_add_sub_one_of_isAdmissibleBookFree": {
+      "solution_line": null,
+      "challenge_line": 190
+    },
+    "Erdos600.three_mul_ruzsaSzemerediNumberNat_le_mul_div_two": {
+      "solution_line": null,
+      "challenge_line": 197
+    },
+    "Erdos600.nine_mul_card_cliqueFinset_sq_le_card_edgeFinset_mul_edgeTriangleIncidenceSqSum": {
+      "solution_line": null,
+      "challenge_line": 203
+    },
+    "Erdos600.maxAdmissibleEdges_le_mul_add_sub_one_div_four": {
+      "solution_line": null,
+      "challenge_line": 209
+    },
+    "Erdos600.card_trianglesContaining_weightedBlowupGraph_eq_commonNeighborWeightSum": {
+      "solution_line": null,
+      "challenge_line": 214
+    },
+    "Erdos600.isAdmissibleBookFree_weightedBlowupGraph_iff_of_pos": {
+      "solution_line": null,
+      "challenge_line": 222
+    },
+    "Erdos600.card_edgeFinset_weightedBlowupGraph_eq_blowupEdgeQuadraticForm": {
+      "solution_line": null,
+      "challenge_line": 229
+    },
+    "Erdos600.sq_mul_maxAdmissibleEdges_le_maxAdmissibleEdges_mul": {
+      "solution_line": null,
+      "challenge_line": 235
+    },
+    "Erdos600.four_mul_crossTriangleCount_add_six_mul_residualTriangleCount_eq_sum_degree": {
+      "solution_line": null,
+      "challenge_line": 241
+    },
+    "Erdos600.card_edgeFinset_add_sub_one_mul_card_bookHeavyEdgeFinset_le_edgeTriangleIncidenceSum": {
+      "solution_line": null,
+      "challenge_line": 248
+    },
+    "Erdos600.erdos_600_parts_ii_of_forall_exists_deleteEdges_isLittleO": {
+      "solution_line": null,
+      "challenge_line": 257
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos600.behrend_asymptotic_lower_bound_eFunction",
+    "Erdos600.card_edgeFinset_add_sub_one_mul_card_bookHeavyEdgeFinset_le_edgeTriangleIncidenceSum",
+    "Erdos600.card_edgeFinset_le_two_mul_sub_one_mul_sub_card",
+    "Erdos600.card_edgeFinset_weightedBlowupGraph_eq_blowupEdgeQuadraticForm",
+    "Erdos600.card_trianglesContaining_weightedBlowupGraph_eq_commonNeighborWeightSum",
+    "Erdos600.degree_add_degree_le_card_add_sub_one_of_isAdmissibleBookFree",
+    "Erdos600.eFunction_eq_choose_two_succ_iff_of_three_le",
+    "Erdos600.eFunction_two_eq",
+    "Erdos600.erdos_600.variants.ruzsa_szemeredi_upper_bound",
+    "Erdos600.erdos_600_parts_ii_of_forall_exists_deleteEdges_isLittleO",
+    "Erdos600.four_mul_crossTriangleCount_add_six_mul_residualTriangleCount_eq_sum_degree",
+    "Erdos600.isAdmissibleBookFree_weightedBlowupGraph_iff_of_pos",
+    "Erdos600.locallyLinear_iff_trianglesContaining",
+    "Erdos600.maxAdmissibleEdges_le_mul_add_sub_one_div_four",
+    "Erdos600.maxAdmissibleEdges_superadditive",
+    "Erdos600.nine_mul_card_cliqueFinset_sq_le_card_edgeFinset_mul_edgeTriangleIncidenceSqSum",
+    "Erdos600.sq_mul_maxAdmissibleEdges_le_maxAdmissibleEdges_mul",
+    "Erdos600.three_mul_ruzsaSzemerediNumberNat_le_mul_div_two"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 22,
+  "expected_axiom_audit_count": 22,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos600.erdos_600.variants.ruzsa_szemeredi_upper_bound",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos600.locallyLinear_iff_trianglesContaining",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos600.eFunction_two_eq",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos600.behrend_asymptotic_lower_bound_eFunction",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos600.card_edgeFinset_le_two_mul_sub_one_mul_sub_card",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos600.eFunction_eq_choose_two_succ_iff_of_three_le",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos600.maxAdmissibleEdges_superadditive",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos600.degree_add_degree_le_card_add_sub_one_of_isAdmissibleBookFree",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos600.three_mul_ruzsaSzemerediNumberNat_le_mul_div_two",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos600.nine_mul_card_cliqueFinset_sq_le_card_edgeFinset_mul_edgeTriangleIncidenceSqSum",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos600.maxAdmissibleEdges_le_mul_add_sub_one_div_four",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos600.card_trianglesContaining_weightedBlowupGraph_eq_commonNeighborWeightSum",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos600.isAdmissibleBookFree_weightedBlowupGraph_iff_of_pos",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos600.card_edgeFinset_weightedBlowupGraph_eq_blowupEdgeQuadraticForm",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos600.sq_mul_maxAdmissibleEdges_le_maxAdmissibleEdges_mul",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos600.four_mul_crossTriangleCount_add_six_mul_residualTriangleCount_eq_sum_degree",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos600.card_edgeFinset_add_sub_one_mul_card_bookHeavyEdgeFinset_le_edgeTriangleIncidenceSum",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos600.erdos_600_parts_ii_of_forall_exists_deleteEdges_isLittleO",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos600.statement_ruzsa_szemeredi_upper_bound_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos600.statement_eFunction_two_eq_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos600.statement_mantel_turan_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos600.statement_blowup_scaling_fidelity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Erdos600.edgeTriangleIncidenceSum",
+      "kind": "def",
+      "declaration": "def Erdos600.edgeTriangleIncidenceSum.{u_1} {\u03b1 : Type u_1} [Fintype \u03b1] (G : SimpleGraph \u03b1) : Nat :=\n  fun {\u03b1} [Fintype \u03b1] G =>\n  Finset.sum (SimpleGraph.edgeFinset G) fun uv => Finset.card (SimpleGraph.trianglesContaining G uv)"
+    },
+    {
+      "name": "Erdos600.bookHeavyEdgeFinset",
+      "kind": "def",
+      "declaration": "def Erdos600.bookHeavyEdgeFinset.{u_1} {\u03b1 : Type u_1} [Fintype \u03b1] (G : SimpleGraph \u03b1) (r : Nat) : Finset (Sym2 \u03b1) :=\n  fun {\u03b1} [Fintype \u03b1] G r =>\n  Finset.filter (fun uv => LE.le r (Finset.card (SimpleGraph.trianglesContaining G uv))) (SimpleGraph.edgeFinset G)"
+    },
+    {
+      "name": "Erdos600.nonNeighborFinset",
+      "kind": "def",
+      "declaration": "def Erdos600.nonNeighborFinset.{u_1} {\u03b1 : Type u_1} [Fintype \u03b1] (G : SimpleGraph \u03b1) (u : \u03b1) : Finset \u03b1 :=\n  fun {\u03b1} [Fintype \u03b1] G u => SDiff.sdiff Finset.univ (Insert.insert u (SimpleGraph.neighborFinset G u))"
+    },
+    {
+      "name": "Erdos600.residualTriangles",
+      "kind": "def",
+      "declaration": "def Erdos600.residualTriangles.{u_1} {\u03b1 : Type u_1} [Fintype \u03b1] (G : SimpleGraph \u03b1) (u : \u03b1) : Finset (Finset \u03b1) :=\n  fun {\u03b1} [Fintype \u03b1] G u =>\n  Finset.filter (fun t => Eq (Finset.card (Inter.inter t (SimpleGraph.neighborFinset G u))) 0)\n    (Erdos600.avoidingTriangles G u)"
+    },
+    {
+      "name": "Erdos600.residualTriangleCount",
+      "kind": "def",
+      "declaration": "def Erdos600.residualTriangleCount.{u_1} {\u03b1 : Type u_1} [Fintype \u03b1] (G : SimpleGraph \u03b1) (u : \u03b1) : Nat :=\n  fun {\u03b1} [Fintype \u03b1] G u => Finset.card (Erdos600.residualTriangles G u)"
+    },
+    {
+      "name": "Erdos600.avoidingTriangles",
+      "kind": "def",
+      "declaration": "def Erdos600.avoidingTriangles.{u_1} {\u03b1 : Type u_1} [Fintype \u03b1] (G : SimpleGraph \u03b1) (u : \u03b1) : Finset (Finset \u03b1) :=\n  fun {\u03b1} [Fintype \u03b1] G u => Finset.filter (fun t => Not (Membership.mem t u)) (SimpleGraph.cliqueFinset G 3)"
+    },
+    {
+      "name": "Erdos600.crossTriangles",
+      "kind": "def",
+      "declaration": "def Erdos600.crossTriangles.{u_1} {\u03b1 : Type u_1} [Fintype \u03b1] (G : SimpleGraph \u03b1) (u : \u03b1) : Finset (Finset \u03b1) :=\n  fun {\u03b1} [Fintype \u03b1] G u =>\n  Finset.filter (fun t => Eq (Finset.card (Inter.inter t (SimpleGraph.neighborFinset G u))) 1)\n    (Erdos600.avoidingTriangles G u)"
+    },
+    {
+      "name": "Erdos600.crossTriangleCount",
+      "kind": "def",
+      "declaration": "def Erdos600.crossTriangleCount.{u_1} {\u03b1 : Type u_1} [Fintype \u03b1] (G : SimpleGraph \u03b1) (u : \u03b1) : Nat :=\n  fun {\u03b1} [Fintype \u03b1] G u => Finset.card (Erdos600.crossTriangles G u)"
+    },
+    {
+      "name": "Erdos600.edgeWeightProd",
+      "kind": "def",
+      "declaration": "def Erdos600.edgeWeightProd.{u_1} {\u03b1 : Type u_1} (w : \u03b1 \u2192 Nat) : Sym2 \u03b1 \u2192 Nat :=\n  fun {\u03b1} w => DFunLike.coe Sym2.lift \u27e8fun u v => HMul.hMul (w u) (w v), Erdos600.edgeWeightProd._proof_1 w\u27e9"
+    },
+    {
+      "name": "Erdos600.blowupEdgeQuadraticForm",
+      "kind": "def",
+      "declaration": "def Erdos600.blowupEdgeQuadraticForm.{u_1} {\u03b1 : Type u_1} [Fintype \u03b1] (H : SimpleGraph \u03b1) (w : \u03b1 \u2192 Nat) : Nat :=\n  fun {\u03b1} [Fintype \u03b1] H w => Finset.sum (SimpleGraph.edgeFinset H) fun uv => Erdos600.edgeWeightProd w uv"
+    },
+    {
+      "name": "Erdos600.instDecidableRelWeightedBlowupGraphAdj",
+      "kind": "def",
+      "declaration": "def Erdos600.instDecidableRelWeightedBlowupGraphAdj.{u_1} {\u03b1 : Type u_1} (H : SimpleGraph \u03b1) (w : \u03b1 \u2192 Nat)\n  [DecidableRel (SimpleGraph.Adj H)] : DecidableRel (SimpleGraph.Adj (Erdos600.weightedBlowupGraph H w)) :=\n  fun {\u03b1} H w [DecidableRel (SimpleGraph.Adj H)] x y => id inferInstance"
+    },
+    {
+      "name": "Erdos600.IsAdmissibleBlowupWeight",
+      "kind": "def",
+      "declaration": "def Erdos600.IsAdmissibleBlowupWeight.{u_1} {\u03b1 : Type u_1} [Fintype \u03b1] (H : SimpleGraph \u03b1) (w : \u03b1 \u2192 Nat) (r : Nat) : Prop :=\n  fun {\u03b1} [Fintype \u03b1] H w r =>\n  \u2200 (u v : \u03b1),\n    SimpleGraph.Adj H u v \u2192\n      And (LE.le 1 (Erdos600.commonNeighborWeightSum H w u v)) (LT.lt (Erdos600.commonNeighborWeightSum H w u v) r)"
+    },
+    {
+      "name": "Erdos600.commonNeighborFinset",
+      "kind": "def",
+      "declaration": "def Erdos600.commonNeighborFinset.{u_1} {\u03b1 : Type u_1} [Fintype \u03b1] (G : SimpleGraph \u03b1) (u v : \u03b1) : Finset \u03b1 :=\n  fun {\u03b1} [Fintype \u03b1] G u v => Inter.inter (SimpleGraph.neighborFinset G u) (SimpleGraph.neighborFinset G v)"
+    },
+    {
+      "name": "Erdos600.commonNeighborWeightSum",
+      "kind": "def",
+      "declaration": "def Erdos600.commonNeighborWeightSum.{u_1} {\u03b1 : Type u_1} [Fintype \u03b1] (H : SimpleGraph \u03b1) (w : \u03b1 \u2192 Nat) (u v : \u03b1) : Nat :=\n  fun {\u03b1} [Fintype \u03b1] H w u v => Finset.sum (Erdos600.commonNeighborFinset H u v) fun t => w t"
+    },
+    {
+      "name": "Erdos600.weightedBlowupGraph",
+      "kind": "def",
+      "declaration": "def Erdos600.weightedBlowupGraph.{u_1} {\u03b1 : Type u_1} (H : SimpleGraph \u03b1) (w : \u03b1 \u2192 Nat) :\n  SimpleGraph (Erdos600.BlowupVertex w) :=\n  fun {\u03b1} H w => SimpleGraph.comap Sigma.fst H"
+    },
+    {
+      "name": "Erdos600.BlowupVertex",
+      "kind": "def",
+      "declaration": "def Erdos600.BlowupVertex.{u_1} {\u03b1 : Type u_1} (w : \u03b1 \u2192 Nat) : Type u_1 :=\n  fun {\u03b1} w => Sigma fun u => Fin (w u)"
+    },
+    {
+      "name": "Erdos600.edgeTriangleIncidenceSqSum",
+      "kind": "def",
+      "declaration": "def Erdos600.edgeTriangleIncidenceSqSum.{u_1} {\u03b1 : Type u_1} [Fintype \u03b1] (G : SimpleGraph \u03b1) : Nat :=\n  fun {\u03b1} [Fintype \u03b1] G =>\n  Finset.sum (SimpleGraph.edgeFinset G) fun uv => HPow.hPow (Finset.card (SimpleGraph.trianglesContaining G uv)) 2"
+    },
+    {
+      "name": "Erdos600.IsAdmissibleBookFree",
+      "kind": "def",
+      "declaration": "def Erdos600.IsAdmissibleBookFree.{u_1} {\u03b1 : Type u_1} [Fintype \u03b1] (G : SimpleGraph \u03b1) (r : Nat) : Prop :=\n  fun {\u03b1} [Fintype \u03b1] G r =>\n  And\n    (\u2200 (uv : Sym2 \u03b1),\n      Membership.mem (SimpleGraph.edgeFinset G) uv \u2192 Finset.Nonempty (SimpleGraph.trianglesContaining G uv))\n    (\u2200 (uv : Sym2 \u03b1),\n      Membership.mem (SimpleGraph.edgeFinset G) uv \u2192 LT.lt (Finset.card (SimpleGraph.trianglesContaining G uv)) r)"
+    },
+    {
+      "name": "Erdos600.maxAdmissibleEdges",
+      "kind": "def",
+      "declaration": "def Erdos600.maxAdmissibleEdges (n r : Nat) : Nat :=\n  fun n r => HSub.hSub (Erdos600.eFunction n r) 1"
+    },
+    {
+      "name": "SimpleGraph.trianglesContaining",
+      "kind": "def",
+      "declaration": "def SimpleGraph.trianglesContaining.{u_1} {\u03b1 : Type u_1} [Fintype \u03b1] (G : SimpleGraph \u03b1) (uv : Sym2 \u03b1) : Finset (Finset \u03b1) :=\n  fun {\u03b1} [Fintype \u03b1] G uv => Finset.filter (fun t => LE.le (Sym2.toFinset uv) t) (SimpleGraph.cliqueFinset G 3)"
+    },
+    {
+      "name": "Erdos600.Erdos600Prop",
+      "kind": "def",
+      "declaration": "def Erdos600.Erdos600Prop (n e r : Nat) : Prop :=\n  fun n e r =>\n  \u2200 (G : SimpleGraph (Fin n)),\n    GE.ge (Finset.card (SimpleGraph.edgeFinset G)) e \u2192\n      (\u2200 (uv : Sym2 (Fin n)),\n          Membership.mem (SimpleGraph.edgeFinset G) uv \u2192 Finset.Nonempty (SimpleGraph.trianglesContaining G uv)) \u2192\n        Exists fun uv =>\n          And (Membership.mem (SimpleGraph.edgeFinset G) uv)\n            (LE.le r (Finset.card (SimpleGraph.trianglesContaining G uv)))"
+    },
+    {
+      "name": "Erdos600.eFunction",
+      "kind": "def",
+      "declaration": "def Erdos600.eFunction (n r : Nat) : Nat :=\n  fun n r => InfSet.sInf (Set.ofPred fun e => Erdos600.Erdos600Prop n e r)"
+    },
+    {
+      "name": "Erdos600.erdos_600.variants.ruzsa_szemeredi_upper_bound",
+      "kind": "theorem",
+      "declaration": "theorem Erdos600.erdos_600.variants.ruzsa_szemeredi_upper_bound (r : Nat) :\n  Asymptotics.IsLittleO Filter.atTop (fun n => \u2191(Erdos600.eFunction n r)) fun n => HPow.hPow (\u2191n) 2"
+    },
+    {
+      "name": "Erdos600.locallyLinear_iff_trianglesContaining",
+      "kind": "theorem",
+      "declaration": "theorem Erdos600.locallyLinear_iff_trianglesContaining.{u_1} {\u03b1 : Type u_1} [Fintype \u03b1] (G : SimpleGraph \u03b1) :\n  Iff (SimpleGraph.LocallyLinear G)\n    (And\n      (\u2200 (uv : Sym2 \u03b1),\n        Membership.mem (SimpleGraph.edgeFinset G) uv \u2192 Finset.Nonempty (SimpleGraph.trianglesContaining G uv))\n      (\u2200 (uv : Sym2 \u03b1),\n        Membership.mem (SimpleGraph.edgeFinset G) uv \u2192 LT.lt (Finset.card (SimpleGraph.trianglesContaining G uv)) 2))"
+    },
+    {
+      "name": "Erdos600.eFunction_two_eq",
+      "kind": "theorem",
+      "declaration": "theorem Erdos600.eFunction_two_eq (n : Nat) :\n  Eq (Erdos600.eFunction n 2) (HAdd.hAdd (HMul.hMul 3 (ruzsaSzemerediNumberNat n)) 1)"
+    },
+    {
+      "name": "Erdos600.behrend_asymptotic_lower_bound_eFunction",
+      "kind": "theorem",
+      "declaration": "theorem Erdos600.behrend_asymptotic_lower_bound_eFunction {r : Nat} (hr : LE.le 2 r) :\n  Asymptotics.IsBigO Filter.atTop\n    (fun n => HMul.hMul (HPow.hPow (\u2191n) 2) (Real.exp (HMul.hMul (-4) (Real.sqrt (Real.log \u2191n))))) fun n =>\n    \u2191(Erdos600.eFunction n r)"
+    },
+    {
+      "name": "Erdos600.card_edgeFinset_le_two_mul_sub_one_mul_sub_card",
+      "kind": "theorem",
+      "declaration": "theorem Erdos600.card_edgeFinset_le_two_mul_sub_one_mul_sub_card.{u_1} {\u03b1 : Type u_1} [Fintype \u03b1] {G H : SimpleGraph \u03b1}\n  (hle : LE.le H G) (hH : SimpleGraph.CliqueFree H 3)\n  (htri :\n    \u2200 (uv : Sym2 \u03b1),\n      Membership.mem (SimpleGraph.edgeFinset G) uv \u2192 Finset.Nonempty (SimpleGraph.trianglesContaining G uv))\n  {r : Nat}\n  (hr :\n    \u2200 (uv : Sym2 \u03b1),\n      Membership.mem (SimpleGraph.edgeFinset G) uv \u2192 LT.lt (Finset.card (SimpleGraph.trianglesContaining G uv)) r) :\n  LE.le (Finset.card (SimpleGraph.edgeFinset G))\n    (HMul.hMul (HSub.hSub (HMul.hMul 2 r) 1)\n      (HSub.hSub (Finset.card (SimpleGraph.edgeFinset G)) (Finset.card (SimpleGraph.edgeFinset H))))"
+    },
+    {
+      "name": "Erdos600.eFunction_eq_choose_two_succ_iff_of_three_le",
+      "kind": "theorem",
+      "declaration": "theorem Erdos600.eFunction_eq_choose_two_succ_iff_of_three_le {n r : Nat} (hn : LE.le 3 n) :\n  Iff (Eq (Erdos600.eFunction n r) (HAdd.hAdd (Nat.choose n 2) 1)) (LE.le (HSub.hSub n 1) r)"
+    },
+    {
+      "name": "Erdos600.maxAdmissibleEdges_superadditive",
+      "kind": "theorem",
+      "declaration": "theorem Erdos600.maxAdmissibleEdges_superadditive (m n r : Nat) :\n  LE.le (HAdd.hAdd (Erdos600.maxAdmissibleEdges m r) (Erdos600.maxAdmissibleEdges n r))\n    (Erdos600.maxAdmissibleEdges (HAdd.hAdd m n) r)"
+    },
+    {
+      "name": "Erdos600.degree_add_degree_le_card_add_sub_one_of_isAdmissibleBookFree",
+      "kind": "theorem",
+      "declaration": "theorem Erdos600.degree_add_degree_le_card_add_sub_one_of_isAdmissibleBookFree.{u_1} {\u03b1 : Type u_1} [Fintype \u03b1]\n  {G : SimpleGraph \u03b1} {r : Nat} (hr : LE.le 1 r) (hG : Erdos600.IsAdmissibleBookFree G r) {u v : \u03b1}\n  (huv : SimpleGraph.Adj G u v) :\n  LE.le (HAdd.hAdd (SimpleGraph.degree G u) (SimpleGraph.degree G v)) (HSub.hSub (HAdd.hAdd (Fintype.card \u03b1) r) 1)"
+    },
+    {
+      "name": "Erdos600.three_mul_ruzsaSzemerediNumberNat_le_mul_div_two",
+      "kind": "theorem",
+      "declaration": "theorem Erdos600.three_mul_ruzsaSzemerediNumberNat_le_mul_div_two (n : Nat) :\n  LE.le (HMul.hMul 3 (ruzsaSzemerediNumberNat n)) (HMul.hMul n (HDiv.hDiv (HSub.hSub n 1) 2))"
+    },
+    {
+      "name": "Erdos600.nine_mul_card_cliqueFinset_sq_le_card_edgeFinset_mul_edgeTriangleIncidenceSqSum",
+      "kind": "theorem",
+      "declaration": "theorem Erdos600.nine_mul_card_cliqueFinset_sq_le_card_edgeFinset_mul_edgeTriangleIncidenceSqSum.{u_1} {\u03b1 : Type u_1}\n  [Fintype \u03b1] (G : SimpleGraph \u03b1) :\n  LE.le (HMul.hMul 9 (HPow.hPow (Finset.card (SimpleGraph.cliqueFinset G 3)) 2))\n    (HMul.hMul (Finset.card (SimpleGraph.edgeFinset G)) (Erdos600.edgeTriangleIncidenceSqSum G))"
+    },
+    {
+      "name": "Erdos600.maxAdmissibleEdges_le_mul_add_sub_one_div_four",
+      "kind": "theorem",
+      "declaration": "theorem Erdos600.maxAdmissibleEdges_le_mul_add_sub_one_div_four (n : Nat) {r : Nat} (hr : LE.le 1 r) :\n  LE.le (Erdos600.maxAdmissibleEdges n r) (HDiv.hDiv (HMul.hMul n (HSub.hSub (HAdd.hAdd n r) 1)) 4)"
+    },
+    {
+      "name": "Erdos600.card_trianglesContaining_weightedBlowupGraph_eq_commonNeighborWeightSum",
+      "kind": "theorem",
+      "declaration": "theorem Erdos600.card_trianglesContaining_weightedBlowupGraph_eq_commonNeighborWeightSum.{u_1} {\u03b1 : Type u_1} [Fintype \u03b1]\n  (H : SimpleGraph \u03b1) (w : \u03b1 \u2192 Nat) {x y : Erdos600.BlowupVertex w}\n  (hadj : SimpleGraph.Adj (Erdos600.weightedBlowupGraph H w) x y) :\n  Eq (Finset.card (SimpleGraph.trianglesContaining (Erdos600.weightedBlowupGraph H w) (Sym2.mk x y)))\n    (Erdos600.commonNeighborWeightSum H w (Sigma.fst x) (Sigma.fst y))"
+    },
+    {
+      "name": "Erdos600.isAdmissibleBookFree_weightedBlowupGraph_iff_of_pos",
+      "kind": "theorem",
+      "declaration": "theorem Erdos600.isAdmissibleBookFree_weightedBlowupGraph_iff_of_pos.{u_1} {\u03b1 : Type u_1} [Fintype \u03b1] (H : SimpleGraph \u03b1)\n  {w : \u03b1 \u2192 Nat} (r : Nat) (hpos : \u2200 (u : \u03b1), LE.le 1 (w u)) :\n  Iff (Erdos600.IsAdmissibleBookFree (Erdos600.weightedBlowupGraph H w) r) (Erdos600.IsAdmissibleBlowupWeight H w r)"
+    },
+    {
+      "name": "Erdos600.card_edgeFinset_weightedBlowupGraph_eq_blowupEdgeQuadraticForm",
+      "kind": "theorem",
+      "declaration": "theorem Erdos600.card_edgeFinset_weightedBlowupGraph_eq_blowupEdgeQuadraticForm.{u_1} {\u03b1 : Type u_1} [Fintype \u03b1]\n  (H : SimpleGraph \u03b1) (w : \u03b1 \u2192 Nat) :\n  Eq (Finset.card (SimpleGraph.edgeFinset (Erdos600.weightedBlowupGraph H w))) (Erdos600.blowupEdgeQuadraticForm H w)"
+    },
+    {
+      "name": "Erdos600.sq_mul_maxAdmissibleEdges_le_maxAdmissibleEdges_mul",
+      "kind": "theorem",
+      "declaration": "theorem Erdos600.sq_mul_maxAdmissibleEdges_le_maxAdmissibleEdges_mul (m : Nat) {r c : Nat} (hc : LE.le 1 c) (hr : LE.le 1 r) :\n  LE.le (HMul.hMul (HPow.hPow c 2) (Erdos600.maxAdmissibleEdges m r))\n    (Erdos600.maxAdmissibleEdges (HMul.hMul c m) (HAdd.hAdd (HMul.hMul c (HSub.hSub r 1)) 1))"
+    },
+    {
+      "name": "Erdos600.four_mul_crossTriangleCount_add_six_mul_residualTriangleCount_eq_sum_degree",
+      "kind": "theorem",
+      "declaration": "theorem Erdos600.four_mul_crossTriangleCount_add_six_mul_residualTriangleCount_eq_sum_degree.{u_1} {\u03b1 : Type u_1} [Fintype \u03b1]\n  {G : SimpleGraph \u03b1} (hG : Erdos600.IsAdmissibleBookFree G 2) (u : \u03b1) :\n  Eq (HAdd.hAdd (HMul.hMul 4 (Erdos600.crossTriangleCount G u)) (HMul.hMul 6 (Erdos600.residualTriangleCount G u)))\n    (Finset.sum (Erdos600.nonNeighborFinset G u) fun w => SimpleGraph.degree G w)"
+    },
+    {
+      "name": "Erdos600.card_edgeFinset_add_sub_one_mul_card_bookHeavyEdgeFinset_le_edgeTriangleIncidenceSum",
+      "kind": "theorem",
+      "declaration": "theorem Erdos600.card_edgeFinset_add_sub_one_mul_card_bookHeavyEdgeFinset_le_edgeTriangleIncidenceSum.{u_1} {\u03b1 : Type u_1}\n  [Fintype \u03b1] {G : SimpleGraph \u03b1} {r : Nat} (hr : LE.le 1 r)\n  (htri :\n    \u2200 (uv : Sym2 \u03b1),\n      Membership.mem (SimpleGraph.edgeFinset G) uv \u2192 Finset.Nonempty (SimpleGraph.trianglesContaining G uv)) :\n  LE.le\n    (HAdd.hAdd (Finset.card (SimpleGraph.edgeFinset G))\n      (HMul.hMul (HSub.hSub r 1) (Finset.card (Erdos600.bookHeavyEdgeFinset G r))))\n    (Erdos600.edgeTriangleIncidenceSum G)"
+    },
+    {
+      "name": "Erdos600.erdos_600_parts_ii_of_forall_exists_deleteEdges_isLittleO",
+      "kind": "theorem",
+      "declaration": "theorem Erdos600.erdos_600_parts_ii_of_forall_exists_deleteEdges_isLittleO (d : Nat \u2192 Nat \u2192 Nat)\n  (hdel :\n    \u2200 (r : Nat),\n      LE.le 2 r \u2192\n        \u2200 (n : Nat) (G : SimpleGraph (Fin n)),\n          Erdos600.IsAdmissibleBookFree G (HAdd.hAdd r 1) \u2192\n            Exists fun F =>\n              And (LE.le F (SimpleGraph.edgeFinset G))\n                (And (LE.le (Finset.card F) (d r n))\n                  (Erdos600.IsAdmissibleBookFree (SimpleGraph.deleteEdges G (SetLike.coe F)) r)))\n  (ho :\n    \u2200 (r : Nat), LE.le 2 r \u2192 Asymptotics.IsLittleO Filter.atTop (fun n => \u2191(d r n)) fun n => \u2191(Erdos600.eFunction n r))\n  (r : Nat) :\n  LE.le 2 r \u2192\n    Filter.Tendsto (fun n => HDiv.hDiv \u2191(Erdos600.eFunction n (HAdd.hAdd r 1)) \u2191(Erdos600.eFunction n r)) Filter.atTop\n      (nhds 1)"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos600.erdos_600.variants.ruzsa_szemeredi_upper_bound",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.600",
+      "solution_declaration": "Erdos600.erdos_600.variants.ruzsa_szemeredi_upper_bound",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos600.Challenge.statement_erdos_600_variants_ruzsa_szemeredi_upper_bound",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos600.erdos_600.variants.ruzsa_szemeredi_upper_bound",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos600.Challenge.statement_eFunction_two_eq",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos600.eFunction_two_eq",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos600.Challenge.statement_maxAdmissibleEdges_le_mul_add_sub_one_div_four",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos600.maxAdmissibleEdges_le_mul_add_sub_one_div_four",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos600.Challenge.statement_sq_mul_maxAdmissibleEdges_le_maxAdmissibleEdges_mul",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos600.sq_mul_maxAdmissibleEdges_le_maxAdmissibleEdges_mul",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos600.erdos_600.parts.i",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.600",
+      "solution_declaration": "Erdos600.Challenge.statement_erdos_600_parts_i",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos600.erdos_600.variants.ruzsa_szemeredi_upper_bound",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.600",
+      "solution_declaration": "Erdos600.Challenge.statement_erdos_600_variants_ruzsa_szemeredi_upper_bound",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos600.erdos_600.parts.ii",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.600",
+      "solution_declaration": "Erdos600.Challenge.statement_erdos_600_parts_ii",
+      "match_mode": "exact"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "a85b0ff8664c52ab923e0daf7e20cbc394272cd3831cc492ab144105d8091361"
+  },
+  "input_sha256": {
+    "Challenge.lean": "986c10d799b311f8e042fe8ca4af448916efde9bb006f99cd1cfea506455aa92",
+    "Solution.lean": "be576cbecb2e776bdc17ad8e5a6f703b0b8a186ccd21211df2df1a9a5bb6d7da",
+    "AxiomAudit.lean": "2f45183467776dc0358835e28578284b05f363c7853af740d03eae530519d50d",
+    "Statement.lean": "3f6898260da4a3982a0023ba1b4583831481eb37569538cda7fd2b79d8256d90",
+    "comparator.json": "a490f1fcd499e65d237ab9eee09a3a72946ce22e6c0e27a03e1a9b004a32ac42",
+    "formalization.yaml": "53909d1ab79b0a65bbc1bbda8b90316d49c95ea0b3ed8257fdd45b47cdd55a4b",
+    "lakefile.toml": "91ac8a6dff7028b99e2d1fd7b734d874950940d8214509c6a6f55fe6a4583592",
+    "lake-manifest.json": "181a55ed99f861349c9a89db8d0e1befebfb77032ad565996c52598f1b212763",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "0d4550e8ed1966fc0264b1eabb35ee7013c3dc8054d28a7c09d6d25298236cea",
+    "Proofs/Blueprint600.lean": "d1178886f5e8b0558020588898b56f909cb8175e1decc8298a8020bd4d39938e",
+    "Proofs/Erdos600Unified435.lean": "c39941fc6103bfd425f970e088d3b43fa6351e505c1447e54ea6b421bdca5103",
+    "Proofs/LinkGraphCycleDeficitAndTriangleCauchySchwarz600.lean": "c207f69ca2347768d7a2b46401b176feba100f59ecb1162050ac2f7dabfcc2d5",
+    "Proofs/NeighborhoodDegreeAndTriangleClusterBounds600.lean": "fd9c364d922a8e8e822a4ca6f457b8111d744e38034809b946019be7a78057d1",
+    "Proofs/WeightedVertexBlowupAndStepDifferenceBounds600.lean": "917b878db372aa07ad3de9bf355270d1eb3bca17c2f77a9495cb2f5f934b62cf"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 51.828,
+    "env_compare_and_core_audit_seconds": 80.903,
+    "total_elapsed_seconds": 309.17,
+    "user_cpu_seconds": 164.547,
+    "system_cpu_seconds": 78.445,
+    "peak_rss_mib": 13638.18
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,128 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-25-994b4c04",
+  "verification_date": "2026-10-25",
+  "state_sha256": "ea2485ee4f68bc3eef2aa4c1657c603e04a3f1382b93fe02fb8fa89a91dcbaa0",
+  "package": "erdos-661",
+  "project_name": "Erd\u0151s 661: Lenz's construction in R^4",
+  "package_commit": "994b4c04dc4cf77c4b27364e27f179622104c681",
+  "commit": "994b4c04dc4cf77c4b27364e27f179622104c681",
+  "repository": "linrock/math-proofs",
+  "run_id": "40233608092",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 1841,
+    "lines": 44,
+    "sha256": "0fe8293514747e9cd043095ec7ce3c2c4c782bbed75c7c4f59ca325a0adda970",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos661.erdos_661_variants_lenz"
+  ],
+  "declaration_lines": {
+    "Erdos661.erdos_661_variants_lenz": {
+      "solution_line": 26,
+      "challenge_line": 41
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos661.erdos_661_variants_lenz"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 1,
+  "expected_axiom_audit_count": 1,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos661.erdos_661_variants_lenz",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Erdos661.erdos_661_variants_lenz",
+      "kind": "theorem",
+      "declaration": "theorem Erdos661.erdos_661_variants_lenz (n : Nat) :\n  Exists fun A =>\n    Exists fun B =>\n      And (Eq (Finset.card A) n)\n        (And (Eq (Finset.card B) n)\n          (And (Disjoint A B)\n            (\u2200 (x : EuclideanSpace Real (Fin 4)),\n              Membership.mem A x \u2192 \u2200 (y : EuclideanSpace Real (Fin 4)), Membership.mem B y \u2192 Eq (Dist.dist x y) 1)))"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos661.erdos_661.variants.lenz",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.661",
+      "solution_declaration": "Erdos661.erdos_661_variants_lenz",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos661.LenzStatement",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos661.erdos_661_variants_lenz",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos661.erdos_661.variants.le_minimalDistinctDistances",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.661",
+      "solution_declaration": "Erdos661.LeMinimalDistinctDistancesStatement",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos661.erdos_661.variants.lenz",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.661",
+      "solution_declaration": "Erdos661.LenzStatement",
+      "match_mode": "exact"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "a85b0ff8664c52ab923e0daf7e20cbc394272cd3831cc492ab144105d8091361"
+  },
+  "input_sha256": {
+    "Challenge.lean": "0fe8293514747e9cd043095ec7ce3c2c4c782bbed75c7c4f59ca325a0adda970",
+    "Solution.lean": "460d9083f8e818a3eaf0982ad59b540f92503d7b5e27a236421b7996ca68e477",
+    "AxiomAudit.lean": "207e090757f12d9394aaf9c2d7af60d612ed6b1973add0fde04579b45666759d",
+    "Statement.lean": "d0400a3b429debf09fa290239cbe9976849ba7fc76118aa6f84280b03a049f10",
+    "comparator.json": "3a2a1b71f2b78cee1a61b0d67bc6678a714e7f167f36ed7e6bea5d912389d4d7",
+    "formalization.yaml": "893f48214eb7165cb3b563fb744112bde9babf372262fea2f92edf9eedba7699",
+    "lakefile.toml": "04cc70c1b086b6f2d234e708727a040c5bf08ce53467d41c21f7e666220957b2",
+    "lake-manifest.json": "93d2e66276fa2f8649e89a66874ce6a10648cce40d745c824826e7bc5eebb11d",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "0d4550e8ed1966fc0264b1eabb35ee7013c3dc8054d28a7c09d6d25298236cea",
+    "Proofs/Erdos661Proofs.lean": "8e69e8749e2df4ac46874bce9edee2ce86e7c8fc78d20071273ad066436da635"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 14.504,
+    "env_compare_and_core_audit_seconds": 61.474,
+    "total_elapsed_seconds": 185.535,
+    "user_cpu_seconds": 82.604,
+    "system_cpu_seconds": 46.628,
+    "peak_rss_mib": 13562.82
+  },
+  "status": "PASS"
+}

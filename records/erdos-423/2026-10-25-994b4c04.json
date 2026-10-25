@@ -1,0 +1,798 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-25-994b4c04",
+  "verification_date": "2026-10-25",
+  "state_sha256": "7e19066ecbd52f63fe9041bd0bc99f359735ba7057f2eb95cbb77abeafa06eb5",
+  "package": "erdos-423",
+  "project_name": "Erd\u0151s 423: Hofstadter consecutive-block-sum sequence",
+  "package_commit": "994b4c04dc4cf77c4b27364e27f179622104c681",
+  "commit": "994b4c04dc4cf77c4b27364e27f179622104c681",
+  "repository": "linrock/math-proofs",
+  "run_id": "40233608092",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 15697,
+    "lines": 178,
+    "sha256": "8c524c3c9f57869950675ca2ef78c862a89d48acbe9e5cb4b3fabe9692ae08ec",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos423.erdos_423.variants.nondecreasing",
+    "Erdos423.erdos_423.variants.unbounded",
+    "Erdos423.erdos_423.variants.infinite_complement",
+    "Erdos423.existsUnique_isHofstadterSeq",
+    "Erdos423.IsHofstadterSeq_card_omitted_Icc_eq_sub",
+    "Erdos423.IsHofstadterSeq_exists_ge_three_eq_iff_isGlobalConsecutiveBlockSum",
+    "Erdos423.two_mul_sub_one_le_of_prefixSum_le",
+    "Erdos423.strict_excess_increase_of_blockSum_eq_two_pow",
+    "Erdos423.completed_square_tail_quadratic_identity",
+    "Erdos423.exists_completed_square_discriminant_of_two_pow",
+    "Erdos423.discriminantOffset_emod_eight",
+    "Erdos423.completed_square_collision_factor_eq",
+    "Erdos423.two_pow_le_of_completed_square_collision",
+    "Erdos423.two_mul_le_succ_of_completed_square_collision",
+    "Erdos423.completedSquareExpFiber_card_le_one",
+    "Erdos423.not_eventual_linear_of_isHofstadterSeq",
+    "Erdos423.exists_stabilization_breaking_index_le",
+    "Erdos423.strict_excess_increase_at_stabilizationIndexHorizon",
+    "Erdos423.le_excess_of_iterExcessHorizon_le",
+    "Erdos423.iterExcessHorizon_one_eq_sixteen",
+    "Erdos423.nextExcessHorizon_le_two_pow_five_mul_sq_add",
+    "Erdos423.erdos_423_variants_lower_bound_of_iterExcessHorizon_log_log_le",
+    "Erdos423.erdos_423_variants_upper_bound_of_iterExcessHorizon_rpow_le",
+    "Erdos423.erdos_423_of_iterExcessHorizon_littleO_bound"
+  ],
+  "declaration_lines": {
+    "Erdos423.erdos_423.variants.nondecreasing": {
+      "solution_line": null,
+      "challenge_line": null
+    },
+    "Erdos423.erdos_423.variants.unbounded": {
+      "solution_line": null,
+      "challenge_line": null
+    },
+    "Erdos423.erdos_423.variants.infinite_complement": {
+      "solution_line": null,
+      "challenge_line": null
+    },
+    "Erdos423.existsUnique_isHofstadterSeq": {
+      "solution_line": null,
+      "challenge_line": 114
+    },
+    "Erdos423.IsHofstadterSeq_card_omitted_Icc_eq_sub": {
+      "solution_line": null,
+      "challenge_line": 117
+    },
+    "Erdos423.IsHofstadterSeq_exists_ge_three_eq_iff_isGlobalConsecutiveBlockSum": {
+      "solution_line": null,
+      "challenge_line": 120
+    },
+    "Erdos423.two_mul_sub_one_le_of_prefixSum_le": {
+      "solution_line": null,
+      "challenge_line": 123
+    },
+    "Erdos423.strict_excess_increase_of_blockSum_eq_two_pow": {
+      "solution_line": null,
+      "challenge_line": 126
+    },
+    "Erdos423.completed_square_tail_quadratic_identity": {
+      "solution_line": null,
+      "challenge_line": 129
+    },
+    "Erdos423.exists_completed_square_discriminant_of_two_pow": {
+      "solution_line": null,
+      "challenge_line": 132
+    },
+    "Erdos423.discriminantOffset_emod_eight": {
+      "solution_line": null,
+      "challenge_line": 135
+    },
+    "Erdos423.completed_square_collision_factor_eq": {
+      "solution_line": null,
+      "challenge_line": 138
+    },
+    "Erdos423.two_pow_le_of_completed_square_collision": {
+      "solution_line": null,
+      "challenge_line": 141
+    },
+    "Erdos423.two_mul_le_succ_of_completed_square_collision": {
+      "solution_line": null,
+      "challenge_line": 144
+    },
+    "Erdos423.completedSquareExpFiber_card_le_one": {
+      "solution_line": null,
+      "challenge_line": 147
+    },
+    "Erdos423.not_eventual_linear_of_isHofstadterSeq": {
+      "solution_line": null,
+      "challenge_line": 150
+    },
+    "Erdos423.exists_stabilization_breaking_index_le": {
+      "solution_line": null,
+      "challenge_line": 153
+    },
+    "Erdos423.strict_excess_increase_at_stabilizationIndexHorizon": {
+      "solution_line": null,
+      "challenge_line": 156
+    },
+    "Erdos423.le_excess_of_iterExcessHorizon_le": {
+      "solution_line": null,
+      "challenge_line": 159
+    },
+    "Erdos423.iterExcessHorizon_one_eq_sixteen": {
+      "solution_line": null,
+      "challenge_line": 162
+    },
+    "Erdos423.nextExcessHorizon_le_two_pow_five_mul_sq_add": {
+      "solution_line": null,
+      "challenge_line": 165
+    },
+    "Erdos423.erdos_423_variants_lower_bound_of_iterExcessHorizon_log_log_le": {
+      "solution_line": null,
+      "challenge_line": 168
+    },
+    "Erdos423.erdos_423_variants_upper_bound_of_iterExcessHorizon_rpow_le": {
+      "solution_line": null,
+      "challenge_line": 171
+    },
+    "Erdos423.erdos_423_of_iterExcessHorizon_littleO_bound": {
+      "solution_line": null,
+      "challenge_line": 174
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos423.IsHofstadterSeq_card_omitted_Icc_eq_sub",
+    "Erdos423.IsHofstadterSeq_exists_ge_three_eq_iff_isGlobalConsecutiveBlockSum",
+    "Erdos423.completedSquareExpFiber_card_le_one",
+    "Erdos423.completed_square_collision_factor_eq",
+    "Erdos423.completed_square_tail_quadratic_identity",
+    "Erdos423.discriminantOffset_emod_eight",
+    "Erdos423.erdos_423.variants.infinite_complement",
+    "Erdos423.erdos_423.variants.nondecreasing",
+    "Erdos423.erdos_423.variants.unbounded",
+    "Erdos423.erdos_423_of_iterExcessHorizon_littleO_bound",
+    "Erdos423.erdos_423_variants_lower_bound_of_iterExcessHorizon_log_log_le",
+    "Erdos423.erdos_423_variants_upper_bound_of_iterExcessHorizon_rpow_le",
+    "Erdos423.existsUnique_isHofstadterSeq",
+    "Erdos423.exists_completed_square_discriminant_of_two_pow",
+    "Erdos423.exists_stabilization_breaking_index_le",
+    "Erdos423.iterExcessHorizon_one_eq_sixteen",
+    "Erdos423.le_excess_of_iterExcessHorizon_le",
+    "Erdos423.nextExcessHorizon_le_two_pow_five_mul_sq_add",
+    "Erdos423.not_eventual_linear_of_isHofstadterSeq",
+    "Erdos423.strict_excess_increase_at_stabilizationIndexHorizon",
+    "Erdos423.strict_excess_increase_of_blockSum_eq_two_pow",
+    "Erdos423.two_mul_le_succ_of_completed_square_collision",
+    "Erdos423.two_mul_sub_one_le_of_prefixSum_le",
+    "Erdos423.two_pow_le_of_completed_square_collision"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 24,
+  "expected_axiom_audit_count": 24,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos423.erdos_423.variants.nondecreasing",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos423.erdos_423.variants.unbounded",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos423.erdos_423.variants.infinite_complement",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos423.existsUnique_isHofstadterSeq",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos423.IsHofstadterSeq_card_omitted_Icc_eq_sub",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos423.IsHofstadterSeq_exists_ge_three_eq_iff_isGlobalConsecutiveBlockSum",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos423.two_mul_sub_one_le_of_prefixSum_le",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos423.strict_excess_increase_of_blockSum_eq_two_pow",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos423.completed_square_tail_quadratic_identity",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos423.exists_completed_square_discriminant_of_two_pow",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos423.discriminantOffset_emod_eight",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos423.completed_square_collision_factor_eq",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos423.two_pow_le_of_completed_square_collision",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos423.two_mul_le_succ_of_completed_square_collision",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos423.completedSquareExpFiber_card_le_one",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos423.not_eventual_linear_of_isHofstadterSeq",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos423.exists_stabilization_breaking_index_le",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos423.strict_excess_increase_at_stabilizationIndexHorizon",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos423.le_excess_of_iterExcessHorizon_le",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos423.iterExcessHorizon_one_eq_sixteen",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos423.nextExcessHorizon_le_two_pow_five_mul_sq_add",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos423.erdos_423_variants_lower_bound_of_iterExcessHorizon_log_log_le",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos423.erdos_423_variants_upper_bound_of_iterExcessHorizon_rpow_le",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos423.erdos_423_of_iterExcessHorizon_littleO_bound",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Erdos423.nextExcessHorizon",
+      "kind": "def",
+      "declaration": "def Erdos423.nextExcessHorizon (a : Nat \u2192 Nat) (n\u2080 : Nat) : Nat :=\n  fun a n\u2080 => Erdos423.stabilizationIndexHorizon a n\u2080 (HSub.hSub (a n\u2080) n\u2080)"
+    },
+    {
+      "name": "Erdos423.iterExcessHorizon",
+      "kind": "def",
+      "declaration": "def Erdos423.iterExcessHorizon (a : Nat \u2192 Nat) (k : Nat) : Nat :=\n  fun a k => Nat.iterate (Erdos423.nextExcessHorizon a) k 1"
+    },
+    {
+      "name": "Erdos423.stabilizationExpHorizon",
+      "kind": "def",
+      "declaration": "def Erdos423.stabilizationExpHorizon (a : Nat \u2192 Nat) (n\u2080 C : Nat) : Nat :=\n  fun a n\u2080 C =>\n  HAdd.hAdd\n    (Max.max (HAdd.hAdd (HAdd.hAdd (Max.max n\u2080 3) C) (Erdos423.prefixSum a (HSub.hSub n\u2080 1)))\n      (Max.max (HAdd.hAdd n\u2080 1) (HPow.hPow (HSub.hSub (HAdd.hAdd (HMul.hMul 2 n\u2080) (HMul.hMul 2 C)) 1) 2)))\n    n\u2080"
+    },
+    {
+      "name": "Erdos423.stabilizationIndexHorizon",
+      "kind": "def",
+      "declaration": "def Erdos423.stabilizationIndexHorizon (a : Nat \u2192 Nat) (n\u2080 C : Nat) : Nat :=\n  fun a n\u2080 C => HAdd.hAdd (HPow.hPow 2 (Erdos423.stabilizationExpHorizon a n\u2080 C)) C"
+    },
+    {
+      "name": "Erdos423.completedSquareExpFiber",
+      "kind": "def",
+      "declaration": "def Erdos423.completedSquareExpFiber (a : Nat \u2192 Nat) (n\u2080 C r\u2080 K i : Nat) : Finset Nat :=\n  fun a n\u2080 C r\u2080 K i =>\n  Finset.filter\n    (fun r =>\n      Exists fun v =>\n        Eq\n          (HAdd.hAdd (HPow.hPow (HAdd.hAdd (HMul.hMul 2 v) 1) 2)\n            (HMul.hMul 8 (HSub.hSub (Erdos423.prefixSum a (HSub.hSub n\u2080 1)) (Erdos423.prefixSum a (HSub.hSub i 1)))))\n          (HAdd.hAdd (HPow.hPow 2 (HAdd.hAdd r 3))\n            (HPow.hPow (HSub.hSub (HAdd.hAdd (HMul.hMul 2 n\u2080) (HMul.hMul 2 C)) 1) 2)))\n    (Finset.Ico r\u2080 (HAdd.hAdd r\u2080 K))"
+    },
+    {
+      "name": "Erdos423.discriminantOffset",
+      "kind": "def",
+      "declaration": "def Erdos423.discriminantOffset (a : Nat \u2192 Nat) (n\u2080 C i : Nat) : Int :=\n  fun a n\u2080 C i =>\n  HSub.hSub (HMul.hMul 8 (HSub.hSub \u2191(Erdos423.prefixSum a (HSub.hSub n\u2080 1)) \u2191(Erdos423.prefixSum a (HSub.hSub i 1))))\n    \u2191(HPow.hPow (HSub.hSub (HAdd.hAdd (HMul.hMul 2 n\u2080) (HMul.hMul 2 C)) 1) 2)"
+    },
+    {
+      "name": "Erdos423.prefixSum",
+      "kind": "def",
+      "declaration": "def Erdos423.prefixSum (a : Nat \u2192 Nat) (n : Nat) : Nat :=\n  fun a n => Finset.sum (Finset.Icc 1 n) fun l => a l"
+    },
+    {
+      "name": "Erdos423.IsGlobalConsecutiveBlockSum",
+      "kind": "def",
+      "declaration": "def Erdos423.IsGlobalConsecutiveBlockSum (a : Nat \u2192 Nat) (m : Nat) : Prop :=\n  fun a m =>\n  Exists fun i =>\n    Exists fun j => And (LE.le 1 i) (And (LE.le (HAdd.hAdd i 1) j) (Eq m (Finset.sum (Finset.Icc i j) fun l => a l)))"
+    },
+    {
+      "name": "Erdos423.IsConsecutiveBlockSum",
+      "kind": "def",
+      "declaration": "def Erdos423.IsConsecutiveBlockSum (a : Nat \u2192 Nat) (k m : Nat) : Prop :=\n  fun a k m =>\n  Exists fun i =>\n    Exists fun j =>\n      And (LE.le 1 i)\n        (And (LE.le (HAdd.hAdd i 1) j)\n          (And (LE.le (HAdd.hAdd j 1) k) (Eq m (Finset.sum (Finset.Icc i j) fun l => a l))))"
+    },
+    {
+      "name": "Erdos423.IsHofstadterSeq",
+      "kind": "def",
+      "declaration": "def Erdos423.IsHofstadterSeq (a : Nat \u2192 Nat) : Prop :=\n  fun a =>\n  And (Eq (a 1) 1)\n    (And (Eq (a 2) 2)\n      (\u2200 (k : Nat),\n        LE.le 3 k \u2192\n          And (Erdos423.IsConsecutiveBlockSum a k (a k))\n            (And (LT.lt (a (HSub.hSub k 1)) (a k))\n              (\u2200 (m : Nat), LT.lt (a (HSub.hSub k 1)) m \u2192 LT.lt m (a k) \u2192 Not (Erdos423.IsConsecutiveBlockSum a k m)))))"
+    },
+    {
+      "name": "Erdos423.erdos_423.variants.nondecreasing",
+      "kind": "theorem",
+      "declaration": "theorem Erdos423.erdos_423.variants.nondecreasing (a : Nat \u2192 Nat) :\n  Erdos423.IsHofstadterSeq a \u2192 \u2200 (n m : Nat), LE.le 1 n \u2192 LE.le n m \u2192 LE.le (HSub.hSub (a n) n) (HSub.hSub (a m) m)"
+    },
+    {
+      "name": "Erdos423.erdos_423.variants.unbounded",
+      "kind": "theorem",
+      "declaration": "theorem Erdos423.erdos_423.variants.unbounded (a : Nat \u2192 Nat) :\n  Erdos423.IsHofstadterSeq a \u2192 \u2200 (M : Nat), Filter.Eventually (fun n => LE.le (HAdd.hAdd M n) (a n)) Filter.atTop"
+    },
+    {
+      "name": "Erdos423.erdos_423.variants.infinite_complement",
+      "kind": "theorem",
+      "declaration": "theorem Erdos423.erdos_423.variants.infinite_complement (a : Nat \u2192 Nat) :\n  Erdos423.IsHofstadterSeq a \u2192 Set.Infinite (Compl.compl (Set.range a))"
+    },
+    {
+      "name": "Erdos423.existsUnique_isHofstadterSeq",
+      "kind": "theorem",
+      "declaration": "theorem Erdos423.existsUnique_isHofstadterSeq : ExistsUnique fun a => And (Eq (a 0) 0) (Erdos423.IsHofstadterSeq a)"
+    },
+    {
+      "name": "Erdos423.IsHofstadterSeq_card_omitted_Icc_eq_sub",
+      "kind": "theorem",
+      "declaration": "theorem Erdos423.IsHofstadterSeq_card_omitted_Icc_eq_sub {a : Nat \u2192 Nat} (ha : Erdos423.IsHofstadterSeq a) {n : Nat}\n  (hn : LE.le 1 n) :\n  Eq (Finset.card (SDiff.sdiff (Finset.Icc 1 (a n)) (Finset.image a (Finset.Icc 1 n)))) (HSub.hSub (a n) n)"
+    },
+    {
+      "name": "Erdos423.IsHofstadterSeq_exists_ge_three_eq_iff_isGlobalConsecutiveBlockSum",
+      "kind": "theorem",
+      "declaration": "theorem Erdos423.IsHofstadterSeq_exists_ge_three_eq_iff_isGlobalConsecutiveBlockSum {a : Nat \u2192 Nat}\n  (ha : Erdos423.IsHofstadterSeq a) (m : Nat) :\n  Iff (Exists fun k => And (LE.le 3 k) (Eq (a k) m)) (Erdos423.IsGlobalConsecutiveBlockSum a m)"
+    },
+    {
+      "name": "Erdos423.two_mul_sub_one_le_of_prefixSum_le",
+      "kind": "theorem",
+      "declaration": "theorem Erdos423.two_mul_sub_one_le_of_prefixSum_le (a : Nat \u2192 Nat) :\n  Erdos423.IsHofstadterSeq a \u2192\n    \u2200 (m N : Nat), LE.le 1 m \u2192 LE.le 1 N \u2192 LE.le (Erdos423.prefixSum a m) (a N) \u2192 LE.le (HSub.hSub (HMul.hMul 2 m) 1) N"
+    },
+    {
+      "name": "Erdos423.strict_excess_increase_of_blockSum_eq_two_pow",
+      "kind": "theorem",
+      "declaration": "theorem Erdos423.strict_excess_increase_of_blockSum_eq_two_pow (a : Nat \u2192 Nat) :\n  Erdos423.IsHofstadterSeq a \u2192\n    \u2200 (i j r : Nat),\n      LE.le 1 i \u2192\n        LE.le (HAdd.hAdd i 1) j \u2192\n          Eq (Finset.sum (Finset.Icc i j) fun l => a l) (HPow.hPow 2 r) \u2192 LT.lt (HSub.hSub (a i) i) (HSub.hSub (a j) j)"
+    },
+    {
+      "name": "Erdos423.completed_square_tail_quadratic_identity",
+      "kind": "theorem",
+      "declaration": "theorem Erdos423.completed_square_tail_quadratic_identity (n\u2080 C j : Nat) :\n  LE.le 1 n\u2080 \u2192\n    LE.le n\u2080 j \u2192\n      Eq\n        (HAdd.hAdd\n          (HMul.hMul 4\n            (HMul.hMul (HAdd.hAdd (HSub.hSub j n\u2080) 1)\n              (HAdd.hAdd (HAdd.hAdd (HMul.hMul 2 n\u2080) (HMul.hMul 2 C)) (HSub.hSub j n\u2080))))\n          (HPow.hPow (HSub.hSub (HAdd.hAdd (HMul.hMul 2 n\u2080) (HMul.hMul 2 C)) 1) 2))\n        (HPow.hPow (HAdd.hAdd (HAdd.hAdd (HMul.hMul 2 j) (HMul.hMul 2 C)) 1) 2)"
+    },
+    {
+      "name": "Erdos423.exists_completed_square_discriminant_of_two_pow",
+      "kind": "theorem",
+      "declaration": "theorem Erdos423.exists_completed_square_discriminant_of_two_pow (a : Nat \u2192 Nat) :\n  Erdos423.IsHofstadterSeq a \u2192\n    \u2200 (n\u2080 C r : Nat),\n      LE.le 1 n\u2080 \u2192\n        (\u2200 (n : Nat), LE.le n\u2080 n \u2192 Eq (a n) (HAdd.hAdd n C)) \u2192\n          LE.le (HAdd.hAdd (Max.max n\u2080 3) C) (HPow.hPow 2 r) \u2192\n            LT.lt (Erdos423.prefixSum a (HSub.hSub n\u2080 1)) (HPow.hPow 2 r) \u2192\n              Exists fun i =>\n                Exists fun j =>\n                  And (LE.le 1 i)\n                    (And (LT.lt i n\u2080)\n                      (And (LE.le n\u2080 j)\n                        (Eq\n                          (HAdd.hAdd (HPow.hPow (HAdd.hAdd (HAdd.hAdd (HMul.hMul 2 j) (HMul.hMul 2 C)) 1) 2)\n                            (HMul.hMul 8\n                              (HSub.hSub (Erdos423.prefixSum a (HSub.hSub n\u2080 1))\n                                (Erdos423.prefixSum a (HSub.hSub i 1)))))\n                          (HAdd.hAdd (HPow.hPow 2 (HAdd.hAdd r 3))\n                            (HPow.hPow (HSub.hSub (HAdd.hAdd (HMul.hMul 2 n\u2080) (HMul.hMul 2 C)) 1) 2)))))"
+    },
+    {
+      "name": "Erdos423.discriminantOffset_emod_eight",
+      "kind": "theorem",
+      "declaration": "theorem Erdos423.discriminantOffset_emod_eight (a : Nat \u2192 Nat) (n\u2080 C i : Nat) :\n  LE.le 1 n\u2080 \u2192 Eq (HMod.hMod (Erdos423.discriminantOffset a n\u2080 C i) 8) 7"
+    },
+    {
+      "name": "Erdos423.completed_square_collision_factor_eq",
+      "kind": "theorem",
+      "declaration": "theorem Erdos423.completed_square_collision_factor_eq (A B v\u2081 v\u2082 r\u2081 r\u2082 : Nat) :\n  LE.le r\u2081 r\u2082 \u2192\n    LE.le v\u2081 v\u2082 \u2192\n      Eq (HAdd.hAdd (HPow.hPow (HAdd.hAdd (HMul.hMul 2 v\u2081) 1) 2) A) (HAdd.hAdd (HPow.hPow 2 (HAdd.hAdd r\u2081 3)) B) \u2192\n        Eq (HAdd.hAdd (HPow.hPow (HAdd.hAdd (HMul.hMul 2 v\u2082) 1) 2) A) (HAdd.hAdd (HPow.hPow 2 (HAdd.hAdd r\u2082 3)) B) \u2192\n          Eq (HMul.hMul (HSub.hSub v\u2082 v\u2081) (HAdd.hAdd (HAdd.hAdd v\u2082 v\u2081) 1))\n            (HMul.hMul (HPow.hPow 2 (HAdd.hAdd r\u2081 1)) (HSub.hSub (HPow.hPow 2 (HSub.hSub r\u2082 r\u2081)) 1))"
+    },
+    {
+      "name": "Erdos423.two_pow_le_of_completed_square_collision",
+      "kind": "theorem",
+      "declaration": "theorem Erdos423.two_pow_le_of_completed_square_collision (A B v\u2081 v\u2082 r\u2081 r\u2082 : Nat) :\n  LT.lt r\u2081 r\u2082 \u2192\n    Eq (HAdd.hAdd (HPow.hPow (HAdd.hAdd (HMul.hMul 2 v\u2081) 1) 2) A) (HAdd.hAdd (HPow.hPow 2 (HAdd.hAdd r\u2081 3)) B) \u2192\n      Eq (HAdd.hAdd (HPow.hPow (HAdd.hAdd (HMul.hMul 2 v\u2082) 1) 2) A) (HAdd.hAdd (HPow.hPow 2 (HAdd.hAdd r\u2082 3)) B) \u2192\n        And (LE.le (HPow.hPow 2 (HAdd.hAdd r\u2081 1)) (HAdd.hAdd (HAdd.hAdd v\u2082 v\u2081) 1)) (LE.le (HPow.hPow 2 r\u2081) v\u2082)"
+    },
+    {
+      "name": "Erdos423.two_mul_le_succ_of_completed_square_collision",
+      "kind": "theorem",
+      "declaration": "theorem Erdos423.two_mul_le_succ_of_completed_square_collision (A B v\u2081 v\u2082 r\u2081 r\u2082 : Nat) :\n  LT.lt r\u2081 r\u2082 \u2192\n    LE.le B (HPow.hPow 2 (HAdd.hAdd r\u2081 3)) \u2192\n      Eq (HAdd.hAdd (HPow.hPow (HAdd.hAdd (HMul.hMul 2 v\u2081) 1) 2) A) (HAdd.hAdd (HPow.hPow 2 (HAdd.hAdd r\u2081 3)) B) \u2192\n        Eq (HAdd.hAdd (HPow.hPow (HAdd.hAdd (HMul.hMul 2 v\u2082) 1) 2) A) (HAdd.hAdd (HPow.hPow 2 (HAdd.hAdd r\u2082 3)) B) \u2192\n          LE.le (HMul.hMul 2 r\u2081) (HAdd.hAdd r\u2082 1)"
+    },
+    {
+      "name": "Erdos423.completedSquareExpFiber_card_le_one",
+      "kind": "theorem",
+      "declaration": "theorem Erdos423.completedSquareExpFiber_card_le_one (a : Nat \u2192 Nat) (n\u2080 C r\u2080 K i : Nat) :\n  LE.le (HAdd.hAdd K 1) r\u2080 \u2192\n    LE.le (HPow.hPow (HSub.hSub (HAdd.hAdd (HMul.hMul 2 n\u2080) (HMul.hMul 2 C)) 1) 2) r\u2080 \u2192\n      LE.le (Finset.card (Erdos423.completedSquareExpFiber a n\u2080 C r\u2080 K i)) 1"
+    },
+    {
+      "name": "Erdos423.not_eventual_linear_of_isHofstadterSeq",
+      "kind": "theorem",
+      "declaration": "theorem Erdos423.not_eventual_linear_of_isHofstadterSeq (a : Nat \u2192 Nat) :\n  Erdos423.IsHofstadterSeq a \u2192 \u2200 (n\u2080 C : Nat), LE.le 1 n\u2080 \u2192 Not (\u2200 (n : Nat), LE.le n\u2080 n \u2192 Eq (a n) (HAdd.hAdd n C))"
+    },
+    {
+      "name": "Erdos423.exists_stabilization_breaking_index_le",
+      "kind": "theorem",
+      "declaration": "theorem Erdos423.exists_stabilization_breaking_index_le (a : Nat \u2192 Nat) :\n  Erdos423.IsHofstadterSeq a \u2192\n    \u2200 (n\u2080 C : Nat),\n      LE.le 1 n\u2080 \u2192\n        have r\u2080 :=\n          HAdd.hAdd\n            (Max.max (HAdd.hAdd (HAdd.hAdd (Max.max n\u2080 3) C) (Erdos423.prefixSum a (HSub.hSub n\u2080 1)))\n              (Max.max (HAdd.hAdd n\u2080 1) (HPow.hPow (HSub.hSub (HAdd.hAdd (HMul.hMul 2 n\u2080) (HMul.hMul 2 C)) 1) 2)))\n            n\u2080;\n        Exists fun n\u2081 => And (LE.le n\u2080 n\u2081) (And (LE.le n\u2081 (HAdd.hAdd (HPow.hPow 2 r\u2080) C)) (Ne (a n\u2081) (HAdd.hAdd n\u2081 C)))"
+    },
+    {
+      "name": "Erdos423.strict_excess_increase_at_stabilizationIndexHorizon",
+      "kind": "theorem",
+      "declaration": "theorem Erdos423.strict_excess_increase_at_stabilizationIndexHorizon (a : Nat \u2192 Nat) :\n  Erdos423.IsHofstadterSeq a \u2192\n    \u2200 (n\u2080 C : Nat),\n      LE.le 1 n\u2080 \u2192\n        LE.le (HSub.hSub (a n\u2080) n\u2080) C \u2192\n          LT.lt (HSub.hSub (a n\u2080) n\u2080)\n            (HSub.hSub (a (Erdos423.stabilizationIndexHorizon a n\u2080 C)) (Erdos423.stabilizationIndexHorizon a n\u2080 C))"
+    },
+    {
+      "name": "Erdos423.le_excess_of_iterExcessHorizon_le",
+      "kind": "theorem",
+      "declaration": "theorem Erdos423.le_excess_of_iterExcessHorizon_le (a : Nat \u2192 Nat) :\n  Erdos423.IsHofstadterSeq a \u2192\n    \u2200 (k n : Nat),\n      LE.le (Erdos423.iterExcessHorizon a k) n \u2192 And (LE.le k (HSub.hSub (a n) n)) (LE.le (HAdd.hAdd k n) (a n))"
+    },
+    {
+      "name": "Erdos423.iterExcessHorizon_one_eq_sixteen",
+      "kind": "theorem",
+      "declaration": "theorem Erdos423.iterExcessHorizon_one_eq_sixteen (a : Nat \u2192 Nat) :\n  Erdos423.IsHofstadterSeq a \u2192 Eq (Erdos423.iterExcessHorizon a 1) 16"
+    },
+    {
+      "name": "Erdos423.nextExcessHorizon_le_two_pow_five_mul_sq_add",
+      "kind": "theorem",
+      "declaration": "theorem Erdos423.nextExcessHorizon_le_two_pow_five_mul_sq_add (a : Nat \u2192 Nat) :\n  Erdos423.IsHofstadterSeq a \u2192\n    \u2200 (n\u2080 : Nat),\n      LE.le 1 n\u2080 \u2192\n        LE.le (Erdos423.nextExcessHorizon a n\u2080) (HAdd.hAdd (HPow.hPow 2 (HMul.hMul 5 (HPow.hPow (a n\u2080) 2))) (a n\u2080))"
+    },
+    {
+      "name": "Erdos423.erdos_423_variants_lower_bound_of_iterExcessHorizon_log_log_le",
+      "kind": "theorem",
+      "declaration": "theorem Erdos423.erdos_423_variants_lower_bound_of_iterExcessHorizon_log_log_le (a : Nat \u2192 Nat) :\n  Erdos423.IsHofstadterSeq a \u2192\n    \u2200 (B : Real),\n      LE.le 0 B \u2192\n        (\u2200 (k : Nat),\n            LE.le 1 k \u2192 LE.le (Real.log (Real.log \u2191(Erdos423.iterExcessHorizon a (HAdd.hAdd k 1)))) (HMul.hMul B \u2191k)) \u2192\n          Asymptotics.IsBigO Filter.atTop (fun n => Real.log (Real.log \u2191n)) fun n => HSub.hSub \u2191(a n) \u2191n"
+    },
+    {
+      "name": "Erdos423.erdos_423_variants_upper_bound_of_iterExcessHorizon_rpow_le",
+      "kind": "theorem",
+      "declaration": "theorem Erdos423.erdos_423_variants_upper_bound_of_iterExcessHorizon_rpow_le (a : Nat \u2192 Nat) :\n  Erdos423.IsHofstadterSeq a \u2192\n    \u2200 (\u03b5 B : Real),\n      LT.lt 0 \u03b5 \u2192\n        LE.le 0 B \u2192\n          (\u2200 (k : Nat),\n              LE.le 1 k \u2192\n                LE.le\n                  (\u2191(HSub.hSub (a (Erdos423.iterExcessHorizon a (HAdd.hAdd k 1)))\n                      (Erdos423.iterExcessHorizon a (HAdd.hAdd k 1))))\n                  (HMul.hMul B (HPow.hPow (\u2191(Erdos423.iterExcessHorizon a k)) (HAdd.hAdd (688 / 413) \u03b5)))) \u2192\n            Asymptotics.IsBigO Filter.atTop (fun n => \u2191(a n)) fun n => HPow.hPow (\u2191n) (HAdd.hAdd (688 / 413) \u03b5)"
+    },
+    {
+      "name": "Erdos423.erdos_423_of_iterExcessHorizon_littleO_bound",
+      "kind": "theorem",
+      "declaration": "theorem Erdos423.erdos_423_of_iterExcessHorizon_littleO_bound (a : Nat \u2192 Nat) :\n  Erdos423.IsHofstadterSeq a \u2192\n    (\u2200 (\u03b5 : Real),\n        LT.lt 0 \u03b5 \u2192\n          Exists fun K\u2080 =>\n            And (LE.le 1 K\u2080)\n              (\u2200 (k : Nat),\n                LE.le K\u2080 k \u2192\n                  LE.le\n                    (\u2191(HSub.hSub (a (Erdos423.iterExcessHorizon a (HAdd.hAdd k 1)))\n                        (Erdos423.iterExcessHorizon a (HAdd.hAdd k 1))))\n                    (HMul.hMul \u03b5 \u2191(Erdos423.iterExcessHorizon a k)))) \u2192\n      Asymptotics.IsLittleO Filter.atTop (fun n => HSub.hSub \u2191(a n) \u2191n) fun n => \u2191n"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos423.erdos_423.variants.infinite_complement",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.423",
+      "solution_declaration": "Erdos423.erdos_423.variants.infinite_complement",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.erdos_423.variants.unbounded",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.423",
+      "solution_declaration": "Erdos423.erdos_423.variants.unbounded",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.erdos_423.variants.nondecreasing",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.423",
+      "solution_declaration": "Erdos423.erdos_423.variants.nondecreasing",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.Challenge.statement_IsHofstadterSeq_exists_ge_three_eq_iff_isGlobalConsecutiveBlockSum",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos423.IsHofstadterSeq_exists_ge_three_eq_iff_isGlobalConsecutiveBlockSum",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.Challenge.statement_nextExcessHorizon_le_two_pow_five_mul_sq_add",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos423.nextExcessHorizon_le_two_pow_five_mul_sq_add",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.Challenge.statement_erdos_423_variants_infinite_complement",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos423.erdos_423.variants.infinite_complement",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.Challenge.statement_erdos_423_of_iterExcessHorizon_littleO_bound",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos423.erdos_423_of_iterExcessHorizon_littleO_bound",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.Challenge.statement_erdos_423_variants_unbounded",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos423.erdos_423.variants.unbounded",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.Challenge.statement_le_excess_of_iterExcessHorizon_le",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos423.le_excess_of_iterExcessHorizon_le",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.Challenge.statement_completed_square_collision_factor_eq",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos423.completed_square_collision_factor_eq",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.Challenge.statement_erdos_423_variants_lower_bound_of_iterExcessHorizon_log_log_le",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos423.erdos_423_variants_lower_bound_of_iterExcessHorizon_log_log_le",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.Challenge.statement_two_mul_le_succ_of_completed_square_collision",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos423.two_mul_le_succ_of_completed_square_collision",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.Challenge.statement_erdos_423_variants_nondecreasing",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos423.erdos_423.variants.nondecreasing",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.Challenge.statement_not_eventual_linear_of_isHofstadterSeq",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos423.not_eventual_linear_of_isHofstadterSeq",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.Challenge.statement_existsUnique_isHofstadterSeq",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos423.existsUnique_isHofstadterSeq",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.Challenge.statement_erdos_423_variants_upper_bound_of_iterExcessHorizon_rpow_le",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos423.erdos_423_variants_upper_bound_of_iterExcessHorizon_rpow_le",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.Challenge.statement_two_mul_sub_one_le_of_prefixSum_le",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos423.two_mul_sub_one_le_of_prefixSum_le",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.Challenge.statement_two_pow_le_of_completed_square_collision",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos423.two_pow_le_of_completed_square_collision",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.Challenge.statement_IsHofstadterSeq_card_omitted_Icc_eq_sub",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos423.IsHofstadterSeq_card_omitted_Icc_eq_sub",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.Challenge.statement_completed_square_tail_quadratic_identity",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos423.completed_square_tail_quadratic_identity",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.Challenge.statement_discriminantOffset_emod_eight",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos423.discriminantOffset_emod_eight",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.Challenge.statement_strict_excess_increase_of_blockSum_eq_two_pow",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos423.strict_excess_increase_of_blockSum_eq_two_pow",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.Challenge.statement_iterExcessHorizon_one_eq_sixteen",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos423.iterExcessHorizon_one_eq_sixteen",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.Challenge.statement_strict_excess_increase_at_stabilizationIndexHorizon",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos423.strict_excess_increase_at_stabilizationIndexHorizon",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.Challenge.statement_exists_completed_square_discriminant_of_two_pow",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos423.exists_completed_square_discriminant_of_two_pow",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.Challenge.statement_completedSquareExpFiber_card_le_one",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos423.completedSquareExpFiber_card_le_one",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.Challenge.statement_exists_stabilization_breaking_index_le",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos423.exists_stabilization_breaking_index_le",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.erdos_423.variants.infinite_complement",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.423",
+      "solution_declaration": "Erdos423.Challenge.statement_erdos_423_variants_infinite_complement",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.erdos_423.variants.unbounded",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.423",
+      "solution_declaration": "Erdos423.Challenge.statement_erdos_423_variants_unbounded",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos423.erdos_423.variants.nondecreasing",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.423",
+      "solution_declaration": "Erdos423.Challenge.statement_erdos_423_variants_nondecreasing",
+      "match_mode": "exact"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "a85b0ff8664c52ab923e0daf7e20cbc394272cd3831cc492ab144105d8091361"
+  },
+  "input_sha256": {
+    "Challenge.lean": "8c524c3c9f57869950675ca2ef78c862a89d48acbe9e5cb4b3fabe9692ae08ec",
+    "Solution.lean": "9104aa9764eddead7068ccd943d9daf3352f98fb4eb2c40ba10e1dd1b658d497",
+    "AxiomAudit.lean": "9ae60f5e4448784a30ccb6404d4760830d4e81d963de85c5858ee749271a400c",
+    "Statement.lean": "13d7ff4923a622674c6e82e00a7f2a9f10a229c25cc19fba4224e95aa99fd4c7",
+    "comparator.json": "8c08b37389e7230a62e0769d3b0f447e7debd1b51c860a5f02ba6bd184d84814",
+    "formalization.yaml": "bfafbe0a26b5c0a59c2e938e05ae4bfcf7b5f00a099ea98189d4b643480e69f3",
+    "lakefile.toml": "a02af4e302634dba16ca8c705752acaaabf535c152d08dd2c78cc56b56c5da6a",
+    "lake-manifest.json": "a987a46839f8b72e4ce0da4f51d66ca9e1457f594e7c15f56432c78713f6f26e",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "0d4550e8ed1966fc0264b1eabb35ee7013c3dc8054d28a7c09d6d25298236cea",
+    "Proofs/Blueprint423.lean": "070b2ac29f0a7b5ded5b959176f0b0d0b1a13263bf5051ba126115e63a3ce36f",
+    "Proofs/CompletedSquareDiscriminantAndSmallThresholdObstruction423.lean": "1c38069e27c007c9f8238789ab507e61a29fd996ca4c3adbfbab8bd2422dc28a",
+    "Proofs/Erdos423Unified435.lean": "93021995075bfbd00598fb4e59da831760ffcaa893401817bc9f7b57cebd1612",
+    "Proofs/EventualStabilizationObstructionAndUnbounded423.lean": "67bba82d702b5b248c8e9b8c91de8a2cbaea0c84ac4c8c8957c563f15394f461"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 49.886,
+    "env_compare_and_core_audit_seconds": 70.058,
+    "total_elapsed_seconds": 260.514,
+    "user_cpu_seconds": 154.88,
+    "system_cpu_seconds": 74.944,
+    "peak_rss_mib": 13691.33
+  },
+  "status": "PASS"
+}
