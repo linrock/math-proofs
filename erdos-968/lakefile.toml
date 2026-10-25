@@ -1,0 +1,52 @@
+name = "Erdos968"
+version = "0.1.0"
+defaultTargets = ["Challenge", "Solution", "AxiomAudit"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "065356127b1dc0016f66b7283ce0ce2c4055aa55"
+
+[[lean_lib]]
+name = "Proofs968"
+srcDir = "Proofs"
+roots = [
+  "Architect.Basic",
+  "Architect.Command",
+  "Architect.Content",
+  "Architect.Attribute",
+  "Architect.CollectUsed",
+  "Architect.Tactic",
+  "Architect.Output",
+  "Architect.Load",
+  "Architect",
+  "PrimeNumberTheoremAnd.Sobolev",
+  "PrimeNumberTheoremAnd.Fourier",
+  "PrimeNumberTheoremAnd.Defs",
+  "PrimeNumberTheoremAnd.SmoothExistence",
+  "PrimeNumberTheoremAnd.Wiener",
+  "PrimeNumberTheoremAnd.Consequences",
+  "PrimeNumberTheoremAnd.Mathlib.Analysis.SpecialFunctions.Log.Basic",
+  "PrimeNumberTheoremAnd.Mathlib.Analysis.Asymptotics.Asymptotics",
+  "PrimeNumberTheoremAnd.Mathlib.Algebra.Notation.Support",
+  "Erdos968PrimeGapsA",
+  "Erdos968PrimeGapsB",
+  "Erdos968PrimeGapsC",
+  "Erdos968Proofs"
+]
+moreLeanArgs = ["-M8192", "-E", "hasSorry"]
+
+[[lean_lib]]
+name = "Challenge"
+roots = ["Challenge"]
+moreLeanArgs = ["-M8192"]
+
+[[lean_lib]]
+name = "Solution"
+roots = ["Solution"]
+moreLeanArgs = ["-M8192", "-E", "hasSorry"]
+
+[[lean_lib]]
+name = "AxiomAudit"
+roots = ["AxiomAudit"]
+moreLeanArgs = ["-M8192", "-E", "hasSorry"]

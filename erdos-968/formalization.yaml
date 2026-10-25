@@ -1,0 +1,149 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 968: total variation and decreasing steps of normalized primes",
+    "description": "A Lean 4 formalization of the Erdős and Prachar (1961) companion theorems for normalized prime ratios in Erdős Problem 968. For the sequence obtained by dividing the n-th prime by n + 1, the development proves that the total variation over primes below x grows on the order of the square of log x and that the set of indices where the normalized prime ratio strictly decreases has positive lower asymptotic density. The proofs combine prime number theorem asymptotics with linear density bounds for large prime gaps.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "Apache-2.0",
+    "homepage": "https://www.erdosproblems.com/968"
+  },
+  "classification": {
+    "arxiv": [
+      "math.NT"
+    ],
+    "msc2020": [
+      "11N05",
+      "11B05"
+    ]
+  },
+  "review": {
+    "status": "verified"
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "https://www.erdosproblems.com/968",
+      "type": "problem-collection",
+      "title": "Erdős Problem #968",
+      "authors": [
+        "Thomas F. Bloom"
+      ],
+      "location": "Problem 968",
+      "relationship": "formalizes",
+      "note": "Problem statement and bibliography for normalized prime ratios."
+    },
+    {
+      "id": "ErPr61",
+      "type": "paper",
+      "title": "Sätze und Probleme über p_k / k",
+      "authors": [
+        "Paul Erdős",
+        "Karl Prachar"
+      ],
+      "publication": "Abhandlungen aus dem Mathematischen Seminar der Universität Hamburg 25 (1961/62), 251-256",
+      "location": "Theorems 1 and 2",
+      "relationship": "formalizes",
+      "note": "Establishes the quadratic log growth of the total variation of p_n / n and positive lower density of decreasing steps."
+    },
+    {
+      "id": "FMT18",
+      "type": "paper",
+      "title": "Chains of large gaps between primes",
+      "authors": [
+        "Kevin Ford",
+        "James Maynard",
+        "Terence Tao"
+      ],
+      "publication": "Irregularities in the Distribution of Prime Numbers, Springer (2018), 1–21",
+      "relationship": "background",
+      "note": "Background on chains of large prime gaps, as cited in the upstream statement module."
+    },
+    {
+      "id": "Ma15",
+      "type": "paper",
+      "title": "Small gaps between primes",
+      "authors": [
+        "James Maynard"
+      ],
+      "publication": "Annals of Mathematics (2015), 383–413",
+      "relationship": "background",
+      "note": "Background on bounded prime gaps, as cited in the upstream statement module."
+    },
+    {
+      "id": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd",
+      "type": "lean-repository",
+      "title": "PrimeNumberTheoremAnd",
+      "authors": [
+        "Alex Kontorovich",
+        "Terence Tao",
+        "PrimeNumberTheoremAnd Contributors"
+      ],
+      "location": "PrimeNumberTheoremAnd/Consequences.lean",
+      "relationship": "adapts",
+      "note": "Provides Wiener-Ikehara prime number theorem consequences used for nth-prime logarithm asymptotics."
+    },
+    {
+      "id": "https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/lean/OAI/NumberTheory/PrimeGaps",
+      "type": "lean-repository",
+      "title": "Positive lower density of large prime gaps",
+      "authors": [
+        "OpenAI"
+      ],
+      "location": "OAI/NumberTheory/PrimeGaps/Main.lean",
+      "relationship": "adapts",
+      "note": "Provides linear lower bounds on the count of large prime gaps."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/d9c9d8ea1b3b1f2e617fd5e449bdda120872bbd3/FormalConjectures/ErdosProblems/968.lean",
+      "note": "Upstream Formal Conjectures statement module for Erdős Problem 968."
+    }
+  ],
+  "acknowledgements": "Adapted prime number theorem consequences from AlexKontorovich/PrimeNumberTheoremAnd, large prime gap sieve bounds from openai/math, and problem statements and set-density definitions from google-deepmind/formal-conjectures (Apache-2.0).",
+  "alignment": {
+    "namespace": "Erdos968",
+    "statements": [
+      {
+        "lean": "Erdos968.erdos_968.variants.sum_abs_diff_isTheta_log_sq",
+        "source": "Erdős and Prachar (1961/62), Abh. Math. Sem. Univ. Hamburg 25, 251-256; upstream declaration Erdos968.erdos_968.variants.sum_abs_diff_isTheta_log_sq in FormalConjectures/ErdosProblems/968.lean",
+        "note": "Exact statement match to FormalConjectures.ErdosProblems.968."
+      },
+      {
+        "lean": "Erdos968.erdos_968.variants.decreasing_steps_pos_lower_density",
+        "source": "Erdős and Prachar (1961/62), Abh. Math. Sem. Univ. Hamburg 25, 251-256; upstream declaration Erdos968.erdos_968.variants.decreasing_steps_pos_lower_density in FormalConjectures/ErdosProblems/968.lean",
+        "note": "Exact statement match to FormalConjectures.ErdosProblems.968."
+      }
+    ]
+  },
+  "fidelity": {
+    "divergences": []
+  },
+  "status": {
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "scope": "Proves the two Erdős-Prachar (1961/62) solved variants in FormalConjectures/ErdosProblems/968.lean: the (log x)^2 order of magnitude of the total variation of normalized prime ratios and the positive lower asymptotic density of decreasing steps.",
+    "main_results": [
+      {
+        "declaration": "Erdos968.erdos_968.variants.sum_abs_diff_isTheta_log_sq",
+        "summary": "The sum of absolute differences |u(n+1) - u(n)| over primes below x is asymptotic in order of magnitude to (log x)^2."
+      },
+      {
+        "declaration": "Erdos968.erdos_968.variants.decreasing_steps_pos_lower_density",
+        "summary": "The set of indices n with u(n) > u(n+1) has strictly positive lower asymptotic density."
+      }
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos968.erdos_968.variants.sum_abs_diff_isTheta_log_sq",
+    "Erdos968.erdos_968.variants.decreasing_steps_pos_lower_density"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}
