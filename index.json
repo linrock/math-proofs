@@ -2,7 +2,7 @@
   "schema_version": 2,
   "lean_toolchain": "leanprover/lean4:v4.35.0-rc2",
   "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
-  "total_verified_packages": 27,
+  "total_verified_packages": 28,
   "packages": {
     "erdos-9": {
       "package": "erdos-9",
@@ -1474,6 +1474,46 @@
       },
       "verification_history": [
         "2026-10-14-ce3554c8"
+      ]
+    },
+    "erdos-968": {
+      "package": "erdos-968",
+      "verification_id": "2026-10-25-f2c06c92",
+      "state_sha256": "f4ee34cff7b65b425b88f73d33cd51d7b88d2e12b355e47895cdabf1936f3835",
+      "project_name": "Erd\u0151s 968: total variation and decreasing steps of normalized primes",
+      "status": "PASS",
+      "package_commit": "f2c06c925dd01819fcb0bf4674d302850108cb8a",
+      "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+      "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+      "challenge_sha256": "67591f62304d547e1c2c803fdd09874107e08faeaf9e70408bfa8e0dc6244ccb",
+      "solution_sha256": "ea58edb3fc2f2a9435de13bb134308e36122769470b07f4346f84f7a29cb738a",
+      "exported_theorems": [
+        "Erdos968.erdos_968.variants.sum_abs_diff_isTheta_log_sq",
+        "Erdos968.erdos_968.variants.decreasing_steps_pos_lower_density"
+      ],
+      "declaration_lines": {
+        "Erdos968.erdos_968.variants.sum_abs_diff_isTheta_log_sq": {
+          "solution_line": null,
+          "challenge_line": null
+        },
+        "Erdos968.erdos_968.variants.decreasing_steps_pos_lower_density": {
+          "solution_line": null,
+          "challenge_line": null
+        }
+      },
+      "kernels": {
+        "nanoda_accepted": true,
+        "con_ron_accepted": true,
+        "lean_kernel_accepted": true
+      },
+      "fc_statement_matches": 2,
+      "record_json": "records/erdos-968/2026-10-25-f2c06c92.json",
+      "record_md": "records/erdos-968/2026-10-25-f2c06c92.md",
+      "commits": {
+        "f2c06c925dd01819fcb0bf4674d302850108cb8a": "2026-10-25-f2c06c92"
+      },
+      "verification_history": [
+        "2026-10-25-f2c06c92"
       ]
     },
     "erdos-973": {

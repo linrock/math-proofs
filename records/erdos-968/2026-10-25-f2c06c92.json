@@ -1,0 +1,168 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-25-f2c06c92",
+  "verification_date": "2026-10-25",
+  "state_sha256": "f4ee34cff7b65b425b88f73d33cd51d7b88d2e12b355e47895cdabf1936f3835",
+  "package": "erdos-968",
+  "project_name": "Erd\u0151s 968: total variation and decreasing steps of normalized primes",
+  "package_commit": "f2c06c925dd01819fcb0bf4674d302850108cb8a",
+  "commit": "f2c06c925dd01819fcb0bf4674d302850108cb8a",
+  "repository": "linrock/math-proofs",
+  "run_id": "40220912715",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 1820,
+    "lines": 58,
+    "sha256": "67591f62304d547e1c2c803fdd09874107e08faeaf9e70408bfa8e0dc6244ccb",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos968.erdos_968.variants.sum_abs_diff_isTheta_log_sq",
+    "Erdos968.erdos_968.variants.decreasing_steps_pos_lower_density"
+  ],
+  "declaration_lines": {
+    "Erdos968.erdos_968.variants.sum_abs_diff_isTheta_log_sq": {
+      "solution_line": null,
+      "challenge_line": null
+    },
+    "Erdos968.erdos_968.variants.decreasing_steps_pos_lower_density": {
+      "solution_line": null,
+      "challenge_line": null
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos968.erdos_968.variants.decreasing_steps_pos_lower_density",
+    "Erdos968.erdos_968.variants.sum_abs_diff_isTheta_log_sq"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 2,
+  "expected_axiom_audit_count": 2,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos968.erdos_968.variants.sum_abs_diff_isTheta_log_sq",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos968.erdos_968.variants.decreasing_steps_pos_lower_density",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Set.partialDensity",
+      "kind": "def",
+      "declaration": "def Set.partialDensity.{u_1} {\u03b1 : Type u_1} [Preorder \u03b1] [LocallyFiniteOrderBot \u03b1] (S : Set \u03b1) (A : Set \u03b1 := Set.univ)\n  (b : \u03b1) : Real :=\n  fun {\u03b1} [Preorder \u03b1] [LocallyFiniteOrderBot \u03b1] S A b =>\n  HDiv.hDiv \u2191(Set.ncard (Inter.inter (Inter.inter S A) (Set.Iio b))) \u2191(Set.ncard (Inter.inter A (Set.Iio b)))"
+    },
+    {
+      "name": "Set.lowerDensity",
+      "kind": "def",
+      "declaration": "def Set.lowerDensity.{u_1} {\u03b1 : Type u_1} [Preorder \u03b1] [LocallyFiniteOrderBot \u03b1] (S : Set \u03b1) (A : Set \u03b1 := Set.univ) : Real :=\n  fun {\u03b1} [Preorder \u03b1] [LocallyFiniteOrderBot \u03b1] S A => Filter.liminf (fun b => Set.partialDensity S A b) Filter.atTop"
+    },
+    {
+      "name": "Erdos968.u",
+      "kind": "def",
+      "declaration": "def Erdos968.u (n : Nat) : Real :=\n  fun n => HDiv.hDiv (\u2191(Nat.nth Nat.Prime n)) (HAdd.hAdd (\u2191n) 1)"
+    },
+    {
+      "name": "Erdos968.erdos_968.variants.sum_abs_diff_isTheta_log_sq",
+      "kind": "theorem",
+      "declaration": "theorem Erdos968.erdos_968.variants.sum_abs_diff_isTheta_log_sq :\n  Asymptotics.IsTheta Filter.atTop\n    (fun x =>\n      Finset.sum (Finset.Iio (Nat.primeCounting' x)) fun n =>\n        abs (HSub.hSub (Erdos968.u (HAdd.hAdd n 1)) (Erdos968.u n)))\n    fun x => HPow.hPow (Real.log \u2191x) 2"
+    },
+    {
+      "name": "Erdos968.erdos_968.variants.decreasing_steps_pos_lower_density",
+      "kind": "theorem",
+      "declaration": "theorem Erdos968.erdos_968.variants.decreasing_steps_pos_lower_density :\n  LT.lt 0 (Set.lowerDensity (Set.ofPred fun n => GT.gt (Erdos968.u n) (Erdos968.u (HAdd.hAdd n 1))))"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos968.erdos_968.variants.decreasing_steps_pos_lower_density",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.968",
+      "solution_declaration": "Erdos968.erdos_968.variants.decreasing_steps_pos_lower_density",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos968.erdos_968.variants.sum_abs_diff_isTheta_log_sq",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.968",
+      "solution_declaration": "Erdos968.erdos_968.variants.sum_abs_diff_isTheta_log_sq",
+      "match_mode": "exact"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "a85b0ff8664c52ab923e0daf7e20cbc394272cd3831cc492ab144105d8091361"
+  },
+  "input_sha256": {
+    "Challenge.lean": "67591f62304d547e1c2c803fdd09874107e08faeaf9e70408bfa8e0dc6244ccb",
+    "Solution.lean": "ea58edb3fc2f2a9435de13bb134308e36122769470b07f4346f84f7a29cb738a",
+    "AxiomAudit.lean": "ece9b1495dc3a6383f2120dcfc4a48f63a6cb63c09fc4bb1875c7bc4fb0deb13",
+    "comparator.json": "86294b5fd5a3bc5020b73dcd5289b317e436d41673094e63d6f0b4b3bb8775d3",
+    "formalization.yaml": "a1fb3d3782ca36540d5925fcd82c025d4168536e0ef3945ef138104bd010e41b",
+    "lakefile.toml": "015f87e10dc35b90d97fcff6ce87ef9ed864fe5212d58e210b50011475a80e82",
+    "lake-manifest.json": "031f6ca9699c57dbae7d04d6cc8fe28a9ff650ae832779c5ee1239c74f4c696c",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "73257f40bfd234418ed07b19c26c6dcc652af0e39051d0835236137e1a560bd0",
+    "Proofs/Architect/Attribute.lean": "febf8a857a21edfc912220a0b2663815a519a0dc2077b0173d09fbf82f048a68",
+    "Proofs/Architect/Basic.lean": "16dcd336b4c674e697c37084c336657baed8016941fa9d2ba8dfa3299c2782e2",
+    "Proofs/Architect/CollectUsed.lean": "d9ed5ffeb9a11b4616919ebc5fa1b7307ee227a57a4cfd0632fa224d489606f6",
+    "Proofs/Architect/Command.lean": "82e50762a10845d5450ba78c854eb9ef146abaa063297216318816fcef2327de",
+    "Proofs/Architect/Content.lean": "81ddbe8b4604230fe91016be0ac5fbfd64b476fc16770b88104c58215c8720ea",
+    "Proofs/Architect/Load.lean": "f21341c905ccc89de024567f7b6b1d7fdd516f47f868eb3af10e4b07efea9da8",
+    "Proofs/Architect/Output.lean": "302ae6df9f4db4f2e73c4bd07867e90863a2587fdc9af40fef791cbf74ddc532",
+    "Proofs/Architect/Tactic.lean": "fc57e054aeca8f65e5fb52d14ae73c09d3dd6b06e77d810b5ad20ccbb20e98a5",
+    "Proofs/Architect.lean": "64d7bec8e568a3ffefc67da9a4db7116b46e931c9be720fde8f3302940bf0848",
+    "Proofs/Erdos968PrimeGapsA.lean": "7d98e57136cf82bb4d7db98423f880b25a62351a7c06753eb064415ec5d0023c",
+    "Proofs/Erdos968PrimeGapsB.lean": "4eb5b011f79e3b96fdf036f4f949860c279b7a182ea1f4123b2dd41e52e15cb9",
+    "Proofs/Erdos968PrimeGapsC.lean": "cbe5fee498010e2b7d57bad3a9697b0a3509259c50e26872e20a0fa9c90c2e81",
+    "Proofs/Erdos968Proofs.lean": "58c6796475874d76a719325d0abd7ecb7fd5ba4f37a01b1bf5be3ff41ea510dd",
+    "Proofs/PrimeNumberTheoremAnd/Consequences.lean": "ae5d80dd3cbf9d9555c3e5c3b15908e20952a8755e60492aa0b1b6b1be8748ef",
+    "Proofs/PrimeNumberTheoremAnd/Defs.lean": "442af26c43cf5cedbec7f3658a25b71e88ab9986985dfdde71c5db29b8a7bf40",
+    "Proofs/PrimeNumberTheoremAnd/Fourier.lean": "283df5b0a39d33b4245fb0b0ad6a1f3e229916343cff3cf2e6e8aaef9933a1c2",
+    "Proofs/PrimeNumberTheoremAnd/Mathlib/Algebra/Notation/Support.lean": "3e3827a361aed9056ae220a042af16f0b6e1c2cb2eaf8d1c12bbca5ca54ef21b",
+    "Proofs/PrimeNumberTheoremAnd/Mathlib/Analysis/Asymptotics/Asymptotics.lean": "479e2416914cf3616c32aa34ad990c921dc0a82bd2594fca94010b462afa6d8f",
+    "Proofs/PrimeNumberTheoremAnd/Mathlib/Analysis/SpecialFunctions/Log/Basic.lean": "917ac89628a7d5a93f1d7e9427ed9c3d991c0999283c14468a3dc6e0344905cf",
+    "Proofs/PrimeNumberTheoremAnd/SmoothExistence.lean": "a5fa287967a75ee5b4dc6dce2ae08ef971a07dbfe3ffc6aef878f8e2c9b95918",
+    "Proofs/PrimeNumberTheoremAnd/Sobolev.lean": "419634c91dcf272b241a67e40804e88ca737d7a2c659d32462c6ef1186981ff0",
+    "Proofs/PrimeNumberTheoremAnd/Wiener.lean": "5114903225026f19c472278ed5efae8cd8478d4225472a4f64f1e20584ae72d1"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 213.01,
+    "env_compare_and_core_audit_seconds": 107.021,
+    "total_elapsed_seconds": 757.956,
+    "user_cpu_seconds": 835.115,
+    "system_cpu_seconds": 61.785,
+    "peak_rss_mib": 13810.96
+  },
+  "status": "PASS"
+}
