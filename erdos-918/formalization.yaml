@@ -1,0 +1,188 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 918: shift graphs and local chromatic equality",
+    "description": "A Lean 4 formalization of the Erdős and Hajnal (1968) shift-graph theorem under the generalized continuum hypothesis and the impossibility of the Erdős (1969) local chromatic equality formulations for Erdős Problem 918. Using the exact iterated power-set chromatic threshold for higher-order shift graphs on strictly increasing tuples, the development proves under the generalized continuum hypothesis that for every positive integer k there is a graph on ℵ_k vertices with chromatic cardinal ℵ₁ whose induced subgraphs on fewer than ℵ_k vertices are countably colorable. It also refutes all four textbook formulations that demand chromatic cardinal equal to ℵ₀ rather than at most ℵ₀ for subgraphs of size ℵ₁ or ℵ_ω, combining a successor-cardinal color-class pigeonhole independent-set argument for induced subgraphs with an edgeless-subgraph argument for arbitrary subgraphs and an exact ordinal dichotomy. The open upper-bound questions on graphs of size ℵ₂ and ℵ_{ω+1} remain unresolved in ZFC.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "Apache-2.0"
+  },
+  "classification": {
+    "arxiv": [
+      "math.CO",
+      "math.LO"
+    ],
+    "msc2020": [
+      "05C15",
+      "03E05"
+    ]
+  },
+  "sources": [
+    {
+      "title": "On chromatic number of infinite graphs",
+      "id": "https://www.erdosproblems.com/918",
+      "authors": [
+        "Paul Erdős",
+        "András Hajnal"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "location": "Theory of Graphs (Proc. Colloq., Tihany, 1966), Academic Press, New York (1968), 83–98; FormalConjectures/ErdosProblems/918.lean key [ErHa68b]",
+      "author_endorsement": "not-contacted",
+      "note": "Theorems 1 and 2 establish the higher-order shift-graph chromatic threshold on increasing tuples, and Corollary 1 (p. 86) deduces under the generalized continuum hypothesis the existence of a graph on ℵ_k vertices with chromatic cardinal ℵ₁ whose subgraphs on fewer than ℵ_k vertices have chromatic cardinal at most ℵ₀."
+    },
+    {
+      "title": "Problems and results in chromatic graph theory",
+      "id": "https://www.erdosproblems.com/918",
+      "authors": [
+        "Paul Erdős"
+      ],
+      "type": "paper",
+      "relationship": "poses",
+      "location": "Proof Techniques in Graph Theory (Proc. Second Ann Arbor Graph Theory Conf., Ann Arbor, Michigan, 1968), Academic Press, New York (1969), 27–35; FormalConjectures/ErdosProblems/918.lean key [Er69b]",
+      "author_endorsement": "not-contacted",
+      "note": "Poses Problem 918 with the local chromatic equality condition = ℵ₀ (a printed typo for ≤ ℵ₀); this package proves the impossibility of both the induced-subgraph and ordinary-subgraph equality formulations."
+    },
+    {
+      "title": "Erdős Problem 918 formal statement and chromatic cardinal definition",
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/7db2ea3b91bfbd0ab620215163e6c488bbb916d5/FormalConjectures/ErdosProblems/918.lean",
+      "authors": [
+        "The Formal Conjectures Authors"
+      ],
+      "type": "other",
+      "relationship": "adapts",
+      "location": "FormalConjectures/ErdosProblems/918.lean and FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Coloring/Vertex.lean at commit 7db2ea3b91bfbd0ab620215163e6c488bbb916d5",
+      "author_endorsement": "not-contacted",
+      "note": "Adapts the SimpleGraph.chromaticCardinal definition and the exact statement signatures for the Erdős–Hajnal GCH theorem and the four textbook equality variants."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/7db2ea3b91bfbd0ab620215163e6c488bbb916d5/FormalConjectures/ErdosProblems/918.lean",
+      "relationship": "adapts",
+      "note": "Proves all five solved and textbook variant declarations in FormalConjectures/ErdosProblems/918.lean (erdos_918.variants.erdos_hajnal under GCH and the four eq_aleph_0 impossibility theorems), along with the exact ordinal dichotomy for Part (ii) and the unconditional higher-order shift-graph chromatic threshold. The four open ≤ ℵ₀ questions (parts.i, parts.ii, all_subgraphs.parts.i, and all_subgraphs.parts.ii) remain unaddressed."
+    }
+  ],
+  "status": {
+    "scope": "Proves the Erdős–Hajnal (1968, Corollary 1) finite-index theorem under GCH (erdos_918.variants.erdos_hajnal), all four textbook local-equality refutations (erdos_918.variants.eq_aleph_0.parts.i, erdos_918.variants.eq_aleph_0_all_subgraphs.parts.i, erdos_918.variants.eq_aleph_0.parts.ii, and erdos_918.variants.eq_aleph_0_all_subgraphs.parts.ii), the exact ordinal dichotomy for the induced Part (ii) equality formulation, and the unconditional Erdős–Hajnal (1968, Theorems 1–2) higher-order shift-graph chromatic threshold. The four open ≤ ℵ₀ existence questions (erdos_918.parts.i, erdos_918.parts.ii, erdos_918.variants.all_subgraphs.parts.i, and erdos_918.variants.all_subgraphs.parts.ii) remain unaddressed.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos918.variants.erdos_hajnal",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos918.variants.eq_aleph_0.parts.i",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos918.variants.eq_aleph_0_all_subgraphs.parts.i",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos918.variants.eq_aleph_0.parts.ii",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos918.variants.eq_aleph_0_all_subgraphs.parts.ii",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos918.variants.induced_eq_aleph0_parts_ii_negation_iff_one_le",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos918.variants.chromatic_shiftGraph_le_iff_card_le_iteratedTwoPow",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "The package compiles from source in Lean 4.35.0-rc2 with zero sorry in the proof modules. The endpoint axiom audit restricts to propext, Classical.choice, and Quot.sound."
+  },
+  "fidelity": {
+    "divergences": "The five upstream variant statements (erdos_hajnal, eq_aleph_0.parts.i, eq_aleph_0_all_subgraphs.parts.i, eq_aleph_0.parts.ii, and eq_aleph_0_all_subgraphs.parts.ii) match the exact definitions and theorem types of FormalConjectures/ErdosProblems/918.lean at commit 7db2ea3b91bfbd0ab620215163e6c488bbb916d5. The ordinal dichotomy and the unconditional higher-order shift-graph chromatic threshold are supporting theorems with no separate upstream declarations. The four open ≤ ℵ₀ existence questions are not addressed."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "The seven exported statements were checked against their package challenge forms and the five corresponding upstream Formal Conjectures declarations. The package axiom audit restricts transitive axioms to propext, Classical.choice, and Quot.sound."
+  },
+  "alignment": {
+    "namespace": "Erdos918.variants",
+    "statements": [
+      {
+        "source": "Erdős and Hajnal (1968), [ErHa68b, Corollary 1, p. 86]; FormalConjectures/ErdosProblems/918.lean (erdos_918.variants.erdos_hajnal, checked revision 7db2ea3b)",
+        "lean": "Erdos918.variants.erdos_hajnal",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that under GCH, for every k > 0 the order-(k-1) shift graph on a linear order of size ℵ_k has ℵ_k vertices, chromatic cardinal ℵ₁, and every induced subgraph on fewer than ℵ_k vertices countably colorable."
+      },
+      {
+        "source": "FormalConjectures/ErdosProblems/918.lean (erdos_918.variants.eq_aleph_0.parts.i); Erdős (1969), [Er69b]",
+        "lean": "Erdos918.variants.eq_aleph_0.parts.i",
+        "module": "Solution",
+        "status": "proved",
+        "note": "The upstream source says the impossibility argument for ordinary subgraphs does not carry over to induced subgraphs: induced chromatic cardinal is at least that of any subgraph on the same vertex set, so the edgeless-subgraph observation is unavailable. This package supplies the missing successor-cardinal pigeonhole and independent-set argument."
+      },
+      {
+        "source": "FormalConjectures/ErdosProblems/918.lean (erdos_918.variants.eq_aleph_0_all_subgraphs.parts.i); Erdős (1969), [Er69b]",
+        "lean": "Erdos918.variants.eq_aleph_0_all_subgraphs.parts.i",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Refutes the Part (i) all-subgraph equality formulation using the edgeless spanning subgraph on an ℵ₁-sized vertex subset."
+      },
+      {
+        "source": "FormalConjectures/ErdosProblems/918.lean (erdos_918.variants.eq_aleph_0.parts.ii); Erdős (1969), [Er69b]",
+        "lean": "Erdos918.variants.eq_aleph_0.parts.ii",
+        "module": "Solution",
+        "status": "proved",
+        "note": "For the fixed first infinite ordinal, the same source distinction applies: induced chromatic cardinal dominates every subgraph on the same vertex set. The successor-cardinal pigeonhole and independent-set argument supplies the induced refutation."
+      },
+      {
+        "source": "FormalConjectures/ErdosProblems/918.lean (erdos_918.variants.eq_aleph_0_all_subgraphs.parts.ii); Erdős (1969), [Er69b]",
+        "lean": "Erdos918.variants.eq_aleph_0_all_subgraphs.parts.ii",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Refutes the Part (ii) all-subgraph equality formulation using the edgeless spanning subgraph on an ℵ_ω-sized vertex subset."
+      },
+      {
+        "source": "FormalConjectures/ErdosProblems/918.lean (erdos_918.variants.eq_aleph_0.parts.ii); exact ordinal refinement, Erdős (1969), [Er69b]",
+        "lean": "Erdos918.variants.induced_eq_aleph0_parts_ii_negation_iff_one_le",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that the induced equality-form statement is impossible exactly when the ordinal parameter is positive; this is an auxiliary strengthening of the Part (ii) equality refutation."
+      },
+      {
+        "source": "Erdős–Hajnal (1968), Theorem 1 partition threshold with the graph-colouring interpretation given in Theorem 2",
+        "lean": "Erdos918.variants.chromatic_shiftGraph_le_iff_card_le_iteratedTwoPow",
+        "module": "Solution",
+        "status": "proved",
+        "note": "For every finite order and infinite palette bound, the higher-order shift-graph chromatic threshold is equivalent to the corresponding iterated power-set bound on the linear order."
+      }
+    ]
+  },
+  "acknowledgements": "The problem is recorded in Erdős (1969), [Er69b], and the shift-graph threshold and GCH finite-index theorem come from Erdős and Hajnal (1968), [ErHa68b]. Mathlib supplies the graph and cardinal infrastructure. The adapted chromatic-cardinal definition and upstream variant statement signatures from google-deepmind/formal-conjectures are attributed in THIRD_PARTY.md."
+}

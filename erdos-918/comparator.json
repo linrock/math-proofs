@@ -1,0 +1,19 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos918.variants.erdos_hajnal",
+    "Erdos918.variants.eq_aleph_0.parts.i",
+    "Erdos918.variants.eq_aleph_0_all_subgraphs.parts.i",
+    "Erdos918.variants.eq_aleph_0.parts.ii",
+    "Erdos918.variants.eq_aleph_0_all_subgraphs.parts.ii",
+    "Erdos918.variants.induced_eq_aleph0_parts_ii_negation_iff_one_le",
+    "Erdos918.variants.chromatic_shiftGraph_le_iff_card_le_iteratedTwoPow"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}
