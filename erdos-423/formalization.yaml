@@ -1,0 +1,457 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 423: Hofstadter consecutive-block-sum sequence",
+    "description": "A Lean 4 formalization of Erdős Problem 423 on the asymptotic behaviour of Hofstadter's consecutive-block-sum sequence, which begins with 1 and 2 and thereafter takes the least eligible sum above its previous term. Following arguments of Bolan and Tang (2026), it proves that the excess a(n) - n is unbounded and that infinitely many positive integers are omitted; it also re-proves the nondecreasing-excess result, which is already formalized by Anatolii Ohorodnyk. Further results include uniqueness, omitted-value counting, prefix-difference bounds, and a completed-square obstruction to eventual linear growth. Conditional reductions relate explicit iterated-excess tower bounds to the remaining variants and the main asymptotic conjecture, whose hypotheses remain unproved and whose status remains open.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "Apache-2.0"
+  },
+  "classification": {
+    "arxiv": [
+      "math.NT",
+      "math.CO"
+    ],
+    "msc2020": [
+      "11B83",
+      "11B75",
+      "11D61"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Problems and results on combinatorial number theory. III",
+      "authors": [
+        "Paul Erdős"
+      ],
+      "type": "paper",
+      "relationship": "poses",
+      "id": "https://www.erdosproblems.com/423",
+      "location": "Number theory day (Proc. Conf., Rockefeller Univ., New York, 1976), Lecture Notes in Mathematics 626 (1977), 43-72",
+      "year": 1977,
+      "author_endorsement": "not-contacted",
+      "note": "Original source of Erdős Problem 423, posed at p. 71: what is the asymptotic behaviour of the consecutive-block-sum sequence, and is a(n) = n + o(n)?"
+    },
+    {
+      "title": "Old and new problems and results in combinatorial number theory",
+      "authors": [
+        "Paul Erdős",
+        "Ron Graham"
+      ],
+      "type": "book",
+      "relationship": "background",
+      "id": "https://www.erdosproblems.com/423",
+      "location": "Monographies de l'Enseignement Mathématique 28, Geneva (1980); problem restated at p. 83",
+      "year": 1980,
+      "author_endorsement": "not-contacted",
+      "note": "Monograph restatement of the consecutive-block-sum problem together with the heuristic that a(n) = n + o(n)."
+    },
+    {
+      "title": "Hofstader-Ulam sequence",
+      "authors": [
+        "Michael Bolan"
+      ],
+      "type": "web",
+      "relationship": "background",
+      "id": "https://github.com/mjtb49/HofstaderUlam/blob/main/HofstaderUlamSequence.pdf",
+      "author_endorsement": "not-contacted",
+      "note": "Expository note of Bolan establishing, independently of Tang, that the excess a(n) - n of the Hofstadter consecutive-block-sum sequence is nondecreasing and unbounded."
+    },
+    {
+      "title": "The Hofstadter consecutive-sum sequence omits infinitely many positive integers",
+      "authors": [
+        "Quanyu Tang"
+      ],
+      "type": "preprint",
+      "relationship": "formalizes",
+      "id": "https://arxiv.org/abs/2603.09939",
+      "author_endorsement": "not-contacted",
+      "note": "Primary source for excess monotonicity, unboundedness, the infinite omitted complement, the eventual-linear non-stabilization argument, and the prefix-crossing equation used in the completed-square obstruction."
+    },
+    {
+      "title": "A note on the sum-product problem and the convex sumset problem",
+      "authors": [
+        "A. Cushman"
+      ],
+      "type": "preprint",
+      "relationship": "background",
+      "id": "https://arxiv.org/abs/2512.13849",
+      "author_endorsement": "not-contacted",
+      "note": "Supplies the convex-sumset exponent 688/413 that appears in the conditional upper-bound reduction; the exponent is not reproved here."
+    },
+    {
+      "title": "OEIS A005243: Hofstadter's consecutive-block-sum sequence",
+      "authors": [
+        "OEIS Foundation Inc."
+      ],
+      "type": "web",
+      "relationship": "background",
+      "id": "https://oeis.org/A005243",
+      "author_endorsement": "not-contacted",
+      "note": "Sequence 1, 2, 3, 5, 6, 8, 10, 11, ... identified as the term sequence defined in the package; the entry documents the first terms used as sanity checks."
+    },
+    {
+      "title": "Formal Conjectures: Erdős Problem 423",
+      "authors": [
+        "The Formal Conjectures Authors",
+        "liudongdong (Konamiu)"
+      ],
+      "type": "repository",
+      "relationship": "adapts",
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/423.lean",
+      "license": "Apache-2.0",
+      "author_endorsement": "not-contacted",
+      "note": "Supplies the formal problem statement, the definitions IsConsecutiveBlockSum and IsHofstadterSeq, and the inline small-term checks erdos_423.test.a3 and erdos_423.test.a4, which the package adapts locally; IsGlobalConsecutiveBlockSum is introduced in this package. The five structural API lemmas (strictMono, le_apply, lt_iff_lt, infinite_compl_of_unbounded, unbounded_of_infinite_compl) were proved inline in this file by contributor liudongdong in pull request 6055, and the package adapts them locally as internal helpers so that its only dependency is Mathlib."
+    },
+    {
+      "title": "lean-fc-proofs: formal proofs for the Formal Conjectures",
+      "authors": [
+        "Anatolii Ohorodnyk"
+      ],
+      "type": "lean-repository",
+      "relationship": "adapts",
+      "id": "https://github.com/anatoliiohorodnyk/lean-fc-proofs",
+      "license": "Apache-2.0",
+      "author_endorsement": "not-contacted",
+      "note": "Contains an independently written Lean proof of erdos_423.variants.nondecreasing (module T_Erdos423_erdos_423_variants_nondecreasing). The nondecreasing-excess theorem in this package is therefore a re-proof of an already registered result and is not claimed as new; the new results are unboundedness and the infinite complement."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/423.lean",
+      "relationship": "builds-on",
+      "note": "Exact source of the declarations erdos_423, erdos_423.variants.nondecreasing, erdos_423.variants.unbounded, erdos_423.variants.infinite_complement, erdos_423.variants.lower_bound, and erdos_423.variants.upper_bound. The three variants exported here are still sorry in the upstream file and carry no formal_proof attribute (of those three, nondecreasing already has an independent proof in anatoliiohorodnyk/lean-fc-proofs and is only re-proved here, while unbounded and infinite_complement are the new formalizations); erdos_423, lower_bound, and upper_bound are not claimed unconditionally."
+    },
+    {
+      "id": "https://github.com/anatoliiohorodnyk/lean-fc-proofs",
+      "relationship": "builds-on",
+      "note": "Independent Lean proof of erdos_423.variants.nondecreasing by Anatolii Ohorodnyk (anatoliiohorodnyk/lean-fc-proofs). The package's nondecreasing-excess export restates the same statement and duplicates that proof; it is presented as a re-proof and not claimed as new. Nothing from that repository is imported."
+    }
+  ],
+  "status": {
+    "scope": "Proves the Formal Conjectures variants erdos_423.variants.unbounded and erdos_423.variants.infinite_complement: every Hofstadter consecutive-block-sum sequence has unbounded excess a(n) - n and omits infinitely many positive integers. Re-proves the variant erdos_423.variants.nondecreasing, which already has an independent registered Lean proof and is not claimed as new. The remaining solved variants erdos_423.variants.lower_bound and erdos_423.variants.upper_bound are addressed only as conditional reductions from control of the excess tower, not proved unconditionally. Also proves uniqueness of the sequence, exact omitted-value counting, global block-sum closure, prefix-difference bounds, non-eventual-linearity through a completed-square Ramanujan-Nagell obstruction, a finite stabilization-breaking horizon, and an explicit iterated excess tower. The main conjecture erdos_423, a(n) = n + o(n), remains open.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos423.erdos_423.variants.nondecreasing",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos423.erdos_423.variants.unbounded",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos423.erdos_423.variants.infinite_complement",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos423.existsUnique_isHofstadterSeq",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos423.IsHofstadterSeq_card_omitted_Icc_eq_sub",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos423.IsHofstadterSeq_exists_ge_three_eq_iff_isGlobalConsecutiveBlockSum",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos423.two_mul_sub_one_le_of_prefixSum_le",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos423.strict_excess_increase_of_blockSum_eq_two_pow",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos423.completed_square_tail_quadratic_identity",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos423.exists_completed_square_discriminant_of_two_pow",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos423.discriminantOffset_emod_eight",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos423.completed_square_collision_factor_eq",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos423.two_pow_le_of_completed_square_collision",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos423.two_mul_le_succ_of_completed_square_collision",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos423.completedSquareExpFiber_card_le_one",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos423.not_eventual_linear_of_isHofstadterSeq",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos423.exists_stabilization_breaking_index_le",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos423.strict_excess_increase_at_stabilizationIndexHorizon",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos423.le_excess_of_iterExcessHorizon_le",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos423.iterExcessHorizon_one_eq_sixteen",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos423.nextExcessHorizon_le_two_pow_five_mul_sq_add",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos423.erdos_423_variants_lower_bound_of_iterExcessHorizon_log_log_le",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos423.erdos_423_variants_upper_bound_of_iterExcessHorizon_rpow_le",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos423.erdos_423_of_iterExcessHorizon_littleO_bound",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "All 4 proof modules in Proofs/ together with Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry in the proof modules."
+  },
+  "fidelity": {
+    "divergences": "The three variant statements agree exactly with the upstream declarations erdos_423.variants.nondecreasing, erdos_423.variants.unbounded, and erdos_423.variants.infinite_complement. The remaining twenty-one exported theorems have no upstream Formal Conjectures counterpart and are stated over the same definitions. The three tower reductions take explicit hypotheses on the iterated excess horizon and are not presented as proofs of the unconditional lower bound, upper bound, or main asymptotic statement."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Statement fidelity against the upstream declarations, non-vacuity of each hypothesis set, and transitive axioms were checked for all 24 exported theorems. The nondecreasing-excess export is documented as a re-proof of an independently registered result."
+  },
+  "alignment": {
+    "namespace": "Erdos423",
+    "statements": [
+      {
+        "source": "Bolan (2026), Hofstader-Ulam sequence, expository note; Tang (2026), arXiv:2603.09939; FormalConjectures/ErdosProblems/423.lean (erdos_423.variants.nondecreasing); also re-proved independently by Anatolii Ohorodnyk in lean-fc-proofs",
+        "lean": "Erdos423.erdos_423.variants.nondecreasing",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Statement that for any Hofstadter sequence a and 1 <= n <= m the excess a n - n is nondecreasing. Re-proof of a result already registered by an external formalization, so this export contributes no new mathematics; the argument inducts on m and uses one-step excess monotonicity."
+      },
+      {
+        "source": "Tang (2026), arXiv:2603.09939; Bolan (2026), Hofstader-Ulam sequence, expository note; FormalConjectures/ErdosProblems/423.lean (erdos_423.variants.unbounded)",
+        "lean": "Erdos423.erdos_423.variants.unbounded",
+        "module": "Solution",
+        "status": "proved",
+        "note": "New contribution. States that for every M the inequality M + n <= a n holds eventually, and is proved here unconditionally from non-eventual-linearity of the excess rather than assumed."
+      },
+      {
+        "source": "Tang (2026), arXiv:2603.09939; Bolan (2026), Hofstader-Ulam sequence, expository note; FormalConjectures/ErdosProblems/423.lean (erdos_423.variants.infinite_complement)",
+        "lean": "Erdos423.erdos_423.variants.infinite_complement",
+        "module": "Solution",
+        "status": "proved",
+        "note": "New contribution. States that the complement of the range of the sequence is infinite, and is derived from the unbounded-excess export through the pigeonhole argument on n values below a n."
+      },
+      {
+        "source": "Erdős (1977), Problems and results on combinatorial number theory III, p. 71; definition IsHofstadterSeq in FormalConjectures/ErdosProblems/423.lean (erdos_423)",
+        "lean": "Erdos423.existsUnique_isHofstadterSeq",
+        "module": "Solution",
+        "status": "proved",
+        "note": "New auxiliary theorem. The zero-anchored sequence with a 0 = 0 satisfying the Hofstadter recursion exists and is unique, proved by constructing the greedy sequence and showing any two such sequences agree from index 1 on."
+      },
+      {
+        "source": "Erdős (1977), Problems and results on combinatorial number theory III, p. 71; new counting lemma",
+        "lean": "Erdos423.IsHofstadterSeq_card_omitted_Icc_eq_sub",
+        "module": "Solution",
+        "status": "proved",
+        "note": "New auxiliary theorem. For n >= 1 the number of positive integers up to a n that are missed by the first n terms equals the excess a n - n; this converts the asymptotic question into a statement about omitted values."
+      },
+      {
+        "source": "Erdős (1977), Problems and results on combinatorial number theory III, p. 71; new closure lemma",
+        "lean": "Erdos423.IsHofstadterSeq_exists_ge_three_eq_iff_isGlobalConsecutiveBlockSum",
+        "module": "Solution",
+        "status": "proved",
+        "note": "New auxiliary theorem. An integer is a term of the sequence at some index at least 3 exactly when it is a sum of at least two consecutive terms, with no horizon restriction; this is the global closure property of block sums."
+      },
+      {
+        "source": "Tang (2026), arXiv:2603.09939, convex prefix-difference method",
+        "lean": "Erdos423.two_mul_sub_one_le_of_prefixSum_le",
+        "module": "Solution",
+        "status": "proved",
+        "note": "New auxiliary theorem following Tang's convexity argument. If the prefix sum up to m is at most a N with m, N >= 1, then 2 m - 1 <= N; the proof counts distinct positive prefix differences."
+      },
+      {
+        "source": "Tang (2026), arXiv:2603.09939, prefix-crossing equation",
+        "lean": "Erdos423.strict_excess_increase_of_blockSum_eq_two_pow",
+        "module": "Solution",
+        "status": "proved",
+        "note": "New auxiliary theorem. A block sum equal to a power of two forces a strict increase of the excess across that block, which is the engine of the stabilization obstruction."
+      },
+      {
+        "source": "New elementary identity, algebraic completed-square form of the prefix-crossing equation of Tang (2026), arXiv:2603.09939",
+        "lean": "Erdos423.completed_square_tail_quadratic_identity",
+        "module": "Solution",
+        "status": "proved",
+        "note": "New auxiliary theorem, purely algebraic and independent of any sequence: a four-term identity relating the tail quadratic to the square of 2 j + 2 C + 1 for 1 <= n0 <= j."
+      },
+      {
+        "source": "Tang (2026), arXiv:2603.09939; completed-square reformulation due to this package",
+        "lean": "Erdos423.exists_completed_square_discriminant_of_two_pow",
+        "module": "Solution",
+        "status": "proved",
+        "note": "New auxiliary theorem. Assuming eventual linear stabilization a n = n + C from n0 on, every sufficiently large power of two yields indices i < n0 <= j satisfying the completed-square Ramanujan-Nagell equation."
+      },
+      {
+        "source": "New congruence lemma built on the completed-square reformulation of Tang (2026), arXiv:2603.09939",
+        "lean": "Erdos423.discriminantOffset_emod_eight",
+        "module": "Solution",
+        "status": "proved",
+        "note": "New auxiliary theorem. The signed discriminant offset is congruent to 7 modulo 8 for every n0 >= 1, which excludes a degenerate square and drives the 2-adic analysis."
+      },
+      {
+        "source": "New difference-of-squares identity for the completed-square equation of Tang (2026), arXiv:2603.09939",
+        "lean": "Erdos423.completed_square_collision_factor_eq",
+        "module": "Solution",
+        "status": "proved",
+        "note": "New auxiliary theorem. Two solutions of the completed-square equation with the same offsets factor as (v2 - v1)(v2 + v1 + 1) = 2^(r1+1) (2^(r2-r1) - 1)."
+      },
+      {
+        "source": "New 2-adic bound for the completed-square equation of Tang (2026), arXiv:2603.09939",
+        "lean": "Erdos423.two_pow_le_of_completed_square_collision",
+        "module": "Solution",
+        "status": "proved",
+        "note": "New auxiliary theorem. Two solutions with r1 < r2 force 2^(r1+1) <= v2 + v1 + 1 and 2^r1 <= v2, by parity of the two factors."
+      },
+      {
+        "source": "New exponent-doubling bound for the completed-square equation of Tang (2026), arXiv:2603.09939",
+        "lean": "Erdos423.two_mul_le_succ_of_completed_square_collision",
+        "module": "Solution",
+        "status": "proved",
+        "note": "New auxiliary theorem. If additionally B <= 2^(r1+3), two solutions with r1 < r2 satisfy 2 r1 <= r2 + 1, so exponents in a fiber cannot be close together."
+      },
+      {
+        "source": "New pigeonhole fiber bound for the completed-square equation of Tang (2026), arXiv:2603.09939",
+        "lean": "Erdos423.completedSquareExpFiber_card_le_one",
+        "module": "Solution",
+        "status": "proved",
+        "note": "New auxiliary theorem. In a window of exponents of length K below r0, each prefix fiber contains at most one solution once K + 1 <= r0 and (2 n0 + 2 C - 1)^2 <= r0."
+      },
+      {
+        "source": "Tang (2026), arXiv:2603.09939, eventual-linear non-stabilization argument; completed-square fiber proof in this package",
+        "lean": "Erdos423.not_eventual_linear_of_isHofstadterSeq",
+        "module": "Solution",
+        "status": "proved",
+        "note": "New auxiliary theorem refuting eventual linear stabilization: no Hofstadter sequence can satisfy a n = n + C for all n >= n0 with n0 >= 1, unconditionally and for every shift C."
+      },
+      {
+        "source": "Tang (2026), arXiv:2603.09939, eventual-linear non-stabilization argument; explicit finite horizon derived in this package",
+        "lean": "Erdos423.exists_stabilization_breaking_index_le",
+        "module": "Solution",
+        "status": "proved",
+        "note": "New quantitative theorem. There is an index in [n0, 2^r0 + C] where the linear-stabilization identity fails, with r0 given explicitly in terms of n0, C, and the prefix sum."
+      },
+      {
+        "source": "Tang (2026), arXiv:2603.09939, eventual-linear non-stabilization argument; explicit horizon formulation in this package",
+        "lean": "Erdos423.strict_excess_increase_at_stabilizationIndexHorizon",
+        "module": "Solution",
+        "status": "proved",
+        "note": "New quantitative theorem. Whenever the excess at n0 is at most C, the excess strictly increases by the explicit index horizon stabilizationIndexHorizon, which yields the iterated tower."
+      },
+      {
+        "source": "New iterated-horizon construction built on Tang (2026), arXiv:2603.09939",
+        "lean": "Erdos423.le_excess_of_iterExcessHorizon_le",
+        "module": "Solution",
+        "status": "proved",
+        "note": "New auxiliary theorem. Past the k-th checkpoint of the iterated excess tower the excess is at least k, which is the constructive form of unboundedness."
+      },
+      {
+        "source": "New explicit evaluation of the iterated excess tower on the Hofstadter sequence of OEIS A005243",
+        "lean": "Erdos423.iterExcessHorizon_one_eq_sixteen",
+        "module": "Solution",
+        "status": "proved",
+        "note": "New exact checkpoint theorem. The first tower value is 16 for every Hofstadter sequence, obtained from the explicit small-term values a 3 = 3, a 4 = 5, a 5 = 6, a 6 = 8."
+      },
+      {
+        "source": "New single-step growth estimate for the excess tower of Tang (2026), arXiv:2603.09939",
+        "lean": "Erdos423.nextExcessHorizon_le_two_pow_five_mul_sq_add",
+        "module": "Solution",
+        "status": "proved",
+        "note": "New quantitative theorem. One tower step is at most 2^(5 (a n0)^2) + a n0, giving an explicit exponential control of the recursion."
+      },
+      {
+        "source": "Conditional reduction toward erdos_423.variants.lower_bound of Tang (2026), arXiv:2603.09939, which proves a n = n + Omega(log log n)",
+        "lean": "Erdos423.erdos_423_variants_lower_bound_of_iterExcessHorizon_log_log_le",
+        "module": "Solution",
+        "status": "proved",
+        "note": "New conditional theorem, not a proof of the lower bound. If the double logarithm of the tower checkpoints grows at most linearly in the stage index, then log log n is big-O of the excess."
+      },
+      {
+        "source": "Conditional reduction toward erdos_423.variants.upper_bound of Tang (2026), arXiv:2603.09939, using the convex-sumset exponent of Cushman (2025), arXiv:2512.13849",
+        "lean": "Erdos423.erdos_423_variants_upper_bound_of_iterExcessHorizon_rpow_le",
+        "module": "Solution",
+        "status": "proved",
+        "note": "New conditional theorem, not a proof of the upper bound. Power-law control of the excess at tower checkpoints with exponent 688/413 + epsilon implies the same polynomial bound for a n."
+      },
+      {
+        "source": "Conditional reduction toward the open main conjecture erdos_423 of Erdős (1977), Problems and results on combinatorial number theory III, p. 71",
+        "lean": "Erdos423.erdos_423_of_iterExcessHorizon_littleO_bound",
+        "module": "Solution",
+        "status": "proved",
+        "note": "New conditional theorem, not a proof of the conjecture. Sublinear control of the excess at tower checkpoints implies a n - n = o(n); the main conjecture erdos_423 remains open."
+      }
+    ]
+  },
+  "acknowledgements": "The Formal Conjectures Authors supply the problem statement and the definitions; the five structural API lemmas in the upstream statement file were contributed there by liudongdong. Anatolii Ohorodnyk's lean-fc-proofs repository contains an independent Lean proof of the nondecreasing-excess variant, which this package re-proves. Mathlib supplies the formal infrastructure. Bolan, Quanyu Tang, and A. Cushman are credited for the mathematical inputs they introduced."
+}

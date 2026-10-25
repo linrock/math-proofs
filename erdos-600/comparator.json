@@ -1,0 +1,30 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos600.erdos_600.variants.ruzsa_szemeredi_upper_bound",
+    "Erdos600.locallyLinear_iff_trianglesContaining",
+    "Erdos600.eFunction_two_eq",
+    "Erdos600.behrend_asymptotic_lower_bound_eFunction",
+    "Erdos600.card_edgeFinset_le_two_mul_sub_one_mul_sub_card",
+    "Erdos600.eFunction_eq_choose_two_succ_iff_of_three_le",
+    "Erdos600.maxAdmissibleEdges_superadditive",
+    "Erdos600.degree_add_degree_le_card_add_sub_one_of_isAdmissibleBookFree",
+    "Erdos600.three_mul_ruzsaSzemerediNumberNat_le_mul_div_two",
+    "Erdos600.nine_mul_card_cliqueFinset_sq_le_card_edgeFinset_mul_edgeTriangleIncidenceSqSum",
+    "Erdos600.maxAdmissibleEdges_le_mul_add_sub_one_div_four",
+    "Erdos600.card_trianglesContaining_weightedBlowupGraph_eq_commonNeighborWeightSum",
+    "Erdos600.isAdmissibleBookFree_weightedBlowupGraph_iff_of_pos",
+    "Erdos600.card_edgeFinset_weightedBlowupGraph_eq_blowupEdgeQuadraticForm",
+    "Erdos600.sq_mul_maxAdmissibleEdges_le_maxAdmissibleEdges_mul",
+    "Erdos600.four_mul_crossTriangleCount_add_six_mul_residualTriangleCount_eq_sum_degree",
+    "Erdos600.card_edgeFinset_add_sub_one_mul_card_bookHeavyEdgeFinset_le_edgeTriangleIncidenceSum",
+    "Erdos600.erdos_600_parts_ii_of_forall_exists_deleteEdges_isLittleO"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

@@ -1,0 +1,36 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos423.erdos_423.variants.nondecreasing",
+    "Erdos423.erdos_423.variants.unbounded",
+    "Erdos423.erdos_423.variants.infinite_complement",
+    "Erdos423.existsUnique_isHofstadterSeq",
+    "Erdos423.IsHofstadterSeq_card_omitted_Icc_eq_sub",
+    "Erdos423.IsHofstadterSeq_exists_ge_three_eq_iff_isGlobalConsecutiveBlockSum",
+    "Erdos423.two_mul_sub_one_le_of_prefixSum_le",
+    "Erdos423.strict_excess_increase_of_blockSum_eq_two_pow",
+    "Erdos423.completed_square_tail_quadratic_identity",
+    "Erdos423.exists_completed_square_discriminant_of_two_pow",
+    "Erdos423.discriminantOffset_emod_eight",
+    "Erdos423.completed_square_collision_factor_eq",
+    "Erdos423.two_pow_le_of_completed_square_collision",
+    "Erdos423.two_mul_le_succ_of_completed_square_collision",
+    "Erdos423.completedSquareExpFiber_card_le_one",
+    "Erdos423.not_eventual_linear_of_isHofstadterSeq",
+    "Erdos423.exists_stabilization_breaking_index_le",
+    "Erdos423.strict_excess_increase_at_stabilizationIndexHorizon",
+    "Erdos423.le_excess_of_iterExcessHorizon_le",
+    "Erdos423.iterExcessHorizon_one_eq_sixteen",
+    "Erdos423.nextExcessHorizon_le_two_pow_five_mul_sq_add",
+    "Erdos423.erdos_423_variants_lower_bound_of_iterExcessHorizon_log_log_le",
+    "Erdos423.erdos_423_variants_upper_bound_of_iterExcessHorizon_rpow_le",
+    "Erdos423.erdos_423_of_iterExcessHorizon_littleO_bound"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "enable_nanoda": true
+}

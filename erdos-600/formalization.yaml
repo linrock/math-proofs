@@ -1,0 +1,382 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 600: Ruzsa–Szemerédi bound for triangle-covered graphs",
+    "description": "A Lean 4 formalization of the Ruzsa–Szemerédi upper bound for Erdős problem 600, which asks for the least number of edges that forces an edge of a triangle-covered graph to lie in r triangles. The proof routes dense triangle-covered graphs with no r-book to the far-from-triangle-free predicate and applies the triangle removal lemma, as formalized in Mathlib by Dillies and Mehta, together with a sharp cover-charge inequality. The principal result shows that this threshold is o(n²) for every fixed r, following Ruzsa and Szemerédi (1978), and the package also proves auxiliary results such as the identity at r = 2 with the locally linear extremal number, a Behrend lower bound, and Mantel–Turán type estimates. The two asymptotic questions that Erdős posed in 1987, about the step difference and the ratio of consecutive thresholds, remain open and are not claimed here.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "Apache-2.0"
+  },
+  "classification": {
+    "arxiv": [
+      "math.CO"
+    ],
+    "msc2020": [
+      "05C35",
+      "05D05"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Triple systems with no six points carrying three triangles",
+      "authors": [
+        "I. Z. Ruzsa",
+        "E. Szemerédi"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "id": "https://mathscinet.ams.org/mathscinet-getitem?mr=519318",
+      "location": "Combinatorics (Proc. Fifth Hungarian Colloq., Keszthely, 1976), Vol. II, Colloq. Math. Soc. János Bolyai 18 (1978), 939–945",
+      "license": "not-applicable",
+      "author_endorsement": "not-contacted",
+      "note": "Proves the (6, 3) theorem, the triangle removal upper bound implying that the threshold is o(n^2) for every fixed r. This is the statement packaged here as the subquadratic upper bound."
+    },
+    {
+      "title": "Some problems on finite and infinite graphs",
+      "authors": [
+        "P. Erdős"
+      ],
+      "type": "paper",
+      "relationship": "poses",
+      "id": "https://doi.org/10.1090/conm/065/891251",
+      "location": "Logic and Combinatorics (Arcata, Calif., 1985), Contemp. Math. 65 (1987), 223–228",
+      "license": "not-applicable",
+      "author_endorsement": "not-contacted",
+      "note": "Poses Erdős problem 600: the step difference between consecutive thresholds and its ratio. Both asymptotic questions remain open and are not resolved by this package."
+    },
+    {
+      "title": "On sets of integers which contain no three terms in arithmetical progression",
+      "authors": [
+        "Felix A. Behrend"
+      ],
+      "type": "paper",
+      "relationship": "builds-on",
+      "id": "https://doi.org/10.1073/pnas.32.12.331",
+      "location": "Proc. Nat. Acad. Sci. USA 32 (1946), 331–332",
+      "license": "not-applicable",
+      "author_endorsement": "not-applicable",
+      "note": "Supplies the dense three-term-progression-free set behind the lower bound. Mathlib formalizes the resulting construction for the locally linear extremal number, which the package transfers to the threshold function as a lower bound for every r ≥ 2."
+    },
+    {
+      "title": "On certain sets of integers",
+      "authors": [
+        "Klaus F. Roth"
+      ],
+      "type": "paper",
+      "relationship": "background",
+      "id": "https://doi.org/10.1112/jlms/s1-28.1.104",
+      "location": "J. London Math. Soc. 28 (1953), 104–109",
+      "license": "not-applicable",
+      "author_endorsement": "not-applicable",
+      "note": "Background reference for the extremal problem on sets without three-term arithmetic progressions (whose extremal function is named `rothNumberNat` in Mathlib); the lower bound in this package transfers Behrend's (1946) construction via Ruzsa and Szemerédi's (1978) lower comparison between `rothNumberNat` and `ruzsaSzemerediNumberNat`."
+    },
+    {
+      "title": "Formalising Szemerédi's regularity lemma in Lean",
+      "authors": [
+        "Yaël Dillies",
+        "Bhavik Mehta"
+      ],
+      "type": "paper",
+      "relationship": "builds-on",
+      "id": "https://doi.org/10.4230/LIPIcs.ITP.2022.9",
+      "location": "13th International Conference on Interactive Theorem Proving (ITP 2022), LIPIcs 237, 9:1–9:9",
+      "license": "not-applicable",
+      "author_endorsement": "not-applicable",
+      "note": "The triangle removal lemma used by the main proof, available in Mathlib as the removal bound attached to the far-from-triangle-free predicate. The package applies it to dense triangle-covered graphs whose edges all lie in fewer than r triangles; it does not reprove the lemma."
+    },
+    {
+      "title": "Erdős Problem 600",
+      "type": "web",
+      "relationship": "background",
+      "id": "https://www.erdosproblems.com/600",
+      "license": "CC-BY-4.0",
+      "author_endorsement": "not-contacted",
+      "note": "Problem catalogue entry for the minimal number of edges forcing a book in triangle-covered graphs, recording the open status of both asymptotic questions."
+    },
+    {
+      "title": "Vraagstuk XXVIII (triangle-free graphs have at most n^2/4 edges)",
+      "authors": [
+        "Willem Mantel"
+      ],
+      "type": "paper",
+      "relationship": "builds-on",
+      "location": "Wiskundige Opgaven 10 (1907), 60–61 (problem statement; the triangle-free n^2/4 bound is its classical solution)",
+      "license": "not-applicable",
+      "author_endorsement": "not-applicable",
+      "note": "Supplies the classical triangle-free edge bound n^2/4; the package's bound n(n + r - 1)/4 in maxAdmissibleEdges_le_mul_add_sub_one_div_four extends the Cauchy–Schwarz degree-sum proof of Mantel's theorem by allowing each edge to lie in up to r - 1 triangles."
+    },
+    {
+      "title": "An extremal problem in graph theory (in Hungarian)",
+      "authors": [
+        "Pál Turán"
+      ],
+      "type": "paper",
+      "relationship": "background",
+      "location": "Matematikai és Fizikai Lapok 48 (1941), 436–452; English translation in the Collected Papers of Paul Turán (ed. P. Erdős), Akadémiai Kiadó, Budapest (1990), 231–240",
+      "license": "not-applicable",
+      "author_endorsement": "not-applicable",
+      "note": "Classical extremal graph theory reference generalizing Mantel's triangle-free theorem; cited as background for the Mantel–Turán degree-sum method adapted in maxAdmissibleEdges_le_mul_add_sub_one_div_four."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/37f0808b83c56c8cef4ea5816b8329c09b8905a8/FormalConjectures/ErdosProblems/600.lean",
+      "relationship": "builds-on",
+      "note": "Pinned Formal Conjectures source of the shared definitions of the triangle-covering predicate and the threshold function, and of the target declaration `erdos_600.variants.ruzsa_szemeredi_upper_bound`, which is `sorry` at this commit. The declarations `erdos_600.parts.i` and `erdos_600.parts.ii` in the same file are also `sorry` and are not proved here."
+    }
+  ],
+  "status": {
+    "scope": "Proves the upstream variant `erdos_600.variants.ruzsa_szemeredi_upper_bound` exactly: for every fixed r, the minimal number of edges forcing an r-book in a triangle-covered n-vertex graph is o(n^2). The proof routes dense r-book-free triangle-covered graphs to the far-from-triangle-free predicate and applies Mathlib's formalization of the Dillies–Mehta triangle removal lemma, together with a sharp cover-charge inequality giving |E(G)| ≤ (2r - 1)(|E(G)| - |E(H)|) for a triangle-free subgraph H of G. Seventeen auxiliary theorems have no upstream Formal Conjectures declaration and are recorded as enhancements: an equivalence between locally linear graphs and triangle-covered graphs whose edges lie in fewer than two triangles, the exact identity e(n, 2) = 3 rs(n) + 1 with the locally linear extremal number, the Behrend lower bound n^2 exp(-4 sqrt(log n)) = O(e(n, r)) for r ≥ 2, the saturation dichotomy e(n, r) = C(n, 2) + 1 iff n - 1 ≤ r for n ≥ 3, disjoint-union superadditivity of the extremal edge count, a pointwise edge-degree-sum bound, a parity-tightened locally linear packing bound, a global Cauchy–Schwarz triangle-incidence inequality, a Mantel–Turán edge bound, weighted vertex-blowup identities for triangle multiplicity, admissibility and edge counts with uniform blow-up scaling, a non-neighbor triangle partition identity for locally linear graphs, a heavy-edge triangle-incidence bound, and a conditional reduction of the ratio question to deleting a sublinear number of edges. The asymptotic questions `erdos_600.parts.i` and `erdos_600.parts.ii` remain open and are not claimed.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos600.erdos_600.variants.ruzsa_szemeredi_upper_bound",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos600.locallyLinear_iff_trianglesContaining",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos600.eFunction_two_eq",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos600.behrend_asymptotic_lower_bound_eFunction",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos600.card_edgeFinset_le_two_mul_sub_one_mul_sub_card",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos600.eFunction_eq_choose_two_succ_iff_of_three_le",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos600.maxAdmissibleEdges_superadditive",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos600.degree_add_degree_le_card_add_sub_one_of_isAdmissibleBookFree",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos600.three_mul_ruzsaSzemerediNumberNat_le_mul_div_two",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos600.nine_mul_card_cliqueFinset_sq_le_card_edgeFinset_mul_edgeTriangleIncidenceSqSum",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos600.maxAdmissibleEdges_le_mul_add_sub_one_div_four",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos600.card_trianglesContaining_weightedBlowupGraph_eq_commonNeighborWeightSum",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos600.isAdmissibleBookFree_weightedBlowupGraph_iff_of_pos",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos600.card_edgeFinset_weightedBlowupGraph_eq_blowupEdgeQuadraticForm",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos600.sq_mul_maxAdmissibleEdges_le_maxAdmissibleEdges_mul",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos600.four_mul_crossTriangleCount_add_six_mul_residualTriangleCount_eq_sum_degree",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos600.card_edgeFinset_add_sub_one_mul_card_bookHeavyEdgeFinset_le_edgeTriangleIncidenceSum",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      },
+      {
+        "declaration": "Erdos600.erdos_600_parts_ii_of_forall_exists_deleteEdges_isLittleO",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "All five proof modules under Proofs/ together with Statement, Solution, AxiomAudit and Challenge compile from source in Lean 4.35.0-rc2 with no `sorry` in the proof modules. The seventeen auxiliary theorems support the single upstream target and are reported as package-local results."
+  },
+  "fidelity": {
+    "divergences": "None for the stated target: the triangle-covering predicate, the threshold predicate and the threshold function reproduce the pinned upstream definitions, and the packaged upper bound has the same quantifiers, the same asymptotic filter and the same norm as `erdos_600.variants.ruzsa_szemeredi_upper_bound`. The seventeen auxiliary theorems do not appear upstream, so they are package-local results rather than statements of Formal Conjectures declarations."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Statement fidelity, non-vacuity and transitive axioms (restricted to propext, Classical.choice and Quot.sound) were checked for all eighteen exported theorems. The upper bound is additionally compared against the pinned upstream declaration, and the six benchmark statements recorded in Statement.lean are compared against their packaged counterparts."
+  },
+  "alignment": {
+    "namespace": "Erdos600",
+    "statements": [
+      {
+        "source": "upstream declaration `erdos_600.variants.ruzsa_szemeredi_upper_bound` in the pinned Formal Conjectures problem file; Ruzsa and Szemerédi (1978), Colloq. Math. Soc. János Bolyai 18, 939–945",
+        "lean": "Erdos600.erdos_600.variants.ruzsa_szemeredi_upper_bound",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves the upstream target exactly: for every natural number r, the cast threshold function divided by n^2 tends to zero. The argument reduces an r-book-free triangle-covered graph to a graph that is far from triangle-free and invokes the triangle removal lemma."
+      },
+      {
+        "source": "Package-local characterization of locally linear graphs in the r = 2 book setting; the locally linear setting comes from the problem posed in Erdős (1987), Contemp. Math. 65, 223–228",
+        "lean": "Erdos600.locallyLinear_iff_trianglesContaining",
+        "module": "Solution",
+        "status": "proved",
+        "note": "States that a graph is locally linear exactly when every edge lies in at least one triangle and in fewer than two triangles, i.e. in exactly one triangle. This identifies the r = 2 case of book-freeness with the locally linear graphs of the Ruzsa–Szemerédi problem."
+      },
+      {
+        "source": "Package-local identity between the r = 2 threshold and the locally linear extremal number, using Mathlib's ruzsaSzemerediNumberNat (Mathlib/Combinatorics/Extremal/RuzsaSzemeredi.lean) and the extremal setting of Ruzsa and Szemerédi (1978), Colloq. Math. Soc. János Bolyai 18, 939–945",
+        "lean": "Erdos600.eFunction_two_eq",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves the exact identity between the threshold at r = 2 and the locally linear extremal number: the threshold equals three times that number plus one, for every n."
+      },
+      {
+        "source": "Behrend (1946), Proc. Nat. Acad. Sci. USA 32, 331–332; Ruzsa and Szemerédi (1978), Colloq. Math. Soc. János Bolyai 18, 939–945 (via Mathlib's `rothNumberNat` and `ruzsaSzemerediNumberNat`)",
+        "lean": "Erdos600.behrend_asymptotic_lower_bound_eFunction",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that n^2 exp(-4 sqrt(log n)) is a lower order bound for the threshold for every r ≥ 2, by transferring the Behrend construction through the locally linear extremal number."
+      },
+      {
+        "source": "Package-local sharp (2r - 1) cover-charge inequality, adapting the triangle removal argument of Ruzsa and Szemerédi (1978), Colloq. Math. Soc. János Bolyai 18, 939–945",
+        "lean": "Erdos600.card_edgeFinset_le_two_mul_sub_one_mul_sub_card",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that a triangle-covered graph whose edges all lie in fewer than r triangles satisfies |E(G)| ≤ (2r - 1)(|E(G)| - |E(H)|) for every triangle-free subgraph H of G. This is the quantitative input that yields the subquadratic upper bound."
+      },
+      {
+        "source": "Package-local complete-graph saturation analysis for the threshold defined in Erdős (1987), Contemp. Math. 65, 223–228",
+        "lean": "Erdos600.eFunction_eq_choose_two_succ_iff_of_three_le",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that for n ≥ 3 the threshold equals the complete-graph edge count plus one exactly when n - 1 ≤ r, so the complete graph is the extremal witness precisely in that range."
+      },
+      {
+        "source": "Package-local disjoint-union superadditivity of the extremal r-book-free edge count, for the threshold defined in Erdős (1987), Contemp. Math. 65, 223–228",
+        "lean": "Erdos600.maxAdmissibleEdges_superadditive",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that the extremal r-book-free edge count is superadditive over vertex-disjoint unions: the counts for m and n vertices sum to at most the count for m + n vertices."
+      },
+      {
+        "source": "Package-local pointwise edge-degree-sum bound for r-book-free triangle-covered graphs, for the setting of Erdős (1987), Contemp. Math. 65, 223–228",
+        "lean": "Erdos600.degree_add_degree_le_card_add_sub_one_of_isAdmissibleBookFree",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that in an r-book-free triangle-covered graph with r ≥ 1, the two endpoint degrees of any edge sum to at most the vertex count plus r - 1."
+      },
+      {
+        "source": "Package-local parity refinement of the packing bound for Mathlib's ruzsaSzemerediNumberNat (Mathlib/Combinatorics/Extremal/RuzsaSzemeredi.lean), in the setting of Ruzsa and Szemerédi (1978), Colloq. Math. Soc. János Bolyai 18, 939–945",
+        "lean": "Erdos600.three_mul_ruzsaSzemerediNumberNat_le_mul_div_two",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves the parity refinement 3 rs(n) ≤ n floor((n - 1)/2) for the locally linear extremal number, tightening the elementary packing bound for that quantity."
+      },
+      {
+        "source": "Package-local global Cauchy–Schwarz second-moment inequality for triangle incidences; the Cauchy–Schwarz method is standard and the application to the problem is original to this package",
+        "lean": "Erdos600.nine_mul_card_cliqueFinset_sq_le_card_edgeFinset_mul_edgeTriangleIncidenceSqSum",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves the global second-moment inequality 9 |T(G)|^2 ≤ |E(G)| times the sum of squared triangle multiplicities over the edges of G, where T(G) is the set of triangles of G."
+      },
+      {
+        "source": "Package-local r-book generalization of the Mantel–Turán edge bound; the triangle-free case is Mantel (1907), Wiskundige Opgaven 10, 60–61, and Turán (1941), Mat. Fiz. Lapok 48, 436–452",
+        "lean": "Erdos600.maxAdmissibleEdges_le_mul_add_sub_one_div_four",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves the Mantel–Turán style bound: for r ≥ 1 the extremal r-book-free triangle-covered edge count is at most n(n + r - 1)/4, extending the Cauchy–Schwarz degree-sum proof of Mantel's n^2/4 theorem by allowing up to r - 1 common neighbors per edge."
+      },
+      {
+        "source": "Package-local triangle-multiplicity identity for weighted vertex blow-ups, in the setting of Erdős (1987), Contemp. Math. 65, 223–228",
+        "lean": "Erdos600.card_trianglesContaining_weightedBlowupGraph_eq_commonNeighborWeightSum",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that in the weighted vertex blow-up of a base graph, the number of triangles containing an edge equals the total weight of the common neighbors of the corresponding base edge."
+      },
+      {
+        "source": "Package-local admissibility criterion for weighted vertex blow-ups with positive weights, in the setting of Erdős (1987), Contemp. Math. 65, 223–228",
+        "lean": "Erdos600.isAdmissibleBookFree_weightedBlowupGraph_iff_of_pos",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that for positive integer weights, a weighted blow-up is r-book-free and triangle-covered exactly when every base edge has common-neighbor weight sum between one and r - 1."
+      },
+      {
+        "source": "Package-local edge-count identity for weighted vertex blow-ups, in the setting of Erdős (1987), Contemp. Math. 65, 223–228",
+        "lean": "Erdos600.card_edgeFinset_weightedBlowupGraph_eq_blowupEdgeQuadraticForm",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that the edge count of a weighted vertex blow-up equals the quadratic form summing the products of the weights across the edges of the base graph."
+      },
+      {
+        "source": "Package-local uniform blow-up scaling of the extremal r-book-free edge count, in the setting of Erdős (1987), Contemp. Math. 65, 223–228",
+        "lean": "Erdos600.sq_mul_maxAdmissibleEdges_le_maxAdmissibleEdges_mul",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that replacing every vertex by c indistinguishable copies multiplies the extremal edge count by at least c^2, with the book parameter rescaled to c(r - 1) + 1."
+      },
+      {
+        "source": "Package-local non-neighbor triangle partition identity for locally linear graphs, in the setting of Erdős (1987), Contemp. Math. 65, 223–228",
+        "lean": "Erdos600.four_mul_crossTriangleCount_add_six_mul_residualTriangleCount_eq_sum_degree",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves the locally linear non-neighbor identity 4 t_1(u) + 6 t_3(u) = sum over the non-neighbors w of u of deg(w), where t_1 and t_3 count cross and residual triangles avoiding u."
+      },
+      {
+        "source": "Package-local heavy-edge triangle-incidence bound for triangle-covered graphs, in the setting of Erdős (1987), Contemp. Math. 65, 223–228",
+        "lean": "Erdos600.card_edgeFinset_add_sub_one_mul_card_bookHeavyEdgeFinset_le_edgeTriangleIncidenceSum",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that in a triangle-covered graph with r ≥ 1, the edge count plus (r - 1) times the number of edges lying in at least r triangles is at most the total triangle-edge incidence sum."
+      },
+      {
+        "source": "Package-local conditional edge-deletion reduction for the open ratio question `erdos_600.parts.ii` posed in Erdős (1987), Contemp. Math. 65, 223–228",
+        "lean": "Erdos600.erdos_600_parts_ii_of_forall_exists_deleteEdges_isLittleO",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves a conditional reduction of the open ratio question: if every r + 1 book-free triangle-covered graph can be made r book-free by deleting o(e(n, r)) edges, then the ratio of consecutive thresholds tends to one. The upstream asymptotic question itself remains open."
+      }
+    ]
+  },
+  "acknowledgements": "The problem was posed by Paul Erdős (1987) on the growth of consecutive book thresholds in triangle-covered graphs. The upper bound formalized here is the theorem of Imre Z. Ruzsa and Endre Szemerédi (1978), and the sharpened edge count obtained in this package follows their triangle removal argument. The lower bound combines the three-term-progression-free construction of Felix A. Behrend (1946) with the Ruzsa–Szemerédi (1978) reduction from the progression-free extremal function (`rothNumberNat` in Mathlib, named after Klaus F. Roth, 1953) to the locally linear extremal number as formalized in Mathlib. The triangle removal lemma is a consequence of Szemerédi's regularity lemma, as used by Ruzsa and Szemerédi (1978); this package applies Mathlib's formalization of it by Yaël Dillies and Bhavik Mehta and does not reprove it. Mathlib and Formal Conjectures supply the underlying simple graph, asymptotic and extremal-number infrastructure."
+}

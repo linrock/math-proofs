@@ -1,0 +1,136 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 962: Tao's square-root upper bound",
+    "description": "A Lean 4 formalization of Tao's square-root upper bound for Erdős Problem 962. For k(n), the largest run of consecutive integers below n each divisible by a prime exceeding the run length, a divisor-remainder obstruction proves the pointwise bound k(n) ≤ √n, which implies the upstream asymptotic statement exactly. Laishram and Murty (2012) prove a stronger asymptotic bound for the corresponding distinct-prime problem, which also applies to k(n); this package makes no claim of improving that literature. The main sub-exponential conjecture remains open, and Tang's matching lower-bound variant is not formalized here.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "Apache-2.0"
+  },
+  "classification": {
+    "arxiv": [
+      "math.NT"
+    ],
+    "msc2020": [
+      "11N25",
+      "11A41"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Erdős Problem 962 discussion",
+      "authors": [
+        "Terence Tao"
+      ],
+      "type": "other",
+      "relationship": "formalizes",
+      "id": "https://www.erdosproblems.com/forum/thread/962",
+      "author_endorsement": "not-applicable",
+      "note": "Forum post containing Tao's square-root upper bound argument, k(n) ≤ (1 + o(1)) sqrt n. The package proves the stronger pointwise bound k(n) ≤ sqrt n by a divisor-remainder argument.",
+      "location": "erdosproblems.com forum thread 962"
+    },
+    {
+      "title": "Grimm's conjecture and smooth numbers",
+      "authors": [
+        "Shanta Laishram",
+        "M. Ram Murty"
+      ],
+      "type": "paper",
+      "relationship": "background",
+      "id": "https://doi.org/10.1307/mmj/1331222852",
+      "location": "Michigan Mathematical Journal 61 (2012), 151-160; preprint arXiv:1306.0765, Theorem 1(i) and Section 3",
+      "author_endorsement": "not-contacted",
+      "note": "Proves g(n) < n^alpha for sufficiently large n with some alpha < 1/2 (Section 3 shows 0.45 < alpha < 0.46 is admissible), where g(n) is the largest k admitting distinct primes p_i with p_i | (n+i) for 1 <= i <= k. Because two prime divisors exceeding k cannot divide both m+i and m+j for distinct i, j in [1, k] (their difference is smaller than k), the condition in Erdos962Prop forces the primes to be distinct, so k(n) <= max_{m <= n} g(m). Hence k(n) = O(n^alpha) with alpha < 0.46, which is asymptotically stronger than the pointwise bound k(n) <= sqrt n proved here. This package formalizes the upstream statement exactly; it does not improve on the literature bound."
+    },
+    {
+      "title": "On Erdős Problem 962",
+      "authors": [
+        "Quanyu Tang"
+      ],
+      "type": "preprint",
+      "relationship": "background",
+      "id": "https://github.com/QuanyuTang/erdos-problem-962/blob/main/On_Erd%C5%91s_Problem_962.pdf",
+      "note": "Lower-bound counterpart for the target family; proves k(n) >= exp((1/sqrt(2) - o(1)) sqrt(log n log log n)). No DOI is present in the note.",
+      "location": "GitHub note (2026)"
+    },
+    {
+      "title": "Extremal problems in number theory",
+      "authors": [
+        "Paul Erdős"
+      ],
+      "type": "paper",
+      "relationship": "poses",
+      "location": "Proc. Sympos. Pure Math., Vol. VIII (1965), 181-189",
+      "note": "Poses the problem; page range as cited by Formal Conjectures.",
+      "id": "https://doi.org/10.1090/pspum/008/0174539"
+    },
+    {
+      "title": "Problems and results on consecutive integers",
+      "authors": [
+        "Paul Erdős"
+      ],
+      "type": "paper",
+      "relationship": "poses",
+      "location": "Publicationes Mathematicae Debrecen 23 (1976), 271–282",
+      "note": "Problem source on consecutive integers; page range as cited by Formal Conjectures.",
+      "id": "https://doi.org/10.5486/pmd.1976.23.3-4.15"
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/0214b275653a2aa8fe5e44f01a0954723516801f/FormalConjectures/ErdosProblems/962.lean",
+      "relationship": "builds-on",
+      "note": "Provides the Formal Conjectures definitions and target statements for Erdős Problem 962."
+    }
+  ],
+  "status": {
+    "scope": "Proves the upstream statement erdos_962.variants.tao_upper_bound exactly and supplies a self-contained pointwise bound k(n) <= sqrt n (together with the two-divisor refinement (k(n) - 1)(k(n) + 2) <= n and the exact plateau values k(n) = 1, 2, 3, 4, 5 on [1, 3], [4, 11], [12, 17], [18, 53], and [54, 63]). Laishram and Murty's published asymptotic bound for the corresponding distinct-prime problem is stronger and also applies to k(n), so this package claims no improvement over that literature. The main sub-exponential conjecture erdos_962 remains open. Tang's lower-bound variant erdos_962.variants.tang_lower_bound is known in the literature but remains sorry upstream and is not addressed here.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos962.erdos_962_variants_tao_upper_bound",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "All proof modules in Proofs/ together with Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry in the proof modules."
+  },
+  "fidelity": {
+    "divergences": "None. Challenge.lean, Statement.lean, and Solution.lean match the exact definitions and theorem types from FormalConjectures/ErdosProblems/962.lean."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Statement fidelity and transitive axioms (restricted to propext, Classical.choice, and Quot.sound) were verified across all exported theorems in Solution.lean."
+  },
+  "alignment": {
+    "namespace": "Erdos962",
+    "statements": [
+      {
+        "source": "Terence Tao; FormalConjectures/ErdosProblems/962.lean (erdos_962.variants.tao_upper_bound)",
+        "lean": "Erdos962.erdos_962_variants_tao_upper_bound",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves ∃ ε → 0, ∀ᶠ n, k(n) ≤ (1 + ε(n)) √n."
+      }
+    ]
+  },
+  "acknowledgements": "Mathlib supplies the underlying mathematical library; Formal Conjectures supplies the problem statement."
+}

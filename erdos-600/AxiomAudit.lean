@@ -1,0 +1,83 @@
+module
+
+/-
+Copyright 2026 Linmiao Xu.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-/
+
+public import Solution
+public import Statement
+
+@[expose] public section
+
+namespace Erdos600
+
+theorem statement_ruzsa_szemeredi_upper_bound_fidelity :
+    Erdos600.Challenge.statement_erdos_600_variants_ruzsa_szemeredi_upper_bound :=
+  Erdos600.erdos_600.variants.ruzsa_szemeredi_upper_bound
+
+theorem statement_eFunction_two_eq_fidelity :
+    Erdos600.Challenge.statement_eFunction_two_eq :=
+  eFunction_two_eq
+
+theorem statement_mantel_turan_fidelity :
+    Erdos600.Challenge.statement_maxAdmissibleEdges_le_mul_add_sub_one_div_four :=
+  fun n _ hr => maxAdmissibleEdges_le_mul_add_sub_one_div_four n hr
+
+theorem statement_blowup_scaling_fidelity :
+    Erdos600.Challenge.statement_sq_mul_maxAdmissibleEdges_le_maxAdmissibleEdges_mul :=
+  fun m _ _ hc hr => sq_mul_maxAdmissibleEdges_le_maxAdmissibleEdges_mul m hc hr
+
+end Erdos600
+
+#print Erdos600.erdos_600.variants.ruzsa_szemeredi_upper_bound
+#print Erdos600.locallyLinear_iff_trianglesContaining
+#print Erdos600.eFunction_two_eq
+#print Erdos600.behrend_asymptotic_lower_bound_eFunction
+#print Erdos600.card_edgeFinset_le_two_mul_sub_one_mul_sub_card
+#print Erdos600.eFunction_eq_choose_two_succ_iff_of_three_le
+#print Erdos600.maxAdmissibleEdges_superadditive
+#print Erdos600.degree_add_degree_le_card_add_sub_one_of_isAdmissibleBookFree
+#print Erdos600.three_mul_ruzsaSzemerediNumberNat_le_mul_div_two
+#print Erdos600.nine_mul_card_cliqueFinset_sq_le_card_edgeFinset_mul_edgeTriangleIncidenceSqSum
+#print Erdos600.maxAdmissibleEdges_le_mul_add_sub_one_div_four
+#print Erdos600.card_trianglesContaining_weightedBlowupGraph_eq_commonNeighborWeightSum
+#print Erdos600.isAdmissibleBookFree_weightedBlowupGraph_iff_of_pos
+#print Erdos600.card_edgeFinset_weightedBlowupGraph_eq_blowupEdgeQuadraticForm
+#print Erdos600.sq_mul_maxAdmissibleEdges_le_maxAdmissibleEdges_mul
+#print Erdos600.four_mul_crossTriangleCount_add_six_mul_residualTriangleCount_eq_sum_degree
+#print Erdos600.card_edgeFinset_add_sub_one_mul_card_bookHeavyEdgeFinset_le_edgeTriangleIncidenceSum
+#print Erdos600.erdos_600_parts_ii_of_forall_exists_deleteEdges_isLittleO
+#print axioms Erdos600.erdos_600.variants.ruzsa_szemeredi_upper_bound
+#print axioms Erdos600.locallyLinear_iff_trianglesContaining
+#print axioms Erdos600.eFunction_two_eq
+#print axioms Erdos600.behrend_asymptotic_lower_bound_eFunction
+#print axioms Erdos600.card_edgeFinset_le_two_mul_sub_one_mul_sub_card
+#print axioms Erdos600.eFunction_eq_choose_two_succ_iff_of_three_le
+#print axioms Erdos600.maxAdmissibleEdges_superadditive
+#print axioms Erdos600.degree_add_degree_le_card_add_sub_one_of_isAdmissibleBookFree
+#print axioms Erdos600.three_mul_ruzsaSzemerediNumberNat_le_mul_div_two
+#print axioms Erdos600.nine_mul_card_cliqueFinset_sq_le_card_edgeFinset_mul_edgeTriangleIncidenceSqSum
+#print axioms Erdos600.maxAdmissibleEdges_le_mul_add_sub_one_div_four
+#print axioms Erdos600.card_trianglesContaining_weightedBlowupGraph_eq_commonNeighborWeightSum
+#print axioms Erdos600.isAdmissibleBookFree_weightedBlowupGraph_iff_of_pos
+#print axioms Erdos600.card_edgeFinset_weightedBlowupGraph_eq_blowupEdgeQuadraticForm
+#print axioms Erdos600.sq_mul_maxAdmissibleEdges_le_maxAdmissibleEdges_mul
+#print axioms Erdos600.four_mul_crossTriangleCount_add_six_mul_residualTriangleCount_eq_sum_degree
+#print axioms Erdos600.card_edgeFinset_add_sub_one_mul_card_bookHeavyEdgeFinset_le_edgeTriangleIncidenceSum
+#print axioms Erdos600.erdos_600_parts_ii_of_forall_exists_deleteEdges_isLittleO
+#print axioms Erdos600.statement_ruzsa_szemeredi_upper_bound_fidelity
+#print axioms Erdos600.statement_eFunction_two_eq_fidelity
+#print axioms Erdos600.statement_mantel_turan_fidelity
+#print axioms Erdos600.statement_blowup_scaling_fidelity

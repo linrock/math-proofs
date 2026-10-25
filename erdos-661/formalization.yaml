@@ -1,0 +1,132 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 661: Lenz's construction in R^4",
+    "description": "A Lean 4 formalization of Lenz's 1955 construction of two orthogonal circles in R^4, each of radius 1/sqrt 2, carrying n points apiece with every cross-distance equal to 1. Erdős's 1997 problem collection poses the asymptotic distinct-distance question, while his 1960 paper records Lenz's earlier construction, and the proof here follows the construction through a rational parametrization of the circle. The package also records the textbook planar comparison inequality F(n) ≤ f(2n), which already carries a complete inline proof upstream; that comparison is a supporting control rather than a new contribution. The main asymptotic question and the little-o comparison remain open.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "Apache-2.0"
+  },
+  "classification": {
+    "arxiv": [
+      "math.MG",
+      "math.CO"
+    ],
+    "msc2020": [
+      "52C10"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Variations on the theme of repeated distances",
+      "authors": [
+        "Paul Erdős",
+        "János Pach"
+      ],
+      "type": "paper",
+      "relationship": "background",
+      "id": "https://doi.org/10.1007/BF02122780",
+      "location": "Combinatorica 10(3) (1990), 261–269",
+      "author_endorsement": "not-applicable",
+      "note": "Background reference for the repeated-distance questions behind Erdős Problem 661, including the higher-dimensional setting in which Lenz's construction is used. Not a theorem input here."
+    },
+    {
+      "title": "On sets of distances of n points in Euclidean space",
+      "authors": [
+        "Paul Erdős"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "id": "https://real.mtak.hu/200963",
+      "location": "Magyar Tud. Akad. Mat. Kut. Int. Közl. 5 (1960), 165–169",
+      "author_endorsement": "not-applicable",
+      "note": "Records Lenz's unpublished 1955 construction of two orthogonal circles in R^4 with constant cross-distance; the package formalizes that construction as stated there. The construction itself is Lenz's. The archive record labels the volume 1959 while standard citations give 1960."
+    },
+    {
+      "title": "Some unsolved problems",
+      "authors": [
+        "Paul Erdős"
+      ],
+      "type": "paper",
+      "relationship": "poses",
+      "id": "https://doi.org/10.1017/CBO9780511662034.004",
+      "location": "Combinatorics, Geometry and Probability (Cambridge, 1997), 1–10",
+      "author_endorsement": "not-applicable",
+      "note": "Poses the asymptotic distinct-distance question behind Erdős Problem 661."
+    },
+    {
+      "title": "Formal Conjectures: proof of the planar comparison bound for Erdős Problem 661 (PR #7490)",
+      "authors": [
+        "Daniel Veljanoski (veljjanoski)"
+      ],
+      "type": "other",
+      "relationship": "adapts",
+      "id": "https://github.com/google-deepmind/formal-conjectures/pull/7490",
+      "location": "Merged pull request, October 20, 2026",
+      "author_endorsement": "not-contacted",
+      "note": "Supplies the upstream inline proof of the textbook comparison bound F(n) <= f(2n). The internal helper in this package generalizes that argument to infinite metric spaces and records the planar instance; it is a supporting lemma, not an exported result."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/0214b275653a2aa8fe5e44f01a0954723516801f/FormalConjectures/ErdosProblems/661.lean",
+      "relationship": "builds-on",
+      "note": "Provides the Formal Conjectures definitions and target statements for Erdős Problem 661."
+    },
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/0214b275653a2aa8fe5e44f01a0954723516801f/FormalConjecturesForMathlib/Geometry/Metric.lean",
+      "relationship": "builds-on",
+      "note": "Supplies `distanceSet`, `distinctDistances`, and `minimalDistinctDistances`, which Statement.lean and Proofs/Erdos661Proofs.lean restate so the package is standalone."
+    }
+  ],
+  "status": {
+    "scope": "Proves erdos_661.variants.lenz, a Lean 4 formalization of Lenz's 1955 construction of two orthogonal circles in R^4 whose cross-distances are all 1. The construction is not new; the contribution is the formal proof. The internal helper le_minimalDistinctDistances_plane reproves erdos_661.variants.le_minimalDistinctDistances, which already carries a complete inline proof upstream as of Formal Conjectures PR #7490; it is a supporting lemma, not an exported result. The main erdos_661 and erdos_661.variants.little_o_distinct_distances remain open, as does erdos_661.variants.grid_upper_bound, which is marked research-solved upstream but still carries a sorry and is not proved here.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos661.erdos_661_variants_lenz",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "All proof modules in Proofs/ together with Statement, Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry in the proof modules."
+  },
+  "fidelity": {
+    "divergences": "None. Challenge.lean, Statement.lean, and Solution.lean match the exact definitions and theorem types from FormalConjectures/ErdosProblems/661.lean."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Statement fidelity and transitive axioms (restricted to propext, Classical.choice, and Quot.sound) were verified across all exported theorems in Solution.lean."
+  },
+  "alignment": {
+    "namespace": "Erdos661",
+    "statements": [
+      {
+        "source": "Erdos (1960), Magyar Tud. Akad. Mat. Kut. Int. Kozl. 5, 165-169 (Lenz's unpublished 1955 construction); FormalConjectures/ErdosProblems/661.lean (erdos_661.variants.lenz)",
+        "lean": "Erdos661.erdos_661_variants_lenz",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that for every n, R^4 contains disjoint n-point sets at constant cross-distance 1."
+      }
+    ]
+  },
+  "acknowledgements": "The problem is due to Paul Erdős, and the construction formalized here is Lenz's unpublished 1955 observation as recorded by Erdős (1960). The internal comparison-bound helper follows the upstream inline proof by Daniel Veljanoski (veljjanoski, Formal Conjectures PR #7490) and is not claimed as a new result. Mathlib supplies the underlying mathematical library; Formal Conjectures supplies the problem statement."
+}
