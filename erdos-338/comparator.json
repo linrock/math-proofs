@@ -1,0 +1,19 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos338.erdos_338.variants.hegyvari_hennecart_plagne"
+  ],
+  "definition_names": [
+    "Erdos338.HasOrder",
+    "Erdos338.HasRestrictedOrder",
+    "Erdos338.basisOrder",
+    "Erdos338.restrictedOrder"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

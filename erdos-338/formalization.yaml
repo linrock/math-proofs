@@ -1,0 +1,151 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 338: Hegyvári–Hennecart–Plagne restricted-order construction",
+    "description": "A Lean 4 formalization of the 2007 construction of Hegyvári, Hennecart, and Plagne for Erdős Problem 338, which asks when an additive basis admits representations by distinct summands. For every order k at least two, the construction gives a set of integers that is a basis of exact order k and whose restricted order, the least number of distinct summands needed for all sufficiently large integers, equals 2 to the power k minus 2, plus k minus 1. The proofs establish both exact values. The general characterization of bases with finite restricted order, bounding restricted order in terms of basis order, the equality question, and the finite-removal questions remain open.",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ],
+    "license": "Apache-2.0"
+  },
+  "classification": {
+    "arxiv": [
+      "math.NT",
+      "math.CO"
+    ],
+    "msc2020": [
+      "11B13",
+      "11B05"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Old and new problems and results in combinatorial number theory",
+      "authors": [
+        "Paul Erdős",
+        "Ronald L. Graham"
+      ],
+      "type": "book",
+      "relationship": "context",
+      "id": "ErGr80",
+      "location": "Monographies de L'Enseignement Mathématique (1980)",
+      "author_endorsement": "not-contacted",
+      "note": "Background reference for Erdős Problem 338. It states the restricted-order question that the Hegyvári–Hennecart–Plagne construction answers."
+    },
+    {
+      "title": "On bases with an exact order",
+      "authors": [
+        "Paul Erdős",
+        "Ronald L. Graham"
+      ],
+      "type": "paper",
+      "relationship": "context",
+      "id": "ErGr80b",
+      "location": "Acta Arithmetica 37 (1980), 201-207",
+      "author_endorsement": "not-contacted",
+      "note": "Primary background reference listed in Formal Conjectures for Erdős Problem 338 on exact vs. restricted additive order."
+    },
+    {
+      "title": "Answer to a question by Burr and Erdős on restricted addition, and related results",
+      "authors": [
+        "Norbert Hegyvári",
+        "François Hennecart",
+        "Alain Plagne"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "id": "https://doi.org/10.1017/S0963548306008224",
+      "location": "Combinatorics, Probability and Computing 16 (2007), 747-756, Theorem 4",
+      "author_endorsement": "not-contacted",
+      "note": "Constructs, for every k at least two, a basis of order exactly k whose restricted order is 2 to the power of k minus two plus k minus one. The exported theorem formalizes this statement."
+    },
+    {
+      "title": "Restricted bases",
+      "authors": [
+        "John B. Kelly"
+      ],
+      "type": "paper",
+      "relationship": "context",
+      "id": "Ke57",
+      "location": "American Journal of Mathematics (1957), 258-264",
+      "author_endorsement": "not-contacted",
+      "note": "Background for the order-two restricted-order questions stated upstream; no Kelly theorem is claimed as a result of this package."
+    },
+    {
+      "title": "On the restricted order of asymptotic bases of order two",
+      "authors": [
+        "François Hennecart"
+      ],
+      "type": "paper",
+      "relationship": "context",
+      "id": "He05",
+      "location": "Ramanujan Journal (2005), 123-130",
+      "author_endorsement": "not-contacted",
+      "note": "Background for the order-two questions and Kelly conjecture discussed upstream; no Hennecart theorem is claimed as a result of this package."
+    },
+    {
+      "title": "Erdős Problem 338",
+      "type": "other",
+      "relationship": "context",
+      "id": "https://www.erdosproblems.com/338",
+      "author_endorsement": "not-contacted",
+      "note": "The problem page states the open question on necessary and sufficient conditions for a basis to have a restricted order, and the Hegyvári–Hennecart–Plagne construction is recorded there as a solved example."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/338.lean",
+      "relationship": "builds-on",
+      "note": "Supplies the definitions of unrestricted and restricted order and the upstream statements matched by this package."
+    }
+  ],
+  "status": {
+    "scope": "Proves that for every order k at least two there is a basis of exact order k with exact restricted order 2 to the power k minus 2, plus k minus 1. The general characterization of bases with finite restricted order, bounding restricted order in terms of basis order, the equality question, and the finite-removal questions remain open.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos338.erdos_338.variants.hegyvari_hennecart_plagne",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "Every proof module together with Solution and AxiomAudit compiles from source in Lean 4.35.0-rc2 with zero sorry."
+  },
+  "fidelity": {
+    "divergences": "None. Challenge.lean and Solution.lean reproduce the Erdos338.HasOrder, HasRestrictedOrder, basisOrder, and restrictedOrder definitions from the Formal Conjectures file for the problem, together with the exported theorem statement."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Statement fidelity, non-vacuity, and transitive axioms (restricted to propext, Classical.choice, and Quot.sound) were verified for the exported theorem in Solution.lean."
+  },
+  "alignment": {
+    "namespace": "Erdos338",
+    "statements": [
+      {
+        "source": "Hegyvári, Hennecart, and Plagne (2007), Answer to a question by Burr and Erdős on restricted addition, and related results, Combin. Probab. Comput. 16, Theorem 4; upstream declaration FormalConjectures/ErdosProblems/338.lean: erdos_338.variants.hegyvari_hennecart_plagne",
+        "lean": "Erdos338.erdos_338.variants.hegyvari_hennecart_plagne",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that for every k at least two there is a set with basis order exactly k and restricted order exactly 2 to the power of k minus two plus k minus one."
+      }
+    ]
+  },
+  "acknowledgements": "Mathlib supplies multiset, finset, filter, and extended-natural-number infrastructure; Formal Conjectures supplies the problem statements."
+}

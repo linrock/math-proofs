@@ -1,0 +1,139 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "Erdős 501: Erdős–Hajnal finite independent sets for small outer measure",
+    "description": "A Lean 4 formalization of the Erdős and Hajnal (1960) finite independent-set theorem for Erdős Problem 501 on the real line. For every family of bounded subsets of the real line with Lebesgue outer measure strictly below one and every prescribed natural number n, the proof constructs a finite independent subset of size at least n via measure-subadditivity bounds on enclosing intervals and induction on n. The unrestricted question of whether every such family admits an infinite independent set in ZFC remains open.",
+    "license": "Apache-2.0",
+    "authors": [
+      "Linmiao Xu"
+    ],
+    "responsible_maintainers": [
+      "Linmiao Xu"
+    ]
+  },
+  "classification": {
+    "arxiv": [
+      "math.CO",
+      "math.CA"
+    ],
+    "msc2020": [
+      "28A12",
+      "05C69",
+      "03E05"
+    ]
+  },
+  "sources": [
+    {
+      "type": "web",
+      "title": "Erdős Problem #501",
+      "id": "https://www.erdosproblems.com/501",
+      "authors": [
+        "Paul Erdős",
+        "Thomas F. Bloom"
+      ],
+      "year": 2026,
+      "relationship": "formalizes",
+      "note": "Primary statement of Erdős Problem 501 and its finite independent-set variant."
+    },
+    {
+      "type": "paper",
+      "title": "Some remarks on set theory. VIII",
+      "id": "Michigan Math. J. 7 (1960), 187-191",
+      "authors": [
+        "Paul Erdős",
+        "András Hajnal"
+      ],
+      "year": 1960,
+      "relationship": "formalizes",
+      "note": "Theorem 2: bounded sets of exterior measure below one admit finite independent sets of every prescribed cardinality n."
+    },
+    {
+      "type": "paper",
+      "title": "On some combinatorial problems involving complete graphs",
+      "id": "Acta Math. Acad. Sci. Hungar. (1960), 395-424",
+      "authors": [
+        "Paul Erdős",
+        "András Hajnal"
+      ],
+      "year": 1960,
+      "relationship": "background",
+      "note": "[ErHa60] Reference listed in Formal Conjectures for Erdős Problem 501."
+    },
+    {
+      "type": "paper",
+      "title": "Some unsolved problems",
+      "id": "Magyar Tud. Akad. Mat. Kutató Int. Közl. 6 (1961), 221-254",
+      "authors": [
+        "Paul Erdős"
+      ],
+      "year": 1961,
+      "relationship": "background",
+      "note": "[Er61] Background discussion cited in Formal Conjectures for Erdős Problem 501."
+    },
+    {
+      "type": "paper",
+      "title": "Unsolved problems in set theory",
+      "id": "Axiomatic Set Theory, Proc. Sympos. Pure Math. XIII Part I (1971), 17-48",
+      "authors": [
+        "Paul Erdős",
+        "András Hajnal"
+      ],
+      "year": 1971,
+      "relationship": "background",
+      "note": "[ErHa71] Background discussion cited in Formal Conjectures for Erdős Problem 501."
+    }
+  ],
+  "related_formalizations": [
+    {
+      "id": "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/501.lean",
+      "relationship": "builds-on",
+      "note": "Upstream Formal Conjectures statement module for Erdős Problem 501."
+    }
+  ],
+  "status": {
+    "scope": "Proves the Erdős–Hajnal (1960) finite independent-set variant in FormalConjectures/ErdosProblems/501.lean: every family of bounded subsets of the real line with Lebesgue outer measure strictly below one admits a finite independent set of cardinality at least n for every natural number n. The open ZFC main question and the closed-set and continuum-hypothesis variants covered by existing external developments are outside the exported scope.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "main_results": [
+      {
+        "declaration": "Erdos501.erdos_501.variants.erdosHajnal_finite",
+        "file": "Solution.lean",
+        "comparator_config": "comparator.json"
+      }
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted proof development, statement and axiom audits, and standalone Palomar packaging."
+      }
+    ],
+    "notes": "All proof modules together with Solution, AxiomAudit, and Challenge compile from source in Lean 4.35.0-rc2 with zero sorry."
+  },
+  "fidelity": {
+    "divergences": "None. The exported statement reproduces the Formal Conjectures statement verbatim, including the boundedness and outer-measure hypotheses and the Set.Pairwise independence predicate."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "Statement fidelity, non-vacuity, and transitive axioms (restricted to propext, Classical.choice, and Quot.sound) were verified for the exported theorem in Solution.lean."
+  },
+  "alignment": {
+    "namespace": "Erdos501",
+    "statements": [
+      {
+        "source": "Erdős and Hajnal (1960), Some remarks on set theory. VIII, Theorem 2; FormalConjectures/ErdosProblems/501.lean, erdos_501.variants.erdosHajnal_finite",
+        "lean": "Erdos501.erdos_501.variants.erdosHajnal_finite",
+        "module": "Solution",
+        "status": "proved",
+        "note": "Proves that every family of bounded sets of outer measure below one admits a finite independent set of cardinality at least n."
+      }
+    ]
+  },
+  "acknowledgements": "Mathlib supplies measure-theoretic and cardinal/finset infrastructure; Formal Conjectures supplies the problem statement."
+}
