@@ -1,0 +1,345 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-25-82c92380",
+  "verification_date": "2026-10-25",
+  "state_sha256": "cb6da991a76696893be74a9d75799e9042deefa9d6db0b351a9f08597795a99a",
+  "package": "erdos-918",
+  "project_name": "Erd\u0151s 918: shift graphs and local chromatic equality",
+  "package_commit": "82c9238052cac467baaf930d5dbe8ae6191a574c",
+  "commit": "82c9238052cac467baaf930d5dbe8ae6191a574c",
+  "repository": "linrock/math-proofs",
+  "run_id": "40209134110",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 5716,
+    "lines": 116,
+    "sha256": "b8c20cbf1241cee03c8f473588b0d870b17e69f803510f9ce2898a1f1e620381",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos918.variants.erdos_hajnal",
+    "Erdos918.variants.eq_aleph_0.parts.i",
+    "Erdos918.variants.eq_aleph_0_all_subgraphs.parts.i",
+    "Erdos918.variants.eq_aleph_0.parts.ii",
+    "Erdos918.variants.eq_aleph_0_all_subgraphs.parts.ii",
+    "Erdos918.variants.induced_eq_aleph0_parts_ii_negation_iff_one_le",
+    "Erdos918.variants.chromatic_shiftGraph_le_iff_card_le_iteratedTwoPow"
+  ],
+  "declaration_lines": {
+    "Erdos918.variants.erdos_hajnal": {
+      "solution_line": 56,
+      "challenge_line": 71
+    },
+    "Erdos918.variants.eq_aleph_0.parts.i": {
+      "solution_line": null,
+      "challenge_line": null
+    },
+    "Erdos918.variants.eq_aleph_0_all_subgraphs.parts.i": {
+      "solution_line": null,
+      "challenge_line": null
+    },
+    "Erdos918.variants.eq_aleph_0.parts.ii": {
+      "solution_line": null,
+      "challenge_line": null
+    },
+    "Erdos918.variants.eq_aleph_0_all_subgraphs.parts.ii": {
+      "solution_line": null,
+      "challenge_line": null
+    },
+    "Erdos918.variants.induced_eq_aleph0_parts_ii_negation_iff_one_le": {
+      "solution_line": 83,
+      "challenge_line": 102
+    },
+    "Erdos918.variants.chromatic_shiftGraph_le_iff_card_le_iteratedTwoPow": {
+      "solution_line": 90,
+      "challenge_line": 110
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos918.variants.chromatic_shiftGraph_le_iff_card_le_iteratedTwoPow",
+    "Erdos918.variants.eq_aleph_0.parts.i",
+    "Erdos918.variants.eq_aleph_0.parts.ii",
+    "Erdos918.variants.eq_aleph_0_all_subgraphs.parts.i",
+    "Erdos918.variants.eq_aleph_0_all_subgraphs.parts.ii",
+    "Erdos918.variants.erdos_hajnal",
+    "Erdos918.variants.induced_eq_aleph0_parts_ii_negation_iff_one_le"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 7,
+  "expected_axiom_audit_count": 7,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos918.variants.erdos_hajnal",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos918.variants.eq_aleph_0.parts.i",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos918.variants.eq_aleph_0_all_subgraphs.parts.i",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos918.variants.eq_aleph_0.parts.ii",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos918.variants.eq_aleph_0_all_subgraphs.parts.ii",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos918.variants.induced_eq_aleph0_parts_ii_negation_iff_one_le",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "Erdos918.variants.chromatic_shiftGraph_le_iff_card_le_iteratedTwoPow",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Erdos918.iteratedTwoPow",
+      "kind": "def",
+      "declaration": "def Erdos918.iteratedTwoPow.{u} (r : Nat) (\u03bc : Cardinal) : Cardinal :=\n  fun r \u03bc => Nat.rec \u03bc (fun x c => HPow.hPow 2 c) r"
+    },
+    {
+      "name": "Erdos918.ShiftStep",
+      "kind": "def",
+      "declaration": "def Erdos918.ShiftStep.{u} (r : Nat) {\u03b1 : Type u} [Preorder \u03b1] (u v : Erdos918.ShiftTuple r \u03b1) : Prop :=\n  fun r {\u03b1} [Preorder \u03b1] u v =>\n  And (LT.lt (Subtype.val u 0) (Subtype.val v 0))\n    (\u2200 (i : Fin r), Eq (Subtype.val u (Fin.succ i)) (Subtype.val v (Fin.castSucc i)))"
+    },
+    {
+      "name": "Erdos918.ShiftGraph",
+      "kind": "def",
+      "declaration": "def Erdos918.ShiftGraph.{u} (r : Nat) (\u03b1 : Type u) [Preorder \u03b1] : SimpleGraph (Erdos918.ShiftTuple r \u03b1) :=\n  fun r \u03b1 [Preorder \u03b1] =>\n  SimpleGraph.mk (fun u v => Or (Erdos918.ShiftStep r u v) (Erdos918.ShiftStep r v u))\n    (Erdos918.ShiftGraph._proof_2 r \u03b1) (Erdos918.ShiftGraph._proof_3 r \u03b1)"
+    },
+    {
+      "name": "Erdos918.ShiftTuple",
+      "kind": "def",
+      "declaration": "def Erdos918.ShiftTuple.{u} (r : Nat) (\u03b1 : Type u) [Preorder \u03b1] : Type u :=\n  fun r \u03b1 [Preorder \u03b1] => Subtype fun x => StrictMono x"
+    },
+    {
+      "name": "SimpleGraph.chromaticCardinal",
+      "kind": "def",
+      "declaration": "def SimpleGraph.chromaticCardinal.{u} {V : Type u} (G : SimpleGraph V) : Cardinal :=\n  fun {V} G => InfSet.sInf (Set.ofPred fun \u03ba => Exists fun C => Exists fun x => Nonempty (SimpleGraph.Coloring G C))"
+    },
+    {
+      "name": "Erdos918.variants.erdos_hajnal",
+      "kind": "theorem",
+      "declaration": "theorem Erdos918.variants.erdos_hajnal.{u}\n  (hGCH : \u2200 (c : Cardinal), LE.le Cardinal.aleph0 c \u2192 Eq (HPow.hPow 2 c) (Order.succ c)) (k : Nat) (hk : LT.lt 0 k) :\n  Exists fun V =>\n    Exists fun G =>\n      And (Eq (Cardinal.mk V) (DFunLike.coe Cardinal.aleph \u2191k))\n        (And (Eq (SimpleGraph.chromaticCardinal G) (DFunLike.coe Cardinal.aleph 1))\n          (\u2200 (W : Set V),\n            LT.lt (Cardinal.mk (Set.Elem W)) (DFunLike.coe Cardinal.aleph \u2191k) \u2192\n              LE.le (SimpleGraph.chromaticCardinal (SimpleGraph.induce W G)) Cardinal.aleph0))"
+    },
+    {
+      "name": "Erdos918.variants.eq_aleph_0.parts.i",
+      "kind": "theorem",
+      "declaration": "theorem Erdos918.variants.eq_aleph_0.parts.i.{u} :\n  Not\n    (Exists fun V =>\n      Exists fun G =>\n        And (Eq (Cardinal.mk V) (DFunLike.coe Cardinal.aleph 2))\n          (And (Eq (SimpleGraph.chromaticCardinal G) (DFunLike.coe Cardinal.aleph 2))\n            (\u2200 (W : Set V),\n              Eq (Cardinal.mk (Set.Elem W)) (DFunLike.coe Cardinal.aleph 1) \u2192\n                Eq (SimpleGraph.chromaticCardinal (SimpleGraph.induce W G)) Cardinal.aleph0)))"
+    },
+    {
+      "name": "Erdos918.variants.eq_aleph_0_all_subgraphs.parts.i",
+      "kind": "theorem",
+      "declaration": "theorem Erdos918.variants.eq_aleph_0_all_subgraphs.parts.i.{u} :\n  Not\n    (Exists fun V =>\n      Exists fun G =>\n        And (Eq (Cardinal.mk V) (DFunLike.coe Cardinal.aleph 2))\n          (And (Eq (SimpleGraph.chromaticCardinal G) (DFunLike.coe Cardinal.aleph 2))\n            (\u2200 (H : SimpleGraph.Subgraph G),\n              Eq (Cardinal.mk (Set.Elem (SimpleGraph.Subgraph.verts H))) (DFunLike.coe Cardinal.aleph 1) \u2192\n                Eq (SimpleGraph.chromaticCardinal (SimpleGraph.Subgraph.coe H)) Cardinal.aleph0)))"
+    },
+    {
+      "name": "Erdos918.variants.eq_aleph_0.parts.ii",
+      "kind": "theorem",
+      "declaration": "theorem Erdos918.variants.eq_aleph_0.parts.ii.{u} :\n  Not\n    (Exists fun V =>\n      Exists fun G =>\n        And (Eq (Cardinal.mk V) (DFunLike.coe Cardinal.aleph (HAdd.hAdd Ordinal.omega0 1)))\n          (And (Eq (SimpleGraph.chromaticCardinal G) (DFunLike.coe Cardinal.aleph 1))\n            (\u2200 (W : Set V),\n              Eq (Cardinal.mk (Set.Elem W)) (DFunLike.coe Cardinal.aleph Ordinal.omega0) \u2192\n                Eq (SimpleGraph.chromaticCardinal (SimpleGraph.induce W G)) Cardinal.aleph0)))"
+    },
+    {
+      "name": "Erdos918.variants.eq_aleph_0_all_subgraphs.parts.ii",
+      "kind": "theorem",
+      "declaration": "theorem Erdos918.variants.eq_aleph_0_all_subgraphs.parts.ii.{u} :\n  Not\n    (Exists fun V =>\n      Exists fun G =>\n        And (Eq (Cardinal.mk V) (DFunLike.coe Cardinal.aleph (HAdd.hAdd Ordinal.omega0 1)))\n          (And (Eq (SimpleGraph.chromaticCardinal G) (DFunLike.coe Cardinal.aleph 1))\n            (\u2200 (H : SimpleGraph.Subgraph G),\n              Eq (Cardinal.mk (Set.Elem (SimpleGraph.Subgraph.verts H))) (DFunLike.coe Cardinal.aleph Ordinal.omega0) \u2192\n                Eq (SimpleGraph.chromaticCardinal (SimpleGraph.Subgraph.coe H)) Cardinal.aleph0)))"
+    },
+    {
+      "name": "Erdos918.variants.induced_eq_aleph0_parts_ii_negation_iff_one_le",
+      "kind": "theorem",
+      "declaration": "theorem Erdos918.variants.induced_eq_aleph0_parts_ii_negation_iff_one_le.{u} (\u03c9\u2080 : Ordinal) :\n  Iff\n    (Not\n      (Exists fun V =>\n        Exists fun G =>\n          And (Eq (Cardinal.mk V) (DFunLike.coe Cardinal.aleph (HAdd.hAdd \u03c9\u2080 1)))\n            (And (Eq (SimpleGraph.chromaticCardinal G) (DFunLike.coe Cardinal.aleph 1))\n              (\u2200 (W : Set V),\n                Eq (Cardinal.mk (Set.Elem W)) (DFunLike.coe Cardinal.aleph \u03c9\u2080) \u2192\n                  Eq (SimpleGraph.chromaticCardinal (SimpleGraph.induce W G)) Cardinal.aleph0))))\n    (LE.le 1 \u03c9\u2080)"
+    },
+    {
+      "name": "Erdos918.variants.chromatic_shiftGraph_le_iff_card_le_iteratedTwoPow",
+      "kind": "theorem",
+      "declaration": "theorem Erdos918.variants.chromatic_shiftGraph_le_iff_card_le_iteratedTwoPow.{u} (r : Nat) (\u03b1 : Type u) [LinearOrder \u03b1]\n  {\u03bc : Cardinal} (h\u03bc : LE.le Cardinal.aleph0 \u03bc) :\n  Iff (LE.le (SimpleGraph.chromaticCardinal (Erdos918.ShiftGraph r \u03b1)) \u03bc)\n    (LE.le (Cardinal.mk \u03b1) (Erdos918.iteratedTwoPow r \u03bc))"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos918.erdos_918.variants.eq_aleph_0_all_subgraphs.parts.i",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.918",
+      "solution_declaration": "Erdos918.variants.eq_aleph_0_all_subgraphs.parts.i",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos918.erdos_918.variants.eq_aleph_0.parts.i",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.918",
+      "solution_declaration": "Erdos918.variants.eq_aleph_0.parts.i",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos918.erdos_918.variants.eq_aleph_0.parts.ii",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.918",
+      "solution_declaration": "Erdos918.variants.eq_aleph_0.parts.ii",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos918.erdos_918.variants.eq_aleph_0_all_subgraphs.parts.ii",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.918",
+      "solution_declaration": "Erdos918.variants.eq_aleph_0_all_subgraphs.parts.ii",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos918.erdos_918.variants.erdos_hajnal",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.918",
+      "solution_declaration": "Erdos918.variants.erdos_hajnal",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos918.statement_eq_aleph_0_parts_i",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos918.variants.eq_aleph_0.parts.i",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos918.statement_eq_aleph_0_all_subgraphs_parts_i",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos918.variants.eq_aleph_0_all_subgraphs.parts.i",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos918.statement_erdos_hajnal",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos918.variants.erdos_hajnal",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos918.statement_eq_aleph_0_all_subgraphs_parts_ii",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos918.variants.eq_aleph_0_all_subgraphs.parts.ii",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos918.statement_eq_aleph_0_parts_ii",
+      "status": "PASS",
+      "source": "Statement",
+      "solution_declaration": "Erdos918.variants.eq_aleph_0.parts.ii",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos918.erdos_918.variants.eq_aleph_0_all_subgraphs.parts.i",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.918",
+      "solution_declaration": "Erdos918.statement_eq_aleph_0_all_subgraphs_parts_i",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos918.erdos_918.variants.eq_aleph_0.parts.i",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.918",
+      "solution_declaration": "Erdos918.statement_eq_aleph_0_parts_i",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos918.erdos_918.variants.eq_aleph_0.parts.ii",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.918",
+      "solution_declaration": "Erdos918.statement_eq_aleph_0_parts_ii",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos918.erdos_918.variants.eq_aleph_0_all_subgraphs.parts.ii",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.918",
+      "solution_declaration": "Erdos918.statement_eq_aleph_0_all_subgraphs_parts_ii",
+      "match_mode": "exact"
+    },
+    {
+      "target_declaration": "Erdos918.erdos_918.variants.erdos_hajnal",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.918",
+      "solution_declaration": "Erdos918.statement_erdos_hajnal",
+      "match_mode": "exact"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "a85b0ff8664c52ab923e0daf7e20cbc394272cd3831cc492ab144105d8091361"
+  },
+  "input_sha256": {
+    "Challenge.lean": "b8c20cbf1241cee03c8f473588b0d870b17e69f803510f9ce2898a1f1e620381",
+    "Solution.lean": "17a37f8777a5fda09d016c4e0ae7a62a24736124b5a105a6793a3ec98549a7af",
+    "AxiomAudit.lean": "958ec6bedefaef3509533d3406bf066538d57fb48dfe98b267776bfc47b2fee5",
+    "Statement.lean": "a48c1cc631f251d197433b95178fdf90b9d2c226de9e657048d6b6d4cc253db4",
+    "comparator.json": "5d69e7c4c2a585ae1bab96cc34fc41d8e2daaa23f93c3b7510b77f2f04c95013",
+    "formalization.yaml": "940c27a1bb90a8b5c053e6ca8aa2edbd14949b13b1f6281e547e599e17952181",
+    "lakefile.toml": "57147496365b701088dc308d9457b9db6b57ea9c4e5056085a21a61f3b08fa85",
+    "lake-manifest.json": "6c00ab8eba005edeb7901f8739299de29677f1352c48f1c491cc3e66a96474c3",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "8b97219b78b24847c082bd782793eac066a9c128d6673cf85f5a629d4871f1b1",
+    "Proofs/PigeonholeAndEqualityRefutations918.lean": "a73530f9f5fbca0efe209d97d087c347ccb66bf1a6ae5d95fb90a1877df94e90",
+    "Proofs/ShiftGraphHierarchy918.lean": "84b4dba79530731981b12989b81c71ca9f725b7df7d70c49367d6020dcc8a973"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 27.897,
+    "env_compare_and_core_audit_seconds": 82.166,
+    "total_elapsed_seconds": 212.096,
+    "user_cpu_seconds": 138.115,
+    "system_cpu_seconds": 79.474,
+    "peak_rss_mib": 13454.27
+  },
+  "status": "PASS"
+}
