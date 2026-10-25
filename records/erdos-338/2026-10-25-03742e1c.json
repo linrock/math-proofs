@@ -1,0 +1,126 @@
+{
+  "schema_version": 2,
+  "verification_id": "2026-10-25-03742e1c",
+  "verification_date": "2026-10-25",
+  "state_sha256": "f27019faef22b3457fba7e72596d51c0724b7299e64a2a307f82d65a9ee8efe7",
+  "package": "erdos-338",
+  "project_name": "Erd\u0151s 338: Hegyv\u00e1ri\u2013Hennecart\u2013Plagne restricted-order construction",
+  "package_commit": "03742e1cb34aac6f167c6a02aa0719b4cfcc1c5c",
+  "commit": "03742e1cb34aac6f167c6a02aa0719b4cfcc1c5c",
+  "repository": "linrock/math-proofs",
+  "run_id": "40219147154",
+  "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+  "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "challenge": {
+    "path": "Challenge.lean",
+    "bytes": 2096,
+    "lines": 54,
+    "sha256": "d23e1aae8c40f2e82e49c2dbd9659499b0204591a1bdf39b26edbe7f7370fbd9",
+    "trust_level": "high"
+  },
+  "exported_theorems": [
+    "Erdos338.erdos_338.variants.hegyvari_hennecart_plagne"
+  ],
+  "declaration_lines": {
+    "Erdos338.erdos_338.variants.hegyvari_hennecart_plagne": {
+      "solution_line": null,
+      "challenge_line": null
+    }
+  },
+  "env_comparison_matched": [
+    "Erdos338.erdos_338.variants.hegyvari_hennecart_plagne"
+  ],
+  "missing_from_axioms_log": [],
+  "missing_from_env_compare": [],
+  "missing_from_fc_statement_audit": [],
+  "axiom_audit_count": 1,
+  "expected_axiom_audit_count": 1,
+  "axiom_reports": [
+    {
+      "declaration": "Erdos338.erdos_338.variants.hegyvari_hennecart_plagne",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "core_notation_audit": [
+    {
+      "name": "Erdos338.HasRestrictedOrder",
+      "kind": "def",
+      "declaration": "def Erdos338.HasRestrictedOrder (A : Set Nat) (t : Nat) : Prop :=\n  fun A t =>\n  Filter.Eventually\n    (fun m =>\n      Exists fun S =>\n        And (\u2200 (x : Nat), Membership.mem S x \u2192 Membership.mem A x)\n          (And (LE.le (Finset.card S) t) (Eq (Finset.sum S fun x => x) m)))\n    Filter.atTop"
+    },
+    {
+      "name": "Erdos338.restrictedOrder",
+      "kind": "def",
+      "declaration": "def Erdos338.restrictedOrder (A : Set Nat) : ENat :=\n  fun A => iInf fun t => iInf fun x => \u2191t"
+    },
+    {
+      "name": "Erdos338.HasOrder",
+      "kind": "def",
+      "declaration": "def Erdos338.HasOrder (A : Set Nat) (h : Nat) : Prop :=\n  fun A h =>\n  Filter.Eventually\n    (fun m =>\n      Exists fun S =>\n        And (\u2200 (x : Nat), Membership.mem S x \u2192 Membership.mem A x)\n          (And (LE.le (Multiset.card S) h) (Eq (Multiset.sum S) m)))\n    Filter.atTop"
+    },
+    {
+      "name": "Erdos338.basisOrder",
+      "kind": "def",
+      "declaration": "def Erdos338.basisOrder (A : Set Nat) : ENat :=\n  fun A => iInf fun h => iInf fun x => \u2191h"
+    },
+    {
+      "name": "Erdos338.erdos_338.variants.hegyvari_hennecart_plagne",
+      "kind": "theorem",
+      "declaration": "theorem Erdos338.erdos_338.variants.hegyvari_hennecart_plagne (k : Nat) :\n  LE.le 2 k \u2192\n    Exists fun A =>\n      And (Eq (Erdos338.basisOrder A) \u2191k)\n        (Eq (Erdos338.restrictedOrder A) \u2191(HSub.hSub (HAdd.hAdd (HPow.hPow 2 (HSub.hSub k 2)) k) 1))"
+    }
+  ],
+  "fc_statement_audit": [
+    {
+      "target_declaration": "Erdos338.erdos_338.variants.hegyvari_hennecart_plagne",
+      "status": "PASS",
+      "source": "FormalConjectures.ErdosProblems.338",
+      "solution_declaration": "Erdos338.erdos_338.variants.hegyvari_hennecart_plagne",
+      "match_mode": "exact"
+    }
+  ],
+  "comparator_required": true,
+  "comparator_ran": true,
+  "sandbox_enabled": true,
+  "kernels": {
+    "nanoda_accepted": true,
+    "con_ron_accepted": true,
+    "lean_kernel_accepted": true
+  },
+  "nanoda_accepted": true,
+  "con_ron_accepted": true,
+  "lean_kernel_accepted": true,
+  "tool_digests": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "bwrap": "a85b0ff8664c52ab923e0daf7e20cbc394272cd3831cc492ab144105d8091361"
+  },
+  "input_sha256": {
+    "Challenge.lean": "d23e1aae8c40f2e82e49c2dbd9659499b0204591a1bdf39b26edbe7f7370fbd9",
+    "Solution.lean": "e68665e9f5e165dcad244a588193947cfbfc89a2605c58a45c2ac4701d7faa1f",
+    "AxiomAudit.lean": "264670922db7ed9060de9d4a7ce8d2d4ce01581d846007cd33d1d418903649e5",
+    "comparator.json": "800f2f90f0a59b260ad965e2ab1034dc248c8ce162a3d2e3e2e189eadc52ca94",
+    "formalization.yaml": "35d97cd2c295ae14cf79a72aa7ba3939adf9ade908da41d761ca23d0dc86f240",
+    "lakefile.toml": "9bf644d65b5b385361acd9f5cf74e2d0335bbfb7b24c3e362b3070278d802b8e",
+    "lake-manifest.json": "99be56fc190ecc870ad14f96a588efd1e96aadb59f8d773a5edacdca81b011a9",
+    "lean-toolchain": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a",
+    "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "verify.sh": "694f3c136549331c558647cb21a7e3485ffc4ab5e112c14f4720c1441494cda5",
+    "Proofs/Erdos338Unified435.lean": "5e8973bd8e96b01b2755e6f09527385fa3285a839e0d1feed1a2ab683b53ba05"
+  },
+  "resource_usage": {
+    "verify_sh_seconds": 24.828,
+    "env_compare_and_core_audit_seconds": 70.21,
+    "total_elapsed_seconds": 202.459,
+    "user_cpu_seconds": 95.164,
+    "system_cpu_seconds": 54.42,
+    "peak_rss_mib": 13684.91
+  },
+  "status": "PASS"
+}

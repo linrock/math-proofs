@@ -2,7 +2,7 @@
   "schema_version": 2,
   "lean_toolchain": "leanprover/lean4:v4.35.0-rc2",
   "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
-  "total_verified_packages": 25,
+  "total_verified_packages": 27,
   "packages": {
     "erdos-9": {
       "package": "erdos-9",
@@ -599,6 +599,41 @@
         "2026-10-23-042164c1"
       ]
     },
+    "erdos-338": {
+      "package": "erdos-338",
+      "verification_id": "2026-10-25-03742e1c",
+      "state_sha256": "f27019faef22b3457fba7e72596d51c0724b7299e64a2a307f82d65a9ee8efe7",
+      "project_name": "Erd\u0151s 338: Hegyv\u00e1ri\u2013Hennecart\u2013Plagne restricted-order construction",
+      "status": "PASS",
+      "package_commit": "03742e1cb34aac6f167c6a02aa0719b4cfcc1c5c",
+      "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+      "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+      "challenge_sha256": "d23e1aae8c40f2e82e49c2dbd9659499b0204591a1bdf39b26edbe7f7370fbd9",
+      "solution_sha256": "e68665e9f5e165dcad244a588193947cfbfc89a2605c58a45c2ac4701d7faa1f",
+      "exported_theorems": [
+        "Erdos338.erdos_338.variants.hegyvari_hennecart_plagne"
+      ],
+      "declaration_lines": {
+        "Erdos338.erdos_338.variants.hegyvari_hennecart_plagne": {
+          "solution_line": null,
+          "challenge_line": null
+        }
+      },
+      "kernels": {
+        "nanoda_accepted": true,
+        "con_ron_accepted": true,
+        "lean_kernel_accepted": true
+      },
+      "fc_statement_matches": 1,
+      "record_json": "records/erdos-338/2026-10-25-03742e1c.json",
+      "record_md": "records/erdos-338/2026-10-25-03742e1c.md",
+      "commits": {
+        "03742e1cb34aac6f167c6a02aa0719b4cfcc1c5c": "2026-10-25-03742e1c"
+      },
+      "verification_history": [
+        "2026-10-25-03742e1c"
+      ]
+    },
     "erdos-494": {
       "package": "erdos-494",
       "verification_id": "2026-10-14-a2d6dcb9",
@@ -637,6 +672,41 @@
       },
       "verification_history": [
         "2026-10-14-a2d6dcb9"
+      ]
+    },
+    "erdos-501": {
+      "package": "erdos-501",
+      "verification_id": "2026-10-25-03742e1c",
+      "state_sha256": "92af05df10521738643b95c86c556de67d0e519cceebc98c1d4c709a649eb0ad",
+      "project_name": "Erd\u0151s 501: Erd\u0151s\u2013Hajnal finite independent sets for small outer measure",
+      "status": "PASS",
+      "package_commit": "03742e1cb34aac6f167c6a02aa0719b4cfcc1c5c",
+      "lean_toolchain": "Lean (version 4.35.0-rc2, x86_64-unknown-linux-gnu, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)",
+      "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+      "challenge_sha256": "43afdf9c97062dea5e0b0c81786326f2bf600eb26b634c62c47e60c32862edf0",
+      "solution_sha256": "7bde9b331f73afe01a67378b4209eacb82610c01b19c3f1b518633ea2a548639",
+      "exported_theorems": [
+        "Erdos501.erdos_501.variants.erdosHajnal_finite"
+      ],
+      "declaration_lines": {
+        "Erdos501.erdos_501.variants.erdosHajnal_finite": {
+          "solution_line": null,
+          "challenge_line": null
+        }
+      },
+      "kernels": {
+        "nanoda_accepted": true,
+        "con_ron_accepted": true,
+        "lean_kernel_accepted": true
+      },
+      "fc_statement_matches": 1,
+      "record_json": "records/erdos-501/2026-10-25-03742e1c.json",
+      "record_md": "records/erdos-501/2026-10-25-03742e1c.md",
+      "commits": {
+        "03742e1cb34aac6f167c6a02aa0719b4cfcc1c5c": "2026-10-25-03742e1c"
+      },
+      "verification_history": [
+        "2026-10-25-03742e1c"
       ]
     },
     "erdos-667": {
